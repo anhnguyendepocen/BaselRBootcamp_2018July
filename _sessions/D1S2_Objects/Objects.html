@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Data objects and functions</title>
+    <meta charset="utf-8">
+    <meta name="author" content="The R Bootcamp Twitter: @therbootcamp" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="my-theme.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Data objects and functions
+### The R Bootcamp<br/>Twitter: <a href='https://twitter.com/therbootcamp'><span class="citation">@therbootcamp</span></a>
+### April 2018
+
+---
+
+
+
+
+
+
+
+.pull-left45[
+# Objects
+&gt;###"Everything in R is an object"&lt;br&gt; 
+&gt;&lt;p align="right"&gt;*John Chambers*&lt;p&gt;
+
+&lt;br&gt;&lt;br&gt;
++ R's objects are have **content** and **attributes**.
+&lt;br2&gt;
++ The content can be anything from **numbers** or **strings** to **functions** or **complex data structures**. 
+&lt;br2&gt;
++ Attributes can be **names**, **dimensions**, and the **class** or type of the object, but other attributes are possible. 
+&lt;br2&gt;
++ Practically all data objects are equipped with those three essential attributes.
+
+]
+.pull-right5[
+&lt;br&gt;&lt;br&gt;
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/objects.png" align="center" width="579" height="560"&gt;
+]
+
+---
+
+# Vectors
+
+R's most **basic (and most simple) data format** - even single values (aka **scalars**) are implemented as vectors. 
+
+.pull-left45[
+
+```r
+# creating a vector (incl. names)
+my_vec &lt;- c(t_1 = 1.343, t_2 = 5.232)
+
+# naming vectors
+my_vec &lt;- c(t_1 = 1.343, t_2 = 5.232)
+names(my_vec) &lt;- c("new_1","new_2")
+
+# evaluting inherent attributes
+names(my_vec)
+length(my_vec)
+typeof(my_vec)
+```
+]
+
+.pull-right5[
+&lt;p align="left"&gt;&lt;br&gt;&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/vector.png" width="628px" height="190px"&gt;&lt;/p&gt;
+]
+
+
+---
+
+# Types
+
+Vectors contains elements of only one type. Most often one of the four **basic types**: `integer`, `double`, `numeric`, and `character`. You can **test** the type using `typeof()` or the type-specific `is.*()`, e.g., `is.integer()`.
+
+
+.pull-left45[
+
+```r
+# numeric vectors
+my_vec &lt;- c(1.343, 5.232)
+typeof(my_vec)
+```
+
+```
+## [1] "double"
+```
+
+```r
+# integer vectors (L avoids coercion)
+my_vec &lt;- c(1L, 7L, 2L)
+typeof(my_vec)
+```
+
+```
+## [1] "integer"
+```
+]
+
+.pull-right45[
+
+```r
+# logical vectors
+my_vec &lt;- c(TRUE, FALSE)
+typeof(my_vec)
+```
+
+```
+## [1] "logical"
+```
+
+
+```r
+# character vectors
+my_vec &lt;- c('a', 'hello', 'world')
+typeof(my_vec)
+```
+
+```
+## [1] "character"
+```
+]
+
+---
+
+# Coercion
+
+R allows you to **flexibly change types** into another using `as.*()`, e.g., `as.numeric` or `as.logical`, and often R does this for you. For instance, mathematical operations &amp; functions will coerce logical to double or integer and logical operations (&amp;, |, any, etc) will coerce to a logical. Importantly, coercion may introduce **information loss!**
+
+.pull-left45[
+
+```r
+# everything becomes character
+my_vec &lt;- c(1L, 1.23, 'a', TRUE)
+my_vec
+```
+
+```
+## [1] "1"    "1.23" "a"    "TRUE"
+```
+
+
+```r
+# logicals become 0s and 1s
+TRUE + FALSE + TRUE
+```
+
+```
+## [1] 2
+```
+
+```
+]
+
+
+.pull-right45[
+
+```r
+# logical operation -&gt; logical type
+c(1, 7, 2) &gt; 3
+```
+
+```
+## [1] FALSE  TRUE FALSE
+```
+
+
+
+```r
+# R can parse character
+as.numeric(c("1", "2", "TRUE")) 
+```
+
+```
+## Warning: NAs introduced by coercion
+```
+
+```
+## [1]  1  2 NA
+```
+]
+
+
+
+&lt;!---
+
+# Matrices &amp; Arrays
+
+Matrices and arrays are **straightforward extensions** of vectors with 2 (matrix) or *n* dimensions. Both are **atomic** (carry only one type), have names (col-, row-, and dimnames) and dimension attributes Compared to vectors, lists, and data frames, **they usually play a lesser role in most applications**.
+
+
+&lt;p align="center"&gt;&lt;br&gt;&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/matrix and array.png" width="682px" height="381px"&gt;&lt;/p&gt;
+
+---&gt;
+
+---
+
+# `list`s
+
+.pull-left45[
+
++ Lists are R's **swiss army knife**. They often are used for outputs of statistical functions e.g., `lm()`.
+
++ Lists have **non-flat** structures that take **any object type**, including lists, rendering lists **recursive**.
+
++ Lists can be understood as a **meta-vector** that includes an **organizational layer**. 
+
++ To create a list use `list()` or `as.list()`
+]
+
+.pull-right45[
+&lt;p align="center"&gt;&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/list.png" width="581px" height="307px"&gt;&lt;/p&gt;
+]
+
+---
+
+# `data_frame`s
+
+.pull-left45[
+
+* Data frames (and its variants, e.g., **tibble**s) are R's **main data format**. 
+
+* **Data frames are lists** with specific **requirements**:
+
+  + Every element must be a vector.
+
+  + The lengths of the vectors must be equal (or multiples of another).  
+
+* Use `data_frame()` and `as_data_frame` to create or to coerce to data frame, to `tibble` to be exact.
+]
+
+.pull-right45[
+&lt;p align="center"&gt;&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/data.frame.png" width="409px" height="266px"&gt;&lt;/p&gt;
+]
+
+---
+
+# Inspecting `data_frame`s
+
+Data frames (or `tibbles`) can be inspecting in various ways.
+
+- `print()` - shows the default print (good with `tibbles`, bad with everything else)
+- `head()`,`tail()` - prints the first/last six rows
+- `str()` - gives an overview of the variables
+- `View()` - opens Excel-like window
+&lt;br&gt;&lt;br&gt;
+
+
+```
+## # A tibble: 1,000 x 17
+##      id sex      age height weight headband college tattoos tchests parrots
+## * &lt;int&gt; &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+## 1     1 male     28.   173.   70.5 yes      JSSFP        9.      0.      0.
+## 2     2 male     31.   209.  106.  yes      JSSFP        9.     11.      0.
+## 3     3 male     26.   170.   77.1 yes      CCCC        10.     10.      1.
+## 4     4 female   31.   144.   58.5 no       JSSFP        2.      0.      2.
+## 5     5 female   41.   158.   58.4 yes      JSSFP        9.      6.      4.
+## 6     6 male     26.   190.   85.4 yes      CCCC         7.     19.      0.
+## 7     7 female   31.   158.   59.6 yes      JSSFP        9.      1.      7.
+## 8     8 female   31.   173.   74.5 yes      JSSFP        5.     13.      7.
+## # ... with 992 more rows, and 7 more variables: favorite.pirate &lt;chr&gt;,
+## #   sword.type &lt;chr&gt;, eyepatch &lt;dbl&gt;, sword.time &lt;dbl&gt;, beard.length &lt;dbl&gt;,
+## #   fav.pixar &lt;chr&gt;, grogg &lt;dbl&gt;
+```
+
+
+&lt;!---
+
+.pull-left35[
+# Data objects
+&lt;br&gt;
++ Objects either contain elements of the **same type** (homogeneous) or **different types** (heterogeneous). 
+&lt;br2&gt;
++ Homogeneous objects are always **flat**, i.e., contain no nested structure.
+&lt;br2&gt;
++ Lists can contain anything, even lists (**recursive**), whereas data frames underly certain restrictions in terms of type and dimensions.  
+
+]
+
+.pull-right55[
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/objects_types.png" align="left" width="629" height="374"&gt;
+]
+
+---&gt;
+
+---
+
+# Accessing &amp; changing vectors
+
+To access (aka **subset** or **slicing**) and change atomic data objects use **brackets** `[]` and provide either **integers**, **logicals**, or  **names** to indicate the relevant vector content. To change content, assign new content of matching size to subset using ´&lt;-´. 
+
+.pull-left45[
+
+```r
+# retrieve second element from vector
+my_vec &lt;- c('A', 'B', 'C')
+my_vec[2] 
+```
+
+```
+## [1] "B"
+```
+
+```r
+# change the second element 
+my_vec[2] &lt;- 'D'
+my_vec
+```
+
+```
+## [1] "A" "D" "C"
+```
+
+]
+
+.pull-right45[
+
+```r
+# Use logical comparison to access vector
+my_vec[my_vec != 'A']
+```
+
+```
+## [1] "D" "C"
+```
+
+```r
+# Change vector using logical comparison
+my_vec[my_vec != 'A'] &lt;- c('E', 'F')
+my_vec
+```
+
+```
+## [1] "A" "E" "F"
+```
+]
+
+---
+
+# Accessing &amp; changing data frames (and lists)
+
+Data frames (and lists) are best accessed using **names** and the `$`-operator. This, of course, implies that you followed good practice and named the individual elements in the data object. 
+
+
+
+
+```r
+# define data frame
+my_df &lt;- data_frame('v_1' = c('A', 'B'), 'v_2' = c(1, 2))
+```
+
+.pull-left45[
+
+```r
+# One bad, two correct ways to subset
+my_df[1] ; my_df[[1]] ; my_df[['v_1']]
+```
+
+```
+## # A tibble: 2 x 1
+##   v_1  
+##   &lt;chr&gt;
+## 1 A    
+## 2 B
+```
+
+```
+## [1] "A" "B"
+```
+
+```
+## [1] "A" "B"
+```
+]
+
+.pull-right45[
+
+```r
+# Best use $-operator to access
+my_df$v_1
+```
+
+```
+## [1] "A" "B"
+```
+
+```r
+# and change
+my_df$v_1 &lt;- c('Y', 'Z')
+my_df$v_1
+```
+
+```
+## [1] "Y" "Z"
+```
+]
+
+
+&lt;!---
+
+.pull-left45[
+
+```r
+# retrieve element 'a' from vector
+my_vec &lt;- c(a = 1, b = 4, c = 5)
+my_vec['a'] 
+```
+
+```
+## a 
+## 1
+```
+
+```r
+# change the element 
+my_vec['c'] &lt;- 'D' 
+  
+# change beyond length(my_vec) 
+my_vec['d'] &lt;- 1 ; my_vec
+```
+
+```
+##   a   b   c   d 
+## "1" "4" "D" "1"
+```
+
+]
+
+.pull-right45[
+
+```r
+# create matrix
+my_mat &lt;- matrix(c(1:6), nrow=2)
+colnames(my_mat) &lt;- c('v_1','v_2','v_3')
+rownames(my_mat) &lt;- c('c_1','c_2')
+
+# retrieve second row from matrix
+my_mat['c_1', ] ; my_mat['c_1', 'v_2']
+```
+
+```
+## v_1 v_2 v_3 
+##   1   3   5
+```
+
+```
+## [1] 3
+```
+]
+
+
+
+# Accessing &amp; changing **complex** objects pt. 1
+
+In accessing and changing complex objects the additional `list`-layer needs to be taken into account. Single brackets `[` will select elements within the list, not the object behind those elements. To select the object behind the element use **double brackets** '[['. Additionaly, complex objects can be conveniently accessed using the **dollor operator `$`**. In order to further descend into the `list`'s structur append **multiple select operators**, e.g., `my_list[[1]][[2]]`. 
+
+.pull-left45[
+
+```r
+# retrieve elements from list
+my_list &lt;- list('A'=c('A','B'), 
+                'B'=list(c(1,2,3),
+                         c(TRUE,FALSE,TRUE)))
+my_list[1] ; my_list[[1]] ; my_list[['A']]
+```
+
+```
+## $A
+## [1] "A" "B"
+```
+
+```
+## [1] "A" "B"
+```
+
+```
+## [1] "A" "B"
+```
+
+]
+
+.pull-right45[
+
+```r
+# retrieve deep elements in list
+my_list &lt;- list('A'=c('A','B'), 
+                'B'=list(c(1,2,3),
+                         c(TRUE,FALSE,TRUE)))
+my_list[[2]][1] ; my_list[[2]][[1]] # etc
+```
+
+```
+## [[1]]
+## [1] 1 2 3
+```
+
+```
+## [1] 1 2 3
+```
+]
+
+
+# Accessing &amp; changing **complex** objects pt. 2
+
+Data frames can be accessed **exactly like lists**. In addition, data frames allow for a matrix-like access using **single bracket** `[`. Note however that selecting rows using single bracket returns a data frame, whereas for selecting columns returns a vector.
+
+.pull-left45[
+
+```r
+# retrieve elements from list
+my_df &lt;- data.frame('v_1'=c('A','B','C'), 
+                    'v_2'=c(1,2,3))
+my_df[1] ; my_df[[1]] ; my_df[['v_1']]
+```
+
+```
+##   v_1
+## 1   A
+## 2   B
+## 3   C
+```
+
+```
+## [1] A B C
+## Levels: A B C
+```
+
+```
+## [1] A B C
+## Levels: A B C
+```
+]
+
+.pull-right45[
+
+```r
+# retrieve elements from list
+my_df &lt;- data.frame('v_1'=c('A','B','C'), 
+                    'v_2'=c(1,2,3))
+my_df[1,] ; my_df[,1] ; my_df[1,2]
+```
+
+```
+##   v_1 v_2
+## 1   A   1
+```
+
+```
+## [1] A B C
+## Levels: A B C
+```
+
+```
+## [1] 1
+```
+]
+
+---&gt;
+
+
+
+---
+
+# Functions
+
+Functions are objects that conduct operations on objects using objects. Functions have 3 elements:
++ **Name**: Used to call (execute) the function.
++ **Argument(s)**: Objects that the function needs to do its job. May have *default arguments*.
++ **Expression**: R code that does the job.
+    
+.pull-left5[
+
+```r
+# Defining a function that computes 
+# the mean or median
+my_stat &lt;- function(x, method = 'mean'){
+  
+  # detect and run method
+  if(method == "mean") return(mean(x))
+  if(method == "median") return(median(x))
+}
+
+# Define object
+my_vec &lt;- c(1, 4, 6, 3, 7, 5, 12, 9)
+```
+]
+
+.pull-right45[
+
+```r
+# Runnning our functions
+mean(x = my_vec)
+```
+
+```
+## [1] 5.875
+```
+
+```r
+my_stat(x = my_vec, method = 'mean')
+```
+
+```
+## [1] 5.875
+```
+
+```r
+my_stat(x = my_vec, method = 'median')
+```
+
+```
+## [1] 5.5
+```
+]
+
+---
+
+# Help
+
+.pull-left5[
+
+**help files** (and **vignettes**) are very useful. 
+
+Pay attention to...
+
+- `Usage` - shows function's use, its arguments and their defaults.
+- `Arguments` - explains arguments, and their `type`/`class`
+- `Value` - explains what the function returns
+- `Examples` - 
+
+
+```r
+# To access help files
+?name_of_function
+
+# search help files
+??name_of_function
+```
+
+]
+
+.pull-right45[
+&lt;p align="center"&gt;&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/mean_help.png" width="500"&gt;&lt;/p&gt;
+
+&lt;!---
+&lt;br&gt;&lt;br&gt;&lt;iframe src="http://stat.ethz.ch/R-manual/R-devel/library/base/html/mean.html" height="510" width="800" align="center"&gt;&lt;/iframe&gt;
+---&gt;
+]
+---
+
+# Factors
+
+Factors are a special case of vector that can contain only **predifined values** so-called `levels`. Factors are **rarely useful** and sometimes **dangerous**, yet R will often coerce `character` to `factor`. Modern packages, include those included in the `tidyverse` tend to avoid factors. Otherwise R can be told excplicitly to avoid factors using `options(stringsAsFactors = FALSE)`.
+
+.pull-left45[
+
+
+```r
+# create a factor
+my_fact &lt;- factor(c('A','B','C'))
+my_fact
+```
+
+```
+## [1] A B C
+## Levels: A B C
+```
+
+```r
+# test type
+typeof(my_fact)
+```
+
+```
+## [1] "integer"
+```
+
+]
+
+.pull-right45[
+
+```r
+# dangerous behavior of factors pt. 1
+my_fact &lt;- factor(c('A','B','C'))
+mean(as.integer(my_fact))
+```
+
+```
+## [1] 2
+```
+
+```r
+# dangerous behavior of factors pt. 2
+my_fact &lt;- factor(c(1.32,4.52,.23))
+as.numeric(my_fact) # ranks
+```
+
+```
+## [1] 2 3 1
+```
+]
+
+---
+
+# Object algebra
+
+R has implementations of most operations of **vector and matrix algebra** and it is often desirable to make use of them to improve speed.    
+-
+.pull-left45[
+
+```r
+# create objects
+my_mat &lt;- matrix(1:9, ncol=3)
+my_vec &lt;- c(1:3)
+
+# object times scale (also a vector)
+my_mat * 5 ; my_vec * 5
+```
+
+```
+##      [,1] [,2] [,3]
+## [1,]    5   20   35
+## [2,]   10   25   40
+## [3,]   15   30   45
+```
+
+```
+## [1]  5 10 15
+```
+]
+
+.pull-right45[
+
+```r
+# create objects
+my_mat &lt;- matrix(1:9, ncol=3)
+my_vec &lt;- c(1:3)
+
+# matrix multiplication
+my_vec %*% my_mat
+```
+
+```
+##      [,1] [,2] [,3]
+## [1,]   14   32   50
+```
+]
+
+
+---
+
+# Practical
+
+&lt;p&gt;&lt;font size=6&gt;&lt;b&gt;&lt;a href="https://therbootcamp.github.io/BaselRBootcamp_2018April/_sessions/D1S2_Objects/Objects_practical.html"&gt;Link to practical&lt;/a&gt;
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+  }
+});
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
