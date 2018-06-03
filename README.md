@@ -28,3 +28,6 @@ To knit sides so that the `my-theme.css` file is found, run the following (adjus
 # Code to knit slides
 xaringan::inf_mr('_sessions/D2S3_MachineLearning/MachineLearning.Rmd')
 ```
+
+
+## Practicals
