@@ -38,10 +38,15 @@ knitr::opts_chunk$set(fig.align = 'center')
 
 .pull-left5[
 
-# Bootcamp Materials
+#  Materials
 <br><br>
 
-<font size="6" color="#F62D73"><a href="www.therbootcamp.com"><b>www.therbootcamp.com</b></a></font>
+<font size=6>Get all of the course materials through our homepage!</font><br><br>
+
+<font size="6" color="#F62D73"><a href="www.therbootcamp.com"><b>www.therbootcamp.com</b></a></font><br><br>
+
+<font size=6>Bookmark it :)</font><br><br>
+
 
 
 <br>
@@ -119,26 +124,53 @@ knitr::include_graphics("../_image/theory_applications_ven.png")
 
 ---
 
-# Schedule <img src="https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/schedule_2018Apr.png?raw=true" height="600" align="right">
+.pull-left4[
+# Schedule 
+
+<font size = 5>We have a very intense and ambitious schedule!</font><br>
+
+<font size = 5>The amount of material we will be covering in two short weekends is...crazy</font><br>
+
+<font size = 5>The course is separated into different sessions</font><br>
 
 
+### Two Tracks
+
+<font size = 5>There is both a beginner and advanced track</font><br>
+
+<font size = 5>Red sessions are generally more advanced than Gray sessions<br><br>
+
+
+]
+
+.pull-right55[
+
+<img src="https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/schedule_2018Apr.png?raw=true" height="600" align="right">
+
+]
 
 ---
 
-.pull-left4[
+.pull-left45[
 
 <br>
 # Sessions
-<font size = 5>Each session is 2 hours</font><br>
-<font size = 5>20 - 40 min introduction lecture</font><br>
-<font size = 5>80 - 100 min hands-on practical</font><br>
+
+<font size = 5>Each focus session is 2 hours</font><br>
+
+<font size = 5>Introduction lecture with slides</font><br>
+
+<font size = 5>Hands-on programming practical</font><br>
 
 ]
 
 
 .pull-right55[
-<br><br><br>
-<p align="center"><img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/interactiveprogramming.gif" height="350"></p>
+```{r, echo = FALSE, out.width = "90%"}
+knitr::include_graphics("../_image/session_breakdown.png")
+```
+
+
 
 ]
 
@@ -148,9 +180,9 @@ knitr::include_graphics("../_image/theory_applications_ven.png")
 
 .pull-left45[
 <br><br>
-# Lectures
+# Introduction
 
-<font size = 5>30 - 60 minute slide based lecture</font><br>
+<font size = 5>30 - 60 minute slide based introduction</font><br>
 
 <font size = 5>Theory + code examples + live demonstrations</font><br>
 
@@ -282,7 +314,7 @@ knitr::include_graphics("../_image/coaching_15.png")
 .pull-left4[
 
 <br><br>
-# Breaks & refreshments
+# Breaks
 
 <font size = 5>Feel free to take breaks when you need them!</font><br2>
 
