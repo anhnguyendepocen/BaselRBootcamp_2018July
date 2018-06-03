@@ -13,7 +13,6 @@ output:
       ratio: '16:9'
 ---
 
-
 ```{r, eval = FALSE, echo = FALSE}
 # Code to knit slides
 xaringan::inf_mr('_sessions/D1S0_Intro/Intro.Rmd')
@@ -24,19 +23,15 @@ xaringan::inf_mr('_sessions/D1S0_Intro/Intro.Rmd')
 options(htmltools.dir.version = FALSE)
 options(width=110)
 options(digits = 4)
+
+knitr::opts_chunk$set(fig.align = 'center')
 ```
 
 
 # Welcome!
 
-.pull-left5[
-<p align="center"><img src="https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/bootcamp_april_ss.jpg?raw=true" width="500" height="400"></p>
-]
 
-
-.pull-right5[
 <p align="center"><img src="https://therbootcamp.github.io/assets/img/640px-Middle_Bridge,_Basel,_Switzerland.jpeg" width="500"  height="400"></p>
-]
 
 ---
 
@@ -66,49 +61,7 @@ options(digits = 4)
 
 
 ]
----
 
-# Who are we?
-
-<table class="tg">
-  <tr>
-    <th class="tg-yw4l">
-    
-  <p align="center"><br>
-    <a href="www.dirkwulff.org"><img border="0" alt="W3Schools" src="https://www.mpib-berlin.mpg.de/sites/default/files/imagecache/marginal/dirk_wulff2smallnarrow.jpg" height="240"></a><br>
-
-<p align="center">
-<font size = 5>Dr. Dirk Wulff</font><br><br>
-<a href="www.dirkwulff.org"><b>dirkwulff.org</b></a><br>
-<a href="https://github.com/dwulff"><b>github.com/dwulff</b></a><br>
-<font size=4><i>packages: </i></font> 
-<a href="https://cran.r-project.org/web/packages/cstab/index.html"><b>cstab</b></a>, <br>
-<a href="https://cran.r-project.org/web/packages/mousetrap/index.html"><b>mousetrap</b></a>, <a href="https://github.com/dwulff/choicepp"><b>choicepp</b>
-</p>  
-  
-    </th>
-    <th class="tg-yw4l"><p align="center"><br>
-    <a href="www.nathanieldphillips.com/"><img border="0" alt="W3Schools" src="https://avatars3.githubusercontent.com/u/8480980?v=4&s=460" height="240"></a><br>
-
-<p align="center">
-<font size = 5>Dr. Nathaniel Phillips</font><br><br>
-<a href="www.nathanieldphillips.com/"><b>nathanieldphillips.com</b></a><br>
-<a href="https://github.com/ndphillips"><b>github.com/ndphillips</b></a><br>
-<font size=4><i>packages: </i></font> 
-<a href="https://github.com/ndphillips/yarrr"><b>yarrr</b></a>, <br>
-<a href="https://github.com/ndphillips/FFTrees"><b>FFTrees</b></a></th>
-
- <th class="tg-yw4l"><p align="center">
-<p align="center"><br>
-    <a href="https://psychologie.unibas.ch/de/personen/markus-steiner/about-me/"><img border="0" alt="W3Schools" src="https://avatars0.githubusercontent.com/u/26483702?s=400&u=d2bfbcee6585b175144fbd2cb17d1bab9a2bac05&v=4" height="240"></a><br>
-
-<p align="center">
-<font size = 5>Markus Steiner</font><br><br>
-<a href="https://github.com/mdsteiner"><b>github.com/mdsteiner</b></a><br>
-<font size=4><i>package: </i></font> 
-<a href="https://github.com/ndphillips/ShinyPsych"><b>ShinyPsych</b> <br><br><br>
-</p></th></tr>
-</table>
 
 ---
 
@@ -116,7 +69,7 @@ options(digits = 4)
 
 .pull-left6[
 
->##<i>The aim of this workshop is enable you to thoughtfully and actively use R. We will communicate both the basics of the R language, as well as cutting-edge packages for wrangling, analyzing, and communicating statistical data.  
+>###<i>The aim of this workshop is enable you to thoughtfully and actively use R. We will communicate both the basics of the R language, as well as cutting-edge packages for wrangling, analyzing, and communicating statistical data.  
 
 ]
 
@@ -127,7 +80,48 @@ options(digits = 4)
 
 ---
 
+
+```{r, echo = FALSE, out.width = "80%"}
+knitr::include_graphics("../_image/principles.jpg")
+```
+
+
+[Source: www.hackerearth.com](https://www.hackerearth.com/blog/innovation-management/open-innovation-principles/)
+
+
+
+---
+## Everyone learns differently
+
+```{r, echo = FALSE, out.width = "100%"}
+knitr::include_graphics("../_image/programming_pace.png")
+```
+
+
+---
+## Struggle, Ask questions (repeat!) -> Insight!
+
+```{r, echo = FALSE}
+knitr::include_graphics("../_image/struggle_question_insight.png")
+```
+
+
+---
+### Theory + Applications = Empowered learning!
+
+<font size = "6"></font>
+
+```{r, echo = FALSE, out.width = "80%"}
+knitr::include_graphics("../_image/theory_applications_ven.png")
+```
+
+
+
+---
+
 # Schedule <img src="https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/schedule_2018Apr.png?raw=true" height="600" align="right">
+
+
 
 ---
 
@@ -136,7 +130,7 @@ options(digits = 4)
 <br>
 # Sessions
 <font size = 5>Each session is 2 hours</font><br>
-<font size = 5>20 - 40 min introduction</font><br>
+<font size = 5>20 - 40 min introduction lecture</font><br>
 <font size = 5>80 - 100 min hands-on practical</font><br>
 
 ]
@@ -148,32 +142,101 @@ options(digits = 4)
 
 ]
 
+
+
 ---
 
-.pull-left4[
+.pull-left45[
+<br><br>
+# Lectures
 
-<br>
-# Practicals
+<font size = 5>30 - 60 minute slide based lecture</font><br>
+
+<font size = 5>Theory + code examples + live demonstrations</font><br>
+
+<font size = 5>Goal: Help you understand the basic concepts</font><br>
+
+<font size = 5>All available online! Follow along on your computer. Don't worry about memorizing.</font><br>
+
+<font size = 5>Be interactive! Stop us and ask questions!</font><br>
 
 
-<font size = 5>Start with a brief review and examples</font><br>
-<font size = 5>Anywhere from 10 ~ 30 tasks</font><br>
-<font size = 5>Starts easy, gets more challenging</font><br>
-<font size = 5>Some elements go beyond the introduction, be bold!</font><br>
-<font size = 5>Try to finish <b>50%</b> of the material during the session.</font><br>
 
 ]
 
+.pull-right5[
+
+### Be interactive!!
+```{r, echo = FALSE}
+knitr::include_graphics("../_image/lecture_questions.png")
+```
+
+
+
+]
+
+---
+
+.pull-left45[
+
+# Practicals
+
+<font size = 5>This is where you really learn how to program!</font><br>
+
+<font size = 5>Anywhere from 10 ~ 30 programming tasks. Starts easy, gets progressively more challenging</font><br>
+
+<font size = 5>Struggle, work together, <font color = 'blue'>ask questions</font> and challenge yourself</font><br>
+
+<font size = 5>We are here to help! But won't make it too easy for you :)</font><br>
+
+<font size = 5>You <font color = 'blue'>will not be able to finish all of the tasks</font>. That's ok!</font><br>
+
+<font size = 5>Try to finish <b>50%</b> of the material during the session.</font><br>
+
+
+
+]
+
+
+.pull-right5[
+
+
+```{r, echo = FALSE}
+knitr::include_graphics("../_image/practical_emojis.png")
+```
+
+
+]
+
+
+
+---
+
+.pull-left5[
+<br><br>
+# ~15 min, 1-1 Coaching
+
+<font size=5>Sometimes, you may find yourself in need of some intensive help. That's ok!</font><br><br>
+
+<font size=5>That's ok! We're here to help!</font><br><br>
+
+<font size=5>At <i><font color='blue'>any time</font></i>, you can request a 15 minute 1-1 intensive help / coaching session</font><br><br>
+
+<font size=5>We'll find some space and help you with whatever you're struggling with</font>
+
+
+]
+ 
 
 .pull-right45[
 
-<br><br><br>
+```{r, echo = FALSE}
+knitr::include_graphics("../_image/coaching_15.png")
+```
 
-<p align="center"><img src="https://i0.wp.com/www.4ubodyfitness.com.au/wp-content/uploads/2013/01/IMG_0465.jpg?fit=2048%2C1365&ssl=1" height="400"></p>
 
 
 ]
-
 
 
 ---
@@ -214,8 +277,6 @@ options(digits = 4)
 
 
 
-
-
 ---
 
 .pull-left4[
@@ -240,6 +301,7 @@ options(digits = 4)
 <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/tibits.jpg" height="400" vspace="10"></p>
 
 ]
+
 
 
 
@@ -272,6 +334,11 @@ options(digits = 4)
 <p align="center"><img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/introductions.jpg" height="400"></p>
 
 ]
+
+
+
+
+
 
 
 ---
