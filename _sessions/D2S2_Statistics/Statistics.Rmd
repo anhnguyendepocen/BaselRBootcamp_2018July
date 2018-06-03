@@ -1,11 +1,10 @@
 ---
 title: "Statistics"
 subtitle: ""
-author: "The R Bootcamp<br/>Twitter: <a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
-date: "April 2018"
+author: "The R Bootcamp<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a>"
 output:
   xaringan::moon_reader:
-    css: ["default", "my-theme.css"]
+    css: ["default", "../_css/my-theme.css"]
     lib_dir: libs
     nature:
       highlightStyle: github
@@ -14,6 +13,11 @@ output:
       ratio: '16:9'
 ---
 
+
+```{r, eval = FALSE, echo = FALSE}
+# Code to knit slides
+xaringan::inf_mr('_sessions/D2S2_Statistics/Statistics.Rmd')
+```
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)

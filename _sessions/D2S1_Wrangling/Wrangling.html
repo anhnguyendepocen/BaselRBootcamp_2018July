@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="author" content="The R Bootcamp Twitter: @therbootcamp" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
-    <link rel="stylesheet" href="my-theme.css" type="text/css" />
+    <link rel="stylesheet" href="../_css/my-theme.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -16,6 +16,11 @@ class: center, middle, inverse, title-slide
 ### April 2018
 
 ---
+
+
+
+
+
 
 .pull-left5[
 
@@ -179,6 +184,10 @@ trial %&gt;%
 ```
 
 ```
+## Warning: package 'bindrcpp' was built under R version 3.4.4
+```
+
+```
 ##   id
 ## 1  3
 ## 2  6
@@ -300,8 +309,8 @@ trial %&gt;%                             # Start with data trial
 ## # A tibble: 2 x 3
 ##     arm age_mean outcome_mean
 ##   &lt;dbl&gt;    &lt;dbl&gt;        &lt;dbl&gt;
-## 1    1.     47.8         6.50
-## 2    2.     56.5         7.00
+## 1     1     47.8          6.5
+## 2     2     56.5          7
 ```
 ]
 
@@ -423,11 +432,11 @@ patients_df   # Demographic data
 ## # A tibble: 5 x 3
 ##      id     b     c
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1   13.   38.    0.
-## 2   22.   64.    1.
-## 3    5.   55.    0.
-## 4   67.   34.    0.
-## 5   34.   29.    1.
+## 1    13    38     0
+## 2    22    64     1
+## 3     5    55     0
+## 4    67    34     0
+## 5    34    29     1
 ```
 
 ### Goal:
@@ -459,11 +468,11 @@ patients_df  # Original
 ## # A tibble: 5 x 3
 ##      id     b     c
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1   13.   38.    0.
-## 2   22.   64.    1.
-## 3    5.   55.    0.
-## 4   67.   34.    0.
-## 5   34.   29.    1.
+## 1    13    38     0
+## 2    22    64     1
+## 3     5    55     0
+## 4    67    34     0
+## 5    34    29     1
 ```
 ]
 
@@ -484,11 +493,11 @@ patients_df %&gt;%
 ## # A tibble: 5 x 3
 ##      id   age   arm
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1   13.   38.    0.
-## 2   22.   64.    1.
-## 3    5.   55.    0.
-## 4   67.   34.    0.
-## 5   34.   29.    1.
+## 1    13    38     0
+## 2    22    64     1
+## 3     5    55     0
+## 4    67    34     0
+## 5    34    29     1
 ```
 
 ]
@@ -534,11 +543,11 @@ patients_df %&gt;%
 ## # A tibble: 5 x 5
 ##      id   age   arm age_months age_decades
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;
-## 1   13.   38.    0.       456.        3.80
-## 2   22.   64.    1.       768.        6.40
-## 3    5.   55.    0.       660.        5.50
-## 4   67.   34.    0.       408.        3.40
-## 5   34.   29.    1.       348.        2.90
+## 1    13    38     0        456         3.8
+## 2    22    64     1        768         6.4
+## 3     5    55     0        660         5.5
+## 4    67    34     0        408         3.4
+## 5    34    29     1        348         2.9
 ```
 
 ]
@@ -589,11 +598,11 @@ patients_df %&gt;%
 ## # A tibble: 5 x 6
 ##      id   age   arm age_months age_decades arm_char 
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;    
-## 1   13.   38.    0.       456.        3.80 placebo  
-## 2   22.   64.    1.       768.        6.40 drugtrial
-## 3    5.   55.    0.       660.        5.50 placebo  
-## 4   67.   34.    0.       408.        3.40 placebo  
-## 5   34.   29.    1.       348.        2.90 drugtrial
+## 1    13    38     0        456         3.8 placebo  
+## 2    22    64     1        768         6.4 drugtrial
+## 3     5    55     0        660         5.5 placebo  
+## 4    67    34     0        408         3.4 placebo  
+## 5    34    29     1        348         2.9 drugtrial
 ```
 
 ]
@@ -707,11 +716,11 @@ patients_df %&gt;%
 ## # A tibble: 5 x 8
 ##      id   age   arm age_months age_decades arm_char  time1 time2
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;
-## 1   13.   38.    0.       456.        3.80 placebo      4.    6.
-## 2   22.   64.    1.       768.        6.40 drugtrial    7.    5.
-## 3    5.   55.    0.       660.        5.50 placebo      3.    3.
-## 4   67.   34.    0.       408.        3.40 placebo      2.    4.
-## 5   34.   29.    1.       348.        2.90 drugtrial    3.    5.
+## 1    13    38     0        456         3.8 placebo       4     6
+## 2    22    64     1        768         6.4 drugtrial     7     5
+## 3     5    55     0        660         5.5 placebo       3     3
+## 4    67    34     0        408         3.4 placebo       2     4
+## 5    34    29     1        348         2.9 drugtrial     3     5
 ```
 
 ]
@@ -786,11 +795,11 @@ patients_df
 ## # A tibble: 5 x 8
 ##      id   age   arm age_months age_decades arm_char  time1 time2
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;
-## 1   13.   38.    0.       456.        3.80 placebo      4.    6.
-## 2   22.   64.    1.       768.        6.40 drugtrial    7.    5.
-## 3    5.   55.    0.       660.        5.50 placebo      3.    3.
-## 4   67.   34.    0.       408.        3.40 placebo      2.    4.
-## 5   34.   29.    1.       348.        2.90 drugtrial    3.    5.
+## 1    13    38     0        456         3.8 placebo       4     6
+## 2    22    64     1        768         6.4 drugtrial     7     5
+## 3     5    55     0        660         5.5 placebo       3     3
+## 4    67    34     0        408         3.4 placebo       2     4
+## 5    34    29     1        348         2.9 drugtrial     3     5
 ```
 
 ### Goal:
@@ -838,11 +847,11 @@ patients_df %&gt;%
 ## # A tibble: 5 x 8
 ##      id   age   arm age_months age_decades arm_char  time1 time2
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;
-## 1    5.   55.    0.       660.        5.50 placebo      3.    3.
-## 2   13.   38.    0.       456.        3.80 placebo      4.    6.
-## 3   22.   64.    1.       768.        6.40 drugtrial    7.    5.
-## 4   34.   29.    1.       348.        2.90 drugtrial    3.    5.
-## 5   67.   34.    0.       408.        3.40 placebo      2.    4.
+## 1     5    55     0        660         5.5 placebo       3     3
+## 2    13    38     0        456         3.8 placebo       4     6
+## 3    22    64     1        768         6.4 drugtrial     7     5
+## 4    34    29     1        348         2.9 drugtrial     3     5
+## 5    67    34     0        408         3.4 placebo       2     4
 ```
 
 ]
@@ -883,7 +892,7 @@ patients_df %&gt;%
 ## # A tibble: 1 x 8
 ##      id   age   arm age_months age_decades arm_char  time1 time2
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;
-## 1   22.   64.    1.       768.        6.40 drugtrial    7.    5.
+## 1    22    64     1        768         6.4 drugtrial     7     5
 ```
 
 ]
@@ -931,7 +940,7 @@ patients_df %&gt;%
 ## # A tibble: 1 x 6
 ##      id   age   arm arm_char  time1 time2
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;
-## 1   22.   64.    1. drugtrial    7.    5.
+## 1    22    64     1 drugtrial     7     5
 ```
 
 ]
@@ -972,11 +981,11 @@ patients_df
 ## # A tibble: 5 x 5
 ##      id   age arm       time1 time2
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;
-## 1   13.   38. placebo      4.    6.
-## 2   22.   64. drugtrial    7.    5.
-## 3    5.   55. placebo      3.    3.
-## 4   67.   34. placebo      2.    4.
-## 5   34.   29. drugtrial    3.    5.
+## 1    13    38 placebo       4     6
+## 2    22    64 drugtrial     7     5
+## 3     5    55 placebo       3     3
+## 4    67    34 placebo       2     4
+## 5    34    29 drugtrial     3     5
 ```
 
 ### Goal:
@@ -1021,11 +1030,11 @@ patients_df %&gt;%
 ## # Groups:   arm [2]
 ##      id   age arm       time1 time2
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;
-## 1   13.   38. placebo      4.    6.
-## 2   22.   64. drugtrial    7.    5.
-## 3    5.   55. placebo      3.    3.
-## 4   67.   34. placebo      2.    4.
-## 5   34.   29. drugtrial    3.    5.
+## 1    13    38 placebo       4     6
+## 2    22    64 drugtrial     7     5
+## 3     5    55 placebo       3     3
+## 4    67    34 placebo       2     4
+## 5    34    29 drugtrial     3     5
 ```
 
 ]
@@ -1081,8 +1090,8 @@ patients_df %&gt;%
 ## # A tibble: 2 x 5
 ##   arm       time1_mean time2_mean  diff     N
 ##   &lt;chr&gt;          &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
-## 1 drugtrial         5.       5.00  0.       2
-## 2 placebo           3.       4.33  1.33     3
+## 1 drugtrial          5       5     0        2
+## 2 placebo            3       4.33  1.33     3
 ```
 
 ]
@@ -1605,11 +1614,11 @@ ChickWeight %&gt;%                # Start with the ChickWeight data
 ## # A tibble: 5 x 2
 ##    Time weight.mean
 ##   &lt;dbl&gt;       &lt;dbl&gt;
-## 1    0.        41.1
-## 2    2.        49.2
-## 3    4.        60.0
-## 4    6.        74.3
-## 5    8.        91.2
+## 1     0        41.1
+## 2     2        49.2
+## 3     4        60.0
+## 4     6        74.3
+## 5     8        91.2
 ```
 
 ---
@@ -1632,10 +1641,10 @@ ChickWeight %&gt;%           # Start with the ChickWeight data
 ## # A tibble: 4 x 4
 ##   Diet  weight.mean time.max     N
 ##   &lt;fct&gt;       &lt;dbl&gt;    &lt;dbl&gt; &lt;int&gt;
-## 1 1            103.      21.   220
-## 2 2            123.      21.   120
-## 3 3            143.      21.   120
-## 4 4            135.      21.   118
+## 1 1            103.       21   220
+## 2 2            123.       21   120
+## 3 3            143.       21   120
+## 4 4            135.       21   118
 ```
 
 ---
@@ -1665,16 +1674,16 @@ ChickWeight %&gt;%
 
 ```
 ##     Chick weight
-## 410    36    227
-## 449    40     41
+## 118    10    120
+## 425    38     41
+## 414    37     48
+## 295    27     58
 ## 308    28     73
-## 416    37     68
-## 209    20     41
-## 291    26    236
-## 530    46    238
-## 437    39     42
-## 565    49    233
-## 236    22     77
+## 221    21     40
+## 197    19     43
+## 28      3     67
+## 121    11     51
+## 41      4     74
 ```
 
 ---
@@ -1708,12 +1717,12 @@ head(time_agg)
 ## # A tibble: 6 x 2
 ##    Time weight.mean
 ##   &lt;dbl&gt;       &lt;dbl&gt;
-## 1    0.        41.1
-## 2    2.        49.2
-## 3    4.        60.0
-## 4    6.        74.3
-## 5    8.        91.2
-## 6   10.       108.
+## 1     0        41.1
+## 2     2        49.2
+## 3     4        60.0
+## 4     6        74.3
+## 5     8        91.2
+## 6    10       108.
 ```
 
 ]
