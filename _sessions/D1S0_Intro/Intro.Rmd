@@ -94,15 +94,6 @@ knitr::include_graphics("../_image/principles.jpg")
 [Source: www.hackerearth.com](https://www.hackerearth.com/blog/innovation-management/open-innovation-principles/)
 
 
-
----
-## Everyone learns differently
-
-```{r, echo = FALSE, out.width = "100%"}
-knitr::include_graphics("../_image/programming_pace.png")
-```
-
-
 ---
 ## Struggle, Ask questions (repeat!) -> Insight!
 
@@ -120,6 +111,15 @@ knitr::include_graphics("../_image/struggle_question_insight.png")
 knitr::include_graphics("../_image/theory_applications_ven.png")
 ```
 
+
+
+
+---
+## Everyone learns differently
+
+```{r, echo = FALSE, out.width = "100%"}
+knitr::include_graphics("../_image/programming_pace.png")
+```
 
 
 ---

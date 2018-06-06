@@ -20,13 +20,67 @@ xaringan::inf_mr('_sessions/D2S1_Wrangling/Wrangling.Rmd')
 ```
 
 
-.pull-left5[
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 options(width=110)
 options(digits = 4)
 library(tidyverse)
 ```
+
+
+.pull-left4[
+<br><br>
+## Where you're at...
+
+
+<font size = 5>0) Loaded packages (like tidyverse!) with <font color = 'blue'>library()</font><br>
+
+<font size = 5>1) Created a new dataframe (df) from external files using a data input function such as <br>df <font color='red'><-</font> <font color='blue'>read_csv</font>()</font><br>
+
+<font size = 5>2) You can explore the dataframe with functions like <font color = 'blue'>View</font>(), <font color = 'blue'>dim</font>() and <font color = 'blue'>names</font>()
+
+<font size = 5>3) You can explore the dataframe and calculate descriptive statistics on specific columns using <font color = 'blue'>FUN</font>(df<font color='red'>$</font><font color = 'green'>NAME</font>)</font><br>
+
+]
+
+
+.pull-right55[
+
+<br>
+```{r, eval = FALSE}
+# Step 0) Load libraries
+
+library(tidyverse)
+
+# Step 1) Read file called mydata.csv 
+#  in a data folder with read_csv()
+#  and save as new object trial_data
+
+trial_data <- read_csv(file = "data/mydata.csv")
+
+# Step 2) Explore data
+
+View(trial_data)   # Open in new window
+dim(trial_data)    # Show number of rows and columns
+names(trial_data)  # Show names
+
+# Step 3) Calculate descriptives on named colums
+
+mean(trial_data$age)   # What is the mean age?
+table(trial_data$sex)  # How many of each sex?
+
+# Step 4) ...
+
+```
+
+What's next?... <font size = 7>Wrangling!</font>
+
+]
+
+
+---
+.pull-left5[
+
 # What is Wrangling?
 
 Transform
@@ -158,7 +212,7 @@ trial
 ```{r}
 # Base R Method without pipe (%>%)
 
-trial$id[trial$sex == "f" & trial$age > 50]
+trial[trial$sex == "f" & trial$age > 50, 'id']
 ```
 
 
@@ -400,6 +454,7 @@ patients_df  # Original
 ]
 
 .pull-right65[
+<br><br>
 <font size = 5>1) Create better column names with rename()</font>
 
 ```{r}
@@ -434,6 +489,8 @@ df %>%
 ]
 
 .pull-right65[
+<br><br>
+
 <font size = 5>2) Add new columns with mutate()</font>
 
 ```{r}
@@ -474,6 +531,8 @@ df %>%
 ]
 
 .pull-right65[
+<br><br>
+
 <font size = 5>3) Recode values with case_when()</font>
 
 ```{r}
@@ -494,6 +553,9 @@ patients_df %>%
 ```
 
 ]
+
+
+
 
 
 
@@ -809,7 +871,7 @@ patients_df
 ### Goal:
 
 - Group data by arm
-- Calculate summary statistics from time1 and time1
+- Calculate summary statistics from time1 and time2
 
 ]
 
@@ -892,6 +954,102 @@ patients_df %>%
 ]
 
 
+
+---
+
+.pull-left45[
+
+## Reshaping data
+
+<font size = 5>There are two key functions in the `tidyr` package (part of the `tidyverse`) that allow you to 'reshape' a dataframe between <font color = 'blue'>'wide'</font> and <font color = 'blue'>'long'</font> formats.</font><br>
+
+<font size = 5><font color = 'blue'>'Wide'</font> dataframes have key data in <font color = 'blue'>separate columns</font>, <font color = 'blue'><br><br>'Long'</font> dataframes have key data in <font color = 'blue'>separate rows</font>.</font><br>
+
+<font size = 5>Why reshape? Some functions (like dplyr) require data to be in a certain shape.</font><br>
+
+#### Two key tidyr functions
+
+| Function | Result |
+|:----------|:-------|
+|`gather()`|Move data from 'wide' to 'long' format|
+|`spread()`|Move data from 'long' to 'wide' format|
+
+]
+
+.pull-right5[
+<br><br>
+
+### 'Wide' vs. 'Long' data
+
+```{r, echo = FALSE}
+stock_w <- data.frame(id = c("a", "b", "c"),
+                 t1 = c(10, 20, 15),
+                 t2 = c(20, 26, 30))
+
+stock_l <- stock_w %>% 
+  gather(time, measure, -id)
+```
+
+```{r}
+# Wide format
+stock_w
+```
+
+
+```{r}
+# Long format
+stock_l
+```
+
+
+]
+
+
+---
+
+.pull-left45[
+
+### gather()
+
+<font size=5>Use `gather()` to convert wide to long</font>
+
+```{r}
+# Show wide data
+stock_w
+```
+
+```{r}
+# "Gather" wide data to long
+stock_w %>% 
+  gather(time,    # New Group name
+         measure, # New column name
+         -id)     # ID column
+```
+
+]
+
+.pull-right5[
+
+## spread()
+
+<font size=5>Use `spread()` to convert long to wide</font>
+
+```{r}
+# Show long data
+stock_l
+```
+
+
+```{r}
+# "Spread" long data to wide
+stock_l %>% 
+  spread(time,    # Old Group Name
+         measure) # Old column Name
+```
+
+
+
+]
 
 ---
 

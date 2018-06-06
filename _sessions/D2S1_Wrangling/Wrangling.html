@@ -3,7 +3,7 @@
   <head>
     <title>Data Wrangling</title>
     <meta charset="utf-8">
-    <meta name="author" content="The R Bootcamp Twitter: @therbootcamp" />
+    <meta name="author" content="The R Bootcamp www.therbootcamp.com" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="../_css/my-theme.css" type="text/css" />
   </head>
@@ -12,8 +12,7 @@
 class: center, middle, inverse, title-slide
 
 # Data Wrangling
-### The R Bootcamp<br/>Twitter: <a href='https://twitter.com/therbootcamp'><span class="citation">@therbootcamp</span></a>
-### April 2018
+### The R Bootcamp<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a>
 
 ---
 
@@ -22,6 +21,60 @@ class: center, middle, inverse, title-slide
 
 
 
+
+
+
+.pull-left4[
+&lt;br&gt;&lt;br&gt;
+## Where you're at...
+
+
+&lt;font size = 5&gt;0) Loaded packages (like tidyverse!) with &lt;font color = 'blue'&gt;library()&lt;/font&gt;&lt;br&gt;
+
+&lt;font size = 5&gt;1) Created a new dataframe (df) from external files using a data input function such as &lt;br&gt;df &lt;font color='red'&gt;&lt;-&lt;/font&gt; &lt;font color='blue'&gt;read_csv&lt;/font&gt;()&lt;/font&gt;&lt;br&gt;
+
+&lt;font size = 5&gt;2) You can explore the dataframe with functions like &lt;font color = 'blue'&gt;View&lt;/font&gt;(), &lt;font color = 'blue'&gt;dim&lt;/font&gt;() and &lt;font color = 'blue'&gt;names&lt;/font&gt;()
+
+&lt;font size = 5&gt;3) You can explore the dataframe and calculate descriptive statistics on specific columns using &lt;font color = 'blue'&gt;FUN&lt;/font&gt;(df&lt;font color='red'&gt;$&lt;/font&gt;&lt;font color = 'green'&gt;NAME&lt;/font&gt;)&lt;/font&gt;&lt;br&gt;
+
+]
+
+
+.pull-right55[
+
+&lt;br&gt;
+
+```r
+# Step 0) Load libraries
+
+library(tidyverse)
+
+# Step 1) Read file called mydata.csv 
+#  in a data folder with read_csv()
+#  and save as new object trial_data
+
+trial_data &lt;- read_csv(file = "data/mydata.csv")
+
+# Step 2) Explore data
+
+View(trial_data)   # Open in new window
+dim(trial_data)    # Show number of rows and columns
+names(trial_data)  # Show names
+
+# Step 3) Calculate descriptives on named colums
+
+mean(trial_data$age)   # What is the mean age?
+table(trial_data$sex)  # How many of each sex?
+
+# Step 4) ...
+```
+
+What's next?... &lt;font size = 7&gt;Wrangling!&lt;/font&gt;
+
+]
+
+
+---
 .pull-left5[
 
 # What is Wrangling?
@@ -166,7 +219,7 @@ trial
 ```r
 # Base R Method without pipe (%&gt;%)
 
-trial$id[trial$sex == "f" &amp; trial$age &gt; 50]
+trial[trial$sex == "f" &amp; trial$age &gt; 50, 'id']
 ```
 
 ```
@@ -181,10 +234,6 @@ trial$id[trial$sex == "f" &amp; trial$age &gt; 50]
 trial %&gt;%
   filter(sex == "f" &amp; age &gt; 50) %&gt;%
   select(id)
-```
-
-```
-## Warning: package 'bindrcpp' was built under R version 3.4.4
 ```
 
 ```
@@ -477,6 +526,7 @@ patients_df  # Original
 ]
 
 .pull-right65[
+&lt;br&gt;&lt;br&gt;
 &lt;font size = 5&gt;1) Create better column names with rename()&lt;/font&gt;
 
 
@@ -523,6 +573,8 @@ df %&gt;%
 ]
 
 .pull-right65[
+&lt;br&gt;&lt;br&gt;
+
 &lt;font size = 5&gt;2) Add new columns with mutate()&lt;/font&gt;
 
 
@@ -575,6 +627,8 @@ df %&gt;%
 ]
 
 .pull-right65[
+&lt;br&gt;&lt;br&gt;
+
 &lt;font size = 5&gt;3) Recode values with case_when()&lt;/font&gt;
 
 
@@ -606,6 +660,9 @@ patients_df %&gt;%
 ```
 
 ]
+
+
+
 
 
 
@@ -991,7 +1048,7 @@ patients_df
 ### Goal:
 
 - Group data by arm
-- Calculate summary statistics from time1 and time1
+- Calculate summary statistics from time1 and time2
 
 ]
 
@@ -1097,6 +1154,152 @@ patients_df %&gt;%
 ]
 
 
+
+---
+
+.pull-left45[
+
+## Reshaping data
+
+&lt;font size = 5&gt;There are two key functions in the `tidyr` package (part of the `tidyverse`) that allow you to 'reshape' a dataframe between &lt;font color = 'blue'&gt;'wide'&lt;/font&gt; and &lt;font color = 'blue'&gt;'long'&lt;/font&gt; formats.&lt;/font&gt;&lt;br&gt;
+
+&lt;font size = 5&gt;&lt;font color = 'blue'&gt;'Wide'&lt;/font&gt; dataframes have key data in &lt;font color = 'blue'&gt;separate columns&lt;/font&gt;, &lt;font color = 'blue'&gt;&lt;br&gt;&lt;br&gt;'Long'&lt;/font&gt; dataframes have key data in &lt;font color = 'blue'&gt;separate rows&lt;/font&gt;.&lt;/font&gt;&lt;br&gt;
+
+&lt;font size = 5&gt;Why reshape? Some functions (like dplyr) require data to be in a certain shape.&lt;/font&gt;&lt;br&gt;
+
+#### Two key tidyr functions
+
+| Function | Result |
+|:----------|:-------|
+|`gather()`|Move data from 'wide' to 'long' format|
+|`spread()`|Move data from 'long' to 'wide' format|
+
+]
+
+.pull-right5[
+&lt;br&gt;&lt;br&gt;
+
+### 'Wide' vs. 'Long' data
+
+
+
+
+```r
+# Wide format
+stock_w
+```
+
+```
+##   id t1 t2
+## 1  a 10 20
+## 2  b 20 26
+## 3  c 15 30
+```
+
+
+
+```r
+# Long format
+stock_l
+```
+
+```
+##   id time measure
+## 1  a   t1      10
+## 2  b   t1      20
+## 3  c   t1      15
+## 4  a   t2      20
+## 5  b   t2      26
+## 6  c   t2      30
+```
+
+
+]
+
+
+---
+
+.pull-left45[
+
+### gather()
+
+&lt;font size=5&gt;Use `gather()` to convert wide to long&lt;/font&gt;
+
+
+```r
+# Show wide data
+stock_w
+```
+
+```
+##   id t1 t2
+## 1  a 10 20
+## 2  b 20 26
+## 3  c 15 30
+```
+
+
+```r
+# "Gather" wide data to long
+stock_w %&gt;% 
+  gather(time,    # New Group name
+         measure, # New column name
+         -id)     # ID column
+```
+
+```
+##   id time measure
+## 1  a   t1      10
+## 2  b   t1      20
+## 3  c   t1      15
+## 4  a   t2      20
+## 5  b   t2      26
+## 6  c   t2      30
+```
+
+]
+
+.pull-right5[
+
+## spread()
+
+&lt;font size=5&gt;Use `spread()` to convert long to wide&lt;/font&gt;
+
+
+```r
+# Show long data
+stock_l
+```
+
+```
+##   id time measure
+## 1  a   t1      10
+## 2  b   t1      20
+## 3  c   t1      15
+## 4  a   t2      20
+## 5  b   t2      26
+## 6  c   t2      30
+```
+
+
+
+```r
+# "Spread" long data to wide
+stock_l %&gt;% 
+  spread(time,    # Old Group Name
+         measure) # Old column Name
+```
+
+```
+##   id t1 t2
+## 1  a 10 20
+## 2  b 20 26
+## 3  c 15 30
+```
+
+
+
+]
 
 ---
 
@@ -1428,13 +1631,13 @@ head(x)   # Print the result
 ```
 
 ```
-##   weight Time Chick Diet weight_d_time
-## 1     42    0     1    1           Inf
-## 2     51    2     1    1         25.50
-## 3     59    4     1    1         14.75
-## 4     64    6     1    1         10.67
-## 5     76    8     1    1          9.50
-## 6     93   10     1    1          9.30
+##   weight Time Chick Diet Diet_name weight_d_time
+## 1     42    0     1    1     fruit           Inf
+## 2     51    2     1    1     fruit         25.50
+## 3     59    4     1    1     fruit         14.75
+## 4     64    6     1    1     fruit         10.67
+## 5     76    8     1    1     fruit          9.50
+## 6     93   10     1    1     fruit          9.30
 ```
 
 
@@ -1457,13 +1660,13 @@ head(x)   # Print the result
 ```
 
 ```
-##   weight Time Chick Diet weight_d_time time_d
-## 1     42    0     1    1           Inf      0
-## 2     51    2     1    1         25.50     14
-## 3     59    4     1    1         14.75     28
-## 4     64    6     1    1         10.67     42
-## 5     76    8     1    1          9.50     56
-## 6     93   10     1    1          9.30     70
+##   weight Time Chick Diet Diet_name weight_d_time time_d
+## 1     42    0     1    1     fruit           Inf      0
+## 2     51    2     1    1     fruit         25.50     14
+## 3     59    4     1    1     fruit         14.75     28
+## 4     64    6     1    1     fruit         10.67     42
+## 5     76    8     1    1     fruit          9.50     56
+## 6     93   10     1    1     fruit          9.30     70
 ```
 
 ---
@@ -1674,16 +1877,16 @@ ChickWeight %&gt;%
 
 ```
 ##     Chick weight
-## 118    10    120
-## 425    38     41
-## 414    37     48
-## 295    27     58
-## 308    28     73
-## 221    21     40
-## 197    19     43
-## 28      3     67
-## 121    11     51
-## 41      4     74
+## 482    42    234
+## 145    13     48
+## 306    28     46
+## 567    50     41
+## 103     9     92
+## 52      5     60
+## 407    36    145
+## 399    35    361
+## 22      2    187
+## 141    12    185
 ```
 
 ---

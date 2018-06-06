@@ -1,6 +1,6 @@
 ---
 title: "Data wrangling with dplyr"
-author: "BaselRBootcamp April 2018"
+author: "BaselRBootcamp"
 output: html_document
 ---
 
@@ -132,19 +132,13 @@ You'll use one dataset in this practical: `ACTG175.csv`. It is available in the 
 
 ### Getting setup
 
-A. In RStudio, Create a new project called `BaselRBootcamp`. In the project root directory, create two folders `data` and `R`. 
+A. Open your workshop project. It should alreaduy have the folders `data` and `R`. Make sure that the `ACTG175.csv` is in the `data` folder
 
 ```{r}
 # Done!
 ```
 
-B. Outside of RStudio (on your computer), move the `ACTG175.csv` file you just downloaded in to the `data` folder you just created.
-
-```{r}
-# Done!
-```
-
-C. Open a new R script and save it as a new file called `wrangling_practical.R` in the `R` folder in your working directory. At the top of the script, using comments, write your name and the date. The, load the set of `tidyverse` and `speff2trial` packages with `library()`. Here's how the top of your script should look:
+B. Open a new R script and save it as a new file called `wrangling_practical.R` in the `R` folder in your working directory. At the top of the script, using comments, write your name and the date. The, load the set of `tidyverse` and `speff2trial` packages with `library()`. Here's how the top of your script should look:
 
 ```{r, eval = FALSE, echo = TRUE}
 ## NAME
@@ -160,11 +154,11 @@ library(tidyverse)
 library(speff2trial)
 ```
 
-B. For this practical, we'll use the `ACTG175` data, this is the result of a randomized clinical trial comparing the effects of different medications on adults infected with the human immunodeficiency virus. Using the following template, load the data into R and store it as a new object called `trial_act`.
+
+C. For this practical, we'll use the `ACTG175` data, this is the result of a randomized clinical trial comparing the effects of different medications on adults infected with the human immunodeficiency virus. Using the following template, load the data into R and store it as a new object called `trial_act`.
 
 ```{r, echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
-# Load ACTG175.csv from the data folder 
-# The ACTG175.csv file MUST be in a folder called data in your working directory!!
+# Load ACTG175.csv from the data folder  in your working directory
 
 trial_act <- read_csv(file = "data/ACTG175.csv")
 ```
@@ -177,14 +171,14 @@ trial_act <- read_csv(file = "https://raw.githubusercontent.com/therbootcamp/Bas
 library(tidyverse)
 ```
 
-C. The `trial_act` data is actually a copy of a dataset from the `speff2trial` package called `ACTG175`. We can make Look at the help menu for the `ACTG175` data by running `?ACTG175` (If you become really interested in the data, you can also read an article discussing the trial here: [http://www.nejm.org/doi/full/10.1056/nejm199610103351501#t=article](http://www.nejm.org/doi/full/10.1056/nejm199610103351501#t=article))
+D. The `trial_act` data is actually a copy of a dataset from the `speff2trial` package called `ACTG175`. We can make Look at the help menu for the `ACTG175` data by running `?ACTG175` (If you become really interested in the data, you can also read an article discussing the trial here: [http://www.nejm.org/doi/full/10.1056/nejm199610103351501#t=article](http://www.nejm.org/doi/full/10.1056/nejm199610103351501#t=article))
 
 ```{r, echo = TRUE, eval = FALSE}
 # Look at documentation for ACTG175 data (contained in the speff2trial package)
 ?ACTG175
 ```
 
-D. First thing's first, take a look at the first few rows of the data by printing the `trial_act` object. It should look like this:
+E. First thing's first, take a look at the first few rows of the data by printing the `trial_act` object. It should look like this:
 
 ```{r, eval = TRUE, echo = TRUE}
 # Print trial_act object

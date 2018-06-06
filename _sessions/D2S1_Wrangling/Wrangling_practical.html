@@ -9,7 +9,7 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="author" content="BaselRBootcamp April 2018" />
+<meta name="author" content="BaselRBootcamp" />
 
 
 <title>Data wrangling with dplyr</title>
@@ -119,7 +119,7 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Data wrangling with dplyr</h1>
-<h4 class="author"><em>BaselRBootcamp April 2018</em></h4>
+<h4 class="author"><em>BaselRBootcamp</em></h4>
 
 </div>
 
@@ -291,24 +291,22 @@ chick %&gt;%
 </div>
 <div id="getting-setup" class="section level3">
 <h3>Getting setup</h3>
-<p>A. In RStudio, Create a new project called <code>BaselRBootcamp</code>. In the project root directory, create two folders <code>data</code> and <code>R</code>.</p>
-<p>B. Outside of RStudio (on your computer), move the <code>ACTG175.csv</code> file you just downloaded in to the <code>data</code> folder you just created.</p>
-<p>C. Open a new R script and save it as a new file called <code>wrangling_practical.R</code> in the <code>R</code> folder in your working directory. At the top of the script, using comments, write your name and the date. The, load the set of <code>tidyverse</code> and <code>speff2trial</code> packages with <code>library()</code>. Here’s how the top of your script should look:</p>
+<p>A. Open your workshop project. It should alreaduy have the folders <code>data</code> and <code>R</code>. Make sure that the <code>ACTG175.csv</code> is in the <code>data</code> folder</p>
+<p>B. Open a new R script and save it as a new file called <code>wrangling_practical.R</code> in the <code>R</code> folder in your working directory. At the top of the script, using comments, write your name and the date. The, load the set of <code>tidyverse</code> and <code>speff2trial</code> packages with <code>library()</code>. Here’s how the top of your script should look:</p>
 <pre class="r"><code>## NAME
 ## DATE
 ## Wrangling Practical
 
 library(tidyverse)     # For tidyverse
 library(speff2trial)   # For the ACTG175 data documentation</code></pre>
-<p>B. For this practical, we’ll use the <code>ACTG175</code> data, this is the result of a randomized clinical trial comparing the effects of different medications on adults infected with the human immunodeficiency virus. Using the following template, load the data into R and store it as a new object called <code>trial_act</code>.</p>
-<pre class="r"><code># Load ACTG175.csv from the data folder 
-# The ACTG175.csv file MUST be in a folder called data in your working directory!!
+<p>C. For this practical, we’ll use the <code>ACTG175</code> data, this is the result of a randomized clinical trial comparing the effects of different medications on adults infected with the human immunodeficiency virus. Using the following template, load the data into R and store it as a new object called <code>trial_act</code>.</p>
+<pre class="r"><code># Load ACTG175.csv from the data folder  in your working directory
 
 trial_act &lt;- read_csv(file = &quot;data/ACTG175.csv&quot;)</code></pre>
-<p>C. The <code>trial_act</code> data is actually a copy of a dataset from the <code>speff2trial</code> package called <code>ACTG175</code>. We can make Look at the help menu for the <code>ACTG175</code> data by running <code>?ACTG175</code> (If you become really interested in the data, you can also read an article discussing the trial here: <a href="http://www.nejm.org/doi/full/10.1056/nejm199610103351501#t=article" class="uri">http://www.nejm.org/doi/full/10.1056/nejm199610103351501#t=article</a>)</p>
+<p>D. The <code>trial_act</code> data is actually a copy of a dataset from the <code>speff2trial</code> package called <code>ACTG175</code>. We can make Look at the help menu for the <code>ACTG175</code> data by running <code>?ACTG175</code> (If you become really interested in the data, you can also read an article discussing the trial here: <a href="http://www.nejm.org/doi/full/10.1056/nejm199610103351501#t=article" class="uri">http://www.nejm.org/doi/full/10.1056/nejm199610103351501#t=article</a>)</p>
 <pre class="r"><code># Look at documentation for ACTG175 data (contained in the speff2trial package)
 ?ACTG175</code></pre>
-<p>D. First thing’s first, take a look at the first few rows of the data by printing the <code>trial_act</code> object. It should look like this:</p>
+<p>E. First thing’s first, take a look at the first few rows of the data by printing the <code>trial_act</code> object. It should look like this:</p>
 <pre class="r"><code># Print trial_act object
 trial_act</code></pre>
 <pre><code># A tibble: 2,139 x 27
