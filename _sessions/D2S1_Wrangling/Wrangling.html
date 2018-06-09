@@ -28,7 +28,6 @@ class: center, middle, inverse, title-slide
 &lt;br&gt;&lt;br&gt;
 ## Where you're at...
 
-
 &lt;font size = 5&gt;0) Loaded packages (like tidyverse!) with &lt;font color = 'blue'&gt;library()&lt;/font&gt;&lt;br&gt;
 
 &lt;font size = 5&gt;1) Created a new dataframe (df) from external files using a data input function such as &lt;br&gt;df &lt;font color='red'&gt;&lt;-&lt;/font&gt; &lt;font color='blue'&gt;read_csv&lt;/font&gt;()&lt;/font&gt;&lt;br&gt;
@@ -49,22 +48,22 @@ class: center, middle, inverse, title-slide
 
 library(tidyverse)
 
-# Step 1) Read file called mydata.csv 
+# Step 1) Read file called baslers.txt 
 #  in a data folder with read_csv()
-#  and save as new object trial_data
+#  and save as new object baslers
 
-trial_data &lt;- read_csv(file = "data/mydata.csv")
+baslers &lt;- read_csv(file = "data/baslers.txt")
 
 # Step 2) Explore data
 
-View(trial_data)   # Open in new window
-dim(trial_data)    # Show number of rows and columns
-names(trial_data)  # Show names
+View(baslers)   # Open in new window
+dim(baslers)    # Show number of rows and columns
+names(baslers)  # Show names
 
 # Step 3) Calculate descriptives on named colums
 
-mean(trial_data$age)   # What is the mean age?
-table(trial_data$sex)  # How many of each sex?
+mean(baslers$age)   # What is the mean age?
+table(baslers$sex)  # How many of each sex?
 
 # Step 4) ...
 ```
@@ -104,323 +103,112 @@ Aggregation
 
 ---
 
-.pull-left4[
-# How do we wrangle data in R?
-
-&lt;font size = 5&gt;Answer: dplyr&lt;/font&gt;
-
-Anytime you want to transform, organize, or aggregate data, use `dplyr`
-
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/dplyr_hex.png" width="50%" style="display: block; margin: auto;" /&gt;
-
-]
-
-.pull-right5[
-
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/organise_transform_aggregate.png" width="100%" style="display: block; margin: auto;" /&gt;
-
-]
-
----
-
 .pull-left35[
-# dplyr
+## How do we wrangle data in R?
 
-dplyr is a combination of 3 things:
 
-1. **`objects`** like dataframes
-2. **`functions`** that **do** things to objects.
-3. **`pipes`** `%&gt;%` that string together objects and verbs
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/dplyr_hex.png" width="70%" style="display: block; margin: auto;" /&gt;
 
-&lt;br&gt;
 
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/pipe.jpg" width="70%" style="display: block; margin: auto;" /&gt;
+```r
+library(dplyr)
+
+# OR
+
+library(tidyverse)
+```
 
 ]
 
 .pull-right6[
-
-## The pipe %&gt;%
-
-&lt;font size = 5&gt; dplyr makes extensive use of the 'pipe' %&gt;%
-
-
-
-```r
-# Applying function without pipe
-FUN(OBJECT)
-
-# Applying function with pipe
-OBJECT %&gt;% FUN
-```
-
-&lt;font size = 5&gt; Example
-
-
-```r
-# Calculate mean of a vector without pipe
-mean(ToothGrowth$len)
-```
-
-```
-## [1] 18.81
-```
-
-```r
-# Same thing with pipe
-ToothGrowth$len %&gt;% mean()
-```
-
-```
-## [1] 18.81
-```
+&lt;br&gt;
+&lt;font size = 6&gt;Here's how dplyr looks in action&lt;/font&gt;
+&lt;br&gt;&lt;br&gt;
+&lt;img src="../_image/dplyr_functions.png" width="100%" style="display: block; margin: auto;" /&gt;
 
 ]
 
-
 ---
-## The pipe
+
+# %&gt;%    "The Pipe!"
+
+.pull-left35[
+
+&lt;font size = 6&gt;dplyr makes extensive use of the "Pipe" &lt;b&gt;&lt;font color='purple'&gt;%&gt;%&lt;/font&gt;&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;br&gt;
+
+&lt;font size = 6&gt;The "Pipe"" &lt;b&gt;&lt;font color='purple'&gt;%&gt;%&lt;/font&gt;&lt;/b&gt; is used to pass objects from one function to another&lt;/font&gt;&lt;br&gt;&lt;br&gt;
+
+
+&lt;font size = 6&gt;You can read the "Pipe" &lt;b&gt;&lt;font color='purple'&gt;%&gt;%&lt;/font&gt;&lt;/b&gt; as "And Then..."&lt;/font&gt;&lt;br&gt;&lt;br&gt;
 
 
 
-.pull-left3[
-&lt;br&gt;&lt;br&gt;
-&lt;font size = 5&gt; Here is some trial data called trial&lt;/font&gt;
-
-
-```r
-# Clinical trial data
-trial
-```
-
-```
-##   id sex arm age outcome
-## 1  1   m   1  54       3
-## 2  2   m   1  37       6
-## 3  3   f   2  65       8
-## 4  4   f   2  48       4
-## 5  5   m   1  64       9
-## 6  6   f   2  57       6
-## 7  7   f   1  36       8
-## 8  8   m   2  56      10
-```
 
 &lt;br&gt;
 
-]
 
+
+]
 
 .pull-right65[
 
-&lt;font size = 5&gt;&lt;i&gt;Task 1: Give me the ids of women above the age of 50&lt;/i&gt;&lt;/font&gt;
+
+&lt;img src="../_image/pipe_andthen.png" width="100%" style="display: block; margin: auto;" /&gt;
 
 
 
-```r
-# Base R Method without pipe (%&gt;%)
 
-trial[trial$sex == "f" &amp; trial$age &gt; 50, 'id']
-```
-
-```
-## [1] 3 6
-```
-
-
-
-```r
-# dplyr method with pipe (%&gt;%)
-
-trial %&gt;%
-  filter(sex == "f" &amp; age &gt; 50) %&gt;%
-  select(id)
-```
-
-```
-##   id
-## 1  3
-## 2  6
-```
-
-]
-
-
----
-## The pipe
-
-
-
-.pull-left3[
-&lt;br&gt;&lt;br&gt;
-&lt;font size = 5&gt; Here is some trial data called trial&lt;/font&gt;
-
-
-```r
-# Clinical trial data
-trial
-```
-
-```
-##   id sex arm age outcome
-## 1  1   m   1  54       3
-## 2  2   m   1  37       6
-## 3  3   f   2  65       8
-## 4  4   f   2  48       4
-## 5  5   m   1  64       9
-## 6  6   f   2  57       6
-## 7  7   f   1  36       8
-## 8  8   m   2  56      10
-```
-
-&lt;br&gt;
-
-]
-
-
-.pull-right65[
-
-&lt;font size = 5&gt;&lt;i&gt;Task 2: Separately for the two arms, calculate mean age and outcome&lt;/i&gt;&lt;/font&gt;
-
-
-
-```r
-# Base R Method without pipe (%&gt;%)
-
-# Get aggregate statistics
-age_agg &lt;- aggregate(age ~ arm, data = trial, FUN = mean)
-out_agg &lt;- aggregate(outcome ~ arm, data = trial, FUN = mean)
-
-# Combine results
-data.frame(arm = age_agg$arm,
-           age_mean = age_agg$age,
-           outcome_mean = out_agg$outcome)
-```
-
-```
-##   arm age_mean outcome_mean
-## 1   1    47.75          6.5
-## 2   2    56.50          7.0
-```
 ]
 
 
 
 ---
-## The pipe
 
+![](../_image/pipe_how_works.png)&lt;!-- --&gt;
 
-
-.pull-left3[
-&lt;br&gt;&lt;br&gt;
-&lt;font size = 5&gt; Here is some trial data called trial&lt;/font&gt;
-
-
-```r
-# Clinical trial data
-trial
-```
-
-```
-##   id sex arm age outcome
-## 1  1   m   1  54       3
-## 2  2   m   1  37       6
-## 3  3   f   2  65       8
-## 4  4   f   2  48       4
-## 5  5   m   1  64       9
-## 6  6   f   2  57       6
-## 7  7   f   1  36       8
-## 8  8   m   2  56      10
-```
-
-&lt;br&gt;
-
-]
-
-
-.pull-right65[
-
-&lt;font size = 5&gt;&lt;i&gt;Task 2: Separately for the two arms, calculate mean age and outcome&lt;/i&gt;&lt;/font&gt;
-
-
-
-```r
-# dplyr method with pipe (%&gt;%)
-
-trial %&gt;%                             # Start with data trial
-  group_by(arm) %&gt;%               # Group data by arm
-  summarise(                      # Calculate summary statistics
-    age_mean = mean(age),         # age_mean is...
-    outcome_mean = mean(outcome)  # outcome_mean is...
-  )
-```
-
-```
-## # A tibble: 2 x 3
-##     arm age_mean outcome_mean
-##   &lt;dbl&gt;    &lt;dbl&gt;        &lt;dbl&gt;
-## 1     1     47.8          6.5
-## 2     2     56.5          7
-```
-]
 
 
 ---
 
-.pull-left25[
+.pull-left4[
 &lt;br&gt;
-&lt;font size = 5&gt;Load the tidyverse&lt;/font&gt;
-
-&lt;br2&gt;
-
-&lt;font size = 5&gt;Load data&lt;/font&gt;
-
+### Programming task
 &lt;br&gt;
 
-&lt;font size = 5&gt;Start with data&lt;/font&gt;
-
-&lt;br&gt;
-
-&lt;font size = 5&gt;Connect multiple functions with pipes %&gt;%&lt;/font&gt;
-
-&lt;br&gt;
-
-&lt;font size = 5&gt;Result will always be a tibble&lt;/font&gt;
+&gt; &lt;font size = 5&gt;Hey I need you do do some analyses on that survey data of &lt;b&gt;baselers&lt;/b&gt; to understand the levels of income and debt of people younger than 40. First, I need you to &lt;b&gt;change the name&lt;/b&gt; of the column 'age' to 'age_years' and 'weight' to 'weight_kg'. Next, &lt;b&gt;only include&lt;/b&gt; people younger than 40. &lt;b&gt;Add a new column&lt;/b&gt; called that shows people's debt divided by their income. Then, &lt;b&gt;create groups&lt;/b&gt; based on sex, and &lt;b&gt;calculate&lt;/b&gt; the mean income, debt, and debt ratio for each group. Thanks!! Should be easy right?&lt;/font&gt;
 
 
 ]
 
-.pull-right7[
+.pull-right55[
+&lt;br&gt;
+### Translating to dplyr
 
-&lt;font size = 5&gt;Here is how dplyr looks in practice &lt;/font&gt;
 
 
 ```r
-library(tidyverse) # Load tidyverse (includes dplyr)
+# Assign result to baslers_agg
 
-# load .csv file as trial
-trial &lt;- read_csv("data/mydata.csv")
-
-# Start with original dataframe 
-trial %&gt;%   # AND THEN
+baslers_agg &lt;- baselers %&gt;% 
   
   # Change column names with rename()
-  rename(...)  %&gt;%  # AND THEN...
+  rename(age_years = age,
+         weight_kg = weight)  %&gt;% # PIPE!
 
   # Select specific rows with filter()
-  filter(...)  %&gt;%  # AND THEN...
+  filter(age_years &lt; 40)  %&gt;% # PIPE!
   
   # Create new columns witb mutate()
-  mutate(...)  %&gt;%  # ...
+  mutate(debt_ratio = debt / income)  %&gt;% # PIPE!
   
   # Group data with group_by()
-  group_by(...) %&gt;%  #...
+  group_by(sex) %&gt;% # PIPE!
   
   # Calculate summary statistics with summarise()
-  summarise(...) %&gt;% # ...
-
-   #....
+  summarise(income_mean = mean(income),
+            debt_mean = mean(debt),
+            dr_mean = mean(dr))
 ```
-
 
 ]
 
@@ -429,16 +217,69 @@ trial %&gt;%   # AND THEN
 ---
 
 .pull-left4[
+
+&lt;br&gt;
+
+### dplyr notes
+
+&lt;br&gt;
+
+&lt;font size = 5&gt;"Keep the pipe &lt;font color = 'purple'&gt;%&gt;%&lt;/font&gt; going" to continue working with your dataframe&lt;/font&gt;&lt;br&gt;&lt;br&gt;
+
+&lt;font size = 5&gt;Don't forget to assign your result to a new object to save it!&lt;/font&gt;&lt;br&gt;&lt;br&gt;
+
+&lt;font size = 5&gt;The output of dplyr functions will (almost) always be a tibble&lt;/font&gt;&lt;br&gt;&lt;br&gt;
+
+&lt;font size = 5&gt;You can almost always include multiple operations within each function&lt;/font&gt;&lt;br&gt;&lt;br&gt;
+
+]
+
+.pull-right55[
+&lt;br&gt;
+### Translating to dplyr
+
+ 
+
+```r
+# Assign result to baslers_agg
+
+baslers_agg &lt;- baselers %&gt;% 
+  
+  # Change column names with rename()
+  rename(age_years = age,
+         weight_kg = weight)  %&gt;% # PIPE!
+
+  # Select specific rows with filter()
+  filter(age_years &lt; 40)  %&gt;% # PIPE!
+  
+  # Create new columns witb mutate()
+  mutate(debt_ratio = debt / income)  %&gt;% # PIPE!
+  
+  # Group data with group_by()
+  group_by(sex) %&gt;% # PIPE!
+  
+  # Calculate summary statistics with summarise()
+  summarise(income_mean = mean(income),
+            debt_mean = mean(debt),
+            dr_mean = mean(dr))
+```
+
+]
+
+
+
+
+---
+
+.pull-left4[
 &lt;br&gt;&lt;br&gt;
-## Wrangling Functions in dplyr
+## Functions in dplyr
 
 - &lt;font size = 5&gt;There are dozens functions in dplyr that allow you to wrangle data.&lt;/font&gt;&lt;br&gt;
 
 - &lt;font size = 5&gt;For an overview, look at the cheatsheet..&lt;/font&gt;&lt;br&gt;
 
-
 - &lt;font size = 5&gt;We will now show you how to use ~10 of the most common ones&lt;/font&gt;&lt;br&gt;
-
 
 ]
 
@@ -790,13 +631,11 @@ patients_df %&gt;%
 
 # Notes
 
-&lt;font size = 5&gt;1) Continue as long as you want with more pipes %&gt;%&lt;/font&gt;
+&lt;font size = 5&gt; 1) Order of functions matters &lt;/font&gt;
 &lt;br&gt; &lt;br&gt;
-&lt;font size = 5&gt; 2) Order of functions matters &lt;/font&gt;
+&lt;font size = 5&gt; 2) You can refer to new objects in later code &lt;/font&gt;
 &lt;br&gt; &lt;br&gt;
-&lt;font size = 5&gt; 3) You can refer to new objects in later code &lt;/font&gt;
-&lt;br&gt; &lt;br&gt;
-&lt;font size = 5&gt;4) To update a dataframe, make sure to assign it to itself with &lt;- &lt;/font&gt;
+&lt;font size = 5&gt; 3) To update a dataframe, make sure to assign it to itself with &lt;- &lt;/font&gt;
 
 ]
 
@@ -1100,7 +939,7 @@ patients_df %&gt;%
 
 
 ---
-.pull-left3[
+.pull-left4[
 # summarise() 
 
 &lt;font size = 5&gt;Used to summarise data from groups&lt;br&gt;&lt;br&gt;
@@ -1121,7 +960,7 @@ df %&gt;%
 
 ]
 
-.pull-right65[
+.pull-right55[
 &lt;br&gt;&lt;br&gt;
 
 &lt;font size = 5&gt;2) Calculate summary statistics from times&lt;/font&gt;
@@ -1877,16 +1716,16 @@ ChickWeight %&gt;%
 
 ```
 ##     Chick weight
-## 482    42    234
-## 145    13     48
-## 306    28     46
-## 567    50     41
-## 103     9     92
-## 52      5     60
-## 407    36    145
-## 399    35    361
-## 22      2    187
-## 141    12    185
+## 249    23     90
+## 14      2     49
+## 521    46     62
+## 221    21     40
+## 349    31    170
+## 522    46     82
+## 501    44    103
+## 93      8    126
+## 188    17     89
+## 223    21     62
 ```
 
 ---

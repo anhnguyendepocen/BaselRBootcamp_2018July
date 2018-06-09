@@ -58,7 +58,8 @@ Here are the main verbs you will be using in `dplyr`:
 
 library(tidyverse)         # Load tidyverse
 
-chick <- as_tibble(ChickWeight)   # Save a copy of the ChickWeight data as chick
+# Save a copy of the ChickWeight data (already in R) as chick
+chick <- as_tibble(ChickWeight) 
 
 # Change some column names with rename()
 
