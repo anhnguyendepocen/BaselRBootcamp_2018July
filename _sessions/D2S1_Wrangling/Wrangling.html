@@ -12,6 +12,7 @@
 class: center, middle, inverse, title-slide
 
 # Data Wrangling
+## With dplyr (and a bit of tidyr)
 ### The R Bootcamp<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a>
 
 ---
@@ -97,35 +98,40 @@ Aggregation
 
 .pull-right5[
 
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/organise_transform_aggregate.png" width="100%" style="display: block; margin: auto;" /&gt;
+
 
 ]
 
 ---
 
-.pull-left35[
-## How do we wrangle data in R?
+.pull-left45[
+&lt;br&gt;&lt;br&gt;
+&lt;font size = 6&gt;To wrangle data in R, we will use the dplyr and tidyr packages&lt;/font&gt;
 
-
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/dplyr_hex.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 
 ```r
-library(dplyr)
+# Load packages individually
 
-# OR
+# install.packages('dplyr')
+# install.packages('tidyr')
+
+library(dplyr)
+library(tidyr)
+
+# Or just use the tidyverse!
+
+# install.packages('tidyverse')
 
 library(tidyverse)
 ```
 
 ]
-
-.pull-right6[
+ 
+.pull-right5[
 &lt;br&gt;
-&lt;font size = 6&gt;Here's how dplyr looks in action&lt;/font&gt;
 &lt;br&gt;&lt;br&gt;
-&lt;img src="../_image/dplyr_functions.png" width="100%" style="display: block; margin: auto;" /&gt;
-
+&lt;img src="../_image/dplyr_tidyr_hex.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -133,15 +139,12 @@ library(tidyverse)
 # %&gt;%    "The Pipe!"
 
 .pull-left35[
+ 
+&lt;font size = 6&gt;dplyr makes extensive use of a new operator called the "Pipe" &lt;b&gt;&lt;font color='purple'&gt;%&gt;%&lt;/font&gt;&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;br&gt;
 
-&lt;font size = 6&gt;dplyr makes extensive use of the "Pipe" &lt;b&gt;&lt;font color='purple'&gt;%&gt;%&lt;/font&gt;&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;br&gt;
-
-&lt;font size = 6&gt;The "Pipe"" &lt;b&gt;&lt;font color='purple'&gt;%&gt;%&lt;/font&gt;&lt;/b&gt; is used to pass objects from one function to another&lt;/font&gt;&lt;br&gt;&lt;br&gt;
-
+&lt;font size = 6&gt;The "Pipe" &lt;b&gt;&lt;font color='purple'&gt;%&gt;%&lt;/font&gt;&lt;/b&gt; is used to pass objects from one function to another&lt;/font&gt;&lt;br&gt;&lt;br&gt;
 
 &lt;font size = 6&gt;You can read the "Pipe" &lt;b&gt;&lt;font color='purple'&gt;%&gt;%&lt;/font&gt;&lt;/b&gt; as "And Then..."&lt;/font&gt;&lt;br&gt;&lt;br&gt;
-
-
 
 
 &lt;br&gt;
@@ -151,11 +154,12 @@ library(tidyverse)
 ]
 
 .pull-right65[
+&lt;br&gt;
 
-
-&lt;img src="../_image/pipe_andthen.png" width="100%" style="display: block; margin: auto;" /&gt;
-
-
+&lt;font size = 6&gt;&lt;center&gt;&lt;b&gt;df&lt;/b&gt; %&gt;%   &lt;i&gt;&lt;font color='gray'&gt;"And then..."&lt;/font&gt;&lt;/i&gt;&lt;/center&gt;&lt;/font&gt;&lt;br&gt;
+&lt;font size = 6&gt;&lt;center&gt;&lt;b&gt;FUN1()&lt;/b&gt; %&gt;%  &lt;i&gt;&lt;font color='gray'&gt;"And then..."&lt;/font&gt;&lt;/i&gt;&lt;/center&gt;&lt;/font&gt;&lt;br&gt;
+&lt;font size = 6&gt;&lt;center&gt;&lt;b&gt;FUN2()&lt;/b&gt; %&gt;%  &lt;i&gt;&lt;font color='gray'&gt;"And then..."&lt;/font&gt;&lt;/i&gt;&lt;/center&gt;&lt;/font&gt;&lt;br&gt;
+&lt;font size = 6&gt;&lt;/center&gt;&lt;/font&gt;&lt;br&gt;
 
 
 ]
@@ -164,18 +168,114 @@ library(tidyverse)
 
 ---
 
-![](../_image/pipe_how_works.png)&lt;!-- --&gt;
+&lt;img src="../_image/pipe_how_works.png" width="95%" /&gt;
 
 
 
 ---
 
-.pull-left4[
+.pull-left45[
+
+&lt;img src="../_image/pipe_explanation_kn.png" width="95%" /&gt;
+
+
+]
+
+.pull-right5[
+
+## Example)
+
+
+```r
+# Create a vector score
+score &lt;- c(8, 4, 6, 3, 7, 3)
+```
+
+
+&lt;font size = 5&gt;Q) Calculate the mean score&lt;/font&gt;
+
+
+```r
+# Base-R method
+
+mean(score)
+```
+
+```
+## [1] 5.167
+```
+
+```r
+# Pipe %&gt;% method
+
+score %&gt;%  # Take the vector score AND THEN 
+  mean()   # calculate the mean
+```
+
+```
+## [1] 5.167
+```
+
+]
+
+
+
+---
+
+.pull-left45[
+
+&lt;img src="../_image/pipe_explanation_kn.png" width="95%" /&gt;
+
+
+]
+
+.pull-right5[
+
+## Example)
+
+
+```r
+# Create a vector score
+score &lt;- c(8, 4, 6, 3, 7, 3)
+```
+
+&lt;font size = 5&gt;Q) Calculate the standard deviation and round to 1 digit&lt;/font&gt;
+
+
+```r
+# Base-R method
+
+round(sd(score), digits = 1)
+```
+
+```
+## [1] 2.1
+```
+
+```r
+# Pipe %&gt;% method
+
+score %&gt;%        # Take vector score AND THEN
+  sd() %&gt;%       # Calculate the sd AND THEN
+  round(digits = 1) # Round to 1 digit
+```
+
+```
+## [1] 2.1
+```
+
+
+]
+
+
+---
+
+.pull-left45[
 &lt;br&gt;
 ### Programming task
-&lt;br&gt;
 
-&gt; &lt;font size = 5&gt;Hey I need you do do some analyses on that survey data of &lt;b&gt;baselers&lt;/b&gt; to understand the levels of income and debt of people younger than 40. First, I need you to &lt;b&gt;change the name&lt;/b&gt; of the column 'age' to 'age_years' and 'weight' to 'weight_kg'. Next, &lt;b&gt;only include&lt;/b&gt; people younger than 40. &lt;b&gt;Add a new column&lt;/b&gt; called that shows people's debt divided by their income. Then, &lt;b&gt;create groups&lt;/b&gt; based on sex, and &lt;b&gt;calculate&lt;/b&gt; the mean income, debt, and debt ratio for each group. Thanks!! Should be easy right?&lt;/font&gt;
+&lt;br&gt;
+&gt; &lt;font size = 4&gt;From the &lt;b&gt;baselers&lt;/b&gt; data...&lt;br&gt;&lt;br&gt;1) &lt;b&gt;Change the name&lt;/b&gt; of the column 'age' to 'age_years' and 'weight' to 'weight_kg'.&lt;br&gt;&lt;br&gt;2), &lt;b&gt;only include&lt;/b&gt; people younger than 40.&lt;br&gt;&lt;br&gt;3) &lt;b&gt;Add a new column&lt;/b&gt; called that shows people's debt divided by their income.&lt;br&gt;&lt;br&gt;4) Create &lt;b&gt;groups&lt;/b&gt; based on sex.&lt;br&gt;&lt;br&gt;5) &lt;b&gt;Calculate summary statistics&lt;/b&gt;: the mean income, debt, and debt ratio for each group.&lt;/font&gt;
 
 
 ]
@@ -277,9 +377,9 @@ baslers_agg &lt;- baselers %&gt;%
 
 - &lt;font size = 5&gt;There are dozens functions in dplyr that allow you to wrangle data.&lt;/font&gt;&lt;br&gt;
 
-- &lt;font size = 5&gt;For an overview, look at the cheatsheet..&lt;/font&gt;&lt;br&gt;
+- &lt;font size = 5&gt;For an overview, look at the &lt;a href='https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf'&gt;cheatsheet!&lt;/a&gt;&lt;/font&gt;&lt;br&gt;
 
-- &lt;font size = 5&gt;We will now show you how to use ~10 of the most common ones&lt;/font&gt;&lt;br&gt;
+- &lt;font size = 5&gt;We will now show you how to use ~10 of the most common functions&lt;/font&gt;&lt;br&gt;
 
 ]
 
@@ -287,9 +387,10 @@ baslers_agg &lt;- baselers %&gt;%
 .pull-right55[
 
 &lt;br&gt;
-### Wrangling / dplyr cheatsheet
 
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/data_wrangling_ss.png" width="600" style="display: block; margin: auto;" /&gt;
+Some of the dplyr functions in action:&lt;br&gt;
+&lt;br&gt;
+&lt;img src="../_image/dplyr_functions.png" width="600" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -312,7 +413,8 @@ baslers_agg &lt;- baselers %&gt;%
 ]
 
 .pull-right55[
-&lt;br&gt;&lt;br&gt;
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+### patients_df
 
 ```r
 patients_df   # Demographic data
@@ -322,19 +424,13 @@ patients_df   # Demographic data
 ## # A tibble: 5 x 3
 ##      id     b     c
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1    13    38     0
-## 2    22    64     1
-## 3     5    55     0
-## 4    67    34     0
-## 5    34    29     1
+## 1     1    37     1
+## 2     2    65     1
+## 3     3    57     2
+## 4     4    34     1
+## 5     5    45     2
 ```
 
-### Goal:
-
-- Create better column names with `rename()`
-- Add new columns with `mutate()`
-- Recode values with `case_when()`
-- Merge with a new dataframe using `left_join()`
 
 ]
 
@@ -358,11 +454,11 @@ patients_df  # Original
 ## # A tibble: 5 x 3
 ##      id     b     c
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1    13    38     0
-## 2    22    64     1
-## 3     5    55     0
-## 4    67    34     0
-## 5    34    29     1
+## 1     1    37     1
+## 2     2    65     1
+## 3     3    57     2
+## 4     4    34     1
+## 5     5    45     2
 ```
 ]
 
@@ -373,22 +469,11 @@ patients_df  # Original
 
 ```r
 # 0) Start with patients_df data
-patients_df %&gt;%
-  
+patients_df &lt;- patients_df %&gt;% 
+
 # 1) Change column names with rename()
   rename(age = b,  # New = Old
          arm = c)  # New = Old
-```
-
-```
-## # A tibble: 5 x 3
-##      id   age   arm
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1    13    38     0
-## 2    22    64     1
-## 3     5    55     0
-## 4    67    34     0
-## 5    34    29     1
 ```
 
 ]
@@ -420,27 +505,11 @@ df %&gt;%
 
 
 ```r
-# 0) Start with patients_df data
-patients_df %&gt;%
-  
-# 1) Change column names with rename()
-  rename(age = b,  
-         arm = c) %&gt;%
-  
-# 2) Create new columns with mutate()
+patients_df &lt;- patients_df %&gt;% 
+
+# Create new columns with mutate()
   mutate(age_months = age * 12,
          age_decades = age / 10)
-```
-
-```
-## # A tibble: 5 x 5
-##      id   age   arm age_months age_decades
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;
-## 1    13    38     0        456         3.8
-## 2    22    64     1        768         6.4
-## 3     5    55     0        660         5.5
-## 4    67    34     0        408         3.4
-## 5    34    29     1        348         2.9
 ```
 
 ]
@@ -474,14 +543,9 @@ df %&gt;%
 
 
 ```r
-# 0) Start with patients_df data
-patients_df %&gt;%
-  
-# 1) Change column names with rename()
-  rename(age = b,  
-         arm = c) %&gt;%
-  
-# 2) Create new columns with mutate()
+patients_df &lt;- patients_df %&gt;% 
+
+# Create new columns with mutate()
   mutate(age_months = age * 12,
          age_decades = age / 10,
          arm_char = case_when(arm == 0 ~ "placebo",
@@ -489,80 +553,13 @@ patients_df %&gt;%
          )
 ```
 
-```
-## # A tibble: 5 x 6
-##      id   age   arm age_months age_decades arm_char 
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;    
-## 1    13    38     0        456         3.8 placebo  
-## 2    22    64     1        768         6.4 drugtrial
-## 3     5    55     0        660         5.5 placebo  
-## 4    67    34     0        408         3.4 placebo  
-## 5    34    29     1        348         2.9 drugtrial
-```
-
 ]
-
-
-
-
-
 
 ---
-# Merging data
+# Joining data
+ 
 
-
-.pull-left45[
-
-&lt;font size = 5&gt; Patient basics &lt;/font&gt;
-
-
-```r
-patients_df
-```
-
-
-| id| age| arm|
-|--:|---:|---:|
-| 13|  38|   0|
-| 22|  64|   1|
-|  5|  55|   0|
-| 67|  34|   0|
-| 34|  29|   1|
-
-&lt;br&gt;
-
-&lt;font size = 5&gt;Goal: Add study results data to patient data&lt;/font&gt;
-&lt;br3&gt;
-
-]
-
-
-.pull-right45[
-
-&lt;font size = 5&gt; Patient results &lt;/font&gt;
-
-
-
-```r
-results_df
-```
-
-
-| id| time1| time2|
-|--:|-----:|-----:|
-| 67|     2|     4|
-|  5|     3|     3|
-| 34|     3|     5|
-| 13|     4|     6|
-| 22|     7|     5|
-
-&lt;br&gt;
-
-&lt;font size = 5&gt; For each matching id in patients_df and results_df, add results_df data to patients_df.
-
-
-]
-
+&lt;img src="../_image/joining_data.png" width="95%" /&gt;
 
 
 ---
@@ -592,33 +589,10 @@ df1 %&gt;%
 
 
 ```r
-# 0) Start with patients_df data
-patients_df %&gt;%
+patients_df &lt;- patients_df %&gt;% 
   
-# 1) Change column names with rename()
-  rename(age = b,  
-         arm = c) %&gt;%
-  
-# 2) Create new columns with mutate()
-  mutate(age_months = age * 12,
-         age_decades = age / 10,
-         arm_char = case_when(arm == 0 ~ "placebo",
-                              arm == 1 ~ "drugtrial")
-         ) %&gt;%
-  
-  # 3) Add data from results_df with left_join()
+# 3) Add data from results_df with left_join()
   left_join(results_df, by = "id")
-```
-
-```
-## # A tibble: 5 x 8
-##      id   age   arm age_months age_decades arm_char  time1 time2
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;
-## 1    13    38     0        456         3.8 placebo       4     6
-## 2    22    64     1        768         6.4 drugtrial     7     5
-## 3     5    55     0        660         5.5 placebo       3     3
-## 4    67    34     0        408         3.4 placebo       2     4
-## 5    34    29     1        348         2.9 drugtrial     3     5
 ```
 
 ]
@@ -628,7 +602,7 @@ patients_df %&gt;%
 
 
 .pull-left3[
-
+&lt;br&gt;&lt;br&gt;
 # Notes
 
 &lt;font size = 5&gt; 1) Order of functions matters &lt;/font&gt;
@@ -689,13 +663,13 @@ patients_df
 
 ```
 ## # A tibble: 5 x 8
-##      id   age   arm age_months age_decades arm_char  time1 time2
+##      id   age   arm age_months age_decades arm_char     t1    t2
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;
-## 1    13    38     0        456         3.8 placebo       4     6
-## 2    22    64     1        768         6.4 drugtrial     7     5
-## 3     5    55     0        660         5.5 placebo       3     3
-## 4    67    34     0        408         3.4 placebo       2     4
-## 5    34    29     1        348         2.9 drugtrial     3     5
+## 1     1    37     1        444         3.7 drugtrial   123   135
+## 2     2    65     1        780         6.5 drugtrial   134   150
+## 3     3    57     2        684         5.7 &lt;NA&gt;         NA    NA
+## 4     4    34     1        408         3.4 drugtrial   100   105
+## 5     5    45     2        540         4.5 &lt;NA&gt;         NA    NA
 ```
 
 ### Goal:
@@ -741,13 +715,13 @@ patients_df %&gt;%
 
 ```
 ## # A tibble: 5 x 8
-##      id   age   arm age_months age_decades arm_char  time1 time2
+##      id   age   arm age_months age_decades arm_char     t1    t2
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;
-## 1     5    55     0        660         5.5 placebo       3     3
-## 2    13    38     0        456         3.8 placebo       4     6
-## 3    22    64     1        768         6.4 drugtrial     7     5
-## 4    34    29     1        348         2.9 drugtrial     3     5
-## 5    67    34     0        408         3.4 placebo       2     4
+## 1     1    37     1        444         3.7 drugtrial   123   135
+## 2     2    65     1        780         6.5 drugtrial   134   150
+## 3     3    57     2        684         5.7 &lt;NA&gt;         NA    NA
+## 4     4    34     1        408         3.4 drugtrial   100   105
+## 5     5    45     2        540         4.5 &lt;NA&gt;         NA    NA
 ```
 
 ]
@@ -785,10 +759,12 @@ patients_df %&gt;%
 ```
 
 ```
-## # A tibble: 1 x 8
-##      id   age   arm age_months age_decades arm_char  time1 time2
+## # A tibble: 3 x 8
+##      id   age   arm age_months age_decades arm_char     t1    t2
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;
-## 1    22    64     1        768         6.4 drugtrial     7     5
+## 1     1    37     1        444         3.7 drugtrial   123   135
+## 2     2    65     1        780         6.5 drugtrial   134   150
+## 3     4    34     1        408         3.4 drugtrial   100   105
 ```
 
 ]
@@ -833,10 +809,12 @@ patients_df %&gt;%
 ```
 
 ```
-## # A tibble: 1 x 6
-##      id   age   arm arm_char  time1 time2
+## # A tibble: 3 x 6
+##      id   age   arm arm_char     t1    t2
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;
-## 1    22    64     1 drugtrial     7     5
+## 1     1    37     1 drugtrial   123   135
+## 2     2    65     1 drugtrial   134   150
+## 3     4    34     1 drugtrial   100   105
 ```
 
 ]
@@ -875,19 +853,19 @@ patients_df
 
 ```
 ## # A tibble: 5 x 5
-##      id   age arm       time1 time2
+##      id   age arm          t1    t2
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;
-## 1    13    38 placebo       4     6
-## 2    22    64 drugtrial     7     5
-## 3     5    55 placebo       3     3
-## 4    67    34 placebo       2     4
-## 5    34    29 drugtrial     3     5
+## 1     1    37 drugtrial   123   135
+## 2     2    65 drugtrial   134   150
+## 3     3    57 &lt;NA&gt;         NA    NA
+## 4     4    34 drugtrial   100   105
+## 5     5    45 &lt;NA&gt;         NA    NA
 ```
 
 ### Goal:
 
 - Group data by arm
-- Calculate summary statistics from time1 and time2
+- Calculate summary statistics from t1 and t2
 
 ]
 
@@ -924,13 +902,13 @@ patients_df %&gt;%
 ```
 ## # A tibble: 5 x 5
 ## # Groups:   arm [2]
-##      id   age arm       time1 time2
+##      id   age arm          t1    t2
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;
-## 1    13    38 placebo       4     6
-## 2    22    64 drugtrial     7     5
-## 3     5    55 placebo       3     3
-## 4    67    34 placebo       2     4
-## 5    34    29 drugtrial     3     5
+## 1     1    37 drugtrial   123   135
+## 2     2    65 drugtrial   134   150
+## 3     3    57 &lt;NA&gt;         NA    NA
+## 4     4    34 drugtrial   100   105
+## 5     5    45 &lt;NA&gt;         NA    NA
 ```
 
 ]
@@ -954,6 +932,7 @@ df %&gt;%
     SUMMARY = FUN(x),       # 
     age_mean = mean(age),   # Ex 1
     height_min = min(height) # Ex 2 
+    total = n()
   )
 ```
 
@@ -975,19 +954,19 @@ patients_df %&gt;%
   
 # 2) Calculate summary columns
   summarise(
-    time1_mean = mean(time1),
-    time2_mean = mean(time2),
-    diff = time2_mean - time1_mean,
-    N = n()
+    t1_mean = mean(t1),
+    t2_mean = mean(t2),
+    diff = t2_mean - t1_mean,
+    N = n()  # Number of rows in group
   )
 ```
 
 ```
 ## # A tibble: 2 x 5
-##   arm       time1_mean time2_mean  diff     N
-##   &lt;chr&gt;          &lt;dbl&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
-## 1 drugtrial          5       5     0        2
-## 2 placebo            3       4.33  1.33     3
+##   arm       t1_mean t2_mean  diff     N
+##   &lt;chr&gt;       &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
+## 1 drugtrial     119     130    11     3
+## 2 &lt;NA&gt;           NA      NA    NA     2
 ```
 
 ]
@@ -1081,8 +1060,8 @@ stock_w
 ```r
 # "Gather" wide data to long
 stock_w %&gt;% 
-  gather(time,    # New Group name
-         measure, # New column name
+  gather(time,    # New group column
+         measure, # New target column
          -id)     # ID column
 ```
 
@@ -1125,8 +1104,8 @@ stock_l
 ```r
 # "Spread" long data to wide
 stock_l %&gt;% 
-  spread(time,    # Old Group Name
-         measure) # Old column Name
+  spread(time,    # Old group column
+         measure) # Old target column
 ```
 
 ```
@@ -1150,7 +1129,7 @@ dplyr is great for elegantly performing sequential operations on data.
 
 The 'pipe' operator `%&gt;%` helps you string multiple *objects* (like dataframes) and *verbs* (summarise, order, aggregate...) together.
 
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/dplyr_hex.png" width="50%" style="display: block; margin: auto;" /&gt;
+
 
 ]
 
@@ -1716,16 +1695,16 @@ ChickWeight %&gt;%
 
 ```
 ##     Chick weight
+## 402    36     48
+## 417    37     80
+## 389    35     41
+## 396    35    238
+## 412    36    220
 ## 249    23     90
-## 14      2     49
-## 521    46     62
-## 221    21     40
-## 349    31    170
-## 522    46     82
-## 501    44    103
-## 93      8    126
-## 188    17     89
-## 223    21     62
+## 192    17    123
+## 544    48     50
+## 450    40     55
+## 437    39     42
 ```
 
 ---

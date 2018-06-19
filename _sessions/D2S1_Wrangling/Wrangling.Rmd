@@ -1,6 +1,6 @@
 ---
 title: "Data Wrangling"
-subtitle: ""
+subtitle: "With dplyr (and a bit of tidyr)"
 author: "The R Bootcamp<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a>"
 output:
   xaringan::moon_reader:
@@ -102,7 +102,7 @@ Aggregation
 
 .pull-right5[
 
-```{r, echo = FALSE, out.width = "100%", fig.align = 'center'}
+```{r, echo = FALSE, out.width = "100%", fig.align = 'center', eval = FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/organise_transform_aggregate.png")
 ```
 
@@ -110,32 +110,36 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 
 ---
 
-.pull-left35[
-## How do we wrangle data in R?
+.pull-left45[
+<br><br>
+<font size = 6>To wrangle data in R, we will use the dplyr and tidyr packages</font>
 
-
-```{r, echo = FALSE, out.width = "70%", fig.align = 'center'}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/dplyr_hex.png")
-```
 
 ```{r, echo= TRUE, eval = FALSE}
-library(dplyr)
 
-# OR
+# Load packages individually
+
+# install.packages('dplyr')
+# install.packages('tidyr')
+
+library(dplyr)
+library(tidyr)
+
+# Or just use the tidyverse!
+
+# install.packages('tidyverse')
 
 library(tidyverse)
 ```
 
 ]
-
-.pull-right6[
+ 
+.pull-right5[
 <br>
-<font size = 6>Here's how dplyr looks in action</font>
 <br><br>
 ```{r, echo = FALSE, out.width = "100%", fig.align = 'center'}
-knitr::include_graphics("../_image/dplyr_functions.png")
+knitr::include_graphics("../_image/dplyr_tidyr_hex.png")
 ```
-
 ]
 
 ---
@@ -143,15 +147,12 @@ knitr::include_graphics("../_image/dplyr_functions.png")
 # %>%    "The Pipe!"
 
 .pull-left35[
+ 
+<font size = 6>dplyr makes extensive use of a new operator called the "Pipe" <b><font color='purple'>%>%</font></b></font><br><br>
 
-<font size = 6>dplyr makes extensive use of the "Pipe" <b><font color='purple'>%>%</font></b></font><br><br>
-
-<font size = 6>The "Pipe"" <b><font color='purple'>%>%</font></b> is used to pass objects from one function to another</font><br><br>
-
+<font size = 6>The "Pipe" <b><font color='purple'>%>%</font></b> is used to pass objects from one function to another</font><br><br>
 
 <font size = 6>You can read the "Pipe" <b><font color='purple'>%>%</font></b> as "And Then..."</font><br><br>
-
-
 
 
 <br>
@@ -161,13 +162,12 @@ knitr::include_graphics("../_image/dplyr_functions.png")
 ]
 
 .pull-right65[
+<br>
 
-
-```{r, echo = FALSE, out.width = "100%", fig.align = 'center'}
-knitr::include_graphics("../_image/pipe_andthen.png")
-```
-
-
+<font size = 6><center><b>df</b> %>%   <i><font color='gray'>"And then..."</font></i></center></font><br>
+<font size = 6><center><b>FUN1()</b> %>%  <i><font color='gray'>"And then..."</font></i></center></font><br>
+<font size = 6><center><b>FUN2()</b> %>%  <i><font color='gray'>"And then..."</font></i></center></font><br>
+<font size = 6></center></font><br>
 
 
 ]
@@ -176,7 +176,7 @@ knitr::include_graphics("../_image/pipe_andthen.png")
 
 ---
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, out.width = "95%"}
 knitr::include_graphics("../_image/pipe_how_works.png")
 ```
 
@@ -184,12 +184,88 @@ knitr::include_graphics("../_image/pipe_how_works.png")
 
 ---
 
-.pull-left4[
+.pull-left45[
+
+```{r, echo = FALSE, out.width = "95%"}
+knitr::include_graphics("../_image/pipe_explanation_kn.png")
+```
+
+
+]
+
+.pull-right5[
+
+## Example)
+
+```{r}
+# Create a vector score
+score <- c(8, 4, 6, 3, 7, 3)
+```
+
+
+<font size = 5>Q) Calculate the mean score</font>
+
+```{r}
+# Base-R method
+
+mean(score)
+
+# Pipe %>% method
+
+score %>%  # Take the vector score AND THEN 
+  mean()   # calculate the mean
+```
+
+]
+
+
+
+---
+
+.pull-left45[
+
+```{r, echo = FALSE, out.width = "95%"}
+knitr::include_graphics("../_image/pipe_explanation_kn.png")
+```
+
+
+]
+
+.pull-right5[
+
+## Example)
+
+```{r}
+# Create a vector score
+score <- c(8, 4, 6, 3, 7, 3)
+```
+
+<font size = 5>Q) Calculate the standard deviation and round to 1 digit</font>
+
+```{r}
+# Base-R method
+
+round(sd(score), digits = 1)
+
+# Pipe %>% method
+
+score %>%        # Take vector score AND THEN
+  sd() %>%       # Calculate the sd AND THEN
+  round(digits = 1) # Round to 1 digit
+```
+
+
+]
+
+
+---
+
+.pull-left45[
 <br>
 ### Programming task
-<br>
 
-> <font size = 5>Hey I need you do do some analyses on that survey data of <b>baselers</b> to understand the levels of income and debt of people younger than 40. First, I need you to <b>change the name</b> of the column 'age' to 'age_years' and 'weight' to 'weight_kg'. Next, <b>only include</b> people younger than 40. <b>Add a new column</b> called that shows people's debt divided by their income. Then, <b>create groups</b> based on sex, and <b>calculate</b> the mean income, debt, and debt ratio for each group. Thanks!! Should be easy right?</font>
+<br>
+> <font size = 4>From the <b>baselers</b> data...<br><br>1) <b>Change the name</b> of the column 'age' to 'age_years' and 'weight' to 'weight_kg'.<br><br>2), <b>only include</b> people younger than 40.<br><br>3) <b>Add a new column</b> called that shows people's debt divided by their income.<br><br>4) Create <b>groups</b> based on sex.<br><br>5) <b>Calculate summary statistics</b>: the mean income, debt, and debt ratio for each group.</font>
 
 
 ]
@@ -289,9 +365,9 @@ baslers_agg <- baselers %>%
 
 - <font size = 5>There are dozens functions in dplyr that allow you to wrangle data.</font><br>
 
-- <font size = 5>For an overview, look at the cheatsheet..</font><br>
+- <font size = 5>For an overview, look at the <a href='https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf'>cheatsheet!</a></font><br>
 
-- <font size = 5>We will now show you how to use ~10 of the most common ones</font><br>
+- <font size = 5>We will now show you how to use ~10 of the most common functions</font><br>
 
 ]
 
@@ -299,10 +375,11 @@ baslers_agg <- baselers %>%
 .pull-right55[
 
 <br>
-### Wrangling / dplyr cheatsheet
 
+Some of the dplyr functions in action:<br>
+<br>
 ```{r, echo = FALSE, out.width="600", fig.align = 'center'}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/data_wrangling_ss.png")
+knitr::include_graphics("../_image/dplyr_functions.png")
 ```
 
 ]
@@ -311,13 +388,13 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 
 
 ```{r, echo = FALSE}
-patients_df <- tibble(id = c(13, 22, 5, 67, 34),
-                      b = c(38, 64, 55, 34, 29),
-                      c = c(0, 1, 0, 0, 1))
+patients_df <- tibble(id = c(1, 2, 3, 4, 5),
+                      b = c(37, 65, 57, 34, 45),
+                      c = c(1, 1, 2, 1, 2))
 
-results_df <- tibble(id = c(67, 5, 34, 13, 22),
-                    time1 = c(2, 3, 3, 4, 7),
-                    time2 = c(4, 3, 5, 6, 5))
+results_df <- tibble(id = c(4, 2, 1, 98, 99),
+                    t1 = c(100, 134, 123, 143, 102),
+                    t2 = c(105, 150, 135, 140,68))
 ```
 
 
@@ -334,17 +411,12 @@ results_df <- tibble(id = c(67, 5, 34, 13, 22),
 ]
 
 .pull-right55[
-<br><br>
+<br><br><br><br>
+### patients_df
 ```{r}
 patients_df   # Demographic data
 ```
 
-### Goal:
-
-- Create better column names with `rename()`
-- Add new columns with `mutate()`
-- Recode values with `case_when()`
-- Merge with a new dataframe using `left_join()`
 
 ]
 
@@ -369,10 +441,9 @@ patients_df  # Original
 <font size = 5>1) Create better column names with rename()</font>
 
 ```{r}
-
 # 0) Start with patients_df data
-patients_df %>%
-  
+patients_df <- patients_df %>% 
+
 # 1) Change column names with rename()
   rename(age = b,  # New = Old
          arm = c)  # New = Old
@@ -405,15 +476,9 @@ df %>%
 <font size = 5>2) Add new columns with mutate()</font>
 
 ```{r}
+patients_df <- patients_df %>% 
 
-# 0) Start with patients_df data
-patients_df %>%
-  
-# 1) Change column names with rename()
-  rename(age = b,  
-         arm = c) %>%
-  
-# 2) Create new columns with mutate()
+# Create new columns with mutate()
   mutate(age_months = age * 12,
          age_decades = age / 10)
 ```
@@ -447,15 +512,9 @@ df %>%
 <font size = 5>3) Recode values with case_when()</font>
 
 ```{r}
+patients_df <- patients_df %>% 
 
-# 0) Start with patients_df data
-patients_df %>%
-  
-# 1) Change column names with rename()
-  rename(age = b,  
-         arm = c) %>%
-  
-# 2) Create new columns with mutate()
+# Create new columns with mutate()
   mutate(age_months = age * 12,
          age_decades = age / 10,
          arm_char = case_when(arm == 0 ~ "placebo",
@@ -465,55 +524,13 @@ patients_df %>%
 
 ]
 
-
-
-
-
-
 ---
-# Merging data
+# Joining data
+ 
 
-
-.pull-left45[
-
-<font size = 5> Patient basics </font>
-
-```{r, eval = FALSE}
-patients_df
+```{r, echo = FALSE, out.width = "95%"}
+knitr::include_graphics("../_image/joining_data.png")
 ```
-
-```{r, echo = FALSE, results = 'asis'}
-knitr::kable(rename(patients_df, age = b, arm = c), format = 'markdown')
-```
-
-<br>
-
-<font size = 5>Goal: Add study results data to patient data</font>
-<br3>
-
-]
-
-
-.pull-right45[
-
-<font size = 5> Patient results </font>
-
-
-```{r, eval = FALSE, results = 'asis'}
-results_df
-```
-
-```{r, echo = FALSE, results = 'asis'}
-knitr::kable(results_df, format = 'markdown')
-```
-
-<br>
-
-<font size = 5> For each matching id in patients_df and results_df, add results_df data to patients_df.
-
-
-]
-
 
 
 ---
@@ -541,21 +558,9 @@ df1 %>%
 <font size = 5>4) Merge patients_df with results_df</font>
 
 ```{r}
-# 0) Start with patients_df data
-patients_df %>%
+patients_df <- patients_df %>% 
   
-# 1) Change column names with rename()
-  rename(age = b,  
-         arm = c) %>%
-  
-# 2) Create new columns with mutate()
-  mutate(age_months = age * 12,
-         age_decades = age / 10,
-         arm_char = case_when(arm == 0 ~ "placebo",
-                              arm == 1 ~ "drugtrial")
-         ) %>%
-  
-  # 3) Add data from results_df with left_join()
+# 3) Add data from results_df with left_join()
   left_join(results_df, by = "id")
 ```
 
@@ -566,7 +571,7 @@ patients_df %>%
 
 
 .pull-left3[
-
+<br><br>
 # Notes
 
 <font size = 5> 1) Order of functions matters </font>
@@ -581,7 +586,7 @@ patients_df %>%
 <br><br>
 <font size = 5>Make sure to assign again using <- to change patients_df</font>
 
-```{r}
+```{r, eval = FALSE}
 # 0) Start with patients_df data
 patients_df <- patients_df %>%
   
@@ -769,7 +774,7 @@ patients_df %>%
 
 ```{r, echo = FALSE}
 patients_df <- patients_df %>%
-  select(id, age, arm_char, time1, time2) %>%
+  select(id, age, arm_char, t1, t2) %>%
   rename(arm = arm_char)
 ```
 
@@ -780,7 +785,7 @@ patients_df
 ### Goal:
 
 - Group data by arm
-- Calculate summary statistics from time1 and time2
+- Calculate summary statistics from t1 and t2
 
 ]
 
@@ -833,6 +838,7 @@ df %>%
     SUMMARY = FUN(x),       # 
     age_mean = mean(age),   # Ex 1
     height_min = min(height) # Ex 2 
+    total = n()
   )
 ```
 
@@ -853,10 +859,10 @@ patients_df %>%
   
 # 2) Calculate summary columns
   summarise(
-    time1_mean = mean(time1),
-    time2_mean = mean(time2),
-    diff = time2_mean - time1_mean,
-    N = n()
+    t1_mean = mean(t1),
+    t2_mean = mean(t2),
+    diff = t2_mean - t1_mean,
+    N = n()  # Number of rows in group
   )
 ```
 
@@ -930,8 +936,8 @@ stock_w
 ```{r}
 # "Gather" wide data to long
 stock_w %>% 
-  gather(time,    # New Group name
-         measure, # New column name
+  gather(time,    # New group column
+         measure, # New target column
          -id)     # ID column
 ```
 
@@ -952,8 +958,8 @@ stock_l
 ```{r}
 # "Spread" long data to wide
 stock_l %>% 
-  spread(time,    # Old Group Name
-         measure) # Old column Name
+  spread(time,    # Old group column
+         measure) # Old target column
 ```
 
 
@@ -970,7 +976,7 @@ dplyr is great for elegantly performing sequential operations on data.
 
 The 'pipe' operator `%>%` helps you string multiple *objects* (like dataframes) and *verbs* (summarise, order, aggregate...) together.
 
-```{r, echo = FALSE, out.width = "50%", fig.align = 'center'}
+```{r, echo = FALSE, out.width = "50%", fig.align = 'center', eval= FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/dplyr_hex.png")
 ```
 
