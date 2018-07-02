@@ -1,48 +1,63 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Data Wrangling</title>
+    <title>Wrangling</title>
     <meta charset="utf-8">
-    <meta name="author" content="The R Bootcamp www.therbootcamp.com" />
+    <meta name="author" content="BaselRBootcamp www.therbootcamp.com @therbootcamp" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
-    <link rel="stylesheet" href="../_css/my-theme.css" type="text/css" />
+    <link rel="stylesheet" href="my-theme.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Data Wrangling
-## With dplyr (and a bit of tidyr)
-### The R Bootcamp<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a>
+# Wrangling
+### BaselRBootcamp<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'><span class="citation">@therbootcamp</span></a>
+### July 2018
 
 ---
 
 
+layout: true
+
+&lt;div class="my-footer"&gt;&lt;span&gt;
+&lt;a href="https://therbootcamp.github.io/"&gt;&lt;font color="#7E7E7E"&gt;BaselRBootcamp, July 2018&lt;/font&gt;&lt;/a&gt;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&lt;a href="https://therbootcamp.github.io/"&gt;&lt;font color="#646464"&gt;www.therbootcamp.com&lt;/font&gt;&lt;/a&gt;
+&lt;/span&gt;&lt;/div&gt; 
+
+---
+  
 
 
 
 
 
 
+
+# Where you're at...
 
 .pull-left4[
-&lt;br&gt;&lt;br&gt;
-## Where you're at...
 
-&lt;font size = 5&gt;0) Loaded packages (like tidyverse!) with &lt;font color = 'blue'&gt;library()&lt;/font&gt;&lt;br&gt;
+0) Loaded packages (like tidyverse!) with `library()`&lt;br&gt;
 
-&lt;font size = 5&gt;1) Created a new dataframe (df) from external files using a data input function such as &lt;br&gt;df &lt;font color='red'&gt;&lt;-&lt;/font&gt; &lt;font color='blue'&gt;read_csv&lt;/font&gt;()&lt;/font&gt;&lt;br&gt;
+1) Loaded external files as a new dataframe&lt;br&gt;
 
-&lt;font size = 5&gt;2) You can explore the dataframe with functions like &lt;font color = 'blue'&gt;View&lt;/font&gt;(), &lt;font color = 'blue'&gt;dim&lt;/font&gt;() and &lt;font color = 'blue'&gt;names&lt;/font&gt;()
+2) Explore dataframes
 
-&lt;font size = 5&gt;3) You can explore the dataframe and calculate descriptive statistics on specific columns using &lt;font color = 'blue'&gt;FUN&lt;/font&gt;(df&lt;font color='red'&gt;$&lt;/font&gt;&lt;font color = 'green'&gt;NAME&lt;/font&gt;)&lt;/font&gt;&lt;br&gt;
+3) Calculate descriptive statistics on specific columns&lt;br&gt;
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+What's next?... **Wrangling!**
 
 ]
 
 
 .pull-right55[
 
-&lt;br&gt;
 
 ```r
 # Step 0) Load libraries
@@ -69,7 +84,6 @@ table(baslers$sex)  # How many of each sex?
 # Step 4) ...
 ```
 
-What's next?... &lt;font size = 7&gt;Wrangling!&lt;/font&gt;
 
 ]
 
@@ -79,26 +93,26 @@ What's next?... &lt;font size = 7&gt;Wrangling!&lt;/font&gt;
 
 # What is Wrangling?
 
-Transform
-- Adding new columns
-- Combining columns
-- Splitting columns
+###Transform
 
-Organise
-- Moving data between columns and rows
-- Merging several dataframes
-- Sorting data by columns
+- Change column names
+- Change existing columns
+- Add new columns
 
-Aggregation
-- Aggregate data according to variables
-- Summarizing data across groups
+###Organise
 
+- Move data between columns and rows
+- Merging data from two separate dataframes
+- Sort data by columns
+
+### Aggregate
+- Group data and summarise
 ]
 
 
 .pull-right5[
 
-
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/organise_transform_aggregate.png" width="100%" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -131,44 +145,30 @@ library(tidyverse)
 .pull-right5[
 &lt;br&gt;
 &lt;br&gt;&lt;br&gt;
-&lt;img src="../_image/dplyr_tidyr_hex.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/dplyr_tidyr_hex.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
 
-# %&gt;%    "The Pipe!"
+&lt;br&gt;&lt;br&gt;
+# %&gt;%  -  "The Pipe!"
 
-.pull-left35[
+.pull-left4[
  
-&lt;font size = 6&gt;dplyr makes extensive use of a new operator called the "Pipe" &lt;b&gt;&lt;font color='purple'&gt;%&gt;%&lt;/font&gt;&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;br&gt;
+&lt;font size = 5&gt;dplyr makes extensive use of a new operator called the "Pipe" &lt;b&gt;&lt;font  style="color:#52D998"&gt;%&gt;%&lt;/font&gt;&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;br&gt;
 
-&lt;font size = 6&gt;The "Pipe" &lt;b&gt;&lt;font color='purple'&gt;%&gt;%&lt;/font&gt;&lt;/b&gt; is used to pass objects from one function to another&lt;/font&gt;&lt;br&gt;&lt;br&gt;
-
-&lt;font size = 6&gt;You can read the "Pipe" &lt;b&gt;&lt;font color='purple'&gt;%&gt;%&lt;/font&gt;&lt;/b&gt; as "And Then..."&lt;/font&gt;&lt;br&gt;&lt;br&gt;
-
+&lt;font size = 5&gt;Read the "Pipe" &lt;b&gt;&lt;font style="color:#52D998"&gt;%&gt;%&lt;/font&gt;&lt;/b&gt; as "And Then..."&lt;/font&gt;&lt;br&gt;&lt;br&gt;
 
 &lt;br&gt;
 
+]
+
+.pull-right6[
+&lt;img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b9/MagrittePipe.jpg/300px-MagrittePipe.jpg" style="display: block; margin: auto;" /&gt;
 
 
 ]
 
-.pull-right65[
-&lt;br&gt;
-
-&lt;font size = 6&gt;&lt;center&gt;&lt;b&gt;df&lt;/b&gt; %&gt;%   &lt;i&gt;&lt;font color='gray'&gt;"And then..."&lt;/font&gt;&lt;/i&gt;&lt;/center&gt;&lt;/font&gt;&lt;br&gt;
-&lt;font size = 6&gt;&lt;center&gt;&lt;b&gt;FUN1()&lt;/b&gt; %&gt;%  &lt;i&gt;&lt;font color='gray'&gt;"And then..."&lt;/font&gt;&lt;/i&gt;&lt;/center&gt;&lt;/font&gt;&lt;br&gt;
-&lt;font size = 6&gt;&lt;center&gt;&lt;b&gt;FUN2()&lt;/b&gt; %&gt;%  &lt;i&gt;&lt;font color='gray'&gt;"And then..."&lt;/font&gt;&lt;/i&gt;&lt;/center&gt;&lt;/font&gt;&lt;br&gt;
-&lt;font size = 6&gt;&lt;/center&gt;&lt;/font&gt;&lt;br&gt;
-
-
-]
-
-
-
----
-
-&lt;img src="../_image/pipe_how_works.png" width="95%" /&gt;
 
 
 
@@ -176,14 +176,14 @@ library(tidyverse)
 
 .pull-left45[
 
-&lt;img src="../_image/pipe_explanation_kn.png" width="95%" /&gt;
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/pipe_explanation_kn.png" width="95%" /&gt;
 
 
 ]
 
 .pull-right5[
-
-## Example)
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+### Base R vs. the pipe %&gt;%
 
 
 ```r
@@ -191,8 +191,6 @@ library(tidyverse)
 score &lt;- c(8, 4, 6, 3, 7, 3)
 ```
 
-
-&lt;font size = 5&gt;Q) Calculate the mean score&lt;/font&gt;
 
 
 ```r
@@ -224,22 +222,22 @@ score %&gt;%  # Take the vector score AND THEN
 
 .pull-left45[
 
-&lt;img src="../_image/pipe_explanation_kn.png" width="95%" /&gt;
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/pipe_explanation_kn.png" width="95%" /&gt;
 
 
 ]
 
-.pull-right5[
 
-## Example)
+
+.pull-right5[
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+### Base R vs. the pipe %&gt;%
 
 
 ```r
 # Create a vector score
 score &lt;- c(8, 4, 6, 3, 7, 3)
 ```
-
-&lt;font size = 5&gt;Q) Calculate the standard deviation and round to 1 digit&lt;/font&gt;
 
 
 ```r
@@ -264,122 +262,19 @@ score %&gt;%        # Take vector score AND THEN
 ## [1] 2.1
 ```
 
-
 ]
-
-
----
-
-.pull-left45[
-&lt;br&gt;
-### Programming task
-
-&lt;br&gt;
-&gt; &lt;font size = 4&gt;From the &lt;b&gt;baselers&lt;/b&gt; data...&lt;br&gt;&lt;br&gt;1) &lt;b&gt;Change the name&lt;/b&gt; of the column 'age' to 'age_years' and 'weight' to 'weight_kg'.&lt;br&gt;&lt;br&gt;2), &lt;b&gt;only include&lt;/b&gt; people younger than 40.&lt;br&gt;&lt;br&gt;3) &lt;b&gt;Add a new column&lt;/b&gt; called that shows people's debt divided by their income.&lt;br&gt;&lt;br&gt;4) Create &lt;b&gt;groups&lt;/b&gt; based on sex.&lt;br&gt;&lt;br&gt;5) &lt;b&gt;Calculate summary statistics&lt;/b&gt;: the mean income, debt, and debt ratio for each group.&lt;/font&gt;
-
-
-]
-
-.pull-right55[
-&lt;br&gt;
-### Translating to dplyr
-
-
-
-```r
-# Assign result to baslers_agg
-
-baslers_agg &lt;- baselers %&gt;% 
-  
-  # Change column names with rename()
-  rename(age_years = age,
-         weight_kg = weight)  %&gt;% # PIPE!
-
-  # Select specific rows with filter()
-  filter(age_years &lt; 40)  %&gt;% # PIPE!
-  
-  # Create new columns witb mutate()
-  mutate(debt_ratio = debt / income)  %&gt;% # PIPE!
-  
-  # Group data with group_by()
-  group_by(sex) %&gt;% # PIPE!
-  
-  # Calculate summary statistics with summarise()
-  summarise(income_mean = mean(income),
-            debt_mean = mean(debt),
-            dr_mean = mean(dr))
-```
-
-]
-
-
 
 ---
 
 .pull-left4[
-
-&lt;br&gt;
-
-### dplyr notes
-
-&lt;br&gt;
-
-&lt;font size = 5&gt;"Keep the pipe &lt;font color = 'purple'&gt;%&gt;%&lt;/font&gt; going" to continue working with your dataframe&lt;/font&gt;&lt;br&gt;&lt;br&gt;
-
-&lt;font size = 5&gt;Don't forget to assign your result to a new object to save it!&lt;/font&gt;&lt;br&gt;&lt;br&gt;
-
-&lt;font size = 5&gt;The output of dplyr functions will (almost) always be a tibble&lt;/font&gt;&lt;br&gt;&lt;br&gt;
-
-&lt;font size = 5&gt;You can almost always include multiple operations within each function&lt;/font&gt;&lt;br&gt;&lt;br&gt;
-
-]
-
-.pull-right55[
-&lt;br&gt;
-### Translating to dplyr
-
- 
-
-```r
-# Assign result to baslers_agg
-
-baslers_agg &lt;- baselers %&gt;% 
-  
-  # Change column names with rename()
-  rename(age_years = age,
-         weight_kg = weight)  %&gt;% # PIPE!
-
-  # Select specific rows with filter()
-  filter(age_years &lt; 40)  %&gt;% # PIPE!
-  
-  # Create new columns witb mutate()
-  mutate(debt_ratio = debt / income)  %&gt;% # PIPE!
-  
-  # Group data with group_by()
-  group_by(sex) %&gt;% # PIPE!
-  
-  # Calculate summary statistics with summarise()
-  summarise(income_mean = mean(income),
-            debt_mean = mean(debt),
-            dr_mean = mean(dr))
-```
-
-]
-
-
-
-
----
-
-.pull-left4[
-&lt;br&gt;&lt;br&gt;
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
 ## Functions in dplyr
 
-- &lt;font size = 5&gt;There are dozens functions in dplyr that allow you to wrangle data.&lt;/font&gt;&lt;br&gt;
+&lt;font size = 5&gt;There are dozens (hundreds?) functions in dplyr that allow you to wrangle data.&lt;/font&gt;&lt;br&gt;
 
-- &lt;font size = 5&gt;For an overview, look at the &lt;a href='https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf'&gt;cheatsheet!&lt;/a&gt;&lt;/font&gt;&lt;br&gt;
+&lt;font size = 5&gt;For an overview, look at the &lt;a href='https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf'&gt;cheatsheet!&lt;/a&gt;&lt;/font&gt;&lt;br&gt;
 
-- &lt;font size = 5&gt;We will now show you how to use ~10 of the most common functions&lt;/font&gt;&lt;br&gt;
+&lt;font size = 5&gt;We will now show you how to use ~10 of the most common functions&lt;/font&gt;&lt;br&gt;
 
 ]
 
@@ -388,11 +283,14 @@ baslers_agg &lt;- baselers %&gt;%
 
 &lt;br&gt;
 
-Some of the dplyr functions in action:&lt;br&gt;
 &lt;br&gt;
-&lt;img src="../_image/dplyr_functions.png" width="600" style="display: block; margin: auto;" /&gt;
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/dplyr_functions.png" width="600" style="display: block; margin: auto;" /&gt;
 
 ]
+
+
+
+
 
 ---
 
@@ -425,7 +323,7 @@ patients_df   # Demographic data
 ##      id     b     c
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 ## 1     1    37     1
-## 2     2    65     1
+## 2     2    65     2
 ## 3     3    57     2
 ## 4     4    34     1
 ## 5     5    45     2
@@ -437,13 +335,13 @@ patients_df   # Demographic data
 
 ---
 
+# `rename()` 
 
 .pull-left3[
-# rename() 
 
 
-&lt;font size = 5&gt; Change column names with rename()&lt;br&gt;&lt;br&gt;&lt;/font&gt;
-&lt;font size = 5&gt;New = Old, &lt;br&gt;New = Old, ...&lt;br&gt;&lt;br&gt;&lt;/font&gt;
+Change column names with `rename()`
+New = Old, New = Old, ...
 
 
 ```r
@@ -455,7 +353,7 @@ patients_df  # Original
 ##      id     b     c
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 ## 1     1    37     1
-## 2     2    65     1
+## 2     2    65     2
 ## 3     3    57     2
 ## 4     4    34     1
 ## 5     5    45     2
@@ -463,136 +361,214 @@ patients_df  # Original
 ]
 
 .pull-right65[
-&lt;br&gt;&lt;br&gt;
-&lt;font size = 5&gt;1) Create better column names with rename()&lt;/font&gt;
+
+Change column names with `rename()`
 
 
 ```r
 # 0) Start with patients_df data
-patients_df &lt;- patients_df %&gt;% 
+patients_df %&gt;% 
 
 # 1) Change column names with rename()
   rename(age = b,  # New = Old
          arm = c)  # New = Old
 ```
 
+```
+## # A tibble: 5 x 3
+##      id   age   arm
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     1    37     1
+## 2     2    65     2
+## 3     3    57     2
+## 4     4    34     1
+## 5     5    45     2
+```
+
+
 ]
 
 ---
 
-.pull-left3[
-# mutate() 
+# `mutate()` 
 
-&lt;font size = 5&gt; Add new columns with mutate()&lt;br&gt;&lt;br&gt;&lt;/font&gt;
-&lt;font size = 5&gt;Add as many you'd like&lt;br&gt;&lt;br&gt;&lt;/font&gt;
-&lt;font size = 5&gt;Example:&lt;br&gt;&lt;br&gt;&lt;/font&gt;
+.pull-left3[
+
+Add new columns (or change existing ones) with `mutate()`&lt;br&gt;&lt;br&gt;
 
 
 ```r
 df %&gt;%
   mutate(
-   NEW = DEFINITION,
-   Year = Month * 12,
-   BMI = weight / height ^ 2
+   NEW1 = DEFINITION1,
+   NEW2 = DEFINITION2,
+   NEW3 = DEFINITION3,
+   ...
   )
 ```
 ]
 
 .pull-right65[
-&lt;br&gt;&lt;br&gt;
 
-&lt;font size = 5&gt;2) Add new columns with mutate()&lt;/font&gt;
 
 
 ```r
-patients_df &lt;- patients_df %&gt;% 
+patients_df %&gt;% 
 
+  rename(age = b, 
+         arm = c) %&gt;%
+  
 # Create new columns with mutate()
   mutate(age_months = age * 12,
          age_decades = age / 10)
 ```
 
-]
+```
+## # A tibble: 5 x 5
+##      id   age   arm age_months age_decades
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;
+## 1     1    37     1        444         3.7
+## 2     2    65     2        780         6.5
+## 3     3    57     2        684         5.7
+## 4     4    34     1        408         3.4
+## 5     5    45     2        540         4.5
+```
 
+]
 
 ---
 
-.pull-left3[
-# case_when() 
+.pull-left4[
 
-&lt;font size = 5&gt;Use case_when() in combination with mutate()&lt;br&gt;&lt;br&gt;&lt;/font&gt;
-&lt;font size = 5&gt;Allows you to define values based on logical conditions&lt;br&gt;&lt;br&gt;&lt;/font&gt;
-&lt;font size = 5&gt;Example:&lt;br&gt;&lt;br&gt;&lt;/font&gt;
+# `case_when()`
+
+Use `case_when()` in combination with `mutate()` to define new columns based on logical conditions
 
 
 ```r
+# Using mutate(case_when())
 df %&gt;%
   mutate(
     NEW = case_when(
       COND1 ~ VAL1,
       COND2 ~ VAL2
-    )
-  )
+    ))
 ```
+
+Useful for recoding values. Example:
+
+|arm|arm_char|
+|:--|:--|
+|0|"placebo"|
+|1|"drug"|
+|0|"placebo"|
+
+
 ]
 
-.pull-right65[
+.pull-right55[
 &lt;br&gt;&lt;br&gt;
 
-&lt;font size = 5&gt;3) Recode values with case_when()&lt;/font&gt;
+Recode values with `mutate(case_when())`
 
 
 ```r
-patients_df &lt;- patients_df %&gt;% 
+patients_df %&gt;% 
 
-# Create new columns with mutate()
-  mutate(age_months = age * 12,
-         age_decades = age / 10,
-         arm_char = case_when(arm == 0 ~ "placebo",
-                              arm == 1 ~ "drugtrial")
-         )
+  rename(age = b, 
+         arm = c) %&gt;%
+  
+  # Create column arm_char based on values of arm
+  
+  mutate(arm_char = case_when(arm == 0 ~ "placebo",
+                              arm == 1 ~ "drug"))
+```
+
+```
+## # A tibble: 5 x 4
+##      id   age   arm arm_char
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   
+## 1     1    37     1 drug    
+## 2     2    65     2 &lt;NA&gt;    
+## 3     3    57     2 &lt;NA&gt;    
+## 4     4    34     1 drug    
+## 5     5    45     2 &lt;NA&gt;
 ```
 
 ]
+
 
 ---
 # Joining data
  
 
-&lt;img src="../_image/joining_data.png" width="95%" /&gt;
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/joining_data.png" width="95%" /&gt;
 
 
 ---
 
-.pull-left3[
-# left_join()
+.pull-left35[
+## left_join()
+&lt;br&gt;
 
-&lt;font size = 5&gt;Use left_join() to combine data from 2 dataframes&lt;br&gt;&lt;br&gt;&lt;/font&gt;
-&lt;font size = 5&gt;Must include at least one 'key' column used to match rows&lt;br&gt;&lt;br&gt;&lt;/font&gt;
-&lt;font size = 5&gt;Example:&lt;br&gt;&lt;br&gt;&lt;/font&gt;
+&lt;font size = 4&gt;Use left_join() to combine data from 2 dataframes based on one or more keuy columns&lt;br&gt;&lt;br&gt;&lt;/font&gt;
+
+&lt;font size = 4&gt;Each dataset must contain the 'key' column(s)&lt;br&gt;&lt;/font&gt;
 
 
 ```r
-# Add df2 data to df1
-#   using KEY as the key
+# Join df2 to df1
+#   using KEY as the key column
 df1 %&gt;%
   left_join(df2, 
       by = c("KEY"))
 ```
 
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/joining_data.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 
 ]
 
-.pull-right65[
-&lt;font size = 5&gt;4) Merge patients_df with results_df&lt;/font&gt;
+.pull-right6[
+&lt;br&gt;
+&lt;font size = 5&gt;Join patients_df with results_df to create combined_df&lt;/font&gt;
 
 
 ```r
-patients_df &lt;- patients_df %&gt;% 
+combined_df &lt;- patients_df %&gt;% 
   
-# 3) Add data from results_df with left_join()
+  rename(age = b, 
+         arm = c) %&gt;%
+  
+  mutate(arm_char = case_when(arm == 0 ~ "placebo",
+                              arm == 1 ~ "drug")) %&gt;%
+  
+# Join with results_df with left_join()
   left_join(results_df, by = "id")
+
+# Look at all column names
+names(combined_df)
+```
+
+```
+## [1] "id"       "age"      "arm"      "arm_char" "t1"       "t2"
+```
+
+```r
+# Show a few columns
+combined_df %&gt;%
+  select(id, arm, age, t1, t2)
+```
+
+```
+## # A tibble: 5 x 5
+##      id   arm   age    t1    t2
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     1     1    37   123   135
+## 2     2     2    65   143   140
+## 3     3     2    57    NA    NA
+## 4     4     1    34   100   105
+## 5     5     2    45    NA    NA
 ```
 
 ]
@@ -601,37 +577,40 @@ patients_df &lt;- patients_df %&gt;%
 ---
 
 
-.pull-left3[
+.pull-left35[
 &lt;br&gt;&lt;br&gt;
 # Notes
 
-&lt;font size = 5&gt; 1) Order of functions matters &lt;/font&gt;
-&lt;br&gt; &lt;br&gt;
-&lt;font size = 5&gt; 2) You can refer to new objects in later code &lt;/font&gt;
-&lt;br&gt; &lt;br&gt;
-&lt;font size = 5&gt; 3) To update a dataframe, make sure to assign it to itself with &lt;- &lt;/font&gt;
+Don't forget to start by assigning to a new (or existing) object with &lt;-&lt;br&gt;
+
+Keep adding new functions connected by the pipe %&gt;%&lt;br&gt;
+
+Order matters! You can refer to new columns in later code
+&lt;br&gt;&lt;br&gt;
+
+
 
 ]
 
-.pull-right65[
+.pull-right6[
 &lt;br&gt;&lt;br&gt;
-&lt;font size = 5&gt;Make sure to assign again using &lt;- to change patients_df&lt;/font&gt;
+Create combined_df using multiple functions connected with the pipe
 
 
 ```r
 # 0) Start with patients_df data
-patients_df &lt;- patients_df %&gt;%
+combined_df &lt;- patients_df %&gt;%
   
 # 1) Change column names with rename()
   rename(age = b,  
-         arm = c) %&gt;%
+         arm = c) %&gt;%  # AND THEN...
   
 # 2) Create new columns with mutate()
   mutate(age_months = age * 12,
          age_decades = age / 10,
          arm_char = case_when(arm == 0 ~ "placebo",
-                              arm == 1 ~ "drugtrial")
-         ) %&gt;%
+                              arm == 1 ~ "drug")
+         ) %&gt;%  # AND THEN..
   
 # 3) Add data from results_df with left_join()
   left_join(results_df, by = "id")
@@ -641,45 +620,17 @@ patients_df &lt;- patients_df %&gt;%
 ]
 
 ---
-.pull-left3[
 
 # Organisation Functions
 
-| Function| action|
-|:-------------|:----|
-| `arrange()` |Sort rows |
-| `filter()` | Select specific rows |
-| `select()`|   Select specific columns|
+Organisation functions help you shuffle your data by sorting rows by columns, filter rows based on criteria, select columns (etc.)
 
-]
-
-
-.pull-right65[
-&lt;br&gt;&lt;br&gt;
-
-```r
-patients_df 
-```
-
-```
-## # A tibble: 5 x 8
-##      id   age   arm age_months age_decades arm_char     t1    t2
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;
-## 1     1    37     1        444         3.7 drugtrial   123   135
-## 2     2    65     1        780         6.5 drugtrial   134   150
-## 3     3    57     2        684         5.7 &lt;NA&gt;         NA    NA
-## 4     4    34     1        408         3.4 drugtrial   100   105
-## 5     5    45     2        540         4.5 &lt;NA&gt;         NA    NA
-```
-
-### Goal:
-
-- Sort rows by `id` then by `age`
-- Only use drugtrial over the age of 30
-- Get rid of the columns `age_months` and `age_decades`
-
-]
-
+| Function| Purpose|Example|
+|:--------|:----|:-------------|
+| `arrange()` |Sort rows by columns|`df %&gt;%`&lt;br&gt;`arrange(arm, age)`|
+| `slice()`|   Select rows by location|`df %&gt;%`&lt;br&gt;`slice(1:10)`|
+| `filter()` | Select specific rows by criteria|`df %&gt;%`&lt;br&gt;`filter(age &gt; 50)`|
+| `select()`|   Select specific columns|`df %&gt;%`&lt;br&gt;`select(arm, t1)`|
 
 ---
 
@@ -692,51 +643,52 @@ patients_df
 &lt;br&gt;&lt;br&gt;
 &lt;font size = 5&gt;To sort in descending order, use desc()&lt;/font&gt;
 
-
-
-
-
 ]
 
 .pull-right65[
 
 &lt;br&gt;&lt;br&gt;
 
-&lt;font size = 5&gt;1) Sort rows by id then in descending order of age&lt;/font&gt;
+&lt;font size = 5&gt;Sort rows by id then in descending order of age&lt;/font&gt;
 
 
 ```r
-# 0) Start with patients_df data
-patients_df %&gt;%
+# 0) Start with combined_df data
+combined_df %&gt;%
   
 # 1) Sort by id then age (descending)
   arrange(id, desc(age))
 ```
 
 ```
-## # A tibble: 5 x 8
-##      id   age   arm age_months age_decades arm_char     t1    t2
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;
-## 1     1    37     1        444         3.7 drugtrial   123   135
-## 2     2    65     1        780         6.5 drugtrial   134   150
-## 3     3    57     2        684         5.7 &lt;NA&gt;         NA    NA
-## 4     4    34     1        408         3.4 drugtrial   100   105
-## 5     5    45     2        540         4.5 &lt;NA&gt;         NA    NA
+## # A tibble: 5 x 6
+##      id   age   arm arm_char    t1    t2
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;
+## 1     1    37     1 drug       123   135
+## 2     2    65     2 &lt;NA&gt;       143   140
+## 3     3    57     2 &lt;NA&gt;        NA    NA
+## 4     4    34     1 drug       100   105
+## 5     5    45     2 &lt;NA&gt;        NA    NA
 ```
 
 ]
-
-
 
 ---
 
 .pull-left3[
 # filter()
 
-&lt;font size = 5&gt;The filter() function is used to select specific rows&lt;/font&gt;
-&lt;br&gt;&lt;br&gt;
-&lt;font size = 5&gt;For complex conditions, chain multiple logical comparison operators&lt;br&gt;&lt;br&gt;(==, !=, &lt;, &gt;, &lt;=, &gt;=, &amp;, |)&lt;/font&gt;
+The filter() function selects rows based on criteria you specify
+&lt;br&gt;
 
+|Operator| Effect|
+|---|---|
+|==| equal to|
+|!=| Not equal to|
+|&lt;, &gt;| Less than, greater than|
+|&lt;=, &gt;=|Less or =, greater or =|
+
+For complex conditions, chain multiple logical comparison operators with &amp; (and), | (or)
 
 
 ]
@@ -744,80 +696,89 @@ patients_df %&gt;%
 .pull-right65[
 &lt;br&gt;&lt;br&gt;
 
-&lt;font size = 5&gt;2) Select drugtrial over 30&lt;/font&gt;
+&lt;font size = 5&gt;Select patients over 30 given drug&lt;/font&gt;
 
 
 ```r
-# 0) Start with patients_df data
-patients_df %&gt;%
+combined_df %&gt;%
   
-# 1) Sort by id then age (descending)
+# Sort by id then age (descending)
   arrange(id, desc(age)) %&gt;%
   
-# 2) Only drugtrial over 30
-  filter(arm_char == "drugtrial" &amp; age &gt; 30)
+# NEW - Only over 30 given drug
+  filter(age &gt; 30 &amp; arm_char == "drug")
 ```
 
 ```
-## # A tibble: 3 x 8
-##      id   age   arm age_months age_decades arm_char     t1    t2
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;
-## 1     1    37     1        444         3.7 drugtrial   123   135
-## 2     2    65     1        780         6.5 drugtrial   134   150
-## 3     4    34     1        408         3.4 drugtrial   100   105
+## # A tibble: 2 x 6
+##      id   age   arm arm_char    t1    t2
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;
+## 1     1    37     1 drug       123   135
+## 2     4    34     1 drug       100   105
 ```
 
 ]
 
+---
+
+.pull-left4[
+# select()
+
+
+Keep columns with select()
+
+
+```r
+# Select columns id, age
+df %&gt;% select(id, age)
+```
+
+Drop columns (and keep others) with -
+
+
+```r
+# Select everything BUT sex and id
+df %&gt;% select(-sex, -id)
+```
+
+
+]
+
+.pull-right55[
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;font size = 5&gt;Drop age_months and age_decades colummns&lt;/font&gt;
+
+
+```r
+combined_df %&gt;%
+  
+  arrange(id, desc(age)) %&gt;%
+  
+  filter(arm_char == "drug" &amp; age &gt; 30) %&gt;%
+  
+# NEW - Remove age and arm
+  select(-age, -arm)
+```
+
+```
+## # A tibble: 2 x 4
+##      id arm_char    t1    t2
+##   &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;
+## 1     1 drug       123   135
+## 2     4 drug       100   105
+```
+
+]
 
 
 ---
 
-.pull-left3[
-# select()
+## Grouped Aggregation
 
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/summarsed_data_diagram.png" width="85%" style="display: block; margin: auto;" /&gt;
 
-&lt;font size = 5&gt;Keep columns with &lt;br&gt;&lt;br&gt;select(COL1, COL2, ...)&lt;font&gt;
-&lt;br&gt;
-&lt;font size = 5&gt;Remove columns with &lt;br&gt;&lt;br&gt; select(-COL1, -COL2, ...)&lt;font&gt;
-&lt;br&gt;
-
-
-
-
-]
-
-.pull-right65[
-
-&lt;br&gt;&lt;br&gt;
-
-&lt;font size = 5&gt;3) Remove age_months and age_decades&lt;/font&gt;
-
-
-```r
-# 0) Start with patients_df data
-patients_df %&gt;%
-  
-# 1) Sort by id then age (descending)
-  arrange(id, desc(age)) %&gt;%
-  
-# 2) Only drugtrial over 30
-  filter(arm_char == "drugtrial" &amp; age &gt; 30) %&gt;%
-  
-# 3) Remove age_months and age_decades
-  select(-age_months, -age_decades)
-```
-
-```
-## # A tibble: 3 x 6
-##      id   age   arm arm_char     t1    t2
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;
-## 1     1    37     1 drugtrial   123   135
-## 2     2    65     1 drugtrial   134   150
-## 3     4    34     1 drugtrial   100   105
-```
-
-]
 
 
 ---
@@ -827,7 +788,7 @@ patients_df %&gt;%
 
 | Function| action|
 |:-------------|:----|
-| `group_by()` |Group data by levels of specific variables |
+| `group_by()` |Group data by levels of one or more variables |
 | `summarise()` | Calculate summary statistics |
 
 ### Statistical functions
@@ -842,30 +803,31 @@ patients_df %&gt;%
 ]
 
 .pull-right55[
-&lt;br&gt;&lt;br&gt;
+&lt;br&gt;
 
 
 
 
 ```r
-patients_df
+# Group and summarise!
+combined_df %&gt;%
+  group_by(arm) %&gt;%
+  summarise(
+    N = n(),
+    age_mean = mean(age),
+    t1_mean = mean(t1, na.rm = TRUE),
+    t2_mean = mean(t2, na.rm = TRUE)
+  )
 ```
 
 ```
-## # A tibble: 5 x 5
-##      id   age arm          t1    t2
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;
-## 1     1    37 drugtrial   123   135
-## 2     2    65 drugtrial   134   150
-## 3     3    57 &lt;NA&gt;         NA    NA
-## 4     4    34 drugtrial   100   105
-## 5     5    45 &lt;NA&gt;         NA    NA
+## # A tibble: 2 x 5
+##   arm       N age_mean t1_mean t2_mean
+##   &lt;chr&gt; &lt;int&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+## 1 drug      2     35.5    112.     120
+## 2 &lt;NA&gt;      3     55.7    143      140
 ```
 
-### Goal:
-
-- Group data by arm
-- Calculate summary statistics from t1 and t2
 
 ]
 
@@ -874,7 +836,7 @@ patients_df
 .pull-left3[
 # group_by() 
 
-&lt;font size = 5&gt;Used to combine data into groups&lt;font&gt;
+&lt;font size = 5&gt;Use group_by() to combine data into separate groups&lt;font&gt;
 &lt;br&gt;&lt;br&gt;
 &lt;font size = 5&gt;You can group by as many variables as you wish&lt;font&gt;
 &lt;br&gt;&lt;br&gt;
@@ -888,12 +850,12 @@ patients_df
 &lt;br&gt;&lt;br&gt;
 
 
-&lt;font size = 5&gt;1) Group data by arm&lt;/font&gt;
+&lt;font size = 5&gt;Group data by arm&lt;/font&gt;
 
 
 ```r
-# 0) Start with patients_df data
-patients_df %&gt;%
+# 0) Start with combined_df data
+combined_df %&gt;%
   
 # 1) Group data by arm with group_by
   group_by(arm)
@@ -902,13 +864,13 @@ patients_df %&gt;%
 ```
 ## # A tibble: 5 x 5
 ## # Groups:   arm [2]
-##      id   age arm          t1    t2
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt;
-## 1     1    37 drugtrial   123   135
-## 2     2    65 drugtrial   134   150
-## 3     3    57 &lt;NA&gt;         NA    NA
-## 4     4    34 drugtrial   100   105
-## 5     5    45 &lt;NA&gt;         NA    NA
+##      id   age arm      t1    t2
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     1    37 drug    123   135
+## 2     2    65 &lt;NA&gt;    143   140
+## 3     3    57 &lt;NA&gt;     NA    NA
+## 4     4    34 drug    100   105
+## 5     5    45 &lt;NA&gt;     NA    NA
 ```
 
 ]
@@ -929,9 +891,9 @@ patients_df %&gt;%
 df %&gt;%
   group_by(VAR1) %&gt;%
   summarise(
-    SUMMARY = FUN(x),       # 
-    age_mean = mean(age),   # Ex 1
-    height_min = min(height) # Ex 2 
+    X_SUM = FUN(X),       # 
+    Y_SUM = FUN(Y),   # Ex 1
+    Z_SUM = FUN(Z) # Ex 2 
     total = n()
   )
 ```
@@ -942,20 +904,20 @@ df %&gt;%
 .pull-right55[
 &lt;br&gt;&lt;br&gt;
 
-&lt;font size = 5&gt;2) Calculate summary statistics from times&lt;/font&gt;
+&lt;font size = 5&gt;Calculate summary statistics&lt;/font&gt;
 
 
 ```r
-# 0) Start with patients_df data
-patients_df %&gt;%
+# 0) Start with combined_df data
+combined_df %&gt;%
   
 # 1) Group data by arm with group_by
   group_by(arm) %&gt;%
   
 # 2) Calculate summary columns
   summarise(
-    t1_mean = mean(t1),
-    t2_mean = mean(t2),
+    t1_mean = mean(t1, na.rm = TRUE),
+    t2_mean = mean(t2, na.rm = TRUE),
     diff = t2_mean - t1_mean,
     N = n()  # Number of rows in group
   )
@@ -963,10 +925,10 @@ patients_df %&gt;%
 
 ```
 ## # A tibble: 2 x 5
-##   arm       t1_mean t2_mean  diff     N
-##   &lt;chr&gt;       &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
-## 1 drugtrial     119     130    11     3
-## 2 &lt;NA&gt;           NA      NA    NA     2
+##   arm   t1_mean t2_mean  diff     N
+##   &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
+## 1 drug     112.     120   8.5     2
+## 2 &lt;NA&gt;     143      140  -3       3
 ```
 
 ]
@@ -979,11 +941,9 @@ patients_df %&gt;%
 
 ## Reshaping data
 
-&lt;font size = 5&gt;There are two key functions in the `tidyr` package (part of the `tidyverse`) that allow you to 'reshape' a dataframe between &lt;font color = 'blue'&gt;'wide'&lt;/font&gt; and &lt;font color = 'blue'&gt;'long'&lt;/font&gt; formats.&lt;/font&gt;&lt;br&gt;
+Two key functions that allow you to 'reshape' a dataframe between 'wide'and 'long' formats.&lt;br&gt;
 
-&lt;font size = 5&gt;&lt;font color = 'blue'&gt;'Wide'&lt;/font&gt; dataframes have key data in &lt;font color = 'blue'&gt;separate columns&lt;/font&gt;, &lt;font color = 'blue'&gt;&lt;br&gt;&lt;br&gt;'Long'&lt;/font&gt; dataframes have key data in &lt;font color = 'blue'&gt;separate rows&lt;/font&gt;.&lt;/font&gt;&lt;br&gt;
-
-&lt;font size = 5&gt;Why reshape? Some functions (like dplyr) require data to be in a certain shape.&lt;/font&gt;&lt;br&gt;
+Why reshape data between wide and long? Some functions require data to be in a certain shape&lt;br&gt;
 
 #### Two key tidyr functions
 
@@ -1015,7 +975,6 @@ stock_w
 ```
 
 
-
 ```r
 # Long format
 stock_l
@@ -1031,17 +990,15 @@ stock_l
 ## 6  c   t2      30
 ```
 
-
 ]
-
 
 ---
 
 .pull-left45[
 
-### gather()
+## gather()
 
-&lt;font size=5&gt;Use `gather()` to convert wide to long&lt;/font&gt;
+&lt;font size=5&gt;Use gather() to convert wide to long&lt;/font&gt;
 
 
 ```r
@@ -1081,7 +1038,7 @@ stock_w %&gt;%
 
 ## spread()
 
-&lt;font size=5&gt;Use `spread()` to convert long to wide&lt;/font&gt;
+&lt;font size=5&gt;Use spread() to convert long to wide&lt;/font&gt;
 
 
 ```r
@@ -1115,638 +1072,81 @@ stock_l %&gt;%
 ## 3  c 15 30
 ```
 
-
-
-]
-
----
-
-.pull-left4[
-
-#dplyr summary
-
-dplyr is great for elegantly performing sequential operations on data.
-
-The 'pipe' operator `%&gt;%` helps you string multiple *objects* (like dataframes) and *verbs* (summarise, order, aggregate...) together.
-
-
-
-]
-
-.pull-right5[
-
-&lt;br&gt;
-&lt;br&gt;
-
-Basic structure of dplyr commands:
-
-
-```r
-data %&gt;%    # Start with data, AND THEN...
-  VERB1 %&gt;% # Do VERB1, AND THEN...
-  VERB2 %&gt;% # Do VERB2, AND THEN...
-  VERB3 %&gt;% # Do VERB3, AND THEN...
-  group_by(x, y) %&gt;%  # Group by variables x, y
-    summarise(
-      VAR_A_New = fun(trial),
-      VAR_B_New = fun(Y)
-    )
-  )
-```
-
-]
-
-
-
----
-
-.pull-left3[
-
-## Important!
-
-&lt;br&gt;
-
-&lt;font size = 5&gt;You can call many dplyr functions directly without the pipe %&gt;%&lt;/font&gt;
-&lt;br&gt;&lt;br&gt;&lt;br&gt;
-
-&lt;font size = 5&gt;However, we recommend always using the pipe %&gt;% so you can string many operations together&lt;/font&gt;
-
-]
-
-
-.pull-right65[
-
-&lt;br&gt;&lt;br&gt;
-&lt;font size = 5&gt; Use the pipes %&gt;%!&lt;/font&gt;
-
-```r
-## Using dplyr functions without pipes %&gt;%
-##     Avoid this if you can
-
-data &lt;- mutate(data, age_years = age_months * 12)
-data &lt;- filter(data, sex == "m")
-
-## Using dplyr functions with pipes %&gt;%
-##    Much better!!!
-
-data &lt;- data %&gt;% mutate(age_years = age_months * 12)
-data &lt;- data %&gt;% filter(sex == "m")
-
-# Why? Because with pipes you can easily put multiple
-#  functions together if you choose.
-
-data &lt;- data %&gt;% 
-          mutate(age_years = age_months * 12) %&gt;%
-          filter(sex == "m") %&gt;%
-   # ....
-```
-
-
-]
-
-
----
-
-# Live Demo &amp; Practical
-
-&lt;br&gt;&lt;br&gt;&lt;br&gt;
-&lt;p&gt;&lt;font size=6&gt;&lt;b&gt;&lt;a href="https://therbootcamp.github.io/BaselRBootcamp_2018April/_sessions/D2S1_Wrangling/Wrangling_practical.html"&gt;Link to Wrangling practical&lt;/a&gt;
-
-
----
-
-# Additional Slides
-
----
-# Vector functions
-
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/vector_functions.png" width="900" style="display: block; margin: auto;" /&gt;
-
----
-
-.pull-left5[
-# Vector to scaler functions
-
-- Each takes a numeric vector `x`, and returns a numeric scaler
-
-| Function| action|
-|:-------------|:----|
-|     `sum(x)`, `prod(x)`|   Sum or product|
-|     `min(x), max(x)`|    Minimum, maximum|
-|     `mean(x), median(x)`|    Arithmetic mean or median| 
-|     `var(x)`, `sd(x)`|   Variance, standard deviation|
-
-]
-
-.pull-right45[
-&lt;br&gt;
-
-### Examples
-
-
-```r
-# Sum of all weights?
-sum(ChickWeight$weight)
-```
-
-```
-## [1] 70411
-```
-
-```r
-# Mean weight?
-mean(ChickWeight$weight)
-```
-
-```
-## [1] 121.8
-```
-
-```r
-# Standard deviation of weights?
-sd(ChickWeight$weight)
-```
-
-```
-## [1] 71.07
-```
-
-]
-
-
-
----
-
-.pull-left5[
-# Vector to vector / table functions
-
-- Each takes a numeric vector `x`, and returns a vector or table
-
-| Function| action|
-|:-------------|:----|
-|     `unique(x)`|   What are the unique values of x?|
-|     `table(x)`|    How many are there of each unique value in x?|
-|     `rank(x)|    What is the rank order of values in x?|
-
-
-]
-
-.pull-right45[
-&lt;br&gt;
-
-### Examples
-
-
-```r
-# Sum of all weights?
-sum(ChickWeight$weight)
-```
-
-```
-## [1] 70411
-```
-
-```r
-# Mean weight?
-mean(ChickWeight$weight)
-```
-
-```
-## [1] 121.8
-```
-
-```r
-# Standard deviation of weights?
-sd(ChickWeight$weight)
-```
-
-```
-## [1] 71.07
-```
-
 ]
 
 
 ---
 
 .pull-left4[
-# dplyr
-
-dplyr is a combination of 3 things:
-
-1. **`objects`** like dataframes
-2. **`verbs`** that **do** things to objects.
-3. **`pipes`** `%&gt;%` that string together objects and verbs
 
 &lt;br&gt;
 
+## Summary
 
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/pipe.jpg" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;br&gt;
+
+Start by assigning your result to a new object to save it!&lt;br&gt;&lt;br&gt;
+
+"Keep the pipe &lt;font color = 'purple'&gt;%&gt;%&lt;/font&gt; going" to continue working with your dataframe&lt;br&gt;&lt;br&gt;
+
+The output of dplyr functions will (almost) always be a tibble&lt;br&gt;&lt;br&gt;
+
+You can almost always include multiple operations within each function&lt;br&gt;&lt;br&gt;
 
 ]
-
-.pull-right5[
-
-&lt;br&gt;
-&lt;br&gt;
-&lt;br&gt;
-
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/sequential.png" width="70%" style="display: block; margin: auto;" /&gt;
-
-dplyr is meant to be sequential and work like language
-
-&gt; Take data trial, 
-&gt;   then do Y, 
-&gt;   then do Z,
-&gt;   ...
-
-]
-
-
-
----
-
-.pull-left4[
-# dplyr
-
-### Question:
-
-&gt; &lt;font size=5&gt;From the ChickWeight dataframe, calculate the mean weight and time for each diet&lt;/font&gt;
-
-]
-
 
 .pull-right55[
+&lt;br&gt;
 
-### Answer:
+ 
 
 ```r
-library(dplyr)
+# Assign result to baslers_agg
 
-x &lt;- ChickWeight %&gt;%  # Start with ChickWeight
-  group_by(Diet) %&gt;%  # Group by Diet
-  summarise(          # Get ready to summarise....
-    weight.mean = mean(weight), # Mean weight
-    time.mean = mean(Time),     # Mean time
-    N = n()                     # Number of cases
-  )
+baslers_agg &lt;- baselers %&gt;% 
   
+  # Change column names with rename()
+  rename(age_years = age,
+         weight_kg = weight)  %&gt;% # PIPE!
 
-x
-```
-
-```
-## # A tibble: 4 x 4
-##   Diet  weight.mean time.mean     N
-##   &lt;fct&gt;       &lt;dbl&gt;     &lt;dbl&gt; &lt;int&gt;
-## 1 1            103.      10.5   220
-## 2 2            123.      10.9   120
-## 3 3            143.      10.9   120
-## 4 4            135.      10.8   118
-```
-
-]
-
-
-
-
----
-
-
-# Common dplyr verbs
-
-| verb| action| example |
-|:---|:----|:----------------|
-|     `filter()`|    Select rows based on some criteria| `filter(age &gt; 40 &amp; treatment == "drug")`|
-|     `arrange()`|    Sort rows| `arrange(date, group)`|
-|     `select()`|    Select columns (and ignore all others)| `select(age, treatment)`|
-|     `rename()`|    Rename columns| `rename(DATE_MONTHS_trial24, date`)|
-|     `mutate()`|    Add new columns| `mutate(height.m = height.cm / 100)`|
-|     `case_when()`|    Recode values of a column| `treat_char = case_when(treatment == 0 ~ "placebo", treatment == 1 ~ "drug")`|
-|     `group_by(), summarise()`|   Group data and then calculate summary statistics|`group_by(treatment) %&gt;% summarise(...)` |
-
-
-
-
-
-
----
-
-#### Example 1
-
-*Add a column called `weight_d_time` that is weight divided by time*
-
-
-```r
-library(dplyr)
-
-x &lt;- ChickWeight %&gt;%          # Start with the ChickWeight data
-      mutate(                 # Create new columns...
-            weight_d_time = weight / Time
-            )
-
-head(x)   # Print the result
-```
-
-```
-##   weight Time Chick Diet Diet_name weight_d_time
-## 1     42    0     1    1     fruit           Inf
-## 2     51    2     1    1     fruit         25.50
-## 3     59    4     1    1     fruit         14.75
-## 4     64    6     1    1     fruit         10.67
-## 5     76    8     1    1     fruit          9.50
-## 6     93   10     1    1     fruit          9.30
-```
-
-
-
----
-
-#### Example 2
-
-*Add a column called `weight_d_time` that is weight divided by time AND `time_d` that is time in days*
-
-
-```r
-x &lt;- ChickWeight %&gt;%          # Start with the ChickWeight data
-      mutate(                 # Create new columns...
-            weight_d_time = weight / Time,  # weight_d_time is weight divided by Time
-            time_d = Time * 7               # time_d is Time times 7
-            )
-
-head(x)   # Print the result
-```
-
-```
-##   weight Time Chick Diet Diet_name weight_d_time time_d
-## 1     42    0     1    1     fruit           Inf      0
-## 2     51    2     1    1     fruit         25.50     14
-## 3     59    4     1    1     fruit         14.75     28
-## 4     64    6     1    1     fruit         10.67     42
-## 5     76    8     1    1     fruit          9.50     56
-## 6     93   10     1    1     fruit          9.30     70
-```
-
----
-
-
-### Recoding values with case_when()
-
-.pull-left4[
-Recoding values is a common data wrangling task. You can easily do this with `case_when()`:
-
-
-```r
-data %&gt;%
-  mutate(
-  var_new = case_when(
-    var_old == OLD_A ~ NEW_A,
-    var_old == OLD_B ~ NEW_B
-  )
-```
-
-For example, in a dataset, the column `sex` might be coded with 1s and 0s.
-
-You might want to create a new column `sex_new` where 1 = "female" and 0 = "male":
-
-| sex| sex_new|
-|------:|----:|
-|    1|   "female"|
-|    0|   "male"|
-
-]
-
-.pull-right5[
-
-To change the value of 1 to `"female"`, and 0 to `"male"`, you can use `case_when()`:
-
-
-```r
-# Add a column sex_new to data 
-
-data &lt;- data %&gt;% 
-  mutate(
-        sex_new = case_when(
-          arm == 1 ~ "drugtrial",
-          arm == 0 ~ "placebo"
-        )
-  )
-```
-
-
-You can think about the code above as follows:
-
-- Create a new column `sex_new` where
-    - If `sex == 1`, then set the value to `"female"`
-    - If `sex == 0`, then set the value to `"male"`
-
-]
-
----
-
-.pull-left4[
-
-#### Example 3
-
-*Create a new variable Diet_name which shows Diet in text format. Here is a table of the values*
-
-| Diet| Diet_name|
-|------:|----:|
-|    1|   "fruit"|
-|    2|   "vegetables"|
-|    3|   "meat"|
-|    4|   "grains"|
-
-]
-
-.pull-right5[
-&lt;br&gt;
-&lt;br&gt;
-
-```r
-ChickWeight &lt;- ChickWeight %&gt;%           # Start with the ChickWeight data
-                 mutate(
-                   Diet_name = case_when(
-                     Diet == 1 ~ "fruit",
-                     Diet == 2 ~ "vegetables",
-                     Diet == 3 ~ "meat",
-                     Diet == 4 ~ "grains"
-                   )
-   
- )
-
-head(ChickWeight)
-```
-
-```
-##   weight Time Chick Diet Diet_name
-## 1     42    0     1    1     fruit
-## 2     51    2     1    1     fruit
-## 3     59    4     1    1     fruit
-## 4     64    6     1    1     fruit
-## 5     76    8     1    1     fruit
-## 6     93   10     1    1     fruit
+  # Select specific rows with filter()
+  filter(age_years &lt; 40)  %&gt;% # PIPE!
+  
+  # Create new columns witb mutate()
+  mutate(debt_ratio = debt / income)  %&gt;% # PIPE!
+  
+  # Group data with group_by()
+  group_by(sex) %&gt;% # PIPE!
+  
+  # Calculate summary statistics with summarise()
+  summarise(income_mean = mean(income),
+            debt_mean = mean(debt),
+            dr_mean = mean(dr))
 ```
 
 ]
 
----
-
-#### Example 4
-
-*For each Diet, calculate the mean weight*
-
-
-```r
-ChickWeight %&gt;%           # Start with the ChickWeight data
-  group_by(Diet) %&gt;%      # Group the data by Diet
-  summarise(              # Now summarise....
-    weight.mean = mean(weight) # Mean weight
-  )
-```
-
-```
-## # A tibble: 4 x 2
-##   Diet  weight.mean
-##   &lt;fct&gt;       &lt;dbl&gt;
-## 1 1            103.
-## 2 2            123.
-## 3 3            143.
-## 4 4            135.
-```
 
 ---
 
-#### Example 5
+.pull-left45[
 
-*For each time period less than 10, calculate the mean weight*
+# Questions?
 
-
-```r
-ChickWeight %&gt;%                # Start with the ChickWeight data
-  filter(Time &lt; 10) %&gt;%        # Only Time periods less than 10
-  group_by(Time) %&gt;%           # Group the data by Diet
-  summarise(                   # Now summarise....
-    weight.mean = mean(weight) # Mean weight
-  )
-```
-
-```
-## # A tibble: 5 x 2
-##    Time weight.mean
-##   &lt;dbl&gt;       &lt;dbl&gt;
-## 1     0        41.1
-## 2     2        49.2
-## 3     4        60.0
-## 4     6        74.3
-## 5     8        91.2
-```
-
----
-#### Example 6
-
-*For each Diet, calculate the mean weight, maximum time, and the number of chicks on each diet*:
-
-
-```r
-ChickWeight %&gt;%           # Start with the ChickWeight data
-  group_by(Diet) %&gt;%      # Group the data by Diet
-  summarise(              # Now summarise....
-    weight.mean = mean(weight), # Mean weight
-    time.max = max(Time),       # Max time
-    N = n()                     # Number of observations
-  )
-```
-
-```
-## # A tibble: 4 x 4
-##   Diet  weight.mean time.max     N
-##   &lt;fct&gt;       &lt;dbl&gt;    &lt;dbl&gt; &lt;int&gt;
-## 1 1            103.       21   220
-## 2 2            123.       21   120
-## 3 3            143.       21   120
-## 4 4            135.       21   118
-```
-
----
-
-# Other dplyr verbs
-
-| verb| action| example |
-|:---|:----|:----------------|
-|     `sample_n()`|    Select a random sample of n rows| `sample_n(10)`|
-|     `sample_frac()`|    Select a random fraction of rows| `sample_frac(.20)`|
-|     `first(), last()`|    Give the first (or last) observation| `first(), last()`|
-
----
-
-#### Example 7
-
-*Give me a random sample of 10 rows from the ChickWeight dataframe, but only show me the values for Chick and weight*
-
-
-```r
-# Give me a random sample of 10 rows, but only show me columns Chick and weight
-
-ChickWeight %&gt;% 
-  select(Chick, weight) %&gt;%
-  sample_n(10)
-```
-
-```
-##     Chick weight
-## 402    36     48
-## 417    37     80
-## 389    35     41
-## 396    35    238
-## 412    36    220
-## 249    23     90
-## 192    17    123
-## 544    48     50
-## 450    40     55
-## 437    39     42
-```
-
----
-.pull-left4[
-
-#dplyr
-
-dplyr operations (almost) always return a dataframe which you can assign to a new object:
-
-&gt; *Create a dataframe with the average weight for each time period and nothing else!!*
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/dplyr_tidyr_hex.png" width="100%" style="display: block; margin: auto;" /&gt;
 
 ]
 
-.pull-right5[
-&lt;br&gt;
-&lt;br&gt;
-
-```r
-# Create a new object called time_agg
-
-time_agg &lt;- ChickWeight %&gt;%
-  group_by(Time) %&gt;%
-  summarise(
-    weight.mean = mean(weight)
-  )
-
-head(time_agg)
-```
-
-```
-## # A tibble: 6 x 2
-##    Time weight.mean
-##   &lt;dbl&gt;       &lt;dbl&gt;
-## 1     0        41.1
-## 2     2        49.2
-## 3     4        60.0
-## 4     6        74.3
-## 5     8        91.2
-## 6    10       108.
-```
+.pull-right45[
+&lt;br&gt;&lt;br&gt;
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/organise_transform_aggregate.png" width="100%" style="display: block; margin: auto;" /&gt;
 
 ]
+
+---
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+# [Wrangling Practical](https://therbootcamp.github.io/Erfurt_2018June/_sessions/D1S2_Wrangling/Wrangling_practical.html)
     </textarea>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
