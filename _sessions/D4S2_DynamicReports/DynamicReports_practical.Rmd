@@ -1,7 +1,6 @@
 ---
 title: "Dynamic Reports"
-author: "TheRBootcamp, http://therbootcamp.github.io"
-date: "April 2018"
+author: "The R Bootcamp @ Erfurt<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
 output: html_document
 ---
 
@@ -10,12 +9,8 @@ knitr::opts_chunk$set(comment=NA, fig.width=6, fig.height=6, echo = FALSE, eval 
 ```
 
 ```{r, echo = FALSE, fig.align = 'center', eval = TRUE, fig.cap= "Source: https://www.rstudio.com/", out.width = "30%"}
-knitr::include_graphics("../_image/rmarkdown_hex.png")
+knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/rmarkdown_hex.png")
 ```
-
-### Slides
-
-[Here are the introduction slides for this practical on dynamic reports!](https://therbootcamp.github.io/_sessions/D4S1_DynamicReports/DynamicReports.html)
 
 ### Overview
 
@@ -24,57 +19,64 @@ In this practical you'll practice creating interactive reports using RMarkdown.
 ### Cheatsheet
 
 ```{r, echo = FALSE, fig.align = 'center', eval = TRUE, fig.cap= "https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf", out.width = "60%"}
-knitr::include_graphics("../_image/markdown_cheat.png")
+knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/markdown_cheat.png")
 ```
 
 If you don't have it already, you can access the `Markdown` cheatsheet here [https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
 
-### Examples
 
-- Because R Markdown looks quite a bit different from standard R code, the best way to look at examples is to see a new R Markdown document in action. In RStudio, click File -- New File -- R Markdown
+### Datasets
 
-```{r, echo = FALSE, fig.align = 'center', eval = TRUE, out.width = "60%"}
-knitr::include_graphics("../_image/rmarkdown_ss_A.png")
+```{r, eval = TRUE, message = FALSE}
+library(tidyverse)
+trial_act <- read_csv("../_data/day_1/trial_act.csv")
+trial_act_demo <- read_csv("../_data/day_1/trial_act_demo_fake.csv")
 ```
 
-- Give the document a title and an author. For the output format, select HTML (the default). Click Ok!
+|File | Rows | Columns |
+|:----|:-----|:------|
+|`trial_act.csv` | 2139 | 27 |
+
+## Tasks
+
+1. Open your class project. In your `1_Data` folder, make sure you have copies of the datasets listed above.
+
+2. Because R Markdown looks quite a bit different from standard R code, the best way to look at examples is to see a new R Markdown document in action. In RStudio, click File -- New File -- R Markdown
 
 ```{r, echo = FALSE, fig.align = 'center', eval = TRUE, out.width = "60%"}
-knitr::include_graphics("../_image/rmarkdown_ss_B.png")
+knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/rmarkdown_ss_A.png")
 ```
 
-- A new file that looks like this should open up. This is your first R Markdown document!
+3.  Give the document a title and an author. For the output format, select HTML (the default). Click Ok!
 
 ```{r, echo = FALSE, fig.align = 'center', eval = TRUE, out.width = "60%"}
-knitr::include_graphics("../_image/rmarkdown_ss_C.png")
+knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/rmarkdown_ss_B.png")
 ```
 
-- Before you do anything else, let's *knit* the R Markdown document to an HTML file. Click the *knit* button (or use the Command + Shift + K shortcut)
+4. A new file that looks like this should open up. This is your first R Markdown document!
 
 ```{r, echo = FALSE, fig.align = 'center', eval = TRUE, out.width = "60%"}
-knitr::include_graphics("../_image/rmarkdown_ss_D.png")
+knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/rmarkdown_ss_C.png")
 ```
 
-- Now you should see your final, HTML document! Scroll up and down the document and see how she looks!
+5. Save your markdown file *in your main project directory* (not in the `4_Markdown` folder! -- you'll put it there later!) under the name `speffanalysis.Rmd`
+
+6. Now *knit* your document to an HTML file. To do this, click the *knit* button (or use the Command + Shift + K shortcut)
 
 ```{r, echo = FALSE, fig.align = 'center', eval = TRUE, out.width = "60%"}
-knitr::include_graphics("../_image/rmarkdown_ss_E.png")
+knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/rmarkdown_ss_D.png")
 ```
 
+7. Now you should see your final, HTML document! Scroll up and down the document and see how she looks!
 
-### Tasks
+```{r, echo = FALSE, fig.align = 'center', eval = TRUE, out.width = "60%"}
+knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/rmarkdown_ss_E.png")
+```
 
-1. Create a new R project called `dynamicreports.Rproj`. Add three folders `data`, `code`, `materials`
-
-2. Go through the Examples above to create a new R Markdown document. Save the document under the name `speffanalysis.Rmd` in your main project working directory (next to the `dynamicreports.Rproj` file)
-
-3. At the top of the `speffanalysis.Rmd` document, add a new R chunk. You can do this by clicking the "Insert" button at the top of the console, or by using the "Option + Command + i" shortcut on Mac. 
-
-4. In the chunk options, include `echo = FALSE, message = FALSE, warning = FALSE`. 
-
-5. Inside of the chunk include the following code in the following chunk: The `knitr::opts_knit$set(dir = "../")` code will move your working directory one folder up to the project root, while `knitr::opts_chunk$set()` will set your global chunk options. Finally, `options(digits = 2)` makes sure that all of your numeric output is rounded to two decimal places.
+8. In the first code chunk (with the label `setup`), include the following code: the arguments in`knitr::opts_chunk$set()` will set your global chunk options, while finally, `options(digits = 2)` makes sure that all of your numeric output is rounded to two decimal places.
 
 ```{r, eval = FALSE, echo = TRUE}
+# INCLUDE ALL OF THIS CODE IN YOUR FIRST CHUNK!
 
 knitr::opts_chunk$set(fig.width = 6,        # Figure width (in)
                       fig.height = 6,       # Figure height (in)
@@ -87,51 +89,62 @@ knitr::opts_chunk$set(fig.width = 6,        # Figure width (in)
 options(digits = 2)  # Round all output to 2 digits
 ```
 
-6. Now let's load some packages. Inside your chunk, write the comment `# Loading Packages -------------`. Then, using the `library()` function, load the packages `tidyverse`, `knitr` and `speff2trial`. 
+9. Knit your document! Make sure you see an output!
 
-7. Knit the document to make sure it worked! If you have any errors, try to figure out how to solve them!
+10. Now let's load some packages. *Inside your setup chunk*, write the comment `# Loading Packages -------------`. Then, using the `library()` function, load the packages `tidyverse`, `knitr` and `speff2trial`. 
 
-8. For this practical we'll use the `ACTG175` dataset. This dataset originally comes from the `speff2trial` package. However, I saved a copy of the dataset as a comma--separated text file at `"https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_data/ACTG175.csv"`. Open this link in a web-browser, and then save the `ACTG175.csv` file to the `data` folder of your project.
+11. Knit the document to make sure it worked! If you have any errors, try to figure out how to solve them!
 
-9. Create a new code chunk and put it under the previous one. We will use this chunk to load the `ACTG175.csv`. In this chunk, load csv file with `read_csv()` and assign the result to the object `ACTG175`.
+12. It's time to load your data! Inside of your setup chunk, load the `trial_act.csv` file with `read_csv()` and assign the result to the object `trial_act`.
 
-10. Knit the document! Diagnose and correct any errors!
+13. Knit the document! Diagnose and correct any errors!
 
-11. Add the necessary text and markdown to your document to create the following two paragraphs. Pay attention to the header sizes, *italics* and `code` formats.
+14. Add the necessary text and markdown to your document to create the following two paragraphs. Pay attention to the header sizes, *italics* and `code` formats.
 
 ```{r, fig.cap = "Write the necessary markdown to create this output!", eval = TRUE, echo = FALSE, out.width = "75%"}
-knitr::include_graphics("../_image/markdown_output_ss.png")
+knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/markdown_output_ss.png")
 ```
 
-12. Knit the document! Diagnose and correct any errors!
+15. Knit the document! Diagnose and correct any errors!
 
-13. Add the appropriate combination of text, markdown, code chunks, and R code to add the following output to your document. To report the number of patients, use an in-line chunk to access the number directly from the data using the `nrow()` function, -- that is, don't type 2139 directly! To create the table, create a new chunk, and inside that chunk, use the `kable()` function, with the appropriate arguments, to create the table.
+16. Add the appropriate combination of text, markdown, code chunks, and R code to add the following output to your document. To report the number of patients, use an in-line chunk to access the number directly from the data using the `nrow()` function, -- that is, don't type 2139 directly! To create the table, create a new chunk, and inside that chunk, use the `kable()` function, with the appropriate arguments, to create the table. The following code might help you create the table:
 
 ```{r, echo = FALSE, out.width = "75%", eval = TRUE}
-knitr::include_graphics("../_image/markdown_analysis_ss.png")
+knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/markdown_analysis_ss.png")
 ```
 
-14. Knit the document! Diagnose and correct any errors!
+
+```{r, eval = FALSE, echo = TRUE}
+# Code for Table 1:
+
+trial_act %>%
+  select(pidnum, age, wtkg, hemo, homo) %>%
+  select(1:5) %>%
+  slice(1:5) %>%
+  kable(caption = "Table 1: XXX")
+```
+
+17. Knit the document! Diagnose and correct any errors!
 
 15. Write the necessary code to add the following output to your document. To do this, create a new chunk. In the chunk use `dplyr` code to create the summary table of data. Assign the result to the object `trial_summary`. Then, use `kable()` to render this dataframe as a table in the final document.
 
 ```{r, echo = FALSE, out.width = "75%", eval = TRUE}
-knitr::include_graphics("../_image/markdown_analysis_ss_B.png")
+knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/markdown_analysis_ss_B.png")
 ```
 
 Here is some code you might find helpful in creating this table!
 
-```{r, echo = TRUE}
+```{r, echo = TRUE, eval = FALSE}
 # Helpful code to create the summary table!
 
-trial_summary <- ACTG175 %>% 
-                 group_by(XX) %>% 
-                 summarise(
-                          N = n(),
-                          Mean = mean(XX),
-                          Median = median(XX),
-                          SD = sd(XX),
-                          Max = max(XX))
+trial_act %>% 
+    group_by(XX) %>% 
+    summarise(N = n(),
+              Mean = mean(XX),
+              Median = median(XX),
+              SD = sd(XX),
+              Max = max(XX)) %>%
+  kable(caption = "Table 2: XXX")
 ```
 
 16. Knit the document! Diagnose and correct any errors!
@@ -139,7 +152,7 @@ trial_summary <- ACTG175 %>%
 17. Add the appropriate combination of text, markdown, code chunks, and R code to add the following output to your document. Be sure to include the figure caption (you can do this with the `fig.cap` argument to the chunk)
 
 ```{r, echo = FALSE, out.width = "75%", eval = TRUE}
-knitr::include_graphics("../_image/markdown_ggplot_ss.png")
+knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/markdown_ggplot_ss.png")
 ```
 
 This code might help you to create the plot:
@@ -176,7 +189,26 @@ cd4_cor_p <- cd4_cor$XX   # Get the p-value
 
 21. Add a new section called "Conclusions". Write the main conclusions of your analyses in one or two sentences. Feel free to add some formatting and/or in-line chunks to your content!
 
-22. (Optional) You can easily publish an HTML document online to Rpubs.com for free. To do this, Knit your document. Then, click the blue "Publish" button. Go through the process of signing up for a free Rpubs account and get your document online!
+## Managing working directories with Markdown
+
+22. Now it's time to move your Markdown file to your `4_Markdown` folder. Move your `speffanalysis.Rmd` file to your `4_Markdown` folder using your computer file browser (Finder on Mac, Windows explorer on PC). Now, try knitting your document. You should get an error! What happened?!
+
+23. The problem is that when you knit your Markdown file, R changes your working directory to the folder where your markdown file is located. However, now that you moved your file to your `4_Markdown` folder, this isn't true anymore. You need to tell Markdown that the root directory of your project is one directory up! Thankfully this is easy to do. Just add the following code to your initial `setup` R chunk:
+
+```{r, echo = TRUE}
+# Tell R Markdown that the root directory is now one folder
+#   up from the folder the markdown file is in
+
+knitr::opts_knit$set(root.dir = "../")
+```
+
+24. Knit your document! Did everything work? If not, try to correct the working directory issues. Don't be afraid to ask for help!
+
+25. If you have LaTex installed on your computer, try knitting your document to PDF format by clicking the Knit button and knit to PDF. If you don't have LaTeX installed, don't worry :)
+
+## Other Markdown templates
+
+26. Don't like the standard markdown template? You can get many other templates from the `rmdformats` package. Install the package with `rmdformats`. Then create a new markdown file from one of the temples with File -- New File -- R Markdown -- From Template. Try the `HTML readthedown` template. Knit the document and see how it looks different from your standard template.
 
 ## Slideshow
 
@@ -184,21 +216,17 @@ cd4_cor_p <- cd4_cor$XX   # Get the p-value
 knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/xaringan_ss.png")
 ```
 
-23. Now it's time to create a slideshow! To do this, we'll use the Ninja template ([click here for a demo](https://slides.yihui.name/xaringan/#1)) from the `xaringan` package (that's what we use for all of our BaselRBootcamp slides). To install the `xaringan` package from GitHub, run the following code. 
-```{r, eval = FALSE, echo = TRUE}
-# Install the xaringan package from github
-devtools::install_github("yihui/xaringan")
-```
+27. Now it's time to create a slideshow! To do this, we'll use the Ninja template ([click here for a demo](https://slides.yihui.name/xaringan/#1)) from the `xaringan` package (that's what we use for all of our BaselRBootcamp slides). Install the `xaringan` package by running `install.packages('xaringan')`
 
-Once you've installed `xaringan`, open a new template with File -- New File -- R Markdown -- From Template -- Ninja Presentation. Give the presentation a title and your name as the author. Then click ok.
+28. Once you've installed `xaringan`, open a new template with File -- New File -- R Markdown -- From Template -- Ninja Presentation. Give the presentation a title and your name as the author. Then click ok.
 
-24. You should see a new .Rmd document open. Save the document in your main directory as `slideshow.Rmd`.
+29. You should see a new .Rmd document open. Save the document in your main project directory as `slideshow.Rmd`.
 
-25. Knit the document to see the outline of the presentation!
+30. Knit the document to see the outline of the presentation!
 
-26. Play around with the presentation a bit. Change the existing content a bit and add a few slides. Try adding an image (maybe this one: https://actgnetwork.org/sites/all/themes/actg/images/actg_logo_275.png) by saving the image to your `materials` folder, and then loading the image into your document with `include_graphics()`.
+31. Play around with the presentation a bit. Change the existing content a bit and add a few slides. Try adding an image (maybe this one: https://actgnetwork.org/sites/all/themes/actg/images/actg_logo_275.png) by saving the image to your `0_Materials` folder, and then loading the image into your document with `include_graphics()`.
 
-27. Now, try to customize the presentation to include all of main analyses, outputs, and plots you have in your `speffanalysis.Rmd` document! Of course, there won't be room for all of the text, so treat it like a normal presentation and put in what's important.
+32. Now, try to customize the presentation to include all of main analyses, outputs, and plots you have in your `speffanalysis.Rmd` document! Of course, there won't be room for all of the text, so treat it like a normal presentation and put in what's important.
 
 ### References and Links
 
