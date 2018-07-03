@@ -173,7 +173,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/Erfurt_2
 ]
 
 .pull-right6[
-```{r, echo = FALSE, fig.align='center'}
+```{r, echo = FALSE, fig.align='center', fig.cap="This is not a pipe (but %>% is!)"}
 knitr::include_graphics("https://upload.wikimedia.org/wikipedia/en/thumb/b/b9/MagrittePipe.jpg/300px-MagrittePipe.jpg")
 ```
 

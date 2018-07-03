@@ -4,8 +4,16 @@ author: "The R Bootcamp @ Erfurt<br/><a href='https://therbootcamp.github.io'>ww
 output: html_document
 ---
 
-```{r, echo = FALSE}
-knitr::opts_chunk$set(comment=NA, fig.width=6, fig.height=6, echo = FALSE, eval = FALSE, warning = FALSE)
+```{r setup, echo = FALSE}
+knitr::opts_chunk$set(comment = NA, 
+                      fig.width = 6, 
+                      fig.height = 6,
+                      fig.align = 'center',
+                      echo = FALSE, 
+                      eval = FALSE, 
+                      warning = FALSE)
+
+options(digits = 3)
 ```
 
 ```{r, echo = FALSE, fig.align = 'center', eval = TRUE, out.width = "70%"}
@@ -31,6 +39,25 @@ Data wrangling with dplyr and tidyr
 
 - Data wrangling with dplyr and tidyr Cheatsheet: [https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf).
 
+### Datasets
+
+```{r, eval = TRUE, message = FALSE}
+library(tidyverse)
+trial_act <- read_csv("../_data/day_1/trial_act.csv")
+trial_act_demo <- read_csv("../_data/day_1/trial_act_demo_fake.csv")
+```
+
+|File | Rows | Columns |
+|:----|:-----|:------|
+|`trial_act.csv` | 2139 | 27 |
+|`trial_act_demo_fake`| 2139 | 3|
+
+### Packages
+
+|Package| Installation|
+|:------|:------|
+|`tidyverse`|`install.packages("tidyverse")`|
+
 ### Glossary
 
 Here are the main functions you will be using in `dplyr`:
@@ -53,17 +80,19 @@ Here are the two functions you will be using from the `tidyr` package:
 |     `spread()`|    Convert long data to wide format - from rows to columns| data %>% gather(time, data, -id)
 |     `gather()`|    Convert wide data to long format - from columns to rows|data %>% spread(time, data)
 
+
+
 ### Examples
 
 The following examples will take you through the steps of doing data wrangling with dplyr. Try to go through each line of code and see how it works!
 
 ```{r, eval = FALSE, echo = TRUE}
 # -----------------------------------------------
-# Examples of using dplyr on the baselers data
+# Wrangling with dplyr and tidyr
 # ------------------------------------------------
 
-library(tidyverse)         # Load tidyverse for dplyr and tidyr
-library(skimr)
+library(tidyverse)    # Load tidyverse for dplyr and tidyr
+library(skimr)        # For skim()
 
 # Load baselers data
 baselers <- read_csv("https://raw.githubusercontent.com/therbootcamp/baselers/master/inst/extdata/baselers.txt")
@@ -71,7 +100,7 @@ baselers <- read_csv("https://raw.githubusercontent.com/therbootcamp/baselers/ma
 # Skim the data
 skim(baselers)
 
-baselers <- baselers %>%
+baselers %>%
   
   # Change some names
   rename(age_y = age,
@@ -93,10 +122,8 @@ baselers <- baselers %>%
 
         # Show when height is greater than 150
         height_lt_150 = case_when(
-          height < 150 ~ 1,
-          height >= 150 ~ 0,
-          TRUE ~ NA_real_
-        ) %>%
+                                height < 150 ~ 1,
+                                height >= 150 ~ 0)) %>%
   
   # Sort in ascending order of sex, then
   #  descending order of age
@@ -115,37 +142,19 @@ baselers_agg <- baselers %>%
 ```
 
 
-### Packages
-
-|Package| Installation|
-|:------|:------|
-|`tidyverse`|`install.packages("tidyverse")`|
-
-
-### Datasets
-
-```{r, eval = TRUE, message = FALSE}
-library(tidyverse)
-trial_act <- read_csv("../_data/day_1/trial_act.csv")
-trial_act_demo <- read_csv("../_data/day_1/trial_act_demo_fake.csv")
-```
-
-|File | Rows | Columns |
-|:----|:-----|:------|
-|`trial_act.csv` | 2139 | 27 |
-|`trial_act_demo_fake`| 2139 | 3|
-
 # Tasks
 
 ## Getting setup
 
-A. Open your R project. It should already have the folders `0_Data` and `1_Code`. Make sure that the `trial_act.csv` and `trial_act_demo_fake.csv` files are in your `1_Data` folder
+A. Open your R project. It should already have the folders `0_Data` and `1_Code`. Make sure that the data files listed in the `Datasets` section above are in your `1_Data` folder
 
 ```{r}
 # Done!
 ```
 
-B. Open a new R script and save it as a new file called `wrangling_practical.R` in the `2_Code` folder. At the top of the script, using comments, write your name and the date. Then, load the set of packages for this practical with `library()`. Here's how the top of your script should look:
+B. Open a new R script. At the top of the script, using comments, write your name and the date. Save it as a new file called `wrangling_practical.R` in the `2_Code` folder.  
+
+C. Using `library()` load the set of packages for this practical listed in the packages section above.
 
 ```{r, eval = FALSE, echo = TRUE}
 ## NAME
@@ -163,7 +172,7 @@ library(speff2trial)
 library(skimr)
 ```
 
-C. For this practical, we'll use the `trial_act` data, this is the result of a randomized clinical trial comparing the effects of different medications on adults infected with the human immunodeficiency virus. Using the following template, load the data into R and store it as a new object called `trial_act`.
+D. For this practical, we'll use the `trial_act` data, this is the result of a randomized clinical trial comparing the effects of different medications on adults infected with the human immunodeficiency virus. Using the following template, load the data into R and store it as a new object called `trial_act`.
 
 ```{r, echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
 # Load trial_act.csv from the data folder in your working directory
@@ -171,7 +180,7 @@ C. For this practical, we'll use the `trial_act` data, this is the result of a r
 trial_act <- read_csv(file = "XXX/XXX")
 ```
 
-D. Using the same code structure, load the `trial_act_demo_fake.csv` data as a new dataframe called `trial_act_demo_fake`
+E. Using the same code structure, load the `trial_act_demo_fake.csv` data as a new dataframe called `trial_act_demo_fake`
 
 ```{r, echo = FALSE, eval = FALSE, message = FALSE, warning = FALSE}
 trial_act <- read_csv(file = "https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp2017/master/tutorials/data/trial_act.csv")
@@ -181,21 +190,14 @@ trial_act <- read_csv(file = "https://raw.githubusercontent.com/therbootcamp/Bas
 library(tidyverse)
 ```
 
-E. The `trial_act` data is actually a copy of a dataset from the `speff2trial` package called `ACTG175`. Look at the help menu for the `ACTG175` data by running `?ACTG175` (If you become really interested in the data, you can also read an article discussing the trial here: [http://www.nejm.org/doi/full/10.1056/nejm199610103351501#t=article](http://www.nejm.org/doi/full/10.1056/nejm199610103351501#t=article))
-
-```{r, echo = TRUE, eval = FALSE}
-# Look at documentation for ACTG175 data (contained in the speff2trial package)
-?ACTG175
-```
-
-F. Take a look at the first few rows of the datasets by printing them to the console.
+G. Take a look at the first few rows of the datasets by printing them to the console.
 
 ```{r, eval = FALSE, echo = TRUE}
 # Print trial_act object
 trial_act
 ```
 
-G. Use the `skim()` function (from the `skimr` package) to get more details on the datasets.
+H. Use the `skim()` function (from the `skimr` package) to get more details on the datasets.
 
 ```{r}
 skim(trial_act)
@@ -225,7 +227,12 @@ baselers <- baselers %>%
 
 ### Change column names with rename()
 
-1. Let's change some of the column names in `trial_act`. Using `rename()`, change the column name `wtkg` to `weight_kg` (to specify that weight is in kilograms) Be sure to assign the result back to `trial_act` to change it!
+1. Using `rename()`, change the column name `wtkg` in the `trial_act` dataframe to `weight_kg` (to specify that weight is in kilograms). Be sure to assign the result back to `trial_act` to change it!
+
+```{r, echo = TRUE}
+trial_act <- trial_act %>%
+  rename(XX = XX)
+```
 
 2. Change the column name `age` to `age_y` (to specify that age is in years).
 
@@ -239,6 +246,12 @@ trial_act <- trial_act %>%
 
 3. Using the `select()` function, create a new dataframe called `CD4_wide` that *only* contains the columns `pidnum`, `arms`, `cd40`, `cd420`, and `cd496`. The `cd40`, `cd420`, and `cd496` columns show patient's CD4 T cell counts at baseline, 20 weeks, and 96 weeks. Print the result to make sure it worked!
 
+```{r, echo = TRUE, eval = FALSE}
+XX <- trial_act %>% 
+  select(XX, XX, XX, XX, ...)
+```
+
+
 4. Did you know you can easily select all columns that start with specific characters using `starts_with()`? Try adapting the following code to get the same result you got before.
 
 ```{r, echo = TRUE, eval = FALSE}
@@ -249,29 +262,37 @@ CD4_wide <- trial_act %>%
 
 ### Add new columns with mutate()
 
-5. Using the `mutate()` function, add the following two new columns to `trial_act`. Try combining these into *one* call to the mutate() function!
-    - `agem`: Each patient's age in months instead of years (Hint: Just multiply `age_y` by 12!).
+5. Using the `mutate()` function, add the column `agem` which shows each patient's age in months instead of years (Hint: Just multiply `age_y` by 12!)
+
+```{r, eval = FALSE, echo = TRUE}
+trial_act <- trial_act %>%
+  mutate(XX = XX * 12)
+```
+
+6. Now add the following two new columns to `trial_act`. Try combining these into *one* call to the mutate() function!
+
     - `weight_lb`: Weight in lbs instead of kilograms. You can do this by multiplying `weight_kg` by 2.2.
     - `cd_change_20`: Change in CD4 T cell count from baseline to 20 weeks. You can do this by taking `cd420 - cd40`
     - `cd_change_960`: Change in CD4 T cell count from baseline to 96 weeks. You can do this by taking `cd496 - cd40`
 
-```{r}
+```{r, echo = TRUE, eval = FALSE}
 trial_act <- trial_act %>% 
-  mutate(agem = age_y * 12)
+  mutate(weight_lb = XXX,
+         cd_change_20 = XXX,
+         XX = XX)
 ```
 
 #### mutate(case_when())
 
 6. Create a new column `gender_char` that shows gender as a character string. To do this, use a combination of `mutate()` and `case_when`. The original gender data is stored in the `gender` column, where 0 = "female" and 1 = "male".
     
-```{r}
+```{r, echo = TRUE}
+# Create gender_char which shows gender as a stringh
 trial_act <- trial_act %>%
   mutate(
   gender_char = case_when(
-    gender == 0 ~ "female",
-    gender == 1 ~ "male"
-  )
-  )
+    gender == XX ~ "XX",
+    gender == XX ~ "XX"))
 ```
 
 7. Create a new column `over50` that is 1 when patients are older than 50, and 0 when they are younger than or equal to 50 (hint: Use logical comparisons > and <=)
@@ -329,7 +350,6 @@ trial_act <- trial_act %>%
 trial_act
 ```
 
-
 ### Filter specific rows with `filter()`
 
 12. Using the `filter()` function, create a new dataframe called `trial_act_m` that only contains data from males (`gender_char == "male"`)
@@ -358,7 +378,7 @@ trial_act_demo
 
 ```{r, echo = TRUE, eval = FALSE}
 trial_act <- trial_act %>%
-  left_join(XX, by = XXX)
+  left_join(XX, by = "XX")
 ```
 
 15. Using your new `trial_act` dataframe, which should contain the exercise data, calculate the mean number of days of exercise that patients reported.
