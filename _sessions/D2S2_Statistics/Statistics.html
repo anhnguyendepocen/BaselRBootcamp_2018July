@@ -3,16 +3,31 @@
   <head>
     <title>Statistics</title>
     <meta charset="utf-8">
-    <meta name="author" content="The R Bootcamp www.therbootcamp.com" />
+    <meta name="author" content="The R Bootcamp @ Erfurt www.therbootcamp.com @therbootcamp" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
-    <link rel="stylesheet" href="../_css/my-theme.css" type="text/css" />
+    <link rel="stylesheet" href="my-theme.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
 # Statistics
-### The R Bootcamp<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a>
+### The R Bootcamp @ Erfurt<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'><span class="citation">@therbootcamp</span></a>
+### June 2018
+
+---
+
+
+layout: true
+
+&lt;div class="my-footer"&gt;&lt;span&gt;
+&lt;a href="https://therbootcamp.github.io/"&gt;&lt;font color="#7E7E7E"&gt;Erfurt, June 2018&lt;/font&gt;&lt;/a&gt;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&lt;a href="https://therbootcamp.github.io/"&gt;&lt;font color="#646464"&gt;www.therbootcamp.com&lt;/font&gt;&lt;/a&gt;
+&lt;/span&gt;&lt;/div&gt; 
 
 ---
 
@@ -20,146 +35,31 @@ class: center, middle, inverse, title-slide
 
 
 
+## If you want to do statistics in R, there is a package for that!
 
-
-
-## There are tons of statistical packages in R!
-
-
-.pull-left35[
+.pull-left5[
 &lt;br&gt;&lt;br&gt;
 
 | Package| Models|
 |------:|:----|
+| `stats`|Generalized linear model|
 |     `afex`|   Anovas|
-|     `rpart`|    Decision Trees|
 |     `lme4`|   Mixed effects regression|
+|     `rpart`|    Decision Trees|
 |     `BayesFactor`| Bayesian statistics|
 |     `igraph`| Network analysis|
 |     `neuralnet`| Neural networks|
+|     `MatchIt`| Matching and causal inference|
+|     `survival`| Longitudinal survival analysis|
+|     ...| Anything you can ever want!|
 
-]
-
-.pull-right6[
-
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/statistical_procedures.png" width="100%" style="display: block; margin: auto;" /&gt;
-
-]
-
----
-
-.pull-left45[
-
-### We will cover...
-
--  Basic structure and arguments of most statistical functions
-    - `formula`, `data`
-    
-- Simple `htest` objects
-
-- Generalized linear model 
-    - `glm`, `aov`
-
-- Common methods
-    - `print()`, `summary()`, `names()`, `predict()`, `plot()`
-
-- Accessing elements from statistical objects with `$`
-
-- Working with statistical distributions
-
-]
-
-.pull-right5[
-
-### Examples
-
-
-```r
-# T-test comparing weights from Diets 1 and 2
-t.test(formula = weight ~ Diet,
-       data = ChickWeight %&gt;%
-              filter(Diet %in% c(1, 2)))
-
-# Regression model
-
-weight_glm &lt;- glm(formula = weight ~ .,
-                  data = ChickWeight)
-
-# Summary information
-summary(weight_glm)
-
-weight_glm$coefficients # Acess coefficients
-weight_glm$coefficients # Access residuals
-
-
-### Generate random data
-x1 &lt;- rnorm(n = 100, mean = 10, sd = 5)
-x2 &lt;- rnorm(n = 100, mean = 5, sd = 1)
-noise &lt;- rnorm(n= 100, mean = 2, sd = 10)
-
-# Create y as a function of x1, x2, and noise
-y &lt;- x1 + x2 + noise
-```
-
-]
-
-
----
-# Basic structure of statistical functions
-
-.pull-left5[
-
-
-| Test| R Function|
-|:------|:----|
-|     `formula`|The dependent variable and one or more independent variables|
-|     `data`|  The dataframe containing variables|
-
-
-
-```r
-trial_X
-```
-
-```
-##   id sex age arm y_primary y_secondary
-## 1  1   m  35   1        50           1
-## 2  2   f  42   2        78           1
-## 3  3   f  24   1        46           0
-## 4  4   m  56   2        97           1
-## 5  5   f  49   1        74           1
-```
 
 
 ]
 
 .pull-right45[
 
-
-```r
-TEST(formula = Y ~ X1 + X2 + ...
-     data = DATA
-     ...)
-```
-
-
-### Examples
-
-
-```r
-# T-test
-# DV = y_1, IV = arm
-t.test(formula = y_1 ~ arm
-       data = trial_X)
-
-# Regression
-# DV = y_sec, IV = arm, sex, age
-# Data = trial_X (with filters)
-glm(formula = y_2 ~ arm + sex + age
-    data = trial_X %&gt;%
-             filter(id &gt; 50 &amp; 
-                    BMI == "Normal"))
-```
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/statistical_procedures.png" width="100%" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -168,311 +68,672 @@ glm(formula = y_2 ~ arm + sex + age
 
 .pull-left45[
 
-&lt;br&gt;&lt;br&gt;&lt;br&gt;
-## Different tests have different arguments
+## We will cover...
 
-- Individual tests may have many optional arguments (look at help menus!)
+Basic structure and arguments of most statistical functions
+- `formula`, `data`
+    
+Simple `htest` objects (t.test, correlation)
 
-- Each of these have *default* values. If you don't specify them, the function will use the default.
+Generalized linear model 
+- `lm()`, `glm()`, `aov()`
 
-- Customize a test by specifying arguments directly.
+Common methods to explore statistical objects
+- `print()`, `summary()`, `names()`, `predict()`, `plot()`
+
+Dissect statistical objects with `$`
+
+Work with R's library of statistical distributions
 
 ]
-
 
 .pull-right5[
 
-### Customised t-test
 
+```r
+# T-test comparing height based on gender
+t.test(formula = height ~ sex,
+         data = baselers)
 
+# Regression model
+income_glm &lt;- glm(formula = income ~ .,
+                  data = baselers %&gt;% select(-id))
 
-```rm
-# Additional arguments to t.test
+# Summary information
+summary(income_glm)  
 
-t.test(formula = t_primary ~ arm,
-       data = trial_X,
-       alternative = "greater", # One-sided
-       mu = 10,                 # H0
-       conf.level = .90)        # Conf level
+# Dissect
+income_glm$coefficients # Acess coefficients
+income_glm$residuals # Access residuals
 
+### Generate random data
+x1 &lt;- rnorm(n = 100, mean = 10, sd = 5)
+x2 &lt;- rnorm(n = 100, mean = 5, sd = 1)
+noise &lt;- rnorm(n= 100, mean = 0, sd = 10)
+
+# Create y as a function of x1, x2, and noise
+y &lt;- x1 + x2 + noise
+
+df &lt;- data.frame(x1, x2, y)
+
+# Regress y on x1 and x2
+lm(formula = y ~ ., 
+   data = df)
 ```
 
-### Customised regression
+]
+
+---
+
+# Basic structure of statistical functions
+
+.pull-left4[
+
+Statistical functions always require a dataframe of &lt;b&gt;data&lt;/b&gt;
+
+
+|sex    | age| height| weight| income|
+|:------|---:|------:|------:|------:|
+|male   |  44|  174.3|  113.4|   6300|
+|male   |  65|  180.3|   75.2|  10900|
+|female |  31|  168.3|   55.5|   5100|
+
+They also require a &lt;b&gt;formula&lt;/b&gt; that specifies a dependent variable (y) as a function of one or more independent variables (x1, x2, ...) in the form:
+
+&lt;font size = 6&gt;formula = y ~ x1 + x2 +...&lt;/font&gt;
+
+Note: The short hand formula = y ~ . means include &lt;i&gt;all&lt;/i&gt; variables in the data
+
+]
+
+.pull-right55[
+
+To create a statistical object, apply the statistical function `STAT_FUN` with the `formula` and `data` arguments:
+
+![](https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/formula_description.png)&lt;!-- --&gt;
+
 
 
 ```r
-# Additional arguments to glm
-
-# Include -1 to not have an intercept!
-glm(formula = y_secondary ~ arm + sex + age - 1,
-    data = trial_X,
-    family = "binomial")     # Logistic Reg
+# Create regression object (my_glm)
+my_glm &lt;- glm(formula = income ~ age + height,
+              data = baselers)
 ```
 
+]
+
+---
+ 
+.pull-left4[
+
+## Different tests have different arguments
+
+Individual tests may have many optional arguments (look at help menus!)
+
+Each of these have *default* values. If you don't specify them, the function will use the default.
+
+To customise a test, look at the help menu and specifying arguments directly.
+
+### ?glm()
+
+![](https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/glm_help.jpg)&lt;!-- --&gt;
+
+]
+
+
+.pull-right55[
+
+Default vs. Customised Generalized linear model (GLM)
+
+
+```r
+# GLM
+
+# Default
+glm(formula = income ~ age + education,
+    data = baselers)
+
+# Customised
+glm(formula = eyecor ~ age + education,
+    data = baselers,
+    family = "binomial")  # Logistic regression
+```
+
+Default vs. Customised t-test
+
+
+```r
+# T-test
+
+# Default
+t.test(formula = age ~ sex,
+       data = baselers)
+
+# Customised
+t.test(formula = age ~ sex,
+       data = baselers,
+       alternative = "less", # One sided test
+       var.equal = TRUE)     # Assume equal variance
+```
 
 ]
 
 
 
 ---
-## 1 or 2 sample hypothesis tests
 
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/htests.png" width="100%" style="display: block; margin: auto;" /&gt;
+.pull-left45[
 
----
+## Simple hypothesis tests
 
-.pull-left5[
-&lt;br&gt;&lt;br&gt;
-## Common 1 or 2 sample hypothesis tests
+All of the basic one and two sample hypothesis tests are included in the stats package
 
-| Test| R Function|
+| Hypothesis Test| R Function|
 |------:|----:|
 |     T-test|    `t.test()`|
 |     Correlation Test|    `cor.test()`|
 |     Chi-Square Test|   `chisq.test()`|
 
+These tests are unique because they can take either formula arguments, or individual vector arguments `x`, and `y`
+
 ]
+
 
 .pull-right5[
 
-#### Always check help menus!
-
-`?t.test`
-
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/ttesthelp_ss.png" width="80%" style="display: block; margin: auto;" /&gt;
-
-]
-
----
-## t-tests with `t.test()`
-
-.pull-left3[
-
-### ChickWeight data
-
-```r
-ChickWeight
-```
-
-
-```
-##   weight Time Chick Diet
-## 1     59    4    30    2
-## 2     93    8    26    2
-## 3     79    6    40    3
-## 4    145   12    28    2
-## 5     48    4     5    1
-## 6    148   18    22    2
-```
-
-]
-
-.pull-right65[
-
-### Two sample t-test
-
-&gt; Is the mean weight of the chicks on Diet 1 different from Diet 2?
+### T-Test with t.test()
 
 
 ```r
-t.test(formula = weight ~ Diet,     # Formula
-       data = ChickWeight %&gt;%       # Data in Chickweight
-                filter(Diet %in% c(1, 2)))
-```
-
-```
-## Warning: package 'bindrcpp' was built under R version 3.4.4
+# 1-sample t-test
+t.test(x = baselers$age, 
+       mu = 40)  # Mean under H0
 ```
 
 ```
 ## 
-## 	Welch Two Sample t-test
+## 	One Sample t-test
 ## 
-## data:  weight by Diet
-## t = -2.6, df = 200, p-value = 0.009
-## alternative hypothesis: true difference in means is not equal to 0
+## data:  baselers$age
+## t = 28, df = 10000, p-value &lt;2e-16
+## alternative hypothesis: true mean is not equal to 40
 ## 95 percent confidence interval:
-##  -34.900  -5.042
+##  44.29 44.93
 ## sample estimates:
-## mean in group 1 mean in group 2 
-##           102.6           122.6
+## mean of x 
+##     44.61
 ```
 
+
+```r
+# 2-sample t-test
+t.test(formula = income ~ sex,
+       data = baselers)
+
+# Note: Output hidden
+```
+
+
 ]
+
+
 
 ---
-## Correlation test with `cor.test()`
 
-.pull-left3[
+.pull-left45[
 
-### ChickWeight data
+## Simple hypothesis tests
 
-```r
-ChickWeight
-```
+All of the basic one and two sample hypothesis tests are included in the stats package
 
+| Hypothesis Test| R Function|
+|------:|----:|
+|     T-test|    `t.test()`|
+|     Correlation Test|    `cor.test()`|
+|     Chi-Square Test|   `chisq.test()`|
 
-
-```
-##   weight Time Chick Diet
-## 1     59    4    30    2
-## 2     93    8    26    2
-## 3     79    6    40    3
-## 4    145   12    28    2
-## 5     48    4     5    1
-## 6    148   18    22    2
-```
+These tests are unique because they can take either formula arguments, or individual vector arguments `x`, and `y`
 
 ]
 
-.pull-right65[
 
-### Correlation Test
+.pull-right5[
 
-&gt; Is there a correlation between weight and Time?
-
-- For `cor.test()`, formula looks like `formula = ~ a + b`
+### Correlation test with cor.test()
 
 
 ```r
-cor.test(formula = ~ weight + Time, # Formula
-         data = ChickWeight)          # Data in Chickweight
+# Correlation test
+cor.test(x = baselers$age,
+         y = baselers$income)
 ```
 
 ```
 ## 
 ## 	Pearson's product-moment correlation
 ## 
-## data:  weight and Time
-## t = 37, df = 580, p-value &lt;2e-16
+## data:  baselers$age and baselers$income
+## t = 180, df = 8500, p-value &lt;2e-16
 ## alternative hypothesis: true correlation is not equal to 0
 ## 95 percent confidence interval:
-##  0.8109 0.8599
+##  0.8882 0.8968
 ## sample estimates:
 ##    cor 
-## 0.8371
+## 0.8926
+```
+
+
+
+```r
+# Version using formula (same result as above)
+cor.test(formula = ~ age + income,
+         data = baselers)
+```
+
+
+]
+
+---
+
+## Regression with glm(), lm()
+
+.pull-left35[
+
+Part of the `baselers` dataframe:
+
+
+| food| income| happiness|
+|----:|------:|---------:|
+|  610|   6300|         5|
+| 1550|  10900|         7|
+|  720|   5100|         7|
+|  680|   4200|         7|
+|  260|   4000|         5|
+
+**Goal**: Create a regression model predicting how much money people spend on `food` as a function of `income`
+
+&lt;br&gt;
+&lt;!-- `$$\Large food = \beta_{0} + \beta_{1} \times Inc + \beta_{1} \times Hap+ \epsilon$$` --&gt;
+
+]
+
+.pull-right6[
+
+To conduct a regression analysis, use `glm()` or `lm()`. `lm()` is for simple linear regression, while `glm()` is generalized. Both are part of the `stats` package (already loaded in R)
+
+
+
+```r
+# Create a glm object called food_glm
+
+# food (y) on income (x1) and happiness (x2)
+food_glm &lt;- glm(formula = food ~ income + happiness,
+              data = baselers)
+
+
+# food_glm has clas "glm"
+class(food_glm)
+```
+
+```
+## [1] "glm" "lm"
+```
+
+We now have a "glm" object called `food_glm` that stores all of the results of our regression analysis.
+
+]
+
+
+---
+
+## Customising formulas
+
+You can keep adding terms to formulas by "adding"" them with `+` 
+
+
+```r
+# Include multiple terms with +
+my_glm &lt;- glm(formula = income ~ food + alcohol + happiness + hiking,
+              data = baselers)
+```
+
+To include *all* variables in a dataframe, use the catch-all notation &lt;b&gt;`formula = y ~ .`&lt;/b&gt;
+
+
+```r
+# Use  y ~ . to include ALL variables
+my_glm &lt;- glm(formula = income ~ .,
+              data = baselers)
+```
+
+To include *interaction terms* use `x1 * x2` instead of `x1 + x2`
+
+
+```r
+# Include an interaction term between food and alcohol
+my_glm &lt;- glm(formula = income ~ food * alcohol,
+              data = baselers)
+```
+
+---
+
+.pull-left35[
+## Exploring statistical objects
+
+Once you have created a statistical object, you can explore it using many *generic* functions such as `print()`, `summary()`, `predict()` and `plot()`.
+
+
+```r
+# Create statistical object
+obj &lt;- STAT_FUN(formula = ...,
+                data = ...)
+
+names(obj)       # Elements
+print(obj)       # Print
+summary(obj)     # Summary
+plot(obj)        # Plotting
+predict(obj, ..) # Predict
+```
+
+They won't work for all objects, but it is a great idea to try each of them!
+
+]
+
+.pull-right6[
+&lt;br&gt;
+
+
+```r
+# Create a glm object
+my_glm &lt;- glm(formula = income ~ happiness + age,
+              data = baselers)
+```
+
+Apply the `print()` function to a statistical object
+
+
+```r
+# Print the object
+print(my_glm)
+```
+
+```
+## 
+## Call:  glm(formula = income ~ happiness + age, data = baselers)
+## 
+## Coefficients:
+## (Intercept)    happiness          age  
+##        1575         -100          149  
+## 
+## Degrees of Freedom: 8509 Total (i.e. Null);  8507 Residual
+##   (1490 observations deleted due to missingness)
+## Null Deviance:	    6.33e+10 
+## Residual Deviance: 1.28e+10 	AIC: 145000
+```
+
+]
+
+
+
+---
+
+.pull-left35[
+## Exploring statistical objects
+
+Once you have created a statistical object, you can explore it using many *generic* functions such as `print()`, `summary()`, `predict()` and `plot()`.
+
+
+```r
+# Create statistical object
+obj &lt;- STAT_FUN(formula = ...,
+                data = ...)
+
+names(obj)       # Elements
+print(obj)       # Print
+summary(obj)     # Summary
+plot(obj)        # Plotting
+predict(obj, ..) # Predict
+```
+
+They won't work for all objects, but it is a great idea to try each of them!
+
+]
+
+.pull-right6[
+&lt;br&gt;
+
+
+```r
+# Create a glm object
+my_glm &lt;- glm(formula = income ~ happiness + age,
+              data = baselers)
+```
+
+Apply the `summary()` function to a statistical object
+
+
+```r
+# Print the object
+summary(my_glm)
+```
+
+```
+## 
+## Call:
+## glm(formula = income ~ happiness + age, data = baselers)
+## 
+## Deviance Residuals: 
+##    Min      1Q  Median      3Q     Max  
+##  -4045    -835       3     814    4899  
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) 1575.497     94.363   16.70  &lt; 2e-16 ***
+## happiness   -100.431     12.520   -8.02  1.2e-15 ***
+## age          149.312      0.815  183.31  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## (Dispersion parameter for gaussian family taken to be 1501842)
+## 
+##     Null deviance: 6.3307e+10  on 8509  degrees of freedom
+## Residual deviance: 1.2776e+10  on 8507  degrees of freedom
+##   (1490 observations deleted due to missingness)
+## AIC: 145186
+## 
+## Number of Fisher Scoring iterations: 2
 ```
 
 ]
 
 
 ---
-## Chi-Square test with `chisq.test()`
 
-.pull-left3[
+.pull-left35[
+## Exploring statistical objects
 
-### ChickWeight data
+Once you have created a statistical object, you can explore it using many *generic* functions such as `print()`, `summary()`, `predict()` and `plot()`.
+
 
 ```r
-ChickWeight
+# Create statistical object
+obj &lt;- STAT_FUN(formula = ...,
+                data = ...)
+
+names(obj)       # Elements
+print(obj)       # Print
+summary(obj)     # Summary
+plot(obj)        # Plotting
+predict(obj, ..) # Predict
 ```
 
-
-
-```
-##   weight Time Chick Diet
-## 1     59    4    30    2
-## 2     93    8    26    2
-## 3     79    6    40    3
-## 4    145   12    28    2
-## 5     48    4     5    1
-## 6    148   18    22    2
-```
-
+They won't work for all objects, but it is a great idea to try each of them!
 
 ]
 
-.pull-right65[
+.pull-right6[
 
-### Chi-Square test
+### Statistical objects are lists! Explore them!
 
-&gt; Are there more observations from one Diet than another?
-
-- For `chisq.test()`, main argument should be a table of values created from the `table()` function:
+Almost all statistical objects are *lists*. This means they all have named elements you can access with `$`. To see all of the named elements, use `names()`
 
 
 ```r
-table(ChickWeight$Diet)   # Look at a table of frequencies
+# What are the named elements
+names(my_glm)
 ```
 
 ```
-## 
-##   1   2   3   4 
-## 220 120 120 118
+##  [1] "coefficients"      "residuals"         "fitted.values"     "effects"           "R"                
+##  [6] "rank"              "qr"                "family"            "linear.predictors" "deviance"         
+## [11] "aic"               "null.deviance"     "iter"              "weights"           "prior.weights"    
+## [16] "df.residual"       "df.null"           "y"                 "converged"         "boundary"         
+##  [ reached getOption("max.print") -- omitted 11 entries ]
 ```
+ 
+ 
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/list_tab.png" width="70%" style="display: block; margin: auto;" /&gt;
 
-```r
-chisq.test(x = table(ChickWeight$Diet)) # Run test on table
-```
-
-```
-## 
-## 	Chi-squared test for given probabilities
-## 
-## data:  table(ChickWeight$Diet)
-## X-squared = 53, df = 3, p-value = 2e-11
-```
 
 ]
 
 
 ---
-.pull-left45[
 
-## Assigning hypothesis test objects
+.pull-left35[
+## Exploring statistical objects
 
-- Hypothesis tests return an object of class `"htest"`
-- Can assign a hypothesis test to an object, and then extract info with `$`:
+Once you have created a statistical object, you can explore it using many *generic* functions such as `print()`, `summary()`, `predict()` and `plot()`.
 
-#### Examples of what's in htest objects
 
-| Element| Result|
-|------:|----:|
-|    `x$statistic`|    A test statistic|
-|     `x$parameter`|    Degrees of freedom|
-|     `x$p.value`|   The p-value|
-|     `x$conf.int`|  Confidence interval|
+```r
+# Create statistical object
+obj &lt;- STAT_FUN(formula = ...,
+                data = ...)
+
+names(obj)       # Elements
+print(obj)       # Print
+summary(obj)     # Summary
+plot(obj)        # Plotting
+predict(obj, ..) # Predict
+```
+
+They won't work for all objects, but it is a great idea to try each of them!
+
 ]
 
-.pull-right5[
-### What's in an htest object?
+.pull-right6[
+
+### Statistical objects are lists! Explore them!
+
+Almost all statistical objects are *lists*. This means they all have named elements you can access with `$`. To see all of the named elements, use `names()`
 
 
 ```r
-# One-sample t-test
-
-weight_tt &lt;- t.test(x = ChickWeight$weight,
-                    mu = 120,
-                    alternative = "two.sided")
-
-# What's in the weight_tt object?
-names(weight_tt)
+# Look at coefficients
+my_glm$coefficients
 ```
 
 ```
-## [1] "statistic"   "parameter"   "p.value"     "conf.int"    "estimate"    "null.value"  "alternative"
-## [8] "method"      "data.name"
+## (Intercept)   happiness         age 
+##      1575.5      -100.4       149.3
 ```
 
 ```r
-# Get the p.value
-weight_tt$p.value
+# First 5 fitted values
+my_glm$fitted.values[1:5]
 ```
 
 ```
-## [1] 0.5387
+##     1     2     3     4     5 
+##  7643 10578  5501  4904  4657
 ```
 
 ```r
-# Get the confidence interval
-weight_tt$conf.int
+# First 5 residuals
+my_glm$residuals[1:5]
 ```
 
 ```
-## [1] 116.0 127.6
-## attr(,"conf.level")
-## [1] 0.95
+##       1       2       3       4       5 
+## -1343.1   322.2  -401.2  -703.9  -656.8
 ```
+
+
+]
+
+
+---
+
+.pull-left35[
+## predict()
+
+Many (but not all) statistical objects have an associated `predict()` method.
+
+`predict()` allows you to use the model to make predictions for new data, and understand how the model works.
+
+
+
+
+
+
+
+```r
+lastyear
+```
+
+
+| id| age| fitness| tattoos| income|
+|--:|---:|-------:|-------:|------:|
+|  1|  44|       7|       6|   6300|
+|  2|  65|       8|       5|  10900|
+|  3|  31|       6|       3|   5100|
+
+]
+
+
+.pull-right6[
+Create model based on old data
+
+
+```r
+# Create regression model predicting income
+mod &lt;- lm(formula = income ~ age + fitness + tattoos,
+          data = lastyear)
+
+mod$coefficients
+```
+
+```
+## (Intercept)         age     fitness     tattoos 
+##       994.1       146.8        75.1      -173.3
+```
+
+
+```r
+thisyear
+```
+
+
+|  id| age| fitness| tattoos|
+|---:|---:|-------:|-------:|
+| 101|  21|       3|       4|
+| 102|  23|       6|       8|
+| 103|  26|       6|       3|
+
+
+
+```r
+# Predict the income of people in thisyear
+predict(object = mod, 
+        newdata = thisyear)[1:3]
+```
+
+```
+##    1    2    3 
+## 3610 3436 4742
+```
+
 
 
 ]
@@ -481,273 +742,73 @@ weight_tt$conf.int
 
 .pull-left4[
 
-## Regression example with `glm()`
+## broom::tidy()
+
+The `tidy()` function from the `broom` package allows you to convert the key results of *many* (like hundreds) of statistical object like "glm" to a data frame
+
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/broom_hex.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 
 ```r
-head(ChickWeight)
+# Install the broom package
+install.packages("broom")
 ```
 
-```
-##   weight Time Chick Diet
-## 1     42    0     1    1
-## 2     51    2     1    1
-## 3     59    4     1    1
-## 4     64    6     1    1
-## 5     76    8     1    1
-## 6     93   10     1    1
-```
 
-**Goal**: Create a regression model predicting `weight` as a function of Time
-
-&lt;br&gt;
-`$$\Large weight = \beta_{0} + \beta_{1} \times Time + \epsilon$$`
 ]
 
 .pull-right55[
 
-- Function: `glm()`
-- Formula: `formula = weight ~ Time`
-- Data: `data = ChickWeight`
+
+```r
+# Load boom package
+library(broom)
+
+# Create a tidy dataframe from my_glm
+tidy(my_glm)
+```
+
+```
+##          term estimate std.error statistic   p.value
+## 1 (Intercept)   1575.5   94.3629    16.696 1.328e-61
+## 2   happiness   -100.4   12.5197    -8.022 1.180e-15
+## 3         age    149.3    0.8145   183.315 0.000e+00
+```
+
+The `tidy()` function works all kinds of common statistical objects, from classical regression to Bayesian models, to machine learning. 
+
+
+
 
 
 ```r
-# Create a glm object 
-
-# formula: weight ~ Time
-# data: ChickWeight
-
-chick_glm &lt;- glm(formula = weight ~ Time,
-                 data = ChickWeight)
-
-
-# Print the object
-chick_glm
+# rstan_example is a "stanfit" object
+tidy(rstan_example)[1:5,]
 ```
 
 ```
-## 
-## Call:  glm(formula = weight ~ Time, data = ChickWeight)
-## 
-## Coefficients:
-## (Intercept)         Time  
-##        27.5          8.8  
-## 
-## Degrees of Freedom: 577 Total (i.e. Null);  576 Residual
-## Null Deviance:	    2910000 
-## Residual Deviance: 872000 	AIC: 5880
-```
-]
-
-
----
-
-.pull-left7[
-## Using formulas
-
-You can keep adding terms with `+` 
-
-
-```r
-# Include multiple terms with +
-chick_glm_A &lt;- glm(formula = weight ~ Time + Diet + Chick,
-                   data = ChickWeight)
+##     term estimate std.error
+## 1     mu  6.71421    5.9803
+## 2    tau  8.10885    7.4085
+## 3 eta[1]  0.47728    0.8941
+## 4 eta[2]  0.06064    0.8221
+## 5 eta[3] -0.22427    0.8589
 ```
 
-To include *all* variables, use the generic notation &lt;font color = "blue"&gt; `formula = y ~ .`&lt;/font&gt;
 
-
-```r
-# Use  y ~ . to include ALL variables
-chick_glm_B &lt;- glm(formula = weight ~ .,
-                   data = ChickWeight)
-```
-
-To include *interaction terms* use `*`
-
-
-```r
-# Include an interaction term between Time and Diet
-chick_glm_C &lt;- glm(formula = weight ~ Time * Diet + Chick,
-                   data = ChickWeight)
-```
+Try it on your favorite models and see the magic!
 
 ]
 
 
----
-
-.pull-left35[
-
-&lt;br&gt;&lt;br&gt;
-
-## Exploring statistical objects
-
-You can apply many *generic* functions to statistical objects such as `print()`, `summary()`, `predict()` and `plot()`.
-
-
-
-```r
-# Create statistical object
-my_obj &lt;- FUN(formula = ...,
-              data = ...)
-
-names(my_obj)       # Elements
-print(my_obj)       # Print
-summary(my_obj)     # Summary
-plot(my_obj)        # Plotting
-predict(my_obj, ..) # Predict
-```
-
-]
-
-.pull-right6[
-&lt;br&gt;&lt;br&gt;
-**Apply the print() function to a statistical object**
-
-
-```r
-# Create a glm object
-chick_glm &lt;- glm(formula = weight ~ Time,
-                 data = ChickWeight)
-
-# Print the object
-print(chick_glm)
-```
-
-```
-## 
-## Call:  glm(formula = weight ~ Time, data = ChickWeight)
-## 
-## Coefficients:
-## (Intercept)         Time  
-##        27.5          8.8  
-## 
-## Degrees of Freedom: 577 Total (i.e. Null);  576 Residual
-## Null Deviance:	    2910000 
-## Residual Deviance: 872000 	AIC: 5880
-```
-
-]
-
-
----
-
-.pull-left35[
-
-
-&lt;br&gt;&lt;br&gt;
-
-## Exploring statistical objects
-
-You can apply many *generic* functions to statistical objects such as `print()`, `summary()`, `predict()` and `plot()`.
-
-
-
-```r
-# Create statistical object
-my_obj &lt;- FUN(formula = ...,
-              data = ...)
-
-names(my_obj)       # Elements
-print(my_obj)       # Print
-summary(my_obj)     # Summary
-plot(my_obj)        # Plotting
-predict(my_obj, ..) # Predict
-```
-
-]
-
-.pull-right6[
-&lt;br&gt;&lt;br&gt;
-**Apply the names() function to a statistical object**
-
-
-```r
-# Create a glm object
-chick_glm &lt;- glm(formula = weight ~ Time,
-                 data = ChickWeight)
-
-# Print the object
-names(chick_glm)
-```
-
-```
-##  [1] "coefficients"      "residuals"         "fitted.values"     "effects"           "R"                
-##  [6] "rank"              "qr"                "family"            "linear.predictors" "deviance"         
-## [11] "aic"               "null.deviance"     "iter"              "weights"           "prior.weights"    
-## [16] "df.residual"       "df.null"           "y"                 "converged"         "boundary"         
-## [21] "model"             "call"              "formula"           "terms"             "data"             
-## [26] "offset"            "control"           "method"            "contrasts"         "xlevels"
-```
-
-]
-
-
-
-
-
-
-
----
-
-.pull-left35[
-
-
-&lt;br&gt;&lt;br&gt;
-
-## Exploring statistical objects
-
-You can apply many *generic* functions to statistical objects such as `print()`, `summary()`, `predict()` and `plot()`.
-
-
-
-```r
-# Create statistical object
-my_obj &lt;- FUN(formula = ...,
-              data = ...)
-
-names(my_obj)       # Elements
-print(my_obj)       # Print
-summary(my_obj)     # Summary
-plot(my_obj)        # Plotting
-predict(my_obj, ..) # Predict
-```
-
-]
-
-.pull-right6[
-&lt;br&gt;&lt;br&gt;
-**Apply the predict() function to a statistical object**
-
-
-```r
-# Create a glm object
-chick_glm &lt;- glm(formula = weight ~ Time,
-                 data = ChickWeight)
-
-# Create a dataframe of new data
-New_Data &lt;- tibble(Time = c(10, 15, 20, 45, 5))
-
-# Predict weights of New_Data using chick_glm
-predict(chick_glm, 
-        newdata = New_Data)
-```
-
-```
-##      1      2      3      4      5 
-## 115.50 159.51 203.53 423.60  71.48
-```
-
-]
 
 ---
 
 .pull-left45[
-## Using Statistical Distributions
 
-- R gives you a host of tools for sampling data from common statistical distributions
+## Sampling Functions
 
+R gives you a host of functions for sampling data from common statistical distributions
 
 | Distribution| R Function|
 |------:|----:|
@@ -756,9 +817,9 @@ predict(chick_glm,
 |      Beta|`rbeta()`|  
 |      Binomial|`rbinom()`|  
 
-- Use these to create simulations and play around with models
+You can use these to create simulations and play around with models
 
-- You can use `sample()` to draw random samples from a vector of values
+You can use `sample()` to draw random samples from a vector of values
 
 ]
 
@@ -773,84 +834,193 @@ predict(chick_glm,
 ---
 
 .pull-left45[
-## Using Statistical Distributions
 
-- R gives you a host of tools for sampling data from common statistical distributions
+## Sample()
 
-| Distribution| R Function|
-|------:|----:|
-|    Normal| `rnorm()`|    
-|      Uniform|`runif()`|
-|      Beta|`rbeta()`|  
-|      Binomial|`rbinom()`|  
-
-- Use these to create simulations and play around with models
-
-- You can use `sample()` to draw random samples from a vector of values
-
-]
-
-
-
-.pull-right5[
+Use `sample()` to draw a sample from a vector
 
 
 ```r
 # Simulate 10 flips of a fair coin
-sample(x = c("H", "T"), 
-       size = 10, 
-       replace = TRUE)
+coin_flips &lt;- sample(x = c("H", "T"), 
+                     size = 10, 
+                     prob = c(.5, .5),
+                     replace = TRUE)
+
+coin_flips
 ```
 
 ```
-##  [1] "H" "H" "H" "T" "T" "T" "H" "T" "H" "H"
-```
-
-```r
-# 5 values from a normal distribution
-rand_samp &lt;- rnorm(n = 5, mean = 0, sd = 1)
-rand_samp # Print the sample
-```
-
-```
-## [1]  1.80077  0.05261  0.92688  1.00398 -0.95148
+##  [1] "T" "T" "H" "H" "T" "H" "T" "H" "H" "H"
 ```
 
 ```r
-t.test(x = rand_samp) # Perform 1 sample t-test
+# Table of counts
+table(coin_flips) 
 ```
 
 ```
-## 
-## 	One Sample t-test
-## 
-## data:  rand_samp
-## t = 1.2, df = 4, p-value = 0.3
-## alternative hypothesis: true mean is not equal to 0
-## 95 percent confidence interval:
-##  -0.7376  1.8707
-## sample estimates:
-## mean of x 
-##    0.5666
+## coin_flips
+## H T 
+## 6 4
+```
+
+```r
+# What proportion are heads?
+mean(coin_flips == "H")
+```
+
+```
+## [1] 0.6
 ```
 
 ]
+
+
+.pull-right5[
+
+### Simulate the birthday problem
+
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/balloons.png" width="20%" style="display: block; margin: auto;" /&gt;
+
+
+
+```r
+# Create an empty room
+birthdays &lt;- c()
+
+# While none of the birthdays are the same,
+#  keep adding new ones
+while(all(!duplicated(birthdays))) {
+  
+  # Get new birthday
+  new_day &lt;- sample(x = 1:365, size = 1)
+  
+  # Add new_day to birthdays
+  birthdays &lt;- c(birthdays, new_day)
+  
+}
+
+# Done! How many are in the room??
+length(birthdays)
+```
+
+```
+## [1] 20
+```
+
+
+]
+
+---
+
+.pull-left5[
+
+### rnorm(), runif()...
+
+Use the `rnorm()`, `runif()`... functions to draw random samples from probability distributions
+
+
+
+```r
+# Random sample from Normal distribution
+
+mysamp &lt;- rnorm(n = 100,   # Number of samples
+                mean = 10, # Mean of pop
+                sd = 5)    # SD of pop ...
+
+mysamp[1:5]  # First 5 values
+```
+
+```
+## [1] 10.501  9.980 11.936  2.309  6.631
+```
+
+```r
+mean(mysamp) # Mean
+```
+
+```
+## [1] 10.56
+```
+
+```r
+sd(mysamp)   # Standard deviation
+```
+
+```
+## [1] 4.513
+```
+
+
+]
+
+.pull-right45[
+
+
+```r
+ggplot(data = tibble(x = mysamp),
+       aes(x = x, y = ..density..)) +
+  geom_histogram(col = "white", 
+                 bins = 10) + 
+  geom_density(col = "red", size = 1.5) + 
+  theme_minimal()
+```
+
+&lt;img src="Statistics_files/figure-html/unnamed-chunk-47-1.png" width="100%" /&gt;
+
+
+
+]
+
+
+
+
+
 ---
 
 .pull-left45[
+&lt;br&gt;&lt;br&gt;
+## Other great statistics packages
+&lt;br&gt;
 
+|package|Description|
+|:----|:-----|
+|`afex`|Factorial experiments|
+|`lmer`|Linear mixed effects models|
+|`BayesFactor`|Bayesian Models|
+|`forecast`|Time series| 
+|`lavaan`|Latent variable and structural equation modelling| 
+
+
+]
+
+
+.pull-right5[
+
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/lavaan_ss.jpg" style="display: block; margin: auto;" /&gt;
+
+
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/BayesFactor_ss.png" style="display: block; margin: auto;" /&gt;
+
+
+]
+
+---
+
+.pull-left45[
+&lt;br&gt;&lt;br&gt;
 ## Summary
 
+R has a package for every statistical procedure you can imagine.
 
-- There are tons of statistical packages in R
+Most require a formula, data, and other optional arguments
 
-- Most require a formula, data, and other optional arguments
+Use help menus to understand arguments and syntax!
 
-- Use help menus to understand arguments and syntax!
+Once you've created a statistical object, use generic methods (`print()`, `names()`, `summary()`), to explore it
 
-- Once you've created a statistical object, use generic methods (`print()`, `names()`, `summary()`), to explore it
-
-- Use random sampling functions to run simulations
+Use random sampling functions to run simulations
 
 ]
 
@@ -862,268 +1032,15 @@ t.test(x = rand_samp) # Perform 1 sample t-test
 
 ]
 
----
-
-## Live Demo &amp; Pratical
-
-&lt;p&gt;&lt;font size=6&gt;&lt;b&gt;&lt;a href="https://therbootcamp.github.io/BaselRBootcamp_2018April/_sessions/D2S2_Statistics/Statistics_practical.html"&gt;Link to Statistics practical&lt;/a&gt;
-
 
 ---
+&lt;br&gt;
 
+## Questions?
 
+&lt;br&gt;&lt;br&gt;
 
----
-
-.pull-left45[
-
-### Generalised linear model
-
-
-
-
-]
-
-
-
-.pull-right5[
-
-
-
-]
-
-
-
-
-
----
-# Examples with ChickWeight Data
-
-.pull-left4[
-
-
-```r
-ChickWeight
-```
-
-
-```
-##   weight Time Chick Diet
-## 1     59    4    30    2
-## 2     93    8    26    2
-## 3     79    6    40    3
-## 4    145   12    28    2
-## 5     48    4     5    1
-## 6    148   18    22    2
-```
-
-
-
-]
-
-
-.pull-right55[
-
-![Source: http://awallpapersimages.com/wp-content/uploads/2016/07/Chicken-cute-baby-image.jpg](https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/cutechicken.jpg)
-
-]
-
-
-
----
-# Final notes
-
-.pull-left7[
-
-- When using a hypothesis test, always ask:
-
-&gt; What are the arguments?
-
-&gt; What format or class should the arguments be?
-
-- When in doubt, always look at the help files and examples at the end.
-
-- Save hypothesis tests as new objects, then apply `names()` to see what elements it contains, then extract what you want with `$`
-
-
-```r
-# Run test and save as test_A
-test_A &lt;- t.test(formula = weight ~ Diet,
-                 data = ChickWeight %&gt;%
-                        filter(Diet %in% c(1, 2)))
-
-names(test_A)  # What is in the object?
-
-test_A$statistic # Ah ok! Show me the test statistic
-```
-
-
-
-]
-
-.pull-right25[
-
-`?t.test`
-
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/ttesthelp_ss.png" width="100%" style="display: block; margin: auto;" /&gt;
-
-#### Questions?
-
-]
-
-
-
-
-
----
-# Two types of statistics: Descriptive and Inferential
-
-.pull-left4[
-
-### Inferential
-
-- Used to make inferences about a larger population. Typically done in tandem with a *hypothesis test*
-
-#### Examples
-
-| Hypothesis Test| R Function|
-|------:|----:|
-|     T-test|    `t.test()`|
-|     Correlation Test|    `cor.test()`|
-|     Chi-Square Test|   `chisq.test()`|
-|     ANOVA, Post-hoc|    `aov(), TukeyHSD()`|
-
-- Hypothesis tests typically return lists of outputs (e.g.; p-value, test statistic)
-
-
-]
-
-.pull-right55[
-#### R implimentation
-
-
-```r
-t.test(x = c(4, 3, 6, 5, 3, 2),
-       mu = 0,
-       alternative = "two.sided")
-```
-
-```
-## 
-## 	One Sample t-test
-## 
-## data:  c(4, 3, 6, 5, 3, 2)
-## t = 6.4, df = 5, p-value = 0.001
-## alternative hypothesis: true mean is not equal to 0
-## 95 percent confidence interval:
-##  2.289 5.378
-## sample estimates:
-## mean of x 
-##     3.833
-```
-
-
-]
-
-
-
-
----
-# ANOVA with `aov()`
-
-.pull-left3[
-
-### ChickWeight data
-
-```r
-ChickWeight
-```
-
-
-```
-##   weight Time Chick Diet
-## 1     59    4    30    2
-## 2     93    8    26    2
-## 3     79    6    40    3
-## 4    145   12    28    2
-## 5     48    4     5    1
-## 6    148   18    22    2
-```
-
-]
-
-.pull-right6[
-
-### ANOVA
-
-&gt; Is there difference in weights based on Diet?
-
-- Applying `summary()` to an `aov` object prints a nice table.
-
-
-```r
-E &lt;- aov(formula = weight ~ Diet, # Formula
-         data = ChickWeight)      # Data in Chickweight
-
-summary(E)  # Sow a summary of the results
-```
-
-```
-##              Df  Sum Sq Mean Sq F value  Pr(&gt;F)    
-## Diet          3  155863   51954    10.8 6.4e-07 ***
-## Residuals   574 2758693    4806                    
-## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-```
-
-]
-
----
-# Post-hoc tests with `TukeyHSD()`
-
-.pull-left4[
-
-&gt; Which specific pairs of Diets differed?
-
-### Step 1: Create aov object
-
-- Apply `TukeyHSD()` to an `aov` object to get post-hoc tests.
-
-
-```r
-# Create an aov object called D
-
-D &lt;- aov(formula = weight ~ Diet,
-         data = ChickWeight)
-```
-
-]
-
-.pull-right55[
-
-### Step 2: Apply `TukeyHSD()` to object
-
-```r
-TukeyHSD(D)  # Conduct post-hoc tests
-```
-
-```
-##   Tukey multiple comparisons of means
-##     95% family-wise confidence level
-## 
-## Fit: aov(formula = weight ~ Diet, data = ChickWeight)
-## 
-## $Diet
-##       diff      lwr   upr  p adj
-## 2-1 19.971  -0.2998 40.24 0.0552
-## 3-1 40.305  20.0335 60.58 0.0000
-## 4-1 32.617  12.2354 53.00 0.0003
-## 3-2 20.333  -2.7268 43.39 0.1058
-## 4-2 12.646 -10.5116 35.80 0.4954
-## 4-3 -7.687 -30.8450 15.47 0.8278
-```
-
-]
+# [Statistics Practical](https://therbootcamp.github.io/Erfurt_2018June/_sessions/D1S3_Statistics/Statistics_practical.html)
     </textarea>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
