@@ -1,6 +1,6 @@
 ---
 title: "Data wrangling"
-author: "The R Bootcamp @ Erfurt<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
+author: "The R Bootcamp July 2018t<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
 output: html_document
 ---
 
@@ -33,24 +33,6 @@ By the end of this practical you will know how to:
 5. Combine multiple data sets through key columns
 6. Convert data between wide and long formats
 
-### Cheatsheet
-
-Data wrangling with dplyr and tidyr
-
-- Data wrangling with dplyr and tidyr Cheatsheet: [https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf](https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf).
-
-### Datasets
-
-```{r, eval = TRUE, message = FALSE}
-library(tidyverse)
-trial_act <- read_csv("../_data/day_1/trial_act.csv")
-trial_act_demo <- read_csv("../_data/day_1/trial_act_demo_fake.csv")
-```
-
-|File | Rows | Columns |
-|:----|:-----|:------|
-|`trial_act.csv` | 2139 | 27 |
-|`trial_act_demo_fake`| 2139 | 3|
 
 ### Packages
 
@@ -60,31 +42,29 @@ trial_act_demo <- read_csv("../_data/day_1/trial_act_demo_fake.csv")
 
 ### Glossary
 
-Here are the main functions you will be using in `dplyr`:
+| Function| Package | Description |
+|:---|:------|:---------------------------------------------|
+|     `filter()`|`dplyr`|    Select rows based on some logical criteria| 
+|     `arrange()`|`dplyr`|    Sort rows| 
+|     `select()`|`dplyr`|    Select columns based on name or index| 
+|     `rename()`|`dplyr`|    Rename columns| 
+|     `mutate()`|`dplyr`|    Add new columns|
+|     `case_when()`|`dplyr`|    Recode values of a column| 
+|     `group_by(), summarise()`|`dplyr`|   Group data and then calculate summary statistics|
+|     `left_join()`|`dplyr`|   Combine multiple data sets using a key column|
+|     `spread()`|`tidyr`|    Convert long data to wide format - from rows to columns| 
+|     `gather()`|`tidyr`|    Convert wide data to long format - from columns to rows|
 
-| Function| Description | Example |
-|:---|:----------------------|:--------------------------------------|
-|     `filter()`|    Select rows based on some criteria| data %>% filter(age > 40 & sex == "m")|
-|     `arrange()`|    Sort rows| data %>% arrange(date, group)|
-|     `select()`|    Select columns.| data %>% select(age, sex)<br>data %>% select(age, sex, everything())|
-|     `rename()`|    Rename columns| data %>% rename(new = old)|
-|     `mutate()`|    Add new columns| data %>% mutate(height.m = height.cm / 100)|
-|     `case_when()`|    Recode values of a column| data %>% mutate(sex_n = case_when(sex == 0 ~ "m", sex == 1 ~ "f"))|
-|     `group_by(), summarise()`|   Group data and then calculate summary statistics|data %>% group_by(...) %>% summarise(...)|
-|     `left_join()`|   Combine multiple data sets using a key column|data %>% left_join(data2, by = "id")|
+### Cheatsheet
 
-Here are the two functions you will be using from the `tidyr` package:
-
-| Function| Description| Example |
-|:---|:----------------------|:--------------------------------------|
-|     `spread()`|    Convert long data to wide format - from rows to columns| data %>% gather(time, data, -id)
-|     `gather()`|    Convert wide data to long format - from columns to rows|data %>% spread(time, data)
-
-
+<figure>
+<center>
+<a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">
+  <img src="https://image.slidesharecdn.com/data-wrangling-cheatsheet-160705210122/95/data-wrangling-with-dplyr-and-tidyr-cheat-sheet-1-638.jpg?cb=1467752577" alt="Trulli" style="width:70%">
+  <figcaption>https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf</figcaption>
+</figure>
 
 ### Examples
-
-The following examples will take you through the steps of doing data wrangling with dplyr. Try to go through each line of code and see how it works!
 
 ```{r, eval = FALSE, echo = TRUE}
 # -----------------------------------------------
@@ -141,8 +121,20 @@ baselers_agg <- baselers %>%
   )
 ```
 
-
 # Tasks
+
+### Datasets
+
+```{r, eval = TRUE, message = FALSE}
+library(tidyverse)
+trial_act <- read_csv("../_data/complete/trial_act.csv")
+trial_act_demo <- read_csv("../_data/complete/trial_act_demo_fake.csv")
+```
+
+|File | Rows | Columns |
+|:----|:-----|:------|
+|`trial_act.csv` | 2139 | 27 |
+|`trial_act_demo_fake`| 2139 | 3|
 
 ## Getting setup
 
@@ -168,7 +160,6 @@ library(XX)
 
 ```{r, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE}
 library(tidyverse)
-library(speff2trial)
 library(skimr)
 ```
 
@@ -203,38 +194,22 @@ H. Use the `skim()` function (from the `skimr` package) to get more details on t
 skim(trial_act)
 ```
 
-## Notes
+### A - Change column names with rename()
 
-In this practical you'll be doing lots of sequential operations on the same data. Whenever you can, try to keep the pipe `%>%` going to connect each task to the one before it. See below for an example
+A1. Look at the names of the `trial_act` data with `names()`
 
-```{r, echo = TRUE, eval = FALSE}
-
-# Version A) Try to convert this...
-
-baselers <- baselers %>% rename(age_y = age)
-baselers <- baselers %>% rename(swimming = rhine)
-baselers <- baselers %>% filter(age_y > 30)
-
-# Version B) To this version where you keep the pipe going from the beginning!
-
-baselers <- baselers %>% 
-  
-  rename(age_y = age,
-         swimming = rhine) %>%
-  
-  filter(age_y > 30)
-```
-
-### Change column names with rename()
-
-1. Using `rename()`, change the column name `wtkg` in the `trial_act` dataframe to `weight_kg` (to specify that weight is in kilograms). Be sure to assign the result back to `trial_act` to change it!
+A2. Using `rename()`, change the column name `wtkg` in the `trial_act` dataframe to `weight_kg` (to specify that weight is in kilograms). Be sure to assign the result back to `trial_act` to change it!
 
 ```{r, echo = TRUE}
+# Change the name to weight_kg from wtkg
+
 trial_act <- trial_act %>%
   rename(XX = XX)
 ```
 
-2. Change the column name `age` to `age_y` (to specify that age is in years).
+A3. Look at the names of your `trial_act` dataframe again, do you now see the column `weight_kg`?
+
+A4. Change the column name `age` to `age_y` (to specify that age is in years).
 
 ```{r}
 trial_act <- trial_act %>%
