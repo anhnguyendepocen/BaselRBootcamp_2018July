@@ -96,22 +96,24 @@ table(baslers$sex)  # How many of each sex?
 ---
 .pull-left5[
 
-# What is Wrangling?
+## Wrangling: All the stuff you have to do before your real analysis
 
 ###Transform
 
-- Change column names
-- Change existing columns
-- Add new columns
+Change column names
+
+Add new columns
 
 ###Organise
 
-- Move data between columns and rows
-- Merging data from two separate dataframes
-- Sort data by columns
+Sort data by columns
+
+Merging data from two separate dataframes
+
+Move data between columns and rows
 
 ### Aggregate
-- Group data and summarise
+Group data and summarise
 ]
 
 
@@ -330,7 +332,10 @@ patients_df   # Demographic data
 
 
 Change column names with `rename()`
-New = Old, New = Old, ...
+
+New = Old, 
+
+New = Old, 
 
 ```{r}
 patients_df  # Original
@@ -394,7 +399,7 @@ patients_df %>%
 
 # `case_when()`
 
-Use `case_when()` in combination with `mutate()` to define new columns based on logical conditions
+Use `case_when()` with `mutate()` to define new columns based on logical conditions
 
 ```{r, eval = FALSE}
 # Using mutate(case_when())
@@ -420,8 +425,6 @@ Useful for recoding values. Example:
 .pull-right55[
 <br><br>
 
-Recode values with `mutate(case_when())`
-
 ```{r}
 patients_df %>% 
 
@@ -440,7 +443,6 @@ patients_df %>%
 ---
 # Joining data
  
-
 ```{r, echo = FALSE, out.width = "95%"}
 knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/joining_data.png")
 ```
@@ -452,9 +454,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/Erfurt_2
 ## left_join()
 <br>
 
-<font size = 4>Use left_join() to combine data from 2 dataframes based on one or more keuy columns<br><br></font>
-
-<font size = 4>Each dataset must contain the 'key' column(s)<br></font>
+Use `left_join()` to combine2 dataframes based on one or more key columns<br><br></font>
 
 ```{r, eval = FALSE}
 # Join df2 to df1
@@ -472,10 +472,11 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/Erfurt_2
 ]
 
 .pull-right6[
-<br>
-<font size = 5>Join patients_df with results_df to create combined_df</font>
+
 
 ```{r}
+# Join patients_df with results_df to create combined_df
+
 combined_df <- patients_df %>% 
   
   rename(age = b, 
@@ -497,7 +498,6 @@ combined_df %>%
 
 ]
 
-
 ---
 
 
@@ -518,7 +518,6 @@ Order matters! You can refer to new columns in later code
 
 .pull-right6[
 <br><br>
-Create combined_df using multiple functions connected with the pipe
 
 ```{r, eval = FALSE}
 # 0) Start with patients_df data
@@ -560,11 +559,9 @@ Organisation functions help you shuffle your data by sorting rows by columns, fi
 .pull-left3[
 # arrange()
 
-<font size = 5>The arrange() function is used to sort (aka, arrange) rows of a dataframe</font>
-<br><br>
-<font size = 5>You can sort by as many conditions as you want</font>
-<br><br>
-<font size = 5>To sort in descending order, use desc()</font>
+Use `arrange()` to arrange (aka, sort) rows in increasing or decreasing order of one (or more) columns.
+
+To sort in descending order, use desc()
 
 ]
 
@@ -572,14 +569,14 @@ Organisation functions help you shuffle your data by sorting rows by columns, fi
 
 <br><br>
 
-<font size = 5>Sort rows by id then in descending order of age</font>
+<font size = 5></font>
 
 ```{r}
+# Sort combined_df by id then in descending order of age
 
-# 0) Start with combined_df data
 combined_df %>%
-  
-# 1) Sort by id then age (descending)
+
+  # Sort by id then age (descending)
   arrange(id, desc(age))
 ```
 
@@ -590,8 +587,7 @@ combined_df %>%
 .pull-left3[
 # filter()
 
-The filter() function selects rows based on criteria you specify
-<br>
+Use `filter()` to select rows (and remove others) based on criteria
 
 |Operator| Effect|
 |---|---|
@@ -608,15 +604,14 @@ For complex conditions, chain multiple logical comparison operators with & (and)
 .pull-right65[
 <br><br>
 
-<font size = 5>Select patients over 30 given drug</font>
+<font size = 5>Select <i>only</i>patients over 30 given drug</font>
 
 ```{r}
 combined_df %>%
   
-# Sort by id then age (descending)
   arrange(id, desc(age)) %>%
   
-# NEW - Only over 30 given drug
+# Filter patients older than 30 given drug
   filter(age > 30 & arm_char == "drug")
 ```
 
@@ -627,19 +622,20 @@ combined_df %>%
 .pull-left4[
 # select()
 
-
-Keep columns with select()
+Use `select()` to select specific columns (and remove all others)
 
 ```{r, eval = FALSE}
 # Select columns id, age
-df %>% select(id, age)
+df %>% 
+  select(id, age)
 ```
 
-Drop columns (and keep others) with -
+Select everything *except* certain columns with -
 
 ```{r, eval = FALSE}
 # Select everything BUT sex and id
-df %>% select(-sex, -id)
+df %>% 
+  select(-sex, -id)
 ```
 
 
@@ -659,7 +655,7 @@ combined_df %>%
   
   filter(arm_char == "drug" & age > 30) %>%
   
-# NEW - Remove age and arm
+# Drop age and arm columns
   select(-age, -arm)
   
 ```
@@ -680,22 +676,19 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/Erfurt_2
 ---
 .pull-left4[
 
-# Aggregation functions
+# group_by(), summarise()
 
-| Function| action|
-|:-------------|:----|
-| `group_by()` |Group data by levels of one or more variables |
-| `summarise()` | Calculate summary statistics |
+Use `group_by()` to *group* data according to one or more columns
+
+After grouping data, use `summarise()` to calculate summary statistics across groups of data
 
 ### Statistical functions
+<br>
 
-| Function| action|
-|:-------------|:----|
-| `min(), max()`| Minimum, maximum |
-| `mean(), median()` |Mean, Median |
-| `sd()` |Standard deviation|
-| `sum()` | Sum|
-| `n()`| Number of cases|
+| Function| asdf |
+|:-------------|:---|
+| `n()`| Number of cases in each group|
+| `mean()`, `median()`, `max()`, `min()` `sum()` | Summary stats|
 ]
 
 .pull-right55[
@@ -707,97 +700,20 @@ combined_df <- combined_df %>%
   rename(arm = arm_char)
 ```
 
+
 ```{r}
-# Group and summarise!
+# Group data by arm, and calculate many
+#  summary statistics
 combined_df %>%
   group_by(arm) %>%
   summarise(
-    N = n(),
-    age_mean = mean(age),
-    t1_mean = mean(t1, na.rm = TRUE),
-    t2_mean = mean(t2, na.rm = TRUE)
+    N = n(),   # Number of cases in each group
+    age_mean = mean(age), # mean age
+    t1_mean = mean(t1, na.rm = TRUE), # Mean t1 score
+    t2_mean = mean(t2, na.rm = TRUE)  # Mean t2 score
   )
 ```
 
-
-]
-
-
----
-.pull-left3[
-# group_by() 
-
-<font size = 5>Use group_by() to combine data into separate groups<font>
-<br><br>
-<font size = 5>You can group by as many variables as you wish<font>
-<br><br>
-<font size = 5>You won't see any changes to the data until you use summarise()<font>
-<br>
-
-]
-
-.pull-right65[
-
-<br><br>
-
-
-<font size = 5>Group data by arm</font>
-
-```{r}
-# 0) Start with combined_df data
-combined_df %>%
-  
-# 1) Group data by arm with group_by
-  group_by(arm)
-```
-
-]
-
-
-
-
----
-.pull-left4[
-# summarise() 
-
-<font size = 5>Used to summarise data from groups<br><br>
-<font size = 5>Works like mutate() to create new variables, but with summary functions<font>
-<br>
-
-```{r, eval = FALSE}
-df %>%
-  group_by(VAR1) %>%
-  summarise(
-    X_SUM = FUN(X),       # 
-    Y_SUM = FUN(Y),   # Ex 1
-    Z_SUM = FUN(Z) # Ex 2 
-    total = n()
-  )
-```
-
-
-]
-
-.pull-right55[
-<br><br>
-
-<font size = 5>Calculate summary statistics</font>
-
-```{r}
-# 0) Start with combined_df data
-combined_df %>%
-  
-# 1) Group data by arm with group_by
-  group_by(arm) %>%
-  
-# 2) Calculate summary columns
-  summarise(
-    t1_mean = mean(t1, na.rm = TRUE),
-    t2_mean = mean(t2, na.rm = TRUE),
-    diff = t2_mean - t1_mean,
-    N = n()  # Number of rows in group
-  )
-```
 
 ]
 

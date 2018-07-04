@@ -17,7 +17,7 @@ output:
 layout: true
 
 <div class="my-footer"><span>
-<a href="https://therbootcamp.github.io/"><font color="#7E7E7E">Erfurt, June 2018</font></a>
+<a href="https://therbootcamp.github.io/"><font color="#7E7E7E">BaselRBootcamp, July 2018</font></a>
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
@@ -26,11 +26,6 @@ layout: true
 </span></div> 
 
 ---
-
-```{r, eval = FALSE, echo = FALSE}
-# Code to knit slides
-xaringan::inf_mr('_sessions/D1S3_Statistics/Statistics.Rmd')
-```
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)

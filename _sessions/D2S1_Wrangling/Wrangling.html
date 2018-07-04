@@ -91,22 +91,24 @@ table(baslers$sex)  # How many of each sex?
 ---
 .pull-left5[
 
-# What is Wrangling?
+## Wrangling: All the stuff you have to do before your real analysis
 
 ###Transform
 
-- Change column names
-- Change existing columns
-- Add new columns
+Change column names
+
+Add new columns
 
 ###Organise
 
-- Move data between columns and rows
-- Merging data from two separate dataframes
-- Sort data by columns
+Sort data by columns
+
+Merging data from two separate dataframes
+
+Move data between columns and rows
 
 ### Aggregate
-- Group data and summarise
+Group data and summarise
 ]
 
 
@@ -344,7 +346,10 @@ patients_df   # Demographic data
 
 
 Change column names with `rename()`
-New = Old, New = Old, ...
+
+New = Old, 
+
+New = Old, 
 
 
 ```r
@@ -445,7 +450,7 @@ patients_df %&gt;%
 
 # `case_when()`
 
-Use `case_when()` in combination with `mutate()` to define new columns based on logical conditions
+Use `case_when()` with `mutate()` to define new columns based on logical conditions
 
 
 ```r
@@ -471,8 +476,6 @@ Useful for recoding values. Example:
 
 .pull-right55[
 &lt;br&gt;&lt;br&gt;
-
-Recode values with `mutate(case_when())`
 
 
 ```r
@@ -504,7 +507,6 @@ patients_df %&gt;%
 ---
 # Joining data
  
-
 &lt;img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/joining_data.png" width="95%" /&gt;
 
 
@@ -514,9 +516,7 @@ patients_df %&gt;%
 ## left_join()
 &lt;br&gt;
 
-&lt;font size = 4&gt;Use left_join() to combine data from 2 dataframes based on one or more keuy columns&lt;br&gt;&lt;br&gt;&lt;/font&gt;
-
-&lt;font size = 4&gt;Each dataset must contain the 'key' column(s)&lt;br&gt;&lt;/font&gt;
+Use `left_join()` to combine2 dataframes based on one or more key columns&lt;br&gt;&lt;br&gt;&lt;/font&gt;
 
 
 ```r
@@ -533,11 +533,12 @@ df1 %&gt;%
 ]
 
 .pull-right6[
-&lt;br&gt;
-&lt;font size = 5&gt;Join patients_df with results_df to create combined_df&lt;/font&gt;
+
 
 
 ```r
+# Join patients_df with results_df to create combined_df
+
 combined_df &lt;- patients_df %&gt;% 
   
   rename(age = b, 
@@ -576,7 +577,6 @@ combined_df %&gt;%
 
 ]
 
-
 ---
 
 
@@ -597,7 +597,6 @@ Order matters! You can refer to new columns in later code
 
 .pull-right6[
 &lt;br&gt;&lt;br&gt;
-Create combined_df using multiple functions connected with the pipe
 
 
 ```r
@@ -640,11 +639,9 @@ Organisation functions help you shuffle your data by sorting rows by columns, fi
 .pull-left3[
 # arrange()
 
-&lt;font size = 5&gt;The arrange() function is used to sort (aka, arrange) rows of a dataframe&lt;/font&gt;
-&lt;br&gt;&lt;br&gt;
-&lt;font size = 5&gt;You can sort by as many conditions as you want&lt;/font&gt;
-&lt;br&gt;&lt;br&gt;
-&lt;font size = 5&gt;To sort in descending order, use desc()&lt;/font&gt;
+Use `arrange()` to arrange (aka, sort) rows in increasing or decreasing order of one (or more) columns.
+
+To sort in descending order, use desc()
 
 ]
 
@@ -652,14 +649,15 @@ Organisation functions help you shuffle your data by sorting rows by columns, fi
 
 &lt;br&gt;&lt;br&gt;
 
-&lt;font size = 5&gt;Sort rows by id then in descending order of age&lt;/font&gt;
+&lt;font size = 5&gt;&lt;/font&gt;
 
 
 ```r
-# 0) Start with combined_df data
+# Sort combined_df by id then in descending order of age
+
 combined_df %&gt;%
-  
-# 1) Sort by id then age (descending)
+
+  # Sort by id then age (descending)
   arrange(id, desc(age))
 ```
 
@@ -681,8 +679,7 @@ combined_df %&gt;%
 .pull-left3[
 # filter()
 
-The filter() function selects rows based on criteria you specify
-&lt;br&gt;
+Use `filter()` to select rows (and remove others) based on criteria
 
 |Operator| Effect|
 |---|---|
@@ -699,16 +696,15 @@ For complex conditions, chain multiple logical comparison operators with &amp; (
 .pull-right65[
 &lt;br&gt;&lt;br&gt;
 
-&lt;font size = 5&gt;Select patients over 30 given drug&lt;/font&gt;
+&lt;font size = 5&gt;Select &lt;i&gt;only&lt;/i&gt;patients over 30 given drug&lt;/font&gt;
 
 
 ```r
 combined_df %&gt;%
   
-# Sort by id then age (descending)
   arrange(id, desc(age)) %&gt;%
   
-# NEW - Only over 30 given drug
+# Filter patients older than 30 given drug
   filter(age &gt; 30 &amp; arm_char == "drug")
 ```
 
@@ -727,21 +723,22 @@ combined_df %&gt;%
 .pull-left4[
 # select()
 
-
-Keep columns with select()
+Use `select()` to select specific columns (and remove all others)
 
 
 ```r
 # Select columns id, age
-df %&gt;% select(id, age)
+df %&gt;% 
+  select(id, age)
 ```
 
-Drop columns (and keep others) with -
+Select everything *except* certain columns with -
 
 
 ```r
 # Select everything BUT sex and id
-df %&gt;% select(-sex, -id)
+df %&gt;% 
+  select(-sex, -id)
 ```
 
 
@@ -761,7 +758,7 @@ combined_df %&gt;%
   
   filter(arm_char == "drug" &amp; age &gt; 30) %&gt;%
   
-# NEW - Remove age and arm
+# Drop age and arm columns
   select(-age, -arm)
 ```
 
@@ -787,22 +784,19 @@ combined_df %&gt;%
 ---
 .pull-left4[
 
-# Aggregation functions
+# group_by(), summarise()
 
-| Function| action|
-|:-------------|:----|
-| `group_by()` |Group data by levels of one or more variables |
-| `summarise()` | Calculate summary statistics |
+Use `group_by()` to *group* data according to one or more columns
+
+After grouping data, use `summarise()` to calculate summary statistics across groups of data
 
 ### Statistical functions
+&lt;br&gt;
 
-| Function| action|
-|:-------------|:----|
-| `min(), max()`| Minimum, maximum |
-| `mean(), median()` |Mean, Median |
-| `sd()` |Standard deviation|
-| `sum()` | Sum|
-| `n()`| Number of cases|
+| Function| asdf |
+|:-------------|:---|
+| `n()`| Number of cases in each group|
+| `mean()`, `median()`, `max()`, `min()` `sum()` | Summary stats|
 ]
 
 .pull-right55[
@@ -811,15 +805,17 @@ combined_df %&gt;%
 
 
 
+
 ```r
-# Group and summarise!
+# Group data by arm, and calculate many
+#  summary statistics
 combined_df %&gt;%
   group_by(arm) %&gt;%
   summarise(
-    N = n(),
-    age_mean = mean(age),
-    t1_mean = mean(t1, na.rm = TRUE),
-    t2_mean = mean(t2, na.rm = TRUE)
+    N = n(),   # Number of cases in each group
+    age_mean = mean(age), # mean age
+    t1_mean = mean(t1, na.rm = TRUE), # Mean t1 score
+    t2_mean = mean(t2, na.rm = TRUE)  # Mean t2 score
   )
 ```
 
@@ -831,108 +827,6 @@ combined_df %&gt;%
 ## 2 &lt;NA&gt;      3     55.7    143      140
 ```
 
-
-]
-
-
----
-.pull-left3[
-# group_by() 
-
-&lt;font size = 5&gt;Use group_by() to combine data into separate groups&lt;font&gt;
-&lt;br&gt;&lt;br&gt;
-&lt;font size = 5&gt;You can group by as many variables as you wish&lt;font&gt;
-&lt;br&gt;&lt;br&gt;
-&lt;font size = 5&gt;You won't see any changes to the data until you use summarise()&lt;font&gt;
-&lt;br&gt;
-
-]
-
-.pull-right65[
-
-&lt;br&gt;&lt;br&gt;
-
-
-&lt;font size = 5&gt;Group data by arm&lt;/font&gt;
-
-
-```r
-# 0) Start with combined_df data
-combined_df %&gt;%
-  
-# 1) Group data by arm with group_by
-  group_by(arm)
-```
-
-```
-## # A tibble: 5 x 5
-## # Groups:   arm [2]
-##      id   age arm      t1    t2
-##   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1     1    37 drug    123   135
-## 2     2    65 &lt;NA&gt;    143   140
-## 3     3    57 &lt;NA&gt;     NA    NA
-## 4     4    34 drug    100   105
-## 5     5    45 &lt;NA&gt;     NA    NA
-```
-
-]
-
-
-
-
----
-.pull-left4[
-# summarise() 
-
-&lt;font size = 5&gt;Used to summarise data from groups&lt;br&gt;&lt;br&gt;
-&lt;font size = 5&gt;Works like mutate() to create new variables, but with summary functions&lt;font&gt;
-&lt;br&gt;
-
-
-```r
-df %&gt;%
-  group_by(VAR1) %&gt;%
-  summarise(
-    X_SUM = FUN(X),       # 
-    Y_SUM = FUN(Y),   # Ex 1
-    Z_SUM = FUN(Z) # Ex 2 
-    total = n()
-  )
-```
-
-
-]
-
-.pull-right55[
-&lt;br&gt;&lt;br&gt;
-
-&lt;font size = 5&gt;Calculate summary statistics&lt;/font&gt;
-
-
-```r
-# 0) Start with combined_df data
-combined_df %&gt;%
-  
-# 1) Group data by arm with group_by
-  group_by(arm) %&gt;%
-  
-# 2) Calculate summary columns
-  summarise(
-    t1_mean = mean(t1, na.rm = TRUE),
-    t2_mean = mean(t2, na.rm = TRUE),
-    diff = t2_mean - t1_mean,
-    N = n()  # Number of rows in group
-  )
-```
-
-```
-## # A tibble: 2 x 5
-##   arm   t1_mean t2_mean  diff     N
-##   &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;int&gt;
-## 1 drug     112.     120   8.5     2
-## 2 &lt;NA&gt;     143      140  -3       3
-```
 
 ]
 
