@@ -272,7 +272,7 @@ trial_act <- trial_act %>%
     gender == XX ~ "XX"))
 ```
 
-D4. The column `arms` is also numeric and not very meantingful. Change `arms` so that it is a character column indicating the actual names of the trial arms. Here is a table of the mapping
+D4. The column `arms` is also numeric and not very meaningful. Change `arms` so that it is a character column indicating the actual names of the trial arms. Here is a table of the mapping
 
 |arms|arms_char|
 |:---|:-----|

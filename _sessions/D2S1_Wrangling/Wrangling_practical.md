@@ -1,6 +1,6 @@
 Data Wrangling
 ================
-The R Bootcamp July 2018<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>
+BaselRBootcamp July 2018<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>
 
 <img src="../_image/dplyr_functions.png" width="70%" style="display: block; margin: auto;" />
 
@@ -280,7 +280,7 @@ trial_act <- trial_act %>%
     gender == XX ~ "XX"))
 ```
 
-D4. The column `arms` is also numeric and not very meantingful. Change `arms` so that it is a character column indicating the actual names of the trial arms. Here is a table of the mapping
+D4. The column `arms` is also numeric and not very meaningful. Change `arms` so that it is a character column indicating the actual names of the trial arms. Here is a table of the mapping
 
 | arms | arms\_char                 |
 |:-----|:---------------------------|
