@@ -1,0 +1,527 @@
+<pre><code class="r setup, echo = FALSE">knitr::opts_chunk$set(comment = NA, 
+                      fig.width = 6, 
+                      fig.height = 6,
+                      fig.align = &#39;center&#39;,
+                      echo = FALSE, 
+                      eval = FALSE, 
+                      warning = FALSE)
+
+options(digits = 3)
+</code></pre>
+
+<pre><code class="r, echo = FALSE, fig.align = &#39;center&#39;, eval = TRUE, out.width = &quot;70%&quot;">knitr::include_graphics(&quot;../_image/dplyr_functions.png&quot;)
+</code></pre>
+
+<h2>Overview</h2>
+
+<p>In this practical you&#39;ll practice &ldquo;data wrangling&rdquo; with the <code>dplyr</code> and <code>tidyr</code> packages (part of the tidyverse collection of packages).</p>
+
+<p>By the end of this practical you will know how to:</p>
+
+<ol>
+<li>Change column names, select specific columns</li>
+<li>Create new columns based on existing ones</li>
+<li>Select specific rows of data based on multiple criteria</li>
+<li>Group data and calculate summary statistics</li>
+<li>Combine multiple data sets through key columns</li>
+<li>Convert data between wide and long formats</li>
+</ol>
+
+<h2>Packages</h2>
+
+<table><thead>
+<tr>
+<th align="left">Package</th>
+<th align="left">Installation</th>
+</tr>
+</thead><tbody>
+<tr>
+<td align="left"><code>tidyverse</code></td>
+<td align="left"><code>install.packages(&quot;tidyverse&quot;)</code></td>
+</tr>
+</tbody></table>
+
+<h2>Glossary</h2>
+
+<table><thead>
+<tr>
+<th align="left">Function</th>
+<th align="left">Package</th>
+<th align="left">Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td align="left"><code>rename()</code></td>
+<td align="left"><code>dplyr</code></td>
+<td align="left">Rename columns</td>
+</tr>
+<tr>
+<td align="left"><code>select()</code></td>
+<td align="left"><code>dplyr</code></td>
+<td align="left">Select columns based on name or index</td>
+</tr>
+<tr>
+<td align="left"><code>filter()</code></td>
+<td align="left"><code>dplyr</code></td>
+<td align="left">Select rows based on some logical criteria</td>
+</tr>
+<tr>
+<td align="left"><code>arrange()</code></td>
+<td align="left"><code>dplyr</code></td>
+<td align="left">Sort rows</td>
+</tr>
+<tr>
+<td align="left"><code>mutate()</code></td>
+<td align="left"><code>dplyr</code></td>
+<td align="left">Add new columns</td>
+</tr>
+<tr>
+<td align="left"><code>case_when()</code></td>
+<td align="left"><code>dplyr</code></td>
+<td align="left">Recode values of a column</td>
+</tr>
+<tr>
+<td align="left"><code>group_by(), summarise()</code></td>
+<td align="left"><code>dplyr</code></td>
+<td align="left">Group data and then calculate summary statistics</td>
+</tr>
+<tr>
+<td align="left"><code>left_join()</code></td>
+<td align="left"><code>dplyr</code></td>
+<td align="left">Combine multiple data sets using a key column</td>
+</tr>
+<tr>
+<td align="left"><code>spread()</code></td>
+<td align="left"><code>tidyr</code></td>
+<td align="left">Convert long data to wide format - from rows to columns</td>
+</tr>
+<tr>
+<td align="left"><code>gather()</code></td>
+<td align="left"><code>tidyr</code></td>
+<td align="left">Convert wide data to long format - from columns to rows</td>
+</tr>
+</tbody></table>
+
+<h3>Cheatsheet</h3>
+
+<figure>
+<center>
+<a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">
+  <img src="https://image.slidesharecdn.com/data-wrangling-cheatsheet-160705210122/95/data-wrangling-with-dplyr-and-tidyr-cheat-sheet-1-638.jpg?cb=1467752577" alt="Trulli" style="width:70%">
+  <figcaption>https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf</figcaption></a>
+</figure>
+
+<h2>Examples</h2>
+
+<pre><code class="r, eval = FALSE, echo = TRUE"># -----------------------------------------------
+# Wrangling with dplyr and tidyr
+# ------------------------------------------------
+
+library(tidyverse)    # Load tidyverse for dplyr and tidyr
+library(skimr)        # For skim()
+
+# Load baselers data
+baselers &lt;- read_csv(&quot;https://raw.githubusercontent.com/therbootcamp/baselers/master/inst/extdata/baselers.txt&quot;)
+
+# Skim the data
+skim(baselers)
+
+# Perform many dplyr operations in a row
+
+baselers %&gt;%
+
+  # Change some names
+  rename(age_y = age,
+         swimming = rhine) %&gt;%
+
+  # Only include people over 30
+  filter(age_y &gt; 30) %&gt;%
+
+  # Calculate some new columns
+  mutate(weight_lbs = weight * 2.22,
+         height_m = height / 100,
+         BMI = weight / height_m ^ 2,
+
+         # Make binary version of sex
+         sex_bin = case_when(
+                      sex == &quot;male&quot; ~ 0,
+                      sex == &quot;female&quot; ~ 1),
+
+        # Show when height is greater than 150
+        height_lt_150 = case_when(
+                                height &lt; 150 ~ 1,
+                                height &gt;= 150 ~ 0)) %&gt;%
+
+  # Sort in ascending order of sex, then
+  #  descending order of age
+  arrange(sex, desc(age_y)))
+
+
+# Calculate grouped summary statistics
+
+baselers_agg &lt;- baselers %&gt;%
+  group_by(sex, education) %&gt;%
+  summarise(
+    age_mean = mean(age_y, na.rm = TRUE),
+    income_median = median(income, na.rm = TRUE),
+    N = n()
+  )
+</code></pre>
+
+<h1>Tasks</h1>
+
+<h3>Datasets</h3>
+
+<pre><code class="r, eval = TRUE, message = FALSE">library(tidyverse)
+trial_act &lt;- read_csv(&quot;../_data/complete/trial_act.csv&quot;)
+trial_act_demo &lt;- read_csv(&quot;../_data/complete/trial_act_demo_fake.csv&quot;)
+</code></pre>
+
+<table><thead>
+<tr>
+<th align="left">File</th>
+<th align="left">Rows</th>
+<th align="left">Columns</th>
+</tr>
+</thead><tbody>
+<tr>
+<td align="left"><code>trial_act.csv</code></td>
+<td align="left">2139</td>
+<td align="left">27</td>
+</tr>
+<tr>
+<td align="left"><code>trial_act_demo_fake</code></td>
+<td align="left">2139</td>
+<td align="left">3</td>
+</tr>
+</tbody></table>
+
+<h2>A - Getting setup</h2>
+
+<p>A1. Open your R project. It should already have the folders <code>0_Data</code> and <code>1_Code</code>. Make sure that the data files listed in the <code>Datasets</code> section above are in your <code>1_Data</code> folder</p>
+
+<pre><code class="r"># Done!
+</code></pre>
+
+<p>A2. Open a new R script. At the top of the script, using comments, write your name and the date. Save it as a new file called <code>wrangling_practical.R</code> in the <code>2_Code</code> folder.  </p>
+
+<p>A3. Using <code>library()</code> load the set of packages for this practical listed in the packages section above.</p>
+
+<pre><code class="r, eval = FALSE, echo = TRUE">## NAME
+## DATE
+## Wrangling Practical
+
+library(XX)     
+library(XX)
+#...
+</code></pre>
+
+<pre><code class="r, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE">library(tidyverse)
+library(skimr)
+</code></pre>
+
+<p>A4. For this practical, we&#39;ll use the <code>trial_act</code> data, this is the result of a randomized clinical trial comparing the effects of different medications on adults infected with the human immunodeficiency virus. Using the following template, load the data into R and store it as a new object called <code>trial_act</code>.</p>
+
+<pre><code class="r, echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE"># Load trial_act.csv from the data folder in your working directory
+
+trial_act &lt;- read_csv(file = &quot;XXX/XXX&quot;)
+</code></pre>
+
+<p>A5. Using the same code structure, load the <code>trial_act_demo_fake.csv</code> data as a new dataframe called <code>trial_act_demo_fake</code></p>
+
+<pre><code class="r, echo = FALSE, eval = FALSE, message = FALSE, warning = FALSE">trial_act &lt;- read_csv(file = &quot;https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/trial_act.csv&quot;)
+
+trial_act_demo_fake &lt;- read_csv(file = &quot;https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/trial_act_demo_fake.csv&quot;)
+</code></pre>
+
+<pre><code class="r, message = FALSE, echo = FALSE, eval = TRUE, warning = FALSE">library(tidyverse)
+</code></pre>
+
+<p>A6. Take a look at the first few rows of the datasets by printing them to the console.</p>
+
+<pre><code class="r, eval = FALSE, echo = TRUE"># Print trial_act object
+trial_act
+</code></pre>
+
+<p>A7. Use the <code>skim()</code> function (from the <code>skimr</code> package) to get more details on the datasets.</p>
+
+<pre><code class="r">skim(trial_act)
+</code></pre>
+
+<h3>B - Change column names with rename()</h3>
+
+<p>B1. Look at the names of the <code>trial_act</code> data with <code>names()</code></p>
+
+<p>B2. Using <code>rename()</code>, change the column name <code>wtkg</code> in the <code>trial_act</code> dataframe to <code>weight_kg</code> (to specify that weight is in kilograms). Be sure to assign the result back to <code>trial_act</code> to change it!</p>
+
+<pre><code class="r, echo = TRUE"># Change the name to weight_kg from wtkg
+
+trial_act &lt;- trial_act %&gt;%
+  rename(XX = XX)
+</code></pre>
+
+<p>B3. Look at the names of your <code>trial_act</code> dataframe again, do you now see the column <code>weight_kg</code>?</p>
+
+<p>B4. Change the column name <code>age</code> to <code>age_y</code> (to specify that age is in years).</p>
+
+<pre><code class="r">trial_act &lt;- trial_act %&gt;%
+  rename(weight_kg = wtkg,
+         age_y = age)
+</code></pre>
+
+<h3>C - Select columns with select()</h3>
+
+<p>C1. Using the <code>select()</code> function, select only the column <code>age</code> and print the result. Do you see only the age column now?</p>
+
+<p>C2. Create a new dataframe called <code>CD4_wide</code> that <em>only</em> contains the columns <code>pidnum</code>, <code>arms</code>, <code>cd40</code>, <code>cd420</code>, and <code>cd496</code>. The <code>cd40</code>, <code>cd420</code>, and <code>cd496</code> columns show patient&#39;s CD4 T cell counts at baseline, 20 weeks, and 96 weeks. Print the result to make sure it worked!</p>
+
+<pre><code class="r, echo = TRUE, eval = FALSE">XX &lt;- trial_act %&gt;% 
+  select(XX, XX, XX, XX, ...)
+</code></pre>
+
+<p>C3. Did you know you can easily select all columns that start with specific characters using <code>starts_with()</code>? Try adapting the following code to get the same result you got before.</p>
+
+<pre><code class="r, echo = TRUE, eval = FALSE">CD4_wide &lt;- trial_act %&gt;% 
+  select(pidnum, arms, starts_with(&quot;XXX&quot;))
+</code></pre>
+
+<h3>D - Add new columns with mutate()</h3>
+
+<p>D1. Using the <code>mutate()</code> function, add the column <code>age_m</code> which shows each patient&#39;s age in months instead of years (Hint: Just multiply <code>age_y</code> by 12!)</p>
+
+<pre><code class="r, eval = FALSE, echo = TRUE">trial_act &lt;- trial_act %&gt;%
+  mutate(XX = XX * 12)
+</code></pre>
+
+<p>D2. Add the following new columns to <code>trial_act</code>. Try combining these into <em>one</em> call to the mutate() function!</p>
+
+<pre><code>- `weight_lb`: Weight in lbs instead of kilograms. You can do this by multiplying `weight_kg` by 2.2.
+- `cd_change_20`: Change in CD4 T cell count from baseline to 20 weeks. You can do this by taking `cd420 - cd40`
+- `cd_change_960`: Change in CD4 T cell count from baseline to 96 weeks. You can do this by taking `cd496 - cd40`
+</code></pre>
+
+<pre><code class="r, echo = TRUE, eval = FALSE">trial_act &lt;- trial_act %&gt;% 
+  mutate(weight_lb = XXX,
+         cd_change_20 = XXX,
+         XX = XX)
+</code></pre>
+
+<p>D3. If you look at the <code>gender</code> column, you will see that it is numeric. Change the column so it shows gender as a string, where0 = &ldquo;female&rdquo; and 1 = &ldquo;male&rdquo;. To do this, use a combination of <code>mutate()</code> and <code>case_when</code>:</p>
+
+<pre><code class="r, echo = TRUE"># Create gender_char which shows gender as a stringh
+trial_act &lt;- trial_act %&gt;%
+  mutate(
+  gender_char = case_when(
+    gender == XX ~ &quot;XX&quot;,
+    gender == XX ~ &quot;XX&quot;))
+</code></pre>
+
+<p>D4. The column <code>arms</code> is also numeric and not very meaningful. Change <code>arms</code> so that it is a character column indicating the actual names of the trial arms. Here is a table of the mapping</p>
+
+<table><thead>
+<tr>
+<th align="left">arms</th>
+<th align="left">arms_char</th>
+</tr>
+</thead><tbody>
+<tr>
+<td align="left">0</td>
+<td align="left">zidovudine</td>
+</tr>
+<tr>
+<td align="left">1</td>
+<td align="left">zidovudine and didanosine</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">zidovudine and zalcitabine</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left">didanosine</td>
+</tr>
+</tbody></table>
+
+<p>D5. If you haven&#39;t already, put the code for your previous questions in one call to <code>mutate()</code>. That is, in one block of code, create <code>agem</code>, <code>weight_lb</code>, <code>cd_change_20</code>, <code>cd_change_960</code>, <code>gender_char</code> and <code>over50</code> using the <code>mutate()</code> function only once. Here&#39;s how your code should look:</p>
+
+<pre><code class="r, eval = FALSE, echo = TRUE">trial_act &lt;- trial_act %&gt;%
+  mutate(
+    agem = XXX,
+    weight_lb = XXX,
+    cd_change_20 = XXX,
+    cd_change_960 = XXX,
+    gender_char = case_when(XXX),
+    arms_char = case_when(XXX)
+  )
+</code></pre>
+
+<h3>E - Arrange rows with arrange()</h3>
+
+<p>E1. Using the <code>arrange()</code>function, arrange the <code>trial_act</code> data in ascending order of <code>age_y</code> (from lowest to highest). After you do, look the data to make sure it worked!</p>
+
+<pre><code class="r">trial_act &lt;- trial_act %&gt;% 
+ arrange(agey)
+
+trial_act
+</code></pre>
+
+<p>E2. Now arrange the data in <em>descending</em> order of <code>age_y</code> (from highest to lowest). After, look the data to make sure it worked. To arrange data in descending order, just include <code>desc()</code> around the variable. E.g.; <code>data %&gt;% arrrange(desc(height))</code></p>
+
+<pre><code class="r">trial_act &lt;- trial_act %&gt;% 
+ arrange(desc(agey))
+
+trial_act
+</code></pre>
+
+<p>E3. You can sort the rows of dataframes with multiple columns by including many arguments to <code>arrange()</code>. Now sort the data by arms (<code>arms</code>) and then age (<code>age_y</code>).</p>
+
+<pre><code class="r">trial_act &lt;- trial_act %&gt;% 
+ arrange(arms, agey)
+
+trial_act
+</code></pre>
+
+<h3>F - Filter specific rows with <code>filter()</code></h3>
+
+<p>F1. Using the <code>filter()</code> function, create a new dataframe called <code>trial_act_m</code> that only contains data from males (<code>gender_char == &quot;male&quot;</code>). After you finish, print your new dataframe to make sure it looks correct!</p>
+
+<pre><code class="r">trial_act_B &lt;- trial_act %&gt;%
+  filter(gender == 1)
+</code></pre>
+
+<p>F2. A colleague of yours named Tracy wants a datafame only containing data from females over the age of 40. Create this dataframe with <code>filter()</code> and call it <code>trial_act_Tracy</code></p>
+
+<pre><code class="r, echo = TRUE, eval = FALSE">trial_act_Tracy &lt;- trial_act %&gt;%
+  filter(agey &gt; XX &amp; gender == XX)
+</code></pre>
+
+<h3>G - Combine dataframes with <code>left_join()</code></h3>
+
+<pre><code class="r, echo = FALSE, eval = FALSE, message = FALSE">trial_act_demo &lt;- read_csv(&quot;https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_data/patient_demo.csv&quot;)
+
+trial_act_demo
+</code></pre>
+
+<p>G1. The <code>trial_act_demo_fake.csv</code> file contains additional (fictional) demographic data about the patients, namely the number of days of exercise they get per week, and their highest level of education. Use the <code>left_join()</code> function to combine the <code>trial_act</code> and <code>trial_act_demo_fake</code> datasets, set the <code>by</code> argument to the name of the column that is common in both data sets. Assign the result to <code>trial_act</code>. </p>
+
+<pre><code class="r, echo = TRUE, eval = FALSE">trial_act &lt;- trial_act %&gt;%
+  left_join(XX, by = &quot;XX&quot;)
+</code></pre>
+
+<p>G2. Print your new <code>trial_act</code> dataframe. Do you now see the demographic data?</p>
+
+<h3>H - Calculate grouped statistics with <code>group_by()</code> and <code>summarise()</code></h3>
+
+<p>H1. In this code we&#39;ll calculate summary statistics for each of the trial arms. Start with the <code>trial_act</code> dataframe. Then, group the data by <code>arms</code>. Then, for each arm, calculate the mean participant age (in years) as a new column called <code>age_mean</code>. Also, using <code>N = n()</code>, calculate the number of cases for each group. Assign the result to a new object called <code>trial_arm</code>.</p>
+
+<pre><code class="r, eval = FALSE, echo = TRUE">trial_arm &lt;- trial_act %&gt;% 
+  group_by(XX) %&gt;%
+  summarise(
+    N = n(),
+    XX = mean(XX)
+  )
+</code></pre>
+
+<p>H2. Adjust your previous code to calculate the standard deviation of age <em>in addition</em> to the mean.</p>
+
+<p>H3. Adjust your previous code to calculate the median number of days until the first major negative event (<code>days</code>) for each arm.</p>
+
+<p>H4. Create a new dataframe called <code>trial_gender</code> groups the data based on <code>gender</code> and calculates the same summary statistics as you did for <code>trial_arm</code></p>
+
+<p>H5.  Create a new dataframe called <code>trial_arm_gender</code> that calculates the same summary statistics for all the groups <code>gender</code> and <code>arms</code>. Hint: Just add a second grouping variable!</p>
+
+<h3>I - Reshaping with gather() and spread()</h3>
+
+<p>I1. Remember the <code>CD4_wide</code> dataframe you created before? Currently it is in the wide format, where key data (different CD4 T cell counts) are in different columns. Now we will try to convert it to a long format. Our goal is to get the data in the &#39;long&#39; format. Using the <code>spread()</code> function, create a new dataframe called <code>CD4_long</code> that shows the data in the &#39;long&#39; format. To do this, use the following template. Set the grouping column to <code>time</code> and the new data column to <code>value</code>. </p>
+
+<pre><code class="r, echo = TRUE, eval = FALSE">CD4_long &lt;- CD4_wide %&gt;% 
+  gather(XX,  # New grouping column
+         XX,  # New data column
+         -pidnum, -arms)  # Names of columns to replicate
+</code></pre>
+
+<p>I2. Print your <code>CD4_long</code> dataframe and compare it to the original <code>CD4_wide</code></p>
+
+<p>I3. Now that your data are in the wide format, it should be easy to calculate grouped summary statistics! For each time point and trial arm, calculate the mean CD4 T cell count using <code>group_by()</code> and <code>summarise()</code>.</p>
+
+<p>I4. Now it&#39;s time to practice moving data from the long to the wide format. Using the following template, use the <code>spread()</code> function to convert <code>CD4_long</code> <em>back the wide format</em>. Assign the result to a new object called <code>CD4_wide_2</code>.</p>
+
+<pre><code class="r, echo = TRUE, eval = FALSE">CD4_wide_2 &lt;- CD4_long %&gt;% 
+  spread(XX,   # old group column
+         XX)   # old target column
+</code></pre>
+
+<p>I5. Compare <code>CD4_wide_2</code> to <code>CD4_wide</code> do they look the same?</p>
+
+<h1>Advanced</h1>
+
+<h3>X - Play around with &ldquo;Scoped&rdquo; functions</h3>
+
+<p>X1. Many common dplyr functions like <code>mutate()</code> and <code>summarise()</code> have &#39;scoped&#39; versions with suffixes like <code>_if</code> and <code>_all</code>. that allow you do some pretty cool stuff easily (look at the help menu with <code>?scoped</code> for details). Try running the following chunk with <code>summarise_if()</code> and see what happens:</p>
+
+<pre><code class="r, eval = FALSE, echo = TRUE"># See how summerise_if() works!
+baselers %&gt;%
+  group_by(sex) %&gt;%
+  summarise_if(is.numeric, mean)
+</code></pre>
+
+<p>X2. Now, in the <code>trial_act</code> dataset, group the data by <code>arm</code> and calculate the mean of all numeric columns using <code>summerise_if()</code>. Here&#39;s another scoped function in action <code>mutate_if()</code> in action:</p>
+
+<pre><code class="r, eval = FALSE, echo = TRUE"># use mutate_if() to round all numeric variables to 2 digits
+baselers %&gt;%
+  mutate_if(is.numeric, round, 2)
+</code></pre>
+
+<p>X3. Using <code>mutate_if()</code>, round all of your results from the previous question to 0 decimal places (to the nearest integer)</p>
+
+<h3>Y - Combine many functions</h3>
+
+<p>Y1. For each arm, calculate the following:</p>
+
+<ul>
+<li>Mean days until a a major negative event (<code>days</code>)</li>
+<li>Mean CD4 T cell count at baseline. (<code>cd40</code>)</li>
+<li>Mean CD4 T cell count at 20 weeks. (<code>cd420</code>)</li>
+<li>Mean CD4 T cell count at 96 weeks. (<code>cd496</code>)</li>
+<li>Mean <em>change</em> in CD4 T cell count between baseline and 96 weeks</li>
+<li>Number of patients in each arm</li>
+</ul>
+
+<pre><code class="r">trial_act %&gt;%
+  group_by(arms) %&gt;%
+  summarise(
+    days_mean = mean(days),
+    cd4_bl = mean(cd40),
+    cd4_20 = mean(cd420),
+    cd4_96 = mean(cd496, na.rm = TRUE),
+    cd4_change = mean(cd496 - cd40, na.rm = TRUE),
+    N = n()
+  )
+</code></pre>
+
+<p>Y2. Create the following dataframe that shows patient&#39;s mean CD8 T cell count (from columns <code>cd80</code> and <code>cd820</code>), where the data are grouped by time and trial arm. (Hint: use the following functions in order: select(), gather(), mutate(), group_by(), summarise())</p>
+
+<pre><code class="r, eval = TRUE">trial_act %&gt;%
+  mutate(
+    arms_char = case_when(
+      arms == 0 ~ &quot;Z&quot;,
+      arms == 1 ~ &quot;ZD&quot;,
+      arms == 2 ~ &quot;ZZ&quot;,
+      arms == 3 ~ &quot;D&quot;
+    )
+  ) %&gt;% 
+  select(pidnum, arms_char, starts_with(&quot;cd8&quot;)) %&gt;%
+  gather(time, measure, -pidnum, -arms_char) %&gt;%
+  mutate(time = case_when(time == &quot;cd80&quot; ~ &quot;baseline&quot;,
+                          time == &quot;cd820&quot; ~ &quot;week 20&quot;)) %&gt;%
+  group_by(time, arms_char) %&gt;%
+  summarise(N = n(),
+            cd8_mean = mean(measure),
+            cd8_median = median(measure))
+</code></pre>
+
+<h2>Additional Resources</h2>
+
+<ul>
+<li>See <a href="https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html">https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html</a> for the full dplyr vignette with lots of wrangling tips and tricks.</li>
+</ul>
