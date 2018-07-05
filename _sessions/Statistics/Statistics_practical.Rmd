@@ -19,10 +19,9 @@ options(digits = 3)
 ```
 
 
-
 <figure>
 <center>
-  <img src="https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/lynda_com_stats.jpg?raw=true" alt="Trulli" style="width:70%">
+  <img src="https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/lynda_com_stats.jpg?raw=true" alt="Trulli" style="width:50%">
   <figcaption>https://cdn.lynda.com</figcaption>
 </figure>
 
