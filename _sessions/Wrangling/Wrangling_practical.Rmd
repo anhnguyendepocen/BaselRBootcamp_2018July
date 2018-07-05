@@ -139,7 +139,7 @@ trial_act_demo <- read_csv("../_data/complete/trial_act_demo_fake.csv")
 |`trial_act.csv` | 2139 | 27 |
 |`trial_act_demo_fake`| 2139 | 3|
 
-## A - Getting setup
+## A - Setup
 
 A1. Open your R project. It should already have the folders `0_Data` and `1_Code`. Make sure that the data files listed in the `Datasets` section above are in your `1_Data` folder
 

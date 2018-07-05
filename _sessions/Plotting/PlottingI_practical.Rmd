@@ -5,7 +5,6 @@ output:
   html_document
 ---
 
-
 ```{r setup, echo = FALSE}
 knitr::opts_chunk$set(comment = NA, 
                       fig.width = 6, 
@@ -13,11 +12,11 @@ knitr::opts_chunk$set(comment = NA,
                       fig.align = 'center',
                       echo = FALSE, 
                       eval = FALSE, 
-                      warning = FALSE)
+                      warning = FALSE,
+                      message = FALSE)
 
 options(digits = 3)
 ```
-
 
 <figure>
 <center>
@@ -34,6 +33,7 @@ In this practical you'll practice plotting data with the `ggplot2` package.
 |Package| Installation|
 |:------|:------|
 |`tidyverse`|`install.packages("tidyverse")`|
+|`ggthemes`|`install.packages("ggthemes")`|
 |`skimr`|`install.packages("skimr")`|
 
 
@@ -151,241 +151,302 @@ ggplot(data = mpg,
 
 ## Tasks
 
-### Setup
 
-1. Open your bootcamp R project. Open a new R script and save it under the name `plotting_practical.R` in your `2_Code` folder.
+### Datasets
 
-2. At the top of your script load the `tidyverse` package (which includes ggplot2).
-
-```{r, eval = TRUE, message = FALSE, warning = FALSE}
+```{r, eval = TRUE, message = FALSE}
 library(tidyverse)
-library(speff2trial)
-library(car)
-library(FFTrees)
+mcdonalds <- read_csv("../_data/complete/mcdonalds.csv")
 ```
 
-### Building a plot step-by-step
+|File | Rows | Columns |
+|:----|:-----|:------|
+|`mcdonalds.csv` | 260 | 24 |
 
-3. The `diamonds` dataset in the `ggplot2` package shows information about 50,000 round cut diamonds. Print the `diamonds` dataset, it should look like this:
 
-```{r, echo = TRUE, eval = TRUE}
-diamonds
+
+## A - Setup
+
+A1. Open your R project. It should already have the folders `0_Data` and `1_Code`. Make sure that the data files listed in the `Datasets` section above are in your `1_Data` folder
+
+```{r}
+# Done!
 ```
 
-4. Using `ggplot()`, create the following blank plot using the `data` and `mapping` arguments (but no geom).
+A2. Open a new R script. At the top of the script, using comments, write your name and the date. Save it as a new file called `plottingh_practical.R` in the `2_Code` folder.  
 
-```{r, echo = FALSE, eval = TRUE, fig.width = 6, fig.height = 4}
-ggplot(data = diamonds, 
-       mapping = aes(x = carat, y = price))
-```
-
-5. Now, using `geom_point()`, add points showing the relationship between the number of carats in the diamonds (`carat`) and its price (`price`)
-
-```{r, echo = FALSE, eval = TRUE, fig.width = 6, fig.height = 4}
-ggplot(data = diamonds, 
-       mapping = aes(x = carat, y = price)) + 
-  geom_point()
-```
-
-6. Make the points transparent using the `alpha` argument to `geom_point()`
-
-```{r, echo = FALSE, eval = TRUE, fig.width = 6, fig.height = 4}
-ggplot(data = diamonds, 
-       mapping = aes(x = carat, y = price)) + 
-  geom_point(alpha = .05)
-```
-
-7. Using the `color` aesthetic mapping, color the points by their cut.
-
-```{r, echo = FALSE, eval = TRUE, fig.width = 6, fig.height = 4}
-ggplot(data = diamonds, 
-  mapping = aes(x = carat, y = price, color = cut)) + 
-  geom_point(alpha = .05)
-```
-
-8. Using the `facet_wrap()` function, create different plots for each value of `cut`.
-
-```{r, echo = FALSE, eval = TRUE, fig.width = 8, fig.height = 2}
-ggplot(data = diamonds, 
-       mapping = aes(x = carat, y = price, color = cut)) + 
-  geom_point(alpha = .05) + 
-  facet_wrap(~ cut, nrow = 1)
-```
-
-9. Using the `geom_smooth()` function, add a black, smoothed mean line to each plot (You can also try turning the line into a regression line using the `method` argument)
-
-```{r, echo = FALSE, eval = TRUE, fig.width = 8, fig.height = 2}
-ggplot(data = diamonds, 
-       mapping = aes(x = carat, y = price, color = cut)) + 
-  geom_point(alpha = .05) + 
-  facet_wrap(~ cut, nrow = 1) + 
-  geom_smooth(color = "black")
-```
-
-
-### Playing with themes
-
-10. Look at the theme help menu with `?theme_bw()` to see a list of all of the standard ggplot themes. Then, try adding one of these themes to your previous plots to see how they change.
-
-11. The `ggthemes` package contains many additional themes. If you don't have the package already, install it by running `install.packages("ggthemes")`. Then, look at the `ggthemes()` vignette by running the following code:
-
-```{r, echo = TRUE}
-# Open the ggthemes vignette
-vignette("ggthemes", package = "ggthemes")
-```
-
-12. Now, create the following plot from the `mpg` data using the using the Five Thirty Eight theme. Note that `cty` is on the x axis, and `hwy` is on the y axis.
-
-```{r, echo = FALSE, eval = TRUE, fig.width = 6, fig.height = 6}
-library(ggthemes)
-
-ggplot(data = mpg, aes(x = cty, y = hwy)) + 
-  geom_point() +
-  labs(title = "City vs highway miles per gallon") +
-  facet_wrap(~manufacturer) +
-  theme_fivethirtyeight()
-```
-
-### Density geom with `geom_density()`
-
-13. Create the following density plot of prices from the `diamonds` data using the following template:
-
-   - Set the `data` argument to `diamonds`
-   - Map `carat` to the x aesthetic
-   - Add a density geom with `geom_density()` and set the fill color to `"tomato1"`
-   - Add labels
-   - Use the minimal theme with `theme_minimal()`
+A3. Using `library()` load the set of packages for this practical listed in the packages section above.
 
 ```{r, eval = FALSE, echo = TRUE}
-ggplot(data = XX, 
-       mapping = aes(x = XX)) + 
-       geom_density(fill = "XX") + 
-       labs(x = "XX", 
-            y = "XX", 
-            title = "XX",
-            subtitle = "XX",
-            caption = "XX") +
-  theme_XX()
+## NAME
+## DATE
+## Wrangling Practical
+
+library(XX)     
+library(XX)
+#...
 ```
 
-```{r, echo = FALSE, eval = TRUE, fig.width = 4, fig.height = 4}
-ggplot(data = diamonds, 
-       mapping = aes(x = carat)) + 
-  geom_density(fill = "tomato1") + 
-  labs(x = "Carats", 
-       y = "Count", 
-       title = "Diamond Prices",
-       subtitle = "Created with ggplot!",
-       caption = "Source: diamonds dataset") +
+```{r, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE}
+library(tidyverse)
+library(skimr)
+```
+
+A4. For this practical, we'll use the `mcondalds` data which contains nutrition information about items from McDonalds. Using the following template, load the data into R and store it as a new object called `mcdonalds`.
+
+```{r, echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
+# Load mcdonalds.csv from the data folder in your working directory
+
+mcdonalds <- read_csv(file = "XXX/XXX")
+```
+
+```{r, message = FALSE, echo = FALSE, eval = TRUE, warning = FALSE}
+library(tidyverse)
+```
+
+A6. Take a look at the first few rows of the dataset(s) by printing them to the console.
+
+A7. Use the `skim()` function (from the `skimr` package) to get more details on the dataset(s).
+
+### B - Building a plot step-by-step
+
+In this section, you'll build the following plot step by step
+
+```{r, echo = FALSE, eval = TRUE, fig.width = 7, fig.height = 4}
+ggplot(mcdonalds, aes(x = Calories, y = `Saturated Fat (% Daily Value)`, col = Category)) +
+  geom_point() +
+  geom_smooth(col = "black") +
+  labs(title = "McDonalds Nutrition",
+       subtitle = "Each point is a menu item",
+       caption = "Source: Kaggle.com") +
+  xlim(0, 1250) +
   theme_minimal()
 ```
 
-### Boxplot geom `geom_boxplot()`
+B1. Using `ggplot()`, create the following blank plot using the `data` and `mapping` arguments (but no geom). Use `calories` for the x aesthetic and `saturated_fat` for the y aesthetic
 
-14. Look at the help menu for `geom_boxplot()`. Then, create the following boxplot using the following template
+```{r, echo = TRUE, eval = FALSE, fig.width = 6, fig.height = 4}
+ggplot(data = mcdonalds, 
+       mapping = aes(x = XX, y = XX))
+```
 
-```{r, eval = FALSE, echo = TRUE}
-ggplot(data = XX,
-  mapping = aes(x = XX, y = log(XX), fill = XX)) + 
-  geom_boxplot()  + 
-  labs(y = "XX", 
-       x = "XX", 
-       fill = "XX",
-       title = "XX",
-       subtitle = "XX") +
-  scale_fill_brewer(palette = "XX")
+```{r, echo = FALSE, eval = TRUE, fig.width = 7, fig.height = 4}
+ggplot(mcdonalds, aes(x = Calories, y = `Saturated Fat (% Daily Value)`))
+```
+
+B1. Using `geom_point()`, add points to the plot
+
+```{r, echo = TRUE, eval = FALSE, fig.width = 6, fig.height = 4}
+ggplot(data = mcdonalds, 
+       mapping = aes(x = XX, y = XX)) +
+  geom_point()
+```
+
+```{r, echo = FALSE, eval = TRUE, fig.width = 7, fig.height = 4}
+ggplot(mcdonalds, aes(x = Calories, y = `Saturated Fat (% Daily Value)`)) +
+  geom_point()
+```
+
+B2. Using the `color` aesthetic mapping, color the points by their Category.
+
+```{r, echo = TRUE, eval = FALSE, fig.width = 6, fig.height = 4}
+ggplot(mcdonalds, aes(x = XX, y = XX, col = XX)) +
+  geom_point() 
+```
+
+```{r, echo = FALSE, eval = TRUE, fig.width = 7, fig.height = 4}
+ggplot(mcdonalds, aes(x = Calories, y = `Saturated Fat (% Daily Value)`, col = Category)) +
+  geom_point()
+```
+
+B3. Add a smoothed average line using `geom_smooth()`.
+
+```{r, echo = TRUE, eval = FALSE, fig.width = 6, fig.height = 4}
+ggplot(mcdonalds, aes(x = XX, y = XX, col = XX)) +
+  geom_point() +
+  geom_smooth() 
+```
+
+```{r, echo = FALSE, eval = TRUE, fig.width = 7, fig.height = 4}
+ggplot(mcdonalds, aes(x = Calories, y = `Saturated Fat (% Daily Value)`, col = Category)) +
+  geom_point() +
+  geom_smooth()
+```
+
+B3. Oops! Did you get several smoothed lines instead of just one? Let's fix it by specifying that the line should have one color: "black". When you do, you should then only see one line.
+
+```{r, echo = TRUE, eval = FALSE, fig.width = 6, fig.height = 4}
+ggplot(mcdonalds, aes(x = XX, y = XX, col = XX)) +
+  geom_point() +
+  geom_smooth(col = "XX") 
 ```
 
 
-```{r, echo = FALSE, eval = TRUE, fig.width = 6, fig.height = 4}
-ggplot(data = diamonds,
-  mapping = aes(x = cut, y = log(price), fill = cut)) + 
-  geom_boxplot()  + 
-  labs(y = "Price (log scale)", x = "Cut", color = "Cut", 
-       title = "Distribution of diamond prices by cut", 
-       subtitle = "Data come from a random sample of 1000 diamonds",
-       caption = "Source: diamonds dataset from ggplot2") +
-  scale_fill_brewer(palette = "YlGnBu")
+```{r, echo = FALSE, eval = TRUE, fig.width = 7, fig.height = 4}
+ggplot(mcdonalds, aes(x = Calories, y = `Saturated Fat (% Daily Value)`, col = Category)) +
+  geom_point() +
+  geom_smooth(col = "black")
 ```
 
-### Violin geom `geom_violin()`
+B4. Add appropriate labels using the `labs()` function
 
-15. Now make the following plot using `geom_violin()`. You can also change the color palette in the `palette` argument to the `scale_fill_brewer()` function. Look at the help menu with `?scale_fill_brewer()` to see all the possibilities. In the plot below, I'm using `"Set1"`
-
-```{r, echo = FALSE, eval = TRUE, fig.width = 6, fig.height = 4}
-ggplot(data = diamonds,
-  mapping = aes(x = cut, y = log(price), fill = cut)) + 
-  geom_violin()  + 
-  labs(y = "Price (log scale)", x = "Cut", color = "Cut", 
-       title = "Distribution of diamond prices by cut", 
-       subtitle = "Data come from a random sample of 1000 diamonds",
-       caption = "Source: diamonds dataset from ggplot2") +
-  scale_fill_brewer(palette = "Set1")
-```
-
-
-### Summary statistics
-
-16. You can use the `stat_summary()` function to add summary statistics as geoms to plots. Using the following template, create the following plot showing the mean prices of diamonds for each level of clarity.
-
-```{r, echo = TRUE, eval = FALSE}
-ggplot(data = XX,
-  mapping = aes(x = XX, y = XX)) + 
-stat_summary(fun.y = "mean", 
-             geom = "bar", 
-             fill = "white", 
-             col = "black") +
-  labs(y = "XX", 
-       x = "XX", 
-       title = "XX", 
+```{r, echo = TRUE, eval = FALSE, fig.width = 8, fig.height = 2}
+ggplot(mcdonalds, aes(x = XX, y = XX, col = XX)) +
+  geom_point() +
+  geom_smooth(col = "XX") +
+  labs(title = "XX",
+       subtitle = "XX",
        caption = "XX")
 ```
 
-
-```{r, echo = FALSE, eval = TRUE, fig.width = 6, fig.height = 4}
-ggplot(data = diamonds,
-  mapping = aes(x = clarity, y = price)) + 
-stat_summary(fun.y = "mean", 
-             geom = "bar", 
-             fill = "white", 
-             col = "black") +
-  labs(y = "Mean Price", 
-       x = "Clarity", 
-       color = "Clarity", 
-       title = "Mean diamond prices by Clarity", 
-       caption = "Source: diamonds dataset from ggplot2")
+```{r, echo = FALSE, eval = TRUE, fig.width = 7, fig.height = 4}
+ggplot(mcdonalds, aes(x = Calories, y = `Saturated Fat (% Daily Value)`, col = Category)) +
+  geom_point() +
+  geom_smooth(col = "black") +
+  labs(title = "McDonalds Nutrition",
+       subtitle = "Each point is a menu item",
+       caption = "Source: Kaggle.com")
 ```
 
-17. Now, create the following plot from the `mpg` dataframe
+B5. Set the limits of the x-axis to 0 and 1250 using `xlim()`
 
-```{r, echo = FALSE, eval = TRUE, fig.width = 8, fig.height = 6}
-ggplot(data = mpg,
-  mapping = aes(x = manufacturer, y = hwy)) + 
-stat_summary(fun.y = "mean", 
-             geom = "bar", 
-             fill = "white", 
-             col = "black") +
-  labs(y = "Highway Miles per gallon", 
-       x = "Manufacturer", 
-       title = "Average fuel efficiency for different car manufacturers", 
-       caption = "Source: mpg dataset from ggplot2")
+```{r, echo = TRUE, eval = FALSE, fig.width = 8, fig.height = 2}
+ggplot(mcdonalds, aes(x = XX, y = XX, col = XX)) +
+  geom_point() +
+  geom_smooth(col = "XX") +
+  labs(title = "XX",
+       subtitle = "XX",
+       caption = "XX") +
+  xlim(XX, XX)
+```
+
+```{r, echo = FALSE, eval = TRUE, fig.width = 7, fig.height = 4}
+ggplot(mcdonalds, aes(x = Calories, y = `Saturated Fat (% Daily Value)`, col = Category)) +
+  geom_point() +
+  geom_smooth(col = "black") +
+  labs(title = "McDonalds Nutrition",
+       subtitle = "Each point is a menu item",
+       caption = "Source: Kaggle.com") +
+  xlim(0, 1250)
+```
+
+B5. Finally, set the plotting theme to `theme_minimal()`. You should now have the final plot!
+
+```{r, echo = TRUE, eval = FALSE, fig.width = 8, fig.height = 2}
+ggplot(mcdonalds, aes(x = XX, y = XX, col = XX)) +
+  geom_point() +
+  geom_smooth(col = "XX") +
+  labs(title = "XX",
+       subtitle = "XX",
+       caption = "XX")+
+  xlim(XX, XX) +
+  theme_minimal()
+```
+
+```{r, echo = FALSE, eval = TRUE, fig.width = 7, fig.height = 4}
+ggplot(mcdonalds, aes(x = Calories, y = `Saturated Fat (% Daily Value)`, col = Category)) +
+  geom_point() +
+  geom_smooth(col = "black") +
+  labs(title = "McDonalds Nutrition",
+       subtitle = "Each point is a menu item",
+       caption = "Source: Kaggle.com") +
+  xlim(0, 1250) +
+  theme_minimal()
 ```
 
 
-18. You can easily flip the coordinates of a plot by using `coord_flip()`. Using `coord_flip()`, flip the x and y coordinates of your previous plot so it looks like this:
+### C - Playing with geoms
 
-```{r, echo = FALSE, eval = TRUE, fig.width = 8, fig.height = 6}
-ggplot(data = mpg,
-  mapping = aes(x = manufacturer, y = hwy)) + 
-stat_summary(fun.y = "mean", 
-             geom = "bar", 
-             fill = "white", 
-             col = "black") +
-  labs(y = "Highway Miles per gallon", 
-       x = "Manufacturer", 
-       title = "Average fuel efficiency for different car manufacturers", 
-       caption = "Source: mpg dataset from ggplot2") + coord_flip()
+C1. Create the following plot showing the relationship between menu category and calories
+
+```{r, eval = TRUE, echo = FALSE, fig.width = 8, fig.height = 3}
+ggplot(data = mcdonalds, aes(x = Category, y = Calories, fill = Category)) +
+  geom_violin() +
+  guides(fill = FALSE) +
+  labs(title = "McDonalds",
+       subtitle = "Calorie distribution by menu category")
 ```
+
+```{r, eval = FALSE, echo = TRUE, fig.width = 8, fig.height = 3}
+ggplot(data = mcdonalds, aes(x = XX, y = XX, fill = XX)) +
+  geom_violin() +
+  guides(fill = FALSE) +
+  labs(title = "XX",
+       subtitle = "XX")
+```
+
+C2. Include the additional argument `+ stat_summary(fun.y = "mean", geom = "point", col = "white", size = 4)` to include points showing the mean of each distribution
+
+```{r, eval = TRUE, echo = FALSE, fig.width = 8, fig.height = 3}
+ggplot(data = mcdonalds, aes(x = Category, y = Calories, fill = Category)) +
+  geom_violin() +
+  guides(fill = FALSE) +
+  stat_summary(fun.y = "mean", geom = "point", col = "white", size = 4) +
+  labs(title = "McDonalds",
+       subtitle = "Calorie distribution by menu category")
+```
+
+C3. Now add `+ geom_jitter(width = .1, alpha = .5)` to your plot, what do you see?
+
+```{r, eval = TRUE, echo = FALSE, fig.width = 8, fig.height = 3}
+ggplot(data = mcdonalds, aes(x = Category, y = Calories, fill = Category)) +
+  geom_violin() +
+  geom_jitter(width = .1, alpha = .5) +
+  guides(fill = FALSE) +
+  stat_summary(fun.y = "mean", geom = "point", col = "white", size = 4) +
+  labs(title = "McDonalds",
+       subtitle = "Calorie distribution by menu category")
+```
+
+C4. Play around with your plotting arguments to see how the results change! Each time you make a change, run the plot again to see your new output!
+
+    - Change the summary function in `stat_summary()` from "mean" to "median"
+    - Change the size of the points in `stat_summary()` to something much biggger (or smaller).
+    - Change the `width` argument in `geom_jitter()` to `width = 0`
+    - Instead of using `geom_violin()`, try `geom_boxplot()`
+    - Remove the `fill = Category` aesthetic entirely.
+
+### D - Using facets
+
+D1. Create the following plot showing the relationship between Sodium and calories
+
+```{r, eval = TRUE, echo = FALSE}
+ggplot(mcdonalds, aes(x = Sodium, y = Calories)) +
+  geom_point(alpha = .2) +
+  facet_wrap(~Category) +
+  labs(title = "McDonales",
+       subtitle = "Sodium vs. Calories") +
+  theme_minimal()
+```
+
+```{r, eval = FALSE, echo = TRUE}
+ggplot(XX, aes(x = XX, y = XX)) +
+  geom_point(alpha = .2) +
+  facet_wrap(~ XX) +
+  labs(title = "XX",
+       subtitle = "XX") +
+  theme_minimal()
+```
+
+D2. Try the following ways to customise your plot
+
+  - Color the points by their category
+  - Add a smoothed line to each plot with `geom_smooth()`
+
+
+### E - Saving plots
+
+E1. 
+
+### E - Playing with themes
+
+E1. the `ggthemes` package has many additional plotting themese. Look at the help menu for the `ggthemes` package to see all of the themes.
+
+E2. Adjust some of your previous plots using the `theme_excel()` theme to see a really ugly Excel-like plot!
+
+
+
+
 
 
 ### Saving plots as objects
@@ -557,24 +618,6 @@ ggplot(data = economics,
 ```
 
 28. Make the following plot from the `trial_act.csv` dataset. To do this, you'll need to use both `geom_boxplot()` and `geom_point()`. To jitter the points, use the `position` argument to `geom_point()`, as well as the `position_jitter()` function to control how much to jitter the points.
-
-```{r, eval = TRUE, echo = FALSE, fig.width = 10, fig.height = 6}
-ggplot(data = ACTG175,
-       aes(x = factor(arms), y = days, fill = factor(arms))) +
-   facet_wrap(~ drugs, nrow = 1, labeller = label_both) +
-  geom_boxplot(outlier.size = 0) + 
-  labs(title = "Number of days until a major negative event",
-       subtitle = "For different treatment arms and separated by drug users and non drug users",
-       caption = "Source: ACTG175 dataset from the speff2trial package",
-       x = "Treatment Arm",
-       y = "Number of days until a major negative event",
-       fill = "Arm") +
-  theme_bw() +  
-  scale_fill_brewer(palette = "Dark2") + 
-  geom_point(alpha = .2, 
-             position = position_jitter(w = 0.1, h = 0))
-
-```
 
 
 ### References and Further Reading
