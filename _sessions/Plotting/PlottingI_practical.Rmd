@@ -149,20 +149,20 @@ ggplot(data = mpg,
             size = "Counts")
 ```
 
-## Tasks
 
-
-### Datasets
+## Datasets
 
 ```{r, eval = TRUE, message = FALSE}
 library(tidyverse)
 mcdonalds <- read_csv("https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/mcdonalds.csv")
 ```
 
-|File | Link |Rows | Columns |
-|:----|:-----|:-----|:------|
+|File  |Rows | Columns |
+|:----|:-----|:------|
 |[mcdonalds.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/mcdonalds.csv)| 260 | 24 |
 
+
+## Tasks
 
 ## A - Setup
 
@@ -212,7 +212,8 @@ A7. Use the `skim()` function (from the `skimr` package) to get more details on 
 In this section, you'll build the following plot step by step
 
 ```{r, echo = FALSE, eval = TRUE, fig.width = 7, fig.height = 4}
-ggplot(mcdonalds, aes(x = Calories, y = `Saturated Fat (% Daily Value)`, col = Category)) +
+ggplot(mcdonalds, aes(x = Calories, y = `Saturated Fat (% Daily Value)`, col = Category
+                      )) +
   geom_point() +
   geom_smooth(col = "black") +
   labs(title = "McDonalds Nutrition",
