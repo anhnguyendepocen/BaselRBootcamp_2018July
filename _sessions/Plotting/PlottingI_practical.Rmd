@@ -156,13 +156,12 @@ ggplot(data = mpg,
 
 ```{r, eval = TRUE, message = FALSE}
 library(tidyverse)
-mcdonalds <- read_csv("../_data/complete/mcdonalds.csv")
+mcdonalds <- read_csv("https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/mcdonalds.csv")
 ```
 
-|File | Rows | Columns |
-|:----|:-----|:------|
-|`mcdonalds.csv` | 260 | 24 |
-
+|File | Link |Rows | Columns |
+|:----|:-----|:-----|:------|
+|[mcdonalds.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/mcdonalds.csv)| 260 | 24 |
 
 
 ## A - Setup
@@ -355,9 +354,18 @@ ggplot(mcdonalds, aes(x = Calories, y = `Saturated Fat (% Daily Value)`, col = C
 ```
 
 
-### C - Playing with geoms
+### C - Adding multiple geoms
 
 C1. Create the following plot showing the relationship between menu category and calories
+
+```{r, eval = FALSE, echo = TRUE, fig.width = 8, fig.height = 3}
+ggplot(data = mcdonalds, aes(x = XX, y = XX, fill = XX)) +
+  geom_violin() +
+  guides(fill = FALSE) +
+  labs(title = "XX",
+       subtitle = "XX")
+```
+
 
 ```{r, eval = TRUE, echo = FALSE, fig.width = 8, fig.height = 3}
 ggplot(data = mcdonalds, aes(x = Category, y = Calories, fill = Category)) +
@@ -367,13 +375,6 @@ ggplot(data = mcdonalds, aes(x = Category, y = Calories, fill = Category)) +
        subtitle = "Calorie distribution by menu category")
 ```
 
-```{r, eval = FALSE, echo = TRUE, fig.width = 8, fig.height = 3}
-ggplot(data = mcdonalds, aes(x = XX, y = XX, fill = XX)) +
-  geom_violin() +
-  guides(fill = FALSE) +
-  labs(title = "XX",
-       subtitle = "XX")
-```
 
 C2. Include the additional argument `+ stat_summary(fun.y = "mean", geom = "point", col = "white", size = 4)` to include points showing the mean of each distribution
 
@@ -388,7 +389,7 @@ ggplot(data = mcdonalds, aes(x = Category, y = Calories, fill = Category)) +
 
 C3. Now add `+ geom_jitter(width = .1, alpha = .5)` to your plot, what do you see?
 
-```{r, eval = TRUE, echo = FALSE, fig.width = 8, fig.height = 3}
+```{r, eval = FALSE, echo = FALSE, fig.width = 8, fig.height = 3}
 ggplot(data = mcdonalds, aes(x = Category, y = Calories, fill = Category)) +
   geom_violin() +
   geom_jitter(width = .1, alpha = .5) +
@@ -400,13 +401,22 @@ ggplot(data = mcdonalds, aes(x = Category, y = Calories, fill = Category)) +
 
 C4. Play around with your plotting arguments to see how the results change! Each time you make a change, run the plot again to see your new output!
 
-    - Change the summary function in `stat_summary()` from "mean" to "median"
-    - Change the size of the points in `stat_summary()` to something much biggger (or smaller).
-    - Change the `width` argument in `geom_jitter()` to `width = 0`
-    - Instead of using `geom_violin()`, try `geom_boxplot()`
-    - Remove the `fill = Category` aesthetic entirely.
+- Change the summary function in `stat_summary()` from "mean" to "median"
+- Change the size of the points in `stat_summary()` to something much bigger (or smaller).
+- Change the `width` argument in `geom_jitter()` to `width = 0`
+- Instead of using `geom_violin()`, try `geom_boxplot()`
+- Remove the `fill = Category` aesthetic entirely.
 
 ### D - Using facets
+
+```{r, eval = FALSE, echo = TRUE}
+ggplot(XX, aes(x = XX, y = XX)) +
+  geom_point(alpha = .2) +
+  facet_wrap(~ XX) +
+  labs(title = "XX",
+       subtitle = "XX") +
+  theme_minimal()
+```
 
 D1. Create the following plot showing the relationship between Sodium and calories
 
@@ -419,211 +429,145 @@ ggplot(mcdonalds, aes(x = Sodium, y = Calories)) +
   theme_minimal()
 ```
 
-```{r, eval = FALSE, echo = TRUE}
-ggplot(XX, aes(x = XX, y = XX)) +
-  geom_point(alpha = .2) +
-  facet_wrap(~ XX) +
-  labs(title = "XX",
-       subtitle = "XX") +
-  theme_minimal()
-```
 
 D2. Try the following ways to customise your plot
 
-  - Color the points by their category
-  - Add a smoothed line to each plot with `geom_smooth()`
+- Color the points by `Category`
+- Add a smoothed line to each plot with `geom_smooth()`
 
 
-### E - Saving plots
-
-E1. 
-
-### E - Playing with themes
-
-E1. the `ggthemes` package has many additional plotting themese. Look at the help menu for the `ggthemes` package to see all of the themes.
-
-E2. Adjust some of your previous plots using the `theme_excel()` theme to see a really ugly Excel-like plot!
+### E - Adjusting colors
 
 
-
-
-
-
-### Saving plots as objects
-
-19. Create the following plot from the `mpg` dataset, and save it as an object called `myplot`
-
-```{r, echo = FALSE, eval = TRUE, fig.width = 6, fig.height = 4}
-
-myplot <- ggplot(data = mpg,
-                 aes(x = cty, y = hwy)) +
+```{r, echo = FALSE, eval = TRUE, fig.width=6, fig.height = 4}
+ggplot(mcdonalds, aes(x = Cholesterol,
+                      y = Protein, 
+                      col = Calories)) + 
   geom_point() +
-  labs(x = "City Miles per Gallon",
-       y = "Highway Miles per Gallon",
-       title = "mpg data")
-
-myplot
+  scale_colour_gradient(low = "blue", high = "red") +
+  labs(title = "Playing with colors in ggplot",
+       subtitle = "Using scale_colour_gradient()")
 ```
 
+E1. Create a scatterplot showing the relationship between Cholesterol and Protein 
 
-20. Now, using object assignment `<-` add a regression line to the `myplot` object with `geom_smooth()`. Then evaluate the object to see the updated version. It should now look like this:
+E2. Color the points according to their Calories by specifying the `col` aesthetic
 
-```{r, echo = FALSE, eval = TRUE, fig.width = 6, fig.height = 4}
-myplot + geom_smooth()
+E3. Change the colors by including the additional argument ` + scale_colour_gradient(low = "blue", high = "red")`
+
+E4. Use a gray color palette by using `scale_color_grey()` instead of `scale_colour_gradient()`
+
+E5. Customize!
+
+- Look at all of the named colors in R by running `colors()`. Then, use two new colors in your plot.
+- 
+
+
+### F - Adding labels
+
+Let's create the following plot with additional point labels using `geom_text():
+
+```{r, echo = FALSE, eval = TRUE, fig.width = 8, fig.height = 4}
+ggplot(mcdonalds, aes(x = Sugars, 
+                      y = Calories, 
+                      col = Category, 
+                      label = Item)) +
+  geom_point() +
+  geom_text(data = mcdonalds %>% 
+            filter(Calories > 1100),
+            col = "black", 
+            check_overlap = TRUE, 
+            hjust = "left") +
+  xlim(0, 150) +
+  ylim(0, 2000) +
+  theme_minimal() +
+  labs(title = "Adding labels to a plot with geom_text()")
 ```
 
-21. Using `ggsave()`, save the object as a pdf file called `myplot.pdf` in your `3_Figures` folder. Set the width to 6 inches, and the height to 4 inches. Open the pdf outside of RStudio to make sure it worked!
-
-### Demographic information of midwest counties in the US
-
-22. Print the `midwest` dataset (it's contained in ggplot2) and look at the help menu to see what values it contains. It should look like this:
-
-```{r, eval = TRUE}
-midwest
-```
-
-23. Using the following code as a template, create the following plot showing the relationship between college education and poverty
-
-```{r, echo = TRUE, eval = FALSE, fig.width = 7, fig.height = 5}
-ggplot(data = XX, 
-    mapping = aes(x = XX, y = XX)) + 
-    geom_point(aes(fill = XX, size = XX), shape = 21, color = "white") + 
-    geom_smooth(aes(x = XX, y = XX)) +
-    labs(
-        x = "XX", 
-        y = "XX", 
-        title = "XX",
-        subtitle = "XX",
-        caption = "XX") + 
-    scale_color_brewer(palette = "XX") + 
-    scale_size(range = c(XX, XX)) +
-    guides(size = guide_legend(override.aes = list(col = "black")), 
-           fill = guide_legend(override.aes = list(size = 5)))
-```
-
-
-```{r, echo = FALSE, eval = TRUE, fig.width = 8, fig.height = 5}
-ggplot(data = midwest, 
-    mapping = aes(x = percollege, y = percpovertyknown)) + 
-    geom_point(aes(fill = state, size = popdensity), shape = 21, color = "white") + 
-    geom_smooth(aes(x = percollege, y = percpovertyknown)) +
-    labs(
-        x = "Percent with college education", 
-        y = "Poverty rate", 
-        title = "Midwest Data",
-        subtitle = "States with higher college education rates tend to have lower poverty rates",
-        caption = "Source: ggplot2 package") + 
-    scale_color_brewer(palette = "Set1") + 
-    scale_size(range = c(0, 12)) +
-    guides(size = guide_legend(override.aes = list(col = "black")), 
-           fill = guide_legend(override.aes = list(size = 5)))
-```
-
-
-24. Create the following density plot showing the density of inhabitants with a college education in different states using the following template
-
-```{r, echo = TRUE}
-ggplot(data = XX, 
-       mapping = aes(XX, fill = XX)) + 
-  geom_density(alpha = XX) + 
-  labs(title = "XX", 
-       subtitle = "XX",
-       caption = "XX",
-       x = "XX",
-       y = "XX",
-       fill = "XX")
-```
-
-
-```{r, echo = FALSE, eval = TRUE, fig.width = 8, fig.height = 5}
-ggplot(data = midwest, 
-       mapping = aes(percollege, fill = state)) + 
-  geom_density(alpha = 0.8) + 
-  labs(title = "College education rates", 
-       subtitle = "For 5 Midwest states",
-       caption = "Source: midwest dataset in ggplot2",
-       x = "Percent of inhabitants with a college education",
-       y = "Density",
-       fill = "State") + 
-  theme_bw()
-```
-
-### Heatplots with `geom_tile()`
-
-25. You can create heatplots using the `geom_tile()` function. Try creating the following heatplot of statistics of NBA players using the following template:
+F1. Start with the following template
 
 ```{r, echo = TRUE, eval = FALSE}
-# Read in nba data
-nba_long <- read_csv("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_data/nba_long.csv")
-
-# Look at the data
-nba_long
-
-ggplot(XX, 
-       mapping = aes(x = XX, y = XX, fill = XX)) + 
-  geom_tile(colour = "XX") + 
-  scale_fill_gradientn(colors = c("XX", "XX", "XX"))+ 
-  labs(x = "XX", 
-       y = "XX", 
-       fill = "XX", 
-       title = "NBA XX performance",
-       subtitle = "XX",
-       caption = "XX") +
-  coord_flip()
+ggplot(mcdonalds, aes(x = XX, 
+                      y = XX, 
+                      col = XX)) +
+  geom_point() +
+  xlim(XX, XX) +
+  ylim(XX, XX) +
+  theme_minimal() +
+  labs(title = "XX")
 ```
 
+F2. Try adding labels to the plot indicating which item each point represents by adding `+ geom_text()`.
 
-```{r, echo = FALSE, eval = TRUE, fig.width = 10, fig.height = 12}
-# Read in nba data
-nba_long <- read_csv("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_data/nba_long.csv")
+F3. Where are the labels? Ah we didn't tell ggplot which column in the data represents the item descriptions. Fix this by specifying the `label` aesthetic in your first call to the `aes()` function. That is, include `label = Item` underneath `col = XX`. Now you should see lots of labels!
 
-ggplot(nba_long, 
-       mapping = aes(x = Name, y = measure, fill = value)) + 
-  geom_tile(colour = "white") + 
-  scale_fill_gradientn(colors = c("red", "white", "blue"))+ 
-  labs(x = "Player", 
-       y = "Statistic", 
-       fill = "Performance", 
-       title = "NBA player performance",
-       subtitle = "Each tile represents how well the player performed on that statistic relative to other players.",
-       caption = "Source: https://learnr.wordpress.com/2010/01/26/ggplot2-quick-heatmap-plotting/") +
-  coord_flip() + 
-  theme_minimal()
+F4. Customize your `geom_text()` by including the arguments: `geom_text(col = "black", check_overlap = TRUE, hjust = "left")`
+
+F5. Using the `data` argument in `geom_text()` specify that the labels should only apply to items over 1100 calories (hint: `geom_point(data = mcdonalds %>% filter(XX > XX))`)
+
+F6. Play around! 
+
+- Specify that the size of the points should correspond to their Calories. Do this with the `size` aesthetic.
+- Instead of mapping Category to the color aesthetic, try creating different facets for each Category with `facet_wrap(~ Category)`
+- Try using a different plotting theme. For example, you can try `theme_excel()` included in the `ggthemes` package.
+
+
+### G - Summary statistics
+
+G1. Create the following plot showing the mean number of calories for each menu category using the following template
+
+```{r, eval = FALSE, echo = TRUE}
+ggplot(XX, aes(x = XX, y = X)) +
+  stat_summary(geom = "bar", 
+               fun.y = "mean") +
+  labs(title = "XX")
 ```
 
-
-26. Make the following plot of savings data (`psavert`) from the `economics` dataset.
-
-```{r, eval = FALSE, echo = FALSE}
-ggplot(data = XX, aes(x = XX, y = XX)) + 
-       geom_line() + 
-       labs(title = "XX", 
-            subtitle = "XX", 
-            caption = "XX", 
-            y = "XX") + 
-       geom_smooth()
+```{r, eval = TRUE, echo = FALSE, fig.width = 10, fig.height = 4}
+ggplot(mcdonalds, aes(x = Category, y = Calories)) +
+  stat_summary(geom = "bar", 
+               fun.y = "mean") +
+  labs(title = "Calories by McDonalds menu category",
+       subtitle = "Bars represent means")
 ```
 
-```{r, eval = TRUE, echo = FALSE, fig.width = 10, fig.height = 6}
-# plot
-ggplot(data = economics, 
-       mapping = aes(x = date, y = psavert)) + 
-  geom_line() + 
-  geom_smooth() +
-  labs(title = "Personal Savings Rates Changes over Time", 
-       subtitle = "Ratio of personal saving to disposable income", 
-       caption = "Source:  http://research.stlouisfed.org/fred2", 
-       y = "Savings Rate %") + 
-  theme_bw()
+G1. Customize your plot!
+
+- Instead of showing the mean, show the median
+- Add overlapping points showing the individual items using `geom_point()`, `geom_count()` or `geom_jitter()`
+
+
+### H - Saving plots
+
+H1. It's time to save your favorite plot to an image file! Pick your favorite plot you've created so far. Then, assign the plot to a new object called `mcdonalds_gg` using `mcdonalds_gg <- ggplot(...)`
+
+```{r, eval = FALSE, echo = TRUE}
+mcdonalds_gg <- ggplot(...) # Include your plotting code here
 ```
 
-28. Make the following plot from the `trial_act.csv` dataset. To do this, you'll need to use both `geom_boxplot()` and `geom_point()`. To jitter the points, use the `position` argument to `geom_point()`, as well as the `position_jitter()` function to control how much to jitter the points.
+H2. Evaluate your `mcdonalds_gg` object to see that it does indeed contain your plot.
+
+H3. Save your plot to a pdf file called `mcdonalds.pdf` using `ggsave()`. When you finish, open your plot to see how it looks! 
+
+```{r, echo = TRUE, eval = FALSE}
+# Save mcdonalds_gg to a pdf file
+ggsave(filename = "mcdonalds", 
+       device = "pdf", 
+       plot = mcdonalds_gg,
+       width = 4, 
+       height = 4, 
+       units = "in")
+```
+
+H4. Play around with the `width` and `height` arguments to change the dimensions of the plot.
+
+H5. Customize your code to create a jpeg image called `mcdonalds.jpeg`
 
 
 ### References and Further Reading
 
-- Many of the plots in this practical were taken from Selva Prabhakaran's website [http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html](http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html)
-
 - The main `ggplot2` webpage at [http://ggplot2.tidyverse.org/](http://ggplot2.tidyverse.org/) has great tutorials and examples.
+
+- Check out Selva Prabhakaran's website for a nice gallery of ggplot2 graphics [http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html](http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html)
 
 - `ggplot2` is also great for making maps. For examples, check out Eric Anderson's page at [http://eriqande.github.io/rep-res-web/lectures/making-maps-with-R.html](http://eriqande.github.io/rep-res-web/lectures/making-maps-with-R.html)
