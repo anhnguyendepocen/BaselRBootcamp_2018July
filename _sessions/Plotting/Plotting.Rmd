@@ -17,7 +17,7 @@ output:
 layout: true
 
 <div class="my-footer"><span>
-<a href="https://therbootcamp.github.io/"><font color="#7E7E7E">Erfurt, June 2018</font></a>
+<a href="https://therbootcamp.github.io/"><font color="#7E7E7E">BaselRBootcamp, July 2018</font></a>
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
@@ -188,17 +188,21 @@ plot(x = mpg$displ,
 .pull-left35[
 
 1) Complex plots can quickly require a <b>LOT of code</b>.<br>
+
 2) Default plots look pretty <b>outdated</b>.<br>
+
 3) No way to set plotting <b>themes</b>.<br>
+
 4) Can't store plots as <b>objects</b> to reference and update later</font><br><br><br>
 
-The plot to the right would take <b>a lot of code in Base R</b> but **just 10 lines of code**, 5 of which controlling the labels, in `ggplot2`.
 
 ]
 
 .pull-right55[
 
-```{r, echo = FALSE, fig.width=7}
+Thhis plot would take <b>a lot of code in Base R</b> but **just 10 lines of code**, 5 of which controlling the labels, in `ggplot2`.
+
+```{r, echo = FALSE, fig.width=7, fig.height = 4}
 # Add a regression line for all classes
 ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) +
   geom_point(size = 3, alpha = .9) + 
@@ -1165,11 +1169,45 @@ ggsave(filename = "myplot.pdf",
 
 ---
 
+.pull-left45[
+
+# ggplot2 extensions
+
+ggplot2 has inspired hundreds of extension packages that make it even easier to make domain specific plots
+
+Tip! Before writing complex ggplot2 code for a common task, look for an extension package!
+
+[http://www.ggplot2-exts.org/gallery/](http://www.ggplot2-exts.org/gallery/)
+
+
+]
+
+
+.pull-right5[
+
+```{r, fig.height = 5, fig.width = 5}
+# Create a survival plot using ggsurvplot
+library(survminer)
+library(survival)
+fit <- survfit(Surv(time, status) ~ sex, 
+               data = lung)
+ggsurvplot(fit, data = lung, risk.table = TRUE)
+```
+
+
+]
+
+
+---
+
 # So much more
+
+We have only scratched the surface of what you can do with ggplot2
 
 Check these links for more in depth ggplot2 guides...
 
 1) `ggplot2` main page: http://ggplot2.tidyverse.org/index.html
+
 2) Wickham's data visualization guide: http://r4ds.had.co.nz/data-visualisation.html
 
 
