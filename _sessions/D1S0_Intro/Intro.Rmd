@@ -1,10 +1,11 @@
 ---
 title: "Welcome!"
 subtitle: ""
-author: "The R Bootcamp<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a>"
+author: "BaselRBootcamp<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
+date: "July 2018"
 output:
   xaringan::moon_reader:
-    css: ["default", "../_css/my-theme.css"]
+    css: ["default", "my-theme.css"]
     lib_dir: libs
     nature:
       highlightStyle: github
@@ -84,42 +85,29 @@ knitr::opts_chunk$set(fig.align = 'center')
 ]
 
 ---
+# Principles
 
 
-```{r, echo = FALSE, out.width = "80%"}
-knitr::include_graphics("../_image/principles.jpg")
-```
+.pull-left45[
+
+We all have different backgrounds and learn at different speeds
+
+Best way to learn? Try, Struggle, Get help, Try, Struggle, Get Help (repeat)
+
+Ask questions! We're here to help (but we won't make it too easy for you)
+
+You'll never master a language (certainly not in 2 weekends), you'll always be learning.
+
+Have fun and keep it light, learning a programming language should be (often) fun!
+
+]
 
 
-[Source: www.hackerearth.com](https://www.hackerearth.com/blog/innovation-management/open-innovation-principles/)
+.pull-right5[
 
+# BaselRBootcamp logo
 
----
-## Struggle, Ask questions (repeat!) -> Insight!
-
-```{r, echo = FALSE}
-knitr::include_graphics("../_image/struggle_question_insight.png")
-```
-
-
----
-### Theory + Applications = Empowered learning!
-
-<font size = "6"></font>
-
-```{r, echo = FALSE, out.width = "80%"}
-knitr::include_graphics("../_image/theory_applications_ven.png")
-```
-
-
-
-
----
-## Everyone learns differently
-
-```{r, echo = FALSE, out.width = "100%"}
-knitr::include_graphics("../_image/programming_pace.png")
-```
+]
 
 
 ---
@@ -167,14 +155,10 @@ knitr::include_graphics("../_image/programming_pace.png")
 
 .pull-right55[
 ```{r, echo = FALSE, out.width = "90%"}
-knitr::include_graphics("../_image/session_breakdown.png")
+knitr::include_graphics("https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/session_breakdown.png?raw=true")
 ```
 
-
-
 ]
-
-
 
 ---
 
@@ -182,17 +166,15 @@ knitr::include_graphics("../_image/session_breakdown.png")
 <br><br>
 # Introduction
 
-<font size = 5>30 - 60 minute slide based introduction</font><br>
+30 - 60 minute slide based introduction
 
-<font size = 5>Theory + code examples + live demonstrations</font><br>
+Theory + code examples + live demonstrations
 
-<font size = 5>Goal: Help you understand the basic concepts</font><br>
+Goal: Help you understand the basic concepts
 
-<font size = 5>All available online! Follow along on your computer. Don't worry about memorizing.</font><br>
+All available online! Follow along on your computer. Don't worry about memorizing
 
-<font size = 5>Be interactive! Stop us and ask questions!</font><br>
-
-
+Be interactive! Ask questions!
 
 ]
 
@@ -200,9 +182,8 @@ knitr::include_graphics("../_image/session_breakdown.png")
 
 ### Be interactive!!
 ```{r, echo = FALSE}
-knitr::include_graphics("../_image/lecture_questions.png")
+knitr::include_graphics("https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/lecture_questions.png?raw=true")
 ```
-
 
 
 ]
@@ -213,19 +194,15 @@ knitr::include_graphics("../_image/lecture_questions.png")
 
 # Practicals
 
-<font size = 5>This is where you really learn how to program!</font><br>
+This is where you really learn how to program!
 
-<font size = 5>Anywhere from 10 ~ 30 programming tasks. Starts easy, gets progressively more challenging</font><br>
+Anywhere from 10 ~ 30 programming tasks. Starts easy, gets progressively more challenging
 
-<font size = 5>Struggle, work together, <font color = 'blue'>ask questions</font> and challenge yourself</font><br>
+Struggle, work together, ask questions and challenge yourself
 
-<font size = 5>We are here to help! But won't make it too easy for you :)</font><br>
+We are here to help! But won't make it too easy for you :)
 
-<font size = 5>You <font color = 'blue'>will not be able to finish all of the tasks</font>. That's ok!</font><br>
-
-<font size = 5>Try to finish <b>50%</b> of the material during the session.</font><br>
-
-
+You will **not** be able to finish all of the tasks. That's ok!
 
 ]
 
@@ -234,13 +211,10 @@ knitr::include_graphics("../_image/lecture_questions.png")
 
 
 ```{r, echo = FALSE}
-knitr::include_graphics("../_image/practical_emojis.png")
+knitr::include_graphics("https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/practical_emojis.png?raw=true")
 ```
 
-
 ]
-
-
 
 ---
 
@@ -248,13 +222,13 @@ knitr::include_graphics("../_image/practical_emojis.png")
 <br><br>
 # ~15 min, 1-1 Coaching
 
-<font size=5>Sometimes, you may find yourself in need of some intensive help. That's ok!</font><br><br>
+Sometimes, you may find yourself in need of some intensive help.
 
-<font size=5>That's ok! We're here to help!</font><br><br>
+That's ok! We're here to help!
 
-<font size=5>At <i><font color='blue'>any time</font></i>, you can request a 15 minute 1-1 intensive help / coaching session</font><br><br>
+At any time, you can request a 15 minute 1-1 intensive help / coaching session
 
-<font size=5>We'll find some space and help you with whatever you're struggling with</font>
+We'll find some space and help you with whatever you're struggling with
 
 
 ]
@@ -263,9 +237,8 @@ knitr::include_graphics("../_image/practical_emojis.png")
 .pull-right45[
 
 ```{r, echo = FALSE}
-knitr::include_graphics("../_image/coaching_15.png")
+knitr::include_graphics("https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/coaching_15.png?raw=true")
 ```
-
 
 
 ]
@@ -273,7 +246,6 @@ knitr::include_graphics("../_image/coaching_15.png")
 
 ---
 # Cheatsheets
-
 
 <table width="100%" style="cellspacing:0; cellpadding:0; border:none">
   <tr>    
@@ -316,13 +288,13 @@ knitr::include_graphics("../_image/coaching_15.png")
 <br><br>
 # Breaks
 
-<font size = 5>Feel free to take breaks when you need them!</font><br2>
+Feel free to take breaks when you need them!
 
-<font size = 5>Help yourself to refreshments</font><br>
+Help yourself to refreshments
 
-<font size = 5>Coffee machine nearby (1 CHF)</font><br>
+Coffee machine nearby (1 CHF)
 
-<font size = 5>Lunch on your own or together at Tibits</font><br>
+Lunch on your own or together at Tibits
 
 ]
 
@@ -333,9 +305,6 @@ knitr::include_graphics("../_image/coaching_15.png")
 <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/tibits.jpg" height="400" vspace="10"></p>
 
 ]
-
-
-
 
 
 
@@ -370,9 +339,6 @@ knitr::include_graphics("../_image/coaching_15.png")
 
 
 
-
-
-
 ---
 <br>
 <p align="center"><img src="http://www.abetterinterview.com/wp-content/uploads/2012/11/interview-questions.jpg" height="510"></p>
@@ -382,11 +348,5 @@ knitr::include_graphics("../_image/coaching_15.png")
 
 
 <p><font size=6><b><a href="https://therbootcamp.github.io/BaselRBootcamp_2018April/_sessions/D1S1_WhatIsR/What_is_R.html#1">Link to Session 1: What is R?</a>
-
-
----
-# Backup slides
-
-
 
 
