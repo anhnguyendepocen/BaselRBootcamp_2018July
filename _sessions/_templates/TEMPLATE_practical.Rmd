@@ -45,7 +45,20 @@ In this practical you'll.... By the end of this practical you will know how to:
 |`broom`|`install.packages("broom")`|
 |`rsq`|`install.packages("rsq")`|
 
-### Glossary
+
+## Datasets
+
+```{r, eval = TRUE, message = FALSE}
+library(tidyverse)
+house <- read_csv("../_data/complete/kc_house.csv")
+```
+
+|File | Rows | Columns | Description |Source
+|:----|:-----|:------|:-----------------------------------------|:------|
+|`xx.csv` | xxx | xx| DESCRIPTION OF DATASET |SOURCE + LINK
+
+
+## Glossary
 
 *Descriptive Statistics*
 
@@ -74,7 +87,7 @@ In this practical you'll.... By the end of this practical you will know how to:
 |     `runif`|    Draw random values from a Uniform distribution| `?runif()`
 
 
-### Examples
+## Examples
 
 ```{r, eval = FALSE, echo = TRUE, message = FALSE, warning = FALSE}
 # -----------------------------------------------
@@ -195,17 +208,6 @@ tidy(my_glm)
 
 
 # Tasks
-
-### Datasets
-
-```{r, eval = TRUE, message = FALSE}
-library(tidyverse)
-house <- read_csv("../_data/complete/kc_house.csv")
-```
-
-|File | Rows | Columns | Description |Source
-|:----|:-----|:------|:-----------------------------------------|:------|
-|`xx.csv` | xxx | xx| DESCRIPTION OF DATASET |SOURCE + LINK
 
 ### A - Getting setup
 

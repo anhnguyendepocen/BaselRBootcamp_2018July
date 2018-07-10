@@ -3,7 +3,7 @@
   <head>
     <title>Statistics</title>
     <meta charset="utf-8">
-    <meta name="author" content="The R Bootcamp @ Erfurt www.therbootcamp.com @therbootcamp" />
+    <meta name="author" content="BaselRBootcamp www.therbootcamp.com @therbootcamp" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="my-theme.css" type="text/css" />
   </head>
@@ -12,8 +12,8 @@
 class: center, middle, inverse, title-slide
 
 # Statistics
-### The R Bootcamp @ Erfurt<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'><span class="citation">@therbootcamp</span></a>
-### June 2018
+### BaselRBootcamp<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'><span class="citation">@therbootcamp</span></a>
+### July 2018
 
 ---
 
@@ -21,17 +21,15 @@ class: center, middle, inverse, title-slide
 layout: true
 
 &lt;div class="my-footer"&gt;&lt;span&gt;
-&lt;a href="https://therbootcamp.github.io/"&gt;&lt;font color="#7E7E7E"&gt;Erfurt, June 2018&lt;/font&gt;&lt;/a&gt;
+&lt;a href="https://therbootcamp.github.io/"&gt;&lt;font color="#7E7E7E"&gt;BaselRBootcamp, July 2018&lt;/font&gt;&lt;/a&gt;
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
-&lt;a href="https://therbootcamp.github.io/"&gt;&lt;font color="#646464"&gt;www.therbootcamp.com&lt;/font&gt;&lt;/a&gt;
+&lt;a href="https://therbootcamp.github.io/"&gt;&lt;font color="#7E7E7E"&gt;www.therbootcamp.com&lt;/font&gt;&lt;/a&gt;
 &lt;/span&gt;&lt;/div&gt; 
 
 ---
-
-
 
 
 
@@ -851,7 +849,7 @@ coin_flips
 ```
 
 ```
-##  [1] "T" "T" "H" "H" "T" "H" "T" "H" "H" "H"
+##  [1] "H" "H" "H" "H" "H" "H" "H" "H" "H" "T"
 ```
 
 ```r
@@ -862,7 +860,7 @@ table(coin_flips)
 ```
 ## coin_flips
 ## H T 
-## 6 4
+## 9 1
 ```
 
 ```r
@@ -871,7 +869,7 @@ mean(coin_flips == "H")
 ```
 
 ```
-## [1] 0.6
+## [1] 0.9
 ```
 
 ]
@@ -906,7 +904,7 @@ length(birthdays)
 ```
 
 ```
-## [1] 20
+## [1] 25
 ```
 
 
@@ -933,7 +931,7 @@ mysamp[1:5]  # First 5 values
 ```
 
 ```
-## [1] 10.501  9.980 11.936  2.309  6.631
+## [1] 13.575 19.442  8.958 16.348  7.552
 ```
 
 ```r
@@ -941,7 +939,7 @@ mean(mysamp) # Mean
 ```
 
 ```
-## [1] 10.56
+## [1] 9.862
 ```
 
 ```r
@@ -949,7 +947,7 @@ sd(mysamp)   # Standard deviation
 ```
 
 ```
-## [1] 4.513
+## [1] 5.35
 ```
 
 
@@ -967,7 +965,7 @@ ggplot(data = tibble(x = mysamp),
   theme_minimal()
 ```
 
-&lt;img src="Statistics_files/figure-html/unnamed-chunk-47-1.png" width="100%" /&gt;
+&lt;img src="Statistics_files/figure-html/unnamed-chunk-46-1.png" width="100%" /&gt;
 
 
 
