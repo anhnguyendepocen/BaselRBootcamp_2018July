@@ -51,20 +51,26 @@ By the end of this practical you will know how to:
 |`caret`|`install.packages("caret")`|
 
 
-
 ## Datasets
 
 ```{r, eval = TRUE, message = FALSE}
 library(tidyverse)
-trial_act <- read_csv("../_data/complete/trial_act.csv")
-trial_act_demo <- read_csv("../_data/complete/trial_act_demo_fake.csv")
+attrition_train <- read_csv("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_data/attrition_train.csv")
+attrition_test <- read_csv("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_data/attrition_test.csv")
+heartdisease_train <- read_csv("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_data/heartdisease_train.csv")
+heartdisease_test <- read_csv("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_data/heartdisease_test.csv")
+house_train <- read_csv("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_data/house_train.csv")
+house_test <- read_csv("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_data/house_test.csv")
 ```
 
 |File | Rows | Columns |
 |:----|:-----|:------|
-|`trial_act.csv` | 2139 | 27 |
-|`trial_act_demo_fake`| 2139 | 3|
-
+|`attrition_train.csv` | 2139 | 27 |
+|`attrition_test.csv` | 2139 | 27 |
+|`heartdisease_train.csv` | 2139 | 27 |
+|`heartdisease_test.csv` | 2139 | 27 |
+|`house_train.csv`| 2139 | 3|
+|`house_test.csv`| 2139 | 3|
 
 ## Glossary
 
