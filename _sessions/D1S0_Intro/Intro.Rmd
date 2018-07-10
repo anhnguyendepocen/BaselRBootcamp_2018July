@@ -88,8 +88,6 @@ knitr::opts_chunk$set(fig.align = 'center')
 # Principles
 
 
-.pull-left45[
-
 We all have different backgrounds and learn at different speeds
 
 Best way to learn? Try, Struggle, Get help, Try, Struggle, Get Help (repeat)
@@ -100,15 +98,7 @@ You'll never master a language (certainly not in 2 weekends), you'll always be l
 
 Have fun and keep it light, learning a programming language should be (often) fun!
 
-]
-
-
-.pull-right5[
-
 # BaselRBootcamp logo
-
-]
-
 
 ---
 
@@ -144,9 +134,9 @@ Have fun and keep it light, learning a programming language should be (often) fu
 <br>
 # Sessions
 
-<font size = 5>Each focus session is 2 hours</font><br>
+<font size = 5>Each session is 2 hours</font><br>
 
-<font size = 5>Introduction lecture with slides</font><br>
+<font size = 5>Introduction lecture with slides (45 - 75 min)</font><br>
 
 <font size = 5>Hands-on programming practical</font><br>
 
@@ -166,7 +156,7 @@ knitr::include_graphics("https://github.com/therbootcamp/therbootcamp.github.io/
 <br><br>
 # Introduction
 
-30 - 60 minute slide based introduction
+45 - 75 minute slide based introduction
 
 Theory + code examples + live demonstrations
 
@@ -179,11 +169,6 @@ Be interactive! Ask questions!
 ]
 
 .pull-right5[
-
-### Be interactive!!
-```{r, echo = FALSE}
-knitr::include_graphics("https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/lecture_questions.png?raw=true")
-```
 
 
 ]
