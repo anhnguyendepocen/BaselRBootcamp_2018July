@@ -39,14 +39,12 @@ By the end of this practical you will know how to:
 |:------|:------|
 |`tidyverse`|`install.packages("tidyverse")`|
 |`skimr`|`install.packages("skimr")`|
-|`rattle`|`install.packages("rattle")`|
 |`broom`|`install.packages("broom")`|
 |`rpart`|`install.packages("rpart")`|
 |`FFTrees`|`install.packages("FFTrees")`|
 |`partykit`|`install.packages("partykit")`|
 |`party`|`install.packages("party")`|
 |`randomForest`|`install.packages("randomForest")`|
-|`rminer`|`install.packages("rminer")`|
 |`caret`|`install.packages("caret")`|
 
 
