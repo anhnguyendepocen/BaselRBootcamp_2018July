@@ -361,21 +361,22 @@ rpart_pred &lt;- predict(object = price_rpart,
 # --------------------------------------
 
 # Regression Prediction Accuracy
-postResample(pred = pred_lm, 
+postResample(pred = lm_pred, 
              obs = house_test$price)
 
 # Decision Tree Prediction Accuracy
-postResample(pred = pred_rpart, 
+postResample(pred = rpart_pred, 
              obs = house_test$price)
 
 
 # Plot results
-house_competition &lt;- tibble(truth = house_test$price,
-                            Regression = lm_pred,
-                            Decision_Trees = rpart_pred) %&gt;%
+
+competition_results &lt;- tibble(truth = house_test$price,
+                              Regression = lm_pred,
+                              Decision_Trees = rpart_pred) %&gt;%
                        gather(group, prediction, -truth)
 
-ggplot(data = house_competition,
+ggplot(data = competition_results,
        aes(x = truth, y = prediction, col = group)) +
   geom_point(alpha = .2) +
   geom_abline(slope = 1, intercept = 0) +

@@ -1,0 +1,379 @@
+---
+title: "Machine Learning II"
+author: "BaselRBootcamp July 2018<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
+output:
+  html_document:
+    css: practical.css
+---
+
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(comment = NA, 
+                      fig.width = 6, 
+                      fig.height = 6,
+                      fig.align = 'center',
+                      echo = FALSE, 
+                      eval = FALSE, 
+                      warning = FALSE)
+
+options(digits = 3)
+
+library(baselers)
+library(tidyverse)
+```
+
+
+<figure>
+<center>
+  <img src="https://3qeqpr26caki16dnhd19sv6by6v-wpengine.netdna-ssl.com/wp-content/uploads/2014/09/Caret-package-in-R.png" alt="Trulli" style="width:70%">
+  <figcaption>www.rstudio.com</figcaption>
+</figure>
+
+
+## Overview
+
+In this practical you'll practice advanced machnine learning using the `caret` package
+
+By the end of this practical you will know how to:
+
+1. Create partitions of data with `createDataPartition()`
+2. Set up control parameters for the training process with `trainControl()`
+3. Train (pretty much) any machine learning model you want with `train()`
+4. Get variable importance rankings with `varImp()`
+5. Predict new data with `predict()`
+6. Evaluate model performance with `postResample()`
+
+## Packages
+
+|Package| Installation|
+|:------|:------|
+|`tidyverse`|`install.packages("tidyverse")`|
+|`caret`|`install.packages("caret")`|
+|`skimr`|`install.packages("skimr")`|
+|`GGally`|`install.packages("GGally")`|
+
+### Cheatsheet
+
+<a href="https://github.com/rstudio/cheatsheets/raw/master/caret.pdf">
+  <img src="https://github.com/therbootcamp/Erfurt_2018June/blob/master/_sessions/_image/caret_cheatsheet_ss.jpg?raw=true" width="600px">
+</a>
+
+
+### Datasets
+
+|File | Rows | Columns | Criterion | Source |
+|:----|:-----|:------|:----|:-----|
+|[house_train.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete//house_train.csv) | 1000 | 21 |`price`|[Kaggle: House Sales Prediction](https://www.kaggle.com/harlfoxem/housesalesprediction/home) |
+|[house_test.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete///house_test.csv) | 15000 | 21 | `price` |[Kaggle: House Sales Prediction](https://www.kaggle.com/harlfoxem/housesalesprediction/home) |
+|[heartdisease_train.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/heartdisease_train.csv) | 150 | 14 |`diagnosis` | [UCI ML Heartdisease](https://archive.ics.uci.edu/ml/datasets/Heart+Disease) |
+|[heartdisease_test.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/heartdisease_test.csv) | 150 | 14 | `diagnosis` |[UCI ML Heartdisease](https://archive.ics.uci.edu/ml/datasets/Heart+Disease) |
+|[attrition_train.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete//attrition_train.csv) | 500 | 35 |`Attrition` |[Kaggle Attrition](https://www.kaggle.com/pavansubhasht/ibm-hr-analytics-attrition-dataset) |
+|[attrition_test.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/attrition_test.csv) | 900 | 35 |`Attrition` |[Kaggle Attrition](https://www.kaggle.com/pavansubhasht/ibm-hr-analytics-attrition-dataset) |
+
+
+
+```{r, eval = TRUE, message = FALSE, eval = FALSE}
+library(tidyverse)
+
+house_train <- read_csv("../_data/house_train.csv")
+house_test <- read_csv("../_data/house_test.csv")
+
+heartdisease_train <- read_csv("../_data/heartdisease_train.csv")
+heartdisease_train <- read_csv("../_data/heartdisease_test.csv")
+
+attrition_train <- read_csv("../_data/attrition_train.csv")
+attrition_train <- read_csv("../_data/attrition_test.csv")
+```
+
+
+### Examples
+
+The following set of example code will take you through the basic steps of machine learning using the amazing `caret` package.
+
+```{r, echo = TRUE, eval = FALSE, results = 'hide', message = FALSE}
+# Load packages
+library(tidyverse)
+library(GGally)
+library(skimr)
+library(caret)
+
+# ------------------------------------
+# Step 0: Create training and test data
+#  Only necessary if you don't already have training
+#   and test data
+# ------------------------------------
+
+# Split diamonds data into separate training and test datasets
+diamonds <- diamonds %>%
+  sample_frac(1)              
+
+train_v <- createDataPartition(y = diamonds$price, 
+                               times = 1,
+                               p = .1)
+
+# Create separate training and test data
+
+diamonds_train <- diamonds %>%
+  slice(train_v$Resample1)
+
+diamonds_test <- diamonds %>%
+  slice(-train_v$Resample1)
+
+# ---------------
+# Explore
+# ---------------
+
+# Explore columns with summarizeColumns
+skim(diamonds_train)
+
+# Visualise relationships with ggpairs
+ggpairs(diamonds_train)
+
+# ---------------
+# Step 1: Define control parameters
+# ---------------
+
+# Set up control values
+ctr <- trainControl(method = "none")
+
+# ---------------
+# Step 2: Train model
+# ---------------
+
+# Predict price with linear regression
+diamonds_lm_train <- train(form = price ~ ., 
+                           data = diamonds_train,
+                           method = "lm",
+                           trControl = ctr)
+# ---------------
+# Step 3: Explore
+# ---------------
+
+class(diamonds_lm_train)
+diamonds_lm_train
+names(diamonds_lm_train)
+summary(diamonds_lm_train)
+
+# Look at variable importance with varImp
+varImp(diamonds_lm_train)
+
+# Look at final model object
+diamonds_lm_train$finalModel
+
+# ---------------
+# Step 4: Predict
+# ---------------
+
+diamonds_lm_predictions <- predict(diamonds_lm_train, 
+                                   newdata = diamonds_test)
+# ---------------
+# Step 5: Evaluate
+# ---------------
+
+# Look at final prediction performance!
+postResample(pred = diamonds_lm_predictions, 
+             obs = diamonds_test$price)
+
+# Plot relationship between predictions and truth
+performance_data <- tibble(predictions = diamonds_lm_predictions,
+                           criterion = diamonds_test$price)
+
+ggplot(data = performance_data,
+       aes(x = predictions, y = criterion)) +
+  geom_point(alpha = .1) +   # Add points
+  geom_abline(slope = 1, intercept = 0, col = "blue", size = 2) +
+  labs(title = "Regression prediction accuracy",
+       subtitle = "Blue line is perfect prediction!")
+```
+
+### Models
+
+Here are three models you can try for both regression and classification tasks
+
+<b>Regression Tasks</b>
+
+*For regression tasks, your criterion should be numeric*
+
+- Decision Trees with `rpart`
+- Random forests with `rf`
+- Regularised regression with `glmnet`
+
+<b>Classification Tasks</b>
+
+*For classification tasks, your criterion should be a factor*
+
+- Decision Trees with `rpart`
+- Random forests with `rf`
+- K nearest neighbors with `knn`
+
+### Modelling procedure
+
+In this practical you will conduct machine learning analyses on several data sets. For each of the tasks, go through the following steps.
+
+Step 0: Setup
+
+- Load the training data `XXX_train.csv` as a new dataframe called `XXX_train` and the test data `XXX_test.csv` as a new dataframe called `XXX_test`.
+
+- Explore the `XXX_train` dataframe with a combination of `skim()`, `names()`, `summary()` and other similar functions.
+
+Step 1: Define control parameters
+
+- Define control parameters with `trainControl()`. To start, use `method = "none"`
+
+Step 2: Train model
+
+- Train one or more models on the training data. Start with one model, then gradually try more. For each model, assign the result to a new training object called `XX_train` (e.g.; `rf_train` for random forests, `glm_train` for standard regression.)
+
+Step 3: Explore model
+
+- Explore your training objects by printing them, looking at (and printing) their named elements with `names()`, try accessing a few of the named elements with `XX_train$` and see what the outputs look like.
+
+- Look at the final model with `XX_train$finalModel`. Try applying generic functions like `summary()`, `plot()`, and `broom:tidy()` to the object. Do these help you to understand the final model?
+
+Step 4: Predict new data
+
+- Predict the criterion values of the test data `XXX_test` using `predict()` and store the results in a vector called `XXX_pred` (e.g.; `rf_pred` for predictions from random forests)
+
+Step 5: Evaluate performance
+
+- Evaluate the model's prediction accuracy. For regression tasks, use `postResample()`, and for classification tasks, use `confusionMatrix()`.
+
+# Tasks
+
+## A - Setup
+
+A1. Open your R project. It should already have the folders `1_Data` and `2_Code`. Make sure that the all of the datasets you need for this practical are in your `1_Data` folder
+
+```{r}
+# Done!
+```
+
+A2. Open a new R script and save it as a new file called `ml_practical.R` in the `2_Code` folder. At the top of the script, using comments, write your name and the date. Then, load the all of the packages you'll need for this practical. Here's how the top of your script should look:
+
+```{r, eval = FALSE, echo = TRUE}
+## NAME
+## DATE
+## Machine Learning Practical
+
+library(XX)     
+library(XX)   
+library(XX)   
+```
+
+## B - Regression with `house`
+
+In this task, you'll create the best possible model to predict the housing prices of houses in King County Washington. These the training data is stored in `house_train` and the test data is stored in `house_test`. The variable you are trying to predict is `price`!
+
+B1. Follow Steps A through I above, to create your best decision tree model predicting price. Call the model `rpart_price`
+
+B2. Do the same with random forests using `method = "rf"`. Call the model `rf_price`
+
+B3. Do the same with regularised regression using `method = "glmnet"`. Call the model `glmnet_price`
+
+B4. Which of the three models was the best a predicting price? Were they very different? Is one easier to interpret than the other?
+
+B5. Go to [http://topepo.github.io/caret/available-models.html](http://topepo.github.io/caret/available-models.html) and find the craziest looking model you can find that works for regression tasks. Then, try it on the price dataset and see how well it works! Does it do much better than the models you already tried?
+
+B6. Repeat your analyses, but now train your models using 10 fold cross validation by specifying `trainControl(method = "cv", number = 10, repeats = 1)`. How do the accuracy of the models change? Do they become more accurate when you use 10 fold cross validation compared to when you didn't?
+
+## C - Classification with `Heartdisease`
+
+*Make sure your criterion values are factors when fitting your model(s)!!*
+
+When you are conducting a classification analysis, you need to make sure the criterion is stored as a factor. This tells the function you are doing classification instead of regression. So before doing anything, do this for both the training and test datasets. Here's how to do it for the heartdisease datasets:
+
+```{r, eval = FALSE, echo = TRUE}
+# Convert the diagnosis column to a factor
+
+heartdisease_train <- heartdisease_train %>%
+  mutate(diagnosis = factor(diagnosis))
+
+heartdisease_test <- heartdisease_test %>%
+  mutate(diagnosis = factor(diagnosis))
+```
+
+In this task, you'll create the best possible model to predict whether or not a person is having a heart attack. These the training data is stored in `heartdisease_train` and the test data is stored in `housedisease_test`. The variable you are trying to predict is `diagnosis`!
+
+C1. Follow Steps A through I above, to create your best decision tree model predicting diagnosis. Call the model `rpart_diagnosis`
+
+C2. Do the same with random forests using `method = "rf"`. Call the model `rf_diagnosis`
+
+C3. Do the same with nearest neighbors using `method = "knn"`. Call the model `knn_diagnosis`
+
+C4. Which of the three models was the best a predicting diagnosis? Were they very different? Is one easier to interpret than the other?
+
+C5. Go to [http://topepo.github.io/caret/available-models.html](http://topepo.github.io/caret/available-models.html) and find the craziest looking model you can find that works for classification tasks. Then, try it on the heartdisease dataset and see how well it works! Does it do much better than the models you already tried?
+
+C6. Repeat your analyses, but now train your models using 10 fold cross validation by specifying `trainControl(method = "cv", number = 10, repeats = 1)`. How do the accuracy of the models change? Do they become more accurate when you use 10 fold cross validation compared to when you didn't?
+
+### Tips
+
+If you want to plot the results of multiple models, you can try using the following code template:
+
+#### Regression Models
+
+```{r, echo = TRUE, eval = TRUE}
+
+# Some fake prediction data
+#  include your real model prediction data here
+
+XX_pred <- rnorm(100, mean = 100, sd = 10)
+YY_pred <- rnorm(100, mean = 100, sd = 10)
+ZZ_pred <- rnorm(100, mean = 100, sd = 10)
+
+# Some fake true test values
+#   Get these from your XX_test objects
+
+truth <- rnorm(100, mean = 100, sd = 10)
+
+# Put results together in a tibble
+
+N <- length(truth)
+
+model_results <- tibble(model = rep(c("XX", "YY", "ZZ"), each = N),
+                        pred = c(XX_pred, YY_pred, ZZ_pred),
+                        truth = rep(truth, times = 3))
+
+# Add error and absolute error
+
+model_results <- model_results %>%
+  mutate(error = pred - truth,
+         abserr = abs(error))
+
+# Plot Distribution of errors for each model
+
+ggplot(model_results, 
+       aes(x = model, y = error, col = model)) +
+  geom_jitter(width = .1, alpha = .5) +
+  stat_summary(fun.y = mean, 
+               fun.ymin = min, 
+               fun.ymax = max, 
+               colour = "black") + 
+  labs(title = "Model Prediction Errors",
+       subtitle = "Dots represent means",
+       caption = "Caret is awesome!") +
+  theme(legend.position = "none")
+
+
+# Plot relationship between truth and predictions
+
+ggplot(model_results, 
+       aes(x = truth, y = pred, col = model)) +
+  geom_point(alpha = .5) +
+  geom_abline(slope = 1, intercept = 0) +
+  labs(title = "XX model predictions",
+       subtitle = "Diagonal represents perfect performance",
+       caption = "Caret is awesome!",
+       x = "True Values",
+       y = "Model Predictions")
+  
+```
+
+
+
+### Further Reading
+
+- Max Kuhn, the author of `caret` has a fantastic overview of the package at [http://topepo.github.io/caret/index.html](http://topepo.github.io/caret/index.html). If you like the `caret` package as much as we do, be sure to go through this page in detail.
+
+- Max Kuhn is also the co-author of a fantastic book on machine learning called [Applied predictive modelling - http://appliedpredictivemodeling.com/](http://appliedpredictivemodeling.com/).
+ 
