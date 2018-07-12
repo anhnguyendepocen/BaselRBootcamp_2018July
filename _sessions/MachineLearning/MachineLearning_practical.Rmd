@@ -295,5 +295,3 @@ F3. Complete Steps 5 through 7.
 
 F4. Which of your three models is the best at predicting the year a house was built?
 
-
-
