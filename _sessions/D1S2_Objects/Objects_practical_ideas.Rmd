@@ -97,26 +97,30 @@ data %>% knitr::kable(format = "markdown", caption = "Data from 10 baselers")
 B1. Create a numeric vector called `id` that shows the id values. When you finish, print the object to see it!
 
 ```{r, eval = FALSE, echo = TRUE}
-# Create a numeric vector
+# Create a numeric vector XX
 XX <- c(XX, XX, XX, XX)
 ```
 
 B2. Using the `class()` function, check the class of your `id` vector. Is it numeric?
 
 ```{r, eval = FALSE, echo = TRUE}
-# Chexk the class of an object
+# Check the class of an object XX
 class(XX)
 ```
 
 B3. Using the `length()` function, find out the length of your `id` object. Does it have length 10? If not, make sure you defined it correctly!
 
+```{r, eval = FALSE, echo = TRUE}
+# Chexk the length of a vector XX
+length(XX)
+```
+
 B4. Create a character vector called `sex` that shows the sex values. Make sure to use quotation marks "" when entering the data to tell R that the data are charcters! When you finish, print the object to see it!
 
 ```{r, eval = FALSE, echo = TRUE}
-# Create a character vector
+# Create a character vector XX
 XX <- c("XX", "XX", "XX", "XX")
 ```
-
 
 B5. Using the `class()` function, check the class of your `sex` vector. Is it character?
 
