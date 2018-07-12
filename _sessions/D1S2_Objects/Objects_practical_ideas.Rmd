@@ -89,7 +89,7 @@ A2. Open a new R script and save it as a new file called `objects_practical.R` i
 The table below shows a subset of the `baselers` data. In this practical, you will convert this table to R objects and then analyse them!
 
 ```{r, echo = FALSE, eval = TRUE}
-data <- baselers[1:10, c("id", "sex", "age", "height", "weight", "income")]
+data <- baselers[1:10, c("id", "sex", "age", "height", "weight")]
 
 data %>% knitr::kable(format = "markdown", caption = "Data from 10 baselers")
 ```
@@ -98,20 +98,27 @@ B1. Create a numeric vector called `id` that shows the id values. When you finis
 
 ```{r, eval = FALSE, echo = TRUE}
 # Create a numeric vector XX
+
 XX <- c(XX, XX, XX, XX)
+
+# Print the object
+
+XX
 ```
 
 B2. Using the `class()` function, check the class of your `id` vector. Is it numeric?
 
 ```{r, eval = FALSE, echo = TRUE}
-# Check the class of an object XX
+# Show the class of an object XX
+
 class(XX)
 ```
 
 B3. Using the `length()` function, find out the length of your `id` object. Does it have length 10? If not, make sure you defined it correctly!
 
 ```{r, eval = FALSE, echo = TRUE}
-# Chexk the length of a vector XX
+# Show the length of an object XX
+
 length(XX)
 ```
 
@@ -119,6 +126,7 @@ B4. Create a character vector called `sex` that shows the sex values. Make sure 
 
 ```{r, eval = FALSE, echo = TRUE}
 # Create a character vector XX
+
 XX <- c("XX", "XX", "XX", "XX")
 ```
 
@@ -126,16 +134,18 @@ B5. Using the `class()` function, check the class of your `sex` vector. Is it ch
 
 B6. Using the `length()` function, find out the length of your `sex` object. Does it have length 10? If not, make sure you defined it correctly!
 
-B7. Using the same steps as before, create the `height`, `weight`, and `income` objects.
+B7. Using the same steps as before, create the `height` vector.
+
+B8. Look at the weight data, you'll notice it contains an NA (missing) value. Create a vector called `weight` containing these data, making sure to include the missing value as `NA`
 
 ...
 
 
 ### C - Functions
 
-C1. Using the `mean()` function, calculate the mean age. It should be XX!
+C1. Using the `table()` function, find out how many males and females are in the data. You should find XX males and YY females!
 
-C2. Using the `table()` function, find out how many males and females are in the data. You should find XX males and YY females!
+C2. Using the `mean()` function, calculate the mean age. It should be XX!
 
 C3. Try calculating the mean value of sex. What happens? Why?
 
@@ -143,7 +153,7 @@ C4. Try calculating the mean weight. What happens? Why?
 
 C5. Look at the help menu for the `mean()` function to look for an argument that will help you with your problem...
 
-C5. Using the correct argument for the mean function, calculate the mean weight ignoring NA values.
+C6. Using the correct argument for the mean function, calculate the mean weight ignoring NA values.
 
 ...
 
@@ -161,7 +171,7 @@ D3. Now use the `tibble()` function...
 
 ...
 
-### E - Logical Comparisons
+### E - Logical Vectors
 
 ...
 

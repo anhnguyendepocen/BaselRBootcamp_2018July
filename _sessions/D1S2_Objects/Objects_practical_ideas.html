@@ -214,7 +214,6 @@ $(document).ready(function () {
 <th align="right">age</th>
 <th align="right">height</th>
 <th align="right">weight</th>
-<th align="right">income</th>
 </tr>
 </thead>
 <tbody>
@@ -224,7 +223,6 @@ $(document).ready(function () {
 <td align="right">44</td>
 <td align="right">174</td>
 <td align="right">113.4</td>
-<td align="right">6300</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
@@ -232,7 +230,6 @@ $(document).ready(function () {
 <td align="right">65</td>
 <td align="right">180</td>
 <td align="right">75.2</td>
-<td align="right">10900</td>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
@@ -240,7 +237,6 @@ $(document).ready(function () {
 <td align="right">31</td>
 <td align="right">168</td>
 <td align="right">55.5</td>
-<td align="right">5100</td>
 </tr>
 <tr class="even">
 <td align="right">4</td>
@@ -248,7 +244,6 @@ $(document).ready(function () {
 <td align="right">27</td>
 <td align="right">209</td>
 <td align="right">93.8</td>
-<td align="right">4200</td>
 </tr>
 <tr class="odd">
 <td align="right">5</td>
@@ -256,7 +251,6 @@ $(document).ready(function () {
 <td align="right">24</td>
 <td align="right">177</td>
 <td align="right">NA</td>
-<td align="right">4000</td>
 </tr>
 <tr class="even">
 <td align="right">6</td>
@@ -264,7 +258,6 @@ $(document).ready(function () {
 <td align="right">63</td>
 <td align="right">187</td>
 <td align="right">67.4</td>
-<td align="right">11400</td>
 </tr>
 <tr class="odd">
 <td align="right">7</td>
@@ -272,7 +265,6 @@ $(document).ready(function () {
 <td align="right">71</td>
 <td align="right">152</td>
 <td align="right">83.3</td>
-<td align="right">12000</td>
 </tr>
 <tr class="even">
 <td align="right">8</td>
@@ -280,7 +272,6 @@ $(document).ready(function () {
 <td align="right">41</td>
 <td align="right">156</td>
 <td align="right">67.8</td>
-<td align="right">7600</td>
 </tr>
 <tr class="odd">
 <td align="right">9</td>
@@ -288,7 +279,6 @@ $(document).ready(function () {
 <td align="right">43</td>
 <td align="right">176</td>
 <td align="right">69.3</td>
-<td align="right">8500</td>
 </tr>
 <tr class="even">
 <td align="right">10</td>
@@ -296,35 +286,43 @@ $(document).ready(function () {
 <td align="right">31</td>
 <td align="right">166</td>
 <td align="right">66.3</td>
-<td align="right">6100</td>
 </tr>
 </tbody>
 </table>
 <p>B1. Create a numeric vector called <code>id</code> that shows the id values. When you finish, print the object to see it!</p>
 <pre class="r"><code># Create a numeric vector XX
-XX &lt;- c(XX, XX, XX, XX)</code></pre>
+
+XX &lt;- c(XX, XX, XX, XX)
+
+# Print the object
+
+XX</code></pre>
 <p>B2. Using the <code>class()</code> function, check the class of your <code>id</code> vector. Is it numeric?</p>
-<pre class="r"><code># Check the class of an object XX
+<pre class="r"><code># Show the class of an object XX
+
 class(XX)</code></pre>
 <p>B3. Using the <code>length()</code> function, find out the length of your <code>id</code> object. Does it have length 10? If not, make sure you defined it correctly!</p>
-<pre class="r"><code># Chexk the length of a vector XX
+<pre class="r"><code># Show the length of an object XX
+
 length(XX)</code></pre>
 <p>B4. Create a character vector called <code>sex</code> that shows the sex values. Make sure to use quotation marks “” when entering the data to tell R that the data are charcters! When you finish, print the object to see it!</p>
 <pre class="r"><code># Create a character vector XX
+
 XX &lt;- c(&quot;XX&quot;, &quot;XX&quot;, &quot;XX&quot;, &quot;XX&quot;)</code></pre>
 <p>B5. Using the <code>class()</code> function, check the class of your <code>sex</code> vector. Is it character?</p>
 <p>B6. Using the <code>length()</code> function, find out the length of your <code>sex</code> object. Does it have length 10? If not, make sure you defined it correctly!</p>
-<p>B7. Using the same steps as before, create the <code>height</code>, <code>weight</code>, and <code>income</code> objects.</p>
+<p>B7. Using the same steps as before, create the <code>height</code> vector.</p>
+<p>B8. Look at the weight data, you’ll notice it contains an NA (missing) value. Create a vector called <code>weight</code> containing these data, making sure to include the missing value as <code>NA</code></p>
 <p>…</p>
 </div>
 <div id="c---functions" class="section level3">
 <h3>C - Functions</h3>
-<p>C1. Using the <code>mean()</code> function, calculate the mean age. It should be XX!</p>
-<p>C2. Using the <code>table()</code> function, find out how many males and females are in the data. You should find XX males and YY females!</p>
+<p>C1. Using the <code>table()</code> function, find out how many males and females are in the data. You should find XX males and YY females!</p>
+<p>C2. Using the <code>mean()</code> function, calculate the mean age. It should be XX!</p>
 <p>C3. Try calculating the mean value of sex. What happens? Why?</p>
 <p>C4. Try calculating the mean weight. What happens? Why?</p>
 <p>C5. Look at the help menu for the <code>mean()</code> function to look for an argument that will help you with your problem…</p>
-<p>C5. Using the correct argument for the mean function, calculate the mean weight ignoring NA values.</p>
+<p>C6. Using the correct argument for the mean function, calculate the mean weight ignoring NA values.</p>
 <p>…</p>
 </div>
 <div id="d---creating-dataframes" class="section level3">
@@ -335,8 +333,8 @@ XX &lt;- c(&quot;XX&quot;, &quot;XX&quot;, &quot;XX&quot;, &quot;XX&quot;)</code
 <p>D3. Now use the <code>tibble()</code> function…</p>
 <p>…</p>
 </div>
-<div id="e---logical-comparisons" class="section level3">
-<h3>E - Logical Comparisons</h3>
+<div id="e---logical-vectors" class="section level3">
+<h3>E - Logical Vectors</h3>
 <p>…</p>
 </div>
 <div id="f---coercion" class="section level3">
