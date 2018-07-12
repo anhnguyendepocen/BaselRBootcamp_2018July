@@ -1,5 +1,5 @@
 ---
-title: "Objects"
+title: "Objects and Functions"
 author: "BaselRBootcamp July 2018<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
 output:
   html_document:
@@ -123,7 +123,9 @@ C3. Try calculating the mean value of sex. What happens? Why?
 
 C4. Try calculating the mean weight. What happens? Why?
 
-C5. Using the `na.rm` argument for the mean function, calculate the mean weight ignoring NA values.
+C5. Look at the help menu for the `mean()` function to look for an argument that will help you with your problem...
+
+C5. Using the correct argument for the mean function, calculate the mean weight ignoring NA values.
 
 ...
 
