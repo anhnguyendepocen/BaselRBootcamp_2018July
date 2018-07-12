@@ -230,7 +230,7 @@ house <- read_csv("../_data/complete/pirates.csv")
 # Done!
 ```
 
-2. Open a new R script and save it as a new file called `Programming_in_R_practical.R` in the `2_Code` folder. At the top of the script, using comments, write your name and the date. The, load the set of packages listed above with `library()`.
+2. Open a new R script and save it as a new file called `Programming_practical.R` in the `2_Code` folder. At the top of the script, using comments, write your name and the date. The, load the set of packages listed above with `library()`.
 
 3. For this practical, we'll use the `pirates.csv` data. This dataset contains information such as sex, age, and number of tattoos of 1000 pirates. Using the following template, load the data into R and store it as a new object called `pirates`.
 
@@ -240,12 +240,128 @@ pirates <- read_csv(file = "XX/XXX")
 
 4. Using `print()`, `summary()`, `head()` and `skim()`, explore the data to make sure it was loaded correctly.
 
+
+### NEW FUN FUNCTION IDEAS
+
+- Write a function called `CheckGuestList()` that takes a guest's name `Guest`, checks their name against al ist of invitations `Invitations` and returns one of two messages depending on whether or not the guest was on the list!
+  - If `Guest` is on the list, print "Welcome Guest! We have been waiting for you!"
+  - If `Guest` is NOT on the list, print "Who are you?! You can't come in!!"
+
+
+```{r, echo = TRUE, eval = FALSE}
+CheckGuestList <- function(Guest, 
+                           Invitations = c("Donald", "Angela", "Justin")) {
+  
+  if(Guest %in% Invitations) {
+    
+    paste("XXX", Guest, "XX")
+    
+  } else {
+      
+    paste("XX")
+    
+    }
+}
+```
+
+- Try your function with the arguments `Guest = "Donald"`, `Invitations = c("Angela", "Justin")`
+
+
+- Write a function called `CheckColors()` that takes an argument `color` and returns a sentence telling you whether or not `color` is in fact a color in R.
+    - Bonus: If the color is found, create a histogram using that color!
+
+
+```{r, echo = TRUE, eval = FALSE}
+CheckColor <- function(XX) {
+  
+  if(XX %in% colors()) {
+    
+    paste("Yes!", XX, "is a color in R!")
+  
+  } else {
+    
+    paste("Nope. Try again")
+    
+  }
+
+}
+```
+
+```{r}
+CheckColor <- function(color) {
+  
+  if(color %in% colors()) {
+    
+    paste("Yes!", color, "is a color in R!")
+  
+  } else {
+    
+    paste("Nope. Try again")
+    
+  }
+
+}
+```
+
+- Write a function called `HigherLowerGame` that takes a number `guess` and compares it a number `thinking`...
+
+```{r, echo = TRUE, eval = FALSE}
+HigherLowerGame <- function(XX, XX) {
+  
+  if(XX < XX) {return(paste("My number is Higher!"))}
+    
+  if(XX > XX) {return(XX))}
+    
+  if(XX == XX) {XX}
+  
+}
+```
+
+```{r}
+HigherLowerGame <- function(guess, thinking) {
+  
+  if(guess < thinking) {return(paste("My number is Higher!"))}
+    
+  if(guess > thinking) {return(paste("My Number is Lower!"))}
+    
+  if(guess == thinking) {return(paste("You got it!!! My number was ", thinking))}  
+  
+}
+```
+
+
+- Test your function by first storing a random number between 1 and 100 as `thinking`. Then test your function! How many guesses do you need to get it right?
+
+```{r}
+thinking <- sample(1:100, size = 1)
+
+HigherLowerGame(81, thinking)
+
+HigherLowerGame(20, thinking)
+```
+
+
+
 ### B - Conditional Statements
 
 You have already used conditional statements, mostly in the form of the `case_when()` function. Now let's look at other functions. Note that for now the example may seem a little arbitrary. That is because usually conditional statements are used in loops or functions. We'll bring everything together towards the end of this practical.
 
-
 1. Let's simulate coin tosses. Use the `sample` function to draw one sample from {H, T} (i.e. a set, or in R a vector, containing "H" for head, and "T" for tail). If "H" comes up, print "Head", if "T" comes up, print "Tail".
+
+```{r, echo = TRUE, eval = FALSE}
+coin_toss <- sample(c("XX", "XX"), size = XX)
+
+if (coin_toss == "XX"){
+  
+  print("XX")
+  
+} else {
+  
+  print("XX")
+  
+}
+```
+
 
 ```{r}
 coin_toss <- sample(c("H", "T"), 1)
@@ -258,6 +374,30 @@ if (coin_toss == "H"){
 ```
 
 2. Now you no longer want to toss your coin only once but several (let's say ten) times (you'll have to tweak the `sample` function a bit. Check the help menue if you don't know how to do this). Do this, and if *ALL* tosses came up heads, print "Wow, that's ten heads in a row!", if there is at least one head in there, print "The coin showed X times heads, and Y times tails", where X and Y are the respective numbers of heads and tails (use the `paste` function to print and the `sum` function to get the correct numbers, check the help menus if you don't know how to do this), and print "Wow, that's ten tails in a row!", if *ALL* tosses came up tails.
+
+```{r, eval = FALSE, echo = TRUE}
+coin_tosses <- sample(c("XX", "XX"), 
+                      size = XX, 
+                      replace = TRUE)
+
+if (all(coin_tosses == "XX")){
+  
+  print("Wow, that's ten heads in a row!")
+  
+} else if (any(coin_tosses == "XX")) { # This works because if-else statements
+                                       # are executed in the order they are written,
+                                       # so because of the first check it is safe
+                                       # to assume, that not all are heads.
+  paste("The coin showed", 
+        sum(coin_tosses == "XX"), "times heads, and",
+        sum(coin_tosses == "XX"), "times tails.")
+  
+} else {
+  
+  print("XXX")
+}
+```
+
 
 ```{r}
 coin_tosses <- sample(c("H", "T"), 10, replace = TRUE)

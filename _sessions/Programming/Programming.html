@@ -3,7 +3,7 @@
   <head>
     <title>Programming in R</title>
     <meta charset="utf-8">
-    <meta name="author" content="The R Bootcamp Twitter: @therbootcamp" />
+    <meta name="author" content="BaselRBootcamp www.therbootcamp.com @therbootcamp" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="my-theme.css" type="text/css" />
   </head>
@@ -12,8 +12,8 @@
 class: center, middle, inverse, title-slide
 
 # Programming in R
-### The R Bootcamp<br/>Twitter: <a href='https://twitter.com/therbootcamp'><span class="citation">@therbootcamp</span></a>
-### April 2018
+### BaselRBootcamp<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'><span class="citation">@therbootcamp</span></a>
+### July 2018
 
 ---
 
@@ -27,7 +27,6 @@ class: center, middle, inverse, title-slide
 .pull-left45[
 Conditional Statements
 - `if`, `else`
-- `case_when`
 
 Functions
 - Program your own functions
@@ -56,7 +55,7 @@ if (baselers$sex[index] == "male"){
 }
 
 # Define own function
-my_mean &lt;- function(x){
+my_mean &lt;- function(x) {
   sum(x) / length(x)
 }
 
@@ -303,6 +302,55 @@ my_mean &lt;- function(x){
 
 ]
 
+
+---
+# Ex) show_stats()
+
+.pull-left55[
+
+Let's create a function called `show_stats()` which takes a numeric vector as an argument, and returns a sentence with information about that vector
+
+
+```r
+show_stats &lt;- function(x, digits = 2) {
+  
+  if(class(x) != "numeric") {
+    
+    stop("x is not numeric!!!")}
+  
+  output &lt;- paste0("x has length ", length(x), 
+                  ", and a mean of ", mean(x))
+  
+  return(output)
+  
+}
+```
+
+
+]
+
+.pull-right4[
+
+
+```r
+# Test with a numeric vector
+show_stats(x = baselers$age)
+```
+
+```
+## [1] "x has length 10000, and a mean of 44.6132"
+```
+
+
+```r
+# Text with a characteer vector
+show_stats(x = baselers$sex)
+```
+
+&lt;font color = 'red'&gt;Error in show_stats(x = "character!") : x is not numeric!!!&lt;/font&gt;
+
+]
+
 ---
 
 # Iteration - `for` Loops
@@ -532,18 +580,18 @@ There are several `map` functions that iterate over one vector. They are named a
 
 
 ```r
+# Print the mean of several columns
+
 baselers %&gt;%
   select(age,
          weight,
          height)  %&gt;%
-  map_dbl(function(x){
-    sum(x) / length(x)
-  })
+  map_dbl(mean, na.rm = TRUE)
 ```
 
 ```
 ##    age weight height 
-##  44.61     NA 171.00
+##  44.61  74.35 171.00
 ```
 
 ]
@@ -630,7 +678,7 @@ Let's go through some examples together
 
 # Programming in R Practical
 
-&lt;p&gt;&lt;font size=6&gt;&lt;b&gt;&lt;a href="https://therbootcamp.github.io/BaselRBootcamp_2018April/_sessions/D4S1_ProgrammingInR/Programming_in_R_practical.html"&gt;Link to practical&lt;/a&gt;
+&lt;p&gt;&lt;font size=6&gt;&lt;b&gt;&lt;a href="https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/D4S1_ProgrammingInR/Programming_in_R_practical.html"&gt;Link to practical&lt;/a&gt;
     </textarea>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
