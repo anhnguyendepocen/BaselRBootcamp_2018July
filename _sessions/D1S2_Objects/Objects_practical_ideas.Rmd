@@ -139,14 +139,14 @@ D2. Using the `dim()` function, print the number of rows and columns in your dat
 
 D3. Now use the `tibble()` function...
 
+...
+
+### E - Logical Comparisons
 
 ...
 
-### E - 
+### F - Coercion
 
-
-### F -
-
-
+...
 
 
