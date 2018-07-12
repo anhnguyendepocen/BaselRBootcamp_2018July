@@ -91,7 +91,7 @@ The table below shows a subset of the `baselers` data. In this practical, you wi
 ```{r, echo = FALSE, eval = TRUE}
 data <- baselers[1:10, c("id", "sex", "age", "height", "weight")]
 
-data %>% knitr::kable(format = "markdown", caption = "Data from 10 baselers")
+data %>% mutate_all(replace_na, " ") %>% knitr::kable(format = "markdown", caption = "Data from 10 baselers")
 ```
 
 B1. Create a numeric vector called `id` that shows the id values. When you finish, print the object to see it!
@@ -136,16 +136,16 @@ B6. Using the `length()` function, find out the length of your `sex` object. Doe
 
 B7. Using the same steps as before, create the `height` vector.
 
-B8. Look at the weight data, you'll notice it contains an NA (missing) value. Create a vector called `weight` containing these data, making sure to include the missing value as `NA`
+B8. Look at the weight data, you'll notice it contains an missing value. Create a vector called `weight` containing these data, making sure to specify the missing value as `NA`
 
 ...
 
 
 ### C - Functions
 
-C1. Using the `table()` function, find out how many males and females are in the data. You should find XX males and YY females!
+C1. Using the `table()` function, find out how many males and females are in the data. You should find `r sum(data$sex == "male")` males and `r sum(data$sex == "female")` females!
 
-C2. Using the `mean()` function, calculate the mean age. It should be XX!
+C2. Using the `mean()` function, calculate the mean age. It should be `r mean(data$age)`!
 
 C3. Try calculating the mean value of sex. What happens? Why?
 
@@ -153,7 +153,7 @@ C4. Try calculating the mean weight. What happens? Why?
 
 C5. Look at the help menu for the `mean()` function to look for an argument that will help you with your problem...
 
-C6. Using the correct argument for the mean function, calculate the mean weight ignoring NA values.
+C6. Using the correct argument for the mean function, calculate the mean weight ignoring NA values. It should be `r round(mean(data$weight, na.rm = TRUE), 2)`!
 
 ...
 
