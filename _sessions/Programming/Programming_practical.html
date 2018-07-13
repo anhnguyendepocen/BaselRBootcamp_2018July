@@ -410,22 +410,16 @@ map_dbl(pirates[, vars], mean)
 </div>
 <div id="a---getting-setup" class="section level3">
 <h3>A - Getting setup</h3>
-<ol style="list-style-type: decimal">
-<li><p>Open your R project. It should already have the folders <code>0_Data</code> and <code>1_Code</code>. Make sure that all of the data files listed above are contained in the folder</p></li>
-<li><p>Open a new R script and save it as a new file called <code>Programming_practical.R</code> in the <code>2_Code</code> folder. At the top of the script, using comments, write your name and the date. The, load the set of packages listed above with <code>library()</code>.</p></li>
-<li><p>For this practical, we’ll use the <code>pirates.csv</code> data. This dataset contains information such as sex, age, and number of tattoos of 1000 pirates. Using the following template, load the data into R and store it as a new object called <code>pirates</code>.</p></li>
-</ol>
+<p>A1. Open your R project. It should already have the folders <code>0_Data</code> and <code>1_Code</code>. Make sure that all of the data files listed above are contained in the folder</p>
+<p>A2. Open a new R script and save it as a new file called <code>Programming_practical.R</code> in the <code>2_Code</code> folder. At the top of the script, using comments, write your name and the date. The, load the set of packages listed above with <code>library()</code>.</p>
+<p>A3. For this practical, we’ll use the <code>pirates.csv</code> data. This dataset contains information such as sex, age, and number of tattoos of 1000 pirates. Using the following template, load the data into R and store it as a new object called <code>pirates</code>.</p>
 <pre class="r"><code>pirates &lt;- read_csv(file = &quot;XX/XXX&quot;)</code></pre>
-<ol start="4" style="list-style-type: decimal">
-<li>Using <code>print()</code>, <code>summary()</code>, <code>head()</code> and <code>skim()</code>, explore the data to make sure it was loaded correctly.</li>
-</ol>
+<p>A4. Using <code>print()</code>, <code>summary()</code>, <code>head()</code> and <code>skim()</code>, explore the data to make sure it was loaded correctly.</p>
 <ul>
 <li><h3 id="b---conditional-statements">B - Conditional Statements</h3></li>
 </ul>
 <p>You have already used conditional statements, mostly in the form of the <code>case_when()</code> function. Now let’s look at other functions. Note that for now the example may seem a little arbitrary. That is because usually conditional statements are used in loops or functions. We’ll bring everything together towards the end of this practical.</p>
-<ol style="list-style-type: decimal">
-<li>Let’s simulate coin tosses. Use the <code>sample</code> function to draw one sample from {H, T} (i.e. a set, or in R a vector, containing “H” for head, and “T” for tail). If “H” comes up, print “Head”, if “T” comes up, print “Tail”.</li>
-</ol>
+<p>B1. Let’s simulate coin tosses. Use the <code>sample</code> function to draw one sample from {H, T} (i.e. a set, or in R a vector, containing “H” for head, and “T” for tail). If “H” comes up, print “Head”, if “T” comes up, print “Tail”.</p>
 <pre class="r"><code>coin_toss &lt;- sample(c(&quot;XX&quot;, &quot;XX&quot;), size = XX)
 
 if (coin_toss == &quot;XX&quot;){
@@ -437,9 +431,7 @@ if (coin_toss == &quot;XX&quot;){
   print(&quot;XX&quot;)
   
 }</code></pre>
-<ol start="2" style="list-style-type: decimal">
-<li>Now you no longer want to toss your coin only once but several (let’s say ten) times (you’ll have to tweak the <code>sample</code> function a bit. Check the help menu if you don’t know how to do this). Do this, and if <em>ALL</em> tosses came up heads, print “Wow, that’s ten heads in a row!”, if there is at least one head in there, print “The coin showed X times heads, and Y times tails”, where X and Y are the respective numbers of heads and tails (use the <code>paste</code> function to print and the <code>sum</code> function to get the correct numbers, check the help menus if you don’t know how to do this), and print “Wow, that’s ten tails in a row!”, if <em>ALL</em> tosses came up tails.</li>
-</ol>
+<p>B2. Now you no longer want to toss your coin only once but several (let’s say ten) times (you’ll have to tweak the <code>sample</code> function a bit. Check the help menu if you don’t know how to do this). Do this, and if <em>ALL</em> tosses came up heads, print “Wow, that’s ten heads in a row!”, if there is at least one head in there, print “The coin showed X times heads, and Y times tails”, where X and Y are the respective numbers of heads and tails (use the <code>paste</code> function to print and the <code>sum</code> function to get the correct numbers, check the help menus if you don’t know how to do this), and print “Wow, that’s ten tails in a row!”, if <em>ALL</em> tosses came up tails.</p>
 <pre class="r"><code>coin_tosses &lt;- sample(c(&quot;XX&quot;, &quot;XX&quot;), 
                       size = XX, 
                       replace = TRUE)
@@ -464,13 +456,7 @@ if (all(coin_tosses == &quot;XX&quot;)){
 <div id="c---functions" class="section level3">
 <h3>C - Functions</h3>
 <p>Most of the time, conditional statements are either used in combination with functions or loops. We’ll start by looking at functions. Remember that a function has two parts, one in which you specify the arguments, and one in which you then write the code that is executed. The last line that is executed determines what the function returns. You can make this explicit with a <code>return()</code> statement, but it is good practice to only use this if you want to exit the function early, i.e. before all code is executed. If you don’t remember how to specify functions, check again above in the examples.</p>
-<ol style="list-style-type: decimal">
-<li>Write a function called <code>CheckGuestList()</code> that takes a guest’s name <code>Guest</code>, checks their name against a list of invitations <code>Invitations</code> and returns one of two messages depending on whether or not the guest was on the list!</li>
-</ol>
-<ul>
-<li>If <code>Guest</code> is on the list, print “Welcome Guest! We have been waiting for you!”</li>
-<li>If <code>Guest</code> is NOT on the list, print “Who are you?! You can’t come in!!”</li>
-</ul>
+<p>C1. Write a function called <code>CheckGuestList()</code> that takes a guest’s name <code>Guest</code>, checks their name against a list of invitations <code>Invitations</code> and returns one of two messages depending on whether or not the guest was on the list! - If <code>Guest</code> is on the list, print “Welcome Guest! We have been waiting for you!” - If <code>Guest</code> is NOT on the list, print “Who are you?! You can’t come in!!”</p>
 <pre class="r"><code>CheckGuestList &lt;- function(Guest, 
                            Invitations = c(&quot;Donald&quot;, &quot;Angela&quot;, &quot;Justin&quot;)) {
   
@@ -484,13 +470,8 @@ if (all(coin_tosses == &quot;XX&quot;)){
     
     }
 }</code></pre>
-<ol start="2" style="list-style-type: decimal">
-<li><p>Try your function with the arguments <code>Guest = &quot;Donald&quot;</code>, <code>Invitations = c(&quot;Angela&quot;, &quot;Justin&quot;)</code></p></li>
-<li>Write a function called <code>CheckColors()</code> that takes an argument <code>color</code> and returns a sentence telling you whether or not <code>color</code> is in fact a color in R.
-<ul>
-<li>Bonus: If the color is found, create a histogram using that color!</li>
-</ul></li>
-</ol>
+<p>C2. Try your function with the arguments <code>Guest = &quot;Donald&quot;</code>, <code>Invitations = c(&quot;Angela&quot;, &quot;Justin&quot;)</code></p>
+<p>C3. Write a function called <code>CheckColors()</code> that takes an argument <code>color</code> and returns a sentence telling you whether or not <code>color</code> is in fact a color in R. - Bonus: If the color is found, create a histogram using that color!</p>
 <pre class="r"><code>CheckColor &lt;- function(XX) {
   
   if(XX %in% colors()) {
@@ -504,9 +485,7 @@ if (all(coin_tosses == &quot;XX&quot;)){
   }
 
 }</code></pre>
-<ol start="4" style="list-style-type: decimal">
-<li>Write a function called <code>HigherLowerGame</code> that takes a number <code>guess</code> and compares it a number <code>thinking</code>…</li>
-</ol>
+<p>C4. Write a function called <code>HigherLowerGame</code> that takes a number <code>guess</code> and compares it a number <code>thinking</code>…</p>
 <pre class="r"><code>HigherLowerGame &lt;- function(XX, XX) {
   
   if(XX &lt; XX) {return(paste(&quot;My number is Higher!&quot;))}
@@ -516,12 +495,12 @@ if (all(coin_tosses == &quot;XX&quot;)){
   if(XX == XX) {XX}
   
 }</code></pre>
-<ol start="5" style="list-style-type: decimal">
-<li><p>Test your function by first storing a random number between 1 and 100 as <code>thinking</code>. Then test your function! How many guesses do you need to get it right?</p></li>
-<li><p>Write your own function named <code>check_logical</code> that tests whether a given logical object is <code>TRUE</code> or <code>FALSE</code>, and returns “Argument is TRUE”, and “Argument is FALSE”, respectively.</p></li>
-<li><p>Use your <code>check_logical</code> function to see whether <em>ALL</em> pirates are larger than 1.6 meters.</p></li>
-<li><p>One important principle when programming is the <em>Don’t Repeat Yourself</em> (DRY) principle. That is, if you have written a block of code several times, with only slight changes in it, it is time to write a function for this. For example:</p></li>
+<p>C5. Test your function by first storing a random number between 1 and 100 as <code>thinking</code>. Then test your function! How many guesses do you need to get it right?</p>
+<ol start="6" style="list-style-type: decimal">
+<li>Write your own function named <code>check_logical</code> that tests whether a given logical object is <code>TRUE</code> or <code>FALSE</code>, and returns “Argument is TRUE”, and “Argument is FALSE”, respectively.</li>
 </ol>
+<p>C7. Use your <code>check_logical</code> function to see whether <em>ALL</em> pirates are larger than 1.6 meters.</p>
+<p>C8. One important principle when programming is the <em>Don’t Repeat Yourself</em> (DRY) principle. That is, if you have written a block of code several times, with only slight changes in it, it is time to write a function for this. For example:</p>
 <pre class="r"><code># Compute the absolute difference between means of a variable
 # separated by another variable
 
@@ -539,41 +518,31 @@ abs(mean(pirates$height[pirates$sex == &quot;male&quot;]) -
 <pre><code>[1] 13.9</code></pre>
 <p>Each time you copy the code and change a small part, there is a small chance of making a mistake, for example by forgetting to change the name of one variable. Also imagine having coded the above example for 10 variables and then you realize that you should have taken the <code>male</code> and <code>other</code> group together to see the mean difference between this joint group and <code>females</code>. Then you would have to go through each line again to manipulate it.</p>
 <p>Now write a function called <code>abs_mean_diff</code>, that computes the absolute mean difference between two groups. It should take a vector <code>mean_vec</code> with data to compute the mean on, a vector <code>cat_vec</code> with data to separate the first, and a list <code>sep_list</code> with two vectors of categories to separate for (note that when you want to check whether a number of values also occurs in another vector, you may want to use <code>%in%</code> instead of <code>==</code> for this logical expression or check). Then use this function to compute the same mean differences as in the code above.</p>
-<ol start="9" style="list-style-type: decimal">
-<li>One great thing about functions is that they can take other functions as arguments. Let’s say you don’t only want to be able to compute the abs mean difference, but also the median difference. Reprogram the <code>abs_mean_diff</code> function from task 8C by adding a fourth argument <code>met</code> (short for method), where you pass the function name as an argument <em>WITHOUT</em> quotation marks. Set the default value to this argument to <code>mean</code>. Name the function <code>abs_diff</code>. Then compute the mean and the median absolute difference of tattoos for male and female pirates.</li>
-</ol>
+<p>C9. One great thing about functions is that they can take other functions as arguments. Let’s say you don’t only want to be able to compute the abs mean difference, but also the median difference. Reprogram the <code>abs_mean_diff</code> function from task C8 by adding a fourth argument <code>met</code> (short for method), where you pass the function name as an argument <em>WITHOUT</em> quotation marks. Set the default value to this argument to <code>mean</code>. Name the function <code>abs_diff</code>. Then compute the mean and the median absolute difference of tattoos for male and female pirates.</p>
 <p>Passing functions as arguments can be very handy, especially when you can combine this with <code>apply</code> or <code>map</code> function so you can enter a list of functions.</p>
-<ol start="10" style="list-style-type: decimal">
-<li>There is one argument you can use when programming a function, that let’s you then enter an unlimited number of arguments to that function, without having to prespecify them. The argument is called <code>...</code>. Now add the <code>...</code> as last argument in the <code>abs_diff</code> function definition from the previous task, and also add it to the <code>met()</code> function inside the <code>abs_diff</code> function. Now you can call functions with <code>abs_diff</code> that take more than just the numeric vector as argument, for example you can compute a trimmed mean with <code>mean(x, trim = .2)</code> for the 20% trimmed mean. Compute the differences of the 20% trimmed mean with the modified <code>abs_diff()</code> function (i.e. the outer 20% of data on each side are discarded, which avoids outliers).</li>
-</ol>
+<p>C10. There is one argument you can use when programming a function, that let’s you then enter an unlimited number of arguments to that function, without having to prespecify them. The argument is called <code>...</code>. Now add the <code>...</code> as last argument in the <code>abs_diff</code> function definition from the previous task, and also add it to the <code>met()</code> function inside the <code>abs_diff</code> function. Now you can call functions with <code>abs_diff</code> that take more than just the numeric vector as argument, for example you can compute a trimmed mean with <code>mean(x, trim = .2)</code> for the 20% trimmed mean. Compute the differences of the 20% trimmed mean with the modified <code>abs_diff()</code> function (i.e. the outer 20% of data on each side are discarded, which avoids outliers).</p>
 </div>
 <div id="d---iteration" class="section level3">
 <h3>D - Iteration</h3>
 <p>Iteration is an extremely important feature in programming. It let’s you execute a code block for a large number of objects, with only having to write the code block once. The iteration methods we will look at in the next few tasks are <code>for</code> and <code>while</code> loops. Later we will also look at <code>apply</code> and <code>map</code> functions.</p>
 <p>Remember that a <code>for</code> loop executes a block of code as many times as you specify, whereas a <code>while</code> loop does the same thing but does not stop until a prespecified condition is met. If you don’t remember how to specify a loop, revisit the examples in the beginning of this practical.</p>
-<ol style="list-style-type: decimal">
-<li><p>In for loops you cannot only loop over sequences of numbers, but over any values of a vector, that are then used in the loop. To do this you simply write <code>for (val in vector){}</code>, instead of using either <code>1: length(vector)</code>, or <code>seq_along(vector)</code> (did you see that we used <code>val</code> instead of <code>i</code> when defining the sequence in the loop. You can enter any name you want there, just make sure to refer to this name in the body of the loop). Loop over the following vector containing variable names of the pirates dataset <code>c(&quot;age&quot;, &quot;height&quot;, &quot;tattoos&quot;, &quot;beard.length&quot;)</code>, and compute the mean of each variable and store the value in a named vector (i.e. each value should be named to identify it, to do this use <code>names</code>) called <code>pirate_means</code>.</p></li>
-<li><p>Use a loop to rewrite the code where you called <code>abs_diff</code> multiple times in task 5C. Remember that in a loop you have to use <code>print</code> explicitly.</p></li>
-<li><p>You want to check whether the college a pirate went to, is related to the number of groggs a pirate drinks a day on average. To get rid of the potentially influential factors of age, sex, and weight, you want to match the two subsamples of 100 pirates each, such that you have a maximum difference in the number of females between the two groups of 12, a maximum mean age difference of 10 years, a maximum difference in the standard deviation of age of 8 years, a maximum mean weight difference of 8 kilograms, and a maximum difference in the standard deviation of weight of 7 kilograms. Use a <code>while</code> loop where you take a subsample of 100 pirates from each college, and use the above parameters of this sample for the check. Note: don’t bother about doing the analysis afterwards, the exercise is just about the looping part. Also the difference values for the check are arbitrary. If it takes too long for the loop to run just use larger values, for the exercise the precision doesn’t have to be high.</p></li>
-</ol>
+<p>D1. In for loops you cannot only loop over sequences of numbers, but over any values of a vector, that are then used in the loop. To do this you simply write <code>for (val in vector){}</code>, instead of using either <code>1: length(vector)</code>, or <code>seq_along(vector)</code> (did you see that we used <code>val</code> instead of <code>i</code> when defining the sequence in the loop. You can enter any name you want there, just make sure to refer to this name in the body of the loop). Loop over the following vector containing variable names of the pirates dataset <code>c(&quot;age&quot;, &quot;height&quot;, &quot;tattoos&quot;, &quot;beard.length&quot;)</code>, and compute the mean of each variable and store the value in a named vector (i.e. each value should be named to identify it, to do this use <code>names</code>) called <code>pirate_means</code>.</p>
+<p>D2. Use a loop to rewrite the code where you called <code>abs_diff</code> multiple times in task C8. Remember that in a loop you have to use <code>print</code> explicitly.</p>
+<p>D3. You want to check whether the college a pirate went to, is related to the number of groggs a pirate drinks a day on average. To get rid of the potentially influential factors of age, sex, and weight, you want to match the two subsamples of 100 pirates each, such that you have a maximum difference in the number of females between the two groups of 12, a maximum mean age difference of 10 years, a maximum difference in the standard deviation of age of 8 years, a maximum mean weight difference of 8 kilograms, and a maximum difference in the standard deviation of weight of 7 kilograms. Use a <code>while</code> loop where you take a subsample of 100 pirates from each college, and use the above parameters of this sample for the check. Note: don’t bother about doing the analysis afterwards, the exercise is just about the looping part. Also the difference values for the check are arbitrary. If it takes too long for the loop to run just use larger values, for the exercise the precision doesn’t have to be high.</p>
 <p><strong><code>apply</code> and <code>map</code> functions</strong></p>
 <p>The <code>apply</code> and <code>map</code> function families are quite similar. The <code>map</code> functions from the <code>purrr</code> package were introduced as a more consistent and less ambiguous alternative to the <code>apply</code> functions. Both function families let you iterate over objects and call functions on the subsets in each iteration. So basically you can use these functions instead of loops. In general, the basic structure is that you first specify the object over which you want to iterate, then the function to call in each iteration and then additional arguments that function might take. Depending on which of the functions you use, there will be additional arguments to specify.If you don’t remember how to specify these functions, revisit the examples in the beginning of this practical.</p>
-<ol start="4" style="list-style-type: decimal">
-<li><p>Remember the <code>for</code> loop you’ve used in task 2D, to run the <code>abs_diff</code> function several times? Rewrite this by replacing the <code>for</code> loop once with <code>sapply</code> and once with a <code>map</code> function (figure out which <code>map</code> function would fit best here).</p></li>
-<li><p><em>Challenge.</em> Now there would be a more elegant way of programming the <code>abs_diff</code> function such that you don’t have to use loops or <code>apply</code>/ <code>map</code> functions outside of it. Redefine the <code>abs_diff</code> function and use <code>map_dbl</code>, such that you can enter multiple columns to the <code>mean_vec</code> argument, instead of only one. For this you can use an anonymous function in <code>map_dbl</code>. This means that the function is only defined inside the <code>map_dbl</code> call and does not exist outside of it. The syntax for a self programmed anonymous <code>mean</code> function would be <code>map_dbl(data, function(x){sum(x) / length(x)})</code>. That is instead of passing a function name to <code>map_dbl</code>, you pass a function definition <code>function(argument){do something}</code>. Remember that you can pass functions as arguments.</p></li>
-<li><p>There is another <code>map</code> function called <code>map2</code> (again with the suffixes for the different types of vectors returned), that let’s you iterate over two objects simultaneously. Use the appropriate <code>map2</code> function and to draw 10 samples from three normal distributions with means 5, 9, 12, and sds, 4, 2, 7, and save them as an object (note: the function to draw samples from a normal distribution is <code>rnorm(n, mean, sd)</code>).</p></li>
-<li><p>Now use <code>map</code> to plot each of the samples drawn. Note: use <code>par(mfrow = c(1, 3))</code> to draw three plots in a line in the same canvas (i.e., the 1 determines the number of rows of plots and the 3 determines the number of columns of plots. This way you can create multiple-plot panels).</p></li>
-<li><p>As you can see, besides the plots you’ve got <code>NULL</code> printed in your console each time you called <code>plot</code>. This is because map returns whatever the function called returns and in case of plot <code>NULL</code> is created as output (besides the actual plot that is drawn). To take care of this problem, there is a special family of <code>purrr</code> functions called <code>walk</code>, that are used for functions like plot that create something on the fly and only have a console output as undesired side product. Create the plots again using <code>walk()</code> instead of <code>map()</code>.</p></li>
-<li><p>Redo task 6D but this time don’t draw 10 samples per distribution but draw 10, 15, and 20 samples, respectively. To iterate over an unlimited number of objects simultaneously, use the <code>pmap</code> function. Check the help menu if you’re not sure how this works.</p></li>
-</ol>
+<p>D4. Remember the <code>for</code> loop you’ve used in task D2, to run the <code>abs_diff</code> function several times? Rewrite this by replacing the <code>for</code> loop once with <code>sapply</code> and once with a <code>map</code> function (figure out which <code>map</code> function would fit best here).</p>
+<p>D5. <em>Challenge.</em> Now there would be a more elegant way of programming the <code>abs_diff</code> function such that you don’t have to use loops or <code>apply</code>/ <code>map</code> functions outside of it. Redefine the <code>abs_diff</code> function and use <code>map_dbl</code>, such that you can enter multiple columns to the <code>mean_vec</code> argument, instead of only one. For this you can use an anonymous function in <code>map_dbl</code>. This means that the function is only defined inside the <code>map_dbl</code> call and does not exist outside of it. The syntax for a self programmed anonymous <code>mean</code> function would be <code>map_dbl(data, function(x){sum(x) / length(x)})</code>. That is instead of passing a function name to <code>map_dbl</code>, you pass a function definition <code>function(argument){do something}</code>. Remember that you can pass functions as arguments.</p>
+<p>D6. There is another <code>map</code> function called <code>map2</code> (again with the suffixes for the different types of vectors returned), that let’s you iterate over two objects simultaneously. Use the appropriate <code>map2</code> function and to draw 10 samples from three normal distributions with means 5, 9, 12, and sds, 4, 2, 7, and save them as an object (note: the function to draw samples from a normal distribution is <code>rnorm(n, mean, sd)</code>).</p>
+<p>D7. Now use <code>map</code> to plot each of the samples drawn. Note: use <code>par(mfrow = c(1, 3))</code> to draw three plots in a line in the same canvas (i.e., the 1 determines the number of rows of plots and the 3 determines the number of columns of plots. This way you can create multiple-plot panels).</p>
+<p>D8. As you can see, besides the plots you’ve got <code>NULL</code> printed in your console each time you called <code>plot</code>. This is because map returns whatever the function called returns and in case of plot <code>NULL</code> is created as output (besides the actual plot that is drawn). To take care of this problem, there is a special family of <code>purrr</code> functions called <code>walk</code>, that are used for functions like plot that create something on the fly and only have a console output as undesired side product. Create the plots again using <code>walk()</code> instead of <code>map()</code>.</p>
+<p>D9. Redo task D6 but this time don’t draw 10 samples per distribution but draw 10, 15, and 20 samples, respectively. To iterate over an unlimited number of objects simultaneously, use the <code>pmap</code> function. Check the help menu if you’re not sure how this works.</p>
 </div>
 <div id="e---bringing-it-all-together---challenges" class="section level3">
 <h3>E - Bringing it all together - Challenges</h3>
 <p>The next two tasks contain elements of all parts we’ve covered in this lesson. You will write a function to do a short simulation. Briefly some background: In statistics, we often accept a hypothesis if the p-value, i.e. the probability of the found-, or more extreme data under the H0 hypothesis that assumes that there is no difference between two distributions, is smaller or equal to 5%. This is tested with statistical tests, of which we will use the t-test (r function <code>t.test(group1, group2)</code>). We will draw two random samples <em>from the same distribution</em> and run a t.test to check whether they are significantly different. If they are not, we will resample from the distribution and run the check once more. We will then see how strong the inflation of the alpha error is, with one resample of size x.</p>
 <p>We will also encounter a new cool feature: you can send mails from R. For example, if you are running a simulation that takes a lot of time and you don’t want to check again and again whether it’s completed. So you can tell R to send you a mail when it’s done, and if you like, even attach the data or some core output. The package to do this is <code>sendmailR</code>, with the function <code>sendmail</code>.</p>
-<ol style="list-style-type: decimal">
-<li>Program a function called <code>sim_false_positive</code>, that takes the following arguments: n (the number of samples initially drawn per distribution), m (the mean of the distribution from which samples are drawn), sd (the standard deviation of the distribution from which samples are drawn), resample (the sample size of the resample), iter (number of iterations, i.e. number of times the whole procedure is repeated. The higher the number, the more precise the estimate), mail (a mail address from which to which you want to send your result), mail_subject (the subject of the mail). The start of your function should look like this (we’ve also included the code for the mail function to make it a little easier):</li>
-</ol>
+<p>E1. Program a function called <code>sim_false_positive</code>, that takes the following arguments: n (the number of samples initially drawn per distribution), m (the mean of the distribution from which samples are drawn), sd (the standard deviation of the distribution from which samples are drawn), resample (the sample size of the resample), iter (number of iterations, i.e. number of times the whole procedure is repeated. The higher the number, the more precise the estimate), mail (a mail address from which to which you want to send your result), mail_subject (the subject of the mail). The start of your function should look like this (we’ve also included the code for the mail function to make it a little easier):</p>
 <pre class="r"><code>## sim_false_positive functoin
 
 sim_false_positive &lt;- function(n = 30,
@@ -616,17 +585,13 @@ sim_false_positive &lt;- function(n = 30,
   
 }</code></pre>
 <p>Now program the middle part to do the sampling and iteration.</p>
-<ol start="2" style="list-style-type: decimal">
-<li><p>Now that you’ve created your function, use one of the <code>map</code> functions to execute the function several times with different sample sizes and resample sizes. Note that if you only change resample, you will have to create an anonymous function, because otherwise the resample size will be passed to the first argument of <code>sim_false_positive</code>, which is <code>n</code>.</p></li>
-<li><p>Program a function called <code>boxes_game()</code> that let’s you play a decision making game. Here is how the game works: There is a room containing 100 boxes from which one contains a bomb. You can open as many boxes as you like, each opened box will earn you 1 point. However if you open the box containing the bomb, you will earn no points. Here’s how you can play the boxes game in R. First, create the room as an object room_100 which contains a vector with 99 values of 1 (representing 1 point) and one value of negative infinity (-Inf) which represents the bomb.</p></li>
-</ol>
+<p>E2. Now that you’ve created your function, use one of the <code>map</code> functions to execute the function several times with different sample sizes and resample sizes. Note that if you only change resample, you will have to create an anonymous function, because otherwise the resample size will be passed to the first argument of <code>sim_false_positive</code>, which is <code>n</code>.</p>
+<p>E3. Program a function called <code>boxes_game()</code> that let’s you play a decision making game. Here is how the game works: There is a room containing 100 boxes from which one contains a bomb. You can open as many boxes as you like, each opened box will earn you 1 point. However if you open the box containing the bomb, you will earn no points. Here’s how you can play the boxes game in R. First, create the room as an object room_100 which contains a vector with 99 values of 1 (representing 1 point) and one value of negative infinity (-Inf) which represents the bomb.</p>
 <pre class="r"><code># This vector represents the room of 100 boxes
 room_100 &lt;- c(rep(10, 99), -Inf)</code></pre>
-<ol start="4" style="list-style-type: decimal">
-<li><p>Now program the function with the arguments <code>open</code> for the number of boxes to open, and <code>room</code> to which you pass the <code>room_100</code> vector created above. If no boxes are opened, print <em>“You didn’t open any boxes! You earned nothing but are still alive”</em>. If boxes were opened and one of them contained the bomb, print <em>“You’re dead!!! You opened XXX boxes and got the bomb!!!”</em>. If none of the boxes contained the bomb, print <em>“Congratulations!!! You opened XXX boxes and earned XXX Points! Don’t you want to play again? :)”</em>.</p></li>
-<li><p>The <code>readline()</code> function let’s you ask the user for an input and save it as an object. Redefine the <code>boxes_game()</code> function such that you no longer need the <code>open</code> argument but ask for a userinput instead.</p></li>
-<li><p>Exten the <code>boxes_game()</code> function even further by adding a while loop to it, that reruns the boxes game until the user enters “-1”.</p></li>
-</ol>
+<p>E4. Now program the function with the arguments <code>open</code> for the number of boxes to open, and <code>room</code> to which you pass the <code>room_100</code> vector created above. If no boxes are opened, print <em>“You didn’t open any boxes! You earned nothing but are still alive”</em>. If boxes were opened and one of them contained the bomb, print <em>“You’re dead!!! You opened XXX boxes and got the bomb!!!”</em>. If none of the boxes contained the bomb, print <em>“Congratulations!!! You opened XXX boxes and earned XXX Points! Don’t you want to play again? :)”</em>.</p>
+<p>E5. The <code>readline()</code> function let’s you ask the user for an input and save it as an object. Redefine the <code>boxes_game()</code> function such that you no longer need the <code>open</code> argument but ask for a userinput instead.</p>
+<p>E6. ExtenD the <code>boxes_game()</code> function even further by adding a while loop to it, that reruns the boxes game until the user enters “-1”.</p>
 </div>
 <div id="additional-resources" class="section level2">
 <h2>Additional Resources</h2>
