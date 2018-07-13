@@ -545,7 +545,7 @@ kc_house_2015 <- kc_house %>%
 
 10. Calculate the mean absolute error of the `price_2014_lm` model when applied to the 2015 data. How different was the mean error compared to the mean fitting error of the `price_2015_lm` model?
 
-### Generating random samples from distributions
+### Y - Generating random samples from distributions
 
 11. You can easily generate random samples from statistical distributions in R. To see all of them, run `?distributions`. For example, to generate samples from the well known Normal distribution, you can use `rnorm()`. Look at the help menu for `rnorm()` to see its arguments. 
 
