@@ -18,7 +18,7 @@ knitr::opts_chunk$set(comment = NA,
 options(digits = 3)
 ```
 
-<figure  style="width:50%">
+<figure style="width:50%">
   <center>
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Seattle_-_Craftsman_revival_houses.jpg/300px-Seattle_-_Craftsman_revival_houses.jpg" alt="Trulli">
     <figcaption>
