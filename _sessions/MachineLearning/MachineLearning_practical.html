@@ -136,14 +136,13 @@ Source: Android Authority
 </div>
 <div id="overview" class="section level2">
 <h2>Overview</h2>
-<p>In this practical you’ll practice the basics of machine learning in r</p>
+<p>In this practical you’ll practice the basics of machine learning in R</p>
 <p>By the end of this practical you will know how to:</p>
 <ol style="list-style-type: decimal">
-<li>Fit a machine learning model to training data</li>
-<li>Explore a machine learning object with generic functions</li>
-<li>Predict outcomes from new data with the model</li>
-<li>Evaluate a model’s fitting and prediction performance.</li>
-<li>Repeat all 4 steps with both a classification and regression task</li>
+<li>Fit regression, decision trees, and random forests to training data using the original model packages</li>
+<li>Explore each object with generic functions.</li>
+<li>Predict outcomes from new data with all models.</li>
+<li>Evaluate the model’s fitting and prediction performance.</li>
 </ol>
 </div>
 <div id="packages" class="section level2">
@@ -161,32 +160,32 @@ Source: Android Authority
 <td align="left"><code>install.packages(&quot;tidyverse&quot;)</code></td>
 </tr>
 <tr class="even">
-<td align="left"><code>skim</code></td>
+<td align="left"><code>skimr</code></td>
 <td align="left"><code>install.packages(&quot;skimr&quot;)</code></td>
 </tr>
 <tr class="odd">
+<td align="left"><code>broom</code></td>
+<td align="left"><code>install.packages(&quot;broom&quot;)</code></td>
+</tr>
+<tr class="even">
 <td align="left"><code>rpart</code></td>
 <td align="left"><code>install.packages(&quot;rpart&quot;)</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>FFTrees</code></td>
 <td align="left"><code>install.packages(&quot;FFTrees&quot;)</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>partykit</code></td>
 <td align="left"><code>install.packages(&quot;partykit&quot;)</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>party</code></td>
 <td align="left"><code>install.packages(&quot;party&quot;)</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>randomForest</code></td>
 <td align="left"><code>install.packages(&quot;randomForest&quot;)</code></td>
-</tr>
-<tr class="even">
-<td align="left"><code>rminer</code></td>
-<td align="left"><code>install.packages(&quot;rminer&quot;)</code></td>
 </tr>
 <tr class="odd">
 <td align="left"><code>caret</code></td>
@@ -203,18 +202,21 @@ Source: Android Authority
 <th align="left">File</th>
 <th align="left">Rows</th>
 <th align="left">Columns</th>
+<th align="left">Source</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><code>trial_act.csv</code></td>
-<td align="left">2139</td>
-<td align="left">27</td>
-</tr>
-<tr class="even">
-<td align="left"><code>trial_act_demo_fake</code></td>
+<td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_data/house_train.csv">house_train.csv</a></td>
 <td align="left">2139</td>
 <td align="left">3</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_data/house_test.csv">house_test.csv</a></td>
+<td align="left">2139</td>
+<td align="left">3</td>
+<td align="left"></td>
 </tr>
 </tbody>
 </table>
@@ -236,54 +238,24 @@ Source: Android Authority
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><code>rename()</code></td>
-<td align="left"><code>dplyr</code></td>
-<td align="left">Rename columns</td>
+<td align="left"><code>summary()</code></td>
+<td align="left"><code>base</code></td>
+<td align="left">Get summary information from an R object</td>
 </tr>
 <tr class="even">
-<td align="left"><code>select()</code></td>
-<td align="left"><code>dplyr</code></td>
-<td align="left">Select columns based on name or index</td>
+<td align="left"><code>names()</code></td>
+<td align="left"><code>base</code></td>
+<td align="left">See the named elements of a list</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>filter()</code></td>
-<td align="left"><code>dplyr</code></td>
-<td align="left">Select rows based on some logical criteria</td>
+<td align="left"><code>LIST$NAME()</code></td>
+<td align="left"><code>base</code></td>
+<td align="left">Get the named element <code>NAME</code> from a list <code>OBJECT</code></td>
 </tr>
 <tr class="even">
-<td align="left"><code>arrange()</code></td>
-<td align="left"><code>dplyr</code></td>
-<td align="left">Sort rows</td>
-</tr>
-<tr class="odd">
-<td align="left"><code>mutate()</code></td>
-<td align="left"><code>dplyr</code></td>
-<td align="left">Add new columns</td>
-</tr>
-<tr class="even">
-<td align="left"><code>case_when()</code></td>
-<td align="left"><code>dplyr</code></td>
-<td align="left">Recode values of a column</td>
-</tr>
-<tr class="odd">
-<td align="left"><code>group_by(), summarise()</code></td>
-<td align="left"><code>dplyr</code></td>
-<td align="left">Group data and then calculate summary statistics</td>
-</tr>
-<tr class="even">
-<td align="left"><code>left_join()</code></td>
-<td align="left"><code>dplyr</code></td>
-<td align="left">Combine multiple data sets using a key column</td>
-</tr>
-<tr class="odd">
-<td align="left"><code>spread()</code></td>
-<td align="left"><code>tidyr</code></td>
-<td align="left">Convert long data to wide format - from rows to columns</td>
-</tr>
-<tr class="even">
-<td align="left"><code>gather()</code></td>
-<td align="left"><code>tidyr</code></td>
-<td align="left">Convert wide data to long format - from columns to rows</td>
+<td align="left"><code>predict(object, newdata)</code></td>
+<td align="left"><code>base</code></td>
+<td align="left">Predict the criterion values of <code>newdata</code> based on <code>object</code></td>
 </tr>
 </tbody>
 </table>
@@ -294,62 +266,129 @@ Source: Android Authority
 # Wrangling with dplyr and tidyr
 # ------------------------------------------------
 
+# --------------------------------------
+# Step 0: Load packages
+# --------------------------------------
+
 library(tidyverse)    # Load tidyverse for dplyr and tidyr
 library(skimr)        # For skim()
+library(rpart)        # For rpart()
+library(broom)        # For tidy()
+library(caret)        # For resamp 
 
-# Load baselers data
-baselers &lt;- read_csv(&quot;https://raw.githubusercontent.com/therbootcamp/baselers/master/inst/extdata/baselers.txt&quot;)
+# --------------------------------------
+# Step 1: Load Training and Test data
+# --------------------------------------
 
-# Skim the data
-skim(baselers)
+house_train &lt;- read_csv(&quot;https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_data/house_train.csv&quot;)
 
-# Perform many dplyr operations in a row
+house_test &lt;- read_csv(&quot;https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_data/house_test.csv&quot;)
 
-baselers %&gt;%
-  
-  # Change some names
-  rename(age_y = age,
-         swimming = rhine) %&gt;%
-  
-  # Only include people over 30
-  filter(age_y &gt; 30) %&gt;%
-  
-  # Calculate some new columns
-  mutate(weight_lbs = weight * 2.22,
-         height_m = height / 100,
-         BMI = weight / height_m ^ 2,
-         
-         # Make binary version of sex
-         sex_bin = case_when(
-                      sex == &quot;male&quot; ~ 0,
-                      sex == &quot;female&quot; ~ 1),
+# --------------------------------------
+# Step 2: Explore training data
+# --------------------------------------
+skim(attrition_train)
 
-        # Show when height is greater than 150
-        height_lt_150 = case_when(
-                                height &lt; 150 ~ 1,
-                                height &gt;= 150 ~ 0)) %&gt;%
-  
-  # Sort in ascending order of sex, then
-  #  descending order of age
-  arrange(sex, desc(age_y)))
+# We will do a log-transformation on price
+#  because it is so heavily skewed
+
+# Log-transform price
+house_train &lt;- house_train %&gt;%
+  mutate(price = log(price))
+
+# Log-transform price
+house_test &lt;- house_test %&gt;%
+  mutate(price = log(price))
+
+# --------------------------------------
+# Step 3: Fit models predicting price
+# --------------------------------------
+
+# Regression
+price_lm &lt;- glm(formula = price ~ bedrooms + bathrooms + floors,
+                data = house_train)
+
+# Decision Trees
+price_rpart &lt;- rpart(formula = price ~ bedrooms + bathrooms + floors,
+                     data = house_train)
+
+# --------------------------------------
+# Step 4: Explore models
+# --------------------------------------
+
+# Regression
+summary(price_lm)
+
+# Decision Trees
+price_rpart
+plot(price_rpart)
+text(price_rpart)
+
+# Nicer version!
+plot(as.party(price_rpart))
+
+# --------------------------------------
+# Step 5: Assess fitting accuracy
+# --------------------------------------
+
+# Get fitted values
+lm_fit &lt;- predict(price_lm, 
+                 newdata = house_train)
+
+rpart_fit &lt;- predict(price_rpart, 
+                    newdata = house_train)
+
+# Regression Fitting Accuracy
+postResample(pred = lm_fit, 
+             obs = house_train$price)
+
+# Decision Tree Fitting Accuracy
+postResample(pred = rpart_fit, 
+             obs = house_train$price)
+
+# --------------------------------------
+# Step 6: Predict new data
+# --------------------------------------
+
+lm_pred &lt;- predict(object = price_lm, 
+                   newdata = house_test)
+
+rpart_pred &lt;- predict(object = price_rpart, 
+                      newdata = house_test)
+
+# --------------------------------------
+# Step 7: Compare accuracy
+# --------------------------------------
+
+# Regression Prediction Accuracy
+postResample(pred = lm_pred, 
+             obs = house_test$price)
+
+# Decision Tree Prediction Accuracy
+postResample(pred = rpart_pred, 
+             obs = house_test$price)
 
 
-# Calculate grouped summary statistics
+# Plot results
 
-baselers_agg &lt;- baselers %&gt;%
-  group_by(sex, education) %&gt;%
-  summarise(
-    age_mean = mean(age_y, na.rm = TRUE),
-    income_median = median(income, na.rm = TRUE),
-    N = n()
-  )</code></pre>
+competition_results &lt;- tibble(truth = house_test$price,
+                              Regression = lm_pred,
+                              Decision_Trees = rpart_pred) %&gt;%
+                       gather(group, prediction, -truth)
+
+ggplot(data = competition_results,
+       aes(x = truth, y = prediction, col = group)) +
+  geom_point(alpha = .2) +
+  geom_abline(slope = 1, intercept = 0) +
+  labs(title = &quot;Predicting housing prices&quot;,
+       subtitle = &quot;Regression versus decision trees&quot;)</code></pre>
 </div>
 <div id="tasks" class="section level1">
 <h1>Tasks</h1>
 <div id="a---setup" class="section level2">
 <h2>A - Setup</h2>
 <p>A1. Open your R project. It should already have the folders <code>0_Data</code> and <code>1_Code</code>. Make sure that the data files listed in the <code>Datasets</code> section above are in your <code>1_Data</code> folder</p>
-<p>A2. Open a new R script. At the top of the script, using comments, write your name and the date. Save it as a new file called <code>wrangling_practical.R</code> in the <code>2_Code</code> folder.</p>
+<p>A2. Open a new R script. At the top of the script, using comments, write your name and the date. Save it as a new file called <code>machinelearning_practical.R</code> in the <code>2_Code</code> folder.</p>
 <p>A3. Using <code>library()</code> load the set of packages for this practical listed in the packages section above.</p>
 <pre class="r"><code>## NAME
 ## DATE
@@ -358,190 +397,39 @@ baselers_agg &lt;- baselers %&gt;%
 library(XX)     
 library(XX)
 #...</code></pre>
-<p>A4. For this practical, we’ll use the <code>trial_act</code> data, this is the result of a randomized clinical trial comparing the effects of different medications on adults infected with the human immunodeficiency virus. Using the following template, load the data into R and store it as a new object called <code>trial_act</code>.</p>
-<pre class="r"><code># Load trial_act.csv from the data folder in your working directory
-
-trial_act &lt;- read_csv(file = &quot;XXX/XXX&quot;)</code></pre>
-<p>A5. Using the same code structure, load the <code>trial_act_demo_fake.csv</code> data as a new dataframe called <code>trial_act_demo_fake</code></p>
-<p>A6. Take a look at the first few rows of the datasets by printing them to the console.</p>
-<pre class="r"><code># Print trial_act object
-trial_act</code></pre>
-<p>A7. Use the <code>skim()</code> function (from the <code>skimr</code> package) to get more details on the datasets.</p>
-<div id="b---change-column-names-with-rename" class="section level3">
-<h3>B - Change column names with rename()</h3>
-<p>B1. Look at the names of the <code>trial_act</code> data with <code>names()</code></p>
-<p>B2. Using <code>rename()</code>, change the column name <code>wtkg</code> in the <code>trial_act</code> dataframe to <code>weight_kg</code> (to specify that weight is in kilograms). Be sure to assign the result back to <code>trial_act</code> to change it!</p>
-<pre class="r"><code># Change the name to weight_kg from wtkg
-
-trial_act &lt;- trial_act %&gt;%
-  rename(XX = XX)</code></pre>
-<p>B3. Look at the names of your <code>trial_act</code> dataframe again, do you now see the column <code>weight_kg</code>?</p>
-<p>B4. Change the column name <code>age</code> to <code>age_y</code> (to specify that age is in years).</p>
+<p>A4. For this practical, we’ll use two datasets related to the prices of houses in King County Washington. There is a <em>training</em> dataset <code>house_train.csv</code> and a model <em>testing</em> dataset <code>house_test.csv</code> data. Using the following template, load the datasets into R as <code>house_train</code> and <code>house_test</code>:</p>
+<pre class="r"><code>house_train &lt;- read_csv(file = &quot;XXX/XXX&quot;)</code></pre>
+<p>A5. Take a look at the first few rows of each dataset by printing them to the console.</p>
+<p>A6. Use the <code>skim()</code> function (from the <code>skimr</code> package) to get more details on each of the datasets.</p>
 </div>
-<div id="c---select-columns-with-select" class="section level3">
-<h3>C - Select columns with select()</h3>
-<p>C1. Using the <code>select()</code> function, select only the column <code>age</code> and print the result. Do you see only the age column now?</p>
-<p>C2. Create a new dataframe called <code>CD4_wide</code> that <em>only</em> contains the columns <code>pidnum</code>, <code>arms</code>, <code>cd40</code>, <code>cd420</code>, and <code>cd496</code>. The <code>cd40</code>, <code>cd420</code>, and <code>cd496</code> columns show patient’s CD4 T cell counts at baseline, 20 weeks, and 96 weeks. Print the result to make sure it worked!</p>
-<pre class="r"><code>XX &lt;- trial_act %&gt;% 
-  select(XX, XX, XX, XX, ...)</code></pre>
-<p>C3. Did you know you can easily select all columns that start with specific characters using <code>starts_with()</code>? Try adapting the following code to get the same result you got before.</p>
-<pre class="r"><code>CD4_wide &lt;- trial_act %&gt;% 
-  select(pidnum, arms, starts_with(&quot;XXX&quot;))</code></pre>
+<div id="b---walking-through-the-7-steps" class="section level2">
+<h2>B - Walking through the 7 steps</h2>
+<p>B1. Run Steps 0 through 4 in the Examples section above. Run each line of code individually and explore each object you create. Try to understand each of the steps! If you have trouble, ask for help!</p>
+<p>B2. Which of the three features (bedrooms, bathrooms, floors) do the regression and decision tree models use? Do they treat the features equally?</p>
+<p>B3. Run step 5. Look at the results. Which model has the best fitting performance?</p>
+<p>B4. Run Steps 6-7. Look at the results. Which model has the best prediction performance? How does each model’s prediction performance compare to its fitting performance?</p>
 </div>
-<div id="d---add-new-columns-with-mutate" class="section level3">
-<h3>D - Add new columns with mutate()</h3>
-<p>D1. Using the <code>mutate()</code> function, add the column <code>age_m</code> which shows each patient’s age in months instead of years (Hint: Just multiply <code>age_y</code> by 12!)</p>
-<pre class="r"><code>trial_act &lt;- trial_act %&gt;%
-  mutate(XX = XX * 12)</code></pre>
-<p>D2. Add the following new columns to <code>trial_act</code>. Try combining these into <em>one</em> call to the mutate() function!</p>
-<pre><code>- `weight_lb`: Weight in lbs instead of kilograms. You can do this by multiplying `weight_kg` by 2.2.
-- `cd_change_20`: Change in CD4 T cell count from baseline to 20 weeks. You can do this by taking `cd420 - cd40`
-- `cd_change_960`: Change in CD4 T cell count from baseline to 96 weeks. You can do this by taking `cd496 - cd40`</code></pre>
-<pre class="r"><code>trial_act &lt;- trial_act %&gt;% 
-  mutate(weight_lb = XXX,
-         cd_change_20 = XXX,
-         XX = XX)</code></pre>
-<p>D3. If you look at the <code>gender</code> column, you will see that it is numeric. Change the column so it shows gender as a string, where0 = “female” and 1 = “male”. To do this, use a combination of <code>mutate()</code> and <code>case_when</code>:</p>
-<pre class="r"><code># Create gender_char which shows gender as a stringh
-trial_act &lt;- trial_act %&gt;%
-  mutate(
-  gender_char = case_when(
-    gender == XX ~ &quot;XX&quot;,
-    gender == XX ~ &quot;XX&quot;))</code></pre>
-<p>D4. The column <code>arms</code> is also numeric and not very meaningful. Change <code>arms</code> so that it is a character column indicating the actual names of the trial arms. Here is a table of the mapping</p>
-<table>
-<thead>
-<tr class="header">
-<th align="left">arms</th>
-<th align="left">arms_char</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">0</td>
-<td align="left">zidovudine</td>
-</tr>
-<tr class="even">
-<td align="left">1</td>
-<td align="left">zidovudine and didanosine</td>
-</tr>
-<tr class="odd">
-<td align="left">2</td>
-<td align="left">zidovudine and zalcitabine</td>
-</tr>
-<tr class="even">
-<td align="left">3</td>
-<td align="left">didanosine</td>
-</tr>
-</tbody>
-</table>
-<p>D5. If you haven’t already, put the code for your previous questions in one call to <code>mutate()</code>. That is, in one block of code, create <code>agem</code>, <code>weight_lb</code>, <code>cd_change_20</code>, <code>cd_change_960</code>, <code>gender_char</code> and <code>over50</code> using the <code>mutate()</code> function only once. Here’s how your code should look:</p>
-<pre class="r"><code>trial_act &lt;- trial_act %&gt;%
-  mutate(
-    agem = XXX,
-    weight_lb = XXX,
-    cd_change_20 = XXX,
-    cd_change_960 = XXX,
-    gender_char = case_when(XXX),
-    arms_char = case_when(XXX)
-  )</code></pre>
+<div id="d---including-random-forests" class="section level2">
+<h2>D - Including random forests</h2>
+<p>D1. Random forests are much more complex than regression and decision trees. Try including Random forests in your analyses as a new competitor. You can use the <code>randomForest()</code> function from the <code>randomForest</code> package to fit your model!</p>
+<p>D2. How does the <em>fitting</em> performance of random forests compare to the other algorithms in training?</p>
+<p>D3. How does the <em>prediction</em> performance of random forests compare to the other algorithms in testing?</p>
 </div>
-<div id="e---arrange-rows-with-arrange" class="section level3">
-<h3>E - Arrange rows with arrange()</h3>
-<p>E1. Using the <code>arrange()</code>function, arrange the <code>trial_act</code> data in ascending order of <code>age_y</code> (from lowest to highest). After you do, look the data to make sure it worked!</p>
-<p>E2. Now arrange the data in <em>descending</em> order of <code>age_y</code> (from highest to lowest). After, look the data to make sure it worked. To arrange data in descending order, just include <code>desc()</code> around the variable. E.g.; <code>data %&gt;% arrrange(desc(height))</code></p>
-<p>E3. You can sort the rows of dataframes with multiple columns by including many arguments to <code>arrange()</code>. Now sort the data by arms (<code>arms</code>) and then age (<code>age_y</code>).</p>
+<div id="e---including-more-features" class="section level2">
+<h2>E - Including more features</h2>
+<p>Until now, you’ve only been predicting price based on 3 features (bedrooms, bathrooms, and floors). Of course, you have access to lots more data to predict housing prices! Now it’s time to try using more data to predict price.</p>
+<p>E1. Look closely again at the columns in the <code>house_train</code> data. There are two features in the data that you definitely <em>don’t</em> want to include in your models. Which two are they?</p>
+<p>E2. Remove those two features from your training data using the following template:</p>
+<p>E3. Re-run your models, but now predict price based on <em>all</em> of the features. To do this, use the formula short hand <code>formula = price ~ .</code>.</p>
+<p>E4. How does the overall fitting and prediction performance of the models compare to when you only used three features? Did each model improve?</p>
 </div>
-<div id="f---filter-specific-rows-with-filter" class="section level3">
-<h3>F - Filter specific rows with <code>filter()</code></h3>
-<p>F1. Using the <code>filter()</code> function, create a new dataframe called <code>trial_act_m</code> that only contains data from males (<code>gender_char == &quot;male&quot;</code>). After you finish, print your new dataframe to make sure it looks correct!</p>
-<p>F2. A colleague of yours named Tracy wants a datafame only containing data from females over the age of 40. Create this dataframe with <code>filter()</code> and call it <code>trial_act_Tracy</code></p>
-<pre class="r"><code>trial_act_Tracy &lt;- trial_act %&gt;%
-  filter(agey &gt; XX &amp; gender == XX)</code></pre>
-</div>
-<div id="g---combine-dataframes-with-left_join" class="section level3">
-<h3>G - Combine dataframes with <code>left_join()</code></h3>
-<p>G1. The <code>trial_act_demo_fake.csv</code> file contains additional (fictional) demographic data about the patients, namely the number of days of exercise they get per week, and their highest level of education. Use the <code>left_join()</code> function to combine the <code>trial_act</code> and <code>trial_act_demo_fake</code> datasets, set the <code>by</code> argument to the name of the column that is common in both data sets. Assign the result to <code>trial_act</code>.</p>
-<pre class="r"><code>trial_act &lt;- trial_act %&gt;%
-  left_join(XX, by = &quot;XX&quot;)</code></pre>
-<p>G2. Print your new <code>trial_act</code> dataframe. Do you now see the demographic data?</p>
-</div>
-<div id="h---calculate-grouped-statistics-with-group_by-and-summarise" class="section level3">
-<h3>H - Calculate grouped statistics with <code>group_by()</code> and <code>summarise()</code></h3>
-<p>H1. In this code we’ll calculate summary statistics for each of the trial arms. Start with the <code>trial_act</code> dataframe. Then, group the data by <code>arms</code>. Then, for each arm, calculate the mean participant age (in years) as a new column called <code>age_mean</code>. Also, using <code>N = n()</code>, calculate the number of cases for each group. Assign the result to a new object called <code>trial_arm</code>.</p>
-<pre class="r"><code>trial_arm &lt;- trial_act %&gt;% 
-  group_by(XX) %&gt;%
-  summarise(
-    N = n(),
-    XX = mean(XX)
-  )</code></pre>
-<p>H2. Adjust your previous code to calculate the standard deviation of age <em>in addition</em> to the mean.</p>
-<p>H3. Adjust your previous code to calculate the median number of days until the first major negative event (<code>days</code>) for each arm.</p>
-<p>H4. Create a new dataframe called <code>trial_gender</code> groups the data based on <code>gender</code> and calculates the same summary statistics as you did for <code>trial_arm</code></p>
-<p>H5. Create a new dataframe called <code>trial_arm_gender</code> that calculates the same summary statistics for all the groups <code>gender</code> and <code>arms</code>. Hint: Just add a second grouping variable!</p>
-</div>
-<div id="i---reshaping-with-gather-and-spread" class="section level3">
-<h3>I - Reshaping with gather() and spread()</h3>
-<p>I1. Remember the <code>CD4_wide</code> dataframe you created before? Currently it is in the wide format, where key data (different CD4 T cell counts) are in different columns. Now we will try to convert it to a long format. Our goal is to get the data in the ‘long’ format. Using the <code>spread()</code> function, create a new dataframe called <code>CD4_long</code> that shows the data in the ‘long’ format. To do this, use the following template. Set the grouping column to <code>time</code> and the new data column to <code>value</code>.</p>
-<pre class="r"><code>CD4_long &lt;- CD4_wide %&gt;% 
-  gather(XX,  # New grouping column
-         XX,  # New data column
-         -pidnum, -arms)  # Names of columns to replicate</code></pre>
-<p>I2. Print your <code>CD4_long</code> dataframe and compare it to the original <code>CD4_wide</code></p>
-<p>I3. Now that your data are in the wide format, it should be easy to calculate grouped summary statistics! For each time point and trial arm, calculate the mean CD4 T cell count using <code>group_by()</code> and <code>summarise()</code>.</p>
-<p>I4. Now it’s time to practice moving data from the long to the wide format. Using the following template, use the <code>spread()</code> function to convert <code>CD4_long</code> <em>back the wide format</em>. Assign the result to a new object called <code>CD4_wide_2</code>.</p>
-<pre class="r"><code>CD4_wide_2 &lt;- CD4_long %&gt;% 
-  spread(XX,   # old group column
-         XX)   # old target column</code></pre>
-<p>I5. Compare <code>CD4_wide_2</code> to <code>CD4_wide</code> do they look the same?</p>
-</div>
-</div>
-</div>
-<div id="advanced" class="section level1">
-<h1>Advanced</h1>
-<div id="x---play-around-with-scoped-functions" class="section level3">
-<h3>X - Play around with “Scoped” functions</h3>
-<p>X1. Many common dplyr functions like <code>mutate()</code> and <code>summarise()</code> have ‘scoped’ versions with suffixes like <code>_if</code> and <code>_all</code>. that allow you do some pretty cool stuff easily (look at the help menu with <code>?scoped</code> for details). Try running the following chunk with <code>summarise_if()</code> and see what happens:</p>
-<pre class="r"><code># See how summerise_if() works!
-baselers %&gt;%
-  group_by(sex) %&gt;%
-  summarise_if(is.numeric, mean)</code></pre>
-<p>X2. Now, in the <code>trial_act</code> dataset, group the data by <code>arm</code> and calculate the mean of all numeric columns using <code>summerise_if()</code>. Here’s another scoped function in action <code>mutate_if()</code> in action:</p>
-<pre class="r"><code># use mutate_if() to round all numeric variables to 2 digits
-baselers %&gt;%
-  mutate_if(is.numeric, round, 2)</code></pre>
-<p>X3. Using <code>mutate_if()</code>, round all of your results from the previous question to 0 decimal places (to the nearest integer)</p>
-</div>
-<div id="y---combine-many-functions" class="section level3">
-<h3>Y - Combine many functions</h3>
-<p>Y1. For each arm, calculate the following:</p>
-<ul>
-<li>Mean days until a a major negative event (<code>days</code>)</li>
-<li>Mean CD4 T cell count at baseline. (<code>cd40</code>)</li>
-<li>Mean CD4 T cell count at 20 weeks. (<code>cd420</code>)</li>
-<li>Mean CD4 T cell count at 96 weeks. (<code>cd496</code>)</li>
-<li>Mean <em>change</em> in CD4 T cell count between baseline and 96 weeks</li>
-<li>Number of patients in each arm</li>
-</ul>
-<p>Y2. Create the following dataframe that shows patient’s mean CD8 T cell count (from columns <code>cd80</code> and <code>cd820</code>), where the data are grouped by time and trial arm. (Hint: use the following functions in order: select(), gather(), mutate(), group_by(), summarise())</p>
-<pre><code># A tibble: 8 x 5
-# Groups:   time [?]
-  time     arms_char     N cd8_mean cd8_median
-  &lt;chr&gt;    &lt;chr&gt;     &lt;int&gt;    &lt;dbl&gt;      &lt;dbl&gt;
-1 baseline D           561     972.       890 
-2 baseline Z           532     987.       881 
-3 baseline ZD          522    1004.       917 
-4 baseline ZZ          524     984.       898.
-5 week 20  D           561     943.       871 
-6 week 20  Z           532     928.       818 
-7 week 20  ZD          522     968.       903 
-8 week 20  ZZ          524     902.       862 </code></pre>
-</div>
-<div id="additional-resources" class="section level2">
-<h2>Additional Resources</h2>
-<ul>
-<li>See <a href="https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html" class="uri">https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html</a> for the full dplyr vignette with lots of wrangling tips and tricks.</li>
-</ul>
+<div id="f---predict-the-year-a-house-was-built" class="section level2">
+<h2>F - Predict the year a house was built</h2>
+<p>So far, we have predicted house prices based on many features. Now, see how well you can predict the <em>year</em> a house was built <code>yr_built</code> based on the following four features: bedrooms, bathrooms, condition, sqft_living.</p>
+<p>F1. Go through Steps 0 through 4 using regression <code>glm()</code> and decision trees <code>rpart()</code> to build models predicting the year a house was built <code>yr_built</code> based on <code>bedrooms</code>, <code>bathrooms</code>, <code>condition</code>, <code>sqft_living</code>.</p>
+<p>F2. Based on your model exploration (Step 4), which of the four features seem to be the most important in predicting the year a house was built?</p>
+<p>F3. Complete Steps 5 through 7.</p>
+<p>F4. Which of your three models is the best at predicting the year a house was built?</p>
 </div>
 </div>
 

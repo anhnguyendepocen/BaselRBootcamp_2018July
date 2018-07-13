@@ -35,6 +35,18 @@ By the end of this practical you will know how to:
 5. Combine multiple data sets through key columns
 6. Convert data between wide and long formats
 
+## Datasets
+
+```{r, eval = TRUE, message = FALSE}
+library(tidyverse)
+trial_act <- read_csv("../_data/complete/trial_act.csv")
+trial_act_demo <- read_csv("../_data/complete/trial_act_demo_fake.csv")
+```
+
+|File | Rows | Columns |
+|:----|:-----|:------|
+|[trial_act.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/trial_act.csv) | 2139 | 27 |
+|[trial_act_demo_fake](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/trial_act_demo_fake.csv)| 2139 | 3|
 
 ## Packages
 
@@ -125,19 +137,6 @@ baselers_agg <- baselers %>%
 ```
 
 # Tasks
-
-### Datasets
-
-```{r, eval = TRUE, message = FALSE}
-library(tidyverse)
-trial_act <- read_csv("../_data/complete/trial_act.csv")
-trial_act_demo <- read_csv("../_data/complete/trial_act_demo_fake.csv")
-```
-
-|File | Rows | Columns |
-|:----|:-----|:------|
-|`trial_act.csv` | 2139 | 27 |
-|`trial_act_demo_fake`| 2139 | 3|
 
 ## A - Setup
 

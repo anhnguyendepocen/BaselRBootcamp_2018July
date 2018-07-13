@@ -1,0 +1,182 @@
+---
+title: "Objects and Functions"
+author: "BaselRBootcamp July 2018<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
+output:
+  html_document:
+    css: practical.css
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(comment = NA, 
+                      fig.width = 6, 
+                      fig.height = 6,
+                      fig.align = 'center',
+                      echo = FALSE, 
+                      eval = FALSE, 
+                      warning = FALSE)
+
+options(digits = 3)
+
+library(baselers)
+library(tidyverse)
+```
+
+
+<figure>
+<center>
+  <img src="https://www.baslerfasnacht.info/fancybox/img_en/basel-fasnacht_big.jpg" alt="Trulli" style="width:90%">
+  <figcaption>https://www.baslerfasnacht.info/basel-fasnacht/index.php</figcaption>
+</figure>
+
+
+## Overview
+
+In this practical you'll learn how to work with basic R objects. By the end of this practical you will know how to:
+
+1. Create vectors of different types using `c()`
+2. Understand the three main vector classes numeric, character, and logical using `class()` 
+3. Create dataframes (and tibbles!) using `data.frame()` and `tibble()`
+4. Access vectors from dataframes using `$`
+5. Calculate basic descriptive statistics using `mean()`, `median()`, `table()` (and more!)
+
+## Datasets
+
+*None!*
+
+## Packages
+
+|Package| Installation|
+|:------|:------|
+|`tidyverse`|`install.packages("tidyverse")`|
+
+### Glossary
+
+*Creating vectors*
+
+| Function| Description|
+|:------|:--------|
+| `c("a", "b", "c")` |Create a character vector|
+|    `c(1, 2, 3)`| Create a numeric vector|
+|    `c(TRUE, FALSE, TRUE)`|    Create a logical vector|
+
+
+*Creating dataframes*
+...
+
+*Descriptive Statistics*
+
+...
+### Examples
+
+```{r, eval = FALSE, echo = TRUE, message = FALSE, warning = FALSE}
+
+```
+
+# Tasks
+
+### A - Getting setup
+
+A1. Open your R project. It should already have the folders `0_Data` and `1_Code`. Make sure that all of the data files listed above are contained in the folder
+
+```{r}
+# Done!
+```
+
+A2. Open a new R script and save it as a new file called `objects_practical.R` in the `2_Code` folder. At the top of the script, using comments, write your name and the date. The, load the set of packages listed above with `library()`.
+
+### B - Creating vectors
+
+The table below shows a subset of the `baselers` data. In this practical, you will convert this table to R objects and then analyse them!
+
+```{r, echo = FALSE, eval = TRUE}
+data <- baselers[1:10, c("id", "sex", "age", "height", "weight")]
+
+data %>% mutate_all(replace_na, " ") %>% knitr::kable(format = "markdown", caption = "Data from 10 baselers")
+```
+
+B1. Create a numeric vector called `id` that shows the id values. When you finish, print the object to see it!
+
+```{r, eval = FALSE, echo = TRUE}
+# Create a numeric vector XX
+
+XX <- c(XX, XX, XX, XX)
+
+# Print the object
+
+XX
+```
+
+B2. Using the `class()` function, check the class of your `id` vector. Is it numeric?
+
+```{r, eval = FALSE, echo = TRUE}
+# Show the class of an object XX
+
+class(XX)
+```
+
+B3. Using the `length()` function, find out the length of your `id` object. Does it have length 10? If not, make sure you defined it correctly!
+
+```{r, eval = FALSE, echo = TRUE}
+# Show the length of an object XX
+
+length(XX)
+```
+
+B4. Create a character vector called `sex` that shows the sex values. Make sure to use quotation marks "" when entering the data to tell R that the data are charcters! When you finish, print the object to see it!
+
+```{r, eval = FALSE, echo = TRUE}
+# Create a character vector XX
+
+XX <- c("XX", "XX", "XX", "XX")
+```
+
+B5. Using the `class()` function, check the class of your `sex` vector. Is it character?
+
+B6. Using the `length()` function, find out the length of your `sex` object. Does it have length 10? If not, make sure you defined it correctly!
+
+B7. Using the same steps as before, create the `height` vector.
+
+B8. Look at the weight data, you'll notice it contains an missing value. Create a vector called `weight` containing these data, making sure to specify the missing value as `NA`
+
+...
+
+
+### C - Functions
+
+C1. Using the `table()` function, find out how many males and females are in the data. You should find `r sum(data$sex == "male")` males and `r sum(data$sex == "female")` females!
+
+C2. Using the `mean()` function, calculate the mean age. It should be `r mean(data$age)`!
+
+C3. Try calculating the mean value of sex. What happens? Why?
+
+C4. Try calculating the mean weight. What happens? Why?
+
+C5. Look at the help menu for the `mean()` function to look for an argument that will help you with your problem...
+
+C6. Using the correct argument for the mean function, calculate the mean weight ignoring NA values. It should be `r round(mean(data$weight, na.rm = TRUE), 2)`!
+
+...
+
+### D - Creating dataframes
+
+D1. Using the `data.frame()` function, create a dataframe called `baselers_10` that contains each of vectors you just created:
+
+```{r, eval = FALSE, echo = TRUE}
+XX <- data.frame(XX, XX, XX, XX) 
+```
+
+D2. Using the `dim()` function, print the number of rows and columns in your dataframe.
+
+D3. Now use the `tibble()` function...
+
+...
+
+### E - Logical Vectors
+
+...
+
+### F - Coercion
+
+...
+
+

@@ -3,7 +3,7 @@
   <head>
     <title>Machine Learning II</title>
     <meta charset="utf-8">
-    <meta name="author" content="The R Bootcamp Twitter: @therbootcamp" />
+    <meta name="author" content="BaselRBootcamp www.therbootcamp.com @therbootcamp" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="my-theme.css" type="text/css" />
   </head>
@@ -12,15 +12,33 @@
 class: center, middle, inverse, title-slide
 
 # Machine Learning II
-## caret
-### The R Bootcamp<br/>Twitter: <a href='https://twitter.com/therbootcamp'><span class="citation">@therbootcamp</span></a>
-### April 2018
+### BaselRBootcamp<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'><span class="citation">@therbootcamp</span></a>
+### July 2018
 
 ---
 
 
+layout: true
+
+&lt;div class="my-footer"&gt;&lt;span&gt;
+&lt;a href="https://therbootcamp.github.io/"&gt;&lt;font color="#7E7E7E"&gt;BaselRBootcamp, July 2018&lt;/font&gt;&lt;/a&gt;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&lt;a href="https://therbootcamp.github.io/"&gt;&lt;font color="#7E7E7E"&gt;www.therbootcamp.com&lt;/font&gt;&lt;/a&gt;
+&lt;/span&gt;&lt;/div&gt; 
+
+---
+  
 
 
+
+
+
+# Recap from Machine Learning
+
+---
 
 
 # What is machine learning?
@@ -42,126 +60,141 @@ Given data, an algorithm tunes its *parameters* to match the data, understand ho
 
 
 ]
-
 ---
+
 # What is the basic machine learning process?
 
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/MLdiagram.png" width="95%" /&gt;
-
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/MLdiagram.png" width="90%" /&gt;
 
 
 ---
+
+# Why do we separate training from prediction?
+
+.pull-left4[
+
+Just because an algorithm can fit past (training) data well, does *not* necessarily mean that it will *predict* new data well.
+
+Anyone can come up with a model of *past* data (e.g.; stock performance, lottery winnings). Predicting future performance is much more difficult.
+
+&gt; "An economist is an expert who will know tomorrow why the things he predicted yesterday didn't happen today." ~ Evan Esar
+
+]
+ 
+.pull-right6[
+
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/prediction_collage.png" width="80%" /&gt;
+
+]
+
+---
+&lt;br&gt;&lt;br&gt;
+&lt;font size = 6&gt;Can you come up with a model that will perfectly match past data but is worthless in predicting future data?&lt;/font&gt;&lt;br&gt;&lt;br&gt;
+
+
+
+
+.pull-left45[
+
+
+### Past "Training" Data
+&lt;br&gt;
+
+| id|sex | age|fam_history |smoking | disease|
+|--:|:---|---:|:-----------|:-------|-------:|
+|  1|m   |  45|No          |FALSE   |       0|
+|  2|m   |  43|Yes         |FALSE   |       1|
+|  3|f   |  40|Yes         |FALSE   |       1|
+|  4|m   |  51|Yes         |FALSE   |       1|
+|  5|m   |  44|No          |TRUE    |       0|
+
+]
+
+
+.pull-right45[
+
+### Future "Test" Data
+&lt;br&gt;
+
+
+| id|sex | age|fam_history |smoking |disease |
+|--:|:---|---:|:-----------|:-------|:-------|
+| 91|m   |  51|Yes         |TRUE    |?       |
+| 92|f   |  47|No          |TRUE    |?       |
+| 93|m   |  39|No          |TRUE    |?       |
+| 94|f   |  51|Yes         |TRUE    |?       |
+| 95|f   |  50|Yes         |FALSE   |?       |
+
+]
+
+---
+
 ## Two types of prediction tasks
 
 .pull-left45[
 
 &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/classification_task.png" width="100%" style="display: block; margin: auto;" /&gt;
 
-
 ]
-
 
 .pull-right45[
 
 &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/regression_task.png" width="100%" style="display: block; margin: auto;" /&gt;
 
-
 ]
+
+
+---
+
+# New!
+
+
+---
+
+## Overfitting
+
+&lt;img src="MachineLearningII_files/figure-html/unnamed-chunk-11-1.png" width="100%" /&gt;
+
+
+
 
 
 
 ---
-# Training models
 
-.pull-left55[
+## Optimizing model parameters with cross validation
 
+.pull-left45[
 
-- Almost all machine learning models have *parameters* that need to be *fit* to the data.
+Most machine learning models have two types of parameters, *raw parameters* that dictate how an individual model makes predictions, and *tuning parameters* that determine how those raw parameters are calculated.
 
-    - Regression has *beta weights*, decision trees have *nodes and splits*
+|Model| Raw parameters|Tuning parameters|
+|:------|:------|:------|
+|Decision Trees|Nodes, splits, decisions |Minimum number of cases in each node|
+|Regularised regression |Model coefficients | Coefficient penalty term|
 
-- The process of fitting parameters is called *training* a model
-
-- One of the most common ways to train a model and find good parameters is with *10-Fold Cross Validation*
-
-]
-
-
-.pull-right4[
-
-&lt;img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Linear_regression.svg/1200px-Linear_regression.svg.png" width="60%" style="display: block; margin: auto;" /&gt;&lt;img src="http://www.milbo.org/rpart-plot/rpart.plot-example1.png" width="60%" style="display: block; margin: auto;" /&gt;
-
-
+To determine 'optimal' tuning parameters, which maximize prediction performance, techniques such as cross validation are often used.
 
 ]
 
----
-# 10 Fold Cross Validation
+.pull-right5[
 
-&lt;div class="figure" style="text-align: center"&gt;
-&lt;img src="https://upload.wikimedia.org/wikipedia/commons/1/1c/K-fold_cross_validation_EN.jpg" alt="Source: Wikipedia" width="85%" /&gt;
-&lt;p class="caption"&gt;Source: Wikipedia&lt;/p&gt;
-&lt;/div&gt;
+### Cross Validation
 
----
-# 10 Fold Cross Validation
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/crossvalidation.jpg" width="80%" style="display: block; margin: auto;" /&gt;
 
-.pull-left5[
+0) Select *tuning parameters*
 
+1) Split the training set into K "folds"
 
-### Why use 10 fold cross validation?
+2) Use K - 1 folds for training, and 1 fold for testing.
 
-- Allows you to simultaneously *estimate* model *prediction* performance from training data
+3) Repeat K times.
 
-- Can show parameter *stability* across different subsets of data.
-
-- If you *repeat* the process, you can try different parameter value and see which ones predict data best
-
+4) Average the K testing performances
 
 ]
 
-.pull-right45[
-
-&lt;div class="figure" style="text-align: center"&gt;
-&lt;img src="https://upload.wikimedia.org/wikipedia/commons/1/1c/K-fold_cross_validation_EN.jpg" alt="Source: Wikipedia" width="100%" /&gt;
-&lt;p class="caption"&gt;Source: Wikipedia&lt;/p&gt;
-&lt;/div&gt;
-
-]
-
-
-
----
-# 10 Fold Cross Validation
-
-.pull-left5[
-
-### How do you conduct 10 fold cross validation?
-
-- You could program your own 10 fold cross validation code by hand. But it would be very long (and probably have many errors!).
-
-- You would have to cusomise the code to apply to many different types of models (regression, random forests, decision trees, etc...)
-
-- It would be a nightmare...
-
-
-### Thankfully, there is a solution...
-
-
-&lt;img src="https://vignette.wikia.nocookie.net/joke-battles/images/2/21/Bugs-Bunny-4.png/revision/latest?cb=20151231234917" style="display: block; margin: auto;" /&gt;
-
-
-
-]
-
-.pull-right45[
-
-&lt;div class="figure" style="text-align: center"&gt;
-&lt;img src="https://upload.wikimedia.org/wikipedia/commons/1/1c/K-fold_cross_validation_EN.jpg" alt="Source: Wikipedia" width="100%" /&gt;
-&lt;p class="caption"&gt;Source: Wikipedia&lt;/p&gt;
-&lt;/div&gt;
-
-]
 
 ---
 
@@ -170,24 +203,29 @@ Given data, an algorithm tunes its *parameters* to match the data, understand ho
 # Caret
 
 
-&lt;img src="https://vignette.wikia.nocookie.net/joke-battles/images/2/21/Bugs-Bunny-4.png/revision/latest?cb=20151231234917" width="35%" style="display: block; margin: auto;" /&gt;
 
-- Caret stands for Classification And REgression Training.
+Caret stands for &lt;b&gt;C&lt;/b&gt;lassification &lt;b&gt;A&lt;/b&gt;nd &lt;b&gt;RE&lt;/b&gt;gression &lt;b&gt;T&lt;/b&gt;raining.
 
-- Caret is data scientist's dream for conducting machine learning.
+`caret` is a 'wrapper' packages that automates much of the the machine learning process.
 
-- No need to learn different functions or syntax for different models.
+Do very complex machine learning tasks with a few simple functions
 
-    - `method = 'lm'` ...Regression!
-    - `method = 'rm'` ...Random forests!
-
-- Do very complex machine learning tasks with a few simple functions
+Use any of hundreds of different ML algorithms by changing one "string' (not line!) to use a different model
 
 
+```r
+library(caret)
+
+train(..., method = "lm") # Regression!
+train(..., method = "rf") # Random forests!
+train(..., method = "ada") # Boosted trees
+```
+
+Knows each model's tuning parameters and chooses the best ones for your data using cross validation (or other method).
 
 ]
 
-.pull-right45[
+.pull-right4[
 &lt;br&gt;&lt;br&gt;&lt;br&gt;
 &lt;div class="figure" style="text-align: center"&gt;
 &lt;img src="https://3qeqpr26caki16dnhd19sv6by6v-wpengine.netdna-ssl.com/wp-content/uploads/2014/09/Caret-package-in-R.png" alt="The almighty Caret!" width="90%" /&gt;
@@ -204,6 +242,8 @@ Given data, an algorithm tunes its *parameters* to match the data, understand ho
 .pull-left5[
 
 # Caret
+
+
 
 
 As always, you can install `caret` from CRAN
@@ -225,109 +265,333 @@ Once you've installed `caret`, look at the vignette for a nice overview of the p
 vignette("caret")
 ```
 
-
 Today we will go over the main functions in the package
-
 
 ]
 
 .pull-right45[
 
-### Caret Vignette
+### Caret Vignettes
+
+The `caret` package has some of the *best* documentation (vignettes) you'll ever see.
 
 &lt;img src="caret_vignette.jpg" width="90%" /&gt;
 
-
 ]
-
 
 ---
 
 .pull-left5[
 # Caret
 
-
-Here are the main functions in the `caret` package
+Here are the main functions we will cover in the `caret` package
 
 | Function| Purpose|
 |--------|----------|
+| `createDataPartition()` | Split data into different partitions|
 | `trainControl()` | Determine how training (in general) will be done|
-| `train()` | Specify a model and find *best* parameters |
+| `train()` | Specify a model and find *best* parameters|
 | `varImp()` | Determine variable importance |
+| `predict()` | Predict values for new data|
+| `postResample()` | Evaluate prediction performance|
 
 ]
 
-
 .pull-right45[
 
-### Caret Vignette
+### Caret Vignettes
+
+The `caret` package has some of the *best* documentation (vignettes) you'll ever see.
 
 &lt;img src="caret_vignette.jpg" width="90%" /&gt;
 
 ]
-
-
-
----
-
-# Caret
-
-### trainControl()
-
-- Use `trainControl()` to define a general fitting process.
-
-
-
-```r
-# Get ready for 10 fold cross validation!
-
-mycontrol &lt;- trainControl(method = "repeatedcv", # Do repeated cross validation
-                          number = 10,           # 10 folds
-                          repeats = 50)         # Repeat 50 times (!)
-```
-
-
-- Can specify cross validation with `method = "repeatedcv"`
-    - Many other methods are available too!
-    
-- Can *repeat* cross validation many times with `repeats`
-
-
 
 
 ---
 
 .pull-left6[
+### createDataPartition()
 
-# Caret
+Use `createDataPartition()` to split a dataset into separate partitions.
 
-### train()
-
-- Use `train()` to fit **any** of over 200 models **and** get best parameters
+Useful to split a large dataset into separate training and test data
 
 
 ```r
-train(form = price ~ .,      # Criterion
-      data = data_train,     # Training data
-      method = "lm",         # Specify a model
-      trControl = mycontrol) # Use mycontrol parameters
+data &lt;- baselers %&gt;% 
+  drop_na     # Drop missing cases from baselers
+
+# Get training cases
+train_v &lt;- createDataPartition(y = data$income, #crit
+                               times = 1, 
+                               p = .5)$Resample1
+
+# Vector of training cases
+train_v[1:10]
 ```
 
-- Specify the criterion to be predicted as a formula with `form`
+```
+##  [1]  3  4  6  8 10 11 12 15 17 18
+```
 
-- Specify training data with `data`
+```r
+# Training Data
+baselers_train &lt;- data %&gt;% 
+  slice(train_v)
 
-- Choose a model with `method`
-    - `method = 'lm'` = Linear regression
-    - `method = 'rf` = Random forest
+# Testing Data
+baselers_test &lt;- data %&gt;% 
+  slice(-train_v)
+```
+
 
 ]
 
 .pull-right35[
 
-See all &gt;280 models at [http://topepo.github.io/caret/available-models.html](http://topepo.github.io/caret/available-models.html)
+### Training and Test
+
+
+```r
+### Training data
+
+dim(baselers_train)
+```
+
+```
+## [1] 3072   20
+```
+
+```r
+baselers_train %&gt;%
+  slice(1:5) %&gt;%
+  select(1:3)
+```
+
+```
+## # A tibble: 5 x 3
+##      id sex      age
+##   &lt;int&gt; &lt;chr&gt;  &lt;dbl&gt;
+## 1     4 male      27
+## 2     6 male      63
+## 3     8 female    41
+## 4    10 female    31
+## 5    12 male      31
+```
+
+```r
+### Testing data
+
+dim(baselers_test)
+```
+
+```
+## [1] 3068   20
+```
+
+
+]
+
+
+---
+.pull-left55[
+### trainControl()
+
+Use `trainControl()` to define how `carat` should select the best parameters for any ML model (that you will specify later with `train()`)
+
+Many methods are available in the `method` argument, look at the help menu with `?trainControl` for additional details
+
+
+```r
+# Define how caraet should 
+#  select best model parameters
+
+ctrl &lt;- trainControl(method = "repeatedcv",
+                     number = 10,  # 10 folds
+                     repeats = 2) # Repeat 2 times
+```
+
+### trainControl methods
+
+|method|Description|
+|:----|:----|
+|`"repeatedcv"` | Repeated cross-validation|
+|`"LOOCV"`| Leave one out cross-validation|
+|`"none"` | Fit one model with default parameters |
+
+]
+
+.pull-right4[
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+### Cross Validation
+![](https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/crossvalidation.jpg)&lt;!-- --&gt;
+
+]
+
+---
+
+.pull-left55[
+
+### train()
+
+Use `train()` to fit **any** of over 280 models **and** get best parameters
+
+
+```r
+rpart_train &lt;- train(form = income ~ .,  
+                     data = baselers_train,
+                     method = "rpart", # Model!
+                     trControl = ctrl)
+```
+
+
+|Parameter|Description|
+|:-----|:----|
+|`form`|Formula specifying criterion|
+|`data`|Training data|
+|`method`| Model|
+|`trControl`| Control parameters|
+
+
+]
+
+.pull-right4[
+
+See all &gt;280 models on the [Caret Documentation Page](http://topepo.github.io/caret/available-models.html)
 
 &lt;img src="caret_models.jpg" width="1699" /&gt;
+
+]
+
+
+---
+
+### train()
+
+.pull-left55[
+
+For classification tasks, make sure your criterion is a factor. For regression tasks, make sure it is numeric
+
+
+
+
+```r
+# Diagnosis is currently coded as 0, 1
+heartdisease$diagnosis[1:10]
+
+# Will be a regression model
+reg_mod &lt;- train(form = diagnosis ~ .,
+             data = heartdisease,
+             method = "rpart")
+```
+
+&lt;font color='red' size = 3&gt;Warning messages:...&lt;/font&gt;
+
+Use `factor()` to convert your criterion to a factor, now you are doing classification!
+
+
+```r
+# Use factor() to specify a classification model
+class_mod &lt;- train(form = factor(diagnosis) ~ .,
+                   data = heartdisease,
+                   method = "rpart")
+```
+
+
+]
+
+.pull-right4[
+
+[Caret Documentation Page](http://topepo.github.io/caret/available-models.html)
+
+&lt;img src="caret_models.jpg" width="1699" /&gt;
+
+]
+
+
+---
+
+### train()
+
+Print the result of `train()` to obtain overall results
+
+
+```r
+rpart_train
+```
+
+```
+## CART 
+## 
+## 3072 samples
+##   19 predictor
+## 
+## No pre-processing
+## Resampling: Cross-Validated (10 fold, repeated 2 times) 
+## Summary of sample sizes: 2764, 2764, 2765, 2766, 2765, 2765, ... 
+## Resampling results across tuning parameters:
+## 
+##   cp       RMSE  Rsquared  MAE 
+##   0.06978  1461  0.7113    1177
+##   0.10853  1814  0.5549    1447
+##   0.54480  2211  0.5241    1782
+## 
+## RMSE was used to select the optimal model using the smallest value.
+## The final value used for the model was cp = 0.06978.
+```
+
+
+
+---
+.pull-left4[
+
+### train()
+
+Explore your `train` Object
+
+
+```r
+# Best tuning parameters
+rpart_train$bestTune
+```
+
+```
+##        cp
+## 1 0.06978
+```
+
+```r
+# Show the final model
+rpart_train$finalModel
+```
+
+```
+## n= 3072 
+## 
+## node), split, n, deviance, yval
+##       * denotes terminal node
+## 
+## 1) root 3072 2.271e+10  7522  
+##   2) age&lt; 46.5 1826 5.051e+09  5864 *
+##   3) age&gt;=46.5 1246 5.289e+09  9952  
+##     6) age&lt; 66.5 919 1.975e+09  9113 *
+##     7) age&gt;=66.5 327 8.484e+08 12310 *
+```
+
+]
+
+
+.pull-right55[
+
+
+```r
+# Plot final model
+plot(rpart_train$finalModel)
+text(rpart_train$finalModel)
+```
+
+&lt;img src="MachineLearningII_files/figure-html/unnamed-chunk-34-1.png" style="display: block; margin: auto;" /&gt;
 
 
 ]
@@ -336,52 +600,208 @@ See all &gt;280 models at [http://topepo.github.io/caret/available-models.html](
 
 .pull-left5[
 
-# Caret
-
 ### varImp()
 
-- Use `varImp()` to extract **variable importance** from a model
+Use `varImp()` to extract **variable importance** from a model
 
+Result will be be a model-specific method indicaating how important each variable was in predicting the criterion.
+    
 
 ```r
-# Look at variable importance with varImp
-varImp(diamonds_lm_train)
+varImp(rpart_train)
 ```
 
-- Result will be a vector showing how important each variable was in predicting the criterion.
-
-- Specific outputs depend on the model
-    - Regression: Regression weights
-    - Decision trees: Mean *gini* index.
+```
+## rpart variable importance
+## 
+##   only 20 most important variables shown (out of 24)
+## 
+##                                  Overall
+## age                              100.000
+## food                              57.957
+## datause                            1.256
+## id                                 0.728
+## fitness                            0.626
+## consultations                      0.284
+## tattoos                            0.283
+## fasnachtyes                        0.000
+## children                           0.000
+## rhine                              0.000
+## hiking                             0.000
+## eyecoryes                          0.000
+## confessionother                    0.000
+## weight                             0.000
+## educationobligatory_school         0.000
+## happiness                          0.000
+## educationSEK_II                    0.000
+## height                             0.000
+## `confessionevangelical-reformed`   0.000
+## confessionmuslim                   0.000
+```
     
 ]
 
+.pull-right45[
+
+
+```r
+# Plot variable importance
+plot(varImp(rpart_train))
+```
+
+![](MachineLearningII_files/figure-html/unnamed-chunk-36-1.png)&lt;!-- --&gt;
+
+]
+
+---
+
+.pull-left5[
+## predict(), postResample()
+
+Test a models prediction performance with `predict()`
+
+
+```r
+# Get predictions based on best 
+bas_pred &lt;- predict(object = rpart_train, 
+                    newdata = baselers_test)
+
+# Result is a vector of predictions 
+#   for each row in newdata
+bas_pred[1:5]
+```
+
+```
+##     1     2     3     4     5 
+##  5864  9113 12310  5864  5864
+```
+
+Then summarise overall performance with `postResample()`
+
+
+```r
+# Assess performance with postResample()
+postResample(pred = bas_pred, 
+             obs = baselers_test$income)
+```
+
+```
+##      RMSE  Rsquared       MAE 
+## 1560.3574    0.6752 1261.1642
+```
+
+
+]
 
 .pull-right45[
 
-&lt;img src="varimp_ss.jpg" width="912" /&gt;
+### Plot predictions vs Truth
+
+
+```r
+# Plot predictions versus truth
+end &lt;- tibble(pred = bas_pred,
+              obs = baselers_test$income)
+
+ggplot(data = end,
+       aes(x = pred, y = obs)) + 
+  geom_point(alpha = .1) +
+  labs(title = "Rpart Performance",
+       x = "Predictions",
+       y = 'Truth') +
+  theme_bw() +
+  geom_smooth(method = "lm")
+```
+
+&lt;img src="MachineLearningII_files/figure-html/unnamed-chunk-39-1.png" style="display: block; margin: auto;" /&gt;
+
+
+]
+
+---
+.pull-left5[
+
+## Recap - ML steps with caret
+
+Step 0: Create training and test data (if necessary)
+
+
+```r
+train_v &lt;- createDataPartition(y, times, p)
+
+data_train &lt;- data %&gt;% slice(train_v)
+data_test &lt;- data %&gt;% slice(-train_v)
+```
+
+Step 1: Define control parameters
+
+
+```r
+ctl &lt;- trainControl(method = "repeatedcv",
+                    number = 10, 
+                    repeats = 2) 
+```
+
+
+Step 2: Train model
+
+
+```r
+rpart_train &lt;- train(form = income ~ .,  
+                     data = data_train,
+                     method = "rpart",
+                     trControl = ctl)
+```
+
+]
+
+.pull-right45[
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+Step 3: Explore
+
+
+```r
+rpart_train            # Print object
+varImp(rpart_train)    # Var importance
+rpart_train$finalModel # Final model
+```
+
+
+Step 4: Predict 
+
+
+```r
+my_pred &lt;- predict(object = rpart_train, 
+                   newdata = data_test)
+```
+
+
+Step 4: Evaluate 
+
+
+```r
+postResample(pred = bas_pred, 
+             obs = baselers_test$income)
+```
 
 
 ]
 
 
 ---
-
 
 &lt;br&gt;&lt;br&gt;
 .pull-left5[
 
 # Caret
 
+There are *many* other great features of caret we haven't touched
 
-- There are *many* other great features of caret we haven't touched
-   - Splitting data with `createDataPartition()`
-   - Imputing (replacing) missing values and transforming predictors with `preProcess()`
-   - Add your own custom model
-   
+- Use the `preProcess()` function to process your data (Imputing (replacing) missing values and transforming predictors)
 
-- Be sure to check out the **excellent** documentation site to learn all the details
+- Add your own custom model
 
+Be sure to check out the **excellent** documentation site to learn all the details
 
 ]
 
@@ -389,16 +809,19 @@ varImp(diamonds_lm_train)
 
 ### http://topepo.github.io/caret/index.html
 
-
 &lt;img src="caret_package_md.jpg" width="2251" /&gt;
 
 ]
 
 ---
 
-## Machine Learning II Live Demo &amp; Practical
+# Questions?
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
 
-&lt;p&gt;&lt;font size=6&gt;&lt;b&gt;&lt;a href="https://therbootcamp.github.io/BaselRBootcamp_2018April/_sessions/D3S1_MachineLearningII/MachineLearningII_practical.html"&gt;Link to Machine Learning II practical&lt;/a&gt;
+# [Machine Learning II Practical](https://therbootcamp.github.io/Erfurt_2018June/_sessions/D2S2_MachineLearning/MachineLearning_practical.html)
+
+
+---
     </textarea>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
