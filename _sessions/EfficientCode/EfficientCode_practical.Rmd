@@ -26,9 +26,7 @@ options(digits = 3)
   </figcaption>
 </figure>
 
-### Overview
-
-
+## Overview
 
 In this practical you'll learn how to create efficient programs in R. By the end of this practical you will know how to:
 
@@ -36,9 +34,35 @@ In this practical you'll learn how to create efficient programs in R. By the end
 2. Make your program more efficient.
 3. How to do parallel computing.
 
-### Benchmarking and profiling functions
+## Packages
 
-Functions to profile your code are: 
+|Package| Installation|
+|:------|:------|
+|`microbenchmark`|`install.packages("microbenchmark")`|
+|`profvis`|`install.packages("profvis")`|
+
+## Datasets
+
+```{r, eval = TRUE, message = FALSE}
+library(tidyverse)
+house <- read_csv("../_data/complete/kc_house.csv")
+```
+
+|File | Rows | Columns | Description |Source
+|:----|:-----|:------|:-----------------------------------------|:------|
+|`xx.csv` | xxx | xx| DESCRIPTION OF DATASET |SOURCE + LINK
+
+
+## Glossary
+
+| Function| Description|
+|:------|:--------|
+| `proc.time()` | Returns the time |
+| `system.time()`| Runs one expression once and returns elapsed time|
+| `microbenchmark()`| Runs one or many expressions multiple times and returns statistics on elapsed time|
+| `profvis()`| valuates large expressions or entire scripts.|
+
+
 
 | Function| Package| Description| 
 |:------|:------|:------------------------------------------|
