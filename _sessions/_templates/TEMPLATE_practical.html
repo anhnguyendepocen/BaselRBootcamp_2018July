@@ -123,8 +123,6 @@ $(document).ready(function () {
 </div>
 
 
-<div id="overview" class="section level2">
-<h2>Overview</h2>
 <figure style="width:50%">
 <center>
 <pre><code>&lt;img src=&quot;https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Seattle_-_Craftsman_revival_houses.jpg/300px-Seattle_-_Craftsman_revival_houses.jpg&quot; alt=&quot;Trulli&quot;&gt;
@@ -133,6 +131,8 @@ $(document).ready(function () {
 &lt;/figcaption&gt;</code></pre>
 </center>
 </figure>
+<div id="overview" class="section level2">
+<h2>Overview</h2>
 <p>In this practical you’ll…. By the end of this practical you will know how to:</p>
 <ol style="list-style-type: decimal">
 <li>…</li>
@@ -280,74 +280,58 @@ $(document).ready(function () {
 </div>
 <div id="examples" class="section level2">
 <h2>Examples</h2>
-<pre class="r"><code># -----------------------------------------------
-# Examples of hypothesis tests on the diamonds
-# ------------------------------------------------
+<pre class="r"><code># Hypothesis tests on diamonds ------------------------------------
 library(tidyverse)
 library(broom)
 library(rsq)
 
 # First few rows of the diamonds data
-
 diamonds
 
-# -----
-# Descriptive statistics
-# -----
-
-mean(diamonds$carat)   # What is the mean carat?
+# Descriptive statistics 
+mean(diamonds$carat)     # What is the mean carat?
 median(diamonds$price)   # What is the median price?
-max(diamonds$depth)    # What is the maximum depth?
+max(diamonds$depth)      # What is the maximum depth?
 table(diamonds$color)    # How many observations for each color?
 
-# -----
-# 1-sample hypothesis test
-# -----
+# 1-sample hypothesis test -----
 
-# Q: Is the mean carat of diamonds different from .50?
-
-htest_A &lt;- t.test(x = diamonds$carat,     # The data
+# Test mean carat of diamonds against .50
+htest_A &lt;- t.test(x = diamonds$carat,         # The data
                   alternative = &quot;two.sided&quot;,  # Two-sided test
                   mu = 0.5)                   # The null hyopthesis
 
+# Inspect results
 htest_A            # Print result
 names(htest_A)     # See all attributes in object
 htest_A$statistic  # Get just the test statistic
 htest_A$p.value    # Get the p-value
 htest_A$conf.int   # Get a confidence interval
 
-# -----
-# 2-sample hypothesis test
-# -----
+# 2-sample hypothesis test -----
 
-# Q: Is there a difference in the carats of color = E and color = I diamonds?
-
-htest_B &lt;- t.test(formula = carat ~ color,     # DV ~ IV
-                   alternative = &quot;two.sided&quot;,  # Two-sided test
-                   data = diamonds,         # The data
+# Test difference in the carats of color = E and color = I diamonds
+htest_B &lt;- t.test(formula = carat ~ color,          # DV ~ IV
+                   alternative = &quot;two.sided&quot;,       # Two-sided test
+                   data = diamonds,                 # The data
                    subset = color %in% c(&quot;E&quot;, &quot;I&quot;)) # Compare Diet 1 and Diet 2
 
+# Inspect results
 htest_B  # Print result
 
-# -----
-# Correlation test
-# ------
+# Correlation test -----
 
-# Q: Is there a correlation between carat and price?
-
+# Test correlation between carat and price
 htest_C &lt;- cor.test(formula = ~ carat + price,
                     data = diamonds)
 
-htest_C
+# Inspect results
+htest_C #r = 0.92, t(53938) = 551.51, p &lt; .001
 
-# A: Yes. r = 0.92, t(53938) = 551.51, p &lt; .001
 
-# -----
-# Regression
-# ------
+# Regression -----
 
-# Q: Create regression equation predicting price by carat, depth, table, and x
-
+# Run regression predicting price by carat, depth, table, and x
 price_glm &lt;- glm(formula = price ~ carat + depth + table + x,
                   data = diamonds)
 
@@ -360,25 +344,19 @@ tidy(price_glm)
 # Extract R-Squared
 rsq(price_glm)
 
-# -----
-# Simulation
-# ------
+# Simulation -----
 
-# 100 random samples from a normal distribution with mean = 0, sd = 1
+# 100 random samples from a normal distributions
 samp_A &lt;- rnorm(n = 100, mean = 0, sd = 1)
-
-# 100 random samples from a Uniform distribution with bounds at 0, 10
 samp_B &lt;- runif(n = 100, min = 0, max = 10)
 
 # Calculate descriptives
 mean(samp_A)
 sd(samp_A)
-
 mean(samp_B)
 sd(samp_B)
 
 # Combine samples (plus tw new ones) in a tibble
-
 my_sim &lt;- tibble(A = samp_A,
                  B = samp_B,
                  C = rnorm(n = 100, mean = 0, sd = 1),
