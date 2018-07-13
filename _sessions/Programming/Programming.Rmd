@@ -305,7 +305,8 @@ my_mean <- function(x){
 
 
 ---
-# Ex) show_stats()
+
+# Example - `show_stats()
 
 .pull-left55[
 
