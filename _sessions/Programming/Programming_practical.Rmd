@@ -25,7 +25,6 @@ options(digits = 3)
   <figcaption>https://en.wikipedia.org/wiki/R_(programming_language)</figcaption>
 </figure>
 
-
 ## Overview
 
 In this practical you'll practice "Programming in R" with the base and `purrr`-package functions. Although we sort of have been programming already, we always used the `tidyverse` way to do it. While there is nothing against doing it this way, in fact we chose to teach R with the `tidyverse` because we think that it's an easy and very elegant way of doing it, when you work with R in the future, you will almost certainly find yourself in situations were you have to understand the base R way of programming. This may, for example, be the case when you get code from someone, or work with someone who is not familiar with the `tidyverse`. Furthermore, the concepts you learn in this session are the same in most programming languages (of course the exact implementation will vary over languages). So if R is your first programming language, learning about and understanding these concepts will greatly facilitate the understanding and speed of learning of other programming languages. Last but no least, the concepts we touch upon here taken together will allow you to code more efficiently and elegantly, which may save you quite some time. But enough said; let's get started!
@@ -83,9 +82,7 @@ By the end of this practical you will know how to:
 ```{r, eval = FALSE, echo = TRUE, message = FALSE, warning = FALSE}
 
 
-##---------------------------
-## Conditional Statements
-##---------------------------
+## Conditional Statements ------------
 
 # Conditional statements are used to execute a block of code only if a given
 # expression evaluates to TRUE
@@ -96,9 +93,7 @@ if (num < 8){
   print("This expression evaluated to TRUE, thus num is smaller than 8.")
 }
 
-##---------------------------
-## Write your own function
-##---------------------------
+## Write your own function -----------
 
 # First arguments are specified
 weighted_mean <- function(vls,   # has no default. This means it MUST be
@@ -125,9 +120,7 @@ weighted_mean <- function(vls,   # has no default. This means it MUST be
 }
 
 
-##---------------------------
-## Iteration
-##---------------------------
+## Iteration --------------------
 
 ## for loops
 
