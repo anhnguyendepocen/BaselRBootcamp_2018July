@@ -18,15 +18,17 @@ knitr::opts_chunk$set(comment = NA,
 options(digits = 3)
 ```
 
-
-<figure>
-<center>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Seattle_-_Craftsman_revival_houses.jpg/300px-Seattle_-_Craftsman_revival_houses.jpg" alt="Trulli" style="width:50%">
-  <figcaption>https://en.wikipedia.org/wiki/Seattle_box</figcaption>
+<figure  style="width:50%">
+  <center>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Seattle_-_Craftsman_revival_houses.jpg/300px-Seattle_-_Craftsman_revival_houses.jpg" alt="Trulli">
+    <figcaption>
+      https://en.wikipedia.org/wiki/Seattle_box
+    </figcaption>
+  </center>
 </figure>
 
-
 ## Overview
+
 
 In this practical you'll.... By the end of this practical you will know how to:
 
