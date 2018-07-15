@@ -1,6 +1,6 @@
 ---
 title: "Dynamic Reports with RMarkdown"
-author: "Nathaniel Phillips"
+author: "The R Bootcamp"
 date: "7/15/2018"
 output: html_document
 ---
@@ -38,12 +38,12 @@ In this practical, I will analyse two datasets and show reproducible results in 
 
 ## Datasets
 
-Here are the dataset(s) I will explore:
+Here are the dataset(s) I will explore in this document:
 
 |Name|Description|Rows|Columns|
-|:------|:----------|:--------|:------|
+|:------|:---------------------------------|:--------|:------|
 |`mcdonalds.csv`| Menu information from [McDonalds](https://www.mcdonalds.ch/de/)|`r nrow(mcdonalds)`|`r ncol(mcdonalds)`|
-|`happiness.csv`| Country happiness statistics|`r nrow(happiness)`|`r ncol(happiness)`|
+|`happiness.csv`| Country happiness statistics from the [World Health Organisation](http://www.who.int/whr/previous/en/)|`r nrow(happiness)`|`r ncol(happiness)`|
 
 
 # McDonalds
@@ -52,7 +52,9 @@ Here are the dataset(s) I will explore:
 knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/2000px-McDonald%27s_Golden_Arches.svg.png")
 ```
 
-The `mcdonalds` data contains `r ncol(mcdonalds)` pieces of information for `r nrow(mcdonalds)` menu items. The data originally come from [Kaggle](https://www.kaggle.com/mcdonalds/nutrition-facts). Here is a table showing the first 6 columns in the data
+The `mcdonalds` data contains `r ncol(mcdonalds)` pieces of information for `r nrow(mcdonalds)` menu items. The data originally come from [Kaggle](https://www.kaggle.com/mcdonalds/nutrition-facts).
+
+Here is a table showing the first 6 columns in the data
 
 ```{r, echo = FALSE}
 DT::datatable(mcdonalds %>% select(1:6))
