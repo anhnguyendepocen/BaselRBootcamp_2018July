@@ -1,5 +1,6 @@
 ---
-title: "BaselRBootcamp - July 2018"
+title: "BaselRBootcamp"
+date: "July 2018"
 author: "http://www.therbootcamp.com"
 output: html_document
 ---
