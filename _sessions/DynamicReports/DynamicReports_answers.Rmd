@@ -65,7 +65,7 @@ DT::datatable(mcdonalds %>% select(1:6))
 Here are are few key descriptive statistics from the data:
 
 - The mean number of calories in a McDonalds menu item is `r mean(mcdonalds$Calories)`
-- The maximum number of calories in a McDonalds menu item is `r max(mcdonalds$Calories)`
+- The maximum number of calories in a McDonalds menu item is `r max(mcdonalds$Calories)` for  `r mcdonalds$Item[mcdonalds$Calories == max(mcdonalds$Calories)]`
 
 ## Calories
 
