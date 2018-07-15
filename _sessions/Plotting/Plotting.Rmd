@@ -425,10 +425,7 @@ Common geoms are...
 |     `geom_count()`| Points with size reflecting frequency|
 |     `geom_smooth()`|  Smoothed line|
 
-
-
 ]
-
 
 .pull-right5[
 
@@ -961,7 +958,7 @@ ggplot(data = mpg,
 
 .pull-left4[
 
-Facetting = Create different plots for different groups
+Faceting = Create different plots for different groups
 
 To facet plots, use `facet_wrap()`
 
@@ -995,7 +992,7 @@ ggplot(data = mpg,
 
 .pull-left4[
 
-Facetting = Create different plots for different groups
+Faceting = Create different plots for different groups
 
 To facet plots, use `facet_wrap()`
 
