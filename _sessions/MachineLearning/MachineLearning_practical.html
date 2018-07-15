@@ -387,9 +387,11 @@ ggplot(data = competition_results,
 <h1>Tasks</h1>
 <div id="a---setup" class="section level2">
 <h2>A - Setup</h2>
-<p>A1. Open your R project. It should already have the folders <code>0_Data</code> and <code>1_Code</code>. Make sure that the data files listed in the <code>Datasets</code> section above are in your <code>1_Data</code> folder</p>
-<p>A2. Open a new R script. At the top of the script, using comments, write your name and the date. Save it as a new file called <code>machinelearning_practical.R</code> in the <code>2_Code</code> folder.</p>
-<p>A3. Using <code>library()</code> load the set of packages for this practical listed in the packages section above.</p>
+<ol style="list-style-type: decimal">
+<li><p>Open your R project. It should already have the folders <code>0_Data</code> and <code>1_Code</code>. Make sure that the data files listed in the <code>Datasets</code> section above are in your <code>1_Data</code> folder</p></li>
+<li><p>Open a new R script. At the top of the script, using comments, write your name and the date. Save it as a new file called <code>machinelearning_practical.R</code> in the <code>2_Code</code> folder.</p></li>
+<li><p>Using <code>library()</code> load the set of packages for this practical listed in the packages section above.</p></li>
+</ol>
 <pre class="r"><code>## NAME
 ## DATE
 ## Wrangling Practical
@@ -397,39 +399,51 @@ ggplot(data = competition_results,
 library(XX)     
 library(XX)
 #...</code></pre>
-<p>A4. For this practical, we’ll use two datasets related to the prices of houses in King County Washington. There is a <em>training</em> dataset <code>house_train.csv</code> and a model <em>testing</em> dataset <code>house_test.csv</code> data. Using the following template, load the datasets into R as <code>house_train</code> and <code>house_test</code>:</p>
+<ol start="4" style="list-style-type: decimal">
+<li>For this practical, we’ll use two datasets related to the prices of houses in King County Washington. There is a <em>training</em> dataset <code>house_train.csv</code> and a model <em>testing</em> dataset <code>house_test.csv</code> data. Using the following template, load the datasets into R as <code>house_train</code> and <code>house_test</code>:</li>
+</ol>
 <pre class="r"><code>house_train &lt;- read_csv(file = &quot;XXX/XXX&quot;)</code></pre>
-<p>A5. Take a look at the first few rows of each dataset by printing them to the console.</p>
-<p>A6. Use the <code>skim()</code> function (from the <code>skimr</code> package) to get more details on each of the datasets.</p>
+<ol start="5" style="list-style-type: decimal">
+<li><p>Take a look at the first few rows of each dataset by printing them to the console.</p></li>
+<li><p>Use the <code>skim()</code> function (from the <code>skimr</code> package) to get more details on each of the datasets.</p></li>
+</ol>
 </div>
 <div id="b---walking-through-the-7-steps" class="section level2">
 <h2>B - Walking through the 7 steps</h2>
-<p>B1. Run Steps 0 through 4 in the Examples section above. Run each line of code individually and explore each object you create. Try to understand each of the steps! If you have trouble, ask for help!</p>
-<p>B2. Which of the three features (bedrooms, bathrooms, floors) do the regression and decision tree models use? Do they treat the features equally?</p>
-<p>B3. Run step 5. Look at the results. Which model has the best fitting performance?</p>
-<p>B4. Run Steps 6-7. Look at the results. Which model has the best prediction performance? How does each model’s prediction performance compare to its fitting performance?</p>
+<ol style="list-style-type: decimal">
+<li><p>Run Steps 0 through 4 in the Examples section above. Run each line of code individually and explore each object you create. Try to understand each of the steps! If you have trouble, ask for help!</p></li>
+<li><p>Which of the three features (bedrooms, bathrooms, floors) do the regression and decision tree models use? Do they treat the features equally?</p></li>
+<li><p>Run step 5. Look at the results. Which model has the best fitting performance?</p></li>
+<li><p>Run Steps 6-7. Look at the results. Which model has the best prediction performance? How does each model’s prediction performance compare to its fitting performance?</p></li>
+</ol>
 </div>
 <div id="d---including-random-forests" class="section level2">
 <h2>D - Including random forests</h2>
-<p>D1. Random forests are much more complex than regression and decision trees. Try including Random forests in your analyses as a new competitor. You can use the <code>randomForest()</code> function from the <code>randomForest</code> package to fit your model!</p>
-<p>D2. How does the <em>fitting</em> performance of random forests compare to the other algorithms in training?</p>
-<p>D3. How does the <em>prediction</em> performance of random forests compare to the other algorithms in testing?</p>
+<ol style="list-style-type: decimal">
+<li><p>Random forests are much more complex than regression and decision trees. Try including Random forests in your analyses as a new competitor. You can use the <code>randomForest()</code> function from the <code>randomForest</code> package to fit your model!</p></li>
+<li><p>How does the <em>fitting</em> performance of random forests compare to the other algorithms in training?</p></li>
+<li><p>How does the <em>prediction</em> performance of random forests compare to the other algorithms in testing?</p></li>
+</ol>
 </div>
 <div id="e---including-more-features" class="section level2">
 <h2>E - Including more features</h2>
 <p>Until now, you’ve only been predicting price based on 3 features (bedrooms, bathrooms, and floors). Of course, you have access to lots more data to predict housing prices! Now it’s time to try using more data to predict price.</p>
-<p>E1. Look closely again at the columns in the <code>house_train</code> data. There are two features in the data that you definitely <em>don’t</em> want to include in your models. Which two are they?</p>
-<p>E2. Remove those two features from your training data using the following template:</p>
-<p>E3. Re-run your models, but now predict price based on <em>all</em> of the features. To do this, use the formula short hand <code>formula = price ~ .</code>.</p>
-<p>E4. How does the overall fitting and prediction performance of the models compare to when you only used three features? Did each model improve?</p>
+<ol style="list-style-type: decimal">
+<li><p>Look closely again at the columns in the <code>house_train</code> data. There are two features in the data that you definitely <em>don’t</em> want to include in your models. Which two are they?</p></li>
+<li><p>Remove those two features from your training data using the following template:</p></li>
+<li><p>Re-run your models, but now predict price based on <em>all</em> of the features. To do this, use the formula short hand <code>formula = price ~ .</code>.</p></li>
+<li><p>How does the overall fitting and prediction performance of the models compare to when you only used three features? Did each model improve?</p></li>
+</ol>
 </div>
 <div id="f---predict-the-year-a-house-was-built" class="section level2">
 <h2>F - Predict the year a house was built</h2>
 <p>So far, we have predicted house prices based on many features. Now, see how well you can predict the <em>year</em> a house was built <code>yr_built</code> based on the following four features: bedrooms, bathrooms, condition, sqft_living.</p>
-<p>F1. Go through Steps 0 through 4 using regression <code>glm()</code> and decision trees <code>rpart()</code> to build models predicting the year a house was built <code>yr_built</code> based on <code>bedrooms</code>, <code>bathrooms</code>, <code>condition</code>, <code>sqft_living</code>.</p>
-<p>F2. Based on your model exploration (Step 4), which of the four features seem to be the most important in predicting the year a house was built?</p>
-<p>F3. Complete Steps 5 through 7.</p>
-<p>F4. Which of your three models is the best at predicting the year a house was built?</p>
+<ol style="list-style-type: decimal">
+<li><p>Go through Steps 0 through 4 using regression <code>glm()</code> and decision trees <code>rpart()</code> to build models predicting the year a house was built <code>yr_built</code> based on <code>bedrooms</code>, <code>bathrooms</code>, <code>condition</code>, <code>sqft_living</code>.</p></li>
+<li><p>Based on your model exploration (Step 4), which of the four features seem to be the most important in predicting the year a house was built?</p></li>
+<li><p>Complete Steps 5 through 7.</p></li>
+<li><p>Which of your three models is the best at predicting the year a house was built?</p></li>
+</ol>
 </div>
 </div>
 

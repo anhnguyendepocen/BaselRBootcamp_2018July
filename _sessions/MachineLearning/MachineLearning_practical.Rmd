@@ -213,15 +213,15 @@ ggplot(data = competition_results,
 
 ## A - Setup
 
-A1. Open your R project. It should already have the folders `0_Data` and `1_Code`. Make sure that the data files listed in the `Datasets` section above are in your `1_Data` folder
+1. Open your R project. It should already have the folders `0_Data` and `1_Code`. Make sure that the data files listed in the `Datasets` section above are in your `1_Data` folder
 
 ```{r}
 # Done!
 ```
 
-A2. Open a new R script. At the top of the script, using comments, write your name and the date. Save it as a new file called `machinelearning_practical.R` in the `2_Code` folder.  
+2. Open a new R script. At the top of the script, using comments, write your name and the date. Save it as a new file called `machinelearning_practical.R` in the `2_Code` folder.  
 
-A3. Using `library()` load the set of packages for this practical listed in the packages section above.
+3. Using `library()` load the set of packages for this practical listed in the packages section above.
 
 ```{r, eval = FALSE, echo = TRUE}
 ## NAME
@@ -238,41 +238,41 @@ library(tidyverse)
 library(skimr)
 ```
 
-A4. For this practical, we'll use two datasets related to the prices of houses in King County Washington. There is a  *training* dataset `house_train.csv` and a model *testing* dataset `house_test.csv` data. Using the following template, load the datasets into R as `house_train` and `house_test`:
+4. For this practical, we'll use two datasets related to the prices of houses in King County Washington. There is a  *training* dataset `house_train.csv` and a model *testing* dataset `house_test.csv` data. Using the following template, load the datasets into R as `house_train` and `house_test`:
 
 ```{r, echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
 house_train <- read_csv(file = "XXX/XXX")
 ```
 
-A5. Take a look at the first few rows of each dataset by printing them to the console.
+5. Take a look at the first few rows of each dataset by printing them to the console.
 
-A6. Use the `skim()` function (from the `skimr` package) to get more details on each of the datasets.
+6. Use the `skim()` function (from the `skimr` package) to get more details on each of the datasets.
 
 ## B - Walking through the 7 steps
 
-B1. Run Steps 0 through 4 in the Examples section above. Run each line of code individually and explore each object you create. Try to understand each of the steps! If you have trouble, ask for help!
+1. Run Steps 0 through 4 in the Examples section above. Run each line of code individually and explore each object you create. Try to understand each of the steps! If you have trouble, ask for help!
 
-B2. Which of the three features (bedrooms, bathrooms, floors) do the regression and decision tree models use? Do they treat the features equally?
+2. Which of the three features (bedrooms, bathrooms, floors) do the regression and decision tree models use? Do they treat the features equally?
 
-B3. Run step 5. Look at the results. Which model has the best fitting performance?
+3. Run step 5. Look at the results. Which model has the best fitting performance?
 
-B4. Run Steps 6-7. Look at the results. Which model has the best prediction performance? How does each model's prediction performance compare to its fitting performance?
+4. Run Steps 6-7. Look at the results. Which model has the best prediction performance? How does each model's prediction performance compare to its fitting performance?
 
 ## D - Including random forests
 
-D1. Random forests are much more complex than regression and decision trees. Try including Random forests in your analyses as a new competitor. You can use the `randomForest()` function from the `randomForest` package to fit your model!
+1. Random forests are much more complex than regression and decision trees. Try including Random forests in your analyses as a new competitor. You can use the `randomForest()` function from the `randomForest` package to fit your model!
 
-D2. How does the *fitting* performance of random forests compare to the other algorithms in training?
+2. How does the *fitting* performance of random forests compare to the other algorithms in training?
 
-D3. How does the *prediction* performance of random forests compare to the other algorithms in testing?
+3. How does the *prediction* performance of random forests compare to the other algorithms in testing?
 
 ## E - Including more features
 
 Until now, you've only been predicting price based on 3 features (bedrooms, bathrooms, and floors). Of course, you have access to lots more data to predict housing prices! Now it's time to try using more data to predict price.
 
-E1. Look closely again at the columns in the `house_train` data. There are two features in the data that you definitely *don't* want to include in your models. Which two are they?
+1. Look closely again at the columns in the `house_train` data. There are two features in the data that you definitely *don't* want to include in your models. Which two are they?
 
-E2. Remove those two features from your training data using the following template:
+2. Remove those two features from your training data using the following template:
 
 ```{r, eval = FALSE}
 # Remove two features (columns) from house_train
@@ -280,19 +280,19 @@ house_train <- house_train %>%
   select(-XX, -XX)
 ```
 
-E3. Re-run your models, but now predict price based on *all* of the features. To do this, use the formula short hand `formula = price ~ .`.
+3. Re-run your models, but now predict price based on *all* of the features. To do this, use the formula short hand `formula = price ~ .`.
 
-E4. How does the overall fitting and prediction performance of the models compare to when you only used three features? Did each model improve?
+4. How does the overall fitting and prediction performance of the models compare to when you only used three features? Did each model improve?
 
 ## F - Predict the year a house was built
 
 So far, we have predicted house prices based on many features. Now, see how well you can predict the *year* a house was built `yr_built` based on the following four features: bedrooms, bathrooms, condition, sqft_living.
 
-F1. Go through Steps 0 through 4 using regression `glm()` and decision trees `rpart()` to build models predicting the year a house was built `yr_built` based on `bedrooms`, `bathrooms`, `condition`, `sqft_living`.
+1. Go through Steps 0 through 4 using regression `glm()` and decision trees `rpart()` to build models predicting the year a house was built `yr_built` based on `bedrooms`, `bathrooms`, `condition`, `sqft_living`.
 
-F2. Based on your model exploration (Step 4), which of the four features seem to be the most important in predicting the year a house was built?
+2. Based on your model exploration (Step 4), which of the four features seem to be the most important in predicting the year a house was built?
 
-F3. Complete Steps 5 through 7.
+3. Complete Steps 5 through 7.
 
-F4. Which of your three models is the best at predicting the year a house was built?
+4. Which of your three models is the best at predicting the year a house was built?
 
