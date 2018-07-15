@@ -1,45 +1,82 @@
 ---
 title: "Dynamic Reports"
-author: "The R Bootcamp @ Erfurt<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
-output: html_document
+subtitle: "With RMarkdown"
+author: "BaselRBootcamp July 2018<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
+output:
+  html_document:
+    css: practical.css
 ---
 
-```{r, echo = FALSE}
-knitr::opts_chunk$set(comment=NA, fig.width=6, fig.height=6, echo = FALSE, eval = FALSE, message = FALSE, warning = FALSE, fig.align = 'center', out.width = "100%")
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(comment = NA, 
+                      fig.width = 6, 
+                      fig.height = 6,
+                      fig.align = 'center',
+                      echo = FALSE, 
+                      eval = FALSE, 
+                      warning = FALSE)
+
+options(digits = 3)
+
+library(baselers)
+library(tidyverse)
 ```
 
-```{r, echo = FALSE, fig.align = 'center', eval = TRUE, fig.cap= "Source: https://www.rstudio.com/", out.width = "30%"}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/rmarkdown_hex.png")
-```
 
-### Overview
+<figure>
+<center>
+  <img src="https://3qeqpr26caki16dnhd19sv6by6v-wpengine.netdna-ssl.com/wp-content/uploads/2014/09/Caret-package-in-R.png" alt="Trulli" style="width:70%">
+  <figcaption>www.rstudio.com</figcaption>
+</figure>
 
-In this practical you'll practice creating interactive reports using RMarkdown.
+
+## Overview
+
+By the end of this practical you will know how to:
+
+1. Create a new R Markdown file (`.Rmd`)
+2. "Knit" an R Markdown file to an .html or .pdf report
+3. Format text using formatting tags
+4. Create code chunks
+5. Include code output in sentences with inline chunks
+
+## Packages
+
+|Package| Installation|
+|:------|:------|
+|`tidyverse`|`install.packages("tidyverse")`|
+|`knitr`|`install.packages("knitr")`|
+|`DT`|`install.packages("DT")`|
+|`broom`|`install.packages("broom")`|
+|`rmdformats`|`install.packages("rmdformats")`|
+|`xaringan`|`install.packages("xaringan")`|
 
 ### Cheatsheet
 
-```{r, echo = FALSE, fig.align = 'center', eval = TRUE, fig.cap= "https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf", out.width = "60%"}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/markdown_cheat.png")
-```
+<a href="https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf">
+  <center><img src="http://westandproud.info/wp-content/uploads/2018/04/reproducible-and-interactive-research-with-regard-to-cheat-sheet-r-markdown.png" width="600px">
+</a>
 
-If you don't have it already, you can access the `Markdown` cheatsheet here [https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf)
-
-
-### Datasets
+## Datasets
 
 ```{r, eval = TRUE, message = FALSE}
 library(tidyverse)
-trial_act <- read_csv("../_data/day_1/trial_act.csv")
-trial_act_demo <- read_csv("../_data/day_1/trial_act_demo_fake.csv")
+mcdonalds <- read_csv("https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/mcdonalds.csv")
 ```
 
-|File | Rows | Columns |
+|File  |Rows | Columns |
 |:----|:-----|:------|
-|`trial_act.csv` | 2139 | 27 |
+|[mcdonalds.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/mcdonalds.csv)| 260 | 24 |
 
 ## Tasks
 
-1. Open your class project. In your `1_Data` folder, make sure you have copies of the datasets listed above.
+## A - Setup
+
+1. Open your R project. It should already have the folders `0_Data` and `1_Code`. Make sure that the data files listed in the `Datasets` section above are in your `1_Data` folder
+
+```{r}
+# Done!
+```
 
 2. Because R Markdown looks quite a bit different from standard R code, the best way to look at examples is to see a new R Markdown document in action. In RStudio, click File -- New File -- R Markdown
 
@@ -59,7 +96,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/rmarkdown_ss_C.png")
 ```
 
-5. Save your markdown file *in your main project directory* (not in the `4_Markdown` folder! -- you'll put it there later!) under the name `speffanalysis.Rmd`
+5. Save your markdown file *in your main project directory* (not in the `4_Markdown` folder! -- you'll put it there later!) under the name `mcdonalds.Rmd`
 
 6. Now *knit* your document to an HTML file. To do this, click the *knit* button (or use the Command + Shift + K shortcut)
 
@@ -72,6 +109,37 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 ```{r, echo = FALSE, fig.align = 'center', eval = TRUE, out.width = "60%"}
 knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/rmarkdown_ss_E.png")
 ```
+
+## B - Load packages and data
+
+1. You should always start your markdown file by loading packages and data in a code chunk. We'll do this inside of the first chunk with the `setup` label. Inside of this chunk, write the comment `# Load Packages -------------`. Then, using the `library()` function, load the packages listed in the `Packages` section above. 
+
+```{r, echo = FALSE, fig.align = 'center', eval = TRUE, out.width = "50%"}
+knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/setup_chunk.jpg")
+```
+
+2. Knit your document! Make sure you don't get any errors!
+
+3. Now it's time to load your datafiles. In the *same* `setup` chunk, load each of the data files listed in the `Datasets` section. 
+
+```{r, eval = FALSE}
+# --- Load packages
+library(XX)
+library(XX)
+
+# --- Load data
+XXX <- read_csv()
+XXX <- read_csv()
+```
+
+4. Knit your document! Make sure you don't get any errors!
+
+5. Now it's time to change some of the default chunk options. 
+
+
+5. 
+
+
 
 8. In the first code chunk (with the label `setup`), include the following code: the arguments in`knitr::opts_chunk$set()` will set your global chunk options, while finally, `options(digits = 2)` makes sure that all of your numeric output is rounded to two decimal places.
 
@@ -91,13 +159,6 @@ options(digits = 2)  # Round all output to 2 digits
 
 9. Knit your document! Make sure you see an output!
 
-10. Now let's load some packages. *Inside your setup chunk*, write the comment `# Loading Packages -------------`. Then, using the `library()` function, load the packages `tidyverse`, `knitr` and `speff2trial`. 
-
-11. Knit the document to make sure it worked! If you have any errors, try to figure out how to solve them!
-
-12. It's time to load your data! Inside of your setup chunk, load the `trial_act.csv` file with `read_csv()` and assign the result to the object `trial_act`.
-
-13. Knit the document! Diagnose and correct any errors!
 
 14. Add the necessary text and markdown to your document to create the following two paragraphs. Pay attention to the header sizes, *italics* and `code` formats.
 
