@@ -51,17 +51,16 @@ knitr::opts_chunk$set(comment=NA, fig.width=6, fig.height=6, echo = TRUE, eval =
 library(tidyverse)
 ```
 
-## You can do amazing plots in R!
 
-.pull-left2[
-<br>
-<i>"As good as R is for statistics, it's as good if not better for plots."</i><br>
-<br>Nathaniel D. Phllips<br>2018
+.pull-left4[
+<br><br><br>
+> ### As good as R is for statistics, it's as good if not better for data visualisation
+> ### Nathaniel D. Phllips
 ]
 
-.pull-right8[
+.pull-right6[
 <br>
-```{r, echo = FALSE, out.width="60%", fig.align = 'center'}
+```{r, echo = FALSE, out.width="100%", fig.align = 'center'}
 knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/ggplotgallery.png")
 ```
 
@@ -191,9 +190,14 @@ plot(x = mpg$displ,
 
 2) Default plots look pretty <b>outdated</b>.<br>
 
-3) No way to set plotting <b>themes</b>.<br>
+3) Can't store plots as <b>objects</b> to reference and update later</font><br>
 
-4) Can't store plots as <b>objects</b> to reference and update later</font><br><br><br>
+### Solution: ggplot2
+
+```{r, echo = FALSE, out.width = "45%"}
+knitr::include_graphics("https://www.r-graph-gallery.com/wp-content/uploads/2014/09/ggplot_hex.jpg")
+```
+
 
 
 ]
@@ -218,34 +222,9 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) +
 
 ]
 
-
 ---
 
-# Grammar of Graphics
-
-.pull-left5[
-
-<br>
-
-<font size = 5>1. A plot is built of simple building blocks</font><br><br>
-
-<font size = 5>2. By combining different building blocks, plots of any complexity can be created.</font><br><br>
-
-<font size = 5>3. Plots that look superficially different, can actually be created with very similar code.</font><br><br>
-
-]
-
-.pull-right5[
-
-```{r, echo = FALSE, out.width="60%", fig.align = 'center'}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/wilkonson_book.png")
-```
-
-]
-
----
-
-## Grammar of Graphics in ggplot
+## Grammar of Graphics in ggplot2
 
 .pull-left45[
 
@@ -286,7 +265,7 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) +
 
 ---
 
-## Out goal: Creating this plot
+## Our goal: Creating this plot
 
 .pull-left45[
 
@@ -313,9 +292,9 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) +
 ]
 
 
-.pull-right45[
+.pull-right5[
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, fig.width = 7, fig.height = 5}
 # Add a regression line for all classes
 
 ggplot(data = mpg, 
@@ -341,14 +320,12 @@ ggplot(data = mpg,
 
 .pull-left45[
 
-To create a ggplot2 object, use the `ggplot()` function. This is how every plot begins. 
+To create a ggplot2 object, use the `ggplot()` function
 
 `ggplot()` has two main arguments:
 
 - `data` - A data frame (aka tibble)
 - `mapping` - A call to `aes()`
-
-Including only a `data` argument returns a blank plotting space, because we haven't specified any plotting **aesthetics** (`aes()`) or **geometric objects** (`geoms()`)
 
 ]
 
@@ -371,7 +348,7 @@ ggplot(data = mpg)
 
 An **aesthetic mapping** is a visual property of the objects in your plot. 
 
-Add aesthetics with the `aes()` function.
+Use `aes()` to assign columns in your dataframe to properties in your plot.
 
 Common aesthetics are...
 
@@ -382,7 +359,6 @@ Common aesthetics are...
 |     `alpha`| Transparency|
 |    `size`|  Size|
 |    `shape`|  Shape|
-
 
 ]
 
@@ -401,10 +377,9 @@ ggplot(data = mpg,
 
 .pull-left45[
 
-Once you have specified data with `data` argument, and global aesthetics with `mapping = aes()`, you can add additional elements to the plot with `+`
+Once you have specified data with `data` argument, and global aesthetics with `mapping = aes()`, add additional elements to the plot with `+`
 
 The `+` sign works just like the pipe `%>%` in dplyr. It just means "and then..."
-
 
 ```{r, eval = FALSE, fig.width = 5, fig.height = 4, out.width = "90%"}
 ggplot(data = mpg,
@@ -538,11 +513,11 @@ ggplot(data = mpg,
 
 ---
 
-# Aesthetics: `color`
+## aes(color)
 
-.pull-left4[
+.pull-left45[
 
-What plotting aesthetic is missing from the code below to make our plot on the right?
+Color geoms according to a variable using `color`
 
 ```{r, out.width = "100%", fig.width = 6, fig.height = 4, eval = FALSE}
 ggplot(data = mpg,
@@ -551,6 +526,13 @@ ggplot(data = mpg,
                      color = class)) + 
   geom_point()
 ```
+
+
+### mpg
+```{r, echo = FALSE, eval = TRUE}
+knitr::kable(mpg %>% sample_n(5) %>% select(displ, hwy, class, year), format = "markdown")
+```
+
 
 ]
 
@@ -565,26 +547,14 @@ ggplot(data = mpg,
 
 ]
 
-
 ---
-<!---
-
-# Colors in R & `ggplot2`
-
-SLIDE TO BE ADDED
-
-EXPLAINS COLORS IN GGPLOT
-EXPLAINS COLORS IN R
-
---->
 
 
 # What's next?
 
-.pull-left5[
+.pull-left45[
 
-
-```{r, out.width = "90%", fig.width = 8, echo = FALSE}
+```{r, out.width = "90%", fig.width = 7, echo = FALSE}
 ggplot(data = mpg,
        mapping = aes(x = displ, 
                      y = hwy, 
@@ -622,12 +592,11 @@ ggplot(data = mpg,
 
 .pull-left45[
 
-`geom_smooth()` adds a smoothes line.
+`geom_smooth()` adds a smoothed (average) line.
 
-`geom_smooth()` has two main sets of arguments...
+Change how the line is created with `method` (e.g.; method = 'lm')
 
-- `method` - What function does the line represent?
-- `col`, `size`, `...` 
+Color the line with `col`
 
 <br>
 ```{r, fig.width = 7, fig.height = 4, eval = F}
@@ -659,12 +628,11 @@ ggplot(data = mpg,
 
 .pull-left45[
 
-`geom_smooth()` adds a smoothes line.
+`geom_smooth()` adds a smoothed (average) line.
 
-`geom_smooth()` has two main sets of arguments...
+Change how the line is created with `method` (e.g.; method = 'lm')
 
-- `method` - What function does the line represent?
-- `col`, `size`, `...` 
+Color the line with `col`
 
 <br>
 ```{r, fig.width = 7, fig.height = 4, eval = F}
@@ -697,7 +665,7 @@ ggplot(data = mpg,
 
 .pull-left45[
 
-Note, If you add additional plotting aesthetics, they will <b>override</b> the general plotting aesthetics.
+If you add additional plotting aesthetics, they will <b>override</b> the general plotting aesthetics.
 
 This is what happens, when you don't override...
 
@@ -715,7 +683,7 @@ ggplot(data = mpg,
 .pull-right45[
 
 
-```{r, fig.width = 7, echo = F}
+```{r, fig.width = 6, echo = FALSE}
 ggplot(data = mpg, 
        mapping = aes(x = displ, y = hwy, col = class)) +
   geom_point() + 
@@ -1173,7 +1141,7 @@ ggsave(filename = "myplot.pdf",
 
 # ggplot2 extensions
 
-ggplot2 has inspired hundreds of extension packages that make it even easier to make domain specific plots
+ggplot2 has inspired *hundreds* of extension packages that make it even easier to make domain specific plots
 
 Tip! Before writing complex ggplot2 code for a common task, look for an extension package!
 
@@ -1185,13 +1153,14 @@ Tip! Before writing complex ggplot2 code for a common task, look for an extensio
 
 .pull-right5[
 
-```{r, fig.height = 5, fig.width = 5}
+```{r, fig.height = 4, fig.width = 4, out.width = "70%"}
 # Create a survival plot using ggsurvplot
 library(survminer)
 library(survival)
+
 fit <- survfit(Surv(time, status) ~ sex, 
                data = lung)
-ggsurvplot(fit, data = lung, risk.table = TRUE)
+ggsurvplot(fit, data = lung)
 ```
 
 
@@ -1211,16 +1180,15 @@ Check these links for more in depth ggplot2 guides...
 2) Wickham's data visualization guide: http://r4ds.had.co.nz/data-visualisation.html
 
 
-```{r, echo = FALSE, out.width="80%", fig.align = 'center'}
+```{r, echo = FALSE, out.width="70%", fig.align = 'center'}
 knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/plotting_books.png")
 ```
 
 
 ---
 
-<br><br><br>
+# Questions?
 
-# [Plotting Practical](https://therbootcamp.github.io/Erfurt_2018June/_sessions/D2S1_PlottingI/PlottingI_practical.html)
 
 
 
