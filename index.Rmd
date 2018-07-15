@@ -8,9 +8,11 @@ output: html_document
 
 ## Materials
 
+[Get Datasets!](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete.zip)
+
 <br>
 
-|  | Day 1<br>Essentials<br>[Get Datasets](https://github.com/therbootcamp/BaselRBootcamp_2018April/blob/master/_sessions/_data/data_BaselRBoocamp_Day1.zip?raw=true) | Day 2<br>Statistics<br>[Get Datasets](https://github.com/therbootcamp/BaselRBootcamp_2018April/blob/master/_sessions/_data/data_BaselRBootcamp_Day2.zip?raw=true) | Day 3<br>Plotting<br>[Get Datasets](https://github.com/therbootcamp/BaselRBootcamp_2018April/blob/master/_sessions/_data/data_BaselRBootcamp_Day3.zip?raw=true)  | Day 4<br> Productivity |
+|  | Day 1<br>Essentials| Day 2<br>Statistics| Day 3<br>Plotting | Day 4<br> Productivity |
 |:--|:-------------|:-------------|:-------------|:--------------|
 |0| Welcome!<br>[slides](_sessions/Welcome/Welcome.html) | Recap I<br>[slides](_sessions/D2S0_Recap/Recap_I.html) | Recap II<br>[slides](_sessions/D3S0_Recap/Recap_II.html)| Recap III<br>[slides](_sessions/D4S0_Recap/Recap_III.html)  |
 |1| What is R?<br>[slides](_sessions/D1S1_WhatIsR/What_is_R.html), [practical](_sessions/D1S1_WhatIsR/What_is_R_practical.html), [solutions](_sessions/D1S1_WhatIsR/What_is_R_practical_answers.html) | Data Wrangling<br>[slides](_sessions/Wrangling/Wrangling.html), [practical](_sessions/Wrangling/Wrangling_practical.html)| [Intro](_sessions/D3S1_Choose/Choose_D3S1.html) <br> A) Tidy Projects<br>[slides](_sessions/D3S1_Tidying/Tidying.html), [practical](_sessions/D3S1_Tidying/Tidying_practical.html),[solutions](_sessions/D3S1_Tidying/Tidying_practical_answers.html)<br> B) Machine Learning II<br>[slides](_sessions/MachineLearningII/MachineLearningII.html), [practical](_sessions/MachineLearningII/MachineLearningII_practical.html)| [Intro](_sessions/D4S1_Choose/Choose_D4S1.html)<br> A) Efficient Code<br>[slides](_sessions/D4S1_EfficientCode/EfficientCode.html), [practical](_sessions/D4S1_EfficientCode/EfficientCode_practical.html),[solutions](_sessions/D4S1_EfficientCode/EfficientCode_practical_answers.html)<br>B) Programming in R<br>[slides](_sessions/D4S1_ProgrammingInR/Programming_in_R.html), [practical](_sessions/D4S1_ProgrammingInR/Programming_in_R_practical.html), [solutions](_sessions/D4S1_ProgrammingInR/Programming_in_R_practical_answers.html)|
