@@ -25,7 +25,7 @@ library(tidyverse)
 
 <figure>
 <center>
-  <img src="https://3qeqpr26caki16dnhd19sv6by6v-wpengine.netdna-ssl.com/wp-content/uploads/2014/09/Caret-package-in-R.png" alt="Trulli" style="width:70%">
+  <img src="https://d33wubrfki0l68.cloudfront.net/00ed9c32053cbc805efa51b66be570558480a4c8/7a292/images/rmarkdownoutputformats.png" alt="Trulli" style="width:40%">
   <figcaption>www.rstudio.com</figcaption>
 </figure>
 
@@ -35,9 +35,10 @@ library(tidyverse)
 By the end of this practical you will know how to:
 
 1. Create a new R Markdown file (`.Rmd`)
-2. "Knit" an R Markdown file to an .html or .pdf report
+2. "Knit" an R Markdown file to an `.html` or `.pdf` report
 3. Format text using formatting tags
 4. Create code chunks
+5. Add plots and tables
 5. Include code output in sentences with inline chunks
 
 ## Packages
@@ -49,7 +50,6 @@ By the end of this practical you will know how to:
 |`DT`|`install.packages("DT")`|
 |`broom`|`install.packages("broom")`|
 |`rmdformats`|`install.packages("rmdformats")`|
-|`xaringan`|`install.packages("xaringan")`|
 
 ### Cheatsheet
 
@@ -64,15 +64,16 @@ library(tidyverse)
 mcdonalds <- read_csv("https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/mcdonalds.csv")
 ```
 
-|File  |Rows | Columns |
-|:----|:-----|:------|
-|[mcdonalds.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/mcdonalds.csv)| 260 | 24 |
+|File  |Description| Rows | Columns |
+|:----|:-----------------------------|:-----|:------|
+|[mcdonalds.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/mcdonalds.csv)| Nutrition information from McDonalds menu items| 260 | 24 |
+|[happiness.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/happiness.csv)| Results from the World Health Organisation happiness survey | 155 | 12 |
 
 ## Tasks
 
 ## A - Setup
 
-1. Open your R project. It should already have the folders `0_Data` and `1_Code`. Make sure that the data files listed in the `Datasets` section above are in your `1_Data` folder
+1. Open your R project. It should already have the folders `1_Data` and `2_Code`. Make sure that the data files listed in the Datasets section above are in your `2_Data` folder
 
 ```{r}
 # Done!
@@ -110,7 +111,11 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/rmarkdown_ss_E.png")
 ```
 
-## B - Load packages, data and set default chunk options
+## B - Here's your goal!
+
+1. Your goal in this practical is to create as much of [this html document](https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/DynamicReports/DynamicReports_answers.html) as you can! Open the document and keep it open in a separate window as you work through the practical.
+
+## C - Load packages, data and set default chunk options
 
 1. You should always start your markdown file by loading packages and data in a code chunk. We'll do this inside of the first chunk with the `setup` label. Inside of this chunk, write the comment `# Load Packages -------------`. Then, using the `library()` function, load the packages listed in the `Packages` section above. 
 
@@ -154,29 +159,41 @@ options(digits = 2)  # Round all output to 2 digits
 
 6. Knit your document! Make sure you see an output!
 
-## C - Add formatted text
+## D - Add formatted text and an image
 
 1. Below your last markdown chunk, write the necessary text and Markdown tags to create the following sentence. Be sure to create italic and bold text using the proper formatting tags!
 
 - In this practical, I will analyse two datasets and show reproducible results in a dynamic document created in R Markdown. R Markdown is great because I can integrate R code directly into my document, and easily use *italics* and **bold** using formatting tags.
 
-2. Create a new first level header with the text "McDonalds" using a single hashtag
+2. Create a new first level header with the text "McDonalds" using a single hashtag.
 
 3. Knit the document!
 
-4. You can find the McDonalds logo on wikipedia at the following link: [https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/2000px-McDonald%27s_Golden_Arches.svg.png](https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/2000px-McDonald%27s_Golden_Arches.svg.png). Using the `include_graphics()` function, include this image in your document (To make the image a bit smaller, include the chunk argument `out.width = "30%"`)
+4. Create a new code chunk by either clicking the "Insert - R" button, or by using the "Command + Option + I"" shortcut on Mac
+
+5. Now it's time to add an image to your document! In the chunk you just created, use the following template to include the McDonalds logo in your document. You can find the McDonalds logo on wikipedia at the following link: [https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/2000px-McDonald%27s_Golden_Arches.svg.png](https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/2000px-McDonald%27s_Golden_Arches.svg.png).
 
 ```{r, out.width = "30%", fig.cap="Source: Wikipedia", echo = TRUE, eval = FALSE}
-include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/2000px-McDonald%27s_Golden_Arches.svg.png")
+# Include the McDonalds logo in my document
+
+include_graphics(path = "XXX")
 ```
 
-5. Include the appropriate text and formatting to write the following sentence. When writing the number of columns and rows, use in-line chunks to get the data directly from the `mcdonalds` object! You can get the number of columns with `ncol(mcdonalds)` and the number of rows with `nrow(mcdonalds)`
+6. Knit the document!
 
-- The `mcdonalds` data has `r ncol(mcdonalds)` columns and `r nrow(mcdonalds)` rows. Each row corresponds to a different menu item. The data originally come from [Kaggle](https://www.kaggle.com/mcdonalds/nutrition-facts).
+7. Was your image too big? To make the image a bit smaller, include the chunk argument `out.width = "30%"`.
 
-## D - Add a formatted table with `datatable()`
+8. Knit the document!
 
-1. Create a new code chunk by either clicking the "Insert - R" button, or by using the "Command + Option + I"" shortcut on Mac
+9. Include the appropriate text and formatting to write the sentence below. When writing the number of columns and rows, use in-line chunks to get the data directly from the `mcdonalds` object! You can get the number of columns with `ncol(mcdonalds)` and the number of rows with `nrow(mcdonalds)`
+
+- The `mcdonalds` data has `r ncol(mcdonalds)` columns and `r nrow(mcdonalds)` rows. Each row corresponds to a different menu item. The data originally come from [https://www.kaggle.com/mcdonalds/nutrition-facts](https://www.kaggle.com/mcdonalds/nutrition-facts).
+
+10. Knit the document!
+
+## E - Add a formatted table with `datatable()`
+
+1. Create a new code chunk.
 
 2. Inside the chunk, include the following code which uses the `datatable` function to render a dataframe as a nicely formatted HTML table.
 
@@ -186,15 +203,21 @@ datatable(mcdonalds %>% select(1:6))
 
 3. Knit the document! Do you see your nicely formatted table?
 
-## E - Add plots
+4. Play around with your table. Instead of selecting the first 6 columns, select the columns `Item`, `Category`, `Calories`, `Sodium`
 
-1. Write the appropriate combination of markdown, text, and code to create the following output (Here's some `ggplot2` code that might help!)
+5. Knit the document!
+
+## F - Add plots
+
+1. Write the appropriate combination of markdown, text, and code to create the following output. Be sure to specify the mean and maximum umber of calories using inline chunks!. Here's some `ggplot2` code that might help in creating your plot.
 
 ```{r, eval = TRUE, echo = FALSE, out.width="75%"}
 knitr::include_graphics("https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/calories_histogram.jpg?raw=true")
 ```
 
 ```{r, eval = FALSE, echo = TRUE}
+# Create a histogram of Calories
+
 ggplot(data = mcdonalds,
        aes(x = XX)) +
   geom_histogram(col = "white") +
@@ -203,7 +226,6 @@ ggplot(data = mcdonalds,
        caption = "XX") +
   theme_bw()
 ```
-
 
 2. Knit the document! Diagnose and correct any errors!
 
@@ -214,6 +236,9 @@ knitr::include_graphics("https://github.com/therbootcamp/therbootcamp.github.io/
 ```
 
 ```{r, eval = FALSE, echo = TRUE}
+# Create a scatterplot showing the relationship
+#  between Calories and Sodium
+
 ggplot(data = XX,
        aes(x = XX, y = XX)) +
   geom_point() +
@@ -225,7 +250,7 @@ ggplot(data = XX,
 
 4. Knit the document! Diagnose and correct any errors!
 
-## F - Add a table of statistical test results
+## G - Add a table of statistical test results
 
 Now let's show the results of a regression analysis predicting the sodium content of an item as a function of its calories.
 
@@ -238,7 +263,7 @@ cal_sod_lm <- lm(formula = XX ~ XX,
                  data = mcdonalds)
 ```
 
-2. Now, using the following template for help, write the appropirate text / code to create the following output.
+2. Now, using the following template for help, write the appropriate text / code to create the following output.
 
 ```{r, echo = TRUE, eval = FALSE}
 # Export cal_sod_lm to a nicely formatted table
@@ -254,8 +279,7 @@ knitr::include_graphics("https://github.com/therbootcamp/therbootcamp.github.io/
 
 3. Knit the document! Diagnose and correct any errors!
 
-
-## G - Keep going!
+## H - Keep going!
 
 1. Add the appropriate code to add the following output. 
 
@@ -276,14 +300,16 @@ ggplot(data = mcdonalds,
 
 2. Knit the document! Diagnose and correct any errors!
 
-3. Add the appropriate code to add the following output. 
+3. Add the appropriate code to add the following table of summary statistics of Calories for each category. Use the following code chunk below for help if you need it! 
 
 ```{r, eval = TRUE, echo = FALSE, out.width="75%"}
 knitr::include_graphics("https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/calories_category_summary_ss.jpg?raw=true")
 ```
 
 ```{r, echo = TRUE, eval = FALSE}
-Calories_agg <- XX %>%
+# Calculate several summary statitics of Calories
+
+Calories_agg <- mcdonalds %>%
   group_by(XX) %>%
   summarise(
     Min = min(Calories),
@@ -292,14 +318,13 @@ Calories_agg <- XX %>%
     Max = max(Calories)
   )
 
-kable(x = XX, 
-      caption = "XX")
+# Export Calories_agg to an HTML table
+kable(x = XX)
 ```
 
 4. Knit the document! Diagnose and correct any errors!
 
-
-## G - Managing working directories with Markdown
+## I - Managing working directories with Markdown
 
 1. Now it's time to move your Markdown file to your `4_Markdown` folder. Move your `speffanalysis.Rmd` file to your `4_Markdown` folder using your computer file browser (Finder on Mac, Windows explorer on PC). Now, try knitting your document. You should get an error! What happened?!
 
@@ -316,9 +341,7 @@ knitr::opts_knit$set(root.dir = "../")
 
 ## X - Add results from the happiness survey
 
-1. If you've gotten this far, then you've really gotten the hang of R Markdown! Try adding the correct combination of text, tags, and code to add all of the results from the `happiness` data contained here:
-
-
+1. If you've gotten this far, then you've really gotten the hang of R Markdown! Try adding the correct combination of text, tags, and code to add all of the results from the `happiness` data contained here: [https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/DynamicReports/DynamicReports_answers.html](https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/DynamicReports/DynamicReports_answers.html)
 
 
 ### References and Links
