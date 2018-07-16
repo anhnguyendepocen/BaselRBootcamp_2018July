@@ -66,20 +66,22 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 ## What is wrong?
 
 Many opportunities for human error in transferring results.
-- Misread output, Typos
+
+> Wait is the p-value .07 or 0.70?
 
 No clear documentation on exactly how the analysis was conducted. 
-- 1 year later "Wait how did I do that again?"
+
+> How did I exactly do that analysis again??
 
 Slow. 
-- Want to do the analysis again on a new dataset? It might take as long as the first time.
+> You want me to do that analysis again with new data?! Do you know how long that took me?!
 
 ### The solution? A Dynamic Report
 
 ]
 
 .pull-right45[
-<br><br><br><br><br>
+<br><br><br><br><br><br>
 
 ```{r, echo = FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/unreproducible_workflow.png")
@@ -462,11 +464,14 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 
 
 ---
-
 # Questions?
-<br><br><br>
 
 # [Dynamic Reports Practical](https://therbootcamp.github.io/Erfurt_2018June/_sessions/D2S4_DynamicReports/DynamicReports_practical.html)
+
+```{r, echo = FALSE, out.width = "80%"}
+knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/minichunk_big_ss.png")
+```
+
 
 
 ---
