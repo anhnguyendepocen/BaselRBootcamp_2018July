@@ -65,7 +65,8 @@ mpg # Look at the mpg data
 # Just a blank space without any aesthetic mappings
 ggplot(data = mpg)
 
-# Now add a mapping where engine displacement (displ) and highway miles per gallon (hwy) are mapped to the x and y aesthetics
+# Now add a mapping where engine displacement (displ) and highway miles per gallon (hwy) are
+# mapped to the x and y aesthetics
 ggplot(data = mpg, 
        mapping = aes(x = displ, y = hwy))   # Map displ to x-axis and hwy to y-axis
 
@@ -180,7 +181,7 @@ mcdonalds <- read_csv("https://raw.githubusercontent.com/therbootcamp/BaselRBoot
 ```{r, eval = FALSE, echo = TRUE}
 ## NAME
 ## DATE
-## Wrangling Practical
+## Plotting Practical
 
 library(XX)     
 library(XX)
