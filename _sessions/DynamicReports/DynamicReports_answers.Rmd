@@ -1,11 +1,8 @@
 ---
 title: "Dynamic Reports with RMarkdown"
-author: "The R Bootcamp"
-date: "7/15/2018"
+author: "Basel R Bootcamp"
 output: html_document
 ---
-
-
 
 ```{r, include = FALSE}
 # INCLUDE ALL OF THIS CODE IN YOUR FIRST CHUNK!
@@ -36,23 +33,13 @@ happiness <- read_csv("1_Data/happiness.csv")
 
 In this practical, I will analyse two datasets and show reproducible results in a dynamic document created in R Markdown. R Markdown is great because I can integrate `code` directly into my document, and easily use *italics* and **bold** using formatting tags.
 
-## Datasets
-
-Here are the dataset(s) I will explore in this document:
-
-|Name|Description|Rows|Columns|
-|:------|:---------------------------------|:--------|:------|
-|`mcdonalds.csv`| Menu information from [McDonalds](https://www.mcdonalds.ch/de/)|`r nrow(mcdonalds)`|`r ncol(mcdonalds)`|
-|`happiness.csv`| Country happiness statistics from the [World Health Organisation](http://www.who.int/whr/previous/en/)|`r nrow(happiness)`|`r ncol(happiness)`|
-
-
 # McDonalds
 
 ```{r, out.width = "30%", fig.cap="Source: Wikipedia"}
 knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/2000px-McDonald%27s_Golden_Arches.svg.png")
 ```
 
-The `mcdonalds` data contains `r ncol(mcdonalds)` pieces of information for `r nrow(mcdonalds)` menu items. The data originally come from [Kaggle](https://www.kaggle.com/mcdonalds/nutrition-facts).
+The `mcdonalds` data contains `r ncol(mcdonalds)` pieces of information for `r nrow(mcdonalds)` menu items. The data originally come from [https://www.kaggle.com/mcdonalds/nutrition-facts](https://www.kaggle.com/mcdonalds/nutrition-facts).
 
 Here is a table showing the first 6 columns in the data
 
@@ -60,16 +47,10 @@ Here is a table showing the first 6 columns in the data
 DT::datatable(mcdonalds %>% select(1:6))
 ```
 
-## Descriptives
-
-Here are are few key descriptive statistics from the data:
-
-- The mean number of calories in a McDonalds menu item is `r mean(mcdonalds$Calories)`
-- The maximum number of calories in a McDonalds menu item is `r max(mcdonalds$Calories)` for  `r mcdonalds$Item[mcdonalds$Calories == max(mcdonalds$Calories)]`
 
 ## Calories
 
-The following plot is a histogram showing the distribution of calories across all menu items
+Across all items, the mean number of calories is `r mean(mcdonalds$Calories)` and the maximum is `r max(mcdonalds$Calories)`. The following plot is a histogram showing the distribution of calories across all menu items
 
 ```{r, fig.width = 6, fig.height = 4}
 ggplot(data = mcdonalds,
@@ -143,29 +124,24 @@ kable(x = Calories_agg,
       caption = "Summary Statistics of McDonalds Menu item Calories")
 ```
 
+
+
+
 # Happiness
 
-```{r, out.width = "30%", fig.cap="Source: Miratelinc.com"}
+```{r, out.width = "30%", fig.cap="Source: http://www.miratelinc.com/blog/wp-content/uploads/2015/05/10-happiest-countries-2015.jpg"}
 knitr::include_graphics("http://www.miratelinc.com/blog/wp-content/uploads/2015/05/10-happiest-countries-2015.jpg")
 ```
 
-
-The `happiness` data contains `r ncol(happiness)` pieces of information for `r nrow(happiness)` countries. The data originally come from the World Happiness Report but were taken from [Kaggle](https://www.kaggle.com/unsdsn/world-happiness). Here is a table showing a few columns from the data
+The `happiness` data contains `r ncol(happiness)` pieces of information for `r nrow(happiness)` countries. The data originally come from the World Happiness Report but were taken from [https://www.kaggle.com/unsdsn/world-happiness](https://www.kaggle.com/unsdsn/world-happiness). Here is a table showing a few columns from the data
 
 ```{r, echo = FALSE}
 DT::datatable(happiness %>% select(Country, Happiness.Rank, Happiness.Score, Generosity))
 ```
 
-## Descriptives
-
-Here are are few key descriptive statistics from the data:
-
-- The mean happiness score was `r mean(happiness$Happiness.Score)`
-
-
 ## Happiness
 
-The following plot is a histogram showing the distribution of Happiness scores across all menu items
+The mean happiness score across all countries is `r mean(happiness$Happiness.Score)`. The following plot is a histogram showing the distribution of Happiness scores across all menu items
 
 ```{r, fig.width = 6, fig.height = 4}
 ggplot(data = happiness,
@@ -176,7 +152,6 @@ ggplot(data = happiness,
        caption = "Source: World Health Report") +
   theme_bw()
 ```
-
 
 ### Predicting Happiness?
 

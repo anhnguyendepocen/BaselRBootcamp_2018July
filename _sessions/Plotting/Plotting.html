@@ -40,17 +40,16 @@ layout: true
 
 
 
-## You can do amazing plots in R!
 
-.pull-left2[
-&lt;br&gt;
-&lt;i&gt;"As good as R is for statistics, it's as good if not better for plots."&lt;/i&gt;&lt;br&gt;
-&lt;br&gt;Nathaniel D. Phllips&lt;br&gt;2018
+.pull-left4[
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+&gt; ### As good as R is for statistics, it's as good if not better for data visualisation
+&gt; ### Nathaniel D. Phllips
 ]
 
-.pull-right8[
+.pull-right6[
 &lt;br&gt;
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/ggplotgallery.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/ggplotgallery.png" width="100%" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -161,9 +160,12 @@ plot(x = mpg$displ,
 
 2) Default plots look pretty &lt;b&gt;outdated&lt;/b&gt;.&lt;br&gt;
 
-3) No way to set plotting &lt;b&gt;themes&lt;/b&gt;.&lt;br&gt;
+3) Can't store plots as &lt;b&gt;objects&lt;/b&gt; to reference and update later&lt;/font&gt;&lt;br&gt;
 
-4) Can't store plots as &lt;b&gt;objects&lt;/b&gt; to reference and update later&lt;/font&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+### Solution: ggplot2
+
+&lt;img src="https://www.r-graph-gallery.com/wp-content/uploads/2014/09/ggplot_hex.jpg" width="45%" style="display: block; margin: auto;" /&gt;
+
 
 
 ]
@@ -172,37 +174,14 @@ plot(x = mpg$displ,
 
 Thhis plot would take &lt;b&gt;a lot of code in Base R&lt;/b&gt; but **just 10 lines of code**, 5 of which controlling the labels, in `ggplot2`.
 
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-10-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-11-1.png" style="display: block; margin: auto;" /&gt;
 
-
-]
-
-
----
-
-# Grammar of Graphics
-
-.pull-left5[
-
-&lt;br&gt;
-
-&lt;font size = 5&gt;1. A plot is built of simple building blocks&lt;/font&gt;&lt;br&gt;&lt;br&gt;
-
-&lt;font size = 5&gt;2. By combining different building blocks, plots of any complexity can be created.&lt;/font&gt;&lt;br&gt;&lt;br&gt;
-
-&lt;font size = 5&gt;3. Plots that look superficially different, can actually be created with very similar code.&lt;/font&gt;&lt;br&gt;&lt;br&gt;
-
-]
-
-.pull-right5[
-
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/wilkonson_book.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ]
 
 ---
 
-## Grammar of Graphics in ggplot
+## Grammar of Graphics in ggplot2
 
 .pull-left45[
 
@@ -232,7 +211,7 @@ The Grammar of graphics breaks down plots into several key pieces:
 
 ---
 
-## Out goal: Creating this plot
+## Our goal: Creating this plot
 
 .pull-left45[
 
@@ -259,7 +238,7 @@ The Grammar of graphics breaks down plots into several key pieces:
 ]
 
 
-.pull-right45[
+.pull-right5[
 
 &lt;img src="Plotting_files/figure-html/unnamed-chunk-13-1.png" style="display: block; margin: auto;" /&gt;
 
@@ -274,14 +253,12 @@ The Grammar of graphics breaks down plots into several key pieces:
 
 .pull-left45[
 
-To create a ggplot2 object, use the `ggplot()` function. This is how every plot begins. 
+To create a ggplot2 object, use the `ggplot()` function
 
 `ggplot()` has two main arguments:
 
 - `data` - A data frame (aka tibble)
 - `mapping` - A call to `aes()`
-
-Including only a `data` argument returns a blank plotting space, because we haven't specified any plotting **aesthetics** (`aes()`) or **geometric objects** (`geoms()`)
 
 ]
 
@@ -307,7 +284,7 @@ ggplot(data = mpg)
 
 An **aesthetic mapping** is a visual property of the objects in your plot. 
 
-Add aesthetics with the `aes()` function.
+Use `aes()` to assign columns in your dataframe to properties in your plot.
 
 Common aesthetics are...
 
@@ -318,7 +295,6 @@ Common aesthetics are...
 |     `alpha`| Transparency|
 |    `size`|  Size|
 |    `shape`|  Shape|
-
 
 ]
 
@@ -340,10 +316,9 @@ ggplot(data = mpg,
 
 .pull-left45[
 
-Once you have specified data with `data` argument, and global aesthetics with `mapping = aes()`, you can add additional elements to the plot with `+`
+Once you have specified data with `data` argument, and global aesthetics with `mapping = aes()`, add additional elements to the plot with `+`
 
 The `+` sign works just like the pipe `%&gt;%` in dplyr. It just means "and then..."
-
 
 
 ```r
@@ -482,11 +457,11 @@ ggplot(data = mpg,
 
 ---
 
-# Aesthetics: `color`
+## aes(color)
 
-.pull-left4[
+.pull-left45[
 
-What plotting aesthetic is missing from the code below to make our plot on the right?
+Color geoms according to a variable using `color`
 
 
 ```r
@@ -497,35 +472,35 @@ ggplot(data = mpg,
   geom_point()
 ```
 
+
+### mpg
+
+| displ| hwy|class   | year|
+|-----:|---:|:-------|----:|
+|   1.8|  37|compact | 2008|
+|   3.7|  18|pickup  | 2008|
+|   3.6|  26|midsize | 2008|
+|   4.7|  12|suv     | 2008|
+|   3.3|  28|midsize | 2008|
+
+
 ]
 
 .pull-right5[
 
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-24-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-25-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 
 
 ]
 
-
 ---
-&lt;!---
-
-# Colors in R &amp; `ggplot2`
-
-SLIDE TO BE ADDED
-
-EXPLAINS COLORS IN GGPLOT
-EXPLAINS COLORS IN R
-
----&gt;
 
 
 # What's next?
 
-.pull-left5[
+.pull-left45[
 
-
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-25-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-26-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 
 ]
@@ -533,7 +508,7 @@ EXPLAINS COLORS IN R
 
 .pull-right45[
 
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-26-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-27-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -544,12 +519,11 @@ EXPLAINS COLORS IN R
 
 .pull-left45[
 
-`geom_smooth()` adds a smoothes line.
+`geom_smooth()` adds a smoothed (average) line.
 
-`geom_smooth()` has two main sets of arguments...
+Change how the line is created with `method` (e.g.; method = 'lm')
 
-- `method` - What function does the line represent?
-- `col`, `size`, `...` 
+Color the line with `col`
 
 &lt;br&gt;
 
@@ -566,7 +540,7 @@ ggplot(data = mpg,
 .pull-right45[
 
 
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-28-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-29-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -576,12 +550,11 @@ ggplot(data = mpg,
 
 .pull-left45[
 
-`geom_smooth()` adds a smoothes line.
+`geom_smooth()` adds a smoothed (average) line.
 
-`geom_smooth()` has two main sets of arguments...
+Change how the line is created with `method` (e.g.; method = 'lm')
 
-- `method` - What function does the line represent?
-- `col`, `size`, `...` 
+Color the line with `col`
 
 &lt;br&gt;
 
@@ -599,7 +572,7 @@ ggplot(data = mpg,
 .pull-right45[
 
 
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-30-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-31-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -609,7 +582,7 @@ ggplot(data = mpg,
 
 .pull-left45[
 
-Note, If you add additional plotting aesthetics, they will &lt;b&gt;override&lt;/b&gt; the general plotting aesthetics.
+If you add additional plotting aesthetics, they will &lt;b&gt;override&lt;/b&gt; the general plotting aesthetics.
 
 This is what happens, when you don't override...
 
@@ -628,7 +601,7 @@ ggplot(data = mpg,
 .pull-right45[
 
 
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-32-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-33-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -639,14 +612,14 @@ ggplot(data = mpg,
 
 .pull-left5[
 
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-33-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-34-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 ]
 
 
 .pull-right45[
 
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-34-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-35-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -681,7 +654,7 @@ ggplot(...) +
 
 .pull-right45[
 
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-36-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-37-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -692,14 +665,14 @@ ggplot(...) +
 
 .pull-left5[
 
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-37-1.png" width="90%" style="display: block; margin: auto;" /&gt;
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-38-1.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 ]
 
 
 .pull-right45[
 
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-38-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-39-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -729,7 +702,7 @@ Common themes are...
 ggplot(...) + theme_light()
 ```
 
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-40-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-41-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -758,7 +731,7 @@ Common themes are...
 ggplot(...) + theme_dark()
 ```
 
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-42-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-43-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -787,7 +760,7 @@ Common themes are...
 ggplot(...) + theme_bw()
 ```
 
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-44-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-45-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -810,7 +783,7 @@ ggplot(data = mpg,
   theme_bw()
 ```
 
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-45-1.png" width="40%" style="display: block; margin: auto;" /&gt;
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-46-1.png" width="40%" style="display: block; margin: auto;" /&gt;
 
 
 ---
@@ -819,7 +792,7 @@ ggplot(data = mpg,
 
 .pull-left4[
 
-Facetting = Create different plots for different groups
+Faceting = Create different plots for different groups
 
 To facet plots, use `facet_wrap()`
 
@@ -838,7 +811,7 @@ ggplot(data = mpg,
 
 .pull-right55[
 
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-47-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-48-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -848,7 +821,7 @@ ggplot(data = mpg,
 
 .pull-left4[
 
-Facetting = Create different plots for different groups
+Faceting = Create different plots for different groups
 
 To facet plots, use `facet_wrap()`
 
@@ -868,7 +841,7 @@ ggplot(data = mpg,
 
 .pull-right55[
 
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-49-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-50-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -908,7 +881,7 @@ class(myplot)
 myplot # Evaluate myplot
 ```
 
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-51-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-52-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -949,7 +922,7 @@ myplot +
   geom_smooth() # add geom
 ```
 
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-53-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-54-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -1005,7 +978,7 @@ ggsave(filename = "myplot.pdf",
 
 # ggplot2 extensions
 
-ggplot2 has inspired hundreds of extension packages that make it even easier to make domain specific plots
+ggplot2 has inspired *hundreds* of extension packages that make it even easier to make domain specific plots
 
 Tip! Before writing complex ggplot2 code for a common task, look for an extension package!
 
@@ -1022,12 +995,13 @@ Tip! Before writing complex ggplot2 code for a common task, look for an extensio
 # Create a survival plot using ggsurvplot
 library(survminer)
 library(survival)
+
 fit &lt;- survfit(Surv(time, status) ~ sex, 
                data = lung)
-ggsurvplot(fit, data = lung, risk.table = TRUE)
+ggsurvplot(fit, data = lung)
 ```
 
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-55-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-56-1.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 
 ]
@@ -1046,14 +1020,12 @@ Check these links for more in depth ggplot2 guides...
 2) Wickham's data visualization guide: http://r4ds.had.co.nz/data-visualisation.html
 
 
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/plotting_books.png" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/plotting_books.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 
 ---
 
-&lt;br&gt;&lt;br&gt;&lt;br&gt;
-
-# [Plotting Practical](https://therbootcamp.github.io/Erfurt_2018June/_sessions/D2S1_PlottingI/PlottingI_practical.html)
+# Questions?
     </textarea>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({

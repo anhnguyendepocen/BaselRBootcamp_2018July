@@ -25,7 +25,7 @@ library(tidyverse)
 
 <figure>
 <center>
-  <img src="https://3qeqpr26caki16dnhd19sv6by6v-wpengine.netdna-ssl.com/wp-content/uploads/2014/09/Caret-package-in-R.png" alt="Trulli" style="width:70%">
+  <img src="https://d33wubrfki0l68.cloudfront.net/00ed9c32053cbc805efa51b66be570558480a4c8/7a292/images/rmarkdownoutputformats.png" alt="Trulli" style="width:40%">
   <figcaption>www.rstudio.com</figcaption>
 </figure>
 
@@ -35,9 +35,10 @@ library(tidyverse)
 By the end of this practical you will know how to:
 
 1. Create a new R Markdown file (`.Rmd`)
-2. "Knit" an R Markdown file to an .html or .pdf report
+2. "Knit" an R Markdown file to an `.html` or `.pdf` report
 3. Format text using formatting tags
 4. Create code chunks
+5. Add plots and tables
 5. Include code output in sentences with inline chunks
 
 ## Packages
@@ -49,7 +50,6 @@ By the end of this practical you will know how to:
 |`DT`|`install.packages("DT")`|
 |`broom`|`install.packages("broom")`|
 |`rmdformats`|`install.packages("rmdformats")`|
-|`xaringan`|`install.packages("xaringan")`|
 
 ### Cheatsheet
 
@@ -64,15 +64,16 @@ library(tidyverse)
 mcdonalds <- read_csv("https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/mcdonalds.csv")
 ```
 
-|File  |Rows | Columns |
-|:----|:-----|:------|
-|[mcdonalds.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/mcdonalds.csv)| 260 | 24 |
+|File  |Description| Rows | Columns |
+|:----|:-----------------------------|:-----|:------|
+|[mcdonalds.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/mcdonalds.csv)| Nutrition information from McDonalds menu items| 260 | 24 |
+|[happiness.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/happiness.csv)| Results from the World Health Organisation happiness survey | 155 | 12 |
 
 ## Tasks
 
 ## A - Setup
 
-1. Open your R project. It should already have the folders `0_Data` and `1_Code`. Make sure that the data files listed in the `Datasets` section above are in your `1_Data` folder
+1. Open your R project. It should already have the folders `1_Data` and `2_Code`. Make sure that the data files listed in the Datasets section above are in your `2_Data` folder
 
 ```{r}
 # Done!
@@ -110,7 +111,11 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/rmarkdown_ss_E.png")
 ```
 
-## B - Load packages and data
+## B - Here's your goal!
+
+1. Your goal in this practical is to create as much of [this html document](https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/DynamicReports/DynamicReports_answers.html) as you can! Open the document and keep it open in a separate window as you work through the practical.
+
+## C - Load packages, data and set default chunk options
 
 1. You should always start your markdown file by loading packages and data in a code chunk. We'll do this inside of the first chunk with the `setup` label. Inside of this chunk, write the comment `# Load Packages -------------`. Then, using the `library()` function, load the packages listed in the `Packages` section above. 
 
@@ -122,7 +127,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 
 3. Now it's time to load your datafiles. In the *same* `setup` chunk, load each of the data files listed in the `Datasets` section. 
 
-```{r, eval = FALSE}
+```{r, eval = FALSE, echo = TRUE}
 # --- Load packages
 library(XX)
 library(XX)
@@ -134,127 +139,196 @@ XXX <- read_csv()
 
 4. Knit your document! Make sure you don't get any errors!
 
-5. Now it's time to change some of the default chunk options. 
+5. Now it's time to change some of the default chunk options. In your *setup* chunk, change the existing values of `knitr::opts_chunk$set` to the following:
 
-
-5. 
-
-
-
-8. In the first code chunk (with the label `setup`), include the following code: the arguments in`knitr::opts_chunk$set()` will set your global chunk options, while finally, `options(digits = 2)` makes sure that all of your numeric output is rounded to two decimal places.
-
-```{r, eval = FALSE, echo = TRUE}
+```{r, echo = TRUE, eval = FALSE}
 # INCLUDE ALL OF THIS CODE IN YOUR FIRST CHUNK!
 
 knitr::opts_chunk$set(fig.width = 6,        # Figure width (in)
-                      fig.height = 6,       # Figure height (in)
-                      echo = TRUE,          # Repeat code
+                      fig.height = 4,       # Figure height (in)
+                      echo = FALSE,          # Repeat code
                       eval = TRUE,          # Evaluate chunks
                       message = FALSE,      # Don't print messages
                       warning = FALSE,      # Don't print warnings
                       fig.align = 'center') # Center figures
 
 options(digits = 2)  # Round all output to 2 digits
+
+
 ```
 
-9. Knit your document! Make sure you see an output!
+6. Knit your document! Make sure you see an output!
 
+## D - Add formatted text and an image
 
-14. Add the necessary text and markdown to your document to create the following two paragraphs. Pay attention to the header sizes, *italics* and `code` formats.
+1. Below your last markdown chunk, write the necessary text and Markdown tags to create the following sentence. Be sure to create italic and bold text using the proper formatting tags!
 
-```{r, fig.cap = "Write the necessary markdown to create this output!", eval = TRUE, echo = FALSE, out.width = "75%"}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/markdown_output_ss.png")
+- In this practical, I will analyse two datasets and show reproducible results in a dynamic document created in R Markdown. R Markdown is great because I can integrate R code directly into my document, and easily use *italics* and **bold** using formatting tags.
+
+2. Create a new first level header with the text "McDonalds" using a single hashtag.
+
+3. Knit the document!
+
+4. Create a new code chunk by either clicking the "Insert - R" button, or by using the "Command + Option + I"" shortcut on Mac
+
+5. Now it's time to add an image to your document! In the chunk you just created, use the following template to include the McDonalds logo in your document. You can find the McDonalds logo on wikipedia at the following link: [https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/2000px-McDonald%27s_Golden_Arches.svg.png](https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/2000px-McDonald%27s_Golden_Arches.svg.png).
+
+```{r, out.width = "30%", fig.cap="Source: Wikipedia", echo = TRUE, eval = FALSE}
+# Include the McDonalds logo in my document
+
+include_graphics(path = "XXX")
 ```
 
-15. Knit the document! Diagnose and correct any errors!
+6. Knit the document!
 
-16. Add the appropriate combination of text, markdown, code chunks, and R code to add the following output to your document. To report the number of patients, use an in-line chunk to access the number directly from the data using the `nrow()` function, -- that is, don't type 2139 directly! To create the table, create a new chunk, and inside that chunk, use the `kable()` function, with the appropriate arguments, to create the table. The following code might help you create the table:
+7. Was your image too big? To make the image a bit smaller, include the chunk argument `out.width = "30%"`.
 
-```{r, echo = FALSE, out.width = "75%", eval = TRUE}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/markdown_analysis_ss.png")
-```
+8. Knit the document!
 
+9. Include the appropriate text and formatting to write the sentence below. When writing the number of columns and rows, use in-line chunks to get the data directly from the `mcdonalds` object! You can get the number of columns with `ncol(mcdonalds)` and the number of rows with `nrow(mcdonalds)`
+
+- The `mcdonalds` data has `r ncol(mcdonalds)` columns and `r nrow(mcdonalds)` rows. Each row corresponds to a different menu item. The data originally come from [https://www.kaggle.com/mcdonalds/nutrition-facts](https://www.kaggle.com/mcdonalds/nutrition-facts).
+
+10. Knit the document!
+
+## E - Add a formatted table with `datatable()`
+
+1. Create a new code chunk.
+
+2. Inside the chunk, include the following code which uses the `datatable` function to render a dataframe as a nicely formatted HTML table.
 
 ```{r, eval = FALSE, echo = TRUE}
-# Code for Table 1:
-
-trial_act %>%
-  select(pidnum, age, wtkg, hemo, homo) %>%
-  select(1:5) %>%
-  slice(1:5) %>%
-  kable(caption = "Table 1: XXX")
+datatable(mcdonalds %>% select(1:6))
 ```
 
-17. Knit the document! Diagnose and correct any errors!
+3. Knit the document! Do you see your nicely formatted table?
 
-15. Write the necessary code to add the following output to your document. To do this, create a new chunk. In the chunk use `dplyr` code to create the summary table of data. Assign the result to the object `trial_summary`. Then, use `kable()` to render this dataframe as a table in the final document.
+4. Play around with your table. Instead of selecting the first 6 columns, select the columns `Item`, `Category`, `Calories`, `Sodium`
 
-```{r, echo = FALSE, out.width = "75%", eval = TRUE}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/markdown_analysis_ss_B.png")
+5. Knit the document!
+
+## F - Add plots
+
+1. Write the appropriate combination of markdown, text, and code to create the following output. Be sure to specify the mean and maximum umber of calories using inline chunks!. Here's some `ggplot2` code that might help in creating your plot.
+
+```{r, eval = TRUE, echo = FALSE, out.width="75%"}
+knitr::include_graphics("https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/calories_histogram.jpg?raw=true")
 ```
-
-Here is some code you might find helpful in creating this table!
-
-```{r, echo = TRUE, eval = FALSE}
-# Helpful code to create the summary table!
-
-trial_act %>% 
-    group_by(XX) %>% 
-    summarise(N = n(),
-              Mean = mean(XX),
-              Median = median(XX),
-              SD = sd(XX),
-              Max = max(XX)) %>%
-  kable(caption = "Table 2: XXX")
-```
-
-16. Knit the document! Diagnose and correct any errors!
-
-17. Add the appropriate combination of text, markdown, code chunks, and R code to add the following output to your document. Be sure to include the figure caption (you can do this with the `fig.cap` argument to the chunk)
-
-```{r, echo = FALSE, out.width = "75%", eval = TRUE}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/markdown_ggplot_ss.png")
-```
-
-This code might help you to create the plot:
 
 ```{r, eval = FALSE, echo = TRUE}
-# Boxplot code template
+# Create a histogram of Calories
 
-ggplot(data = XX, 
-       mapping = aes(x = factor(XX), y = XX)) +
-  geom_boxplot() + 
-  labs(x = "XX",
-       y = "XX",
-       title = "XX",
+ggplot(data = mcdonalds,
+       aes(x = XX)) +
+  geom_histogram(col = "white") +
+  labs(title = "XX",
        subtitle = "XX",
-       caption = "XX") + 
+       caption = "XX") +
   theme_bw()
 ```
 
-18. Knit the document! Diagnose and correct any errors!
+2. Knit the document! Diagnose and correct any errors!
 
-19. A researcher wants to know if there is a correlation between patients' CD4 T cell count at baseline (`cd40`) and the number of days until a major negative event.  Include this information as a new subsection (with a second level header) in your analyses. To do this, run the following chunk. Then, write a sentence with the main outputs from the test, using inline chunks to directly access the correlation and the p-value. For example, a sentence could be: "The correlation between CD4 T cell count at baseline and number of days until a major negative event was r = XX, p = YY".
+3. Write the appropriate combination of markdown, text, and code to create the following output (Here's some `ggplot2` code that might help!):
 
-```{r, eval = FALSE, echo = TRUE}
-# Correlation test between cd40 and days
-
-cd4_cor <- cor.test(formula = ~ XX + XX,
-                    data = XX)
-
-cd4_cor_r <- cd4_cor$XX  # Get the correlation
-cd4_cor_p <- cd4_cor$XX   # Get the p-value
+```{r, eval = TRUE, echo = FALSE, out.width="75%"}
+knitr::include_graphics("https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/calories_sodium_ss.jpg?raw=true")
 ```
 
-20. In addition to the correlation test, include a relevant scatterplot showing the relationship between CD4 T cell count at baseline (`cd40`) and number of days until a major negative event (`days`).
+```{r, eval = FALSE, echo = TRUE}
+# Create a scatterplot showing the relationship
+#  between Calories and Sodium
 
-21. Add a new section called "Conclusions". Write the main conclusions of your analyses in one or two sentences. Feel free to add some formatting and/or in-line chunks to your content!
+ggplot(data = XX,
+       aes(x = XX, y = XX)) +
+  geom_point() +
+  labs(title = "XX",
+       subtitle = "XX",
+       caption = "XX") +
+  theme_bw()
+```
 
-## Managing working directories with Markdown
+4. Knit the document! Diagnose and correct any errors!
 
-22. Now it's time to move your Markdown file to your `4_Markdown` folder. Move your `speffanalysis.Rmd` file to your `4_Markdown` folder using your computer file browser (Finder on Mac, Windows explorer on PC). Now, try knitting your document. You should get an error! What happened?!
+## G - Add a table of statistical test results
 
-23. The problem is that when you knit your Markdown file, R changes your working directory to the folder where your markdown file is located. However, now that you moved your file to your `4_Markdown` folder, this isn't true anymore. You need to tell Markdown that the root directory of your project is one directory up! Thankfully this is easy to do. Just add the following code to your initial `setup` R chunk:
+Now let's show the results of a regression analysis predicting the sodium content of an item as a function of its calories.
+
+1. Create a new code chunk. Inside of the chunk, create an object called `cal_sod_lm`  that is the result of a regression analysis predicting `Sodium` as a function of `Calories`. Use the following template
+
+```{r, eval = FALSE, echo = TRUE}
+# Create regression model predicting Sodium from Calories
+
+cal_sod_lm <- lm(formula = XX ~ XX,
+                 data = mcdonalds)
+```
+
+2. Now, using the following template for help, write the appropriate text / code to create the following output.
+
+```{r, echo = TRUE, eval = FALSE}
+# Export cal_sod_lm to a nicely formatted table
+
+kable(x = tidy(cal_sod_lm), 
+      digits = 3, 
+      caption = "Regression analysis predicting Sodium from Calories")
+```
+
+```{r, eval = TRUE, echo = FALSE, out.width="75%"}
+knitr::include_graphics("https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/regression_output.jpg?raw=true")
+```
+
+3. Knit the document! Diagnose and correct any errors!
+
+## H - Keep going!
+
+1. Add the appropriate code to add the following output. 
+
+```{r, eval = TRUE, echo = FALSE, out.width="75%"}
+knitr::include_graphics("https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/calories_category_ss.jpg?raw=true")
+```
+
+```{r, echo = TRUE, eval = FALSE}
+ggplot(data = mcdonalds,
+       aes(x = XX, y = XX, fill = XX)) +
+  stat_summary(geom = "bar", fun.y = "mean") +
+  guides(fill = FALSE) +
+  labs(title = "McDonalds Menu Items",
+       subtitle = "Created with ggplot2",
+       caption = "Source: Kaggle.com") +
+  theme_bw()
+```
+
+2. Knit the document! Diagnose and correct any errors!
+
+3. Add the appropriate code to add the following table of summary statistics of Calories for each category. Use the following code chunk below for help if you need it! 
+
+```{r, eval = TRUE, echo = FALSE, out.width="75%"}
+knitr::include_graphics("https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/calories_category_summary_ss.jpg?raw=true")
+```
+
+```{r, echo = TRUE, eval = FALSE}
+# Calculate several summary statitics of Calories
+
+Calories_agg <- mcdonalds %>%
+  group_by(XX) %>%
+  summarise(
+    Min = min(Calories),
+    Mean = mean(Calories),
+    Median = median(Calories),
+    Max = max(Calories)
+  )
+
+# Export Calories_agg to an HTML table
+kable(x = XX)
+```
+
+4. Knit the document! Diagnose and correct any errors!
+
+## I - Managing working directories with Markdown
+
+1. Now it's time to move your Markdown file to your `4_Markdown` folder. Move your `speffanalysis.Rmd` file to your `4_Markdown` folder using your computer file browser (Finder on Mac, Windows explorer on PC). Now, try knitting your document. You should get an error! What happened?!
+
+2. The problem is that when you knit your Markdown file, R changes your working directory to the folder where your markdown file is located. However, now that you moved your file to your `4_Markdown` folder, this isn't true anymore. You need to tell Markdown that the root directory of your project is one directory up! Thankfully this is easy to do. Just add the following code to your initial `setup` R chunk:
 
 ```{r, echo = TRUE}
 # Tell R Markdown that the root directory is now one folder
@@ -263,31 +337,12 @@ cd4_cor_p <- cd4_cor$XX   # Get the p-value
 knitr::opts_knit$set(root.dir = "../")
 ```
 
-24. Knit your document! Did everything work? If not, try to correct the working directory issues. Don't be afraid to ask for help!
+3. Knit your document! Did everything work? If not, try to correct the working directory issues. Don't be afraid to ask for help!
 
-25. If you have LaTex installed on your computer, try knitting your document to PDF format by clicking the Knit button and knit to PDF. If you don't have LaTeX installed, don't worry :)
+## X - Add results from the happiness survey
 
-## Other Markdown templates
+1. If you've gotten this far, then you've really gotten the hang of R Markdown! Try adding the correct combination of text, tags, and code to add all of the results from the `happiness` data contained here: [https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/DynamicReports/DynamicReports_answers.html](https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/DynamicReports/DynamicReports_answers.html)
 
-26. Don't like the standard markdown template? You can get many other templates from the `rmdformats` package. Install the package with `rmdformats`. Then create a new markdown file from one of the temples with File -- New File -- R Markdown -- From Template. Try the `HTML readthedown` template. Knit the document and see how it looks different from your standard template.
-
-## Slideshow
-
-```{r, eval = TRUE, echo = FALSE, out.width = "50%"}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/xaringan_ss.png")
-```
-
-27. Now it's time to create a slideshow! To do this, we'll use the Ninja template ([click here for a demo](https://slides.yihui.name/xaringan/#1)) from the `xaringan` package (that's what we use for all of our BaselRBootcamp slides). Install the `xaringan` package by running `install.packages('xaringan')`
-
-28. Once you've installed `xaringan`, open a new template with File -- New File -- R Markdown -- From Template -- Ninja Presentation. Give the presentation a title and your name as the author. Then click ok.
-
-29. You should see a new .Rmd document open. Save the document in your main project directory as `slideshow.Rmd`.
-
-30. Knit the document to see the outline of the presentation!
-
-31. Play around with the presentation a bit. Change the existing content a bit and add a few slides. Try adding an image (maybe this one: https://actgnetwork.org/sites/all/themes/actg/images/actg_logo_275.png) by saving the image to your `0_Materials` folder, and then loading the image into your document with `include_graphics()`.
-
-32. Now, try to customize the presentation to include all of main analyses, outputs, and plots you have in your `speffanalysis.Rmd` document! Of course, there won't be room for all of the text, so treat it like a normal presentation and put in what's important.
 
 ### References and Links
 
