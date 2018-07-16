@@ -428,7 +428,7 @@ loan_FFTrees_mod <- FFTrees(formula, data,
 
 ## Ensemble decision trees
 
-.pull-left5[
+.pull-left45[
 
 A [Random Forest](https://en.wikipedia.org/wiki/Random_forest) is a collection of many (hundreds, thousands) of decision trees that use different features
 
