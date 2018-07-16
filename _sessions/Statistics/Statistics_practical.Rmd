@@ -83,7 +83,7 @@ house <- read_csv("../_data/complete/kc_house.csv")
 |:------|:--------|:----|
 |     `sample()`|    Draw a random sample of values from a vector| `?sample`
 |     `rnorm()`|    Draw random values from a Normal distribution| `?rnorm()`
-|     `runif`|    Draw random values from a Uniform distribution| `?runif()`
+|     `runif()`|    Draw random values from a Uniform distribution| `?runif()`
 
 
 ### Examples
