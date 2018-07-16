@@ -117,15 +117,15 @@ t.test(formula = height ~ sex,
          data = baselers)
 
 # Regression model
-income_glm <- glm(formula = income ~ .,
-                  data = baselers %>% select(-id))
+inc_glm <- glm(formula = income ~ .,
+               data = baselers %>% select(-id))
 
 # Summary information
-summary(income_glm)  
+summary(inc_glm)  
 
 # Dissect
-income_glm$coefficients # Acess coefficients
-income_glm$residuals # Access residuals
+inc_glm$coefficients # Acess coefficients
+inc_glm$residuals # Access residuals
 
 ### Generate random data
 x1 <- rnorm(n = 100, mean = 10, sd = 5)

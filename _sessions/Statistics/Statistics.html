@@ -94,15 +94,15 @@ t.test(formula = height ~ sex,
          data = baselers)
 
 # Regression model
-income_glm &lt;- glm(formula = income ~ .,
-                  data = baselers %&gt;% select(-id))
+inc_glm &lt;- glm(formula = income ~ .,
+               data = baselers %&gt;% select(-id))
 
 # Summary information
-summary(income_glm)  
+summary(inc_glm)  
 
 # Dissect
-income_glm$coefficients # Acess coefficients
-income_glm$residuals # Access residuals
+inc_glm$coefficients # Acess coefficients
+inc_glm$residuals # Access residuals
 
 ### Generate random data
 x1 &lt;- rnorm(n = 100, mean = 10, sd = 5)
@@ -849,7 +849,7 @@ coin_flips
 ```
 
 ```
-##  [1] "H" "H" "H" "H" "H" "H" "H" "H" "H" "T"
+##  [1] "H" "H" "H" "H" "H" "H" "T" "H" "T" "H"
 ```
 
 ```r
@@ -860,7 +860,7 @@ table(coin_flips)
 ```
 ## coin_flips
 ## H T 
-## 9 1
+## 8 2
 ```
 
 ```r
@@ -869,7 +869,7 @@ mean(coin_flips == "H")
 ```
 
 ```
-## [1] 0.9
+## [1] 0.8
 ```
 
 ]
@@ -904,7 +904,7 @@ length(birthdays)
 ```
 
 ```
-## [1] 25
+## [1] 49
 ```
 
 
@@ -931,7 +931,7 @@ mysamp[1:5]  # First 5 values
 ```
 
 ```
-## [1] 13.575 19.442  8.958 16.348  7.552
+## [1] 12.780 -2.081  8.015 11.006  1.539
 ```
 
 ```r
@@ -939,7 +939,7 @@ mean(mysamp) # Mean
 ```
 
 ```
-## [1] 9.862
+## [1] 9.091
 ```
 
 ```r
@@ -947,7 +947,7 @@ sd(mysamp)   # Standard deviation
 ```
 
 ```
-## [1] 5.35
+## [1] 5.475
 ```
 
 
