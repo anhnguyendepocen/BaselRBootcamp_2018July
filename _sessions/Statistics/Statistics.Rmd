@@ -818,7 +818,8 @@ ggplot(data = tibble(x = mysamp),
 |package|Description|
 |:----|:-----|
 |`afex`|Factorial experiments|
-|`lmer`|Linear mixed effects models|
+|`lme4`|Mixed effects models|
+|`rstanarm`|Bayesian mixed effects models|
 |`BayesFactor`|Bayesian Models|
 |`forecast`|Time series| 
 |`lavaan`|Latent variable and structural equation modelling| 

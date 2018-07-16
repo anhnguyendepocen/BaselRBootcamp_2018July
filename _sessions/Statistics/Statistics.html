@@ -849,7 +849,7 @@ coin_flips
 ```
 
 ```
-##  [1] "H" "H" "H" "H" "H" "H" "T" "H" "T" "H"
+##  [1] "T" "H" "T" "T" "H" "H" "H" "T" "H" "T"
 ```
 
 ```r
@@ -860,7 +860,7 @@ table(coin_flips)
 ```
 ## coin_flips
 ## H T 
-## 8 2
+## 5 5
 ```
 
 ```r
@@ -869,7 +869,7 @@ mean(coin_flips == "H")
 ```
 
 ```
-## [1] 0.8
+## [1] 0.5
 ```
 
 ]
@@ -904,7 +904,7 @@ length(birthdays)
 ```
 
 ```
-## [1] 49
+## [1] 36
 ```
 
 
@@ -931,7 +931,7 @@ mysamp[1:5]  # First 5 values
 ```
 
 ```
-## [1] 12.780 -2.081  8.015 11.006  1.539
+## [1] 10.181 14.718 14.711  6.743 11.728
 ```
 
 ```r
@@ -939,7 +939,7 @@ mean(mysamp) # Mean
 ```
 
 ```
-## [1] 9.091
+## [1] 10.27
 ```
 
 ```r
@@ -947,7 +947,7 @@ sd(mysamp)   # Standard deviation
 ```
 
 ```
-## [1] 5.475
+## [1] 5.135
 ```
 
 
@@ -985,7 +985,8 @@ ggplot(data = tibble(x = mysamp),
 |package|Description|
 |:----|:-----|
 |`afex`|Factorial experiments|
-|`lmer`|Linear mixed effects models|
+|`lme4`|Mixed effects models|
+|`rstanarm`|Bayesian mixed effects models|
 |`BayesFactor`|Bayesian Models|
 |`forecast`|Time series| 
 |`lavaan`|Latent variable and structural equation modelling| 
