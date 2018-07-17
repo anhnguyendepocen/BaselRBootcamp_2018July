@@ -3,7 +3,7 @@
   <head>
     <title>Efficient programming</title>
     <meta charset="utf-8">
-    <meta name="author" content="The R Bootcamp @ Erfurt www.therbootcamp.com @therbootcamp" />
+    <meta name="author" content="The R Bootcamp  www.therbootcamp.com @therbootcamp" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="my-theme.css" type="text/css" />
   </head>
@@ -12,7 +12,7 @@
 class: center, middle, inverse, title-slide
 
 # Efficient programming
-### The R Bootcamp @ Erfurt<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'><span class="citation">@therbootcamp</span></a>
+### The R Bootcamp <br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'><span class="citation">@therbootcamp</span></a>
 ### June 2018
 
 ---
@@ -21,7 +21,7 @@ class: center, middle, inverse, title-slide
 layout: true
 
 &lt;div class="my-footer"&gt;&lt;span&gt;
-&lt;a href="https://therbootcamp.github.io/"&gt;&lt;font color="#7E7E7E"&gt;Erfurt, June 2018&lt;/font&gt;&lt;/a&gt;
+&lt;a href="https://therbootcamp.github.io/"&gt;&lt;font color="#7E7E7E"&gt;Basel, July 2018&lt;/font&gt;&lt;/a&gt;
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
@@ -239,9 +239,9 @@ microbenchmark(
 
 ```
 ## Unit: microseconds
-##   expr  min   lq  mean median   uq    max neval cld
-##  local 3968 4071 14804   4420 5038 106809    10   a
-##  fread  864  877  1212   1048 1271   2446    10   a
+##   expr  min   lq mean median   uq  max neval
+##  local 2967 3059 3825   3550 4483 6122    10
+##  fread  804  824 1305    989 1057 4368    10
 ```
 ]
 
@@ -274,9 +274,9 @@ microbenchmark(
 
 ```
 ## Unit: microseconds
-##      expr   min    lq  mean median    uq    max neval cld
-##  colMeans   772   782   874    808   880   1258    10  a 
-##     apply 13910 15004 38770  16633 18068 136089    10   b
+##      expr   min    lq  mean median    uq   max neval
+##  colMeans   758   758  1823    764   774 11328    10
+##     apply 10736 11626 13515  13605 14823 18222    10
 ```
 ]
 
@@ -318,11 +318,11 @@ microbenchmark(
 
 ```
 ## Unit: nanoseconds
-##     expr   min    lq  mean median    uq     max neval cld
-##   loop10  2476  2874  3232   3200  3411    8624   100  a 
-##  loop100 33808 51830 80709  53734 56628 2651303   100   b
-##    vec10   122   192   240    216   270    1368   100  a 
-##   vec100   313   354   759    410   541    4003   100  a
+##     expr   min    lq  mean median    uq     max neval
+##   loop10  2068  2232  2482   2338  2460    6669   100
+##  loop100 28887 45601 67533  46816 50400 1929891   100
+##    vec10   111   123   205    132   193    4251   100
+##   vec100   298   342   574    368   432    2199   100
 ```
 
 ]
@@ -351,9 +351,9 @@ microbenchmark(my_fun(x, is.null), my_fun_c(x, is.null), unit='us')
 
 ```
 ## Unit: microseconds
-##                  expr  min   lq mean median   uq   max neval cld
-##    my_fun(x, is.null) 8.16 8.95 19.6   9.71 10.8 959.3   100   a
-##  my_fun_c(x, is.null) 8.18 9.06 10.3   9.62 10.3  43.8   100   a
+##                  expr  min   lq mean median   uq  max neval
+##    my_fun(x, is.null) 8.61 8.83 24.2   8.98 12.9 1230   100
+##  my_fun_c(x, is.null) 8.58 8.87 12.3   9.05 13.4   49   100
 ```
 
 ```r
@@ -363,9 +363,9 @@ microbenchmark(my_fun(x, is.null), my_fun_c(x, is.null), unit='us')
 
 ```
 ## Unit: microseconds
-##                  expr  min   lq mean median   uq  max neval cld
-##    my_fun(x, is.null) 8.12 8.89 9.94   9.43 10.0 54.8   100   a
-##  my_fun_c(x, is.null) 8.12 8.89 9.62   9.37 10.2 15.8   100   a
+##                  expr  min   lq mean median   uq  max neval
+##    my_fun(x, is.null) 7.59 7.81 8.59   7.89 8.05 34.7   100
+##  my_fun_c(x, is.null) 7.62 7.88 8.14   7.99 8.14 15.1   100
 ```
 ]
 ---
@@ -406,9 +406,9 @@ microbenchmark(vectorz = colMeans(data),
 
 ```
 ## Unit: milliseconds
-##     expr  min   lq mean median   uq   max neval cld
-##  vectorz 7.61 7.90 8.19   8.04 8.33 13.14   100   b
-##  cluster 4.23 4.56 4.79   4.72 4.93  7.44   100  a
+##     expr  min   lq mean median   uq   max neval
+##  vectorz 7.82 7.91 8.47   8.04 8.72 11.56   100
+##  cluster 4.50 4.67 4.93   4.75 4.95  8.08   100
 ```
 
 
@@ -455,9 +455,9 @@ microbenchmark(vector_implementation = colMeans(my_data),
 
 ```
 ## Unit: milliseconds
-##                   expr  min   lq mean median   uq  max neval cld
-##  vector_implementation 7.55 7.77 7.97   7.92 8.14  8.8   100   a
-##    rcpp_implementation 7.57 7.79 8.00   7.93 8.09 10.8   100   a
+##                   expr   min    lq mean median    uq  max neval
+##  vector_implementation  7.77  7.85  8.3    7.9  8.26 11.9   100
+##    rcpp_implementation 10.17 10.27 10.7   10.4 11.02 14.1   100
 ```
 ]
 ---
@@ -538,7 +538,7 @@ t.test(father, mother)
 
 # Practical
 
-&lt;p&gt;&lt;font size=6&gt;&lt;b&gt;&lt;a href="https://therbootcamp.github.io/_sessions/D4S1_EfficientCode/EfficientCode_practical.html"&gt;Link to practical&lt;/a&gt;
+&lt;p&gt;&lt;font size=6&gt;&lt;b&gt;&lt;a href="https://therbootcamp.github.io/Erfurt_2018June/_sessions/D2S3_EfficientCode/EfficientCode_practical.html"&gt;Link to practical&lt;/a&gt;
     </textarea>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
