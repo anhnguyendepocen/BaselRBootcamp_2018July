@@ -87,13 +87,9 @@ house_test <- read_csv("https://raw.githubusercontent.com/therbootcamp/therbootc
 ## Examples
 
 ```{r, eval = FALSE, echo = TRUE}
-# -----------------------------------------------
-# Wrangling with dplyr and tidyr
-# ------------------------------------------------
+# Machine learning basics ------------------------------------
 
-# --------------------------------------
-# Step 0: Load packages
-# --------------------------------------
+# Step 0: Load packages-----------
 
 library(tidyverse)    # Load tidyverse for dplyr and tidyr
 library(skimr)        # For skim()
@@ -101,17 +97,14 @@ library(rpart)        # For rpart()
 library(broom)        # For tidy()
 library(caret)        # For resamp 
 
-# --------------------------------------
-# Step 1: Load Training and Test data
-# --------------------------------------
+# Step 1: Load Training and Test data ----------------------
 
 house_train <- read_csv("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_data/house_train.csv")
 
 house_test <- read_csv("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_data/house_test.csv")
 
-# --------------------------------------
-# Step 2: Explore training data
-# --------------------------------------
+# Step 2: Explore training data -----------------------------
+
 skim(attrition_train)
 
 # We will do a log-transformation on price
@@ -125,9 +118,7 @@ house_train <- house_train %>%
 house_test <- house_test %>%
   mutate(price = log(price))
 
-# --------------------------------------
-# Step 3: Fit models predicting price
-# --------------------------------------
+# Step 3: Fit models predicting price ------------------
 
 # Regression
 price_lm <- glm(formula = price ~ bedrooms + bathrooms + floors,
@@ -137,9 +128,7 @@ price_lm <- glm(formula = price ~ bedrooms + bathrooms + floors,
 price_rpart <- rpart(formula = price ~ bedrooms + bathrooms + floors,
                      data = house_train)
 
-# --------------------------------------
-# Step 4: Explore models
-# --------------------------------------
+# Step 4: Explore models -------------------------------
 
 # Regression
 summary(price_lm)
@@ -152,9 +141,9 @@ text(price_rpart)
 # Nicer version!
 plot(as.party(price_rpart))
 
-# --------------------------------------
-# Step 5: Assess fitting accuracy
-# --------------------------------------
+
+# Step 5: Assess fitting accuracy ----------------------------
+
 
 # Get fitted values
 lm_fit <- predict(price_lm, 
@@ -171,9 +160,7 @@ postResample(pred = lm_fit,
 postResample(pred = rpart_fit, 
              obs = house_train$price)
 
-# --------------------------------------
-# Step 6: Predict new data
-# --------------------------------------
+# Step 6: Predict new data -------------------------
 
 lm_pred <- predict(object = price_lm, 
                    newdata = house_test)
@@ -181,9 +168,7 @@ lm_pred <- predict(object = price_lm,
 rpart_pred <- predict(object = price_rpart, 
                       newdata = house_test)
 
-# --------------------------------------
-# Step 7: Compare accuracy
-# --------------------------------------
+# Step 7: Compare accuracy --------------------------
 
 # Regression Prediction Accuracy
 postResample(pred = lm_pred, 
@@ -213,7 +198,7 @@ ggplot(data = competition_results,
 
 ## A - Setup
 
-1. Open your R project. It should already have the folders `0_Data` and `1_Code`. Make sure that the data files listed in the `Datasets` section above are in your `1_Data` folder
+1. Open your R project. It should already have the folders `1_Data` and `2_Code`. Make sure that the data files listed in the `Datasets` section above are in your `1_Data` folder
 
 ```{r}
 # Done!

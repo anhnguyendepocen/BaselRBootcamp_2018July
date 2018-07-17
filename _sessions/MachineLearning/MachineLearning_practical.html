@@ -262,13 +262,9 @@ Source: Android Authority
 </div>
 <div id="examples" class="section level2">
 <h2>Examples</h2>
-<pre class="r"><code># -----------------------------------------------
-# Wrangling with dplyr and tidyr
-# ------------------------------------------------
+<pre class="r"><code># Machine learning basics ------------------------------------
 
-# --------------------------------------
-# Step 0: Load packages
-# --------------------------------------
+# Step 0: Load packages-----------
 
 library(tidyverse)    # Load tidyverse for dplyr and tidyr
 library(skimr)        # For skim()
@@ -276,17 +272,14 @@ library(rpart)        # For rpart()
 library(broom)        # For tidy()
 library(caret)        # For resamp 
 
-# --------------------------------------
-# Step 1: Load Training and Test data
-# --------------------------------------
+# Step 1: Load Training and Test data ----------------------
 
 house_train &lt;- read_csv(&quot;https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_data/house_train.csv&quot;)
 
 house_test &lt;- read_csv(&quot;https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_data/house_test.csv&quot;)
 
-# --------------------------------------
-# Step 2: Explore training data
-# --------------------------------------
+# Step 2: Explore training data -----------------------------
+
 skim(attrition_train)
 
 # We will do a log-transformation on price
@@ -300,9 +293,7 @@ house_train &lt;- house_train %&gt;%
 house_test &lt;- house_test %&gt;%
   mutate(price = log(price))
 
-# --------------------------------------
-# Step 3: Fit models predicting price
-# --------------------------------------
+# Step 3: Fit models predicting price ------------------
 
 # Regression
 price_lm &lt;- glm(formula = price ~ bedrooms + bathrooms + floors,
@@ -312,9 +303,7 @@ price_lm &lt;- glm(formula = price ~ bedrooms + bathrooms + floors,
 price_rpart &lt;- rpart(formula = price ~ bedrooms + bathrooms + floors,
                      data = house_train)
 
-# --------------------------------------
-# Step 4: Explore models
-# --------------------------------------
+# Step 4: Explore models -------------------------------
 
 # Regression
 summary(price_lm)
@@ -327,9 +316,9 @@ text(price_rpart)
 # Nicer version!
 plot(as.party(price_rpart))
 
-# --------------------------------------
-# Step 5: Assess fitting accuracy
-# --------------------------------------
+
+# Step 5: Assess fitting accuracy ----------------------------
+
 
 # Get fitted values
 lm_fit &lt;- predict(price_lm, 
@@ -346,9 +335,7 @@ postResample(pred = lm_fit,
 postResample(pred = rpart_fit, 
              obs = house_train$price)
 
-# --------------------------------------
-# Step 6: Predict new data
-# --------------------------------------
+# Step 6: Predict new data -------------------------
 
 lm_pred &lt;- predict(object = price_lm, 
                    newdata = house_test)
@@ -356,9 +343,7 @@ lm_pred &lt;- predict(object = price_lm,
 rpart_pred &lt;- predict(object = price_rpart, 
                       newdata = house_test)
 
-# --------------------------------------
-# Step 7: Compare accuracy
-# --------------------------------------
+# Step 7: Compare accuracy --------------------------
 
 # Regression Prediction Accuracy
 postResample(pred = lm_pred, 
@@ -388,7 +373,7 @@ ggplot(data = competition_results,
 <div id="a---setup" class="section level2">
 <h2>A - Setup</h2>
 <ol style="list-style-type: decimal">
-<li><p>Open your R project. It should already have the folders <code>0_Data</code> and <code>1_Code</code>. Make sure that the data files listed in the <code>Datasets</code> section above are in your <code>1_Data</code> folder</p></li>
+<li><p>Open your R project. It should already have the folders <code>1_Data</code> and <code>2_Code</code>. Make sure that the data files listed in the <code>Datasets</code> section above are in your <code>1_Data</code> folder</p></li>
 <li><p>Open a new R script. At the top of the script, using comments, write your name and the date. Save it as a new file called <code>machinelearning_practical.R</code> in the <code>2_Code</code> folder.</p></li>
 <li><p>Using <code>library()</code> load the set of packages for this practical listed in the packages section above.</p></li>
 </ol>

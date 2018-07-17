@@ -56,7 +56,6 @@ house <- read_csv("../_data/complete/kc_house.csv")
 |`broom`|`install.packages("broom")`|
 |`rsq`|`install.packages("rsq")`|
 
-
 ### Glossary
 
 *Descriptive Statistics*
@@ -209,7 +208,7 @@ tidy(my_glm)
 
 ### A - Getting setup
 
-1. Open your R project. It should already have the folders `0_Data` and `1_Code`. Make sure that all of the data files listed above are contained in the folder
+1. Open your R project. It should already have the folders `1_Data` and `2_Code`. Make sure that all of the data files listed above are contained in the `1_Data1` folder
 
 ```{r}
 # Done!

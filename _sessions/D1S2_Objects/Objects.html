@@ -254,14 +254,14 @@ Data frames (or `tibbles`) can be inspecting in various ways.
 ## # A tibble: 1,000 x 17
 ##      id sex      age height weight headband college tattoos tchests parrots
 ## * &lt;int&gt; &lt;chr&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-## 1     1 male     28.   173.   70.5 yes      JSSFP        9.      0.      0.
-## 2     2 male     31.   209.  106.  yes      JSSFP        9.     11.      0.
-## 3     3 male     26.   170.   77.1 yes      CCCC        10.     10.      1.
-## 4     4 female   31.   144.   58.5 no       JSSFP        2.      0.      2.
-## 5     5 female   41.   158.   58.4 yes      JSSFP        9.      6.      4.
-## 6     6 male     26.   190.   85.4 yes      CCCC         7.     19.      0.
-## 7     7 female   31.   158.   59.6 yes      JSSFP        9.      1.      7.
-## 8     8 female   31.   173.   74.5 yes      JSSFP        5.     13.      7.
+## 1     1 male      28   173.   70.5 yes      JSSFP         9       0       0
+## 2     2 male      31   209.  106.  yes      JSSFP         9      11       0
+## 3     3 male      26   170.   77.1 yes      CCCC         10      10       1
+## 4     4 female    31   144.   58.5 no       JSSFP         2       0       2
+## 5     5 female    41   158.   58.4 yes      JSSFP         9       6       4
+## 6     6 male      26   190.   85.4 yes      CCCC          7      19       0
+## 7     7 female    31   158.   59.6 yes      JSSFP         9       1       7
+## 8     8 female    31   173.   74.5 yes      JSSFP         5      13       7
 ## # ... with 992 more rows, and 7 more variables: favorite.pirate &lt;chr&gt;,
 ## #   sword.type &lt;chr&gt;, eyepatch &lt;dbl&gt;, sword.time &lt;dbl&gt;, beard.length &lt;dbl&gt;,
 ## #   fav.pixar &lt;chr&gt;, grogg &lt;dbl&gt;
@@ -655,7 +655,7 @@ Pay attention to...
 
 # Factors
 
-Factors are a special case of vector that can contain only **predifined values** so-called `levels`. Factors are **rarely useful** and sometimes **dangerous**, yet R will often coerce `character` to `factor`. Modern packages, include those included in the `tidyverse` tend to avoid factors. Otherwise R can be told excplicitly to avoid factors using `options(stringsAsFactors = FALSE)`.
+Factors are a special case of vector that can contain only **predefined values** so-called `levels`. Factors are **rarely useful** and sometimes **dangerous**, yet R will often coerce `character` to `factor`. Modern packages, include those included in the `tidyverse` tend to avoid factors. Otherwise R can be told excplicitly to avoid factors using `options(stringsAsFactors = FALSE)`.
 
 .pull-left45[
 

@@ -191,20 +191,130 @@ $(document).ready(function () {
 </tr>
 </tbody>
 </table>
-<p><em>Creating dataframes</em> …</p>
-<p><em>Descriptive Statistics</em></p>
-<p>… ### Examples</p>
+<p><em>Vector functions</em></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Function</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>mean(x), median(x), sd(x), sum(x)</code></td>
+<td align="left">Mean, median standard deviation, sum</td>
+</tr>
+<tr class="even">
+<td align="left"><code>max(x), min(x)</code></td>
+<td align="left">Maximim, minimum</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>table(x)</code></td>
+<td align="left">Table of frequency counts</td>
+</tr>
+<tr class="even">
+<td align="left"><code>round(x, digits)</code></td>
+<td align="left">Round a numeric vector x to <code>digits</code></td>
+</tr>
+</tbody>
+</table>
+<p><em>Creating dataframes from vectors</em></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Function</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>data.frame(a, b, c)</code></td>
+<td align="left">Create a dataframe from vectors a, b, c</td>
+</tr>
+<tr class="even">
+<td align="left"><code>tibble(a, b, c)</code></td>
+<td align="left">Create a tibble from vectors a, b, c</td>
+</tr>
+</tbody>
+</table>
+<p><em>Accessing vectors from dataframes</em></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Function</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>df$a</code></td>
+<td align="left">Access vector <code>a</code> from a dataframe <code>df</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="examples" class="section level3">
+<h3>Examples</h3>
+<pre class="r"><code>library(tidyverse)
+
+# Create vectors of (fake) stock data
+
+name &lt;- c(&quot;apple&quot;, &quot;microsoft&quot;, &quot;dell&quot;, &quot;google&quot;, &quot;twitter&quot;)
+yesterday &lt;- c(100, 89, 65, 54, 89)
+today &lt;- c(102, 85, 72, 60, 95)
+
+# Summary statistics
+
+mean(today)
+mean(yesterday)
+
+# Show classes
+
+class(name)
+class(yesterday)
+
+# Operations of vectors
+
+change &lt;- today - yesterday
+
+change # Print result
+
+# Create a logical vector from two numerics
+
+increase &lt;- today &gt; yesterday
+
+increase # Print result
+
+# Create a tibble containing multiple vectors
+stocks &lt;- tibble(name, yesterday, today, change, increase)
+
+# Get column names
+names(stocks)
+
+# Access columns by name
+
+stocks$name
+stocks$today
+
+# Calculate descriptives on columns
+
+mean(stocks$yesterday)
+mean(stocks$today)
+table(stocks$increase)
+mean(stocks$increase)</code></pre>
 </div>
 </div>
 <div id="tasks" class="section level1">
 <h1>Tasks</h1>
 <div id="a---getting-setup" class="section level3">
 <h3>A - Getting setup</h3>
-<p>A1. Open your R project. It should already have the folders <code>0_Data</code> and <code>1_Code</code>. Make sure that all of the data files listed above are contained in the folder</p>
-<p>A2. Open a new R script and save it as a new file called <code>objects_practical.R</code> in the <code>2_Code</code> folder. At the top of the script, using comments, write your name and the date. The, load the set of packages listed above with <code>library()</code>.</p>
+<ol style="list-style-type: decimal">
+<li><p>Open your R project. It should already have the folders <code>1_Data</code> and <code>2_Code</code>. Make sure that all of the data files listed above are contained in the folder</p></li>
+<li><p>Open a new R script and save it as a new file called <code>objects_practical.R</code> in the <code>2_Code</code> folder. At the top of the script, using comments, write your name and the date. The, load the set of packages listed above with <code>library()</code>.</p></li>
+</ol>
 </div>
-<div id="b---creating-vectors" class="section level3">
-<h3>B - Creating vectors</h3>
+<div id="b---creating-vectors" class="section level2">
+<h2>B - Creating vectors</h2>
 <p>The table below shows a subset of the <code>baselers</code> data. In this practical, you will convert this table to R objects and then analyse them!</p>
 <table>
 <thead>
@@ -289,57 +399,98 @@ $(document).ready(function () {
 </tr>
 </tbody>
 </table>
-<p>B1. Create a numeric vector called <code>id</code> that shows the id values. When you finish, print the object to see it!</p>
-<pre class="r"><code># Create a numeric vector XX
+<ol style="list-style-type: decimal">
+<li>Create a numeric vector called <code>id</code> that shows the id values. When you finish, print the object to see it!</li>
+</ol>
+<pre class="r"><code># Create a vector XX
 
 XX &lt;- c(XX, XX, XX, XX)
 
 # Print the object
 
 XX</code></pre>
-<p>B2. Using the <code>class()</code> function, check the class of your <code>id</code> vector. Is it numeric?</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Using the <code>class()</code> function, check the class of your <code>id</code> vector. Is it numeric?</li>
+</ol>
 <pre class="r"><code># Show the class of an object XX
 
 class(XX)</code></pre>
-<p>B3. Using the <code>length()</code> function, find out the length of your <code>id</code> object. Does it have length 10? If not, make sure you defined it correctly!</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Using the <code>length()</code> function, find out the length of your <code>id</code> object. Does it have length 10? If not, make sure you defined it correctly!</li>
+</ol>
 <pre class="r"><code># Show the length of an object XX
 
 length(XX)</code></pre>
-<p>B4. Create a character vector called <code>sex</code> that shows the sex values. Make sure to use quotation marks “” when entering the data to tell R that the data are charcters! When you finish, print the object to see it!</p>
+<ol start="4" style="list-style-type: decimal">
+<li>Create a character vector called <code>sex</code> that shows the sex values. Make sure to use quotation marks “” when entering the data to tell R that the data are charcters! When you finish, print the object to see it!</li>
+</ol>
 <pre class="r"><code># Create a character vector XX
 
 XX &lt;- c(&quot;XX&quot;, &quot;XX&quot;, &quot;XX&quot;, &quot;XX&quot;)</code></pre>
-<p>B5. Using the <code>class()</code> function, check the class of your <code>sex</code> vector. Is it character?</p>
-<p>B6. Using the <code>length()</code> function, find out the length of your <code>sex</code> object. Does it have length 10? If not, make sure you defined it correctly!</p>
-<p>B7. Using the same steps as before, create the <code>height</code> vector.</p>
-<p>B8. Look at the weight data, you’ll notice it contains an missing value. Create a vector called <code>weight</code> containing these data, making sure to specify the missing value as <code>NA</code></p>
-<p>…</p>
+<ol start="5" style="list-style-type: decimal">
+<li><p>Using the <code>class()</code> function, check the class of your <code>sex</code> vector. Is it character?</p></li>
+<li><p>Using the <code>length()</code> function, find out the length of your <code>sex</code> object. Does it have length 10? If not, make sure you defined it correctly!</p></li>
+<li><p>Using the same steps as before, create the <code>height</code> vector.</p></li>
+<li><p>Look at the weight data, you’ll notice it contains an missing value. Create a vector called <code>weight</code> containing these data, making sure to specify the missing value as <code>NA</code></p></li>
+</ol>
 </div>
-<div id="c---functions" class="section level3">
-<h3>C - Functions</h3>
-<p>C1. Using the <code>table()</code> function, find out how many males and females are in the data. You should find 7 males and 3 females!</p>
-<p>C2. Using the <code>mean()</code> function, calculate the mean age. It should be 44!</p>
-<p>C3. Try calculating the mean value of sex. What happens? Why?</p>
-<p>C4. Try calculating the mean weight. What happens? Why?</p>
-<p>C5. Look at the help menu for the <code>mean()</code> function to look for an argument that will help you with your problem…</p>
-<p>C6. Using the correct argument for the mean function, calculate the mean weight ignoring NA values. It should be 76.89!</p>
-<p>…</p>
+<div id="c---functions" class="section level2">
+<h2>C - Functions</h2>
+<ol style="list-style-type: decimal">
+<li><p>Using the <code>table()</code> function, find out how many males and females are in the data. You should find 7 males and 3 females!</p></li>
+<li><p>Using the <code>mean()</code> function, calculate the mean age. It should be 44!</p></li>
+<li><p>Try calculating the mean value of sex. What happens? Why?</p></li>
+<li><p>Try calculating the mean weight. You should get an <code>NA</code> value. Why?</p></li>
+<li><p>Look at the help menu for the <code>mean()</code> function to look for an argument that will help you with your problem.</p></li>
+<li><p>Using the correct argument for the mean function, calculate the mean weight ignoring NA values. It should be 76.89!</p></li>
+</ol>
 </div>
-<div id="d---creating-dataframes" class="section level3">
-<h3>D - Creating dataframes</h3>
-<p>D1. Using the <code>data.frame()</code> function, create a dataframe called <code>baselers_10</code> that contains each of vectors you just created:</p>
-<pre class="r"><code>XX &lt;- data.frame(XX, XX, XX, XX) </code></pre>
-<p>D2. Using the <code>dim()</code> function, print the number of rows and columns in your dataframe.</p>
-<p>D3. Now use the <code>tibble()</code> function…</p>
-<p>…</p>
+<div id="d---logical-vectors" class="section level2">
+<h2>D - Logical Vectors</h2>
+<ol style="list-style-type: decimal">
+<li>Logical vectors contain only <code>TRUE</code> and <code>FALSE</code> values. Create a new vector called <code>tall_180</code> which indicates which baselers are taller than 180cm. To do this, use the <code>&gt;</code> operator.</li>
+</ol>
+<pre class="r"><code># Create a logical vector tall_180 indicating
+#  which baselers are taller than 180cm
+
+XX &lt;- XX &gt; XX</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Print your <code>tall_180</code> vector to the console. Do you see only TRUE and FALSE values? If so, do the values that are TRUE match the ten baselers that are actually over 180cm?</p></li>
+<li><p>Using the <code>table()</code> function, create a table showing how many of the ten baselers are taller than 180cm and how many are not</p></li>
+<li><p>Using the <code>mean()</code> function, calculate the percentage of the ten baselers that are taller than 180cm.</p></li>
+</ol>
 </div>
-<div id="e---logical-vectors" class="section level3">
-<h3>E - Logical Vectors</h3>
-<p>…</p>
+<div id="e---creating-dataframes" class="section level2">
+<h2>E - Creating dataframes</h2>
+<ol style="list-style-type: decimal">
+<li>Using the <code>data.frame()</code> function, create a dataframe called <code>ten_baselers</code> that contains each of vectors you just created: <code>id</code>, <code>sex</code>, <code>height</code>, <code>weight</code>, <code>tall_180</code></li>
+</ol>
+<pre class="r"><code>XX &lt;- data.frame(XX, XX, XX, XX, XX) </code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Print your <code>ten_baselers</code> object to see how it looks! Does it contain all of the vectors?</p></li>
+<li><p>Using the <code>dim()</code> function, print the number of rows and columns in your dataframe. Do you get 10 rows and 5 columns?</p></li>
+<li><p>What is the class of your <code>ten_baselers</code> object? Use the <code>class()</code> function to find out!</p></li>
+<li><p>Use the <code>summary()</code> function to print descriptive statistics from each column of <code>ten_baselers</code></p></li>
+<li><p>Using the <code>$</code> operator, print the <code>age</code> column from the <code>ten_baselers</code> dataframe.</p></li>
+<li><p>Calculate the maximum <code>age</code> value from the <code>ten_baselers</code> dataframe. Do you get the same result from when you calculated it from the original vector <code>age</code>?</p></li>
+</ol>
 </div>
-<div id="f---coercion" class="section level3">
-<h3>F - Coercion</h3>
-<p>…</p>
+<div id="x---challenges" class="section level2">
+<h2>X - Challenges</h2>
+<ol style="list-style-type: decimal">
+<li><p>If you take the <code>sum()</code> of a logical vector, R will return the number of cases that are <code>TRUE</code>. Using this, find out how many of the ten baselers are male.</p></li>
+<li><p>You can use logical vectors to select rows from a dataframe based on certain criteria. using the following template, get the id values of baselers who are younger than 30:</p></li>
+</ol>
+<pre class="r"><code># Create a logical vector indicating which baselers are younger than 30
+young_30 &lt;- XX$XX &lt; 30
+
+# Print the ids of baselers younger than 30
+XX$id[young_30]</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li><p>Use a combination of logical vectors and the <code>mean()</code> function to answer the question: “What is the mean age of baselers who are heavier than 80kg?”</p></li>
+<li><p>What are the id values of baselers who are male <em>and</em> are shorter than 165cm? (Hint: You will need to use <code>&amp;</code> to combine multiple logical vectors)</p></li>
+<li></li>
+</ol>
 </div>
 </div>
 

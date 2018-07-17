@@ -55,9 +55,11 @@ layout: true
 
 ---
 
+
+.pull-left5[
+
 # Base R Plotting
 
-.pull-left45[
 
 The **classic framework** of plotting.
 
@@ -65,20 +67,20 @@ Contains separate **function for each 'type'** of plot.
 
 E.g. `barplot()` for a bar plot, `boxplot()` for a box plot, and `plot()` for a scatterplot. 
 
-&lt;br&gt;&lt;br&gt;&lt;br&gt;
+&lt;br&gt;
 
 
 ```r
 # Histogram in base R
-hist(x = mpg$displ,
-     xlab = "Cylinder displacement (l)",
+hist(x = baselers$age,
+     xlab = "Age",
      ylab = "Frequency",
-     main = "Histogram of displacement")
+     main = "Baselers Age")
 ```
 
 ]
 
-.pull-right45[
+.pull-right5[
 
 &lt;img src="Plotting_files/figure-html/unnamed-chunk-5-1.png" style="display: block; margin: auto;" /&gt;
 
@@ -86,9 +88,11 @@ hist(x = mpg$displ,
 
 ---
 
+
+.pull-left5[
+
 # Base R Plotting
 
-.pull-left45[
 
 The **classic framework** of plotting.
 
@@ -96,15 +100,15 @@ Contains separate **function for each 'type'** of plot.
 
 E.g. `barplot()` for a bar plot, `boxplot()` for a box plot, and `plot()` for a scatterplot. 
 
-&lt;br&gt;&lt;br&gt;&lt;br&gt;
+&lt;br&gt;
 
 
 ```r
 # Boxplot in base R
-boxplot(formula = cty ~ trans,
-        data = mpg,
-        xlab = "Transmission",
-        ylab = "City miles per gallon",
+boxplot(formula = height ~ sex,
+        data = baselers,
+        xlab = "Sex",
+        ylab = "Height",
         main = "Box plot")
 ```
 
@@ -116,12 +120,13 @@ boxplot(formula = cty ~ trans,
 
 ]
 
-
 ---
 
-# Base R Plotting
 
-.pull-left45[
+.pull-left5[
+
+
+# Base R Plotting
 
 The **classic framework** of plotting.
 
@@ -129,15 +134,15 @@ Contains separate **function for each 'type'** of plot.
 
 E.g. `barplot()` for a bar plot, `boxplot()` for a box plot, and `plot()` for a scatterplot. 
 
-&lt;br&gt;&lt;br&gt;&lt;br&gt;
+&lt;br&gt;
 
 
 ```r
 # Scatterplot in base R
-plot(x = mpg$displ,
-     y = mpg$cty,
-     xlab = "Engine Displacement in Liters",
-     ylab = "City miles per gallon",
+plot(x = baselers$height,
+     y = baselers$income,
+     xlab = "Height",
+     ylab = "Income",
      main = "Scatterplot")
 ```
 
@@ -156,11 +161,11 @@ plot(x = mpg$displ,
 
 .pull-left35[
 
-1) Complex plots can quickly require a &lt;b&gt;LOT of code&lt;/b&gt;.&lt;br&gt;
+- Default plots look pretty &lt;b&gt;outdated&lt;/b&gt;.&lt;br&gt;
 
-2) Default plots look pretty &lt;b&gt;outdated&lt;/b&gt;.&lt;br&gt;
+- Plots can quickly require a &lt;b&gt;LOT of code&lt;/b&gt;.&lt;br&gt;
 
-3) Can't store plots as &lt;b&gt;objects&lt;/b&gt; to reference and update later&lt;/font&gt;&lt;br&gt;
+- Can't store plots as &lt;b&gt;objects&lt;/b&gt; to reference and update later&lt;/font&gt;&lt;br&gt;
 
 ### Solution: ggplot2
 
@@ -172,7 +177,7 @@ plot(x = mpg$displ,
 
 .pull-right55[
 
-This plot would take &lt;b&gt;a lot of code in Base R&lt;/b&gt; but **just 10 lines of code**, 5 of which controlling the labels, in `ggplot2`.
+Thhis plot would take &lt;b&gt;a lot of code in Base R&lt;/b&gt; but **just 10 lines of code**, 5 of which controlling the labels, in `ggplot2`.
 
 &lt;img src="Plotting_files/figure-html/unnamed-chunk-11-1.png" style="display: block; margin: auto;" /&gt;
 
@@ -187,17 +192,14 @@ This plot would take &lt;b&gt;a lot of code in Base R&lt;/b&gt; but **just 10 li
 
 The Grammar of graphics breaks down plots into several key pieces:
 
-
-| aesthetics| Description|
+| Aesthetics| Description|
 |:------|:----|
-|     Data|    What dataframe contains the data?|
-|     Aesthetics| What does the x-axis, y-axis, color (etc) represent?|
-|     Geometries| What kind of geometric object do you want to plot?|
-|     Facets| Should there be groups of plots?|
-|     Statistics|What statistic summaries / transformations should be done?|
-|    Coordinates| What is the scale of the axes?|
-|    Theme| What should the overall plot look like?|
-
+| Data| What dataframe contains the data?|
+| axes| What does the x-axis, y-axis, color (etc) represent?|
+| color| What does color represent? |
+| size | What does size represent? |
+| geometries| What kind of geometric object do you want to plot?|
+| facets| Should there be groups of plots?|
 
 ]
 
@@ -361,10 +363,7 @@ Common geoms are...
 |     `geom_count()`| Points with size reflecting frequency|
 |     `geom_smooth()`|  Smoothed line|
 
-
-
 ]
-
 
 .pull-right5[
 
@@ -477,11 +476,11 @@ ggplot(data = mpg,
 
 | displ| hwy|class   | year|
 |-----:|---:|:-------|----:|
-|   1.8|  37|compact | 2008|
-|   3.7|  18|pickup  | 2008|
-|   3.6|  26|midsize | 2008|
-|   4.7|  12|suv     | 2008|
+|   3.0|  24|minivan | 1999|
 |   3.3|  28|midsize | 2008|
+|   2.5|  25|compact | 2008|
+|   1.8|  37|compact | 2008|
+|   3.8|  26|midsize | 1999|
 
 
 ]
