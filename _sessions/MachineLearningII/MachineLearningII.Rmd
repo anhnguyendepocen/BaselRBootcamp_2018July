@@ -172,12 +172,6 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 
 ]
 
-
----
-
-# New!
-
-
 ---
 
 ## Overfitting
@@ -803,12 +797,20 @@ knitr::include_graphics("caret_package_md.jpg")
 
 ---
 
+.pull-left4[
+<br><br><br><br><br>
 # Questions?
+
+## [Machine Learning II Practical](https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/MachineLearningII/MachineLearningII_practical.html)
+
+
+]
+
+.pull-right55[
 <br><br><br>
+```{r, echo = FALSE, out.width = "90%", fig.cap="<font size = 4>Source: www.petsmagazine.com</font>"}
+knitr::include_graphics("https://www.petsmagazine.com.sg/img/articles/main/bugsbunny.jpg")
+```
 
-# [Machine Learning II Practical](https://therbootcamp.github.io/Erfurt_2018June/_sessions/D2S2_MachineLearning/MachineLearning_practical.html)
-
-
----
-
+]
 
