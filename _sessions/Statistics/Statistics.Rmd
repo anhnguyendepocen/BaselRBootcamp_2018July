@@ -346,7 +346,7 @@ baselers %>%
 
 .pull-right6[
 
-To conduct a regression analysis, use `glm()` or `lm()`. `lm()` is for simple linear regression, while `glm()` is generalized. Both are part of the `stats` package (already loaded in R)
+To conduct a regression analysis, use `glm()` or `lm()`. `lm()` is for simple linear regression, while `glm()` is generalized.
 
 
 ```{r}
