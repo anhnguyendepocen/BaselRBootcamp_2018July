@@ -346,8 +346,6 @@ knitr::opts_knit$set(root.dir = "../")
 
 ### References and Links
 
-- Want to see the .Rmd file that created this practical? You can find it [here](https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/D4S2_DynamicReports/DynamicReports_practical.Rmd).
-
 - The `rmdformats` package has many nice templates for .Rmd files. Look at their GitHub page at [https://github.com/juba/rmdformats](https://github.com/juba/rmdformats) for examples. If you install the package from CRAN with `install.packages('rmdformats')`, you'll get lots of new templates when you open a new Markdown file in RStudio. 
 
 - If you want to use custom .css files, check out the the [R Studio HTML document guide](http://rmarkdown.rstudio.com/html_document_format.html#custom_css). You can also look at the .css files underlying the `rmdformats` package on their GitHub page here [https://github.com/juba/rmdformats](https://github.com/juba/rmdformats). For example, here is their .css file for the "html docco" template [https://raw.githubusercontent.com/juba/rmdformats/master/inst/templates/html_docco/docco.css](https://raw.githubusercontent.com/juba/rmdformats/master/inst/templates/html_docco/docco.css)
