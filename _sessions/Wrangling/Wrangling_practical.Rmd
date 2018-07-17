@@ -81,9 +81,8 @@ trial_act_demo <- read_csv("../_data/complete/trial_act_demo_fake.csv")
 ## Examples
 
 ```{r, eval = FALSE, echo = TRUE}
-# -----------------------------------------------
-# Wrangling with dplyr and tidyr
-# ------------------------------------------------
+
+# Wrangling with dplyr and tidyr ---------------------------
 
 library(tidyverse)    # Load tidyverse for dplyr and tidyr
 library(skimr)        # For skim()
@@ -192,7 +191,7 @@ library(tidyverse)
 trial_act
 ```
 
-7. Use the `skim()` function (from the `skimr` package) to get more details on the datasets.
+7. Use the the `summary()` or `skim()` function (from the `skimr` package) to get more details on the datasets.
 
 ```{r}
 skim(trial_act)
@@ -200,9 +199,9 @@ skim(trial_act)
 
 ### B - Change column names with rename()
 
-1. Look at the names of the `trial_act` data with `names()`
+1. Printthe names of the `trial_act` data with `names()`
 
-2. Using `rename()`, change the column name `wtkg` in the `trial_act` dataframe to `weight_kg` (to specify that weight is in kilograms). Be sure to assign the result back to `trial_act` to change it!
+2. Using `rename()`, change the column name `wtkg` in the `trial_act` dataframe to `weight_kg`. Be sure to assign the result back to `trial_act` to change it!
 
 ```{r, echo = TRUE}
 # Change the name to weight_kg from wtkg
@@ -223,7 +222,7 @@ trial_act <- trial_act %>%
 
 ### C - Select columns with select()
 
-1. Using the `select()` function, select only the column `age` and print the result. Do you see only the age column now?
+1. Using the `select()` function, select only the column `age` and print the result (but don't assign it to anything). Do you see only the age column now?
 
 2. Create a new dataframe called `CD4_wide` that *only* contains the columns `pidnum`, `arms`, `cd40`, `cd420`, and `cd496`. The `cd40`, `cd420`, and `cd496` columns show patient's CD4 T cell counts at baseline, 20 weeks, and 96 weeks. Print the result to make sure it worked!
 
@@ -248,7 +247,7 @@ trial_act <- trial_act %>%
   mutate(XX = XX * 12)
 ```
 
-2. Add the following new columns to `trial_act`. Try combining these into *one* call to the mutate() function!
+2. Add the following new columns to `trial_act`. Try combining these into *one* call to the `mutate()` function!
 
 - `weight_lb`: Weight in lbs instead of kilograms. You can do this by multiplying `weight_kg` by 2.2.
 - `cd_change_20`: Change in CD4 T cell count from baseline to 20 weeks. You can do this by taking `cd420 - cd40`

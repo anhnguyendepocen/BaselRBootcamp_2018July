@@ -265,9 +265,7 @@ $(document).ready(function () {
 </div>
 <div id="examples" class="section level2">
 <h2>Examples</h2>
-<pre class="r"><code># -----------------------------------------------
-# Wrangling with dplyr and tidyr
-# ------------------------------------------------
+<pre class="r"><code># Wrangling with dplyr and tidyr ---------------------------
 
 library(tidyverse)    # Load tidyverse for dplyr and tidyr
 library(skimr)        # For skim()
@@ -348,13 +346,13 @@ trial_act &lt;- read_csv(file = &quot;XXX/XXX&quot;)</code></pre>
 <pre class="r"><code># Print trial_act object
 trial_act</code></pre>
 <ol start="7" style="list-style-type: decimal">
-<li>Use the <code>skim()</code> function (from the <code>skimr</code> package) to get more details on the datasets.</li>
+<li>Use the the <code>summary()</code> or <code>skim()</code> function (from the <code>skimr</code> package) to get more details on the datasets.</li>
 </ol>
 <div id="b---change-column-names-with-rename" class="section level3">
 <h3>B - Change column names with rename()</h3>
 <ol style="list-style-type: decimal">
-<li><p>Look at the names of the <code>trial_act</code> data with <code>names()</code></p></li>
-<li><p>Using <code>rename()</code>, change the column name <code>wtkg</code> in the <code>trial_act</code> dataframe to <code>weight_kg</code> (to specify that weight is in kilograms). Be sure to assign the result back to <code>trial_act</code> to change it!</p></li>
+<li><p>Printthe names of the <code>trial_act</code> data with <code>names()</code></p></li>
+<li><p>Using <code>rename()</code>, change the column name <code>wtkg</code> in the <code>trial_act</code> dataframe to <code>weight_kg</code>. Be sure to assign the result back to <code>trial_act</code> to change it!</p></li>
 </ol>
 <pre class="r"><code># Change the name to weight_kg from wtkg
 
@@ -368,7 +366,7 @@ trial_act &lt;- trial_act %&gt;%
 <div id="c---select-columns-with-select" class="section level3">
 <h3>C - Select columns with select()</h3>
 <ol style="list-style-type: decimal">
-<li><p>Using the <code>select()</code> function, select only the column <code>age</code> and print the result. Do you see only the age column now?</p></li>
+<li><p>Using the <code>select()</code> function, select only the column <code>age</code> and print the result (but don’t assign it to anything). Do you see only the age column now?</p></li>
 <li><p>Create a new dataframe called <code>CD4_wide</code> that <em>only</em> contains the columns <code>pidnum</code>, <code>arms</code>, <code>cd40</code>, <code>cd420</code>, and <code>cd496</code>. The <code>cd40</code>, <code>cd420</code>, and <code>cd496</code> columns show patient’s CD4 T cell counts at baseline, 20 weeks, and 96 weeks. Print the result to make sure it worked!</p></li>
 </ol>
 <pre class="r"><code>XX &lt;- trial_act %&gt;% 
@@ -387,7 +385,7 @@ trial_act &lt;- trial_act %&gt;%
 <pre class="r"><code>trial_act &lt;- trial_act %&gt;%
   mutate(XX = XX * 12)</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>Add the following new columns to <code>trial_act</code>. Try combining these into <em>one</em> call to the mutate() function!</li>
+<li>Add the following new columns to <code>trial_act</code>. Try combining these into <em>one</em> call to the <code>mutate()</code> function!</li>
 </ol>
 <ul>
 <li><code>weight_lb</code>: Weight in lbs instead of kilograms. You can do this by multiplying <code>weight_kg</code> by 2.2.</li>

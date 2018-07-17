@@ -26,9 +26,8 @@ layout: true
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
-&lt;a href="https://therbootcamp.github.io/"&gt;&lt;font color="#646464"&gt;www.therbootcamp.com&lt;/font&gt;&lt;/a&gt;
+&lt;a href="https://therbootcamp.github.io/"&gt;&lt;font color="#7E7E7E"&gt;www.therbootcamp.com&lt;/font&gt;&lt;/a&gt;
 &lt;/span&gt;&lt;/div&gt; 
-
 ---
   
 
@@ -37,10 +36,9 @@ layout: true
 
 
 
+.pull-left4[
 
 # Where you're at...
-
-.pull-left4[
 
 0) Loaded packages (like tidyverse!) with `library()`&lt;br&gt;
 
@@ -54,7 +52,6 @@ layout: true
 What's next?... **Wrangling!**
 
 ]
-
 
 .pull-right55[
 
@@ -148,33 +145,49 @@ library(tidyverse)
 &lt;br&gt;
 &lt;br&gt;&lt;br&gt;
 &lt;img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/dplyr_tidyr_hex.png" width="100%" style="display: block; margin: auto;" /&gt;
+
 ]
 
 ---
 
-&lt;br&gt;&lt;br&gt;
-# %&gt;%  -  "The Pipe!"
-
 .pull-left4[
+ 
+# The Pipe!  %&gt;%
+ 
  
 &lt;font size = 5&gt;dplyr makes extensive use of a new operator called the "Pipe" &lt;b&gt;&lt;font  style="color:#52D998"&gt;%&gt;%&lt;/font&gt;&lt;/b&gt;&lt;/font&gt;&lt;br&gt;&lt;br&gt;
 
 &lt;font size = 5&gt;Read the "Pipe" &lt;b&gt;&lt;font style="color:#52D998"&gt;%&gt;%&lt;/font&gt;&lt;/b&gt; as "And Then..."&lt;/font&gt;&lt;br&gt;&lt;br&gt;
 
-&lt;br&gt;
+
+
+```r
+# Start with data
+data %&gt;% # AND THEN...
+  
+DO_SOMETHING %&gt;% # AND THEN...
+  
+DO_SOMETHING %&gt;% # AND THEN...
+  
+DO_SOMETHING %&gt;% # AND THEN...
+
+...
+```
+
 
 ]
 
 .pull-right6[
+
+&lt;br&gt;&lt;br&gt;
+
 &lt;div class="figure" style="text-align: center"&gt;
-&lt;img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b9/MagrittePipe.jpg/300px-MagrittePipe.jpg" alt="This is not a pipe (but %&amp;gt;% is!)"  /&gt;
+&lt;img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b9/MagrittePipe.jpg/300px-MagrittePipe.jpg" alt="This is not a pipe (but %&amp;gt;% is!)" width="80%" /&gt;
 &lt;p class="caption"&gt;This is not a pipe (but %&gt;% is!)&lt;/p&gt;
 &lt;/div&gt;
 
 
 ]
-
-
 
 
 ---
@@ -340,16 +353,19 @@ patients_df   # Demographic data
 
 ---
 
-# `rename()` 
 
 .pull-left3[
 
+# `rename()` 
 
 Change column names with `rename()`
 
-New = Old, 
 
-New = Old, 
+```r
+df %&gt;%
+  rename(NEW = OLD,
+         NEW = OLD)
+```
 
 
 ```r
@@ -369,7 +385,7 @@ patients_df  # Original
 ]
 
 .pull-right65[
-
+&lt;br&gt;&lt;br&gt;
 Change column names with `rename()`
 
 
@@ -398,9 +414,9 @@ patients_df %&gt;%
 
 ---
 
-# `mutate()` 
-
 .pull-left3[
+
+# `mutate()` 
 
 Add new columns (or change existing ones) with `mutate()`&lt;br&gt;&lt;br&gt;
 
@@ -418,13 +434,13 @@ df %&gt;%
 
 .pull-right65[
 
-
+&lt;br&gt;&lt;br&gt;
 
 ```r
 patients_df %&gt;% 
 
   rename(age = b, 
-         arm = c) %&gt;%
+         arm = c) %&gt;%   # AND THEN...
   
 # Create new columns with mutate()
   mutate(age_months = age * 12,
@@ -505,6 +521,7 @@ patients_df %&gt;%
 
 
 ---
+
 # Joining data
  
 &lt;img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/joining_data.png" width="95%" /&gt;

@@ -41,10 +41,9 @@ library(tidyverse)
 ```
 
 
+.pull-left4[
 
 # Where you're at...
-
-.pull-left4[
 
 0) Loaded packages (like tidyverse!) with `library()`<br>
 
@@ -58,7 +57,6 @@ library(tidyverse)
 What's next?... **Wrangling!**
 
 ]
-
 
 .pull-right55[
 
@@ -156,32 +154,48 @@ library(tidyverse)
 ```{r, echo = FALSE, out.width = "100%", fig.align = 'center'}
 knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/dplyr_tidyr_hex.png")
 ```
+
 ]
 
 ---
 
-<br><br>
-# %>%  -  "The Pipe!"
-
 .pull-left4[
+ 
+# The Pipe!  %>%
+ 
  
 <font size = 5>dplyr makes extensive use of a new operator called the "Pipe" <b><font  style="color:#52D998">%>%</font></b></font><br><br>
 
 <font size = 5>Read the "Pipe" <b><font style="color:#52D998">%>%</font></b> as "And Then..."</font><br><br>
 
-<br>
 
-]
+```{r, eval = FALSE, echo = TRUE}
+# Start with data
+data %>% # AND THEN...
+  
+DO_SOMETHING %>% # AND THEN...
+  
+DO_SOMETHING %>% # AND THEN...
+  
+DO_SOMETHING %>% # AND THEN...
 
-.pull-right6[
-```{r, echo = FALSE, fig.align='center', fig.cap="This is not a pipe (but %>% is!)"}
-knitr::include_graphics("https://upload.wikimedia.org/wikipedia/en/thumb/b/b9/MagrittePipe.jpg/300px-MagrittePipe.jpg")
+...
+
 ```
 
 
 ]
 
+.pull-right6[
 
+<br><br>
+
+```{r, echo = FALSE, fig.align='center', fig.cap="This is not a pipe (but %>% is!)", out.width = "80%"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/en/thumb/b/b9/MagrittePipe.jpg/300px-MagrittePipe.jpg")
+```
+
+
+]
 
 
 ---
@@ -325,16 +339,18 @@ patients_df   # Demographic data
 
 ---
 
-# `rename()` 
 
 .pull-left3[
 
+# `rename()` 
 
 Change column names with `rename()`
 
-New = Old, 
-
-New = Old, 
+```{r, eval = FALSE, echo = TRUE}
+df %>%
+  rename(NEW = OLD,
+         NEW = OLD)
+```
 
 ```{r}
 patients_df  # Original
@@ -342,7 +358,7 @@ patients_df  # Original
 ]
 
 .pull-right65[
-
+<br><br>
 Change column names with `rename()`
 
 ```{r}
@@ -359,9 +375,9 @@ patients_df %>%
 
 ---
 
-# `mutate()` 
-
 .pull-left3[
+
+# `mutate()` 
 
 Add new columns (or change existing ones) with `mutate()`<br><br>
 
@@ -378,12 +394,12 @@ df %>%
 
 .pull-right65[
 
-
+<br><br>
 ```{r, warning = FALSE}
 patients_df %>% 
 
   rename(age = b, 
-         arm = c) %>%
+         arm = c) %>%   # AND THEN...
   
 # Create new columns with mutate()
   mutate(age_months = age * 12,
@@ -440,6 +456,7 @@ patients_df %>%
 
 
 ---
+
 # Joining data
  
 ```{r, echo = FALSE, out.width = "95%"}
