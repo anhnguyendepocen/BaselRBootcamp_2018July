@@ -872,14 +872,15 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 
 
 ---
+
 <br>
 
 ## Questions?
 
-<br><br>
+## [Demo and Practical](https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/Statistics/Statistics_practical.html)
 
-# [Statistics Practical](https://therbootcamp.github.io/Erfurt_2018June/_sessions/D1S3_Statistics/Statistics_practical.html)
+<br>
 
-
-
-
+```{r, echo = FALSE, out.width = "55%", fig.align = 'center', fig.cap="Source: Lynda.com"}
+knitr::include_graphics("https://cdn.lynda.com/course/495322/495322-636154038826424503-16x9.jpg")
+```

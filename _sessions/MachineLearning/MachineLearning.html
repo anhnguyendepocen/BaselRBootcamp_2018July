@@ -159,12 +159,40 @@ Q: What are the parameters in the two models on the right?
 
 ]
 
+
+
+---
+
+
+
+
+
+## Fit your own linear model!
+
+&lt;br&gt;
+&lt;img src="MachineLearning_files/figure-html/unnamed-chunk-12-1.png" width="85%" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+## Fit your own linear model!
+&lt;br&gt;
+&lt;img src="MachineLearning_files/figure-html/unnamed-chunk-13-1.png" width="85%" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+## Fit your own linear model!
+&lt;br&gt;
+&lt;img src="MachineLearning_files/figure-html/unnamed-chunk-14-1.png" width="85%" style="display: block; margin: auto;" /&gt;
+
+
 ---
 
 # Why do we separate training from prediction?
 
 .pull-left4[
-
+&lt;br&gt;
 Just because a model can match past (training) data well, does *not* necessarily mean that it will *predict* new data well.
 
 Anyone can come up with a model of *past* data (e.g.; stock performance, lottery winnings). 
@@ -329,22 +357,24 @@ Training a model means finding values of `\(\beta_{Age}\)` and `\(\beta_{Income}
 ]
 
 .pull-right5[
-
+&lt;br&gt;&lt;br&gt;
 ### Regression with glm()
 
 The `glm()` function in the base stats package performs standard regression
 
 
 ```r
+# Standard linear regression
 glm_mod &lt;- glm(formula = happiness ~ .,
                data = baselers)
-
 
 # Logisitic regression with family = 'binomial'
 glm_mod &lt;- glm(formula = sex ~ .,
                data = baselers.
                family = "binomial")
 ```
+
+
 
 ]
 
@@ -364,7 +394,7 @@ In decision trees, the criterion is modeled as a sequence of logical Yes or No q
 ]
 
 .pull-right5[
-
+&lt;br&gt;&lt;br&gt;
 ### Decision trees with rpart
 
 Create decision trees with `rpart`
@@ -380,24 +410,11 @@ loan_rpart_mod &lt;- rpart(formula, data,
                         rpart.control)
 ```
 
-### Fast-and-frugal trees with FFTrees
-
-Create very simple fast-and-frugal decision trees with `FFTrees`
-
-
-```r
-install.packages("FFTrees")
-library(FFTrees)
-
-loan_FFTrees_mod &lt;- FFTrees(formula, data,
-                            max.levels, goal)
-```
- 
 ]
 
 ---
 
-## Ensemble decision trees
+## Random Forest
 
 .pull-left45[
 
@@ -412,7 +429,7 @@ A [Random Forest](https://en.wikipedia.org/wiki/Random_forest) is a collection o
 
 .pull-right5[
 
-Create a random forest using the `randomForest` package
+### Random Forest trees with randomforest
 
 
 ```r
@@ -425,7 +442,7 @@ randomForest(formula = y ~.,    # Formula
              ntree, mtry)  # Tuning parameters
 ```
 
-Here are some of the tuning parameters
+Tuning parameters
 
 |Parameter | Description|
 |:-------|:-------|
@@ -520,7 +537,8 @@ All machine learning objects will allow you to predict the criterion of new data
 .pull-right55[
 
 
-`zurichers`
+zurichers dataframe:
+
 
 | id| age| children| height| income|
 |--:|---:|--------:|------:|------:|
@@ -529,7 +547,6 @@ All machine learning objects will allow you to predict the criterion of new data
 |  3|  35|        1|   1.76|   8400|
 |  4|  54|        0|   1.73|   9500|
 |  5|  65|        2|   1.59|   3700|
-
 
 
 
@@ -553,7 +570,7 @@ The output is a vector of predicted values of the new dataset! You can now compa
 
 ## Questions?
 
-# [Machine Learning Practical](https://therbootcamp.github.io/Erfurt_2018June/_sessions/D1S3_Statistics/Statistics_practical.html)
+## [Demo and Practical](https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/MachineLearning/MachineLearning_practical.html)
 
 &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/MLdiagram.png" width="70%" style="display: block; margin: auto;" /&gt;
     </textarea>

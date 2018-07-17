@@ -878,26 +878,38 @@ baslers_agg <- baselers %>%
 
 ---
 
-.pull-left45[
 
-# Questions?
+## Data Wrangling Cheatsheet!
 
-```{r, echo = FALSE, out.width = "100%", fig.align = 'center'}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/dplyr_tidyr_hex.png")
-```
+
+<figure>
+<center>
+<a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">
+  <img src="https://image.slidesharecdn.com/data-wrangling-cheatsheet-160705210122/95/data-wrangling-with-dplyr-and-tidyr-cheat-sheet-1-638.jpg?cb=1467752577" alt="Trulli" style="width:65%">
+  <figcaption>https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf</figcaption></a>
+</figure>
+
+
+
+
+---
+
+.pull-left4[
+<br>
+
+
+## Questions?
+
+## [Demo and Practical](https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/Wrangling/Wrangling_practical.html)
+
 
 ]
 
-.pull-right45[
-<br><br>
-```{r, echo = FALSE, out.width = "100%", fig.align = 'center'}
+
+.pull-right6[
+
+```{r, echo = FALSE, out.width = "95%", fig.align = 'center'}
 knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/organise_transform_aggregate.png")
 ```
 
 ]
-
----
-<br><br><br>
-
-# [Wrangling Practical](https://therbootcamp.github.io/Erfurt_2018June/_sessions/D1S2_Wrangling/Wrangling_practical.html)
-
