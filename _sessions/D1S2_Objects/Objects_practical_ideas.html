@@ -463,16 +463,18 @@ XX &lt;- XX &gt; XX</code></pre>
 <div id="e---creating-dataframes" class="section level2">
 <h2>E - Creating dataframes</h2>
 <ol style="list-style-type: decimal">
-<li>Using the <code>data.frame()</code> function, create a dataframe called <code>ten_baselers</code> that contains each of vectors you just created: <code>id</code>, <code>sex</code>, <code>height</code>, <code>weight</code>, <code>tall_180</code></li>
+<li>Using the <code>data.frame()</code> function, create a dataframe called <code>ten_df</code> that contains each of vectors you just created: <code>id</code>, <code>sex</code>, <code>height</code>, <code>weight</code>, <code>tall_180</code></li>
 </ol>
 <pre class="r"><code>XX &lt;- data.frame(XX, XX, XX, XX, XX) </code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li><p>Print your <code>ten_baselers</code> object to see how it looks! Does it contain all of the vectors?</p></li>
+<li><p>Print your <code>ten_df</code> object to see how it looks! Does it contain all of the vectors?</p></li>
 <li><p>Using the <code>dim()</code> function, print the number of rows and columns in your dataframe. Do you get 10 rows and 5 columns?</p></li>
-<li><p>What is the class of your <code>ten_baselers</code> object? Use the <code>class()</code> function to find out!</p></li>
-<li><p>Use the <code>summary()</code> function to print descriptive statistics from each column of <code>ten_baselers</code></p></li>
-<li><p>Using the <code>$</code> operator, print the <code>age</code> column from the <code>ten_baselers</code> dataframe.</p></li>
-<li><p>Calculate the maximum <code>age</code> value from the <code>ten_baselers</code> dataframe. Do you get the same result from when you calculated it from the original vector <code>age</code>?</p></li>
+<li><p>What is the class of your <code>ten_df</code> object? Use the <code>class()</code> function to find out!</p></li>
+<li><p>Use the <code>summary()</code> function to print descriptive statistics from each column of <code>ten_df</code></p></li>
+<li><p>Using the <code>$</code> operator, print the <code>age</code> column from the <code>ten_df</code> dataframe.</p></li>
+<li><p>Calculate the maximum <code>age</code> value from the <code>ten_df</code> dataframe. Do you get the same result from when you calculated it from the original vector <code>age</code>?</p></li>
+<li><p>Instead of creating a dataframe of the data using the <code>data.frame()</code> function, try creating a tibble called <code>ten_tibble</code> using the <code>tibble()</code> function. You can use the exact same arguments you used before.</p></li>
+<li><p>Print your new <code>ten_tibble</code> object, how does it look different from <code>ten_df</code>? Try calculating the maximum <code>age</code> from this object. Is it different from what you got before?</p></li>
 </ol>
 </div>
 <div id="x---challenges" class="section level2">
@@ -489,7 +491,6 @@ XX$id[young_30]</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li><p>Use a combination of logical vectors and the <code>mean()</code> function to answer the question: “What is the mean age of baselers who are heavier than 80kg?”</p></li>
 <li><p>What are the id values of baselers who are male <em>and</em> are shorter than 165cm? (Hint: You will need to use <code>&amp;</code> to combine multiple logical vectors)</p></li>
-<li></li>
 </ol>
 </div>
 </div>

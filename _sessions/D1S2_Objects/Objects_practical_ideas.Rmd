@@ -234,23 +234,27 @@ XX <- XX > XX
 
 ## E - Creating dataframes
 
-1. Using the `data.frame()` function, create a dataframe called `ten_baselers` that contains each of vectors you just created: `id`, `sex`, `height`, `weight`, `tall_180`
+1. Using the `data.frame()` function, create a dataframe called `ten_df` that contains each of vectors you just created: `id`, `sex`, `height`, `weight`, `tall_180`
 
 ```{r, eval = FALSE, echo = TRUE}
 XX <- data.frame(XX, XX, XX, XX, XX) 
 ```
 
-2. Print your `ten_baselers` object to see how it looks! Does it contain all of the vectors?
+2. Print your `ten_df` object to see how it looks! Does it contain all of the vectors?
 
 3. Using the `dim()` function, print the number of rows and columns in your dataframe. Do you get 10 rows and 5 columns?
 
-4. What is the class of your `ten_baselers` object? Use the `class()` function to find out!
+4. What is the class of your `ten_df` object? Use the `class()` function to find out!
 
-5. Use the `summary()` function to print descriptive statistics from each column of `ten_baselers`
+5. Use the `summary()` function to print descriptive statistics from each column of `ten_df`
 
-6. Using the `$` operator, print the `age` column from the `ten_baselers` dataframe.
+6. Using the `$` operator, print the `age` column from the `ten_df` dataframe.
 
-7. Calculate the maximum `age` value from the `ten_baselers` dataframe. Do you get the same result from when you calculated it from the original vector `age`?
+7. Calculate the maximum `age` value from the `ten_df` dataframe. Do you get the same result from when you calculated it from the original vector `age`?
+
+8. Instead of creating a dataframe of the data using the `data.frame()` function, try creating a tibble called `ten_tibble` using the `tibble()` function. You can use the exact same arguments you used before.
+
+9. Print your new `ten_tibble` object, how does it look different from `ten_df`? Try calculating the maximum `age` from this object. Is it different from what you got before?
 
 ## X - Challenges
 
@@ -269,5 +273,3 @@ XX$id[young_30]
 3. Use a combination of logical vectors and the `mean()` function to answer the question: "What is the mean age of baselers who are heavier than 80kg?"
 
 4. What are the id values of baselers who are male *and* are shorter than 165cm? (Hint: You will need to use `&` to combine multiple logical vectors)
-
-5. 
