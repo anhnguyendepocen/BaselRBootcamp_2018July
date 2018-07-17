@@ -50,14 +50,12 @@ By the end of this practical you will know how to:
 |`tidyverse`|`install.packages("tidyverse")`|
 |`caret`|`install.packages("caret")`|
 |`skimr`|`install.packages("skimr")`|
-|`GGally`|`install.packages("GGally")`|
 
 ### Cheatsheet
 
-<a href="https://github.com/rstudio/cheatsheets/raw/master/caret.pdf">
-  <img src="https://github.com/therbootcamp/Erfurt_2018June/blob/master/_sessions/_image/caret_cheatsheet_ss.jpg?raw=true" width="600px">
-</a>
-
+<center><a href="https://github.com/rstudio/cheatsheets/raw/master/caret.pdf">
+  <img src="https://github.com/therbootcamp/Erfurt_2018June/blob/master/_sessions/_image/caret_cheatsheet_ss.jpg?raw=true" width="600px"></a></center>
+<center><a href="https://github.com/rstudio/cheatsheets/raw/master/caret.pdf">https://github.com/rstudio/cheatsheets/raw/master/caret.pdf</a></center>
 
 ### Datasets
 
@@ -125,9 +123,6 @@ diamonds_test <- diamonds %>%
 
 # Explore columns with summarizeColumns
 skim(diamonds_train)
-
-# Visualise relationships with ggpairs
-ggpairs(diamonds_train)
 
 # ---------------
 # Step 1: Define control parameters
