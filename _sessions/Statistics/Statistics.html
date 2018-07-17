@@ -357,7 +357,7 @@ Part of the `baselers` dataframe:
 
 .pull-right6[
 
-To conduct a regression analysis, use `glm()` or `lm()`. `lm()` is for simple linear regression, while `glm()` is generalized. Both are part of the `stats` package (already loaded in R)
+To conduct a regression analysis, use `glm()` or `lm()`. `lm()` is for simple linear regression, while `glm()` is generalized.
 
 
 
@@ -849,7 +849,7 @@ coin_flips
 ```
 
 ```
-##  [1] "T" "H" "T" "T" "H" "T" "T" "T" "T" "H"
+##  [1] "H" "T" "T" "H" "T" "H" "T" "H" "T" "T"
 ```
 
 ```r
@@ -860,7 +860,7 @@ table(coin_flips)
 ```
 ## coin_flips
 ## H T 
-## 3 7
+## 4 6
 ```
 
 ```r
@@ -869,7 +869,7 @@ mean(coin_flips == "H")
 ```
 
 ```
-## [1] 0.3
+## [1] 0.4
 ```
 
 ]
@@ -931,7 +931,7 @@ mysamp[1:5]  # First 5 values
 ```
 
 ```
-## [1]  6.752 -5.183  9.804  9.262 24.711
+## [1]  6.440 12.283 16.000  6.733  7.475
 ```
 
 ```r
@@ -939,7 +939,7 @@ mean(mysamp) # Mean
 ```
 
 ```
-## [1] 9.165
+## [1] 11.28
 ```
 
 ```r
@@ -947,7 +947,7 @@ sd(mysamp)   # Standard deviation
 ```
 
 ```
-## [1] 5.151
+## [1] 5.515
 ```
 
 
@@ -1033,13 +1033,19 @@ Use random sampling functions to run simulations
 
 
 ---
+
 &lt;br&gt;
 
 ## Questions?
 
-&lt;br&gt;&lt;br&gt;
+## [Demo and Practical](https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/Statistics/Statistics_practical.html)
 
-# [Statistics Practical](https://therbootcamp.github.io/Erfurt_2018June/_sessions/D1S3_Statistics/Statistics_practical.html)
+&lt;br&gt;
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="https://cdn.lynda.com/course/495322/495322-636154038826424503-16x9.jpg" alt="Source: Lynda.com" width="55%" /&gt;
+&lt;p class="caption"&gt;Source: Lynda.com&lt;/p&gt;
+&lt;/div&gt;
     </textarea>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
