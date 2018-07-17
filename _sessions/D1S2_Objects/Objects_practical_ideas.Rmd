@@ -232,6 +232,9 @@ XX <- XX > XX
 
 4. Using the `mean()` function, calculate the percentage of the ten baselers that are taller than 180cm.
 
+5. What percent of the ten baselers were older than 30?
+
+
 ## E - Creating dataframes
 
 1. Using the `data.frame()` function, create a dataframe called `ten_df` that contains each of vectors you just created: `id`, `sex`, `height`, `weight`, `tall_180`
