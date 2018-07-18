@@ -1,7 +1,7 @@
 ---
 title: "Efficient programming"
 author: "The R Bootcamp <br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
-date: "June 2018"
+date: "July 2018"
 output:
   xaringan::moon_reader:
     css: ["default", "baselrbootcamp.css"]
