@@ -117,15 +117,15 @@ t.test(formula = height ~ sex,
          data = baselers)
 
 # Regression model
-income_glm <- glm(formula = income ~ .,
-                  data = baselers %>% select(-id))
+inc_glm <- glm(formula = income ~ .,
+               data = baselers %>% select(-id))
 
 # Summary information
-summary(income_glm)  
+summary(inc_glm)  
 
 # Dissect
-income_glm$coefficients # Acess coefficients
-income_glm$residuals # Access residuals
+inc_glm$coefficients # Acess coefficients
+inc_glm$residuals # Access residuals
 
 ### Generate random data
 x1 <- rnorm(n = 100, mean = 10, sd = 5)
@@ -346,7 +346,7 @@ baselers %>%
 
 .pull-right6[
 
-To conduct a regression analysis, use `glm()` or `lm()`. `lm()` is for simple linear regression, while `glm()` is generalized. Both are part of the `stats` package (already loaded in R)
+To conduct a regression analysis, use `glm()` or `lm()`. `lm()` is for simple linear regression, while `glm()` is generalized.
 
 
 ```{r}
@@ -571,9 +571,9 @@ my_glm$residuals[1:5]
 .pull-left35[
 ## predict()
 
-Many (but not all) statistical objects have an associated `predict()` method.
+Many (but not all) statistical objects can be used with `predict()`
 
-`predict()` allows you to use the model to make predictions for new data, and understand how the model works.
+`predict(model, newdata)` allows you to use the `model` to predict outcomes from `newdata`.
 
 
 
@@ -606,9 +606,7 @@ mod <- lm(formula = income ~ age + fitness + tattoos,
 mod$coefficients
 ```
 
-```{r, eval = FALSE}
-thisyear
-```
+New data: `thisyear`
 
 ```{r, echo = FALSE}
 thisyear  %>% select(id, age, fitness, tattoos) %>% slice(1:3) %>% knitr::kable(format = "markdown")
@@ -651,23 +649,15 @@ install.packages("broom")
 # Load boom package
 library(broom)
 
-# Create a tidy dataframe from my_glm
-tidy(my_glm)
-```
-
-The `tidy()` function works all kinds of common statistical objects, from classical regression to Bayesian models, to machine learning. 
-
-```{r, echo = FALSE}
-  infile <- system.file("extdata", "rstan_example.rda", package = "broom")
-  load(infile)
+# Original printout
+my_glm
 ```
 
 
 ```{r}
-# rstan_example is a "stanfit" object
-tidy(rstan_example)[1:5,]
+# Tidy printout
+tidy(my_glm)
 ```
-
 
 Try it on your favorite models and see the magic!
 
@@ -818,7 +808,8 @@ ggplot(data = tibble(x = mysamp),
 |package|Description|
 |:----|:-----|
 |`afex`|Factorial experiments|
-|`lmer`|Linear mixed effects models|
+|`lme4`|Mixed effects models|
+|`rstanarm`|Bayesian mixed effects models|
 |`BayesFactor`|Bayesian Models|
 |`forecast`|Time series| 
 |`lavaan`|Latent variable and structural equation modelling| 
@@ -871,14 +862,15 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 
 
 ---
+
 <br>
 
 ## Questions?
 
-<br><br>
+## [Demo and Practical](https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/Statistics/Statistics_practical.html)
 
-# [Statistics Practical](https://therbootcamp.github.io/Erfurt_2018June/_sessions/D1S3_Statistics/Statistics_practical.html)
+<br>
 
-
-
-
+```{r, echo = FALSE, out.width = "55%", fig.align = 'center', fig.cap="Source: Lynda.com"}
+knitr::include_graphics("https://cdn.lynda.com/course/495322/495322-636154038826424503-16x9.jpg")
+```

@@ -50,14 +50,12 @@ By the end of this practical you will know how to:
 |`tidyverse`|`install.packages("tidyverse")`|
 |`caret`|`install.packages("caret")`|
 |`skimr`|`install.packages("skimr")`|
-|`GGally`|`install.packages("GGally")`|
 
 ### Cheatsheet
 
-<a href="https://github.com/rstudio/cheatsheets/raw/master/caret.pdf">
-  <img src="https://github.com/therbootcamp/Erfurt_2018June/blob/master/_sessions/_image/caret_cheatsheet_ss.jpg?raw=true" width="600px">
-</a>
-
+<center><a href="https://github.com/rstudio/cheatsheets/raw/master/caret.pdf">
+  <img src="https://github.com/therbootcamp/Erfurt_2018June/blob/master/_sessions/_image/caret_cheatsheet_ss.jpg?raw=true" width="600px"></a></center>
+<center><a href="https://github.com/rstudio/cheatsheets/raw/master/caret.pdf">https://github.com/rstudio/cheatsheets/raw/master/caret.pdf</a></center>
 
 ### Datasets
 
@@ -125,9 +123,6 @@ diamonds_test <- diamonds %>%
 
 # Explore columns with summarizeColumns
 skim(diamonds_train)
-
-# Visualise relationships with ggpairs
-ggpairs(diamonds_train)
 
 # ---------------
 # Step 1: Define control parameters
@@ -246,13 +241,13 @@ Step 5: Evaluate performance
 
 ## A - Setup
 
-A1. Open your R project. It should already have the folders `1_Data` and `2_Code`. Make sure that the all of the datasets you need for this practical are in your `1_Data` folder
+1. Open your R project. It should already have the folders `1_Data` and `2_Code`. Make sure that the all of the datasets you need for this practical are in your `1_Data` folder
 
 ```{r}
 # Done!
 ```
 
-A2. Open a new R script and save it as a new file called `ml_practical.R` in the `2_Code` folder. At the top of the script, using comments, write your name and the date. Then, load the all of the packages you'll need for this practical. Here's how the top of your script should look:
+2. Open a new R script and save it as a new file called `ml_practical.R` in the `2_Code` folder. At the top of the script, using comments, write your name and the date. Then, load the all of the packages you'll need for this practical. Here's how the top of your script should look:
 
 ```{r, eval = FALSE, echo = TRUE}
 ## NAME
@@ -268,17 +263,17 @@ library(XX)
 
 In this task, you'll create the best possible model to predict the housing prices of houses in King County Washington. These the training data is stored in `house_train` and the test data is stored in `house_test`. The variable you are trying to predict is `price`!
 
-B1. Follow Steps A through I above to create your best decision tree model predicting price. Call the model `rpart_price`
+1. Follow Steps A through I above to create your best decision tree model predicting price. Call the model `rpart_price`
 
-B2. Do the same with random forests using `method = "rf"`. Call the model `rf_price`
+2. Do the same with random forests using `method = "rf"`. Call the model `rf_price`
 
-B3. Do the same with regularised regression using `method = "glmnet"`. Call the model `glmnet_price`.
+3. Do the same with regularised regression using `method = "glmnet"`. Call the model `glmnet_price`.
 
-B4. Which of the three models was the best a predicting price? Were they very different? Is one easier to interpret than the other?
+4. Which of the three models was the best a predicting price? Were they very different? Is one easier to interpret than the other?
 
-B5. Go to [http://topepo.github.io/caret/available-models.html](http://topepo.github.io/caret/available-models.html) and find the craziest looking model you can find that works for regression tasks. Then, try it on the price dataset and see how well it works! Does it do much better than the models you already tried?
+5. Go to [http://topepo.github.io/caret/available-models.html](http://topepo.github.io/caret/available-models.html) and find the craziest looking model you can find that works for regression tasks. Then, try it on the price dataset and see how well it works! Does it do much better than the models you already tried?
 
-B6. Repeat your analyses, but now train your models using 10 fold cross validation by specifying `trainControl(method = "cv", number = 10, repeats = 1)`. How do the accuracy of the models change? Do they become more accurate when you use 10 fold cross validation compared to when you didn't?
+6. Repeat your analyses, but now train your models using 10 fold cross validation by specifying `trainControl(method = "cv", number = 10, repeats = 1)`. How do the accuracy of the models change? Do they become more accurate when you use 10 fold cross validation compared to when you didn't?
 
 ## C - Classification with `heartdisease`
 
@@ -298,21 +293,21 @@ heartdisease_test <- heartdisease_test %>%
 
 In this task, you'll create the best possible model to predict whether or not a person is having a heart attack. These the training data is stored in `heartdisease_train` and the test data is stored in `housedisease_test`. The variable you are trying to predict is `diagnosis`!
 
-C1. Follow Steps A through I above, to create your best decision tree model predicting diagnosis. Call the model `rpart_diagnosis`
+1. Follow Steps A through I above, to create your best decision tree model predicting diagnosis. Call the model `rpart_diagnosis`
 
-C2. Do the same with random forests using `method = "rf"`. Call the model `rf_diagnosis`
+2. Do the same with random forests using `method = "rf"`. Call the model `rf_diagnosis`
 
-C3. Do the same with nearest neighbors using `method = "knn"`. Call the model `knn_diagnosis`
+3. Do the same with nearest neighbors using `method = "knn"`. Call the model `knn_diagnosis`
 
-C4. Which of the three models was the best a predicting diagnosis? Were they very different? Is one easier to interpret than the other?
+4. Which of the three models was the best a predicting diagnosis? Were they very different? Is one easier to interpret than the other?
 
-C5. Go to [http://topepo.github.io/caret/available-models.html](http://topepo.github.io/caret/available-models.html) and find the craziest looking model you can find that works for classification tasks. Then, try it on the heartdisease dataset and see how well it works! Does it do much better than the models you already tried?
+5. Go to [http://topepo.github.io/caret/available-models.html](http://topepo.github.io/caret/available-models.html) and find the craziest looking model you can find that works for classification tasks. Then, try it on the heartdisease dataset and see how well it works! Does it do much better than the models you already tried?
 
-C6. Repeat your analyses, but now train your models using 10 fold cross validation by specifying `trainControl(method = "cv", number = 10, repeats = 1)`. How do the accuracy of the models change? Do they become more accurate when you use 10 fold cross validation compared to when you didn't?
+6. Repeat your analyses, but now train your models using 10 fold cross validation by specifying `trainControl(method = "cv", number = 10, repeats = 1)`. How do the accuracy of the models change? Do they become more accurate when you use 10 fold cross validation compared to when you didn't?
 
 ## D - Classification with `attrition`
 
-D1. Try creating your best model to predict whether or not an employee will leave his/her job with the `attrition_train` dataset. The variable you want to predict is `Attrition`!
+1. Try creating your best model to predict whether or not an employee will leave his/her job with the `attrition_train` dataset. The variable you want to predict is `Attrition`!
 
 
 ### Tips

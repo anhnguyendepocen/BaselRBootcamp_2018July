@@ -94,15 +94,15 @@ t.test(formula = height ~ sex,
          data = baselers)
 
 # Regression model
-income_glm &lt;- glm(formula = income ~ .,
-                  data = baselers %&gt;% select(-id))
+inc_glm &lt;- glm(formula = income ~ .,
+               data = baselers %&gt;% select(-id))
 
 # Summary information
-summary(income_glm)  
+summary(inc_glm)  
 
 # Dissect
-income_glm$coefficients # Acess coefficients
-income_glm$residuals # Access residuals
+inc_glm$coefficients # Acess coefficients
+inc_glm$residuals # Access residuals
 
 ### Generate random data
 x1 &lt;- rnorm(n = 100, mean = 10, sd = 5)
@@ -357,7 +357,7 @@ Part of the `baselers` dataframe:
 
 .pull-right6[
 
-To conduct a regression analysis, use `glm()` or `lm()`. `lm()` is for simple linear regression, while `glm()` is generalized. Both are part of the `stats` package (already loaded in R)
+To conduct a regression analysis, use `glm()` or `lm()`. `lm()` is for simple linear regression, while `glm()` is generalized.
 
 
 
@@ -666,9 +666,9 @@ my_glm$residuals[1:5]
 .pull-left35[
 ## predict()
 
-Many (but not all) statistical objects have an associated `predict()` method.
+Many (but not all) statistical objects can be used with `predict()`
 
-`predict()` allows you to use the model to make predictions for new data, and understand how the model works.
+`predict(model, newdata)` allows you to use the `model` to predict outcomes from `newdata`.
 
 
 
@@ -707,10 +707,7 @@ mod$coefficients
 ##       994.1       146.8        75.1      -173.3
 ```
 
-
-```r
-thisyear
-```
+New data: `thisyear`
 
 
 |  id| age| fitness| tattoos|
@@ -762,7 +759,28 @@ install.packages("broom")
 # Load boom package
 library(broom)
 
-# Create a tidy dataframe from my_glm
+# Original printout
+my_glm
+```
+
+```
+## 
+## Call:  glm(formula = income ~ happiness + age, data = baselers)
+## 
+## Coefficients:
+## (Intercept)    happiness          age  
+##        1575         -100          149  
+## 
+## Degrees of Freedom: 8509 Total (i.e. Null);  8507 Residual
+##   (1490 observations deleted due to missingness)
+## Null Deviance:	    6.33e+10 
+## Residual Deviance: 1.28e+10 	AIC: 145000
+```
+
+
+
+```r
+# Tidy printout
 tidy(my_glm)
 ```
 
@@ -772,27 +790,6 @@ tidy(my_glm)
 ## 2   happiness   -100.4   12.5197    -8.022 1.180e-15
 ## 3         age    149.3    0.8145   183.315 0.000e+00
 ```
-
-The `tidy()` function works all kinds of common statistical objects, from classical regression to Bayesian models, to machine learning. 
-
-
-
-
-
-```r
-# rstan_example is a "stanfit" object
-tidy(rstan_example)[1:5,]
-```
-
-```
-##     term estimate std.error
-## 1     mu  6.71421    5.9803
-## 2    tau  8.10885    7.4085
-## 3 eta[1]  0.47728    0.8941
-## 4 eta[2]  0.06064    0.8221
-## 5 eta[3] -0.22427    0.8589
-```
-
 
 Try it on your favorite models and see the magic!
 
@@ -849,7 +846,7 @@ coin_flips
 ```
 
 ```
-##  [1] "H" "H" "H" "H" "H" "H" "H" "H" "H" "T"
+##  [1] "T" "T" "H" "H" "T" "T" "T" "T" "H" "H"
 ```
 
 ```r
@@ -860,7 +857,7 @@ table(coin_flips)
 ```
 ## coin_flips
 ## H T 
-## 9 1
+## 4 6
 ```
 
 ```r
@@ -869,7 +866,7 @@ mean(coin_flips == "H")
 ```
 
 ```
-## [1] 0.9
+## [1] 0.4
 ```
 
 ]
@@ -904,7 +901,7 @@ length(birthdays)
 ```
 
 ```
-## [1] 25
+## [1] 21
 ```
 
 
@@ -931,7 +928,7 @@ mysamp[1:5]  # First 5 values
 ```
 
 ```
-## [1] 13.575 19.442  8.958 16.348  7.552
+## [1]  7.768 16.828  3.722  7.918 11.040
 ```
 
 ```r
@@ -939,7 +936,7 @@ mean(mysamp) # Mean
 ```
 
 ```
-## [1] 9.862
+## [1] 10.53
 ```
 
 ```r
@@ -947,7 +944,7 @@ sd(mysamp)   # Standard deviation
 ```
 
 ```
-## [1] 5.35
+## [1] 5.603
 ```
 
 
@@ -965,7 +962,7 @@ ggplot(data = tibble(x = mysamp),
   theme_minimal()
 ```
 
-&lt;img src="Statistics_files/figure-html/unnamed-chunk-46-1.png" width="100%" /&gt;
+&lt;img src="Statistics_files/figure-html/unnamed-chunk-44-1.png" width="100%" /&gt;
 
 
 
@@ -985,7 +982,8 @@ ggplot(data = tibble(x = mysamp),
 |package|Description|
 |:----|:-----|
 |`afex`|Factorial experiments|
-|`lmer`|Linear mixed effects models|
+|`lme4`|Mixed effects models|
+|`rstanarm`|Bayesian mixed effects models|
 |`BayesFactor`|Bayesian Models|
 |`forecast`|Time series| 
 |`lavaan`|Latent variable and structural equation modelling| 
@@ -1032,13 +1030,19 @@ Use random sampling functions to run simulations
 
 
 ---
+
 &lt;br&gt;
 
 ## Questions?
 
-&lt;br&gt;&lt;br&gt;
+## [Demo and Practical](https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/Statistics/Statistics_practical.html)
 
-# [Statistics Practical](https://therbootcamp.github.io/Erfurt_2018June/_sessions/D1S3_Statistics/Statistics_practical.html)
+&lt;br&gt;
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="https://cdn.lynda.com/course/495322/495322-636154038826424503-16x9.jpg" alt="Source: Lynda.com" width="55%" /&gt;
+&lt;p class="caption"&gt;Source: Lynda.com&lt;/p&gt;
+&lt;/div&gt;
     </textarea>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({

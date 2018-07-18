@@ -43,6 +43,8 @@ present <- tibble(id = 91:95,
                fam_history = sample(c("Yes", "No"), size = 5, replace = TRUE),
                smoking = sample(c(TRUE, FALSE), size = 5, replace = TRUE),
                disease = rep("?", 5))
+
+library(ggpubr)
 ```
 
 
@@ -188,12 +190,91 @@ $$\large{Risk = age \times 0.01 + smoking \times 0.20 + fam\_history \times 0.20
 
 ]
 
+
+
+---
+
+```{r, echo = FALSE, eval = TRUE}
+set.seed(104)
+
+N <- 10
+
+x <- rnorm(n = N, mean = 10, sd = 2)
+y_1 <- x * 1.2 + rnorm(n = N, mean = 0, sd = .3)
+y_2 <-  x * 0 + rnorm(n = N, mean = 0, sd = 2.5) + 2
+
+y_1_n <- x * 1.2 + rnorm(n = N, mean = 0, sd = .4)
+y_2_n <- x * 0 + rnorm(n = N, mean = 0, sd = 2.5) + 2
+
+
+data <- data.frame(x, y_1, y_2, y_1_n, y_2_n)
+
+
+plot1 <- ggplot(data = data,
+                aes(x = x, y = y_1)) +
+  geom_point(size = 5, col = "gray") + 
+  geom_point(size = 5, pch = 21) +
+  xlim(7, 13) + 
+  ylim(7, 15) + 
+  labs(title = "Dataset A") + theme_bw()
+
+plot2 <- ggplot(data = data,
+                aes(x = x, y = y_2)) +
+  geom_point(size = 5, col = "gray") + 
+  geom_point(size = 5, pch = 21) +
+  labs(title = "Dataset B") + theme_bw() +
+  ylim(-2, 5)
+
+
+plot1b <- plot1 + 
+  geom_point(aes(x = x, y = y_1_n), col = "violetred2", size = 5) +
+  geom_point(aes(x = x, y = y_1_n), pch = 21, size = 5) +
+  geom_abline(slope = 1.2, intercept = 0, size = 2, col = "green") +
+  stat_smooth(method="lm",fullrange=TRUE, se = FALSE)
+  
+plot2b <- plot2 + 
+  geom_point(aes(x = x, y = y_2_n), col = "violetred2", size = 5) +
+  geom_point(aes(x = x, y = y_2_n), pch = 21, size = 5)+
+  geom_abline(slope = 0, intercept = 2, size = 2, col = "green") +
+  stat_smooth(method="lm",fullrange=TRUE, se = FALSE)
+
+
+```
+
+
+
+## Fit your own linear model!
+
+<br>
+```{r, echo = FALSE, fig.width = 8, fig.height = 4, warning = FALSE, fig.align = 'center', out.width = "85%"}
+ggarrange(plot1, plot2)
+```
+
+
+---
+
+## Fit your own linear model!
+<br>
+```{r, echo = FALSE, fig.width = 8, fig.height = 4, warning = FALSE, fig.align = 'center', out.width = "85%"}
+ggarrange(plot1b, plot2)
+```
+
+
+---
+
+## Fit your own linear model!
+<br>
+```{r, echo = FALSE, fig.width = 8, fig.height = 4, warning = FALSE, fig.align = 'center', out.width = "85%"}
+ggarrange(plot1b, plot2b)
+```
+
+
 ---
 
 # Why do we separate training from prediction?
 
 .pull-left4[
-
+<br>
 Just because a model can match past (training) data well, does *not* necessarily mean that it will *predict* new data well.
 
 Anyone can come up with a model of *past* data (e.g.; stock performance, lottery winnings). 
@@ -359,21 +440,23 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 ]
 
 .pull-right5[
-
+<br><br>
 ### Regression with glm()
 
 The `glm()` function in the base stats package performs standard regression
 
 ```{r, eval = FALSE}
+# Standard linear regression
 glm_mod <- glm(formula = happiness ~ .,
                data = baselers)
-
 
 # Logisitic regression with family = 'binomial'
 glm_mod <- glm(formula = sex ~ .,
                data = baselers.
                family = "binomial")
 ```
+
+
 
 ]
 
@@ -395,7 +478,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 ]
 
 .pull-right5[
-
+<br><br>
 ### Decision trees with rpart
 
 Create decision trees with `rpart`
@@ -410,25 +493,13 @@ loan_rpart_mod <- rpart(formula, data,
                         rpart.control)
 ```
 
-### Fast-and-frugal trees with FFTrees
-
-Create very simple fast-and-frugal decision trees with `FFTrees`
-
-```{r,eval = FALSE}
-install.packages("FFTrees")
-library(FFTrees)
-
-loan_FFTrees_mod <- FFTrees(formula, data,
-                            max.levels, goal)
-```
- 
 ]
 
 ---
 
-## Ensemble decision trees
+## Random Forest
 
-.pull-left5[
+.pull-left45[
 
 A [Random Forest](https://en.wikipedia.org/wiki/Random_forest) is a collection of many (hundreds, thousands) of decision trees that use different features
 
@@ -440,7 +511,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/Erfurt_2
 
 .pull-right5[
 
-Create a random forest using the `randomForest` package
+### Random Forest trees with randomforest
 
 ```{r, eval = FALSE}
 install.packages("randomForest")
@@ -452,7 +523,7 @@ randomForest(formula = y ~.,    # Formula
              ntree, mtry)  # Tuning parameters
 ```
 
-Here are some of the tuning parameters
+Tuning parameters
 
 |Parameter | Description|
 |:-------|:-------|
@@ -537,11 +608,11 @@ zurichers <- tibble(id = c(1, 2, 3, 4, 5),
 .pull-right55[
 
 
-`zurichers`
+zurichers dataframe:
+
 ```{r, echo = FALSE}
 knitr::kable(zurichers, format = "markdown")
 ```
-
 
 
 ```{r}
@@ -559,7 +630,7 @@ The output is a vector of predicted values of the new dataset! You can now compa
 
 ## Questions?
 
-# [Machine Learning Practical](https://therbootcamp.github.io/Erfurt_2018June/_sessions/D1S3_Statistics/Statistics_practical.html)
+## [Demo and Practical](https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/MachineLearning/MachineLearning_practical.html)
 
 ```{r, echo = FALSE, out.width = "70%", fig.align="center"}
 knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/MLdiagram.png")

@@ -1,6 +1,6 @@
 ---
 title: "Efficient programming"
-author: "The R Bootcamp @ Erfurt<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
+author: "The R Bootcamp <br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
 date: "June 2018"
 output:
   xaringan::moon_reader:
@@ -16,7 +16,7 @@ output:
 layout: true
 
 <div class="my-footer"><span>
-<a href="https://therbootcamp.github.io/"><font color="#7E7E7E">Erfurt, June 2018</font></a>
+<a href="https://therbootcamp.github.io/"><font color="#7E7E7E">Basel, July 2018</font></a>
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
@@ -33,7 +33,11 @@ xaringan::inf_mr('_sessions/D1S1_IntroToR/Intro_to_R.Rmd')
 
 ```{r, eval = TRUE, echo = FALSE, warning=F,message=F}
 # Code to knit slides
+<<<<<<< HEAD
 baselers <- readr::read_csv("data/baselers.csv")
+=======
+baselers <- readr::read_csv("../_data/complete/baselers.csv")
+>>>>>>> a52e059dd14e3e6ba9378bd864e261b948fbd254
 ```
 
 

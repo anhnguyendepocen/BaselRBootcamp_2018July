@@ -40,25 +40,26 @@ options(digits = 4)
 knitr::opts_chunk$set(fig.align = 'center')
 ```
 
+.pull-left4[
+<br><br><br><br><br><br>
+# Welcome to the Basel R Bootcamp!
 
-# Welcome!
+]
 
-
+.pull-right6[
+<br><br>
 <p align="center"><img src="https://therbootcamp.github.io/assets/img/640px-Middle_Bridge,_Basel,_Switzerland.jpeg" width="500"  height="400"></p>
-
+<center><font size = 4>Wikipedia</font></center>
+]
 ---
 
 
 .pull-left5[
-
+<br><br><br><br><br>
 #  Materials
-<br><br>
-
-<font size=6>Get all of the course materials through our homepage!</font><br><br>
 
 <font size="6" color="#F62D73"><a href="www.therbootcamp.com"><b>www.therbootcamp.com</b></a></font><br><br>
 
-<font size=6>Bookmark it :)</font><br><br>
 
 
 
@@ -83,82 +84,52 @@ knitr::opts_chunk$set(fig.align = 'center')
 
 ---
 
-# Aim
+
 
 .pull-left6[
 
->###<i>The aim of this workshop is enable you to thoughtfully and actively use R. We will communicate both the basics of the R language, as well as cutting-edge packages for wrangling, analyzing, and communicating statistical data.  
+<br><br><br>
+
+
+# Aim
+
+
+>###The aim of this workshop is enable you to thoughtfully and actively use R. You will learn the fundamentals of the R language, as well as cutting-edge packages for wrangling, analyzing, and communicating statistical data.  
 
 ]
 
 .pull-right4[
+
+<br><br><br><br>
 <p align="center"><img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/target.png" height="350"></p>
 
 ]
 
 ---
-# Principles
-
-
-We all have different backgrounds and learn at different speeds
-
-Best way to learn? Try, Struggle, Get help, Try, Struggle, Get Help (repeat)
-
-Ask questions! We're here to help (but we won't make it too easy for you)
-
-You'll never master a language (certainly not in 2 weekends), you'll always be learning.
-
-Have fun and keep it light, learning a programming language should be (often) fun!
-
-# BaselRBootcamp logo
-
----
 
 .pull-left4[
+<br>
 # Schedule 
 
-<font size = 5>We have a very intense and ambitious schedule!</font><br>
+We have a very intense and ambitious schedule!
 
-<font size = 5>The amount of material we will be covering in two short weekends is...crazy</font><br>
+The amount of material we will be covering in two short weekends is...crazy
 
-<font size = 5>The course is separated into different sessions</font><br>
+3 days, 3 sessions per day, 2 hours per session
 
+Eacon session contains a slide-based introduction and a hands-on practical
 
 ### Two Tracks
 
-<font size = 5>There is both a beginner and advanced track</font><br>
+There is both a beginner (gray) and advanced track (red)
 
-<font size = 5>Red sessions are generally more advanced than Gray sessions<br><br>
-
+More details to come before each track
 
 ]
 
 .pull-right55[
 
 <img src="https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/schedule_2018Apr.png?raw=true" height="600" align="right">
-
-]
-
----
-
-.pull-left45[
-
-<br>
-# Sessions
-
-<font size = 5>Each session is 2 hours</font><br>
-
-<font size = 5>Introduction lecture with slides (45 - 75 min)</font><br>
-
-<font size = 5>Hands-on programming practical</font><br>
-
-]
-
-
-.pull-right55[
-```{r, echo = FALSE, out.width = "90%"}
-knitr::include_graphics("https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/session_breakdown.png?raw=true")
-```
 
 ]
 
@@ -172,6 +143,8 @@ knitr::include_graphics("https://github.com/therbootcamp/therbootcamp.github.io/
 
 Theory + code examples + live demonstrations
 
+Links are in [pink](http://therbootcamp.github.io)
+
 Goal: Help you understand the basic concepts
 
 All available online! Follow along on your computer. Don't worry about memorizing
@@ -180,36 +153,55 @@ Be interactive! Ask questions!
 
 ]
 
-.pull-right5[
+.pull-right55[
 
+<br>
+```{r, out.width = "45%", echo = FALSE, fig.cap = "<font size = 4>Freepik.com</font>"}
+knitr::include_graphics("https://img.freepik.com/free-vector/business-presentation_23-2147511785.jpg?size=338&ext=jpg")
+```
+
+
+```{r, out.width = "45%", echo = FALSE, fig.cap}
+knitr::include_graphics("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5DZ7eRkgxeFuEMEtuVC9YHz2v0STxeQ9YJyW2T3PbXGIci_2Lig")
+```
 
 ]
 
 ---
 
 .pull-left45[
-
+<br>
 # Practicals
 
-This is where you really learn how to program!
+Write your own R scripts!
 
-Anywhere from 10 ~ 30 programming tasks. Starts easy, gets progressively more challenging
+Anywhere from 10 ~ 30 programming tasks.
 
-Struggle, work together, ask questions and challenge yourself
+Starts easy, gets progressively more challenging
+
+Struggle, work together, ask questions and challenge yourself!
 
 We are here to help! But won't make it too easy for you :)
 
-You will **not** be able to finish all of the tasks. That's ok!
+Go at your own pace and finish as much as you can.
+
+We'll give you all the answers later
 
 ]
 
 
+
+
 .pull-right5[
+<br>
+
+[Example: Plotting Practical](https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/Plotting/Plotting_practical.html)
 
 
-```{r, echo = FALSE}
-knitr::include_graphics("https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/practical_emojis.png?raw=true")
+```{r, echo = FALSE, out.width = "90%"}
+knitr::include_graphics("https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/plotting_practical_ss2.jpg?raw=true")
 ```
+
 
 ]
 
@@ -217,15 +209,20 @@ knitr::include_graphics("https://github.com/therbootcamp/therbootcamp.github.io/
 
 .pull-left5[
 <br><br>
-# ~15 min, 1-1 Coaching
 
-Sometimes, you may find yourself in need of some intensive help.
+# 1-1 Coaching
+
+Learning a computer language is <b><i>hard</i></b>
+
+Take breaks when you need them, and don't get discouraged!
+
+Sometimes, you may find yourself in need of some intensive help
 
 That's ok! We're here to help!
 
 At any time, you can request a 15 minute 1-1 intensive help / coaching session
 
-We'll find some space and help you with whatever you're struggling with
+We'll grab a coffee and work through it together
 
 
 ]
@@ -233,8 +230,14 @@ We'll find some space and help you with whatever you're struggling with
 
 .pull-right45[
 
-```{r, echo = FALSE}
-knitr::include_graphics("https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/coaching_15.png?raw=true")
+<br>
+```{r, echo = FALSE, fig.cap = "<font size = 4>repairedcomputer.com</font>", out.width = "70%"}
+knitr::include_graphics("http://www.repairedcomputer.com/i/68/c/14/quality-computer-repair.1360h.jpg")
+```
+
+
+```{r, echo = FALSE, out.width = "70%", fig.cap = "<font size = 4>University of Southampton</font>"}
+knitr::include_graphics("https://cdn.southampton.ac.uk/assets/imported/transforms/content-block/BoxGridWithImages_ImageBlock/D771F505B1D44CB9A9C34653E19EA026/_3JB3522.jpg_SIA_JPG_fit_to_width_MEDIUM.jpg")
 ```
 
 
@@ -307,43 +310,72 @@ Lunch on your own or together at Tibits
 
 ---
 
-.pull-left35[
-# Introductions
+.pull-left5[
+<br><br><br>
+# Questions?
 
-<font size = 5>1. What is your name?</font>
-<br><br>
-<font size = 5>2. Where are you from?</font>
-<br><br>
-<font size = 5>3. What is your programming experience?</font>
-<br><br>
-<font size = 5>4. Why do you want to learn R?</font>
-<br><br>
-<font size = 5>5. Coffee or tea?</font>
-<br><br>
-<font size = 5>6. Pizza or pasta?</font>
-<br><br>
-<font size = 5>7. Beer or wine?</font>
-<br><br>
-<font size = 5>8. Berlin or Paris?</font>
 ]
 
-.pull-right6[
+
+.pull-right5[
+
+<img src="https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/schedule_2018Apr.png?raw=true" height="600" align="right">
+
+
+]
+
+
+---
+
+.pull-left45[
+# Introductions
+
+1. What is your name?
+
+2. Where are you from?
+
+3. What is your current profession?
+
+4. What is your programming experience?
+
+5. Have you used R in the past?
+
+6. What would you most like to do with R?
+
+7. Coffee or tea?
+
+8. Pizza or pasta?
+
+9. Beer or wine?
+
+10. Berlin or Paris?
+
+]
+
+.pull-right55[
 <br><br>
 <p align="center"><img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/introductions.jpg" height="400"></p>
 
 ]
 
-
-
-
 ---
-<br>
-<p align="center"><img src="http://www.abetterinterview.com/wp-content/uploads/2012/11/interview-questions.jpg" height="510"></p>
 
----
-# Session 1: What is R?
+.pull-left4[
 
+<br><br><br><br><br><br><br>
 
-<p><font size=6><b><a href="https://therbootcamp.github.io/BaselRBootcamp_2018April/_sessions/D1S1_WhatIsR/What_is_R.html#1">Link to Session 1: What is R?</a>
+<p><font size=7><b><a href="https://therbootcamp.github.io/BaselRBootcamp_2018April/_sessions/D1S1_WhatIsR/What_is_R.html#1">What is R?</a></font>
 
 
+<font size=5>(or, why is R so awesome?)</font>
+
+]
+
+.pull-right6[
+
+<br><br><br>
+```{r, echo = FALSE, out.width="80%"}
+knitr::include_graphics("https://www.r-project.org/logo/Rlogo.svg")
+```
+
+]
