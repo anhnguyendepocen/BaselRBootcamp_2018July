@@ -5,7 +5,7 @@ author: "BaselRBootcamp<br/><a href='https://therbootcamp.github.io'>www.therboo
 date: "July 2018"
 output:
   xaringan::moon_reader:
-    css: ["default", "my-theme.css"]
+    css: ["default", "baselrbootcamp.css"]
     lib_dir: libs
     nature:
       highlightStyle: github
@@ -306,7 +306,7 @@ my_mean <- function(x){
 
 ---
 
-# Example - `show_stats()
+# Example - `show_stats()`
 
 .pull-left55[
 
