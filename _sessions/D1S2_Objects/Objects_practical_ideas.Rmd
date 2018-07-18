@@ -149,7 +149,7 @@ mean(stocks$increase)
 
 ## B - Creating vectors
 
-The table below shows a subset of the `baselers` data. In this practical, you will convert this table to R objects and then analyse them!
+The table below shows results from a (fictional) survey of 10 Baselers. In this practical, you will convert this table to R objects and then analyse them!
 
 ```{r, echo = FALSE, eval = TRUE}
 data <- baselers[1:10, c("id", "sex", "age", "height", "weight")]
