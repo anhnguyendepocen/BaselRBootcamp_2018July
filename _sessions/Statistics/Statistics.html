@@ -666,9 +666,9 @@ my_glm$residuals[1:5]
 .pull-left35[
 ## predict()
 
-Many (but not all) statistical objects have an associated `predict()` method.
+Many (but not all) statistical objects can be used with `predict()`
 
-`predict()` allows you to use the model to make predictions for new data, and understand how the model works.
+`predict(model, newdata)` allows you to use the `model` to predict outcomes from `newdata`.
 
 
 
@@ -707,10 +707,7 @@ mod$coefficients
 ##       994.1       146.8        75.1      -173.3
 ```
 
-
-```r
-thisyear
-```
+New data: `thisyear`
 
 
 |  id| age| fitness| tattoos|
@@ -762,7 +759,28 @@ install.packages("broom")
 # Load boom package
 library(broom)
 
-# Create a tidy dataframe from my_glm
+# Original printout
+my_glm
+```
+
+```
+## 
+## Call:  glm(formula = income ~ happiness + age, data = baselers)
+## 
+## Coefficients:
+## (Intercept)    happiness          age  
+##        1575         -100          149  
+## 
+## Degrees of Freedom: 8509 Total (i.e. Null);  8507 Residual
+##   (1490 observations deleted due to missingness)
+## Null Deviance:	    6.33e+10 
+## Residual Deviance: 1.28e+10 	AIC: 145000
+```
+
+
+
+```r
+# Tidy printout
 tidy(my_glm)
 ```
 
@@ -772,27 +790,6 @@ tidy(my_glm)
 ## 2   happiness   -100.4   12.5197    -8.022 1.180e-15
 ## 3         age    149.3    0.8145   183.315 0.000e+00
 ```
-
-The `tidy()` function works all kinds of common statistical objects, from classical regression to Bayesian models, to machine learning. 
-
-
-
-
-
-```r
-# rstan_example is a "stanfit" object
-tidy(rstan_example)[1:5,]
-```
-
-```
-##     term estimate std.error
-## 1     mu  6.71421    5.9803
-## 2    tau  8.10885    7.4085
-## 3 eta[1]  0.47728    0.8941
-## 4 eta[2]  0.06064    0.8221
-## 5 eta[3] -0.22427    0.8589
-```
-
 
 Try it on your favorite models and see the magic!
 
@@ -849,7 +846,7 @@ coin_flips
 ```
 
 ```
-##  [1] "H" "T" "T" "H" "T" "H" "T" "H" "T" "T"
+##  [1] "T" "T" "H" "H" "T" "T" "T" "T" "H" "H"
 ```
 
 ```r
@@ -904,7 +901,7 @@ length(birthdays)
 ```
 
 ```
-## [1] 14
+## [1] 21
 ```
 
 
@@ -931,7 +928,7 @@ mysamp[1:5]  # First 5 values
 ```
 
 ```
-## [1]  6.440 12.283 16.000  6.733  7.475
+## [1]  7.768 16.828  3.722  7.918 11.040
 ```
 
 ```r
@@ -939,7 +936,7 @@ mean(mysamp) # Mean
 ```
 
 ```
-## [1] 11.28
+## [1] 10.53
 ```
 
 ```r
@@ -947,7 +944,7 @@ sd(mysamp)   # Standard deviation
 ```
 
 ```
-## [1] 5.515
+## [1] 5.603
 ```
 
 
@@ -965,7 +962,7 @@ ggplot(data = tibble(x = mysamp),
   theme_minimal()
 ```
 
-&lt;img src="Statistics_files/figure-html/unnamed-chunk-46-1.png" width="100%" /&gt;
+&lt;img src="Statistics_files/figure-html/unnamed-chunk-44-1.png" width="100%" /&gt;
 
 
 

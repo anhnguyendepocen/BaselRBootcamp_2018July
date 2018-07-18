@@ -571,9 +571,9 @@ my_glm$residuals[1:5]
 .pull-left35[
 ## predict()
 
-Many (but not all) statistical objects have an associated `predict()` method.
+Many (but not all) statistical objects can be used with `predict()`
 
-`predict()` allows you to use the model to make predictions for new data, and understand how the model works.
+`predict(model, newdata)` allows you to use the `model` to predict outcomes from `newdata`.
 
 
 
@@ -606,9 +606,7 @@ mod <- lm(formula = income ~ age + fitness + tattoos,
 mod$coefficients
 ```
 
-```{r, eval = FALSE}
-thisyear
-```
+New data: `thisyear`
 
 ```{r, echo = FALSE}
 thisyear  %>% select(id, age, fitness, tattoos) %>% slice(1:3) %>% knitr::kable(format = "markdown")
@@ -651,23 +649,15 @@ install.packages("broom")
 # Load boom package
 library(broom)
 
-# Create a tidy dataframe from my_glm
-tidy(my_glm)
-```
-
-The `tidy()` function works all kinds of common statistical objects, from classical regression to Bayesian models, to machine learning. 
-
-```{r, echo = FALSE}
-  infile <- system.file("extdata", "rstan_example.rda", package = "broom")
-  load(infile)
+# Original printout
+my_glm
 ```
 
 
 ```{r}
-# rstan_example is a "stanfit" object
-tidy(rstan_example)[1:5,]
+# Tidy printout
+tidy(my_glm)
 ```
-
 
 Try it on your favorite models and see the magic!
 
