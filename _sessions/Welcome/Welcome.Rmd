@@ -1,7 +1,7 @@
 ---
 title: "Welcome!"
 subtitle: ""
-author: "BaselRBootcamp<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
+author: "Basel R Bootcamp<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
 date: "July 2018"
 output:
   xaringan::moon_reader:
@@ -54,30 +54,28 @@ knitr::opts_chunk$set(fig.align = 'center')
 ---
 
 
-.pull-left5[
+.pull-left45[
 <br><br><br><br><br>
 #  Materials
+
+Look for the "Present & Past" section on our homepage
 
 <font size="6" color="#F62D73"><a href="www.therbootcamp.com"><b>www.therbootcamp.com</b></a></font><br><br>
 
 
 
-
 <br>
-
-<!---
-### OR
-<br>
-<font size="6"> Direct <font size="6" color="#F62D73"><a href="bit.ly/BaselRBootcamp_April2018"><b>BaselRBootcamp_April2018</b></a></font>
---->
 
 
 ]
 
 .pull-right5[
 
-<p align="center"><img src="https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/homepage_April2018_ss.jpg?raw=true" width="400"></p>
+<font size="6" color="#F62D73"><a href="www.therbootcamp.com"><b>www.therbootcamp.com</b></a></font><br><br>
 
+
+
+<iframe src="http://therbootcamp.github.io" width="500" height="500"></iframe>
 
 ]
 
