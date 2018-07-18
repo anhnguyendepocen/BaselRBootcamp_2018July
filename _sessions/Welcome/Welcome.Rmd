@@ -301,7 +301,9 @@ Lunch on your own or together at Tibits
 .pull-right6[
 
 <p align='center'><br><br><br><font size="6"><b><a href="https://www.tibits.ch/de/restaurants.html#tibits-basel">Tibits</a><br>
-<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/tibits.jpg" height="400" vspace="10"></p>
+<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/tibits.jpg" height="400" vspace="10"></p></b>
+<center><font size = 4>tibits.ch</font>
+
 
 ]
 
@@ -354,7 +356,7 @@ Lunch on your own or together at Tibits
 .pull-right55[
 <br><br>
 <p align="center"><img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/introductions.jpg" height="400"></p>
-
+<center><font size = 4>artofmanliness.com</font>
 ]
 
 ---
