@@ -310,14 +310,14 @@ Lunch on your own or together at Tibits
 
 ---
 
-.pull-left5[
+.pull-left4[
 <br><br><br>
 # Questions?
 
 ]
 
 
-.pull-right5[
+.pull-right6[
 
 <img src="https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/schedule_2018Apr.png?raw=true" height="600" align="right">
 
