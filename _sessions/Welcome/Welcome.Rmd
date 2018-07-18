@@ -5,7 +5,7 @@ author: "BaselRBootcamp<br/><a href='https://therbootcamp.github.io'>www.therboo
 date: "July 2018"
 output:
   xaringan::moon_reader:
-    css: ["default", "my-theme.css"]
+    css: ["default", "baselrbootcamp.css"]
     lib_dir: libs
     nature:
       highlightStyle: github
@@ -49,7 +49,7 @@ knitr::opts_chunk$set(fig.align = 'center')
 .pull-right6[
 <br><br>
 <p align="center"><img src="https://therbootcamp.github.io/assets/img/640px-Middle_Bridge,_Basel,_Switzerland.jpeg" width="500"  height="400"></p>
-<center><font size = 4>Wikipedia</font></center>
+<center><font size = 3>Wikipedia</font></center>
 ]
 ---
 
@@ -143,7 +143,7 @@ More details to come before each track
 
 Theory + code examples + live demonstrations
 
-Links are in [pink](http://therbootcamp.github.io)
+[This is a Link!](http://therbootcamp.github.io)
 
 Goal: Help you understand the basic concepts
 
@@ -156,7 +156,7 @@ Be interactive! Ask questions!
 .pull-right55[
 
 <br>
-```{r, out.width = "45%", echo = FALSE, fig.cap = "<font size = 4>Freepik.com</font>"}
+```{r, out.width = "45%", echo = FALSE, fig.cap = "<font size = 3>Freepik.com</font>"}
 knitr::include_graphics("https://img.freepik.com/free-vector/business-presentation_23-2147511785.jpg?size=338&ext=jpg")
 ```
 
@@ -231,12 +231,12 @@ We'll grab a coffee and work through it together
 .pull-right45[
 
 <br>
-```{r, echo = FALSE, fig.cap = "<font size = 4>repairedcomputer.com</font>", out.width = "70%"}
+```{r, echo = FALSE, fig.cap = "<font size = 3>repairedcomputer.com</font>", out.width = "70%"}
 knitr::include_graphics("http://www.repairedcomputer.com/i/68/c/14/quality-computer-repair.1360h.jpg")
 ```
 
 
-```{r, echo = FALSE, out.width = "70%", fig.cap = "<font size = 4>University of Southampton</font>"}
+```{r, echo = FALSE, out.width = "70%", fig.cap = "<font size = 3>University of Southampton</font>"}
 knitr::include_graphics("https://cdn.southampton.ac.uk/assets/imported/transforms/content-block/BoxGridWithImages_ImageBlock/D771F505B1D44CB9A9C34653E19EA026/_3JB3522.jpg_SIA_JPG_fit_to_width_MEDIUM.jpg")
 ```
 
