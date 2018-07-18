@@ -231,17 +231,10 @@ Use **primitive** functions, e.g., `sum(x)/length(x)` rather than `mean(x)`.
 library(microbenchmark, quietly = T)
 
 # microbenchmark
-microbenchmark(
-  local = read_csv('data/titanic.csv'),
-  fread = fread('data/titanic.csv'),
-  times = 10)
-```
-
-```
-## Unit: microseconds
-##   expr  min   lq  mean median   uq    max neval cld
-##  local 3968 4071 14804   4420 5038 106809    10   a
-##  fread  864  877  1212   1048 1271   2446    10   a
+# microbenchmark(
+#   local = read_csv('data/titanic.csv'),
+#   fread = fread('data/titanic.csv'),
+#   times = 10)
 ```
 ]
 
@@ -274,9 +267,9 @@ microbenchmark(
 
 ```
 ## Unit: microseconds
-##      expr   min    lq  mean median    uq    max neval cld
-##  colMeans   772   782   874    808   880   1258    10  a 
-##     apply 13910 15004 38770  16633 18068 136089    10   b
+##      expr   min    lq  mean median    uq   max neval cld
+##  colMeans   764   778   860    796   839  1213    10  a 
+##     apply 10893 14107 25913  15311 42871 48938    10   b
 ```
 ]
 
@@ -319,10 +312,10 @@ microbenchmark(
 ```
 ## Unit: nanoseconds
 ##     expr   min    lq  mean median    uq     max neval cld
-##   loop10  2476  2874  3232   3200  3411    8624   100  a 
-##  loop100 33808 51830 80709  53734 56628 2651303   100   b
-##    vec10   122   192   240    216   270    1368   100  a 
-##   vec100   313   354   759    410   541    4003   100  a
+##   loop10  2271  2616  3036   2830  3048   12305   100  a 
+##  loop100 33813 52449 82689  53898 62020 2586823   100   b
+##    vec10   121   164   225    187   224    2511   100  a 
+##   vec100   311   384   850    434   601    3379   100  a
 ```
 
 ]
@@ -351,9 +344,9 @@ microbenchmark(my_fun(x, is.null), my_fun_c(x, is.null), unit='us')
 
 ```
 ## Unit: microseconds
-##                  expr  min   lq mean median   uq   max neval cld
-##    my_fun(x, is.null) 8.16 8.95 19.6   9.71 10.8 959.3   100   a
-##  my_fun_c(x, is.null) 8.18 9.06 10.3   9.62 10.3  43.8   100   a
+##                  expr  min   lq mean median   uq    max neval cld
+##    my_fun(x, is.null) 7.88 9.09 21.1   9.45 10.1 1101.7   100   a
+##  my_fun_c(x, is.null) 7.88 9.11 10.8   9.62 10.1   58.6   100   a
 ```
 
 ```r
@@ -364,8 +357,8 @@ microbenchmark(my_fun(x, is.null), my_fun_c(x, is.null), unit='us')
 ```
 ## Unit: microseconds
 ##                  expr  min   lq mean median   uq  max neval cld
-##    my_fun(x, is.null) 8.12 8.89 9.94   9.43 10.0 54.8   100   a
-##  my_fun_c(x, is.null) 8.12 8.89 9.62   9.37 10.2 15.8   100   a
+##    my_fun(x, is.null) 8.57 9.73 12.3   10.3 10.8 65.3   100   a
+##  my_fun_c(x, is.null) 8.51 9.60 11.6   10.2 10.8 57.9   100   a
 ```
 ]
 ---
@@ -407,8 +400,8 @@ microbenchmark(vectorz = colMeans(data),
 ```
 ## Unit: milliseconds
 ##     expr  min   lq mean median   uq   max neval cld
-##  vectorz 7.61 7.90 8.19   8.04 8.33 13.14   100   b
-##  cluster 4.23 4.56 4.79   4.72 4.93  7.44   100  a
+##  vectorz 7.63 7.97 8.23   8.16 8.39 13.63   100   b
+##  cluster 4.10 4.48 4.73   4.65 4.88  7.08   100  a
 ```
 
 
@@ -455,9 +448,9 @@ microbenchmark(vector_implementation = colMeans(my_data),
 
 ```
 ## Unit: milliseconds
-##                   expr  min   lq mean median   uq  max neval cld
-##  vector_implementation 7.55 7.77 7.97   7.92 8.14  8.8   100   a
-##    rcpp_implementation 7.57 7.79 8.00   7.93 8.09 10.8   100   a
+##                   expr  min   lq mean median   uq   max neval cld
+##  vector_implementation 7.56 7.74 7.98   7.83 8.19  9.59   100   a
+##    rcpp_implementation 7.57 7.76 8.04   7.84 8.21 12.03   100   a
 ```
 ]
 ---
@@ -538,7 +531,7 @@ t.test(father, mother)
 
 # Practical
 
-&lt;p&gt;&lt;font size=6&gt;&lt;b&gt;&lt;a href="https://therbootcamp.github.io/_sessions/D4S1_EfficientCode/EfficientCode_practical.html"&gt;Link to practical&lt;/a&gt;
+&lt;p&gt;&lt;font size=6&gt;&lt;b&gt;&lt;a href="https://therbootcamp.github.io/Erfurt_2018June/_sessions/D2S3_EfficientCode/EfficientCode_practical.html"&gt;Link to practical&lt;/a&gt;
     </textarea>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
