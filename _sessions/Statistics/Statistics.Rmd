@@ -399,7 +399,7 @@ my_glm <- glm(formula = income ~ food * alcohol,
 .pull-left35[
 ## Exploring statistical objects
 
-Once you have created a statistical object, you can explore it using many *generic* functions such as `print()`, `summary()`, `predict()` and `plot()`.
+Explore statistical objects using many *generic* functions such as `print()`, `summary()`, `predict()` and `plot()`.
 
 ```{r, eval = FALSE}
 # Create statistical object
@@ -413,7 +413,7 @@ plot(obj)        # Plotting
 predict(obj, ..) # Predict
 ```
 
-They won't work for all objects, but it is a great idea to try each of them!
+Generic functions won't work for all statistical objects, but it is a great idea to try each of them!
 
 ]
 
@@ -442,7 +442,7 @@ print(my_glm)
 .pull-left35[
 ## Exploring statistical objects
 
-Once you have created a statistical object, you can explore it using many *generic* functions such as `print()`, `summary()`, `predict()` and `plot()`.
+Explore statistical objects using many *generic* functions such as `print()`, `summary()`, `predict()` and `plot()`.
 
 ```{r, eval = FALSE}
 # Create statistical object
@@ -456,8 +456,7 @@ plot(obj)        # Plotting
 predict(obj, ..) # Predict
 ```
 
-They won't work for all objects, but it is a great idea to try each of them!
-
+Generic functions won't work for all statistical objects, but it is a great idea to try each of them!
 ]
 
 .pull-right6[
@@ -484,7 +483,7 @@ summary(my_glm)
 .pull-left35[
 ## Exploring statistical objects
 
-Once you have created a statistical object, you can explore it using many *generic* functions such as `print()`, `summary()`, `predict()` and `plot()`.
+Explore statistical objects using many *generic* functions such as `print()`, `summary()`, `predict()` and `plot()`.
 
 ```{r, eval = FALSE}
 # Create statistical object
@@ -498,8 +497,7 @@ plot(obj)        # Plotting
 predict(obj, ..) # Predict
 ```
 
-They won't work for all objects, but it is a great idea to try each of them!
-
+Generic functions won't work for all statistical objects, but it is a great idea to try each of them!
 ]
 
 .pull-right6[
@@ -541,7 +539,7 @@ plot(obj)        # Plotting
 predict(obj, ..) # Predict
 ```
 
-They won't work for all objects, but it is a great idea to try each of them!
+Generic functions won't work for all statistical objects, but it is a great idea to try each of them!
 
 ]
 

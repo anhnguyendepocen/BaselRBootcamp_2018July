@@ -144,7 +144,7 @@ Theory + code examples + live demonstrations
 
 Goal: Help you understand the basic concepts
 
-All available online! Follow along on your computer. Don't worry about memorizing
+All available online! Follow along, and don't worry about memorizing
 
 Be interactive! Ask questions!
 
@@ -247,7 +247,7 @@ knitr::include_graphics("https://cdn.southampton.ac.uk/assets/imported/transform
 <table width="100%" style="cellspacing:0; cellpadding:0; border:none">
   <tr>    
   <td>
-  <p align = 'center'>RStudio IDE<br><br>
+  <p align = 'center'>RStudio<br><br>
   <a href="https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf"><img border="0" alt="W3Schools" src="https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/rstudio_cheat_ss.png?raw=true" height="180"></a></p>
   </td>
  
@@ -262,7 +262,7 @@ knitr::include_graphics("https://cdn.southampton.ac.uk/assets/imported/transform
   </td>
   
   <td>
-  <p align = 'center'>Data Transformation<br><br>
+  <p align = 'center'>Data Wrangling<br><br>
   <a href="https://github.com/rstudio/cheatsheets/raw/master/data-transformation.pdf"><img border="0" alt="W3Schools" src="https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/datatransform_cheat_ss.png?raw=true" height="180"></a></p>
   </td>
 
@@ -310,7 +310,7 @@ Lunch on your own or together at Tibits
 ---
 
 .pull-left4[
-<br><br><br>
+<br><br><br><br><br>
 # Questions?
 
 ]
