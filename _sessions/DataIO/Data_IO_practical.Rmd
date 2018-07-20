@@ -327,7 +327,12 @@ read_delim(file = "1_Data/diamonds_delim.csv", delim = "@")
 
 ## D - Read other file formats
 
-**Excel**
+#### Excel
+```{r, out.width = "10%", fig.align = 'left', eval = TRUE, echo = FALSE}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Microsoft_Excel_2013_logo.svg/2000px-Microsoft_Excel_2013_logo.svg.png")
+```
+
+
 
 1. Using `read_excel()`, read in the `titanic.xls` dataset as a new object called `titanic` (Make sure you have alredy loaded the `readxl` package at the beginning of your script).
 
@@ -369,7 +374,11 @@ write_csv(x = titanic,
           path = "1_Data/titanic.csv")
 ```
 
-**SPSS**
+#### SPSS
+
+```{r, out.width = "10%", fig.align = 'left', eval = TRUE, echo = FALSE}
+knitr::include_graphics("http://www.sqlearn.gr/wp-content/uploads/2010/12/2000px-SPSS_logo.jpg")
+```
 
 5. Using `read_spss()` read in the sleep data set `sleep.sav` of staff at he University of Melbourne as a new object called `sleep`. (Make sure that you have first loaded the `haven` package).
 
@@ -406,7 +415,11 @@ write_csv(x = sleep,
 ```
 
 
-**SAS**
+#### SAS
+
+```{r, out.width = "10%", fig.align = 'left', eval = TRUE, echo = FALSE}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/1/10/SAS_logo_horiz.svg")
+```
 
 9. Using `read_sas()`, read in `airbnb_zuerich.sas7bdat` containing AirBnB listings in Zürich, Switzerland and call the object `airbnb_zuerich`.
 
