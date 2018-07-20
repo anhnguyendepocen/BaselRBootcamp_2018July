@@ -167,7 +167,7 @@ as_tibble(table)
 
 In this section, you will read in a subset of the well known diamonds data set and prepare it for data analysis. 
 
-1. Identify the file path to the `diamonds.csv` dataset by using the `""` (quotation marks) auto-complete trick. Place the cursor between two quotation marks, hit &#8677; (tab-key), and browse through the file. Save the file path in an object called `diamonds_path`.
+1. Identify the file path to the `diamonds.csv` dataset by using the `""` (quotation marks) auto-complete trick. Place the cursor between two quotation marks, hit &#8677; (tab-key), and browse through the folders. Save the file path in an object called `diamonds_path`.
 
 ```{r, eval = F, echo =T}
 # place cursor in-between "" and hit tab
@@ -226,7 +226,7 @@ diamonds <- read_csv(file = diamonds_path,
 diamonds
 ```
 
-6. Now pay attention to the classes of the individuals columns (variables). Have all classes been identified correctly? What about the `carat` column? It should be `numeric` right?
+6. Now pay attention to the classes of the individuals columns (variables). Have all classes been identified correctly? What about the `carat` column? It should be `numeric`, right?
 
 ```{r, eval = F, echo = F}
 # print diamonds
@@ -240,7 +240,7 @@ diamonds
 diamonds$carat
 ```
 
-8. Change the `carat` variable's element at position `XX` to same value `YY` but with a period instead of a comma. Use the code below.  
+8. Change the `carat` variable's element at position `XX` to the same value `YY` but with a period instead of a comma. Use the code below.  
 
 ```{r, eval = F, echo = T}
 # Change the value at position XX to YY
@@ -278,7 +278,7 @@ table(diamonds$clarity)
 
 ## C - Write delim-separated text files
 
-1. Write the, now, properly formatted diamonds data to your data folder as a `.csv` file using the name   `diamonds_clean.csv`. Don't forget to include both the file name and the folder (separated by `/`) in the character string specifying the `path` argument. 
+1. Write the, now, properly formatted diamonds data to your data folder as a `.csv` file using the name `diamonds_clean.csv`. Don't forget to include both the file name and the folder (separated by `/`) in the character string specifying the `path` argument. 
 
 ```{r, eval = F, echo = F}
 # write clean diamonds data to disc
@@ -328,11 +328,10 @@ read_delim(file = "1_Data/diamonds_delim.csv", delim = "@")
 ## D - Read other file formats
 
 #### Excel
+
 ```{r, out.width = "10%", fig.align = 'left', eval = TRUE, echo = FALSE}
 knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Microsoft_Excel_2013_logo.svg/2000px-Microsoft_Excel_2013_logo.svg.png")
 ```
-
-
 
 1. Using `read_excel()`, read in the `titanic.xls` dataset as a new object called `titanic` (Make sure you have alredy loaded the `readxl` package at the beginning of your script).
 
