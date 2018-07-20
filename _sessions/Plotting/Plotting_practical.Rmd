@@ -21,8 +21,8 @@ options(digits = 3)
 
 <figure>
 <center>
-  <img src="https://images.pexels.com/photos/70497/pexels-photo-70497.jpeg?cs=srgb&dl=chips-dinner-fast-food-70497.jpg&fm=jpg" alt="Trulli" style="width:60%">
-  <figcaption>Pexels.com</figcaption>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Hamburger_%28black_bg%29.jpg/500px-Hamburger_%28black_bg%29.jpg" alt="Trulli" style="width:60%">
+  <figcaption>Wikipedia</figcaption>
 </figure>
 
 ### Overview
