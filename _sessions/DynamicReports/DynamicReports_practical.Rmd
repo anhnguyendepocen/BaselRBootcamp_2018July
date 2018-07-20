@@ -171,7 +171,7 @@ options(digits = 2)  # Round all output to 2 digits
 
 4. Create a new code chunk by either clicking the "Insert - R" button, or by using the "Command + Option + I"" shortcut on Mac
 
-5. Now it's time to add an image to your document! In the chunk you just created, use the following template to include [this image of a burger](https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Hamburger_%28black_bg%29.jpg/500px-Hamburger_%28black_bg%29.jpg) in your document. You can find the image at the following link: [Link](https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cheeseburger.jpg/2560px-Cheeseburger.jpg).
+5. Now it's time to add an image to your document! In the chunk you just created, use the following template to include [this image of a burger](https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cheeseburger.jpg/2560px-Cheeseburger.jpg) in your document. You can find the image at the following link: [Link](https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cheeseburger.jpg/2560px-Cheeseburger.jpg).
 
 ```{r, out.width = "30%", fig.cap="Source: Wikipedia", echo = TRUE, eval = FALSE}
 # Include a buger image
