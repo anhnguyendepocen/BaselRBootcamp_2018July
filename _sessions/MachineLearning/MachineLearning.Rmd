@@ -632,7 +632,7 @@ predict(object = baselers_glm,  # ML object
 
 # Practical
 
-<font size=6><high>Open up Rstudio...</high></font><br>
+<font size=6><high>Live demo</high></font><br>
 
 <a href="https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/MachineLearning/MachineLearning_practical.html"><font size=6><high>Link to practical</high></font></a>
 
