@@ -33,10 +33,10 @@ happiness <- read_csv("1_Data/happiness.csv")
 
 In this practical, I will analyse two datasets and show reproducible results in a dynamic document created in R Markdown. R Markdown is great because I can integrate `code` directly into my document, and easily use *italics* and **bold** using formatting tags.
 
-# McDonalds
+# Fast Food Nutrition
 
 ```{r, out.width = "30%", fig.cap="Source: Wikipedia"}
-knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/2000px-McDonald%27s_Golden_Arches.svg.png")
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Hamburger_%28black_bg%29.jpg/500px-Hamburger_%28black_bg%29.jpg")
 ```
 
 The `mcdonalds` data contains `r ncol(mcdonalds)` pieces of information for `r nrow(mcdonalds)` menu items. The data originally come from [https://www.kaggle.com/mcdonalds/nutrition-facts](https://www.kaggle.com/mcdonalds/nutrition-facts).
@@ -46,7 +46,6 @@ Here is a table showing the first 6 columns in the data
 ```{r, echo = FALSE}
 DT::datatable(mcdonalds %>% select(1:6))
 ```
-
 
 ## Calories
 
