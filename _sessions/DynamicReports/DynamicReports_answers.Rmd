@@ -36,7 +36,7 @@ In this practical, I will analyse two datasets and show reproducible results in 
 # Fast Food Nutrition
 
 ```{r, out.width = "30%", fig.cap="Source: Wikipedia"}
-knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Hamburger_%28black_bg%29.jpg/500px-Hamburger_%28black_bg%29.jpg")
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cheeseburger.jpg/2560px-Cheeseburger.jpg")
 ```
 
 The `mcdonalds` data contains `r ncol(mcdonalds)` pieces of information for `r nrow(mcdonalds)` menu items. The data originally come from [https://www.kaggle.com/mcdonalds/nutrition-facts](https://www.kaggle.com/mcdonalds/nutrition-facts).
