@@ -71,7 +71,7 @@ Look for the "Present & Past" section on our homepage
 
 .pull-right5[
 
-<font size="6" color="#F62D73"><a href="www.therbootcamp.com"><b>www.therbootcamp.com</b></a></font><br><br>
+<font size="6" color="#F62D73"><a href="http://therbootcamp.github.io"><b>www.therbootcamp.com</b></a></font><br><br>
 
 
 
