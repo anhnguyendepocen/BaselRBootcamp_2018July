@@ -73,25 +73,22 @@ library(tidyverse)
 
 # What is machine learning?
 
-.pull-left6[
-
+.pull-left55[
 
 ### Algorithms autonomously learning from data.
 
-Given data, an algorithm tunes its *parameters* to match the data, understand how it works, and make predictions for what will occur in the future.
-
-```{r, echo = FALSE, out.width = "80%", fig.align = 'center'}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/mldiagram_A.png")
-```
-
+Given data, an algorithm tunes its <high>parameters</high> to match the data, understand how it works, and make predictions for what will occur in the future.
+<br><br>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/mldiagram_A.png">
+</p>
 ]
 
 .pull-right4[
 
-```{r, echo = FALSE, out.width = "70%", fig.align = 'center'}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/machinelearningcartoon.png")
-```
-
+<p align="center">
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/machinelearningcartoon.png">
+</p>
 
 ]
 
@@ -99,18 +96,19 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 
 # Everyone uses machine learning
 
-.pull-left6[
+.pull-left4[
 
-> ### Machine learning drives our algorithms for demand forecasting, product search ranking, product and deals recommendations, merchandising placements, fraud detection, translations, and much more. ~ Jeff Bezos, Amazon founder
+> ### "Machine learning drives our algorithms for demand forecasting, product search ranking, product and deals recommendations, merchandising placements, fraud detection, translations, and much more."
+> ### Jeff Bezos, founder of Amazon
 
 ]
 
 
-.pull-right4[
+.pull-right55[
 
-```{r, echo = FALSE, out.width = "100%", fig.align = 'center'}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/mlexamples.png")
-```
+<p align="center">
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/mlexamples.png">
+</p>
 
 ]
 
@@ -119,9 +117,10 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 
 # What is the basic machine learning process?
 
-```{r, echo = FALSE, out.width = "90%"}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/MLdiagram.png")
-```
+<p align="center">
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/MLdiagram.png">
+</p>
+
 
 ---
 
@@ -129,28 +128,30 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 
 # What is a model?
 
-A *formal* (mathematical) procedure describing the relationships between variables.
+A model is a <high>formal</high> (mathematical) procedure describing the relationships between variables.
 
-Most data have one main *criterion* (aka, *dependent*) variable of interest, and several *features* (aka, *independent* variables)
+Most data have one main <high>criterion</high> or variable of interest, and several <high>features</high>.
 
-```{r, echo = FALSE}
-knitr::kable(past, format = "markdown")
-```
+<br>
 
+  .pull-left7[
+  ```{r, echo = FALSE}
+  knitr::kable(past, format = "markdown")
+  ```
+  ]
 
 ]
 
 
 .pull-right5[
-
+<br><br>
 ### Decision Tree
 
-```{r, eval = TRUE, echo = FALSE}
-knitr::include_graphics("https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/decision_tree_example.png?raw=true")
-```
+<p align="center">
+  <img src="https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/decision_tree_example.png?raw=true" height="280px">
+</p>
 
 ### Weighted Additive (Regression)
-
 
 $$\large{Risk = age \times 0.01 + smoking \times 0.20 + fam\_history \times 0.20}$$
 
@@ -163,30 +164,31 @@ $$\large{Risk = age \times 0.01 + smoking \times 0.20 + fam\_history \times 0.20
 
 # What is model training?
 
-Model *training* (aka, fitting) is the process of matching a model's *parameters* to a specific dataset.
+Model <high>training</high> (aka, fitting) is the process of matching a model's <high>parameters</high> to a specific dataset.
 
 Q: What are the parameters in the two models on the right?
 
-```{r, echo = FALSE}
-knitr::kable(past, format = "markdown")
-```
+<br>
+
+  .pull-left7[
+  ```{r, echo = FALSE}
+  knitr::kable(past, format = "markdown")
+  ```
+  ]
 
 ]
 
 .pull-right5[
-
+<br><br>
 ### Decision Tree
 
-```{r, eval = TRUE, echo = FALSE}
-knitr::include_graphics("https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/decision_tree_example.png?raw=true")
-```
+<p align="center">
+  <img src="https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/decision_tree_example.png?raw=true" height="280px">
+</p>
 
 ### Weighted Additive (Regression)
 
-
 $$\large{Risk = age \times 0.01 + smoking \times 0.20 + fam\_history \times 0.20}$$
-
-
 
 ]
 
@@ -243,7 +245,7 @@ plot2b <- plot2 +
 
 
 
-## Fit your own linear model!
+# Fit your own linear model!
 
 <br>
 ```{r, echo = FALSE, fig.width = 8, fig.height = 4, warning = FALSE, fig.align = 'center', out.width = "85%"}
@@ -253,7 +255,7 @@ ggarrange(plot1, plot2)
 
 ---
 
-## Fit your own linear model!
+# Fit your own linear model!
 <br>
 ```{r, echo = FALSE, fig.width = 8, fig.height = 4, warning = FALSE, fig.align = 'center', out.width = "85%"}
 ggarrange(plot1b, plot2)
@@ -262,7 +264,7 @@ ggarrange(plot1b, plot2)
 
 ---
 
-## Fit your own linear model!
+# Fit your own linear model!
 <br>
 ```{r, echo = FALSE, fig.width = 8, fig.height = 4, warning = FALSE, fig.align = 'center', out.width = "85%"}
 ggarrange(plot1b, plot2b)
@@ -273,35 +275,37 @@ ggarrange(plot1b, plot2b)
 
 # Why do we separate training from prediction?
 
-.pull-left4[
+.pull-left35[
 <br>
-Just because a model can match past (training) data well, does *not* necessarily mean that it will *predict* new data well.
+Just because a model can <high>fit past data well</high>, does *not* necessarily mean that it will <high>predict new data well</high>.
 
-Anyone can come up with a model of *past* data (e.g.; stock performance, lottery winnings). 
+Anyone can come up with a model of past data (e.g.; stock performance, lottery winnings). 
 
-Predicting what you can't see in the future is much more difficult.
+<high>Predicting what you can't see in the future is much more difficult.</high>
 
 ]
  
 .pull-right6[
 
-```{r, echo = FALSE, out.width = "80%"}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/prediction_collage.png")
-```
+<p align="center">
+  <img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/prediction_collage.png">
+</p>
 
 
 ]
 
 ---
 <br><br>
-<font size = 6>Can you come up with a model that will perfectly match past data but is worthless in predicting future data?</font><br><br>
+<font size = 6>"Can you come up with a model that will perfectly match past data but is worthless in predicting future data?"</font><br><br>
 
 
 .pull-left45[
 
-
-### Past "Training" Data
 <br>
+<font size=5><hfont>Past <high>Training</high> Data</hfont></font>
+
+<br>
+
 ```{r, results = 'asis', echo = FALSE}
 knitr::kable(past, format = "markdown")
 ```
@@ -311,12 +315,13 @@ knitr::kable(past, format = "markdown")
 
 .pull-right45[
 
-### Future "Test" Data
+<br>
+<font size=5><hfont>Future <high> Test</high> Data</hfont></font>
+
 <br>
 
 ```{r, echo = FALSE}
 knitr::kable(present, format = "markdown")
-
 ```
 
 ]
@@ -325,66 +330,67 @@ knitr::kable(present, format = "markdown")
 
 ---
 
-## Two types of prediction tasks
+# Two types of prediction tasks
 
 .pull-left45[
 
-```{r, echo = FALSE, out.width = "100%", fig.align = 'center'}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/classification_task.png")
-```
-
+<p align="center">
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/classification_task.png" height="450px">
+</p>
 
 ]
 
 
 .pull-right45[
 
-```{r, echo = FALSE, out.width = "100%", fig.align = 'center'}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/regression_task.png")
-```
+<p align="center">
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/regression_task.png" height="450px">
+</p>
 
 ]
 
 
 ---
 
-## What machine learning algorithms are there?
+# What machine learning algorithms are there?
 
 .pull-left55[
 
 There are thousands of machine learning algorithms from many different fields.
-  - Computer vision, natural language processing, reinforcement learning...
 
-[Wikipedia](https://en.wikipedia.org/wiki/Machine_learning) lists 57 *categories* (!) of machine learning algorithms
+[Wikipedia](https://en.wikipedia.org/wiki/Category:Machine_learning) lists 57 categories of machine learning algorithms:
 
-```{r, echo = FALSE, eval = TRUE, out.width = "80%", fig.align = 'center'}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/wikipediaml.png")
-```
+<br>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/wikipediaml.png" height="250px">
+</p>
+
 
 ]
 
 .pull-right4[
-<br><br>
 
-### 3 Algorithims
 
+### Algorithims we focus on
+<br>
 We will focus on 3 algorithms that apply to most ML tasks:
 
-| Algorithm|Complexity|
-|:------|:----|
-|     [Decision Trees](https://en.wikipedia.org/wiki/Decision_tree)| Low |
-|     [Regression](https://en.wikipedia.org/wiki/Regression_analysis)| Low / Medium | 
-|     [Random Forests](https://en.wikipedia.org/wiki/Random_forest)| High |
-
+  .pull-left6[
+  | Algorithm | Complexity|
+  |:--------------------------------------|:-------------------|
+  |     [Decision Trees](https://en.wikipedia.org/wiki/Decision_tree) | Low |
+  |     [Regression](https://en.wikipedia.org/wiki/Regression_analysis) | Low / Medium | 
+  |     [Random Forests](https://en.wikipedia.org/wiki/Random_forest) | High |
+  ]
 ]
 
 ---
 
-## How do you fit and evaluate ML models in R?
+# How do you fit and evaluate ML models in R?
 
 .pull-left45[
 
-Answer: Pretty much the same way you fit standard statistical models. Install the package, load, and find the main fitting functions.
+<high>ML models work the same way you fit standard statistical models.</high> Install the package, load, and find the main fitting functions.
 
 ```{r, eval = FALSE}
 # Install the glmnet package
@@ -397,50 +403,41 @@ library(glmnet)
 ?glmnet
 ```
 
-<b>Important!</b> Look at the help file for each function!
-
-Some functions will use the standard `FUN(formula, data)` arguments, but others (like `glmnet()`) require other arguments, like `x, y` (numeric matrices).
+Note: Some functions will use the standard `FUN(formula, data)` arguments, but others (like `glmnet()`) require other arguments, like `x, y` (numeric matrices).
 
 ]
 
 .pull-right5[
 
-```{r, eval = FALSE}
-# Help file for glmnet
-?glmnet
-```
-
-
-```{r, echo = FALSE, out.width = "80%"}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/glmnet_help.jpg")
-```
+<p align="center">
+  <img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/glmnet_help.jpg" height="400px">
+</p>
 
 ]
 
 ---
 
-## Regression
+# Regression
 
 .pull-left45[
 
-In regression, the criterion is modeled as the weighted sum of predictors times *weights* $\beta_{1}$, $\beta_{2}$
+In regression, the criterion is modeled as the <high>sum of predictors times weights $\beta_{1}$, $\beta_{2}$</high>.
 
-### Loan Default:
-
-One could model the risk of defaulting on a loan as:
+<u>Loan example</u><br>
+For instance, one could model the risk of defaulting on a loan as:
 
 $$Risk = Age \times \beta_{age} + Income \times \beta_{income} + ...$$
 
 Training a model means finding values of $\beta_{Age}$ and $\beta_{Income}$ that 'best' match the training data.
 
-```{r, echo = FALSE, eval = TRUE, out.width = "50%", fig.align = 'center'}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/regression.png")
-```
+<p align="center">
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/regression.png" height="180px">
+</p>
 
 ]
 
 .pull-right5[
-<br><br>
+
 ### Regression with glm()
 
 The `glm()` function in the base stats package performs standard regression
@@ -462,26 +459,26 @@ glm_mod <- glm(formula = sex ~ .,
 
 ---
 
-## Decision Trees
+# Decision Trees
 
 .pull-left45[
 
-In decision trees, the criterion is modeled as a sequence of logical Yes or No questions.
+In decision trees, the criterion is modeled as a <high>sequence of logical YES or NO questions</high>.
+<br><br>
 
-### Loan Default:
-
-```{r, echo = FALSE, eval = TRUE}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/defaulttree.png")
-```
+<u>Loan example</u><br>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/defaulttree.png" height="250px">
+</p>
 
 
 ]
 
 .pull-right5[
-<br><br>
+
 ### Decision trees with rpart
 
-Create decision trees with `rpart`
+This codes runs decision trees with functions from the `rpart`-package.
 
 ```{r, eval = FALSE}
 install.packages("rpart")
@@ -497,21 +494,24 @@ loan_rpart_mod <- rpart(formula, data,
 
 ---
 
-## Random Forest
+# Random Forest
 
 .pull-left45[
 
-A [Random Forest](https://en.wikipedia.org/wiki/Random_forest) is a collection of many (hundreds, thousands) of decision trees that use different features
+In [Random Forest](https://en.wikipedia.org/wiki/Random_forest), the criterion is models as the <high>aggregate prediction of a large number of decision trees</high> each based on different features.
+<br>
 
-```{r, echo = FALSE, eval = TRUE, out.width = "90%", fig.cap = "<font size=3><a href='https://medium.com/@williamkoehrsen'>Sourcemedium.com</a></font>"}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/randomforest_diagram.png")
-```
- 
+<u>Loan example</u><br>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/randomforest_diagram.png" height="285px"><br>
+  <a href="https://medium.com/@williamkoehrsen">Source</a>
+</p>
+
 ]
 
 .pull-right5[
 
-### Random Forest trees with randomforest
+### Random Forests with `randomforest`
 
 ```{r, eval = FALSE}
 install.packages("randomForest")
@@ -523,6 +523,7 @@ randomForest(formula = y ~.,    # Formula
              ntree, mtry)  # Tuning parameters
 ```
 
+<br>
 Tuning parameters
 
 |Parameter | Description|
@@ -536,15 +537,17 @@ Tuning parameters
 ---
 .pull-left35[
 
-## Exploring machine learning objects
+# Exploring ML objects
 
-Just like objects from statistical functions, objects from machine learning functions are lists that you can explore using *generic functions*:
+Just like objects from statistical functions, objects from machine learning functions are <high>lists</high> that you can explore using <high>generic functions</high>:
+
 
 |Function|Description
 |:------|:----|
 |`summary()`| Overview of the most important information|
 |`names()`|See all named elements you can access with $|
 |`plot()`|Visualise the object (sometimes)|
+|`predict()`|Predict new data based on the ML model|
 
 ]
 
@@ -581,12 +584,14 @@ baselers_glm$coefficients
 
 ---
 
-.pull-left4[
-
 # Predict new data with predict()
 
-All machine learning objects will allow you to predict the criterion of new data using `predict()`
+.pull-left4[
 
+All machine learning objects will allow you to <high>predict the criterion of new data</high> using `predict()`.
+
+Compare the predicted values to the true criterion values of `newdata` to see how well your model did.
+<br>
 |argument|description|
 |:----|:-----|
 |object| A machine learning / statistical object created from `glm()`, `randomforest()`, ...|
@@ -607,31 +612,26 @@ zurichers <- tibble(id = c(1, 2, 3, 4, 5),
 
 .pull-right55[
 
-
-zurichers dataframe:
+Predict values from `zurichers` data frame:
 
 ```{r, echo = FALSE}
 knitr::kable(zurichers, format = "markdown")
 ```
 
-
 ```{r}
+# produce vector of new predictions
 predict(object = baselers_glm,  # ML object
         newdata = zurichers)    # DF of new data
 ```
 
-The output is a vector of predicted values of the new dataset! You can now compare these to the true criterion values of `newdata` to see how well your model did.
 
 ]
 
 
 ---
-<br>
 
-## Questions?
+# Practical
 
-## [Demo and Practical](https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/MachineLearning/MachineLearning_practical.html)
+<font size=6><high>Open up Rstudio...</high></font>
+<a href="https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/MachineLearning/MachineLearning_practical.html"><font size=6><high>Link to practical</high></font></a>
 
-```{r, echo = FALSE, out.width = "70%", fig.align="center"}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/MLdiagram.png")
-```
