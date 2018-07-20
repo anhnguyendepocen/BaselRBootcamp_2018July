@@ -1,6 +1,6 @@
 ---
 title: "Sales Data - Case Study Answers"
-author: "BaselRBootcam April 2018"
+author: "BaselRBootcam July 2018"
 output: html_document
 ---
 
