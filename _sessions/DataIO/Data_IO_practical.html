@@ -348,12 +348,15 @@ library(rvest)
 library(xml2)
 
 # get html
-url = 'https://en.wikipedia.org/wiki/R_(programming_language)' 
-page = read_html(url)
+url &lt;- 'https://en.wikipedia.org/wiki/R_(programming_language)' 
+page &lt;- read_html(url)
 
-# get table
+# get raw html table
 # use XPath from inspect page (e.g., in Chrome)
-table = page %&gt;% html_node(xpath = '//*[@id=&quot;mw-content-text&quot;]/div/table[2]') %&gt;% html_table()
+table_raw = html_node(page, xpath = '//*[@id=&quot;mw-content-text&quot;]/div/table[2]')
+
+# transform to data frame
+table &lt;- html_table(table_raw)
 
 # create tibble
 as_tibble(table)</code></pre>
@@ -472,12 +475,15 @@ library(rvest)
 library(xml2)
 
 # get html
-url = 'https://en.wikipedia.org/wiki/R_(programming_language)' 
-page = read_html(url)
+url &lt;- 'https://en.wikipedia.org/wiki/R_(programming_language)' 
+page &lt;- read_html(url)
 
-# get table
+# get raw html table
 # use XPath from inspect page (e.g., in Chrome)
-table = page %&gt;% html_node(xpath = '//*[@id=&quot;mw-content-text&quot;]/div/table[2]') %&gt;% html_table()
+table_raw = html_node(page, xpath = '//*[@id=&quot;mw-content-text&quot;]/div/table[2]')
+
+# transform to data frame
+table &lt;- html_table(table_raw)
 
 # create tibble
 as_tibble(table)</code></pre>
