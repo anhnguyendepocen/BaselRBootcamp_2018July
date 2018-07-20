@@ -749,7 +749,7 @@ save workspace and history &#9679; set project specific options &#9679; access f
 
 .pull-right5[
 ### Folder structure
-Complement projects by <high>folder structure</high> appropriate for your project.
+Complement projects by a <high>folder structure</high> appropriate for your project.
 <br><br>
 <p align="left">
   <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/folder_structure.png">
