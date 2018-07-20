@@ -1,0 +1,312 @@
+---
+title: "Data I/O""
+author: "Basel R Bootcamp, July 2018<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
+output:
+  html_document:
+    css: practical.css
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(comment = NA, 
+                      fig.width = 6, 
+                      fig.height = 6,
+                      fig.align = 'center',
+                      echo = FALSE, 
+                      eval = FALSE, 
+                      warning = FALSE)
+
+options(digits = 3)
+
+library(baselers)
+library(tidyverse)
+```
+
+
+<figure>
+<center>
+  <img src="https://www.baslerfasnacht.info/fancybox/img_en/basel-fasnacht_big.jpg" alt="Trulli" style="width:90%">
+  <figcaption>https://www.baslerfasnacht.info/basel-fasnacht/index.php</figcaption>
+</figure>
+
+
+## Overview
+
+In this practical you'll learn how to read and save data. By the end of this practical you will know how to:
+
+1. Identify the location of a file (on your hard drive)
+2. Read in data of various types
+3. Handle header, type, and missing data issues
+
+## Datasets
+
+```{r, eval = TRUE, message = FALSE}
+library(tidyverse)
+house <- read_csv("data/baselers.csv")
+```
+
+|File | Rows | Columns | Description |
+|:----|:-----|:------|:-----------------------------------------|
+|[baselers.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/baselers.csv) | 10000 | 20 | Survey of Baselers |
+|[baselers.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/baselers.csv) | 10000 | 20 | Survey of Baselers |
+
+## Packages
+
+|Package| Installation|
+|:------|:------|
+|`tidyverse`|`install.packages("tidyverse")`|
+|`readr`|`install.packages("readr")`|
+|`haven`|`install.packages("haven")`|
+
+### Glossary
+
+*Reading/writing in delim-separated data*
+
+| Function| Description|
+|:------|:--------|
+| `read_csv(file, ...)`, `read_csv2(file, ...)` | Read files separated by comma or semicolon|
+| `read_delim(file, ...)`| Read files separated by arbitrary symbol|
+| `write_csv(x, file, ...)`, `write_csv2(x, file, ...)` | Write files separated by comma or semicolon|
+| `write_delim(x, file, ...)`| Write files separated by arbitrary symbol|
+
+
+*Vector functions*
+
+| Function| Description|
+|:------|:--------|
+| `mean(x), median(x), sd(x), sum(x)` | Mean, median standard deviation, sum|
+| `max(x), min(x)`                    | Maximim, minimum|
+| `table(x)`                          | Table of frequency counts|
+| `round(x, digits)`                  | Round a numeric vector x to `digits`|
+
+*Creating data frames from vectors*
+
+| Function| Description|
+|:------|:--------|
+| `data.frame(a, b, c)` | Create a data frame from vectors a, b, c|
+| `tibble(a, b, c)`     | Create a tibble from vectors a, b, c|
+
+*Accessing vectors from data frames*
+
+| Function| Description|
+|:------|:--------|
+| `df$name` |Access vector `name` from a data frame `df`|
+
+
+### Examples
+
+```{r, eval = FALSE, echo = TRUE, message = FALSE, warning = FALSE}
+# load packages
+library(tidyverse)
+
+
+
+
+```
+
+# Tasks
+
+## A - Read delim-separated text files
+
+1. Read Baselers 
+
+
+## B - Write delim-separated text files
+
+## C - Read other file formats
+
+## D - Use R's formats
+
+## X - Challenges
+
+## Y - Scraping the internet
+
+## Z - File connections
+
+
+Scraping the internet
+
+15. Finally on to something completely new. As mentioned, connections can also be established to data located outside one's own hard drive, such as, for instance, the world wide web. Specifically, using `url()` you can establish a connection to a webpage, which you then can use to retrieve information from the webpage. One package that conveniently streamlines extracting information from webpages based is the `rvest` package. To illustrate how easy it can be to scrape (aka extract) information from an webpage using R and `rvest`, run the following code. It downloads and parses the Milestones table from R's Wikipedia page.
+
+```{r, eval=F, echo=T}
+
+# load package
+install.packages('rvest', repos = "https://stat.ethz.ch/CRAN/")
+library(rvest)
+library(tibble)
+library(magrittr)
+
+# get html
+url = 'https://en.wikipedia.org/wiki/R_(programming_language)' 
+page = read_html(url)
+
+# get table
+# use XPath from inspect page (e.g., in Chrome)
+table = page %>% html_node(xpath = '//*[@id="mw-content-text"]/div/table[2]') %>% html_table()
+
+# create tibble
+as.tibble(table)
+```
+
+
+1. Logical vectors contain only `TRUE` and `FALSE` values (and missing values). Create a new vector called `tall_180` indicating which baselers are taller than 180cm. To do this, use the `>` (greater than) operator á la `vector > value`.  
+
+```{r, eval = FALSE, echo = TRUE}
+# Create a logical vector tall_180 indicating
+#  which baselers are taller than 180cm
+
+XX <- XX > XX
+```
+
+```{r, eval = FALSE, echo = FALSE}
+# Create a logical vector tall_180
+tall_180 <- hieght > 180
+```
+
+2. Print your `tall_180` vector to the console. Do you see only TRUE and FALSE values? If so, do the values that are TRUE match the ten baselers that are actually over 180cm?
+
+```{r, eval = FALSE, echo = FALSE}
+# print tall
+tall_180
+```
+
+3. Using the `table()` function, create a table showing how many of the ten baselers are taller than 180cm and how many are not
+
+```{r, eval = FALSE, echo = FALSE}
+# count baselers taller than 180
+table(tall_180)
+```
+
+4. Using the `mean()` function, determine the percentage of the ten baselers that are taller than 180cm, i.e., `mean(tall_180)`. Should this have worked?
+
+```{r, eval = FALSE, echo = FALSE}
+# percentage of baselers taller than 180
+mean(tall_180)
+```
+
+5. What percent of the ten baselers were older than 30?
+
+```{r, eval = FALSE, echo = FALSE}
+# percentage of baselers older than 30
+mean(age > 30)
+```
+
+## E - Creating data frames
+
+1. Using the `data.frame()` function, create a data frame called `ten_df` that contains each of vectors you just created: `id`, `sex`, `height`, `weight`, `tall_180`
+
+```{r, eval = FALSE, echo = TRUE}
+# Create data frame from vectors
+XX <- data.frame(XX, XX, XX, XX, XX) 
+```
+
+```{r, eval = FALSE, echo = FALSE}
+# Create ten_df data frame from vectors
+ten_df <- data.frame(id, sex, height, weight, tall_180) 
+```
+
+2. Print your `ten_df` object to see how it looks! Does it contain all of the vectors?
+
+```{r, eval = FALSE, echo = FALSE}
+# Print ten_df
+ten_df
+```
+
+3. Using the `dim()` function, print the number of rows and columns in your data frame. Do you get 10 rows and 5 columns?
+
+```{r, eval = FALSE, echo = FALSE}
+# Inspect dimensions
+dim(ten_df)
+```
+
+4. What is the class of your `ten_df` object? Use the `class()` function to find out!
+
+```{r, eval = FALSE, echo = FALSE}
+# Inspect class
+class(ten_df)
+```
+
+5. Use the `summary()` function to print descriptive statistics from each column of `ten_df`
+
+```{r, eval = FALSE, echo = FALSE}
+# Inspect class
+summary(ten_df)
+```
+
+6. Using the `$` operator, print the `age` column from the `ten_df` data frame.
+
+```{r, eval = FALSE, echo = FALSE}
+# Inspect class
+ten_df$age
+```
+
+7. Calculate the maximum `age` value from the `ten_df` data frame using `max()`. Do you get the same result from when you calculated it from the original vector `age`?
+
+```{r, eval = FALSE, echo = FALSE}
+# Get max
+max(ten_df$age)
+```
+
+8. Instead of creating a data frame of the data using the `data.frame()` function, try creating a tibble called `ten_tibble` using the `tibble()` function. `tibble`s are a more modern, leaner variant of data frame that we prefer over classic `data.frame`s You can use the exact same arguments you used before.
+
+```{r, eval = FALSE, echo = FALSE}
+# create tibble
+ten_tibble = tibble(id, sex, height, weight, tall_180)
+```
+
+9. Print your new `ten_tibble` object, how does it look different from `ten_df`? Try calculating the maximum `age` from this object. Is it different from what you got before?
+
+```{r, eval = FALSE, echo = FALSE}
+# print tibble
+ten_tibble
+max(ten_tibble) == max(ten_df)
+```
+
+## X - Challenges
+
+1. If you take the `sum()` of a logical vector, R will return the number of cases that are `TRUE`. Using this, find out how many of the ten baselers are male while using the is-equal-to operator `==`.
+
+```{r, eval = FALSE, echo = TRUE}
+# Determine the frequency of a case in a vector
+sum(XX == XX)
+```
+
+```{r, eval = FALSE, echo = FALSE}
+# Determine the frequency of a case in a vector
+sum(ten_tibble == "male")
+```
+
+2. You can use logical vectors to select rows from a data frame based on certain criteria. using the following template, get the id values of baselers who are younger than 30:
+
+```{r, eval = FALSE, echo = TRUE}
+# Create a logical vector indicating which baselers are younger than 30
+young_30 <- XX$XX < 30
+
+# Print the ids of baselers younger than 30
+XX$XX[young_30]
+```
+
+```{r, eval = FALSE, echo = FALSE}
+# Create a logical vector indicating which baselers are younger than 30
+young_30 <- ten_tibble$age < 30
+
+# Print the ids of baselers younger than 30
+ten_tibble$id[young_30]
+```
+
+3. Use a combination of logical vectors and the `mean()` function to answer the question: "What is the mean age of baselers who are heavier than 80kg?"
+
+```{r, eval = FALSE, echo = FALSE}
+# Mean age of baselers heavier than 80kg
+mean(ten_tibble$age[ten_tibble$weight > 80])
+```
+
+4. What are the id values of baselers who are male *and* are shorter than 165cm? (Hint: You will need to use the logical AND operator `&` to combine multiple logical vectors)
+
+```{r, eval = FALSE, echo = FALSE}
+# Mean age of baselers heavier than 80kg
+ten_tibble$id[ten_tibble$sex == "male"] & )
+```
+
+## Additional Resources
+
+- For more information on the fundamentals of object and functions in R see the R Core team's [introduction to R](https://cran.r-project.org/doc/manuals/r-release/R-intro.html) and for even more advanced object and function-related topics Hadley Wickham's [Advanced R](http://adv-r.had.co.nz/).

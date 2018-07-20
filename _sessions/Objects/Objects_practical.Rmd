@@ -1,0 +1,466 @@
+---
+title: "Objects and Functions"
+author: "Basel R Bootcamp, July 2018<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
+output:
+  html_document:
+    css: practical.css
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(comment = NA, 
+                      fig.width = 6, 
+                      fig.height = 6,
+                      fig.align = 'center',
+                      echo = FALSE, 
+                      eval = FALSE, 
+                      warning = FALSE)
+
+options(digits = 3)
+
+library(baselers)
+library(tidyverse)
+```
+
+
+<figure>
+<center>
+  <img src="https://www.baslerfasnacht.info/fancybox/img_en/basel-fasnacht_big.jpg" alt="Trulli" style="width:90%">
+  <figcaption>https://www.baslerfasnacht.info/basel-fasnacht/index.php</figcaption>
+</figure>
+
+
+## Overview
+
+In this practical you'll learn how to work with R data objects. By the end of this practical you will know how to:
+
+1. Create vectors of different types using `c()`
+2. Understand the three main vector classes numeric, character, and logical using `class()` 
+3. Create `data.frames` and `tibbles`! using `data.frame()` and `tibble()`
+4. Access vectors from data frames using `$`
+5. Calculate basic descriptive statistics using `mean()`, `median()`, `table()` (and more!)
+
+## Datasets
+
+*None!*
+
+## Packages
+
+|Package| Installation|
+|:------|:------|
+|`tidyverse`|`install.packages("tidyverse")`|
+
+### Glossary
+
+*Creating vectors*
+
+| Function| Description|
+|:------|:--------|
+| `c("a", "b", "c")` |Create a character vector|
+| `c(1, 2, 3)`| Create a numeric vector|
+| `c(TRUE, FALSE, TRUE)`|    Create a logical vector|
+
+*Vector functions*
+
+| Function| Description|
+|:------|:--------|
+| `mean(x), median(x), sd(x), sum(x)` | Mean, median standard deviation, sum|
+| `max(x), min(x)`                    | Maximim, minimum|
+| `table(x)`                          | Table of frequency counts|
+| `round(x, digits)`                  | Round a numeric vector x to `digits`|
+
+*Creating data frames from vectors*
+
+| Function| Description|
+|:------|:--------|
+| `data.frame(a, b, c)` | Create a data frame from vectors a, b, c|
+| `tibble(a, b, c)`     | Create a tibble from vectors a, b, c|
+
+*Accessing vectors from data frames*
+
+| Function| Description|
+|:------|:--------|
+| `df$name` |Access vector `name` from a data frame `df`|
+
+
+### Examples
+
+```{r, eval = FALSE, echo = TRUE, message = FALSE, warning = FALSE}
+library(tidyverse)
+
+# Create vectors of (fake) stock data
+name      <- c("apple", "microsoft", "dell", "google", "twitter")
+yesterday <- c(100, 89, 65, 54, 89)
+today     <- c(102, 85, 72, 60, 95)
+
+# Summary statistics
+mean(today)
+mean(yesterday)
+
+# Show classes
+class(name)
+class(yesterday)
+
+# Operations of vectors
+change <- today - yesterday
+change # Print result
+
+# Create a logical vector from two numerics
+increase <- today > yesterday
+increase # Print result
+
+# Create a tibble combining multiple vectors
+stocks <- tibble(name, yesterday, today, change, increase)
+
+# Get column names
+names(stocks)
+
+# Access columns by name
+stocks$name
+stocks$today
+
+# Calculate descriptives on columns
+mean(stocks$yesterday)
+mean(stocks$today)
+table(stocks$increase)
+mean(stocks$increase)
+```
+
+# Tasks
+
+## A - Getting setup
+
+1. Open your R project. It should already have the folders `1_Data` and `2_Code`.
+
+2. Open a new R script and save it as a new file called `objects_practical.R` in the `2_Code` folder. At the top of the script, using comments, write your name and the date. Then, load the set of packages listed above with `library()`.
+
+## B - Creating vectors
+
+The table below shows results from a (fictional) survey of 10 Baselers. In this practical, you will convert this table to R objects and then analyse them!
+
+```{r, echo = FALSE, eval = TRUE}
+data <- baselers[1:10, c("id", "sex", "age", "height", "weight")]
+
+data %>% mutate_all(replace_na, " ") %>% knitr::kable(format = "markdown", caption = "Data from 10 baselers")
+```
+
+1. Create a numeric vector called `id` that shows the id values. When you finish, print the vector object to see it!
+. Create a numeric vector called `id` that shows the id values. When you finish, print the vector object to see it!
+
+```{r, eval = FALSE, echo = TRUE}
+# Create a vector XX
+XX <- c(XX, XX, ...)
+```
+
+```{r, eval = FALSE, echo = FALSE}
+# Create an id vector 
+id <- 1:10 # shortcut to creating the sequence from 1 to 10
+
+# Print the vector
+id
+```
+
+2. Using the `class()` function, check the class of your `id` vector. Is it `numeric`?
+
+```{r, eval = FALSE, echo = TRUE}
+# Show the class of an object XX
+class(XX)
+```
+
+```{r, eval = FALSE, echo = FALSE}
+# Show the class of the id vector
+class(id)
+```
+
+3. Using the `length()` function, find out the length of your `id` vector. Does it have length 10? If not, make sure you defined it correctly!
+
+```{r, eval = FALSE, echo = TRUE}
+# Show the length of an object XX
+length(XX)
+```
+
+```{r, eval = FALSE, echo = FALSE}
+# Show the length of the id vector
+length(id)
+```
+
+4. Create a character vector called `sex` that shows the sex values. Make sure to use quotation marks "" to enclose each element to tell R that the data are of type `character`! When you finish, print the object to see it!
+
+```{r, eval = FALSE, echo = TRUE}
+# Create a character vector XX
+XX <- c("XX", "XX", ...)
+```
+
+```{r, eval = FALSE, echo = FALSE}
+# Create a sex vector 
+sex <- c("male", "male", "female", "male", "male", "male", "male", "female", "male", "female")
+
+# Print the vector
+sex
+```
+
+5. Using the `class()` function, check the class of your `sex` vector. Is it `character?
+
+```{r, eval = FALSE, echo = FALSE}
+# Show the class of the sex vector
+class(sex)
+```
+
+6. Using the `length()` function, find out the length of your `sex` object. Does it have length 10? If not, make sure you defined it correctly!
+
+```{r, eval = FALSE, echo = FALSE}
+# Show the length of the sex vector
+length(sex)
+```
+
+7. Using the same steps as before, create a `age` and `height` vector.
+
+```{r, eval = FALSE, echo = FALSE}
+# Create a age vector 
+age <- c(44, 65, 31, 27, 24, 63, 71, 41, 43, 31)
+
+# Print the age vector
+age
+
+# Show the class of the age vector
+class(age)
+
+# Show the length of the age vector
+length(age)
+
+# Create a height vector 
+height <- c(174.3, 180.3, 168.3, 209, 176.7, 186.6, 151.6, 155.7, 176.1, 166.1)
+
+# Print the height vector
+height
+
+# Show the class of the height vector
+class(height)
+
+# Show the length of the height vector
+length(height)
+```
+
+8. Look at the weight data, you'll notice it contains an missing value. Create a vector called `weight` containing these data, following the same steps as before, making sure to specify the missing value as `NA` (no quotation marks). 
+
+```{r, eval = FALSE, echo = TRUE}
+# Create a weight vector 
+weight <- c(113.4, 75.2, 55.5, 93.8, NA, 67.4, 83.3, 67.8, 69.3, 66.3)
+
+# Print the weight vector
+weight
+
+# Show the class of the weight vector
+class(weight)
+
+# Show the length of the weight vector
+length(weight)
+```
+
+## C - Functions
+
+1. Using the `table()` function, find out how many males and females are in the data. You should find `r sum(data$sex == "male")` males and `r sum(data$sex == "female")` females!
+
+```{r, eval = FALSE, echo = TRUE}
+# Count types in sex
+table(sex)
+```
+
+2. Using the `mean()` function, calculate the mean `age`. It should be `r mean(data$age)`!
+
+```{r, eval = FALSE, echo = FALSE}
+# Compute mean of age
+mean(age)
+```
+
+3. Try calculating the mean value of `sex`. What happens? Why?
+
+```{r, eval = FALSE, echo = FALSE}
+# Compute mean of sex
+mean(sex)
+```
+
+4. Try calculating the mean `weight`. You should get an `NA` value. Why?
+
+```{r, eval = FALSE, echo = FALSE}
+# Compute mean of sex
+mean(weight)
+```
+
+5. Look at the help menu for the `mean()` function (using `?mean`) to look for an argument that will help you with your problem.
+
+```{r, eval = FALSE, echo = FALSE}
+# Inspect help for mean
+?mean
+```
+
+6. Using the correct argument for the mean function, calculate the mean weight ignoring `NA` values. It should be `r round(mean(data$weight, na.rm = TRUE), 2)`!
+
+```{r, eval = FALSE, echo = FALSE}
+# Compute mean weight, ignoring NAs 
+mean(weight, na.rm = TRUE)
+```
+
+## D - Logical Vectors
+
+1. Logical vectors contain only `TRUE` and `FALSE` values (and missing values). Create a new vector called `tall_180` indicating which baselers are taller than 180cm. To do this, use the `>` (greater than) operator á la `vector > value`.  
+
+```{r, eval = FALSE, echo = TRUE}
+# Create a logical vector tall_180 indicating
+#  which baselers are taller than 180cm
+
+XX <- XX > XX
+```
+
+```{r, eval = FALSE, echo = FALSE}
+# Create a logical vector tall_180
+tall_180 <- hieght > 180
+```
+
+2. Print your `tall_180` vector to the console. Do you see only TRUE and FALSE values? If so, do the values that are TRUE match the ten baselers that are actually over 180cm?
+
+```{r, eval = FALSE, echo = FALSE}
+# print tall
+tall_180
+```
+
+3. Using the `table()` function, create a table showing how many of the ten baselers are taller than 180cm and how many are not
+
+```{r, eval = FALSE, echo = FALSE}
+# count baselers taller than 180
+table(tall_180)
+```
+
+4. Using the `mean()` function, determine the percentage of the ten baselers that are taller than 180cm, i.e., `mean(tall_180)`. Should this have worked?
+
+```{r, eval = FALSE, echo = FALSE}
+# percentage of baselers taller than 180
+mean(tall_180)
+```
+
+5. What percent of the ten baselers were older than 30?
+
+```{r, eval = FALSE, echo = FALSE}
+# percentage of baselers older than 30
+mean(age > 30)
+```
+
+## E - Creating data frames
+
+1. Using the `data.frame()` function, create a data frame called `ten_df` that contains each of vectors you just created: `id`, `sex`, `height`, `weight`, `tall_180`
+
+```{r, eval = FALSE, echo = TRUE}
+# Create data frame from vectors
+XX <- data.frame(XX, XX, XX, XX, XX) 
+```
+
+```{r, eval = FALSE, echo = FALSE}
+# Create ten_df data frame from vectors
+ten_df <- data.frame(id, sex, height, weight, tall_180) 
+```
+
+2. Print your `ten_df` object to see how it looks! Does it contain all of the vectors?
+
+```{r, eval = FALSE, echo = FALSE}
+# Print ten_df
+ten_df
+```
+
+3. Using the `dim()` function, print the number of rows and columns in your data frame. Do you get 10 rows and 5 columns?
+
+```{r, eval = FALSE, echo = FALSE}
+# Inspect dimensions
+dim(ten_df)
+```
+
+4. What is the class of your `ten_df` object? Use the `class()` function to find out!
+
+```{r, eval = FALSE, echo = FALSE}
+# Inspect class
+class(ten_df)
+```
+
+5. Use the `summary()` function to print descriptive statistics from each column of `ten_df`
+
+```{r, eval = FALSE, echo = FALSE}
+# Inspect class
+summary(ten_df)
+```
+
+6. Using the `$` operator, print the `age` column from the `ten_df` data frame.
+
+```{r, eval = FALSE, echo = FALSE}
+# Inspect class
+ten_df$age
+```
+
+7. Calculate the maximum `age` value from the `ten_df` data frame using `max()`. Do you get the same result from when you calculated it from the original vector `age`?
+
+```{r, eval = FALSE, echo = FALSE}
+# Get max
+max(ten_df$age)
+```
+
+8. Instead of creating a data frame of the data using the `data.frame()` function, try creating a tibble called `ten_tibble` using the `tibble()` function. `tibble`s are a more modern, leaner variant of data frame that we prefer over classic `data.frame`s You can use the exact same arguments you used before.
+
+```{r, eval = FALSE, echo = FALSE}
+# create tibble
+ten_tibble = tibble(id, sex, height, weight, tall_180)
+```
+
+9. Print your new `ten_tibble` object, how does it look different from `ten_df`? Try calculating the maximum `age` from this object. Is it different from what you got before?
+
+```{r, eval = FALSE, echo = FALSE}
+# print tibble
+ten_tibble
+max(ten_tibble) == max(ten_df)
+```
+
+## X - Challenges
+
+1. If you take the `sum()` of a logical vector, R will return the number of cases that are `TRUE`. Using this, find out how many of the ten baselers are male while using the is-equal-to operator `==`.
+
+```{r, eval = FALSE, echo = TRUE}
+# Determine the frequency of a case in a vector
+sum(XX == XX)
+```
+
+```{r, eval = FALSE, echo = FALSE}
+# Determine the frequency of a case in a vector
+sum(ten_tibble == "male")
+```
+
+2. You can use logical vectors to select rows from a data frame based on certain criteria. using the following template, get the id values of baselers who are younger than 30:
+
+```{r, eval = FALSE, echo = TRUE}
+# Create a logical vector indicating which baselers are younger than 30
+young_30 <- XX$XX < 30
+
+# Print the ids of baselers younger than 30
+XX$XX[young_30]
+```
+
+```{r, eval = FALSE, echo = FALSE}
+# Create a logical vector indicating which baselers are younger than 30
+young_30 <- ten_tibble$age < 30
+
+# Print the ids of baselers younger than 30
+ten_tibble$id[young_30]
+```
+
+3. Use a combination of logical vectors and the `mean()` function to answer the question: "What is the mean age of baselers who are heavier than 80kg?"
+
+```{r, eval = FALSE, echo = FALSE}
+# Mean age of baselers heavier than 80kg
+mean(ten_tibble$age[ten_tibble$weight > 80])
+```
+
+4. What are the id values of baselers who are male *and* are shorter than 165cm? (Hint: You will need to use the logical AND operator `&` to combine multiple logical vectors)
+
+```{r, eval = FALSE, echo = FALSE}
+# Mean age of baselers heavier than 80kg
+ten_tibble$id[ten_tibble$sex == "male"] & )
+```
+
+## Additional Resources
+
+- For more information on the fundamentals of object and functions in R see the R Core team's [introduction to R](https://cran.r-project.org/doc/manuals/r-release/R-intro.html) and for even more advanced object and function-related topics Hadley Wickham's [Advanced R](http://adv-r.had.co.nz/).
