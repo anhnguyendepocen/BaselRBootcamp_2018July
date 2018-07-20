@@ -1,5 +1,5 @@
 ---
-title: "Dimarta Clinical Trial- Case Study"
+title: "Case Study: Dimarta Clinical Trial"
 author: "Basel R Bootcamp, July 2018<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
 output:
   html_document:
@@ -158,6 +158,8 @@ Table: Table3. `dimarta_biomarker.csv` variable description:
 library(tidyverse)
 ```
 
+## B - Data I/O
+
 2. Using `read_csv()`, load the `dimarta_trial.csv`, `dimarta_demographics.csv`, and `dimarta_biomarker.csv` datasets as *three* new objects called `trial_df`, `demographics_df`, and `biomarker_df`.
 
 
@@ -169,7 +171,7 @@ demographics_df
 biomarker_df
 ```
 
-## B - Data Wrangling
+## C - Data Wrangling
 
 1. Using `rename()`, change the name of the column `arm` in the `trial_df` data to `StudyArm`.
 
@@ -383,7 +385,7 @@ dimarta_df %>%
   )
 ```
 
-##C - Plotting
+## D - Plotting
 
 1. Run the following code block to visualise the relationship between study arm and histamine change. What do you find?
 
@@ -396,7 +398,7 @@ ggplot(data = dimarta_df,
 
 2. Create the same plot as above, but instead of analysing study arm, try analysing gender. What do you find? Did one gender have better histamine improvements than the other?
 
-## D - Statistics
+## E - Statistics
 
 1. Using `t.test()` conduct a t-test comparing the change in histamine results between the placebo and dimarta. Did dimarta differ from the placebo?
 
