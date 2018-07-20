@@ -21,7 +21,7 @@ options(digits = 3)
 
 <figure>
 <center>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Hamburger_%28black_bg%29.jpg/500px-Hamburger_%28black_bg%29.jpg" alt="Trulli" style="width:60%">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cheeseburger.jpg/2560px-Cheeseburger.jpg" alt="Trulli" style="width:60%">
   <figcaption>Wikipedia</figcaption>
 </figure>
 
