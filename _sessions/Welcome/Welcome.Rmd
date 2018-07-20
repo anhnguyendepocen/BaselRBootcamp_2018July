@@ -330,6 +330,8 @@ knitr::include_graphics("https://cdn.southampton.ac.uk/assets/imported/transform
 <br><br><br><br><br><br><br><br><br>
 
 <p align="center"><font size=8><hfont><high>Questions?</high></hfont></font></p>
+<br>
+<p align = 'center'><font size = 6><a href = "https://therbootcamp.github.io/BaselRBootcamp_2018July/">Schedule Link</a></font></p>
 
 ]
 
