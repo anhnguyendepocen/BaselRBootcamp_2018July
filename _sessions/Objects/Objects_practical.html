@@ -201,7 +201,7 @@ $(document).ready(function () {
 </tr>
 <tr class="even">
 <td align="left"><code>max(x), min(x)</code></td>
-<td align="left">Maximim, minimum</td>
+<td align="left">Maximum, minimum</td>
 </tr>
 <tr class="odd">
 <td align="left"><code>table(x)</code></td>
@@ -292,8 +292,8 @@ mean(stocks$increase)</code></pre>
 </div>
 <div id="tasks" class="section level1">
 <h1>Tasks</h1>
-<div id="a---getting-setup" class="section level3">
-<h3>A - Getting setup</h3>
+<div id="a---getting-setup" class="section level2">
+<h2>A - Getting setup</h2>
 <ol style="list-style-type: decimal">
 <li><p>Open your R project. It should already have the folders <code>1_Data</code> and <code>2_Code</code>.</p></li>
 <li><p>Open a new R script and save it as a new file called <code>objects_practical.R</code> in the <code>2_Code</code> folder. At the top of the script, using comments, write your name and the date. Then, load the set of packages listed above with <code>library()</code>.</p></li>
@@ -441,17 +441,17 @@ table(sex)</code></pre>
 <div id="d---logical-vectors" class="section level2">
 <h2>D - Logical Vectors</h2>
 <ol style="list-style-type: decimal">
-<li>Logical vectors contain only <code>TRUE</code> and <code>FALSE</code> values (and missing values). Create a new vector called <code>tall_180</code> indicating which baselers are taller than 180cm. To do this, use the <code>&gt;</code> (greater than) operator á la <code>vector &gt; value</code>.</li>
+<li>Logical vectors contain only <code>TRUE</code> and <code>FALSE</code> values (and missing values). Create a new vector called <code>tall_180</code> indicating which Baselers are taller than 180cm. To do this, use the <code>&gt;</code> (greater than) operator á la <code>vector &gt; value</code>.</li>
 </ol>
 <pre class="r"><code># Create a logical vector tall_180 indicating
 #  which baselers are taller than 180cm
 
 XX &lt;- XX &gt; XX</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li><p>Print your <code>tall_180</code> vector to the console. Do you see only TRUE and FALSE values? If so, do the values that are TRUE match the ten baselers that are actually over 180cm?</p></li>
-<li><p>Using the <code>table()</code> function, create a table showing how many of the ten baselers are taller than 180cm and how many are not</p></li>
-<li><p>Using the <code>mean()</code> function, determine the percentage of the ten baselers that are taller than 180cm, i.e., <code>mean(tall_180)</code>. Should this have worked?</p></li>
-<li><p>What percent of the ten baselers were older than 30?</p></li>
+<li><p>Print your <code>tall_180</code> vector to the console. Do you see only TRUE and FALSE values? If so, do the values that are TRUE match the ten Baselers that are actually over 180cm?</p></li>
+<li><p>Using the <code>table()</code> function, create a table showing how many of the ten Baselers are taller than 180cm and how many are not</p></li>
+<li><p>Using the <code>mean()</code> function, determine the percentage of the ten Baselers that are taller than 180cm, i.e., <code>mean(tall_180)</code>. Should this have worked?</p></li>
+<li><p>What percent of the ten Baselers were older than 30?</p></li>
 </ol>
 </div>
 <div id="e---creating-data-frames" class="section level2">
@@ -475,12 +475,12 @@ XX &lt;- data.frame(XX, XX, XX, XX, XX) </code></pre>
 <div id="x---challenges" class="section level2">
 <h2>X - Challenges</h2>
 <ol style="list-style-type: decimal">
-<li>If you take the <code>sum()</code> of a logical vector, R will return the number of cases that are <code>TRUE</code>. Using this, find out how many of the ten baselers are male while using the is-equal-to operator <code>==</code>.</li>
+<li>If you take the <code>sum()</code> of a logical vector, R will return the number of cases that are <code>TRUE</code>. Using this, find out how many of the ten Baselers are male while using the is-equal-to operator <code>==</code>.</li>
 </ol>
 <pre class="r"><code># Determine the frequency of a case in a vector
 sum(XX == XX)</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>You can use logical vectors to select rows from a data frame based on certain criteria. using the following template, get the id values of baselers who are younger than 30:</li>
+<li>You can use logical vectors to select rows from a data frame based on certain criteria. using the following template, get the id values of Baselers who are younger than 30:</li>
 </ol>
 <pre class="r"><code># Create a logical vector indicating which baselers are younger than 30
 young_30 &lt;- XX$XX &lt; 30
@@ -488,8 +488,8 @@ young_30 &lt;- XX$XX &lt; 30
 # Print the ids of baselers younger than 30
 XX$XX[young_30]</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li><p>Use a combination of logical vectors and the <code>mean()</code> function to answer the question: “What is the mean age of baselers who are heavier than 80kg?”</p></li>
-<li><p>What are the id values of baselers who are male <em>and</em> are shorter than 165cm? (Hint: You will need to use the logical AND operator <code>&amp;</code> to combine multiple logical vectors)</p></li>
+<li><p>Use a combination of logical vectors and the <code>mean()</code> function to answer the question: “What is the mean age of Baselers who are heavier than 80kg?”</p></li>
+<li><p>What are the id values of Baselers who are male <em>and</em> are shorter than 165cm? (Hint: You will need to use the logical AND operator <code>&amp;</code> to combine multiple logical vectors)</p></li>
 </ol>
 </div>
 <div id="additional-resources" class="section level2">

@@ -64,7 +64,7 @@ In this practical you'll learn how to work with R data objects. By the end of th
 | Function| Description|
 |:------|:--------|
 | `mean(x), median(x), sd(x), sum(x)` | Mean, median standard deviation, sum|
-| `max(x), min(x)`                    | Maximim, minimum|
+| `max(x), min(x)`                    | Maximum, minimum|
 | `table(x)`                          | Table of frequency counts|
 | `round(x, digits)`                  | Round a numeric vector x to `digits`|
 
@@ -302,7 +302,7 @@ mean(weight, na.rm = TRUE)
 
 ## D - Logical Vectors
 
-1. Logical vectors contain only `TRUE` and `FALSE` values (and missing values). Create a new vector called `tall_180` indicating which baselers are taller than 180cm. To do this, use the `>` (greater than) operator á la `vector > value`.  
+1. Logical vectors contain only `TRUE` and `FALSE` values (and missing values). Create a new vector called `tall_180` indicating which Baselers are taller than 180cm. To do this, use the `>` (greater than) operator á la `vector > value`.  
 
 ```{r, eval = FALSE, echo = TRUE}
 # Create a logical vector tall_180 indicating
@@ -316,28 +316,28 @@ XX <- XX > XX
 tall_180 <- hieght > 180
 ```
 
-2. Print your `tall_180` vector to the console. Do you see only TRUE and FALSE values? If so, do the values that are TRUE match the ten baselers that are actually over 180cm?
+2. Print your `tall_180` vector to the console. Do you see only TRUE and FALSE values? If so, do the values that are TRUE match the ten Baselers that are actually over 180cm?
 
 ```{r, eval = FALSE, echo = FALSE}
 # print tall
 tall_180
 ```
 
-3. Using the `table()` function, create a table showing how many of the ten baselers are taller than 180cm and how many are not
+3. Using the `table()` function, create a table showing how many of the ten Baselers are taller than 180cm and how many are not
 
 ```{r, eval = FALSE, echo = FALSE}
 # count baselers taller than 180
 table(tall_180)
 ```
 
-4. Using the `mean()` function, determine the percentage of the ten baselers that are taller than 180cm, i.e., `mean(tall_180)`. Should this have worked?
+4. Using the `mean()` function, determine the percentage of the ten Baselers that are taller than 180cm, i.e., `mean(tall_180)`. Should this have worked?
 
 ```{r, eval = FALSE, echo = FALSE}
 # percentage of baselers taller than 180
 mean(tall_180)
 ```
 
-5. What percent of the ten baselers were older than 30?
+5. What percent of the ten Baselers were older than 30?
 
 ```{r, eval = FALSE, echo = FALSE}
 # percentage of baselers older than 30
@@ -417,7 +417,7 @@ max(ten_tibble) == max(ten_df)
 
 ## X - Challenges
 
-1. If you take the `sum()` of a logical vector, R will return the number of cases that are `TRUE`. Using this, find out how many of the ten baselers are male while using the is-equal-to operator `==`.
+1. If you take the `sum()` of a logical vector, R will return the number of cases that are `TRUE`. Using this, find out how many of the ten Baselers are male while using the is-equal-to operator `==`.
 
 ```{r, eval = FALSE, echo = TRUE}
 # Determine the frequency of a case in a vector
@@ -429,7 +429,7 @@ sum(XX == XX)
 sum(ten_tibble == "male")
 ```
 
-2. You can use logical vectors to select rows from a data frame based on certain criteria. using the following template, get the id values of baselers who are younger than 30:
+2. You can use logical vectors to select rows from a data frame based on certain criteria. using the following template, get the id values of Baselers who are younger than 30:
 
 ```{r, eval = FALSE, echo = TRUE}
 # Create a logical vector indicating which baselers are younger than 30
@@ -447,14 +447,14 @@ young_30 <- ten_tibble$age < 30
 ten_tibble$id[young_30]
 ```
 
-3. Use a combination of logical vectors and the `mean()` function to answer the question: "What is the mean age of baselers who are heavier than 80kg?"
+3. Use a combination of logical vectors and the `mean()` function to answer the question: "What is the mean age of Baselers who are heavier than 80kg?"
 
 ```{r, eval = FALSE, echo = FALSE}
 # Mean age of baselers heavier than 80kg
 mean(ten_tibble$age[ten_tibble$weight > 80])
 ```
 
-4. What are the id values of baselers who are male *and* are shorter than 165cm? (Hint: You will need to use the logical AND operator `&` to combine multiple logical vectors)
+4. What are the id values of Baselers who are male *and* are shorter than 165cm? (Hint: You will need to use the logical AND operator `&` to combine multiple logical vectors)
 
 ```{r, eval = FALSE, echo = FALSE}
 # Mean age of baselers heavier than 80kg

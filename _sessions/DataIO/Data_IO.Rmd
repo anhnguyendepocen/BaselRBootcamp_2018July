@@ -75,7 +75,7 @@ Raw data can come in many shapes and sizes, but <high>R's got you covered</high>
 <high>delim-separated data</high>
 *.csv, .txt, etc.*
 
-<img src="image/baselers_raw.png">
+<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/baselers_raw.png">
 
 ]
 
@@ -84,7 +84,7 @@ Raw data can come in many shapes and sizes, but <high>R's got you covered</high>
 <high>markup data</high>
 *.xml, .xls, .html, (.json), etc.*
 
-<img src="image/rbootcamp_raw.png">
+<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/rbootcamp_raw.png">
 
 ]
 
@@ -110,7 +110,7 @@ Raw data can come in many shapes and sizes, but <high>R's got you covered</high>
 <high>delim-separated data</high>
 *.csv, .txt, etc.*
 
-<img src="image/baselers_raw.png">
+<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/baselers_raw.png">
 
 ]
 
@@ -153,7 +153,7 @@ read_delim(data_object, file, ...)  # arbitrary-delimited
 2 - Initiate auto-complete and browse through the folder structure by placing the cursor between two quotation marks and using the <high>tab key</high>.
 
 <p align="center">
-  <img src="image/tab.png" height="80px"></img>
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/tab.png" height="80px"></img>
 </p>
 
 3 - Auto-complete begins with the project folder - <high>place your data inside your project folder!</high>
@@ -162,7 +162,7 @@ read_delim(data_object, file, ...)  # arbitrary-delimited
 
 .pull-right55[
 
-<img src="image/auto_complete_3.png"></img>
+<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/auto_complete_3.png"></img>
 
 ]
 
@@ -172,17 +172,17 @@ read_delim(data_object, file, ...)  # arbitrary-delimited
 
 .pull-left45[
 
-1 - <high>Find the file</high> on your harddrive. Should be in your data folder inside your project.
+1 - <high>Find the file</high> on your hard drive. Should be in your data folder inside your project.
 
-2 - <high>Open the file</high> in a text viewer, e.g., *TextEdit* (Mac), *TextWranger* (Mac), *WordPad* (Windows).
-<br><br><br><br>
-<img src="image/find_data.png">
+2 - <high>Open the file</high> in RStudio (right-click on the file in the *Files* pane) a text viewer, e.g., *TextEdit* (Mac), *TextWranger* (Mac), *WordPad* (Windows).
+<br><br><br>
+<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/find_data.png">
 
 ]
 
 .pull-right45[
 
-<img src="image/baselers_raw.png">
+<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/baselers_raw.png">
 
 ]
 
@@ -209,7 +209,7 @@ read_csv("1_Data/baselers.csv",
 
 .pull-right45[
 
-<img src="image/baselers_raw.png">
+<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/baselers_raw.png">
 
 ]
 
@@ -223,14 +223,14 @@ Reading in data, <high>`readr` infers the type of data</high> for each column.
 
 ```{r}
 # Read baselers
-baselers <- read_csv("data/baselers.csv")
+baselers <- read_csv("1_Data/baselers.csv")
 ```
 
 ]
 
 .pull-right45[
 
-<img src="image/baselers_raw.png">
+<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/baselers_raw.png">
 
 ]
 
@@ -242,7 +242,7 @@ baselers <- read_csv("data/baselers.csv")
 
 Incorrect data types can be fixed. Typically this involves:
 
-a) <high>removing character elements</high> from otherweise numeric variables.<br><br2>
+a) <high>removing character elements</high> from otherwise numeric variables.<br><br2>
 b) Setting <high>explicit `NA` strings</high> using the `na`-argument.<br><br2>
 c) Re-running <high>`type_convert`</high>.<br><br>
 
@@ -257,7 +257,7 @@ baselers <- type_convert(baselers)
 
 .pull-right45[
 
-<img src="image/baselers_raw.png">
+<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/baselers_raw.png">
 
 ]
 

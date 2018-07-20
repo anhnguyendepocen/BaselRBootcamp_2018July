@@ -64,7 +64,7 @@ R has 3 main data objects...
 ]
 
 .pull-right55[
-<img src="image/main_objects.png"></img>
+<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/main_objects.png"></img>
 ]
 
 
@@ -87,7 +87,7 @@ R has 3 main data objects...
 ]
 
 .pull-right5[
-  <img src="image/list.png"></img>
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/list.png"></img>
   ]
 
 ---
@@ -135,7 +135,7 @@ reg_results$coefficients[,c(1,3)]
 ]
 
 .pull-right5[
-  <img src="image/list.png"></img>
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/list.png"></img>
   ]
 
 ---
@@ -161,7 +161,7 @@ reg_results$coefficients[,c(1,3)]
 
 .pull-right45[
   <br><br><br>
-  <img src="image/data_frame.png"></img>
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/data_frame.png"></img>
   ]
 
 ---
@@ -183,7 +183,7 @@ baselers
 
 .pull-right45[
   <br><br><br>
-  <img src="image/data_frame.png"></img>
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/data_frame.png"></img>
   ]
 
 ---
@@ -198,12 +198,12 @@ View(baselers)
 
 ```
 
-<img src="image/view.png"></img>
+<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/view.png"></img>
 ]
 
 .pull-right45[
   <br><br><br>
-  <img src="image/data_frame.png"></img>
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/data_frame.png"></img>
   ]
 
 ---
@@ -236,7 +236,7 @@ baselers$education[1:10]
 
 .pull-right45[
   <br><br><br>
-  <img src="image/data_frame.png"></img>
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/data_frame.png"></img>
   ]
 
 ---
@@ -257,7 +257,7 @@ baselers
 
 .pull-right45[
   <br><br><br>
-  <img src="image/data_frame.png"></img>
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/data_frame.png"></img>
   ]
 
 
@@ -282,7 +282,7 @@ see <a href="http://worldpece.org/sites/default/files/datastyle.pdf">The Element
 
 .pull-right45[
   <br><br><br>
-  <img src="image/data_frame.png"></img>
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/data_frame.png"></img>
   ]
 
 ---
@@ -306,7 +306,7 @@ see <a href="http://worldpece.org/sites/default/files/datastyle.pdf">The Element
 ]
 
 .pull-right4[
-  <img src="image/vector.png"></img>
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/vector.png"></img>
   ]
 
 
@@ -352,7 +352,7 @@ Find more info on indexing [here](http://rspatial.org/intr/rst/4-indexing.html).
 ]
 
 .pull-right4[
-  <img src="image/vector.png"></img>
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/vector.png"></img>
   ]
 
 
@@ -382,7 +382,7 @@ is.numeric(baselers$age)
 ]
 
 .pull-right4[
-  <img src="image/vector_types.png"></img>
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/vector_types.png"></img>
   ]
 
 
@@ -416,7 +416,7 @@ as.character(baselers$age[1:9])
 ]
 
 .pull-right4[
-  <img src="image/vector_types.png"></img>
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/vector_types.png"></img>
   ]
 
 ---
@@ -449,7 +449,7 @@ baselers$age[1:9] < 300
 ]
 
 .pull-right4[
-  <img src="image/vector_types.png"></img>
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/vector_types.png"></img>
   ]
 
 ---
@@ -471,7 +471,7 @@ baselers$age[1:9] < 300
 ]
 
 .pull-right4[
-  <img src="image/vector_types.png"></img>
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/vector_types.png"></img>
   ]
 
 
@@ -492,7 +492,7 @@ baselers$age[1:9] < 300
 ]
 .pull-right45[
   <br><br><br>
-  <img src="image/object_class.png"></img>
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/object_class.png"></img>
 ]
 
 ---
@@ -513,7 +513,7 @@ Functions have 3 elements:
 
 .pull-right55[
   <br><br>
-  <img src="image/function.png"></img>
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/function.png"></img>
 ]
 
 

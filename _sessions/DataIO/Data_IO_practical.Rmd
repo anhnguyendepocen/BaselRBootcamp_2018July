@@ -1,5 +1,5 @@
 ---
-title: "Data I/O""
+title: "Data I/O"
 author: "Basel R Bootcamp, July 2018<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
 output:
   html_document:
@@ -22,10 +22,10 @@ library(tidyverse)
 ```
 
 
-<figure>
-<center>
-  <img src="https://www.baslerfasnacht.info/fancybox/img_en/basel-fasnacht_big.jpg" alt="Trulli" style="width:90%">
-  <figcaption>https://www.baslerfasnacht.info/basel-fasnacht/index.php</figcaption>
+<figure  alt="Trulli" style="width:90%">
+  <center>
+  <img src="https://i.pinimg.com/originals/94/e2/98/94e29802d7473690bdbc5acb85a5302d.gif">
+  <center>
 </figure>
 
 
@@ -41,13 +41,15 @@ In this practical you'll learn how to read and save data. By the end of this pra
 
 ```{r, eval = TRUE, message = FALSE}
 library(tidyverse)
-house <- read_csv("data/baselers.csv")
+library(haven)
 ```
 
 |File | Rows | Columns | Description |
 |:----|:-----|:------|:-----------------------------------------|
-|[baselers.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/baselers.csv) | 10000 | 20 | Survey of Baselers |
-|[baselers.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/baselers.csv) | 10000 | 20 | Survey of Baselers |
+|[diamonds.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/diamonds.csv) | 100 | 7 | Subset of the well-known diamonds data set containing specifications and prices of a large number of recorded diamonds.  |
+|[titanic.xls](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/titanic.xls) | 1309 | 14 | Information on the survival of titanic passengers. |
+|[sleep.sav](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/sleep.sav) | 271 | 55 | Survey on sleeping behavior completed by staff at the University of Melbourne. |
+|[airbnb_zuerich.sas7bdat](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/airbnb_zuerich.sas7bdat) | 2392 | 20 | Data on AirBnB listings in Zürich, Switzerland|
 
 ## Packages
 
@@ -56,40 +58,35 @@ house <- read_csv("data/baselers.csv")
 |`tidyverse`|`install.packages("tidyverse")`|
 |`readr`|`install.packages("readr")`|
 |`haven`|`install.packages("haven")`|
+|`readxl`|`install.packages("readxl")`|
+|`xml2`|`install.packages("xml2")`|
+|`rvest`|`install.packages("rvest")`|
 
 ### Glossary
 
-*Reading/writing in delim-separated data*
+*Reading/writing delim-separated data*
+
+| Function | Description|
+|:--------------------------|:-----------------------------|
+| `read_csv(file)`, `write_csv(x, file)` | Read/write files separated by comma|
+| `read_csv2(file)`, *not available* | Read/write files separated by semicolon|
+| `read_delim(file)`, `write_delim(x, file)` | Read/write files separated by arbitrary symbol|
+
+*Reading/writing other data formats*
 
 | Function| Description|
-|:------|:--------|
-| `read_csv(file, ...)`, `read_csv2(file, ...)` | Read files separated by comma or semicolon|
-| `read_delim(file, ...)`| Read files separated by arbitrary symbol|
-| `write_csv(x, file, ...)`, `write_csv2(x, file, ...)` | Write files separated by comma or semicolon|
-| `write_delim(x, file, ...)`| Write files separated by arbitrary symbol|
+|:--------------------------|:-----------------------------|
+| `read_excel(file)`, *not available* | Read Excel files with extension `.xls` and `.xlsx` |
+| `read_spss(file)`, `write_spss(x, file)`| Read/write SPSS files with extension `.sav` |
+| `read_sas(file)`, `write_sas(x, file)`| Read/write SAS files with extension `.sas7bdat` |
 
-
-*Vector functions*
+*Processing websites*
 
 | Function| Description|
-|:------|:--------|
-| `mean(x), median(x), sd(x), sum(x)` | Mean, median standard deviation, sum|
-| `max(x), min(x)`                    | Maximim, minimum|
-| `table(x)`                          | Table of frequency counts|
-| `round(x, digits)`                  | Round a numeric vector x to `digits`|
-
-*Creating data frames from vectors*
-
-| Function| Description|
-|:------|:--------|
-| `data.frame(a, b, c)` | Create a data frame from vectors a, b, c|
-| `tibble(a, b, c)`     | Create a tibble from vectors a, b, c|
-
-*Accessing vectors from data frames*
-
-| Function| Description|
-|:------|:--------|
-| `df$name` |Access vector `name` from a data frame `df`|
+|:--------------------------|:-----------------------------|
+| `read_html(file)`, `write_html(x, file)`| Read/write websites files with extension `.html` |
+| `hmlt_node(html)` | Select specific element in `.html`-file |
+| `html_table` | Transform `.html`-table to data frame |
 
 
 ### Examples
@@ -97,43 +94,46 @@ house <- read_csv("data/baselers.csv")
 ```{r, eval = FALSE, echo = TRUE, message = FALSE, warning = FALSE}
 # load packages
 library(tidyverse)
+library(readxl)
+library(haven)
 
+# delim-separated -------------------
 
+# read survey data
+survey <- read_csv("1_Data/survey.csv")
 
+# fix header by specifying column names
+survey <- read_csv("1_Data/survey.csv",
+                   col_names = c("id", "age", "sex", "rating"))
 
-```
+# fix NA values
+survey <- read_csv("1_Data/survey.csv",
+                   col_names = c("id", "age", "sex", "pol"),
+                   na = c('NA', 'NULL'))
 
-# Tasks
+# write clean data to disc
+write_csv(survey, "1_Data/clean_survey.csv")
 
-## A - Read delim-separated text files
+# fix types -------------------
 
-1. Read Baselers 
+# remove character from rating
+survey$rating[survey$rating == "2,1"] <- 2.1
 
+# rerun type convert
+survey <- type_convert(survey)
 
-## B - Write delim-separated text files
+# other formats -------------------
 
-## C - Read other file formats
+survey <- read_excel("1_Data/survey.xml")
+survey <- read_spss("1_Data/survey.sav")
+survey <- read_sas("1_Data/survey.sas7bdat")
 
-## D - Use R's formats
-
-## X - Challenges
-
-## Y - Scraping the internet
-
-## Z - File connections
-
-
-Scraping the internet
-
-15. Finally on to something completely new. As mentioned, connections can also be established to data located outside one's own hard drive, such as, for instance, the world wide web. Specifically, using `url()` you can establish a connection to a webpage, which you then can use to retrieve information from the webpage. One package that conveniently streamlines extracting information from webpages based is the `rvest` package. To illustrate how easy it can be to scrape (aka extract) information from an webpage using R and `rvest`, run the following code. It downloads and parses the Milestones table from R's Wikipedia page.
-
-```{r, eval=F, echo=T}
+# scraping the web ----------------
 
 # load package
-install.packages('rvest', repos = "https://stat.ethz.ch/CRAN/")
+library(tidyverse)
 library(rvest)
-library(tibble)
-library(magrittr)
+library(xml2)
 
 # get html
 url = 'https://en.wikipedia.org/wiki/R_(programming_language)' 
@@ -144,169 +144,347 @@ page = read_html(url)
 table = page %>% html_node(xpath = '//*[@id="mw-content-text"]/div/table[2]') %>% html_table()
 
 # create tibble
-as.tibble(table)
+as_tibble(table)
+```
+
+# Tasks
+
+## A - Read delim-separated text files
+
+In this section, you will read in a subset of the well known diamonds data set and prepare it for data analysis. 
+
+1. Identify the file path to the `diamonds.csv` dataset by using the `""` (quotation marks) auto-complete trick. Place the cursor between two quotation marks, hit &#8677; (tab-key), and browse through the file. Save the file path in an object called path.
+
+```{r, eval = F, echo =T}
+# place cursor in-between "" and hit tab
+path <- ""
 ```
 
 
-1. Logical vectors contain only `TRUE` and `FALSE` values (and missing values). Create a new vector called `tall_180` indicating which baselers are taller than 180cm. To do this, use the `>` (greater than) operator á la `vector > value`.  
-
-```{r, eval = FALSE, echo = TRUE}
-# Create a logical vector tall_180 indicating
-#  which baselers are taller than 180cm
-
-XX <- XX > XX
+```{r, eval = F, echo = T}
+# place cursor in-between and hit tab
+path <- "1_Data/diamonds.csv"
 ```
 
-```{r, eval = FALSE, echo = FALSE}
-# Create a logical vector tall_180
-tall_180 <- hieght > 180
+2. Using `read_csv()` and the `path` object, read the `diamonds.csv` dataset. Make sure to first load the `tidyverse`. 
+
+```{r, eval = F, echo = T}
+# load tidyverse
+library(tidyverse)
+
+# read diamonds data
+diamonds <- read_csv(XX)
 ```
 
-2. Print your `tall_180` vector to the console. Do you see only TRUE and FALSE values? If so, do the values that are TRUE match the ten baselers that are actually over 180cm?
+```{r, eval = F, echo = F}
+# load tidyverse
+library(tidyverse)
 
-```{r, eval = FALSE, echo = FALSE}
-# print tall
-tall_180
+# read diamonds data
+diamonds <- read_csv(path)
 ```
 
-3. Using the `table()` function, create a table showing how many of the ten baselers are taller than 180cm and how many are not
+3. Print the diamonds data and inspect the column names in the header line. Something's wrong!
 
-```{r, eval = FALSE, echo = FALSE}
-# count baselers taller than 180
-table(tall_180)
+```{r, eval = F, echo = F}
+# print diamonds
+diamonds
 ```
 
-4. Using the `mean()` function, determine the percentage of the ten baselers that are taller than 180cm, i.e., `mean(tall_180)`. Should this have worked?
+4. Fix the header by reading in the data again using the `col_names`-argument. Assign to `col_names` a character vector containing the correct column names: `carat`, `cut`, `color`, `clarity`, `depth`, `table`, `price`.
 
-```{r, eval = FALSE, echo = FALSE}
-# percentage of baselers taller than 180
-mean(tall_180)
+```{r, eval = F, echo = T}
+# read diamonds data while specifying col_names
+diamonds <- read_csv(XX, col_names = XX)
 ```
 
-5. What percent of the ten baselers were older than 30?
-
-```{r, eval = FALSE, echo = FALSE}
-# percentage of baselers older than 30
-mean(age > 30)
+```{r, eval = F, echo = F}
+# read diamonds data while specifying col_names
+diamonds <- read_csv(path,
+                     col_names = c("carat", "cut", "color", "clarity", "depth", "table", "price"))
 ```
 
-## E - Creating data frames
+5. Re-inspect the header by printing the data. Has the header been fixed?
 
-1. Using the `data.frame()` function, create a data frame called `ten_df` that contains each of vectors you just created: `id`, `sex`, `height`, `weight`, `tall_180`
-
-```{r, eval = FALSE, echo = TRUE}
-# Create data frame from vectors
-XX <- data.frame(XX, XX, XX, XX, XX) 
+```{r, eval = F, echo = F}
+# print diamonds
+diamonds
 ```
 
-```{r, eval = FALSE, echo = FALSE}
-# Create ten_df data frame from vectors
-ten_df <- data.frame(id, sex, height, weight, tall_180) 
+6. Now pay attention to the classes of the individuals columns (variables). Have all classes been identified correctly? Should `carat` not be a numeric variable?
+
+```{r, eval = F, echo = F}
+# print diamonds
+diamonds
 ```
 
-2. Print your `ten_df` object to see how it looks! Does it contain all of the vectors?
+7. Select and print the `carat` variable to identify the one entry that caused the variable to become a character vector. (hint: look for a comma). 
 
-```{r, eval = FALSE, echo = FALSE}
-# Print ten_df
-ten_df
+```{r, eval = F, echo = F}
+# print the carat column
+diamonds$carat
 ```
 
-3. Using the `dim()` function, print the number of rows and columns in your data frame. Do you get 10 rows and 5 columns?
+8. Change the carat variable's element at position `XX` to same value `YY` but with a period instead of a comma. Use the code below.  
 
-```{r, eval = FALSE, echo = FALSE}
-# Inspect dimensions
-dim(ten_df)
+```{r, eval = F, echo = T}
+# Change the value at position XX to YY
+diamonds$carat[XX] <- YY
 ```
 
-4. What is the class of your `ten_df` object? Use the `class()` function to find out!
-
-```{r, eval = FALSE, echo = FALSE}
-# Inspect class
-class(ten_df)
+```{r, eval = F, echo = F}
+# Change the value at position XX to YY
+diamonds$carat[17] <- 0.37
 ```
 
-5. Use the `summary()` function to print descriptive statistics from each column of `ten_df`
+9. Now, run `type_convert` on the `diamonds` data to have R re-infer and fix the data types. 
 
-```{r, eval = FALSE, echo = FALSE}
-# Inspect class
-summary(ten_df)
+```{r, eval = F, echo = F}
+# re-infer data types
+diamonds <- type_convert(diamonds)
 ```
 
-6. Using the `$` operator, print the `age` column from the `ten_df` data frame.
+10. Inspect the message that was printed in the console. Has the type of `carat` changed in `double`? Verify by printing the dataset.
 
-```{r, eval = FALSE, echo = FALSE}
-# Inspect class
-ten_df$age
+```{r, eval = F, echo = F}
+# print diamonds data set
+diamonds
 ```
 
-7. Calculate the maximum `age` value from the `ten_df` data frame using `max()`. Do you get the same result from when you calculated it from the original vector `age`?
+11. The data is now ready for analysis. Calculate a few statistics. What is the average `carat` or `price` (use `mean()`)? What cut `cut` and `clarity` levels exist and how often do they occur (use `table()`)? You can learn more about the variable values from the help file `?diamonds`.
 
-```{r, eval = FALSE, echo = FALSE}
-# Get max
-max(ten_df$age)
+```{r, eval = F, echo = F}
+# simple stats of diamonds
+mean(diamonds$carat)
+mean(diamonds$price)
+table(diamonds$cut)
+table(diamonds$clarity)
 ```
 
-8. Instead of creating a data frame of the data using the `data.frame()` function, try creating a tibble called `ten_tibble` using the `tibble()` function. `tibble`s are a more modern, leaner variant of data frame that we prefer over classic `data.frame`s You can use the exact same arguments you used before.
+## B - Write delim-separated text files
 
-```{r, eval = FALSE, echo = FALSE}
+1. Write the, now, properly formatted diamonds data to your data folder as a `.csv` file using the name   `diamonds_clean.csv`. Don't forget to include both the file name and the folder (separated by `/`) in the character string specifying the `path` argument. 
+
+```{r, eval = F, echo = F}
+# write clean diamonds data to disc
+write_csv(XX, path = XX)
+```
+
+```{r, eval = F, echo = F}
+# write clean diamonds data to disc
+write_csv(diamonds, "1_Data/diamonds_clean.csv")
+```
+
+2. Read `diamonds_clean.csv` back in and call the object `diamonds_clean`. Verify that this time the types been correctly identified from the start.
+
+```{r, eval = F, echo = F}
+# read clean diamonds data from disc
+diamonds_clean <- read_csv("1_Data/diamonds_clean.csv")
+```
+
+3. Using `write_delim`, write the data to disc with a different delimiter calling it `diamonds_delim.csv`. Specifically, set the `delim`-argument to `@`.
+
+```{r, eval = F, echo = F}
+# write with @ as delimiter
+write_delim(XX, path = XX, delim = XX)
+```
+
+```{r, eval = F, echo = F}
+# write with @ as delimiter
+write_delim(diamonds_clean, path = "1_Data/diamonds_delim.csv", delim = "@")
+```
+
+4. Read `diamonds_delim.csv` back in using `read_csv()`. What happens?
+
+```{r, eval = F, echo = F}
+# read @-delimited diamonds data
+read_csv("1_Data/diamonds_delim.csv")
+```
+
+5. Fix the delimiter issue by using `read_delim()` instead of `read_csv()` and specifying the `delim`-argument. Verify that everything is in order again by printing the data.
+
+```{r, eval = F, echo = F}
+# read @-delimited diamonds data
+read_delim("1_Data/diamonds_delim.csv", delim = "@")
+```
+
+## C - Read other file formats
+
+**Excel**
+
+1. Using `read_excel()`, read in the `titanic.xls` dataset. Make sure to first load the `readxl` package.
+
+```{r, eval = F, echo = T}
+titanic <- read_excel(XX)
+```
+
+```{r, eval = F, echo = F}
+# Read titanic data
+titanic <- read_excel("1_Data/titanic.xls")
+```
+
+2. Print it and evaluate its dimensions using `dim()`.
+
+```{r, eval = F, echo = F}
+# print and show dimenisons
+titanic
+dim(titanic)
+```
+
+3. Using `table()`, how many people survived (variable `survived`) in each cabin class (variable `pclass`)?
+
+```{r, eval = F, echo = T}
+# determine survival rate by cabin class
+table(titanic$XX, titanic$XX)
+```
+
+```{r, eval = F, echo = F}
+# determine survival rate by cabin class
+table(titanic$pclass, titanic$survived)
+```
+
+4. Write data to your data folder using `write_csv()`.
+
+```{r, eval = F, echo = F}
+# write data to .csv
+write_csv(titanic, "1_Data/titanic.csv")
+```
+
+**SPSS**
+
+5. Using `read_spss()` read in the sleep data set `sleep.sav` of staff at he University of Melbourne. Make sure to first load the `haven` package.
+
+```{r, eval = F, echo = T}
+XX <- read_spss(XX)
+```
+
+```{r, eval = F, echo = F}
+# Read sleep data
+sleep <- read_spss("1_Data/sleep.sav")
+```
+
+6. Print it and evaluate its dimensions using `dim()`.
+
+```{r, eval = F, echo = F}
+# print and show dimenisons
+sleep
+dim(sleep)
+```
+
+7. How many drinks do staff at the University of Melbourne consumer per day (variable `alcohol`). Use the `mean()`-function, while taking care of missing values using the `na.rm`-argument. 
+
+```{r, eval = F, echo = F}
+# compute mean number of drinks
+mean(sleep, na.rm = TRUE)
+```
+
+8. Write data to your data folder using `write_csv()`.
+
+```{r, eval = F, echo = F}
+# write data to .csv
+write_csv(sleep, "1_Data/sleep.csv")
+```
+
+
+**SAS**
+
+9. Using `read_sas()`, read in `airbnb_zuerich.sas7bdat` containing AirBnB listings in Zürich, Switzerland and call the object `airbnb_zuerich`.
+
+```{r, eval = F, echo = T}
+# read sas data
+XX <- read_sas(XX)
+```
+
+```{r, eval = F, echo = F}
+# read airbnb_zuerich.sas7bdat
+airbnb_zuerich <- read_sas("1_Data/airbnb_zuerich.sas7bdat")
+```
+
+10. Print it and evaluate its dimensions using `dim()`.
+
+```{r, eval = F, echo = F}
+# print and show dimenisons
+airbnb_zuerich
+dim(airbnb_zuerich)
+```
+
+11. Using `table()`, determine how many AirBnB listings of which `room_type` exist in Zürich?
+
+```{r, eval = F, echo = F}
+# table room type
+table(airbnb_zuerich$room_type)
+```
+
+12. Write data to your data folder using `write_csv()`.
+
+```{r, eval = F, echo = F}
+# write data to .csv
+write_csv(airbnb_zuerich, "1_Data/airbnb_zuerich.csv")
+```
+
+## D - Use R's data format
+
+R has two data formats of its own - `.Rdata` and `.RDS`. We recommend to use only `.RData` as its use follows the same logic as with other read and write functions. A benefit of using R's data formats is compression, leading to often substantially smaller file sizes. 
+
+1. First, using `read_csv()` read back in the `diamonds_clean.csv` dataset. 
+
+```{r, eval = F, echo = F}
+# read diamonds_clean.csv
+diamonds_clean <- read_csv("1_Data/diamonds_clean.csv")
+```
+
+2. Using `saveRDS()` write `diamonds_clean` to an ´.RDS´-file into your data folder. The function works analogue to other write functions. Make sure to use `.RDS` as the file ending.
+
+```{r, eval = F, echo = T}
+# write to RDS
+saveRDS(XX, file = XX)
+```
+
+```{r, eval = F, echo = F}
+# write to RDS
+saveRDS(diamonds_clean, file = "1_Data/diamonds_clean.RDS")
+```
+
+3. Using `readRDS()`, read `diamonds_clean.RDS` and inspect the data to verify the data has not changed.
+
+```{r, eval = F, echo = F}
+# read from RDS
+readRDS("1_Data/diamonds_clean.RDS")
+```
+
+4. Using `file.size()`, compare the file size of `diamonds_clean.csv` and `diamonds_clean.RDS`. Which file is larger?
+
+```{r, eval = F, echo = F}
+# read from RDS
+file.size("1_Data/diamonds_clean.csv")
+file.size("1_Data/diamonds_clean.RDS")
+```
+
+## X - Scraping the internet
+
+1. Finally on to something completely new. These days a lot of data is available not come in a ready-made, spreadsheet-like form, but must be extracted and processed in order to be used. One such data source is the world wide web. The code below based on the `rvest` and `xml2` packages shows a short example of how to extract a table from R's Wikipedia page. Run the code and experience how easy it is to extract data from a webpage.
+
+```{r, eval=F, echo=T}
+# load package
+library(tidyverse)
+library(rvest)
+library(xml2)
+
+# get html
+url = 'https://en.wikipedia.org/wiki/R_(programming_language)' 
+page = read_html(url)
+
+# get table
+# use XPath from inspect page (e.g., in Chrome)
+table = page %>% html_node(xpath = '//*[@id="mw-content-text"]/div/table[2]') %>% html_table()
+
 # create tibble
-ten_tibble = tibble(id, sex, height, weight, tall_180)
+as_tibble(table)
 ```
 
-9. Print your new `ten_tibble` object, how does it look different from `ten_df`? Try calculating the maximum `age` from this object. Is it different from what you got before?
+2. If you like, tweak the code to extract tables from other websites. The only things you need to change is the `url` and the `xpath` location. To extract the latter, use the feature of *Chrome* or *Firefox* to show you the html code for a given webpage element. To access the html code right-click on the website element of interest and select `Inspect` or `Inspect element` depending on whether you use Chrome or Firefox. Next right-click on the currently marked element in the html code pane and select `Copy/Copy XPath` or `Copy/XPath` again depending on the browser. Now, you can insert the `XPath` location into your code using `cmd + v` (Mac) or `ctrl + v`. If the code does not work, you probably selected the wrong element. Look out for an element called, e.g., `<table class="wikitable">`, in the case of *Wikipedia*. 
 
-```{r, eval = FALSE, echo = FALSE}
-# print tibble
-ten_tibble
-max(ten_tibble) == max(ten_df)
-```
-
-## X - Challenges
-
-1. If you take the `sum()` of a logical vector, R will return the number of cases that are `TRUE`. Using this, find out how many of the ten baselers are male while using the is-equal-to operator `==`.
-
-```{r, eval = FALSE, echo = TRUE}
-# Determine the frequency of a case in a vector
-sum(XX == XX)
-```
-
-```{r, eval = FALSE, echo = FALSE}
-# Determine the frequency of a case in a vector
-sum(ten_tibble == "male")
-```
-
-2. You can use logical vectors to select rows from a data frame based on certain criteria. using the following template, get the id values of baselers who are younger than 30:
-
-```{r, eval = FALSE, echo = TRUE}
-# Create a logical vector indicating which baselers are younger than 30
-young_30 <- XX$XX < 30
-
-# Print the ids of baselers younger than 30
-XX$XX[young_30]
-```
-
-```{r, eval = FALSE, echo = FALSE}
-# Create a logical vector indicating which baselers are younger than 30
-young_30 <- ten_tibble$age < 30
-
-# Print the ids of baselers younger than 30
-ten_tibble$id[young_30]
-```
-
-3. Use a combination of logical vectors and the `mean()` function to answer the question: "What is the mean age of baselers who are heavier than 80kg?"
-
-```{r, eval = FALSE, echo = FALSE}
-# Mean age of baselers heavier than 80kg
-mean(ten_tibble$age[ten_tibble$weight > 80])
-```
-
-4. What are the id values of baselers who are male *and* are shorter than 165cm? (Hint: You will need to use the logical AND operator `&` to combine multiple logical vectors)
-
-```{r, eval = FALSE, echo = FALSE}
-# Mean age of baselers heavier than 80kg
-ten_tibble$id[ten_tibble$sex == "male"] & )
-```
 
 ## Additional Resources
 
-- For more information on the fundamentals of object and functions in R see the R Core team's [introduction to R](https://cran.r-project.org/doc/manuals/r-release/R-intro.html) and for even more advanced object and function-related topics Hadley Wickham's [Advanced R](http://adv-r.had.co.nz/).
+- For more information on reading and writing see Grolemund`s and Wickham's [R for Data Science](http://r4ds.had.co.nz/data-import.html).
