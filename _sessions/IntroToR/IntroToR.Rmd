@@ -1030,10 +1030,8 @@ See also <a href="http://style.tidyverse.org/">style.tidyverse.org/</a>
 
 # Downloads
 
-<font size="6" color="#F62D73"><a href="https://github.com/therbootcamp/Erfurt_2018June/blob/master/_sessions/_data/day_1.zip?raw=true">Datasets day 1</a></font><br><br>
+<font size="6" color="#F62D73"><a href="https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/_data/baselrbootcamp_data.zip?raw=true">Data sets</a></font>
 
-<font size="6" color="#F62D73"><a href="http://www.tug.org/mactex/">Latex (Mac) link</a></font><br>
-<font size="6" color="#F62D73"><a href="https://miktex.org/">Latex (Windows) link</a></font>
 ---
 
 # Interactive session
