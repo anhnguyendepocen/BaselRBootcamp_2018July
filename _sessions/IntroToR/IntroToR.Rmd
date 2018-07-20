@@ -141,7 +141,6 @@ Sometimes slow and awkward, but...
 
 ---
 
-
 # The almighty `tidyverse`
 
 Among its many packages, R newly contains a collection of high-performance, user-friendly packages (libraries)  known as the [tidyverse](https://www.tidyverse.org/). The tidyverse includes:

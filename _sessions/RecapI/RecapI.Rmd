@@ -63,11 +63,12 @@ options(digits = 4)
 --- 
 
 
+
 ---
 
-# The almighty **tidyverse**
+# The almighty `tidyverse`
 
-Among its many packages, R contains a collection of high-performance, easy-to-use packages (libraries) designed specifically for handling data know as the [tidyverse](https://www.tidyverse.org/). The tidyverse includes:
+Among its many packages, R newly contains a collection of high-performance, user-friendly packages (libraries)  known as the [tidyverse](https://www.tidyverse.org/). The tidyverse includes:
 1. `ggplot2` -- creating graphics.
 2. `dplyr` -- data manipulation.
 3. `tidyr` -- tidying data.
