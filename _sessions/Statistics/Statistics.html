@@ -69,9 +69,13 @@ layout: true
 ## We will cover...
 
 Basic structure and arguments of most statistical functions
-- `formula`, `data`
+
+- `formula`: Specify your &lt;high&gt;variables&lt;/high&gt;
+- `data`: A &lt;high&gt;data frame&lt;/high&gt; containing variables.
     
-Simple `htest` objects (t.test, correlation)
+Simple `htest` objects
+
+- t.test, correlation
 
 Generalized linear model 
 - `lm()`, `glm()`, `aov()`
@@ -82,6 +86,7 @@ Common methods to explore statistical objects
 Dissect statistical objects with `$`
 
 Work with R's library of statistical distributions
+- `rnorm()`, `runif()`
 
 ]
 
@@ -127,7 +132,7 @@ lm(formula = y ~ .,
 
 .pull-left4[
 
-Statistical functions always require a dataframe of &lt;b&gt;data&lt;/b&gt;
+Statistical functions always require a &lt;high&gt;data frame&lt;/high&gt; called `data`
 
 
 |sex    | age| height| weight| income|
@@ -136,11 +141,11 @@ Statistical functions always require a dataframe of &lt;b&gt;data&lt;/b&gt;
 |male   |  65|  180.3|   75.2|  10900|
 |female |  31|  168.3|   55.5|   5100|
 
-They also require a &lt;b&gt;formula&lt;/b&gt; that specifies a dependent variable (y) as a function of one or more independent variables (x1, x2, ...) in the form:
+They also require a &lt;high&gt;formula&lt;/high&gt; that specifies a &lt;high&gt;dependent&lt;/high&gt; variable (y) as a function of one or more &lt;high&gt;independent&lt;/high&gt; variables (x1, x2, ...) in the form:
 
-&lt;font size = 6&gt;formula = y ~ x1 + x2 +...&lt;/font&gt;
+&lt;p align='center'&gt;&lt;font size = 6&gt;formula = y ~ x1 + x2 +...&lt;/font&gt;&lt;/p&gt;
 
-Note: The short hand formula = y ~ . means include &lt;i&gt;all&lt;/i&gt; variables in the data
+The short hand `formula = y ~ .` means include all variables
 
 ]
 
@@ -164,13 +169,13 @@ my_glm &lt;- glm(formula = income ~ age + height,
  
 .pull-left4[
 
-## Different tests have different arguments
+## Look for optional arguments
 
-Individual tests may have many optional arguments (look at help menus!)
+Statistical functions may have many optional arguments (look at help menus!)
 
-Each of these have *default* values. If you don't specify them, the function will use the default.
+Each of these have &lt;high&gt;default&lt;/high&gt; values. If you don't specify them, the function will use the default.
 
-To customise a test, look at the help menu and specifying arguments directly.
+To customise a test, look at the help menu and specify arguments explicitly.
 
 ### ?glm()
 
@@ -333,9 +338,11 @@ cor.test(formula = ~ age + income,
 
 ---
 
-## Regression with glm(), lm()
 
 .pull-left35[
+
+## Regression with glm(), lm()
+
 
 Part of the `baselers` dataframe:
 
@@ -357,8 +364,7 @@ Part of the `baselers` dataframe:
 
 .pull-right6[
 
-To conduct a regression analysis, use `glm()` or `lm()`. `lm()` is for simple linear regression, while `glm()` is generalized.
-
+`lm()` is for simple linear regression, while `glm()` is &lt;high&gt;generalized&lt;/high&gt;.
 
 
 ```r
@@ -368,16 +374,23 @@ To conduct a regression analysis, use `glm()` or `lm()`. `lm()` is for simple li
 food_glm &lt;- glm(formula = food ~ income + happiness,
               data = baselers)
 
-
-# food_glm has clas "glm"
-class(food_glm)
+# Print food_glm
+food_glm
 ```
 
 ```
-## [1] "glm" "lm"
+## 
+## Call:  glm(formula = food ~ income + happiness, data = baselers)
+## 
+## Coefficients:
+## (Intercept)       income    happiness  
+##    -302.089        0.101       52.205  
+## 
+## Degrees of Freedom: 8509 Total (i.e. Null);  8507 Residual
+##   (1490 observations deleted due to missingness)
+## Null Deviance:	    1.27e+09 
+## Residual Deviance: 6.06e+08 	AIC: 119000
 ```
-
-We now have a "glm" object called `food_glm` that stores all of the results of our regression analysis.
 
 ]
 
@@ -386,7 +399,7 @@ We now have a "glm" object called `food_glm` that stores all of the results of o
 
 ## Customising formulas
 
-You can keep adding terms to formulas by "adding"" them with `+` 
+Include additional independent variables to formulas by "adding" them with &lt;high&gt;`+`&lt;/high&gt; 
 
 
 ```r
@@ -395,7 +408,7 @@ my_glm &lt;- glm(formula = income ~ food + alcohol + happiness + hiking,
               data = baselers)
 ```
 
-To include *all* variables in a dataframe, use the catch-all notation &lt;b&gt;`formula = y ~ .`&lt;/b&gt;
+To &lt;high&gt;include all variables&lt;/high&gt; in a dataframe, use the catch-all notation &lt;high&gt;`formula = y ~ .`&lt;/high&gt;
 
 
 ```r
@@ -404,7 +417,7 @@ my_glm &lt;- glm(formula = income ~ .,
               data = baselers)
 ```
 
-To include *interaction terms* use `x1 * x2` instead of `x1 + x2`
+To include &lt;high&gt;interaction terms&lt;/high&gt; use `x1 * x2` instead of `x1 + x2`
 
 
 ```r
@@ -418,7 +431,7 @@ my_glm &lt;- glm(formula = income ~ food * alcohol,
 .pull-left35[
 ## Exploring statistical objects
 
-Explore statistical objects using many *generic* functions such as `print()`, `summary()`, `predict()` and `plot()`.
+Explore statistical objects using &lt;high&gt;generic&lt;/high&gt; functions such as `print()`, `summary()`, `predict()` and `plot()`.
 
 
 ```r
@@ -478,7 +491,7 @@ print(my_glm)
 .pull-left35[
 ## Exploring statistical objects
 
-Explore statistical objects using many *generic* functions such as `print()`, `summary()`, `predict()` and `plot()`.
+Explore statistical objects using &lt;high&gt;generic&lt;/high&gt; functions such as `print()`, `summary()`, `predict()` and `plot()`.
 
 
 ```r
@@ -549,7 +562,7 @@ summary(my_glm)
 .pull-left35[
 ## Exploring statistical objects
 
-Explore statistical objects using many *generic* functions such as `print()`, `summary()`, `predict()` and `plot()`.
+Explore statistical objects using &lt;high&gt;generic&lt;/high&gt; functions such as `print()`, `summary()`, `predict()` and `plot()`.
 
 
 ```r
@@ -571,7 +584,7 @@ Generic functions won't work for all statistical objects, but it is a great idea
 
 ### Statistical objects are lists! Explore them!
 
-Almost all statistical objects are *lists*. This means they all have named elements you can access with `$`. To see all of the named elements, use `names()`
+Almost &lt;high&gt;all statistical objects are lists&lt;/high&gt;. They all have named elements you can access with &lt;high&gt;`$`&lt;/high&gt;. To see all of the named elements, use `names()`
 
 
 ```r
@@ -599,7 +612,7 @@ names(my_glm)
 .pull-left35[
 ## Exploring statistical objects
 
-Once you have created a statistical object, you can explore it using many *generic* functions such as `print()`, `summary()`, `predict()` and `plot()`.
+Explore statistical objects using &lt;high&gt;generic&lt;/high&gt; functions such as `print()`, `summary()`, `predict()` and `plot()`.
 
 
 ```r
@@ -622,7 +635,7 @@ Generic functions won't work for all statistical objects, but it is a great idea
 
 ### Statistical objects are lists! Explore them!
 
-Almost all statistical objects are *lists*. This means they all have named elements you can access with `$`. To see all of the named elements, use `names()`
+Explore statistical objects using many &lt;high&gt;generic&lt;/high&gt; functions such as `print()`, `summary()`, `predict()` and `plot()`.
 
 
 ```r
@@ -664,12 +677,7 @@ my_glm$residuals[1:5]
 .pull-left35[
 ## predict()
 
-Many (but not all) statistical objects can be used with `predict()`
-
-`predict(model, newdata)` allows you to use the `model` to predict outcomes from `newdata`.
-
-
-
+`predict(object, newdata)` allows you to use your statistical `object` to &lt;high&gt;predict outcomes&lt;/high&gt; from a new data frame called `newdata`.
 
 
 
@@ -685,27 +693,11 @@ lastyear
 |  2|  65|       8|       5|  10900|
 |  3|  31|       6|       3|   5100|
 
-]
-
-
-.pull-right6[
-Create model based on old data
-
 
 ```r
-# Create regression model predicting income
-mod &lt;- lm(formula = income ~ age + fitness + tattoos,
-          data = lastyear)
-
-mod$coefficients
+thisyear
 ```
 
-```
-## (Intercept)         age     fitness     tattoos 
-##       994.1       146.8        75.1      -173.3
-```
-
-New data: `thisyear`
 
 
 |  id| age| fitness| tattoos|
@@ -715,10 +707,35 @@ New data: `thisyear`
 | 103|  26|       6|       3|
 
 
+]
+
+
+.pull-right6[
+
+&lt;br&gt;&lt;br&gt;
+
+Create &lt;high&gt;`model`&lt;/high&gt; based on `leastyear`
+
+
+```r
+# Create regression model predicting income
+model &lt;- lm(formula = income ~ age + fitness + tattoos,
+            data = lastyear)
+
+model$coefficients
+```
+
+```
+## (Intercept)         age     fitness     tattoos 
+##       994.1       146.8        75.1      -173.3
+```
+
+Now use `model` to &lt;high&gt;`predict`&lt;/high&gt; values for `thisyear`
+
 
 ```r
 # Predict the income of people in thisyear
-predict(object = mod, 
+predict(object = model, 
         newdata = thisyear)[1:3]
 ```
 
@@ -727,17 +744,15 @@ predict(object = mod,
 ## 3610 3436 4742
 ```
 
-
-
 ]
 
 ---
 
 .pull-left4[
 
-## broom::tidy()
+## tidy()
 
-The `tidy()` function from the `broom` package allows you to convert the key results of *many* (like hundreds) of statistical object like "glm" to a data frame
+The `tidy()` function from the `broom` package converts the most important results of many statistical object like "glm" to a data frame
 
 &lt;img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/broom_hex.png" width="70%" style="display: block; margin: auto;" /&gt;
 
@@ -801,7 +816,7 @@ Try it on your favorite models and see the magic!
 
 ## Sampling Functions
 
-R gives you a host of functions for sampling data from common statistical distributions
+R gives you a host of functions for sampling data from common &lt;high&gt;statistical distributions&lt;/high&gt;
 
 | Distribution| R Function|
 |------:|----:|
@@ -810,9 +825,7 @@ R gives you a host of functions for sampling data from common statistical distri
 |      Beta|`rbeta()`|  
 |      Binomial|`rbinom()`|  
 
-You can use these to create simulations and play around with models
-
-You can use `sample()` to draw random samples from a vector of values
+Use these to easily &lt;high&gt;simulate data&lt;/high&gt;
 
 ]
 
@@ -828,9 +841,9 @@ You can use `sample()` to draw random samples from a vector of values
 
 .pull-left45[
 
-## Sample()
+## sample()
 
-Use `sample()` to draw a sample from a vector
+Use `sample()` to draw a random sample from a vector
 
 
 ```r
@@ -844,7 +857,7 @@ coin_flips
 ```
 
 ```
-##  [1] "T" "T" "H" "T" "H" "T" "T" "H" "T" "H"
+##  [1] "H" "T" "T" "T" "T" "T" "T" "T" "T" "T"
 ```
 
 ```r
@@ -855,16 +868,7 @@ table(coin_flips)
 ```
 ## coin_flips
 ## H T 
-## 4 6
-```
-
-```r
-# What proportion are heads?
-mean(coin_flips == "H")
-```
-
-```
-## [1] 0.4
+## 1 9
 ```
 
 ]
@@ -875,7 +879,6 @@ mean(coin_flips == "H")
 ### Simulate the birthday problem
 
 &lt;img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/balloons.png" width="20%" style="display: block; margin: auto;" /&gt;
-
 
 
 ```r
@@ -899,9 +902,8 @@ length(birthdays)
 ```
 
 ```
-## [1] 20
+## [1] 33
 ```
-
 
 ]
 
@@ -909,7 +911,7 @@ length(birthdays)
 
 .pull-left5[
 
-### rnorm(), runif()...
+## rnorm(), runif()...
 
 Use the `rnorm()`, `runif()`... functions to draw random samples from probability distributions
 
@@ -926,7 +928,7 @@ mysamp[1:5]  # First 5 values
 ```
 
 ```
-## [1] 21.8914 13.1624 -0.5361 10.6537  8.4662
+## [1] 9.188 6.776 4.217 3.336 6.624
 ```
 
 ```r
@@ -934,7 +936,7 @@ mean(mysamp) # Mean
 ```
 
 ```
-## [1] 10.51
+## [1] 9.788
 ```
 
 ```r
@@ -942,7 +944,7 @@ sd(mysamp)   # Standard deviation
 ```
 
 ```
-## [1] 4.936
+## [1] 4.924
 ```
 
 
@@ -960,15 +962,9 @@ ggplot(data = tibble(x = mysamp),
   theme_minimal()
 ```
 
-&lt;img src="Statistics_files/figure-html/unnamed-chunk-44-1.png" width="100%" /&gt;
-
-
+&lt;img src="Statistics_files/figure-html/unnamed-chunk-45-1.png" width="100%" /&gt;
 
 ]
-
-
-
-
 
 ---
 
@@ -1008,13 +1004,13 @@ ggplot(data = tibble(x = mysamp),
 
 R has a package for every statistical procedure you can imagine.
 
-Most require a formula, data, and other optional arguments
+Most have &lt;high&gt;formula&lt;/high&gt; and &lt;high&gt;data&lt;/high&gt; arguments (among many others).
 
-Use help menus to understand arguments and syntax!
+Use help menus to understand arguments!
 
-Once you've created a statistical object, use generic methods (`print()`, `names()`, `summary()`), to explore it
+Once you've created a statistical object, use generic functions (`print()`, `names()`, `summary()`), to explore it.
 
-Use random sampling functions to run simulations
+Use random sampling functions to run simulations.
 
 ]
 

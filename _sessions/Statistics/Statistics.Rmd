@@ -93,9 +93,13 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 ## We will cover...
 
 Basic structure and arguments of most statistical functions
-- `formula`, `data`
+
+- `formula`: Specify your <high>variables</high>
+- `data`: A <high>data frame</high> containing variables.
     
-Simple `htest` objects (t.test, correlation)
+Simple `htest` objects
+
+- t.test, correlation
 
 Generalized linear model 
 - `lm()`, `glm()`, `aov()`
@@ -106,6 +110,7 @@ Common methods to explore statistical objects
 Dissect statistical objects with `$`
 
 Work with R's library of statistical distributions
+- `rnorm()`, `runif()`
 
 ]
 
@@ -150,18 +155,18 @@ lm(formula = y ~ .,
 
 .pull-left4[
 
-Statistical functions always require a dataframe of <b>data</b>
+Statistical functions always require a <high>data frame</high> called `data`
 
 ```{r, echo = FALSE}
 baselers %>%
   slice(1:3) %>% select(2:6) %>% knitr::kable(format = 'markdown')
 ```
 
-They also require a <b>formula</b> that specifies a dependent variable (y) as a function of one or more independent variables (x1, x2, ...) in the form:
+They also require a <high>formula</high> that specifies a <high>dependent</high> variable (y) as a function of one or more <high>independent</high> variables (x1, x2, ...) in the form:
 
-<font size = 6>formula = y ~ x1 + x2 +...</font>
+<p align='center'><font size = 6>formula = y ~ x1 + x2 +...</font></p>
 
-Note: The short hand formula = y ~ . means include <i>all</i> variables in the data
+The short hand `formula = y ~ .` means include all variables
 
 ]
 
@@ -186,13 +191,13 @@ my_glm <- glm(formula = income ~ age + height,
  
 .pull-left4[
 
-## Different tests have different arguments
+## Look for optional arguments
 
-Individual tests may have many optional arguments (look at help menus!)
+Statistical functions may have many optional arguments (look at help menus!)
 
-Each of these have *default* values. If you don't specify them, the function will use the default.
+Each of these have <high>default</high> values. If you don't specify them, the function will use the default.
 
-To customise a test, look at the help menu and specifying arguments directly.
+To customise a test, look at the help menu and specify arguments explicitly.
 
 ### ?glm()
 
@@ -324,9 +329,11 @@ cor.test(formula = ~ age + income,
 
 ---
 
-## Regression with glm(), lm()
 
 .pull-left35[
+
+## Regression with glm(), lm()
+
 
 Part of the `baselers` dataframe:
 
@@ -346,8 +353,7 @@ baselers %>%
 
 .pull-right6[
 
-To conduct a regression analysis, use `glm()` or `lm()`. `lm()` is for simple linear regression, while `glm()` is generalized.
-
+`lm()` is for simple linear regression, while `glm()` is <high>generalized</high>.
 
 ```{r}
 # Create a glm object called food_glm
@@ -356,12 +362,9 @@ To conduct a regression analysis, use `glm()` or `lm()`. `lm()` is for simple li
 food_glm <- glm(formula = food ~ income + happiness,
               data = baselers)
 
-
-# food_glm has clas "glm"
-class(food_glm)
+# Print food_glm
+food_glm
 ```
-
-We now have a "glm" object called `food_glm` that stores all of the results of our regression analysis.
 
 ]
 
@@ -370,7 +373,7 @@ We now have a "glm" object called `food_glm` that stores all of the results of o
 
 ## Customising formulas
 
-You can keep adding terms to formulas by "adding"" them with `+` 
+Include additional independent variables to formulas by "adding" them with <high>`+`</high> 
 
 ```{r}
 # Include multiple terms with +
@@ -378,7 +381,7 @@ my_glm <- glm(formula = income ~ food + alcohol + happiness + hiking,
               data = baselers)
 ```
 
-To include *all* variables in a dataframe, use the catch-all notation <b>`formula = y ~ .`</b>
+To <high>include all variables</high> in a dataframe, use the catch-all notation <high>`formula = y ~ .`</high>
 
 ```{r}
 # Use  y ~ . to include ALL variables
@@ -386,7 +389,7 @@ my_glm <- glm(formula = income ~ .,
               data = baselers)
 ```
 
-To include *interaction terms* use `x1 * x2` instead of `x1 + x2`
+To include <high>interaction terms</high> use `x1 * x2` instead of `x1 + x2`
 
 ```{r}
 # Include an interaction term between food and alcohol
@@ -399,7 +402,7 @@ my_glm <- glm(formula = income ~ food * alcohol,
 .pull-left35[
 ## Exploring statistical objects
 
-Explore statistical objects using many *generic* functions such as `print()`, `summary()`, `predict()` and `plot()`.
+Explore statistical objects using <high>generic</high> functions such as `print()`, `summary()`, `predict()` and `plot()`.
 
 ```{r, eval = FALSE}
 # Create statistical object
@@ -442,7 +445,7 @@ print(my_glm)
 .pull-left35[
 ## Exploring statistical objects
 
-Explore statistical objects using many *generic* functions such as `print()`, `summary()`, `predict()` and `plot()`.
+Explore statistical objects using <high>generic</high> functions such as `print()`, `summary()`, `predict()` and `plot()`.
 
 ```{r, eval = FALSE}
 # Create statistical object
@@ -483,7 +486,7 @@ summary(my_glm)
 .pull-left35[
 ## Exploring statistical objects
 
-Explore statistical objects using many *generic* functions such as `print()`, `summary()`, `predict()` and `plot()`.
+Explore statistical objects using <high>generic</high> functions such as `print()`, `summary()`, `predict()` and `plot()`.
 
 ```{r, eval = FALSE}
 # Create statistical object
@@ -504,7 +507,7 @@ Generic functions won't work for all statistical objects, but it is a great idea
 
 ### Statistical objects are lists! Explore them!
 
-Almost all statistical objects are *lists*. This means they all have named elements you can access with `$`. To see all of the named elements, use `names()`
+Almost <high>all statistical objects are lists</high>. They all have named elements you can access with <high>`$`</high>. To see all of the named elements, use `names()`
 
 ```{r, eval = TRUE}
 # What are the named elements
@@ -525,7 +528,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/Erfurt_2
 .pull-left35[
 ## Exploring statistical objects
 
-Once you have created a statistical object, you can explore it using many *generic* functions such as `print()`, `summary()`, `predict()` and `plot()`.
+Explore statistical objects using <high>generic</high> functions such as `print()`, `summary()`, `predict()` and `plot()`.
 
 ```{r, eval = FALSE}
 # Create statistical object
@@ -547,7 +550,7 @@ Generic functions won't work for all statistical objects, but it is a great idea
 
 ### Statistical objects are lists! Explore them!
 
-Almost all statistical objects are *lists*. This means they all have named elements you can access with `$`. To see all of the named elements, use `names()`
+Explore statistical objects using many <high>generic</high> functions such as `print()`, `summary()`, `predict()` and `plot()`.
 
 ```{r}
 # Look at coefficients
@@ -569,17 +572,12 @@ my_glm$residuals[1:5]
 .pull-left35[
 ## predict()
 
-Many (but not all) statistical objects can be used with `predict()`
-
-`predict(model, newdata)` allows you to use the `model` to predict outcomes from `newdata`.
-
-
+`predict(object, newdata)` allows you to use your statistical `object` to <high>predict outcomes</high> from a new data frame called `newdata`.
 
 ```{r, echo = FALSE}
 lastyear <- baselers %>% slice(1:100)
 thisyear <- baselers %>% slice(101:200)
 ```
-
 
 ```{r, eval = FALSE}
 lastyear
@@ -590,34 +588,40 @@ lastyear  %>% select(id, age, fitness, tattoos, income) %>%
   slice(1:3) %>% knitr::kable(format = "markdown")
 ```
 
-]
-
-
-.pull-right6[
-Create model based on old data
-
-```{r}
-# Create regression model predicting income
-mod <- lm(formula = income ~ age + fitness + tattoos,
-          data = lastyear)
-
-mod$coefficients
+```{r, echo = TRUE, eval = FALSE}
+thisyear
 ```
 
-New data: `thisyear`
 
 ```{r, echo = FALSE}
 thisyear  %>% select(id, age, fitness, tattoos) %>% slice(1:3) %>% knitr::kable(format = "markdown")
 ```
 
 
+]
+
+
+.pull-right6[
+
+<br><br>
+
+Create <high>`model`</high> based on `leastyear`
+
 ```{r}
-# Predict the income of people in thisyear
-predict(object = mod, 
-        newdata = thisyear)[1:3]
+# Create regression model predicting income
+model <- lm(formula = income ~ age + fitness + tattoos,
+            data = lastyear)
+
+model$coefficients
 ```
 
+Now use `model` to <high>`predict`</high> values for `thisyear`
 
+```{r}
+# Predict the income of people in thisyear
+predict(object = model, 
+        newdata = thisyear)[1:3]
+```
 
 ]
 
@@ -625,9 +629,9 @@ predict(object = mod,
 
 .pull-left4[
 
-## broom::tidy()
+## tidy()
 
-The `tidy()` function from the `broom` package allows you to convert the key results of *many* (like hundreds) of statistical object like "glm" to a data frame
+The `tidy()` function from the `broom` package converts the most important results of many statistical object like "glm" to a data frame
 
 ```{r, echo = FALSE, out.width = "70%", fig.align="center"}
 knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/broom_hex.png")
@@ -669,7 +673,7 @@ Try it on your favorite models and see the magic!
 
 ## Sampling Functions
 
-R gives you a host of functions for sampling data from common statistical distributions
+R gives you a host of functions for sampling data from common <high>statistical distributions</high>
 
 | Distribution| R Function|
 |------:|----:|
@@ -678,9 +682,7 @@ R gives you a host of functions for sampling data from common statistical distri
 |      Beta|`rbeta()`|  
 |      Binomial|`rbinom()`|  
 
-You can use these to create simulations and play around with models
-
-You can use `sample()` to draw random samples from a vector of values
+Use these to easily <high>simulate data</high>
 
 ]
 
@@ -698,9 +700,9 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 
 .pull-left45[
 
-## Sample()
+## sample()
 
-Use `sample()` to draw a sample from a vector
+Use `sample()` to draw a random sample from a vector
 
 ```{r}
 # Simulate 10 flips of a fair coin
@@ -713,9 +715,6 @@ coin_flips
 
 # Table of counts
 table(coin_flips) 
-
-# What proportion are heads?
-mean(coin_flips == "H")
 ```
 
 ]
@@ -728,7 +727,6 @@ mean(coin_flips == "H")
 ```{r, out.width = "20%", echo = FALSE, fig.align = 'center'}
 knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/balloons.png")
 ```
-
 
 ```{r}
 # Create an empty room
@@ -750,14 +748,13 @@ while(all(!duplicated(birthdays))) {
 length(birthdays)
 ```
 
-
 ]
 
 ---
 
 .pull-left5[
 
-### rnorm(), runif()...
+## rnorm(), runif()...
 
 Use the `rnorm()`, `runif()`... functions to draw random samples from probability distributions
 
@@ -788,13 +785,7 @@ ggplot(data = tibble(x = mysamp),
   theme_minimal()
 ```
 
-
-
 ]
-
-
-
-
 
 ---
 
@@ -838,13 +829,13 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/Erfurt_2
 
 R has a package for every statistical procedure you can imagine.
 
-Most require a formula, data, and other optional arguments
+Most have <high>formula</high> and <high>data</high> arguments (among many others).
 
-Use help menus to understand arguments and syntax!
+Use help menus to understand arguments!
 
-Once you've created a statistical object, use generic methods (`print()`, `names()`, `summary()`), to explore it
+Once you've created a statistical object, use generic functions (`print()`, `names()`, `summary()`), to explore it.
 
-Use random sampling functions to run simulations
+Use random sampling functions to run simulations.
 
 ]
 

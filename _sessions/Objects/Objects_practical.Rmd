@@ -19,6 +19,8 @@ options(digits = 3)
 
 library(baselers)
 library(tidyverse)
+library(knitr)
+library(kableExtra)
 ```
 
 
@@ -31,7 +33,7 @@ library(tidyverse)
 
 ## Overview
 
-In this practical you'll learn how to work with R data objects. By the end of this practical you will know how to:
+In this practical you'll learn how to work with simple data objects and functions. By the end of this practical you will know how to:
 
 1. Create vectors of different types using `c()`
 2. Understand the three main vector classes numeric, character, and logical using `class()` 
@@ -131,7 +133,7 @@ mean(stocks$increase)
 
 1. Open your R project. It should already have the folders `1_Data` and `2_Code`.
 
-2. Open a new R script and save it as a new file called `objects_practical.R` in the `2_Code` folder. At the top of the script, using comments, write your name and the date. Then, load the set of packages listed above with `library()`.
+2. Open a new R script and save it as a new file called `objects_practical.R` in the `2_Code` folder. At the top of the script, using comments, write your name and the date. Then, load all package(s) listed in the Packages section above with `library()`.
 
 ## B - Creating vectors
 
@@ -140,11 +142,11 @@ The table below shows results from a (fictional) survey of 10 Baselers. In this 
 ```{r, echo = FALSE, eval = TRUE}
 data <- baselers[1:10, c("id", "sex", "age", "height", "weight")]
 
-data %>% mutate_all(replace_na, " ") %>% knitr::kable(format = "markdown", caption = "Data from 10 baselers")
+data %>% mutate_all(replace_na, " ") %>% 
+  knitr::kable(format = "markdown", caption = "Data from 10 baselers")
 ```
 
 1. Create a numeric vector called `id` that shows the id values. When you finish, print the vector object to see it!
-. Create a numeric vector called `id` that shows the id values. When you finish, print the vector object to see it!
 
 ```{r, eval = FALSE, echo = TRUE}
 # Create a vector XX
@@ -187,7 +189,7 @@ length(id)
 
 ```{r, eval = FALSE, echo = TRUE}
 # Create a character vector XX
-XX <- c("XX", "XX", ...)
+XX <- c("XX", "XX", "...")
 ```
 
 ```{r, eval = FALSE, echo = FALSE}
@@ -198,7 +200,7 @@ sex <- c("male", "male", "female", "male", "male", "male", "male", "female", "ma
 sex
 ```
 
-5. Using the `class()` function, check the class of your `sex` vector. Is it `character?
+5. Using the `class()` function, check the class of your `sex` vector. Is it 'character'?
 
 ```{r, eval = FALSE, echo = FALSE}
 # Show the class of the sex vector
@@ -242,7 +244,7 @@ length(height)
 
 8. Look at the weight data, you'll notice it contains an missing value. Create a vector called `weight` containing these data, following the same steps as before, making sure to specify the missing value as `NA` (no quotation marks). 
 
-```{r, eval = FALSE, echo = TRUE}
+```{r, eval = FALSE, echo = FALSE}
 # Create a weight vector 
 weight <- c(113.4, 75.2, 55.5, 93.8, NA, 67.4, 83.3, 67.8, 69.3, 66.3)
 
@@ -260,7 +262,7 @@ length(weight)
 
 1. Using the `table()` function, find out how many males and females are in the data. You should find `r sum(data$sex == "male")` males and `r sum(data$sex == "female")` females!
 
-```{r, eval = FALSE, echo = TRUE}
+```{r, eval = FALSE, echo = FALSE}
 # Count types in sex
 table(sex)
 ```
