@@ -45,16 +45,16 @@ library(tidyverse)
 
 # Where you're at...
 
-0) Loaded packages (like tidyverse!) with `library()`<br>
+1 - Loaded packages (like `tidyverse`) with `library()`<br>
 
-1) Loaded external files as a new dataframe<br>
+2 - Loaded external files as a new dataframe<br>
 
-2) Explore dataframes
+3 - Explore dataframes
 
-3) Calculate descriptive statistics on specific columns<br>
+4 - Calculate descriptive statistics on specific columns<br>
 
 <br><br><br>
-What's next?... **Wrangling!**
+What's next?... Wrangling!**
 
 ]
 

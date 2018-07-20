@@ -5,6 +5,7 @@
 # Create Project -----
 # 1.  Create project named BaselRBootcamp
 # 2.  Create appropriate folder structure from within RStudio
+# 3.  Add datasets to 1_Data folder
 
 # R as a calculator ----- 
 
