@@ -324,22 +324,23 @@ library(haven)
 
 # delim-separated -------------------
 
-# read survey data
-survey &lt;- read_csv(&quot;1_Data/survey.csv&quot;)
+# read chickens data
+chickens &lt;- read_csv(file = &quot;1_Data/chickens.csv&quot;)
 
-# fix header by specifying column names
-survey &lt;- read_csv(&quot;1_Data/survey.csv&quot;,
-                   col_names = c(&quot;id&quot;, &quot;age&quot;, &quot;sex&quot;, &quot;rating&quot;))
+# fix header of chickens_nohead.csv with known column names
+chickens &lt;- read_csv(file = &quot;1_Data/chickens_nohead.csv&quot;,
+                     col_names = c(&quot;weight&quot;, &quot;time&quot;, &quot;chick&quot;, &quot;diet&quot;))
 
-# fix NA values
-survey &lt;- read_csv(&quot;1_Data/survey.csv&quot;,
-                   col_names = c(&quot;id&quot;, &quot;age&quot;, &quot;sex&quot;, &quot;pol&quot;),
-                   na = c('NA', 'NULL'))
+# fix NA values of chickens_na.csv
+chickens &lt;- read_csv(file = &quot;1_Data/chickens_na.csv&quot;,
+                     na = c('NA', 'NULL'))
 
 # write clean data to disc
-write_csv(survey, &quot;1_Data/clean_survey.csv&quot;)
+write_csv(x = chickens, 
+          path = &quot;1_Data/chickens_clean.csv&quot;)
 
 # fix types -------------------
+# Note: the survey data is fictional!
 
 # remove character from rating
 survey$rating[survey$rating == &quot;2,1&quot;] &lt;- 2.1
@@ -349,14 +350,18 @@ survey &lt;- type_convert(survey)
 
 # other formats -------------------
 
-survey &lt;- read_excel(&quot;1_Data/survey.xml&quot;)
-survey &lt;- read_spss(&quot;1_Data/survey.sav&quot;)
-survey &lt;- read_sas(&quot;1_Data/survey.sas7bdat&quot;)
+# .xlsx (Excel)
+chickens &lt;- read_excel(&quot;1_Data/chickens.xlsx&quot;)
+
+# .sav (SPSS)
+chickens &lt;- read_spss(&quot;1_Data/chickens.sav&quot;)
+
+# .sad7bdata (SAS)
+chickens &lt;- read_sas(&quot;1_Data/chickens.sas7bdat&quot;)
 
 # scraping the web ----------------
 
-# load package
-library(tidyverse)
+# load packages for web scraping
 library(rvest)
 library(xml2)
 

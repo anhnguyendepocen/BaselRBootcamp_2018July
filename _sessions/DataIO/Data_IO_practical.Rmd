@@ -99,22 +99,23 @@ library(haven)
 
 # delim-separated -------------------
 
-# read survey data
-survey <- read_csv("1_Data/survey.csv")
+# read chickens data
+chickens <- read_csv(file = "1_Data/chickens.csv")
 
-# fix header by specifying column names
-survey <- read_csv("1_Data/survey.csv",
-                   col_names = c("id", "age", "sex", "rating"))
+# fix header of chickens_nohead.csv with known column names
+chickens <- read_csv(file = "1_Data/chickens_nohead.csv",
+                     col_names = c("weight", "time", "chick", "diet"))
 
-# fix NA values
-survey <- read_csv("1_Data/survey.csv",
-                   col_names = c("id", "age", "sex", "pol"),
-                   na = c('NA', 'NULL'))
+# fix NA values of chickens_na.csv
+chickens <- read_csv(file = "1_Data/chickens_na.csv",
+                     na = c('NA', 'NULL'))
 
 # write clean data to disc
-write_csv(survey, "1_Data/clean_survey.csv")
+write_csv(x = chickens, 
+          path = "1_Data/chickens_clean.csv")
 
 # fix types -------------------
+# Note: the survey data is fictional!
 
 # remove character from rating
 survey$rating[survey$rating == "2,1"] <- 2.1
@@ -124,14 +125,18 @@ survey <- type_convert(survey)
 
 # other formats -------------------
 
-survey <- read_excel("1_Data/survey.xml")
-survey <- read_spss("1_Data/survey.sav")
-survey <- read_sas("1_Data/survey.sas7bdat")
+# .xlsx (Excel)
+chickens <- read_excel("1_Data/chickens.xlsx")
+
+# .sav (SPSS)
+chickens <- read_spss("1_Data/chickens.sav")
+
+# .sad7bdata (SAS)
+chickens <- read_sas("1_Data/chickens.sas7bdat")
 
 # scraping the web ----------------
 
-# load package
-library(tidyverse)
+# load packages for web scraping
 library(rvest)
 library(xml2)
 
