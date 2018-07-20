@@ -136,12 +136,15 @@ library(rvest)
 library(xml2)
 
 # get html
-url = 'https://en.wikipedia.org/wiki/R_(programming_language)' 
-page = read_html(url)
+url <- 'https://en.wikipedia.org/wiki/R_(programming_language)' 
+page <- read_html(url)
 
-# get table
+# get raw html table
 # use XPath from inspect page (e.g., in Chrome)
-table = page %>% html_node(xpath = '//*[@id="mw-content-text"]/div/table[2]') %>% html_table()
+table_raw = html_node(page, xpath = '//*[@id="mw-content-text"]/div/table[2]')
+
+# transform to data frame
+table <- html_table(table_raw)
 
 # create tibble
 as_tibble(table)
@@ -471,12 +474,15 @@ library(rvest)
 library(xml2)
 
 # get html
-url = 'https://en.wikipedia.org/wiki/R_(programming_language)' 
-page = read_html(url)
+url <- 'https://en.wikipedia.org/wiki/R_(programming_language)' 
+page <- read_html(url)
 
-# get table
+# get raw html table
 # use XPath from inspect page (e.g., in Chrome)
-table = page %>% html_node(xpath = '//*[@id="mw-content-text"]/div/table[2]') %>% html_table()
+table_raw = html_node(page, xpath = '//*[@id="mw-content-text"]/div/table[2]')
+
+# transform to data frame
+table <- html_table(table_raw)
 
 # create tibble
 as_tibble(table)
