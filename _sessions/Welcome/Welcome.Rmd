@@ -65,7 +65,15 @@ Look for the "Present & Past" section on our homepage
 ]
 
 .pull-right5[
+<<<<<<< HEAD
 <br><br>
+=======
+
+<font size="6" color="#F62D73"><a href="http://therbootcamp.github.io"><b>www.therbootcamp.com</b></a></font><br><br>
+
+
+
+>>>>>>> 3cd89567612ebcd63ae2b5f802d4e77bb91eee80
 <iframe src="http://therbootcamp.github.io" width="500" height="500"></iframe>
 
 ]
