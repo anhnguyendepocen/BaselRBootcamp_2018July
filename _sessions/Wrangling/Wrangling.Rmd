@@ -12,24 +12,27 @@ output:
       highlightLines: true
       countIncrementalSlides: false
       ratio: '16:9'
+
 ---
 
 layout: true
 
 <div class="my-footer"><span>
-<a href="https://therbootcamp.github.io/"><font color="#7E7E7E">BaselRBootcamp, July 2018</font></a>
+<a href="https://therbootcamp.github.io/"><font color="#7E7E7E">Basel, July 2018</font></a>
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 &emsp;&emsp;&emsp;&emsp;&emsp;
 <a href="https://therbootcamp.github.io/"><font color="#7E7E7E">www.therbootcamp.com</font></a>
 </span></div> 
+
 ---
   
 ```{r, eval = FALSE, echo = FALSE}
 # Code to knit slides
 xaringan::inf_mr('_sessions/D1S2_Wrangling/Wrangling.Rmd')
 baselers <- read_csv("https://raw.githubusercontent.com/therbootcamp/baselers/master/inst/extdata/baselers.txt")
+
 ```
 
 
@@ -54,11 +57,13 @@ library(tidyverse)
 4 - Calculate descriptive statistics on specific columns<br>
 
 <br><br><br>
-What's next?... Wrangling!**
+What's next?... <high>Wrangling!</high>
 
 ]
 
 .pull-right55[
+
+<br><br>
 
 ```{r, eval = FALSE}
 # Step 0) Load libraries
@@ -91,17 +96,17 @@ table(baslers$sex)  # How many of each sex?
 
 
 ---
-.pull-left5[
+.pull-left45[
 
-## Wrangling: All the stuff you have to do before your real analysis
+# Wrangling <font size=7>= Everything prior to the actual analysis</font>
 
-###Transform
+<font size = 5><high>Transform</high></font>
 
 Change column names
 
 Add new columns
 
-###Organise
+<font size = 5><high>Organise</high></font>
 
 Sort data by columns
 
@@ -109,26 +114,31 @@ Merging data from two separate dataframes
 
 Move data between columns and rows
 
-### Aggregate
+<font size = ><high>Aggregate</high></font>
+
 Group data and summarise
 ]
 
 
 .pull-right5[
-
-```{r, echo = FALSE, out.width = "100%", fig.align = 'center'}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/organise_transform_aggregate.png")
-```
+<br>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/organise_transform_aggregate.png" height = "520px">
+</p>
 
 ]
 
 ---
 
+
+
 .pull-left45[
-<br><br>
-<font size = 6>To wrangle data in R, we will use the dplyr and tidyr packages</font>
 
+# `dplyr` & `tidyr`
 
+To wrangle data in R, we will use the `dplyr` and `tidyr` packages.
+
+<br>
 ```{r, echo= TRUE, eval = FALSE}
 
 # Load packages individually
@@ -149,8 +159,8 @@ library(tidyverse)
 ]
  
 .pull-right5[
-<br>
-<br><br>
+
+<br><br><br>
 ```{r, echo = FALSE, out.width = "100%", fig.align = 'center'}
 knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/dplyr_tidyr_hex.png")
 ```
@@ -159,15 +169,15 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/Erfurt_2
 
 ---
 
+# The Pipe!  <high>`%>%`</high>
+
 .pull-left4[
- 
-# The Pipe!  %>%
- 
- 
-<font size = 5>dplyr makes extensive use of a new operator called the "Pipe" <b><font  style="color:#52D998">%>%</font></b></font><br><br>
 
-<font size = 5>Read the "Pipe" <b><font style="color:#52D998">%>%</font></b> as "And Then..."</font><br><br>
+`dplyr` makes extensive use of a new operator called the "Pipe" <high>`%>%`</high><br>
 
+Read the "Pipe" <high>`%>%`</high> as "And Then..."
+
+<br>
 
 ```{r, eval = FALSE, echo = TRUE}
 # Start with data
@@ -179,125 +189,109 @@ DO_SOMETHING %>% # AND THEN...
   
 DO_SOMETHING %>% # AND THEN...
 
-...
-
-```
-
-
-]
-
-.pull-right6[
-
-<br><br>
-
-```{r, echo = FALSE, fig.align='center', fig.cap="This is not a pipe (but %>% is!)", out.width = "80%"}
-knitr::include_graphics("https://upload.wikimedia.org/wikipedia/en/thumb/b/b9/MagrittePipe.jpg/300px-MagrittePipe.jpg")
-```
-
-
-]
-
-
----
-
-.pull-left45[
-
-```{r, echo = FALSE, out.width = "95%"}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/pipe_explanation_kn.png")
-```
-
-
-]
-
-.pull-right5[
-<br><br><br>
-### Base R vs. the pipe %>%
-
-```{r}
-# Create a vector score
-score <- c(8, 4, 6, 3, 7, 3)
-```
-
-
-```{r}
-# Base-R method
-
-mean(score)
-
-# Pipe %>% method
-
-score %>%  # Take the vector score AND THEN 
-  mean()   # calculate the mean
 ```
 
 ]
-
-
-
----
-
-.pull-left45[
-
-```{r, echo = FALSE, out.width = "95%"}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/pipe_explanation_kn.png")
-```
-
-
-]
-
-
-
-.pull-right5[
-<br><br><br>
-### Base R vs. the pipe %>%
-
-```{r}
-# Create a vector score
-score <- c(8, 4, 6, 3, 7, 3)
-```
-
-```{r}
-# Base-R method
-
-round(sd(score), digits = 1)
-
-# Pipe %>% method
-
-score %>%        # Take vector score AND THEN
-  sd() %>%       # Calculate the sd AND THEN
-  round(digits = 1) # Round to 1 digit
-```
-
-]
-
----
-
-.pull-left4[
-<br><br><br>
-## Functions in dplyr
-
-<font size = 5>There are dozens (hundreds?) functions in dplyr that allow you to wrangle data.</font><br>
-
-<font size = 5>For an overview, look at the <a href='https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf'>cheatsheet!</a></font><br>
-
-<font size = 5>We will now show you how to use ~10 of the most common functions</font><br>
-
-]
-
 
 .pull-right55[
 
-<br>
-
-<br>
-```{r, echo = FALSE, out.width="600", fig.align = 'center'}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/dplyr_functions.png")
-```
+<p align="center">
+  <img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b9/MagrittePipe.jpg/300px-MagrittePipe.jpg" width = "450px"><br>
+  This is not a pipe (but `%>%` is!)
+</p>
 
 ]
 
 
 
+---
+
+# The Pipe!  <high>`%>%`</high>
+
+.pull-left4[
+
+### Base R vs. the pipe `%>%`
+
+```{r}
+# Create a vector score
+score <- c(8, 4, 6, 3, 7, 3)
+```
+
+
+```{r}
+# Base-R method
+mean(score)
+
+# Pipe %>% method
+score %>%  # AND THEN 
+  mean()  
+```
+
+]
+
+.pull-right55[
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/pipe_explanation_kn.png" height = "400px">
+</p>
+
+]
+
+---
+
+# The Pipe! <high>`%>%`</high>
+
+.pull-left4[
+
+### Base R vs. the pipe `%>%`
+
+```{r}
+# Create a vector score
+score <- c(8, 4, 6, 3, 7, 3)
+```
+
+```{r}
+# Base-R method
+round(sd(score), digits = 1)
+
+# Pipe %>% method
+score %>%        # AND THEN
+  sd() %>%       # AND THEN
+  round(digits = 1)
+```
+
+]
+
+.pull-right55[
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/pipe_explanation_kn.png" height = "400px">
+</p>
+
+
+]
+
+
+---
+
+
+# Functions in `dplyr`
+
+.pull-left3[
+
+There are <high>dozens of functions in `dplyr`</high> that allow you to wrangle data.
+
+For an overview, look at the <a href='https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf'>cheatsheet!</a>
+
+]
+
+.pull-right65[
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/dplyr_functions.png" height="400px">
+</p>
+
+]
 
 
 ---
@@ -314,8 +308,11 @@ results_df <- tibble(id = c(4, 92, 1, 2, 99),
 ```
 
 
-.pull-left4[
 # Transformation Functions
+
+.pull-left4[
+
+<br>
 
 | Function| Description|
 |:-------------|:----|
@@ -327,8 +324,7 @@ results_df <- tibble(id = c(4, 92, 1, 2, 99),
 ]
 
 .pull-right55[
-<br><br><br><br>
-### patients_df
+
 ```{r}
 patients_df   # Demographic data
 ```
@@ -459,9 +455,9 @@ patients_df %>%
 
 # Joining data
  
-```{r, echo = FALSE, out.width = "90%"}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/joining_data.png")
-```
+<p align="center">
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/joining_data.png" height="450px">
+</p> 
 
 
 ---
@@ -480,10 +476,10 @@ df1 %>%
       by = c("KEY"))
 ```
 
-```{r, echo = FALSE, out.width = "90%", fig.align = 'center'}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/joining_data.png")
-```
-
+<br>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/joining_data.png" height="150px">
+</p> 
 
 ]
 
@@ -681,11 +677,11 @@ combined_df %>%
 
 ---
 
-## Grouped Aggregation
+# Grouped Aggregation
 
-```{r, echo = FALSE, out.width = "85%", fig.align = 'center'}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/summarsed_data_diagram.png")
-```
+<p align="center">
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/summarsed_data_diagram.png" height="470px">
+</p> 
 
 
 
@@ -875,41 +871,10 @@ baslers_agg <- baselers %>%
 
 ]
 
-
 ---
 
+# Practical
 
-## Data Wrangling Cheatsheet!
+<font size=6><high>Live demonstration</high></font><br>
 
-
-<figure>
-<center>
-<a href="https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf">
-  <img src="https://image.slidesharecdn.com/data-wrangling-cheatsheet-160705210122/95/data-wrangling-with-dplyr-and-tidyr-cheat-sheet-1-638.jpg?cb=1467752577" alt="Trulli" style="width:65%">
-  <figcaption>https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf</figcaption></a>
-</figure>
-
-
-
-
----
-
-.pull-left4[
-<br>
-
-
-## Questions?
-
-## [Demo and Practical](https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/Wrangling/Wrangling_practical.html)
-
-
-]
-
-
-.pull-right6[
-
-```{r, echo = FALSE, out.width = "90%", fig.align = 'center'}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/organise_transform_aggregate.png")
-```
-
-]
+<a href="https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/Wrangling/Wrangling_practical.html"><font size=6><high>Link to practical</high></font></a>
