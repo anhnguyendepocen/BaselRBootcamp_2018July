@@ -324,16 +324,16 @@ library(rvest)
 library(xml2)
 
 # get html page (abbreviated)
-url = '.../R_(programming_language)' 
-page = read_html(u)
+url <- '.../R_(programming_language)' 
+page <- read_html(u)
 
 # get xpath (abbreviated)
-xpath = '.../div/table[2]'
+xpath <- '.../div/table[2]'
 
 # get table using XPath
-table = page %>% 
+table <- page %>% 
   html_node(
-    xpath = ) %>% 
+    xpath = xpath) %>% 
   html_table()
 ```
 ]
@@ -419,8 +419,6 @@ baselers <- readRDS("baselers.rds")
 ---
 
 # Practical
-
-<font size=6><high>Live demonstration</high></font>
 
 <font size=6><b><a href="https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/DataIO/Data_IO_practical.html">Link to practical</a>
 

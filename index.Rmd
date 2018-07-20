@@ -9,7 +9,7 @@ output: html_document
 
 ## Materials
 
-#### <a href="https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete.zip">Get datasets</a>
+#### <a href="https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data.zip">Get datasets</a>
 
 <br>
 
