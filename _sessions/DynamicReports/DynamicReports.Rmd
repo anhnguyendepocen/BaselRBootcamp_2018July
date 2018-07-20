@@ -92,7 +92,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 
 
 ---
-## Dynbamic report workflow
+## Dynamic report workflow
 ```{r, echo = FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/reproducible_workflow.png")
 ```

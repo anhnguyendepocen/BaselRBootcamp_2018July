@@ -66,7 +66,7 @@ Analyze sales from a real-world retailer across time and locations.<br>
 
 Learn... 
 
-...when machine learning algorithms like <high>Random forests</high>, <high>Decisions trees</high>, and <high>Regression** work and why.
+...when machine learning algorithms like <high>Random forests</high>, <high>Decisions trees</high>, and <high>Regression</high> work and why.
 
 ...how they are <high>implemented in R</high> to improve prediction performance in a real world data set.  
 

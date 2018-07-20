@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="author" content="BaselRBootcamp www.therbootcamp.com @therbootcamp" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
-    <link rel="stylesheet" href="my-theme.css" type="text/css" />
+    <link rel="stylesheet" href="baselrbootcamp.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
@@ -55,17 +55,13 @@ layout: true
 
 ---
 
-
 .pull-left5[
 
 # Base R Plotting
 
-
 The **classic framework** of plotting.
 
 Contains separate **function for each 'type'** of plot.
-
-E.g. `barplot()` for a bar plot, `boxplot()` for a box plot, and `plot()` for a scatterplot. 
 
 &lt;br&gt;
 
@@ -98,8 +94,6 @@ The **classic framework** of plotting.
 
 Contains separate **function for each 'type'** of plot.
 
-E.g. `barplot()` for a bar plot, `boxplot()` for a box plot, and `plot()` for a scatterplot. 
-
 &lt;br&gt;
 
 
@@ -131,8 +125,6 @@ boxplot(formula = height ~ sex,
 The **classic framework** of plotting.
 
 Contains separate **function for each 'type'** of plot.
-
-E.g. `barplot()` for a bar plot, `boxplot()` for a box plot, and `plot()` for a scatterplot. 
 
 &lt;br&gt;
 
@@ -476,11 +468,11 @@ ggplot(data = mpg,
 
 | displ| hwy|class   | year|
 |-----:|---:|:-------|----:|
-|   3.0|  24|minivan | 1999|
-|   3.3|  28|midsize | 2008|
-|   2.5|  25|compact | 2008|
-|   1.8|  37|compact | 2008|
-|   3.8|  26|midsize | 1999|
+|   2.0|  26|compact | 1999|
+|   2.5|  29|compact | 2008|
+|   4.6|  15|suv     | 1999|
+|   2.4|  31|compact | 2008|
+|   2.0|  29|midsize | 2008|
 
 
 ]
@@ -974,14 +966,14 @@ ggsave(filename = "myplot.pdf",
 ---
 
 .pull-left45[
-
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 # ggplot2 extensions
 
 ggplot2 has inspired *hundreds* of extension packages that make it even easier to make domain specific plots
 
 Tip! Before writing complex ggplot2 code for a common task, look for an extension package!
 
-[http://www.ggplot2-exts.org/gallery/](http://www.ggplot2-exts.org/gallery/)
+[gplot2 Extension Gallaery](http://www.ggplot2-exts.org/gallery/)
 
 
 ]

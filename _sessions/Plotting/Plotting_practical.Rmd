@@ -21,7 +21,7 @@ options(digits = 3)
 
 <figure>
 <center>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/McDonald%27s_Golden_Arches.svg/273px-McDonald%27s_Golden_Arches.svg.png" alt="Trulli" style="width:40%">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Hamburger_%28black_bg%29.jpg/500px-Hamburger_%28black_bg%29.jpg" alt="Trulli" style="width:60%">
   <figcaption>Wikipedia</figcaption>
 </figure>
 
@@ -47,11 +47,9 @@ In this practical you'll practice plotting data with the `ggplot2` package.
   <figcaption>https://www.rstudio.com/wp-content/uploads/2015/03/ggplot2-cheatsheet.pdf</figcaption></a>
 </figure>
 
-
-
 ### Examples
 
-- The following examples will take you through the steps of creating both simple and complex plots with `ggplot2`. Try to go through each line of code and see how it works!
+The following examples will take you through the steps of creating both simple and complex plots with `ggplot2`. Try to go through each line of code and see how it works!
 
 ```{r, eval = FALSE, echo = TRUE}
 # -----------------------------------------------
