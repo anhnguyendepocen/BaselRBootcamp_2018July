@@ -336,7 +336,7 @@ knitr::include_graphics("https://cdn.southampton.ac.uk/assets/imported/transform
 
 .pull-right6[
 
-<img src="https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/schedule_2018Apr.png?raw=true" height="580" align="right">
+<img src="https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/schedule_2018Jul.png?raw=true" height="580" align="right">
 
 
 ]
