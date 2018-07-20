@@ -60,9 +60,85 @@ options(digits = 4)
 16. Comment and format for readability
 ]
 
---- 
+---
+
+# 3 Object types for data
+
+.pull-left4[
+
+R has 3 main data objects...
+
+<high>`list`</high> - R's multi-purpose container
+- Can carry any data, incl. lists
+- Often used for function outputs
+
+<high>`data_frame`</high> - R's spreadsheet
+- Specific type of `list`
+- Typical data format
+- For multi-variable data sets
+
+<high>`vectors`</high> - R's data container
+- Actually carries the data
+- Contain data of 1 of many types
+
+]
+
+.pull-right55[
+<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/main_objects.png"></img>
+]
 
 
+
+---
+
+.pull-left4[
+
+# Functions
+
+Functions have 3 elements:
+
+1 - <high>Name</high>: Used to refer to the function and call (execute) it.
+
+2 - <high>Arguments</high>: Used to provide (data) inputs and to control what the function does. Arguments with default values (e.g., `use = "everything"`) need not be specified. Arguments without default values (e.g., `x`) need be specified. <high>Inputs must have the appropriate class!</high>
+
+3 - <high>Body</high>: The code that uses the inputs (arguments) to produce the desired output. The code of the functions body is based <high>copies of the inputs</high>, which are named according to the arguments names. 
+
+]
+
+.pull-right55[
+  <br><br>
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/function.png"></img>
+]
+
+---
+
+# Documentation
+
+.pull-left5[
+
+R documentation (<high>help files</high> and <high>vignettes</high>) will become very to use once you are familiar with the basic R vocabulary. 
+
+Pay attention to...
+
+<high>Usage</high> - shows how to use function, its arguments and their defaults.<br><high>Arguments</high> - describes arguments, and their `class`.<br><high>Value</high> - describes what the function returns.<br><high>Examples</high> - provide working R code.
+
+```{r, eval = F}
+# To access help files
+?name_of_function
+
+# search help files
+??name_of_function
+
+```
+
+]
+
+.pull-right5[
+```{r}
+?cor
+```
+<p align="center"><img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/help_cor.png" width="500"></p>
+]
 
 ---
 
@@ -86,3 +162,22 @@ knitr::include_graphics("http://d33wubrfki0l68.cloudfront.net/9221ddead578362bd1
 knitr::include_graphics("http://d33wubrfki0l68.cloudfront.net/f55c43407ae8944b985e2547fe868e5e2b3f9621/720bb/images/hex-tibble.png")
 ```
 
+---
+
+.pull-left35[
+<br><br><br><br><br><br><br><br><br>
+
+<p align="center">
+  <font size=8><hfont><high>Questions?</high></hfont></font><br>
+  <font size = 4><a href = "https://therbootcamp.github.io/BaselRBootcamp_2018July/">Link to schedule</a></font>
+</p>
+
+]
+
+
+.pull-right6[
+
+<img src="https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/schedule_2018Jul.png?raw=true" height="580" align="right">
+
+
+]
