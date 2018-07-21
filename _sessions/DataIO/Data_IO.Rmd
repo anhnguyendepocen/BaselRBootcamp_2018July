@@ -203,9 +203,9 @@ write_delim(data_object, file, ...)  # arbitrary-delimited
 ```{r, eval=F}
 # Read with explicit column names
 bas <- read_csv(file = "1_Data/baselers.csv",
-                     col_names = c("id",
-                                   "baselers",
-                                   ...))
+                col_names = c("id",
+                              "baselers",
+                              ...))
 ```
 
 ]
@@ -282,20 +282,20 @@ R provides <high>read and write functions</high> for practically all data file f
 ### `readr` <img src="http://d33wubrfki0l68.cloudfront.net/66d3133b4a19949d0b9ddb95fc48da074b69fb07/7dfb6/images/hex-readr.png" width="50", align="right"> 
 ```{r, eval = F}
 # read fixed width files (can be fast)
-read_fwf(file, ...)
+data <- read_fwf(file, ...)
 
 # read Apache style log files
-read_log(file, ...)
+data <- read_log(file, ...)
 
 ```
 
 ### `haven` <img src="http://haven.tidyverse.org/logo.png" width="50" align="right">
 ```{r, eval = F}
 # read SAS's .sas7bat and sas7bcat files
-read_sas(file, ...)
+data <- read_sas(file, ...)
 
 # read SPSS's .sav files
-read_sav(file, ...)
+data <- read_sav(file, ...)
 
 # etc
 ```
@@ -305,19 +305,19 @@ read_sav(file, ...)
 ### `readxl` <img src="https://www.rstudio.com/wp-content/uploads/2017/05/readxl-259x300.png" width="50" align="right">
 ```{r, eval = F}
 # read Excel's .xls and xlsx files
-read_excel(file, ...)
+data <- read_excel(file, ...)
 ```
 <br>
 ### Other
 ```{r, eval = F}
 # Read Matlab .mat files
-R.matlab::readMat(file, ...)
+data <- R.matlab::readMat(file, ...)
 
 # Read and wrangle .xml and .html
-XML::xmlParseParse(file, ...)
+data <- XML::xmlParseParse(file, ...)
 
 # from package jsonlite: read .json files
-jsonlite::read_json(file, ...)
+data <- jsonlite::read_json(file, ...)
 ```
 ]
 
