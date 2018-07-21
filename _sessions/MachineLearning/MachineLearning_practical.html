@@ -202,21 +202,18 @@ Source: Android Authority
 <th align="left">File</th>
 <th align="left">Rows</th>
 <th align="left">Columns</th>
-<th align="left">Source</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_data/house_train.csv">house_train.csv</a></td>
-<td align="left">2139</td>
-<td align="left">3</td>
-<td align="left"></td>
+<td align="left">1000</td>
+<td align="left">21</td>
 </tr>
 <tr class="even">
 <td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_data/house_test.csv">house_test.csv</a></td>
-<td align="left">2139</td>
-<td align="left">3</td>
-<td align="left"></td>
+<td align="left">15000</td>
+<td align="left">21</td>
 </tr>
 </tbody>
 </table>
@@ -402,16 +399,16 @@ library(XX)
 <li><p>Run Steps 6-7. Look at the results. Which model has the best prediction performance? How does each model’s prediction performance compare to its fitting performance?</p></li>
 </ol>
 </div>
-<div id="d---including-random-forests" class="section level2">
-<h2>D - Including random forests</h2>
+<div id="d---include-random-forests" class="section level2">
+<h2>D - Include random forests</h2>
 <ol style="list-style-type: decimal">
 <li><p>Random forests are much more complex than regression and decision trees. Try including Random forests in your analyses as a new competitor. You can use the <code>randomForest()</code> function from the <code>randomForest</code> package to fit your model!</p></li>
 <li><p>How does the <em>fitting</em> performance of random forests compare to the other algorithms in training?</p></li>
 <li><p>How does the <em>prediction</em> performance of random forests compare to the other algorithms in testing?</p></li>
 </ol>
 </div>
-<div id="e---including-more-features" class="section level2">
-<h2>E - Including more features</h2>
+<div id="e---include-more-features" class="section level2">
+<h2>E - Include more features</h2>
 <p>Until now, you’ve only been predicting price based on 3 features (bedrooms, bathrooms, and floors). Of course, you have access to lots more data to predict housing prices! Now it’s time to try using more data to predict price.</p>
 <ol style="list-style-type: decimal">
 <li><p>Look closely again at the columns in the <code>house_train</code> data. There are two features in the data that you definitely <em>don’t</em> want to include in your models. Which two are they?</p></li>

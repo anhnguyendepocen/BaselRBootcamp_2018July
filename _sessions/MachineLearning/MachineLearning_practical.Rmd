@@ -70,10 +70,10 @@ house_train <- read_csv("https://raw.githubusercontent.com/therbootcamp/therboot
 house_test <- read_csv("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_data/house_test.csv")
 ```
 
-|File | Rows | Columns |Source|
-|:----|:-----|:------|:-----|
-|[house_train.csv](https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_data/house_train.csv)| 2139 | 3|
-|[house_test.csv](https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_data/house_test.csv)| 2139 | 3|
+|File | Rows | Columns |
+|:----|:-----|:------|
+|[house_train.csv](https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_data/house_train.csv)| 1000 | 21|
+|[house_test.csv](https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_data/house_test.csv)| 15000 | 21|
 
 ## Glossary
 
@@ -181,11 +181,13 @@ postResample(pred = rpart_pred,
 
 # Plot results
 
+# Tidy competition results
 competition_results <- tibble(truth = house_test$price,
                               Regression = lm_pred,
                               Decision_Trees = rpart_pred) %>%
                        gather(group, prediction, -truth)
 
+# Plot!
 ggplot(data = competition_results,
        aes(x = truth, y = prediction, col = group)) +
   geom_point(alpha = .2) +
@@ -243,7 +245,7 @@ house_train <- read_csv(file = "XXX/XXX")
 
 4. Run Steps 6-7. Look at the results. Which model has the best prediction performance? How does each model's prediction performance compare to its fitting performance?
 
-## D - Including random forests
+## D - Include random forests
 
 1. Random forests are much more complex than regression and decision trees. Try including Random forests in your analyses as a new competitor. You can use the `randomForest()` function from the `randomForest` package to fit your model!
 
@@ -251,7 +253,7 @@ house_train <- read_csv(file = "XXX/XXX")
 
 3. How does the *prediction* performance of random forests compare to the other algorithms in testing?
 
-## E - Including more features
+## E - Include more features
 
 Until now, you've only been predicting price based on 3 features (bedrooms, bathrooms, and floors). Of course, you have access to lots more data to predict housing prices! Now it's time to try using more data to predict price.
 
