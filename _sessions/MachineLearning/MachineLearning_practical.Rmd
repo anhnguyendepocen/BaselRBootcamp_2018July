@@ -271,7 +271,7 @@ house_train <- house_train %>%
 
 ## F - Predict the year a house was built
 
-So far, we have predicted house prices based on many features. Now, see how well you can predict the *year* a house was built `yr_built` based on the following four features: bedrooms, bathrooms, condition, sqft_living.
+So far, we have predicted house prices based on many features. Now, see how well you can predict the *year* a house was built (`yr_built`) based on the following four features: bedrooms, bathrooms, condition, sqft_living.
 
 1. Go through Steps 0 through 4 using regression `glm()` and decision trees `rpart()` to build models predicting the year a house was built `yr_built` based on `bedrooms`, `bathrooms`, `condition`, `sqft_living`.
 
