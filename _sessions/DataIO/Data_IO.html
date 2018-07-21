@@ -314,25 +314,25 @@ read_csv(file = "1_Data/baselers.csv")
 
 Incorrect data types can be fixed. Typically this involves:
 
-a) &lt;high&gt;removing character elements&lt;/high&gt; from otherwise numeric variables.&lt;br&gt;&lt;br2&gt;
-b) Setting &lt;high&gt;explicit `NA` strings&lt;/high&gt; using the `na`-argument.&lt;br&gt;&lt;br2&gt;
-c) Re-running &lt;high&gt;`type_convert`&lt;/high&gt;.&lt;br&gt;&lt;br&gt;
+1 - &lt;high&gt;removing character elements&lt;/high&gt; from otherwise numeric variables.&lt;br&gt;&lt;br2&gt;
+2 - Setting &lt;high&gt;explicit `NA` strings&lt;/high&gt; using the `na`-argument.&lt;br&gt;&lt;br2&gt;
+3 - Re-running &lt;high&gt;`type_convert`&lt;/high&gt;.&lt;br&gt;&lt;br&gt;
 
 
 ```r
 # Read baselers
-bas &lt;- read_csv(file = "data/baselers.csv",
-                na = c('NA'))
+baseslers &lt;- read_csv(file = ".../baselers.csv",
+                      na = c('NA'))
 
 # Try to fix incorrect data types
-bas &lt;- type_convert(baselers)
+baselers &lt;- type_convert(baselers)
 ```
 
 ]
 
 .pull-right45[
 
-&lt;center&gt;`baselers.csv`
+&lt;center&gt;`baselers.csv`&lt;/center&gt;
 
 &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/baselers_raw.png"&gt;
 

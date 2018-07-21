@@ -275,24 +275,24 @@ read_csv(file = "1_Data/baselers.csv")
 
 Incorrect data types can be fixed. Typically this involves:
 
-a) <high>removing character elements</high> from otherwise numeric variables.<br><br2>
-b) Setting <high>explicit `NA` strings</high> using the `na`-argument.<br><br2>
-c) Re-running <high>`type_convert`</high>.<br><br>
+1 - <high>removing character elements</high> from otherwise numeric variables.<br><br2>
+2 - Setting <high>explicit `NA` strings</high> using the `na`-argument.<br><br2>
+3 - Re-running <high>`type_convert`</high>.<br><br>
 
 ```{r, eval = F}
 # Read baselers
-bas <- read_csv(file = "data/baselers.csv",
-                na = c('NA'))
+baseslers <- read_csv(file = ".../baselers.csv",
+                      na = c('NA'))
 
 # Try to fix incorrect data types
-bas <- type_convert(baselers)
+baselers <- type_convert(baselers)
 ```
 
 ]
 
 .pull-right45[
 
-<center>`baselers.csv`
+<center>`baselers.csv`</center>
 
 <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/baselers_raw.png">
 

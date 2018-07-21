@@ -55,10 +55,11 @@ knitr::opts_chunk$set(warning = FALSE)
 
 ```
 
-## If you want to do statistics in R, there is a package for that!
+# There is always a package for that!
 
-.pull-left5[
-<br><br>
+.pull-left45[
+
+<br2>
 
 | Package| Models|
 |------:|:----|
@@ -77,7 +78,7 @@ knitr::opts_chunk$set(warning = FALSE)
 
 ]
 
-.pull-right45[
+.pull-right5[
 
 ```{r, echo = FALSE, out.width = "100%", fig.align = 'center'}
 knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/statistical_procedures.png")
@@ -90,24 +91,24 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 
 .pull-left45[
 
-## We will cover...
 
-Basic structure and arguments of most statistical functions
+
+1 - Basic structure and arguments of most statistical functions
 
 - `formula`: Specify your <high>variables</high>
 - `data`: A <high>data frame</high> containing variables.
     
-Simple `htest` objects
+2 - Simple `htest` objects
 
 - t.test, correlation
 
-Generalized linear model 
+3 - (Generalized) linear model 
 - `lm()`, `glm()`, `aov()`
 
-Common methods to explore statistical objects
+4 - Common methods to explore statistical objects
 - `print()`, `summary()`, `names()`, `predict()`, `plot()`
 
-Dissect statistical objects with `$`
+5 - Dissect statistical objects with `$`
 
 Work with R's library of statistical distributions
 - `rnorm()`, `runif()`
