@@ -1030,7 +1030,7 @@ See also <a href="http://style.tidyverse.org/">style.tidyverse.org/</a>
 
 # Downloads
 
-<font size="6" color="#F62D73"><a href="https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/_data/baselrbootcamp_data.zip?raw=true">Data sets</a></font>
+<font size="6" color="#F62D73"><a href="https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data.zip">Data sets</a></font>
 
 ---
 
