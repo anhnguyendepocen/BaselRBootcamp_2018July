@@ -139,7 +139,6 @@ data <- read_delim(file, ...) # arbitrary-delimited
 # Writing a data frame to a file
 
 write_csv(data_object, file, ...)    # comma-delimited
-write_csv2(data_object, file, ...)   # semicolon-delimeted
 write_delim(data_object, file, ...)  # arbitrary-delimited
 ```
 ]
@@ -192,6 +191,33 @@ write_delim(data_object, file, ...)  # arbitrary-delimited
 
 ---
 
+# Identifying the delimiter
+
+.pull-left5[
+
+1 - <high>Find the file</high> on your hard drive. Should be in your data folder inside your project.
+
+2 - <high>Open the file</high> in RStudio (right-click on the file in the *Files* pane) a text viewer, e.g., *TextEdit* (Mac), *TextWranger* (Mac), *WordPad* (Windows).
+<br><br><br>
+```{r, eval=F}
+# Read with explicit column names
+baselers <- read_delim(file = ".../baselers.csv",
+                       delim = c(",")
+```
+
+]
+
+.pull-right45[
+
+<center>`baselers.csv`
+
+<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/baselers_raw.png">
+
+]
+
+
+---
+
 # Handling headers
 
 .pull-left5[
@@ -202,10 +228,10 @@ write_delim(data_object, file, ...)  # arbitrary-delimited
 <br><br><br>
 ```{r, eval=F}
 # Read with explicit column names
-bas <- read_csv(file = "1_Data/baselers.csv",
-                col_names = c("id",
-                              "baselers",
-                              ...))
+baselers <- read_csv(file = ".../baselers.csv",
+                     col_names = c("id",
+                                  "age",
+                                   ...))
 ```
 
 ]
