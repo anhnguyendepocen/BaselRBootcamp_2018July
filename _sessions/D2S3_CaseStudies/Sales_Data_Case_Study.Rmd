@@ -1,5 +1,5 @@
 ---
-title: "Sales Data - Case Study Answers"
+title: "Case Study: Sales" 
 author: "BaselRBootcamp July 2018<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
 output:
   html_document:
@@ -96,15 +96,15 @@ Table: Table 2. "stores.csv" variable description:
 
 ### A - Getting setup
 
-A1. Open your R project. It should already have the folders `0_Data` and `1_Code`. Make sure that all of the data files listed above are contained in the folder
+1. Open your R project. It should already have the folders `0_Data` and `1_Code`. Make sure that all of the data files listed above are contained in the folder
 
 ```{r}
 # Done!
 ```
 
-A2. Open a new R script and save it as a new file called `sales_case_study.R`. At the top of the script, using comments, write your name and the date. Then, load the set of packages listed above with `library()`.
+2. Open a new R script and save it as a new file called `sales_case_study.R`. At the top of the script, using comments, write your name and the date. Then, load the set of packages listed above with `library()`.
 
-A3. For this practical, we'll use the `sales.csv` and `stores.csv` data. These datasets contain sales numbers of various stores from a large retailor over a time period. Using the following template, load the data into R and store it as new objects called `sales` and `stores`.
+3. For this practical, we'll use the `sales.csv` and `stores.csv` data. These datasets contain sales numbers of various stores from a large retailor over a time period. Using the following template, load the data into R and store it as new objects called `sales` and `stores`.
 
 ```{r, echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
 # Load data from your local data file of your R project
@@ -112,11 +112,11 @@ sales <- read_csv("XX/XXX")
 stores <- read_csv("XX/XXX")
 ```
 
-A4. Using  `summary()`, `head()` and `skim()`, explore the data to make sure it was loaded correctly.
+4. Using  `summary()`, `head()` and `skim()`, explore the data to make sure it was loaded correctly.
 
 ### B - Data Wrangling
 
-B1. From the stores data, only select the following variables: Store, Assortment, CompetitionDistance, CompetitionOpenSinceYear, Promo2. The variable Assortment contains the values "a", "b", and "c". This is not very helpful. Change them so that "a" is now "basic", "b" is now "extra", and "c" is now "extended".
+1. From the stores data, only select the following variables: Store, Assortment, CompetitionDistance, CompetitionOpenSinceYear, Promo2. The variable Assortment contains the values "a", "b", and "c". This is not very helpful. Change them so that "a" is now "basic", "b" is now "extra", and "c" is now "extended".
 
 ```{r eval = TRUE}
 stores <- stores %>%
@@ -127,13 +127,13 @@ stores <- stores %>%
 
 ```
 
-B2. Join the stores data with the sales data (check out the `left_join()` function for this).
+2. Join the stores data with the sales data (check out the `left_join()` function for this).
 
 ```{r eval = TRUE}
 sales <- left_join(sales, stores, by = "Store")
 ```
 
-B3. The sales data contains an error in the state_holiday variable. There are `NA`s where there should be `1`s. Change this (remember that `variable == NA` won't yield the result you want; use `is.na(variable)` instead).
+3. The sales data contains an error in the state_holiday variable. There are `NA`s where there should be `1`s. Change this (remember that `variable == NA` won't yield the result you want; use `is.na(variable)` instead).
 
 ```{r eval = TRUE}
 sales <- sales %>%
@@ -141,7 +141,7 @@ sales <- sales %>%
                                    TRUE ~ 0))
 ```
 
-B4. Rename the variables to be lower case and with underscores between words. Afterwards your variables should be named like this: "store", "week_day", "date", "sales", "customers", "open", "promo", "state_holiday", "school_holiday", "assortment", "competition_distance", "competition_open_since", and "store_promo".
+4. Rename the variables to be lower case and with underscores between words. Afterwards your variables should be named like this: "store", "week_day", "date", "sales", "customers", "open", "promo", "state_holiday", "school_holiday", "assortment", "competition_distance", "competition_open_since", and "store_promo".
 
 ```{r eval = TRUE}
 names(sales) <- c("store", "week_day", "date", "sales", "customers", "open",
@@ -150,7 +150,7 @@ names(sales) <- c("store", "week_day", "date", "sales", "customers", "open",
 ```
 
 
-B5. Save the prepared data as "retailer_sales.csv" (this is easy to do with the `write_csv()` function).
+5. Save the prepared data as "retailer_sales.csv" (this is easy to do with the `write_csv()` function).
 
 ```{r}
 write_csv(sales, "retailer_sales.csv")
@@ -161,7 +161,7 @@ write_csv(sales, "retailer_sales.csv")
 
 To look at the average fluctuations over days you, we suggest you take a subsample of a few stores. You could then plot the individual trajectories, and if you like also add a mean line. You can also use a repeated measures test, to have a statistical test of the stability (you could, for example, use a correlation between two timepoints, or aggregate sales data of stores for each timepoint and run a regression. Note that with these two methods you will violate the assumption of independence of the data, so you cannot interpret the p-value).
 
-C1. Run the following code to get a visual impression of how large the fluctuations are.
+1. Run the following code to get a visual impression of how large the fluctuations are.
 
 ```{r, eval=FALSE, echo=TRUE, message=FALSE, warning=FALSE}
 
@@ -192,7 +192,7 @@ ggplot(sales_sub, aes(x = days, y = sales)) + # specify the data
 ```
 
 
-C2. Randomly sample two timepoints (use the `sample()` function for this) from the `days` variable created above, and run a correlation. 
+2. Randomly sample two timepoints (use the `sample()` function for this) from the `days` variable created above, and run a correlation. 
 
 ```{r, message=FALSE, warning=FALSE}
 
@@ -203,7 +203,7 @@ cor(sales$sales[sales$days == r_ds[1]], sales$sales[sales$days == r_ds[2]])
 
 ```
 
-C3. Summarise the sales data over `days` (i.e. for each day, take the mean), and store this as an object called `sales_agg`. Then run a regression (the function to run a regression is `lm()`).
+3. Summarise the sales data over `days` (i.e. for each day, take the mean), and store this as an object called `sales_agg`. Then run a regression (the function to run a regression is `lm()`).
 
 ```{r, message=FALSE, warning=FALSE}
 
@@ -224,7 +224,7 @@ summary(mod)
 
 ```
 
-C4. Compute the coefficient of variation, i.e. the standard deviation scaled on the mean (use the `sd()` function and divide by the `mean()`), of each stores turnovers (`sales` variable). You can do this by using `dplyr`'s `summarise()` function. Store this as an object called `sales_cv`, with the variable `cv`. Only use days on which the stores were open to not introduce extra noise (use `filter()` for this).
+4. Compute the coefficient of variation, i.e. the standard deviation scaled on the mean (use the `sd()` function and divide by the `mean()`), of each stores turnovers (`sales` variable). You can do this by using `dplyr`'s `summarise()` function. Store this as an object called `sales_cv`, with the variable `cv`. Only use days on which the stores were open to not introduce extra noise (use `filter()` for this).
 
 ```{r, message=FALSE, warning=FALSE}
 
@@ -240,7 +240,7 @@ sales_cv <- sales %>%
 
 ```
 
-C5. Plot the distribution of the coefficient of variation using the following code:
+5. Plot the distribution of the coefficient of variation using the following code:
 
 ```{r, echo=TRUE, message=FALSE, warning=FALSE}
 
@@ -255,7 +255,7 @@ ggplot(sales_cv, aes(cv)) +  # the data to plot
 
 ### D - Statistics - Sales numbers in holidays
 
-D1. To test the effects of state holidays, filter the dataset to only include dates on which the given store was open. Then, average the sales of the holiday days and the non holiday days for each store (use `group_by()` and `summarise()`).
+1. To test the effects of state holidays, filter the dataset to only include dates on which the given store was open. Then, average the sales of the holiday days and the non holiday days for each store (use `group_by()` and `summarise()`).
 
 
 
@@ -282,7 +282,7 @@ sales_agg <- sales_agg %>%
 tapply(sales_agg$sales, sales_agg$state_holiday, mean)
 ```
 
-D2. Run a paired t-test to test whether sales numbers on state holidays differ from sales numbers on normal days.
+2. Run a paired t-test to test whether sales numbers on state holidays differ from sales numbers on normal days.
 
 
 ```{r, message=FALSE, warning=FALSE}
@@ -294,7 +294,7 @@ t.test(sales ~ state_holiday,
 
 ```
 
-D3. Now repeat tasks D1. and D2. for school holidays
+3. Now repeat tasks D1. and D2. for school holidays
 
 ```{r, message=FALSE, warning=FALSE}
 ### Now let's do the same for school holidays
@@ -330,7 +330,7 @@ t.test(sales ~ school_holiday,
 
 To not violate the independence assumption you will have to aggregate the sales data of each store over the different time periods. You can then run a linear regression.
 
-E1. Aggregate the sales numbers over days. Include the following groups to later be used as predictors: "store", "customers", "store_promo", "competition_distance", and "assortment".
+1. Aggregate the sales numbers over days. Include the following groups to later be used as predictors: "store", "customers", "store_promo", "competition_distance", and "assortment".
 
 ```{r, message=FALSE, warning=FALSE}
 
@@ -343,7 +343,7 @@ sales_agg <- sales %>%
   )
 ```
 
-E2. Run a regression to test the influence of the variables included in task E1.
+2. Run a regression to test the influence of the variables included in task E1.
 
 ```{r, message=FALSE, warning=FALSE}
 
