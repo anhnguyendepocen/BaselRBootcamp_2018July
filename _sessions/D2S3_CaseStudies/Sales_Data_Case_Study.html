@@ -299,26 +299,34 @@ $(document).ready(function () {
 <h1>Tasks</h1>
 <div id="a---getting-setup" class="section level3">
 <h3>A - Getting setup</h3>
-<p>A1. Open your R project. It should already have the folders <code>0_Data</code> and <code>1_Code</code>. Make sure that all of the data files listed above are contained in the folder</p>
-<p>A2. Open a new R script and save it as a new file called <code>sales_case_study.R</code>. At the top of the script, using comments, write your name and the date. Then, load the set of packages listed above with <code>library()</code>.</p>
-<p>A3. For this practical, we’ll use the <code>sales.csv</code> and <code>stores.csv</code> data. These datasets contain sales numbers of various stores from a large retailor over a time period. Using the following template, load the data into R and store it as new objects called <code>sales</code> and <code>stores</code>.</p>
+<ol style="list-style-type: decimal">
+<li><p>Open your R project. It should already have the folders <code>0_Data</code> and <code>1_Code</code>. Make sure that all of the data files listed above are contained in the folder</p></li>
+<li><p>Open a new R script and save it as a new file called <code>sales_case_study.R</code>. At the top of the script, using comments, write your name and the date. Then, load the set of packages listed above with <code>library()</code>.</p></li>
+<li><p>For this practical, we’ll use the <code>sales.csv</code> and <code>stores.csv</code> data. These datasets contain sales numbers of various stores from a large retailor over a time period. Using the following template, load the data into R and store it as new objects called <code>sales</code> and <code>stores</code>.</p></li>
+</ol>
 <pre class="r"><code># Load data from your local data file of your R project
 sales &lt;- read_csv(&quot;XX/XXX&quot;)
 stores &lt;- read_csv(&quot;XX/XXX&quot;)</code></pre>
-<p>A4. Using <code>summary()</code>, <code>head()</code> and <code>skim()</code>, explore the data to make sure it was loaded correctly.</p>
+<ol start="4" style="list-style-type: decimal">
+<li>Using <code>summary()</code>, <code>head()</code> and <code>skim()</code>, explore the data to make sure it was loaded correctly.</li>
+</ol>
 </div>
 <div id="b---data-wrangling" class="section level3">
 <h3>B - Data Wrangling</h3>
-<p>B1. From the stores data, only select the following variables: Store, Assortment, CompetitionDistance, CompetitionOpenSinceYear, Promo2. The variable Assortment contains the values “a”, “b”, and “c”. This is not very helpful. Change them so that “a” is now “basic”, “b” is now “extra”, and “c” is now “extended”.</p>
-<p>B2. Join the stores data with the sales data (check out the <code>left_join()</code> function for this).</p>
-<p>B3. The sales data contains an error in the state_holiday variable. There are <code>NA</code>s where there should be <code>1</code>s. Change this (remember that <code>variable == NA</code> won’t yield the result you want; use <code>is.na(variable)</code> instead).</p>
-<p>B4. Rename the variables to be lower case and with underscores between words. Afterwards your variables should be named like this: “store”, “week_day”, “date”, “sales”, “customers”, “open”, “promo”, “state_holiday”, “school_holiday”, “assortment”, “competition_distance”, “competition_open_since”, and “store_promo”.</p>
-<p>B5. Save the prepared data as “retailer_sales.csv” (this is easy to do with the <code>write_csv()</code> function).</p>
+<ol style="list-style-type: decimal">
+<li><p>From the stores data, only select the following variables: Store, Assortment, CompetitionDistance, CompetitionOpenSinceYear, Promo2. The variable Assortment contains the values “a”, “b”, and “c”. This is not very helpful. Change them so that “a” is now “basic”, “b” is now “extra”, and “c” is now “extended”.</p></li>
+<li><p>Join the stores data with the sales data (check out the <code>left_join()</code> function for this).</p></li>
+<li><p>The sales data contains an error in the state_holiday variable. There are <code>NA</code>s where there should be <code>1</code>s. Change this (remember that <code>variable == NA</code> won’t yield the result you want; use <code>is.na(variable)</code> instead).</p></li>
+<li><p>Rename the variables to be lower case and with underscores between words. Afterwards your variables should be named like this: “store”, “week_day”, “date”, “sales”, “customers”, “open”, “promo”, “state_holiday”, “school_holiday”, “assortment”, “competition_distance”, “competition_open_since”, and “store_promo”.</p></li>
+<li><p>Save the prepared data as “retailer_sales.csv” (this is easy to do with the <code>write_csv()</code> function).</p></li>
+</ol>
 </div>
 <div id="c---statistics---flucutations-over-days" class="section level3">
 <h3>C - Statistics - Flucutations over Days</h3>
 <p>To look at the average fluctuations over days you, we suggest you take a subsample of a few stores. You could then plot the individual trajectories, and if you like also add a mean line. You can also use a repeated measures test, to have a statistical test of the stability (you could, for example, use a correlation between two timepoints, or aggregate sales data of stores for each timepoint and run a regression. Note that with these two methods you will violate the assumption of independence of the data, so you cannot interpret the p-value).</p>
-<p>C1. Run the following code to get a visual impression of how large the fluctuations are.</p>
+<ol style="list-style-type: decimal">
+<li>Run the following code to get a visual impression of how large the fluctuations are.</li>
+</ol>
 <pre class="r"><code># first create a variable called &quot;days&quot; that is a counter
 # for the number of days and will be easier to use than
 # the date variable
@@ -343,10 +351,12 @@ ggplot(sales_sub, aes(x = days, y = sales)) + # specify the data
   geom_line(aes(group = store), col = &quot;grey&quot;, alpha = .4) + # add line per store
   stat_smooth(lwd = 1.5) +  # add an average line
   theme_bw()                # theme for white plotting window</code></pre>
-<p>C2. Randomly sample two timepoints (use the <code>sample()</code> function for this) from the <code>days</code> variable created above, and run a correlation.</p>
-<p>C3. Summarise the sales data over <code>days</code> (i.e. for each day, take the mean), and store this as an object called <code>sales_agg</code>. Then run a regression (the function to run a regression is <code>lm()</code>).</p>
-<p>C4. Compute the coefficient of variation, i.e. the standard deviation scaled on the mean (use the <code>sd()</code> function and divide by the <code>mean()</code>), of each stores turnovers (<code>sales</code> variable). You can do this by using <code>dplyr</code>’s <code>summarise()</code> function. Store this as an object called <code>sales_cv</code>, with the variable <code>cv</code>. Only use days on which the stores were open to not introduce extra noise (use <code>filter()</code> for this).</p>
-<p>C5. Plot the distribution of the coefficient of variation using the following code:</p>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Randomly sample two timepoints (use the <code>sample()</code> function for this) from the <code>days</code> variable created above, and run a correlation.</p></li>
+<li><p>Summarise the sales data over <code>days</code> (i.e. for each day, take the mean), and store this as an object called <code>sales_agg</code>. Then run a regression (the function to run a regression is <code>lm()</code>).</p></li>
+<li><p>Compute the coefficient of variation, i.e. the standard deviation scaled on the mean (use the <code>sd()</code> function and divide by the <code>mean()</code>), of each stores turnovers (<code>sales</code> variable). You can do this by using <code>dplyr</code>’s <code>summarise()</code> function. Store this as an object called <code>sales_cv</code>, with the variable <code>cv</code>. Only use days on which the stores were open to not introduce extra noise (use <code>filter()</code> for this).</p></li>
+<li><p>Plot the distribution of the coefficient of variation using the following code:</p></li>
+</ol>
 <pre class="r"><code>ggplot(sales_cv, aes(cv)) +  # the data to plot
   geom_histogram() +         # function to create a histogram
   xlim(c(0, 1)) +            # range of the x-axis
@@ -356,15 +366,19 @@ ggplot(sales_sub, aes(x = days, y = sales)) + # specify the data
 </div>
 <div id="d---statistics---sales-numbers-in-holidays" class="section level3">
 <h3>D - Statistics - Sales numbers in holidays</h3>
-<p>D1. To test the effects of state holidays, filter the dataset to only include dates on which the given store was open. Then, average the sales of the holiday days and the non holiday days for each store (use <code>group_by()</code> and <code>summarise()</code>).</p>
-<p>D2. Run a paired t-test to test whether sales numbers on state holidays differ from sales numbers on normal days.</p>
-<p>D3. Now repeat tasks D1. and D2. for school holidays</p>
+<ol style="list-style-type: decimal">
+<li><p>To test the effects of state holidays, filter the dataset to only include dates on which the given store was open. Then, average the sales of the holiday days and the non holiday days for each store (use <code>group_by()</code> and <code>summarise()</code>).</p></li>
+<li><p>Run a paired t-test to test whether sales numbers on state holidays differ from sales numbers on normal days.</p></li>
+<li><p>Now repeat tasks D1. and D2. for school holidays</p></li>
+</ol>
 </div>
 <div id="e---statistics---predict-sales-numbers-from-other-variables" class="section level3">
 <h3>E - Statistics - Predict sales numbers from other variables</h3>
 <p>To not violate the independence assumption you will have to aggregate the sales data of each store over the different time periods. You can then run a linear regression.</p>
-<p>E1. Aggregate the sales numbers over days. Include the following groups to later be used as predictors: “store”, “customers”, “store_promo”, “competition_distance”, and “assortment”.</p>
-<p>E2. Run a regression to test the influence of the variables included in task E1.</p>
+<ol style="list-style-type: decimal">
+<li><p>Aggregate the sales numbers over days. Include the following groups to later be used as predictors: “store”, “customers”, “store_promo”, “competition_distance”, and “assortment”.</p></li>
+<li><p>Run a regression to test the influence of the variables included in task E1.</p></li>
+</ol>
 </div>
 <div id="f---extra" class="section level3">
 <h3>F - Extra</h3>
