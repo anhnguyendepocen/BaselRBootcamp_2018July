@@ -1,6 +1,6 @@
 ---
 title: "Machine Learning"
-author: "BaselRBootcamp July 2018<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
+author: "Basel R Bootcamp July 2018<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
 output:
   html_document:
     css: practical.css
@@ -198,7 +198,7 @@ ggplot(data = competition_results,
 
 ## A - Setup
 
-1. Open your R project. It should already have the folders `1_Data` and `2_Code`. Make sure that the data files listed in the `Datasets` section above are in your `1_Data` folder
+1. Open your `baselrbootcamp` R project. It should already have the folders `1_Data` and `2_Code`. Make sure that the data files listed in the `Datasets` section above are in your `1_Data` folder
 
 ```{r}
 # Done!
@@ -271,7 +271,7 @@ house_train <- house_train %>%
 
 ## F - Predict the year a house was built
 
-So far, we have predicted house prices based on many features. Now, see how well you can predict the *year* a house was built `yr_built` based on the following four features: bedrooms, bathrooms, condition, sqft_living.
+So far, we have predicted house prices based on many features. Now, see how well you can predict the *year* a house was built (`yr_built`) based on the following four features: bedrooms, bathrooms, condition, sqft_living.
 
 1. Go through Steps 0 through 4 using regression `glm()` and decision trees `rpart()` to build models predicting the year a house was built `yr_built` based on `bedrooms`, `bathrooms`, `condition`, `sqft_living`.
 

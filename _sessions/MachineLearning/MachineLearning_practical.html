@@ -9,7 +9,7 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="author" content="BaselRBootcamp July 2018 www.therbootcamp.com @therbootcamp" />
+<meta name="author" content="Basel R Bootcamp July 2018 www.therbootcamp.com @therbootcamp" />
 
 
 <title>Machine Learning</title>
@@ -123,7 +123,7 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Machine Learning</h1>
-<h4 class="author"><em>BaselRBootcamp July 2018<br /><a href="https://therbootcamp.github.io">www.therbootcamp.com</a><br /><a href="https://twitter.com/therbootcamp"><span class="citation">@therbootcamp</span></a></em></h4>
+<h4 class="author"><em>Basel R Bootcamp July 2018<br /><a href="https://therbootcamp.github.io">www.therbootcamp.com</a><br /><a href="https://twitter.com/therbootcamp"><span class="citation">@therbootcamp</span></a></em></h4>
 
 </div>
 
@@ -373,7 +373,7 @@ ggplot(data = competition_results,
 <div id="a---setup" class="section level2">
 <h2>A - Setup</h2>
 <ol style="list-style-type: decimal">
-<li><p>Open your R project. It should already have the folders <code>1_Data</code> and <code>2_Code</code>. Make sure that the data files listed in the <code>Datasets</code> section above are in your <code>1_Data</code> folder</p></li>
+<li><p>Open your <code>baselrbootcamp</code> R project. It should already have the folders <code>1_Data</code> and <code>2_Code</code>. Make sure that the data files listed in the <code>Datasets</code> section above are in your <code>1_Data</code> folder</p></li>
 <li><p>Open a new R script. At the top of the script, using comments, write your name and the date. Save it as a new file called <code>machinelearning_practical.R</code> in the <code>2_Code</code> folder.</p></li>
 <li><p>Using <code>library()</code> load the set of packages for this practical listed in the packages section above.</p></li>
 </ol>
@@ -422,7 +422,7 @@ library(XX)
 </div>
 <div id="f---predict-the-year-a-house-was-built" class="section level2">
 <h2>F - Predict the year a house was built</h2>
-<p>So far, we have predicted house prices based on many features. Now, see how well you can predict the <em>year</em> a house was built <code>yr_built</code> based on the following four features: bedrooms, bathrooms, condition, sqft_living.</p>
+<p>So far, we have predicted house prices based on many features. Now, see how well you can predict the <em>year</em> a house was built (<code>yr_built</code>) based on the following four features: bedrooms, bathrooms, condition, sqft_living.</p>
 <ol style="list-style-type: decimal">
 <li><p>Go through Steps 0 through 4 using regression <code>glm()</code> and decision trees <code>rpart()</code> to build models predicting the year a house was built <code>yr_built</code> based on <code>bedrooms</code>, <code>bathrooms</code>, <code>condition</code>, <code>sqft_living</code>.</p></li>
 <li><p>Based on your model exploration (Step 4), which of the four features seem to be the most important in predicting the year a house was built?</p></li>
