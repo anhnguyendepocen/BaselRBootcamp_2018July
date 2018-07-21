@@ -348,7 +348,7 @@ mean(age > 30)
 
 ## E - Creating data frames
 
-1. Using the `data.frame()` function, create a data frame called `ten_df` that contains each of vectors you just created: `id`, `sex`, `height`, `weight`, `tall_180`
+1. Using the `data.frame()` function, create a data frame called `ten_df` that contains each of vectors you just created: `id`, `sex`, `age`, `height`, `weight`, `tall_180`
 
 ```{r, eval = FALSE, echo = TRUE}
 # Create data frame from vectors
