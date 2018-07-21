@@ -130,12 +130,14 @@ Raw data can come in many shapes and sizes, but <high>R's got you covered</high>
 .pull-right65[
 <br>
 ```{r, eval=F}
-# Functions for import
-read_csv(file, ...)   # comma-delimited
-read_csv2(file, ...)  # semicolon-delimeted
-read_delim(file, ...) # arbitrary-delimited
+# Importing data from a file
 
-# Functions for writing
+data <- read_csv(file, ...)   # comma-delimited
+data <- read_csv2(file, ...)  # semicolon-delimeted
+data <- read_delim(file, ...) # arbitrary-delimited
+
+# Writing a data frame to a file
+
 read_csv(data_object, file, ...)    # comma-delimited
 read_csv2(data_object, file, ...)   # semicolon-delimeted
 read_delim(data_object, file, ...)  # arbitrary-delimited
@@ -162,7 +164,7 @@ read_delim(data_object, file, ...)  # arbitrary-delimited
 
 .pull-right55[
 
-<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/auto_complete_3.png"></img>
+<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/load_baselers_ss.jpg"></img>
 
 ]
 
@@ -170,7 +172,7 @@ read_delim(data_object, file, ...)  # arbitrary-delimited
 
 # Identifying the delimiter
 
-.pull-left45[
+.pull-left5[
 
 1 - <high>Find the file</high> on your hard drive. Should be in your data folder inside your project.
 
@@ -182,6 +184,8 @@ read_delim(data_object, file, ...)  # arbitrary-delimited
 
 .pull-right45[
 
+<center>`baselers.csv`
+
 <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/baselers_raw.png">
 
 ]
@@ -190,7 +194,7 @@ read_delim(data_object, file, ...)  # arbitrary-delimited
 
 # Handling headers
 
-.pull-left45[
+.pull-left5[
 
 1 - `readr`- functions typically expect the <high>column names</high> in the first line.
 
@@ -198,16 +202,17 @@ read_delim(data_object, file, ...)  # arbitrary-delimited
 <br><br><br>
 ```{r, eval=F}
 # Read with explicit column names
-read_csv("1_Data/baselers.csv",
-         col_names = c("id",
-                       "baselers",
-                       ...)
-         )
+bas <- read_csv(file = "1_Data/baselers.csv",
+                     col_names = c("id",
+                                   "baselers",
+                                   ...))
 ```
 
 ]
 
 .pull-right45[
+
+<center>`baselers.csv`
 
 <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/baselers_raw.png">
 
@@ -217,18 +222,20 @@ read_csv("1_Data/baselers.csv",
 
 # Handling data types
 
-.pull-left45[
+.pull-left5[
 
 Reading in data, <high>`readr` infers the type of data</high> for each column. 
 
 ```{r}
 # Read baselers
-baselers <- read_csv("1_Data/baselers.csv")
+read_csv(file = "1_Data/baselers.csv")
 ```
 
 ]
 
 .pull-right45[
+
+<center>`baselers.csv`
 
 <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/baselers_raw.png">
 
@@ -238,7 +245,7 @@ baselers <- read_csv("1_Data/baselers.csv")
 
 # Handling data types
 
-.pull-left45[
+.pull-left5[
 
 Incorrect data types can be fixed. Typically this involves:
 
@@ -248,14 +255,18 @@ c) Re-running <high>`type_convert`</high>.<br><br>
 
 ```{r, eval = F}
 # Read baselers
-baselers <- read_csv("data/baselers.csv",
-                     na = c('NA'))
-baselers <- type_convert(baselers)
+bas <- read_csv(file = "data/baselers.csv",
+                na = c('NA'))
+
+# Try to fix incorrect data types
+bas <- type_convert(baselers)
 ```
 
 ]
 
 .pull-right45[
+
+<center>`baselers.csv`
 
 <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/baselers_raw.png">
 
