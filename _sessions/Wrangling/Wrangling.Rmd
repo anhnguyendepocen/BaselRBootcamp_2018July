@@ -332,7 +332,7 @@ results_df <- tibble(id = c(4, 92, 1, 2, 99),
 ]
 
 .pull-right55[
-
+<br>
 ```{r}
 patients_df   # Demographic data
 ```
@@ -344,11 +344,12 @@ patients_df   # Demographic data
 ---
 
 
-.pull-left3[
+# `rename` 
 
-# `rename()` 
+.pull-left45[
 
-Change column names with `rename()`
+
+How to change column names with `rename()`.
 
 ```{r, eval = FALSE, echo = TRUE}
 df %>%
@@ -361,9 +362,9 @@ patients_df  # Original
 ```
 ]
 
-.pull-right65[
-<br><br>
-Change column names with `rename()`
+.pull-right45[
+
+Change column names with `rename()`.
 
 ```{r}
 # 0) Start with patients_df data
@@ -379,11 +380,11 @@ patients_df %>%
 
 ---
 
-.pull-left3[
+# `mutate` 
 
-# `mutate()` 
+.pull-left35[
 
-Add new columns (or change existing ones) with `mutate()`<br><br>
+Add new columns (or change existing ones) with `mutate()`.
 
 ```{r, eval = FALSE}
 df %>%
@@ -396,9 +397,8 @@ df %>%
 ```
 ]
 
-.pull-right65[
+.pull-right6[
 
-<br><br>
 ```{r, warning = FALSE}
 patients_df %>% 
 
@@ -414,11 +414,11 @@ patients_df %>%
 
 ---
 
+# `case_when`
+
 .pull-left4[
 
-# `case_when()`
-
-Use `case_when()` with `mutate()` to define new columns based on logical conditions
+Use `case_when()` with `mutate()` to <high>define new columns based on logical conditions</high>
 
 ```{r, eval = FALSE}
 # Using mutate(case_when())
@@ -428,21 +428,13 @@ df %>%
       COND1 ~ VAL1,
       COND2 ~ VAL2
     ))
+
 ```
-
-Useful for recoding values. Example:
-
-|arm|arm_char|
-|:--|:--|
-|0|"placebo"|
-|1|"drug"|
-|0|"placebo"|
 
 
 ]
 
 .pull-right55[
-<br><br>
 
 ```{r}
 patients_df %>% 
@@ -470,11 +462,11 @@ patients_df %>%
 
 ---
 
-.pull-left35[
-## left_join()
-<br>
+# `left_join`
 
-Use `left_join()` to combine2 dataframes based on one or more key columns<br><br></font>
+.pull-left35[
+
+Use `left_join()` to <high>combine two data frames</high> based on one or more key columns
 
 ```{r, eval = FALSE}
 # Join df2 to df1
@@ -484,32 +476,24 @@ df1 %>%
       by = c("KEY"))
 ```
 
-<br>
+<br2>
 <p align="center">
-  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/joining_data.png" height="150px">
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/joining_data.png" height="190px">
 </p> 
 
 ]
 
 .pull-right6[
 
-
 ```{r}
 # Join patients_df with results_df to create combined_df
-
 combined_df <- patients_df %>% 
-  
-  rename(age = b, 
-         arm = c) %>%
-  
+  rename(age = b, arm = c) %>%
   mutate(arm_char = case_when(arm == 0 ~ "placebo",
                               arm == 1 ~ "drug")) %>%
   
 # Join with results_df with left_join()
   left_join(results_df, by = "id")
-
-# Look at all column names
-names(combined_df)
 
 # Show a few columns
 combined_df %>%
@@ -521,15 +505,15 @@ combined_df %>%
 ---
 
 
+# Keep in mind
+
 .pull-left35[
-<br><br>
-# Notes
 
-Don't forget to start by assigning to a new (or existing) object with <-<br>
+1 - Don't forget to start by assigning to a new (or existing) object with <-<br>
 
-Keep adding new functions connected by the pipe %>%<br>
+2 - Keep adding new functions connected by the pipe %>%<br>
 
-Order matters! You can refer to new columns in later code
+3 - Order matters! You can refer to new columns in later code
 <br><br>
 
 
@@ -537,7 +521,6 @@ Order matters! You can refer to new columns in later code
 ]
 
 .pull-right6[
-<br><br>
 
 ```{r, eval = FALSE}
 # 0) Start with patients_df data
@@ -565,7 +548,13 @@ combined_df <- patients_df %>%
 
 # Organisation Functions
 
-Organisation functions help you shuffle your data by sorting rows by columns, filter rows based on criteria, select columns (etc.)
+.pull-left35[
+
+Organisation functions help you shuffle your data by <high>sorting rows</high> by columns, <high>filter rows</high> based on criteria, <high>select columns</high> (etc).
+
+]
+
+.pull-right6[
 
 | Function| Purpose|Example|
 |:--------|:----|:-------------|
@@ -574,29 +563,28 @@ Organisation functions help you shuffle your data by sorting rows by columns, fi
 | `filter()` | Select specific rows by criteria|`df %>%`<br>`filter(age > 50)`|
 | `select()`|   Select specific columns|`df %>%`<br>`select(arm, t1)`|
 
+]
+
 ---
 
+# `arrange`
+
 .pull-left3[
-# arrange()
 
-Use `arrange()` to arrange (aka, sort) rows in increasing or decreasing order of one (or more) columns.
+Use `arrange()` to <high>arrange (aka, sort) rows</high> in increasing or decreasing order of one (or more) columns.
 
-To sort in descending order, use desc()
+To sort in descending order, use `desc()`
 
 ]
 
 .pull-right65[
 
-<br><br>
-
 <font size = 5></font>
 
 ```{r}
-# Sort combined_df by id then in descending order of age
-
+# Sort combined_df by id 
+# then in descending order of age
 combined_df %>%
-
-  # Sort by id then age (descending)
   arrange(id, desc(age))
 ```
 
@@ -604,34 +592,31 @@ combined_df %>%
 
 ---
 
-.pull-left3[
-# filter()
+# `filter`
 
-Use `filter()` to select rows (and remove others) based on criteria
 
-|Operator| Effect|
-|---|---|
-|==| equal to|
-|!=| Not equal to|
-|<, >| Less than, greater than|
-|<=, >=|Less or =, greater or =|
+.pull-left4[
 
-For complex conditions, chain multiple logical comparison operators with & (and), | (or)
+Use `filter()` to <high>select rows</high> (and remove others) based on criteria
 
+For complex conditions, chain multiple logical comparison operators with `&` (AND) and `|` (OR)
+
+<high>`==`</high> - is equal to<br>
+<high>`<`</high>, <high>`>`</high> - smaller/greater than<br>
+<high>`≤`</high>, <high>`≥`</high> - smaller/greater than or equal<br>
+<high>`&`</high>, <high>`&&`</high> - logical AND<br>
+<high>`|`</high>, <high>`||`</high> - logical OR<br>
 
 ]
 
-.pull-right65[
-<br><br>
+.pull-right55[
 
-<font size = 5>Select <i>only</i>patients over 30 given drug</font>
+Select <i>only</i> patients over 30 given drug.
 
 ```{r}
-combined_df %>%
-  
-  arrange(id, desc(age)) %>%
-  
 # Filter patients older than 30 given drug
+combined_df %>%
+  arrange(id, desc(age)) %>%
   filter(age > 30 & arm_char == "drug")
 ```
 
@@ -639,10 +624,11 @@ combined_df %>%
 
 ---
 
-.pull-left4[
-# select()
+# `select`
 
-Use `select()` to select specific columns (and remove all others)
+.pull-left4[
+
+Use `select()` to <high>select columns</high> (and remove all others)
 
 ```{r, eval = FALSE}
 # Select columns id, age
@@ -650,7 +636,7 @@ df %>%
   select(id, age)
 ```
 
-Select everything *except* certain columns with -
+<high>Select everything except</high> certain columns with `-`.
 
 ```{r, eval = FALSE}
 # Select everything BUT sex and id
@@ -663,9 +649,7 @@ df %>%
 
 .pull-right55[
 
-<br><br>
-
-<font size = 5>Drop age_months and age_decades colummns</font>
+Drop age_months and age_decades colummns.
 
 ```{r}
 
@@ -694,16 +678,16 @@ combined_df %>%
 
 
 ---
-.pull-left4[
 
-# group_by(), summarise()
+# `group_by`, `summarise`
 
-Use `group_by()` to *group* data according to one or more columns
+.pull-left45[
 
-After grouping data, use `summarise()` to calculate summary statistics across groups of data
+Use `group_by()` to <high>group data</high> according to one or more columns
 
-### Statistical functions
-<br>
+After grouping data, use `summarise()` to <high>calculate summary statistics</high> across groups of data
+
+<u>Statistical functions</u>
 
 | Function| asdf |
 |:-------------|:---|
@@ -711,8 +695,7 @@ After grouping data, use `summarise()` to calculate summary statistics across gr
 | `mean()`, `median()`, `max()`, `min()` `sum()` | Summary stats|
 ]
 
-.pull-right55[
-<br>
+.pull-right45[
 
 ```{r, echo = FALSE}
 combined_df <- combined_df %>%
@@ -727,10 +710,10 @@ combined_df <- combined_df %>%
 combined_df %>%
   group_by(arm) %>%
   summarise(
-    N = n(),   # Number of cases in each group
-    age_mean = mean(age), # mean age
-    t1_mean = mean(t1, na.rm = TRUE), # Mean t1 score
-    t2_mean = mean(t2, na.rm = TRUE)  # Mean t2 score
+    N = n(),
+    age_mean = mean(age),
+    t1_mean = mean(t1, na.rm = TRUE),
+    t2_mean = mean(t2, na.rm = TRUE)
   )
 ```
 
@@ -738,16 +721,15 @@ combined_df %>%
 ]
 
 
-
 ---
+
+# Reshaping data
 
 .pull-left45[
 
-## Reshaping data
+Two key functions that allow you to <high>`reshape`</high> a dataframe between 'wide'and 'long' formats.
 
-Two key functions that allow you to 'reshape' a dataframe between 'wide'and 'long' formats.<br>
-
-Why reshape data between wide and long? Some functions require data to be in a certain shape<br>
+Some functions require data to be in a certain shape.
 
 #### Two key tidyr functions
 
@@ -759,9 +741,8 @@ Why reshape data between wide and long? Some functions require data to be in a c
 ]
 
 .pull-right5[
-<br><br>
 
-### 'Wide' vs. 'Long' data
+#### 'Wide' vs. 'Long' data
 
 ```{r, echo = FALSE}
 stock_w <- data.frame(id = c("a", "b", "c"),
@@ -788,9 +769,7 @@ stock_l
 
 .pull-left45[
 
-## gather()
-
-<font size=5>Use gather() to convert wide to long</font>
+# `gather`
 
 ```{r}
 # Show wide data
@@ -807,11 +786,9 @@ stock_w %>%
 
 ]
 
-.pull-right5[
+.pull-right45[
 
-## spread()
-
-<font size=5>Use spread() to convert long to wide</font>
+# `spread`
 
 ```{r}
 # Show long data
@@ -831,28 +808,22 @@ stock_l %>%
 
 ---
 
+# Summary
+
 .pull-left4[
 
-<br>
+1 - Start by assigning your result to a new object to save it!
 
-## Summary
+2 - "Keep the pipe <high>%>%</high> going" to continue working with your data frame.
 
-<br>
+3 - The output of dplyr functions will (almost) always be a <high>tibble</high>.
 
-Start by assigning your result to a new object to save it!<br><br>
-
-"Keep the pipe <font color = 'purple'>%>%</font> going" to continue working with your dataframe<br><br>
-
-The output of dplyr functions will (almost) always be a tibble<br><br>
-
-You can almost always include multiple operations within each function<br><br>
+4 - You can almost always include <high>multiple operations</high> within each function.
 
 ]
 
 .pull-right55[
-<br>
 
- 
 ```{r, eval = FALSE}
 # Assign result to baslers_agg
 
