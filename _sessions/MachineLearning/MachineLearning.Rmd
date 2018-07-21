@@ -592,6 +592,7 @@ All machine learning objects will allow you to <high>predict the criterion of ne
 
 Compare the predicted values to the true criterion values of `newdata` to see how well your model did.
 <br>
+
 |argument|description|
 |:----|:-----|
 |object| A machine learning / statistical object created from `glm()`, `randomforest()`, ...|
@@ -627,12 +628,14 @@ predict(object = baselers_glm,  # ML object
 
 ]
 
-
 ---
 
 # Practical
 
-<font size=6><high>Live demo</high></font><br>
+<p>
+  <font size=6>
+    <a href="https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/MachineLearning/MachineLearning_practical.html"><b>Link to practical<b></a>
+  </font>
+</p>
 
-<a href="https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/MachineLearning/MachineLearning_practical.html"><font size=6><high>Link to practical</high></font></a>
 
