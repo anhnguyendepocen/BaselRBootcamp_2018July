@@ -73,7 +73,7 @@ mcdonalds <- read_csv("https://raw.githubusercontent.com/therbootcamp/BaselRBoot
 
 ## A - Setup
 
-1. Open your R project. It should already have the folders `1_Data` and `2_Code`. Make sure that the data files listed in the Datasets section above are in your `2_Data` folder
+1. Open your `baselrbootcamp` R project. It should already have the folders `1_Data` and `2_Code`. Make sure that the data files listed in the Datasets section above are in your `2_Data` folder
 
 ```{r}
 # Done!
