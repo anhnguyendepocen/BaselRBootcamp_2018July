@@ -148,7 +148,7 @@ Table: Table3. `dimarta_biomarker.csv` variable description:
 
 1. Open your `baselrbootcamp` R project. It should already have the folders `1_Data` and `2_Code`.
 
-1. Open a new R script and save it as a new file in your `R` folder called `dimarta_casestudy.R`. At the top of the script, using comments, write your name and the date. Then, load the `tidyverse` package. Here's how the top of your script should look:
+2. Open a new R script and save it as a new file in your `R` folder called `dimarta_casestudy.R`. At the top of the script, using comments, write your name and the date. Then, load the `tidyverse` package. Here's how the top of your script should look:
 
 ```{r, echo = TRUE}
 ## My Name
