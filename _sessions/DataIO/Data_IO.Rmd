@@ -404,7 +404,7 @@ R's own formats provide the possibility to store <high>data as R objects</high> 
 <br><br><br>
 ```{r, eval = F}
 # save data as .RData
-save(baslelers, zuerichers, ...,
+save(baselers, zuerichers, ...,
      file = "my_data.RData")
 
 # load data from .RData
@@ -419,7 +419,7 @@ load("my_data.RData")
 <br><br><br>
 ```{r, eval = F}
 # save data as .RDS
-saveRDS(baslelers,
+saveRDS(baselers,
         file = "baselers.rds")
 
 # load data from .RDS
