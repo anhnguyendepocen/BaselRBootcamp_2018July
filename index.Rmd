@@ -26,7 +26,7 @@ output: html_document
 
 
 <p align="center"><br>
-    <a href="https://therbootcamp.github.io/BaselRBootcamp_2018April/schedule.html"><img border="0" alt="April2018Schedule" src="https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/schedule_2018Apr.png?raw=true" width=660></a><br>
+    <a href="https://therbootcamp.github.io/BaselRBootcamp_2018July/schedule.html"><img border="0" alt="April2018Schedule" src="https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/schedule_2018Jul.png?raw=true" width=660></a><br>
 
 
 
