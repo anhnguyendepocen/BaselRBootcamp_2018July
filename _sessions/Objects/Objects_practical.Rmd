@@ -122,9 +122,9 @@ stocks$today
 
 # Calculate descriptives on columns
 mean(stocks$yesterday)
-mean(stocks$today)
+median(stocks$today)
 table(stocks$increase)
-mean(stocks$increase)
+max(stocks$increase)
 ```
 
 # Tasks
