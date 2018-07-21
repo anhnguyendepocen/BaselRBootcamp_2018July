@@ -56,9 +56,9 @@ knitr::opts_chunk$set(fig.align = 'center')
 
 .pull-left45[
 <br><br><br><br><br>
-#  Materials
+#  Schedule and Materials
 
-Look for the "Present & Past" section on our homepage
+Click the "Bootcamp running" link on our homepage!
 
 <font size="6" color="#F62D73"><a href="www.therbootcamp.com"><b>www.therbootcamp.com</b></a></font><br><br>
 
@@ -67,7 +67,7 @@ Look for the "Present & Past" section on our homepage
 .pull-right5[
 
 <br><br>
-<iframe src="http://therbootcamp.github.io" width="500" height="500"></iframe>
+<iframe src="https://therbootcamp.github.io" width="500" height="500"></iframe>
 
 ]
 
