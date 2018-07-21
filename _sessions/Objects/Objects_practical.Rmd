@@ -351,16 +351,16 @@ mean(age > 30)
 
 ## E - Creating data frames
 
-1. Using the `data.frame()` function, create a data frame called `ten_df` that contains each of vectors you just created: `id`, `sex`, `height`, `weight`, `tall_180`
+1. Using the `data.frame()` function, create a data frame called `ten_df` that contains each of vectors you just created: `id`, `age`, `sex`, `height`, `weight`, `tall_180`
 
 ```{r, eval = FALSE, echo = TRUE}
-# Create data frame ten_df containing vectors id, sex, height, weight, and tall_180
-XX <- data.frame(XX, XX, XX, XX, XX) 
+# Create data frame ten_df containing vectors id, age, sex, height, weight, and tall_180
+XX <- data.frame(XX, XX, XX, XX, XX, XX) 
 ```
 
 ```{r, eval = FALSE, echo = FALSE}
 # Create ten_df data frame from vectors
-ten_df <- data.frame(id, sex, height, weight, tall_180) 
+ten_df <- data.frame(id, age, sex, height, weight, tall_180) 
 ```
 
 2. Print your `ten_df` object to see how it looks! Does it contain all of the vectors?
