@@ -122,9 +122,9 @@ stocks$today
 
 # Calculate descriptives on columns
 mean(stocks$yesterday)
-mean(stocks$today)
+median(stocks$today)
 table(stocks$increase)
-mean(stocks$increase)
+max(stocks$increase)
 ```
 
 # Tasks
@@ -149,8 +149,11 @@ data %>% mutate_all(replace_na, " ") %>%
 1. Create a numeric vector called `id` that shows the id values. When you finish, print the vector object to see it!
 
 ```{r, eval = FALSE, echo = TRUE}
-# Create a vector XX
+# Create a vector id
 XX <- c(XX, XX, ...)
+
+# Print the vector id
+XX
 ```
 
 ```{r, eval = FALSE, echo = FALSE}
@@ -161,7 +164,7 @@ id <- 1:10 # shortcut to creating the sequence from 1 to 10
 id
 ```
 
-2. Using the `class()` function, check the class of your `id` vector. Is it `numeric`?
+2. Using the `class()` function, check the class of your `id` vector. Is it `"numeric"`?
 
 ```{r, eval = FALSE, echo = TRUE}
 # Show the class of an object XX
@@ -176,7 +179,7 @@ class(id)
 3. Using the `length()` function, find out the length of your `id` vector. Does it have length 10? If not, make sure you defined it correctly!
 
 ```{r, eval = FALSE, echo = TRUE}
-# Show the length of an object XX
+# Show the length of the id vector
 length(XX)
 ```
 
@@ -185,10 +188,10 @@ length(XX)
 length(id)
 ```
 
-4. Create a character vector called `sex` that shows the sex values. Make sure to use quotation marks "" to enclose each element to tell R that the data are of type `character`! When you finish, print the object to see it!
+4. Create a character vector called `sex` that shows the sex values. Make sure to use quotation marks "" to enclose each element to tell R that the data are of type `"character"`! When you finish, print the object to see it!
 
 ```{r, eval = FALSE, echo = TRUE}
-# Create a character vector XX
+# Create a character vector sex
 XX <- c("XX", "XX", "...")
 ```
 
@@ -200,7 +203,7 @@ sex <- c("male", "male", "female", "male", "male", "male", "male", "female", "ma
 sex
 ```
 
-5. Using the `class()` function, check the class of your `sex` vector. Is it 'character'?
+5. Using the `class()` function, check the class of your `sex` vector. Is it  `"character"`?
 
 ```{r, eval = FALSE, echo = FALSE}
 # Show the class of the sex vector
@@ -348,16 +351,20 @@ mean(age > 30)
 
 ## E - Creating data frames
 
+<<<<<<< HEAD
 1. Using the `data.frame()` function, create a data frame called `ten_df` that contains each of vectors you just created: `id`, `sex`, `age`, `height`, `weight`, `tall_180`
+=======
+1. Using the `data.frame()` function, create a data frame called `ten_df` that contains each of vectors you just created: `id`, `sex`, `height`, `weight`, `tall_180` and `age`
+>>>>>>> 823ea2f4d554cdf825fc0fe8d7064294f0dce3d8
 
 ```{r, eval = FALSE, echo = TRUE}
-# Create data frame from vectors
-XX <- data.frame(XX, XX, XX, XX, XX) 
+# Create data frame ten_df containing vectors id, sex, height, weight, and tall_180
+XX <- data.frame(XX, XX, XX, XX, XX, XX) 
 ```
 
 ```{r, eval = FALSE, echo = FALSE}
 # Create ten_df data frame from vectors
-ten_df <- data.frame(id, sex, height, weight, tall_180) 
+ten_df <- data.frame(id, sex, height, weight, tall_180, age) 
 ```
 
 2. Print your `ten_df` object to see how it looks! Does it contain all of the vectors?
@@ -391,7 +398,7 @@ summary(ten_df)
 6. Using the `$` operator, print the `age` column from the `ten_df` data frame.
 
 ```{r, eval = FALSE, echo = FALSE}
-# Inspect class
+# Inspect age
 ten_df$age
 ```
 

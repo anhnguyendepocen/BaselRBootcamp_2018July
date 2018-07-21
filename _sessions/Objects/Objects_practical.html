@@ -285,9 +285,9 @@ stocks$today
 
 # Calculate descriptives on columns
 mean(stocks$yesterday)
-mean(stocks$today)
+median(stocks$today)
 table(stocks$increase)
-mean(stocks$increase)</code></pre>
+max(stocks$increase)</code></pre>
 </div>
 </div>
 <div id="tasks" class="section level1">
@@ -388,25 +388,28 @@ mean(stocks$increase)</code></pre>
 <ol style="list-style-type: decimal">
 <li>Create a numeric vector called <code>id</code> that shows the id values. When you finish, print the vector object to see it!</li>
 </ol>
-<pre class="r"><code># Create a vector XX
-XX &lt;- c(XX, XX, ...)</code></pre>
+<pre class="r"><code># Create a vector id
+XX &lt;- c(XX, XX, ...)
+
+# Print the vector id
+XX</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li>Using the <code>class()</code> function, check the class of your <code>id</code> vector. Is it <code>numeric</code>?</li>
+<li>Using the <code>class()</code> function, check the class of your <code>id</code> vector. Is it <code>&quot;numeric&quot;</code>?</li>
 </ol>
 <pre class="r"><code># Show the class of an object XX
 class(XX)</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Using the <code>length()</code> function, find out the length of your <code>id</code> vector. Does it have length 10? If not, make sure you defined it correctly!</li>
 </ol>
-<pre class="r"><code># Show the length of an object XX
+<pre class="r"><code># Show the length of the id vector
 length(XX)</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li>Create a character vector called <code>sex</code> that shows the sex values. Make sure to use quotation marks “” to enclose each element to tell R that the data are of type <code>character</code>! When you finish, print the object to see it!</li>
+<li>Create a character vector called <code>sex</code> that shows the sex values. Make sure to use quotation marks “” to enclose each element to tell R that the data are of type <code>&quot;character&quot;</code>! When you finish, print the object to see it!</li>
 </ol>
-<pre class="r"><code># Create a character vector XX
+<pre class="r"><code># Create a character vector sex
 XX &lt;- c(&quot;XX&quot;, &quot;XX&quot;, &quot;...&quot;)</code></pre>
 <ol start="5" style="list-style-type: decimal">
-<li><p>Using the <code>class()</code> function, check the class of your <code>sex</code> vector. Is it ‘character’?</p></li>
+<li><p>Using the <code>class()</code> function, check the class of your <code>sex</code> vector. Is it <code>&quot;character&quot;</code>?</p></li>
 <li><p>Using the <code>length()</code> function, find out the length of your <code>sex</code> object. Does it have length 10? If not, make sure you defined it correctly!</p></li>
 <li><p>Using the same steps as before, create a <code>age</code> and <code>height</code> vector.</p></li>
 <li><p>Look at the weight data, you’ll notice it contains an missing value. Create a vector called <code>weight</code> containing these data, following the same steps as before, making sure to specify the missing value as <code>NA</code> (no quotation marks).</p></li>
@@ -442,10 +445,14 @@ XX &lt;- XX &gt; XX</code></pre>
 <div id="e---creating-data-frames" class="section level2">
 <h2>E - Creating data frames</h2>
 <ol style="list-style-type: decimal">
+<<<<<<< HEAD
 <li>Using the <code>data.frame()</code> function, create a data frame called <code>ten_df</code> that contains each of vectors you just created: <code>id</code>, <code>sex</code>, <code>age</code>, <code>height</code>, <code>weight</code>, <code>tall_180</code></li>
+=======
+<li>Using the <code>data.frame()</code> function, create a data frame called <code>ten_df</code> that contains each of vectors you just created: <code>id</code>, <code>sex</code>, <code>height</code>, <code>weight</code>, <code>tall_180</code> and <code>age</code></li>
+>>>>>>> 823ea2f4d554cdf825fc0fe8d7064294f0dce3d8
 </ol>
-<pre class="r"><code># Create data frame from vectors
-XX &lt;- data.frame(XX, XX, XX, XX, XX) </code></pre>
+<pre class="r"><code># Create data frame ten_df containing vectors id, sex, height, weight, and tall_180
+XX &lt;- data.frame(XX, XX, XX, XX, XX, XX) </code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li><p>Print your <code>ten_df</code> object to see how it looks! Does it contain all of the vectors?</p></li>
 <li><p>Using the <code>dim()</code> function, print the number of rows and columns in your data frame. Do you get 10 rows and 5 columns?</p></li>

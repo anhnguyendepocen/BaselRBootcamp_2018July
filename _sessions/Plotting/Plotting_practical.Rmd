@@ -154,7 +154,7 @@ ggplot(data = mpg,
 
 ```{r, eval = TRUE, message = FALSE}
 library(tidyverse)
-mcdonalds <- read_csv("https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/mcdonalds.csv")
+mcdonalds <- read_csv("https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/mcdonalds.csv")
 ```
 
 |File  |Rows | Columns |
