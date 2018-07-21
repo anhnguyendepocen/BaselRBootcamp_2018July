@@ -1,15 +1,25 @@
 ---
-title: 'Case study: Stock Market'
-output: html_document
+title: 'Case study: Financial'
+author: "Basel R Bootcamp, July 2018<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
+output:
+  html_document:
+    css: practical.css
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+
+
+```{r, echo = FALSE, fig.align = 'center', out.width = "80%"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/b/b8/Sao_Paulo_Stock_Exchange.jpg")
+```
+
+
 ## Overview
 
-In this case study, you will jointly analyse historic data of three major stock indices, the **Dow Jones**, the **DAX**, and the **Nikkei**, and the exchange rates between the **US dollar**, the **Euro**, and the **Yen**. Using this data, you will address several questions. How large was the impact of the recent financial crisis on the respective stock markets? How correlated is the development between the stock markets? What is the relationship between stock market returns and exchange rates? To address these questions, you will import several data files, while tuning import parameters to match the idiosyncracies of the data. You will merge the data files into a single data frame, and mutate the data to reflect changes in index price and exchange rate. You will analyze correlations of stock indices among themselves and to exchange rates. You create illustrative plots for each of the analyses. Below you will find several tasks that will guide you through these steps. For the most part these tasks require you to make use of what you have learned in the sessions **Data I/O**, **Data Wrangling**, and **Statistics**. However, they will also go beyond what you have learned, in particular when it comes to plotting. In those cases, the tasks will provide the necessary code and guidance.  
+In this case study, you will jointly analyse historic data of three major stock indices, the **Dow Jones**, the **DAX**, and the **Nikkei**, and the exchange rates between the **US dollar**, the **Euro**, and the **Yen**. Using this data, you will address several questions. How large was the impact of the recent financial crisis on the respective stock markets? How correlated is the development between the stock markets? What is the relationship between stock market returns and exchange rates? To address these questions, you will import several data files, while tuning import parameters to match the idiosyncrasies of the data. You will merge the data files into a single data frame, and mutate the data to reflect changes in index price and exchange rate. You will analyze correlations of stock indices among themselves and to exchange rates. You create illustrative plots for each of the analyses. Below you will find several tasks that will guide you through these steps. For the most part these tasks require you to make use of what you have learned in the sessions **Data I/O**, **Data Wrangling**, and **Statistics**. However, they will also go beyond what you have learned, in particular when it comes to plotting. In those cases, the tasks will provide the necessary code and guidance.  
 
 | Variable| Description|
 |:------------------------------|:----------------------------------------------------------------|
@@ -26,7 +36,7 @@ Table: Variables of data sets "\^DJI.csv", "\^GDAXI.csv", "\^N225.csv"
 | Variable| Description|
 |:------------------------------|:----------------------------------------------------------------|
 |     Date (currently unnamed)|  Current day|
-|     Rate (currently unnamed)|  Day's exchange rate in terms of 1 US Dollar. E.g., a value of .75 means that the respective currenty is worth a fraction of .75 of 1 US Dollar|
+|     Rate (currently unnamed)|  Day's exchange rate in terms of 1 US Dollar. E.g., a value of .75 means that the respective currency is worth a fraction of .75 of 1 US Dollar|
 
 Table: Variables of data sets "euro-dollar.txt", "yen-dollar.txt"
 
@@ -132,10 +142,13 @@ long_data = data %>% gather(variable, value, -Date, -year)
 
 ```{r, eval = FALSE, echo = TRUE, message = FALSE, warning = FALSE}
 # create long version of data frame
-temp_data <- long_data %>% filter(variable %in% c("Close_dow","Close_dax","Close_nik"))
+temp_data <- long_data %>% 
+  filter(variable %in% c("Close_dow", "Close_dax", "Close_nik"))
+
+# Create plot!
 ggplot(data = temp_data, mapping = aes(x = Date, y = value)) + 
   geom_line() + 
-  facet_grid(~variable)
+  facet_grid(~ variable)
 
 ```
 
@@ -154,7 +167,7 @@ aggregate_change
 
 ```
 
-10. Now that you know when the biggest drop occured, do you not wonder which stock index suffered the biggest loss? Compare the overall losses to the index price on the first trading day of that year. To do this, first identify the first date available for that year and then `filter()` the data based on the respective character string to retrieve that day's closing prices. Then divide the overall stock price change by that years first closing price. Which stock index suffered the greatest relative loss?  
+10. Now that you know when the biggest drop occurred, do you not wonder which stock index suffered the biggest loss? Compare the overall losses to the index price on the first trading day of that year. To do this, first identify the first date available for that year and then `filter()` the data based on the respective character string to retrieve that day's closing prices. Then divide the overall stock price change by that years first closing price. Which stock index suffered the greatest relative loss?  
 
 ```{r, eval = FALSE, echo = FALSE, message = FALSE, warning = FALSE}
 aggregate_change %>% 
@@ -187,7 +200,7 @@ data %>%
 )
 ```
 
-13. Another important index of the financial markets is the exchange rate to other currencies. Generally, it is assumed that a strong economcy translates in both a strong stock index and a strong currency relative to other currencies. First, evaluate whether changes in exchange rates correlate with each other the same way that stock indices do. 
+13. Another important index of the financial markets is the exchange rate to other currencies. Generally, it is assumed that a strong economy translates in both a strong stock index and a strong currency relative to other currencies. First, evaluate whether changes in exchange rates correlate with each other the same way that stock indices do. 
 
 ```{r, eval = FALSE, echo = FALSE, message = FALSE, warning = FALSE}
 data %>% 
@@ -195,7 +208,7 @@ data %>%
   cor(., use = 'complete.obs')
 ```
 
-14. Now evaluate whether exchange rates vary as a function of the difference between stock indices. I.e., does, for instance, a large difference between Dow Jones and DAX translate into a strong Dollar relative to the EURO? Based on the above intuition this should be the case. However, economic theory has also produced an alternative hypothesis. That is, foreign investors who benefit from a rise in stock index price may be motivated to sell their holdings and exhange them for their own currency to mantain a neutral position. This would, in effect, depreciate the currency at the same time as the stock index is outperforming, thus producing a negative relationship. What do you think? Ask the data.
+14. Now evaluate whether exchange rates vary as a function of the difference between stock indices. I.e., does, for instance, a large difference between Dow Jones and DAX translate into a strong Dollar relative to the EURO? Based on the above intuition this should be the case. However, economic theory has also produced an alternative hypothesis. That is, foreign investors who benefit from a rise in stock index price may be motivated to sell their holdings and exchange them for their own currency to maintain a neutral position. This would, in effect, depreciate the currency at the same time as the stock index is outperforming, thus producing a negative relationship. What do you think? Ask the data.
 
 ```{r, eval = FALSE, echo = FALSE, message = FALSE, warning = FALSE}
 data %>% 
