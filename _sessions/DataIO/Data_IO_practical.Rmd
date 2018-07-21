@@ -183,17 +183,11 @@ diamonds_path <- "1_Data/diamonds.csv"
 2. Using `read_csv()` and the `diamonds_path` object, read the `diamonds.csv` dataset as a new object called `diamonds`.
 
 ```{r, eval = F, echo = T}
-# load tidyverse
-library(tidyverse)
-
 # read diamonds data
 diamonds <- read_csv(file = XX)
 ```
 
 ```{r, eval = F, echo = F}
-# load tidyverse
-library(tidyverse)
-
 # read diamonds data
 diamonds <- read_csv(file = diamonds_path)
 ```
