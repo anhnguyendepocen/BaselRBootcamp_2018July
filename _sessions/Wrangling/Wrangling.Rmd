@@ -210,22 +210,26 @@ DO_SOMETHING %>% # AND THEN...
 
 .pull-left4[
 
-### Base R vs. the pipe `%>%`
+Task: Calculate the mean of a vector of `scores`
 
 ```{r}
 # Create a vector score
 score <- c(8, 4, 6, 3, 7, 3)
 ```
 
+Base-R method
 
 ```{r}
-# Base-R method
 mean(score)
+```
 
-# Pipe %>% method
+Pipe <high>%>%</high> method
+
+```{r}
 score %>%  # AND THEN 
   mean()  
 ```
+
 
 ]
 
@@ -243,18 +247,22 @@ score %>%  # AND THEN
 
 .pull-left4[
 
-### Base R vs. the pipe `%>%`
+Task: Calculate the mean of a vector of `scores` and round to 1 digit.
 
 ```{r}
 # Create a vector score
 score <- c(8, 4, 6, 3, 7, 3)
 ```
 
-```{r}
-# Base-R method
-round(sd(score), digits = 1)
+Base-R method
 
-# Pipe %>% method
+```{r}
+round(mean(score), digits = 1)
+```
+
+Pipe <high>%>%</high> method
+
+```{r}
 score %>%        # AND THEN
   sd() %>%       # AND THEN
   round(digits = 1)
@@ -875,6 +883,9 @@ baslers_agg <- baselers %>%
 
 # Practical
 
-<font size=6><high>Live demonstration</high></font><br>
 
-<a href="https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/Wrangling/Wrangling_practical.html"><font size=6><high>Link to practical</high></font></a>
+<p>
+  <font size=6>
+    <a href="https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/Wrangling/Wrangling_practical.html"><b>Link to practical<b></a>
+  </font>
+</p>
