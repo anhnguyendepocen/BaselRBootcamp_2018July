@@ -188,7 +188,7 @@ tidy(my_glm)
 
 ### A - Getting setup
 
-1. Open your R project. It should already have the folders `1_Data` and `2_Code`. Make sure that all of the data files listed above are contained in the `1_Data` folder
+1. Open your `baselrbootcamp` R project. It should already have the folders `1_Data` and `2_Code`. Make sure that all of the data files listed above are contained in the `1_Data` folder
 
 ```{r}
 # Done!
