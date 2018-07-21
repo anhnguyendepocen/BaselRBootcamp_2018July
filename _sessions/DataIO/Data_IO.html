@@ -255,16 +255,16 @@ read_csv(file = "1_Data/baselers.csv")
 ## # A tibble: 10,000 x 20
 ##       id sex      age height weight income education   confession    children happiness fitness  food alcohol
 ##    &lt;int&gt; &lt;chr&gt;  &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;            &lt;int&gt;     &lt;int&gt;   &lt;int&gt; &lt;dbl&gt;   &lt;int&gt;
-##  1     1 male      44   174.  113.    6300 SEK_III     catholic             2         5       7   610      40
-##  2     2 male      65   180.   75.2  10900 obligatory… confessionle…        2         7       8  1550       0
-##  3     3 female    31   168.   55.5   5100 SEK_III     &lt;NA&gt;                 2         7       6   720      14
-##  4     4 male      27   209    93.8   4200 SEK_III     catholic             2         7       8   680      39
-##  5     5 male      24   177.   NA     4000 SEK_III     catholic             1         5       4   260      19
-##  6     6 male      63   187.   67.4  11400 SEK_III     evangelical-…        0         7       1  1240       0
-##  7     7 male      71   152.   83.3  12000 SEK_III     evangelical-…        2         8       5  1160      38
-##  8     8 female    41   156.   67.8   7600 SEK_III     confessionle…        1         7       2  1350       0
-##  9     9 male      43   176.   69.3   8500 apprentice… catholic             2         7       5   150      50
-## 10    10 female    31   166.   66.3   6100 SEK_II      catholic             1         6       7   700       0
+##  1     1 male      44   174.  113.   6300. SEK_III     catholic             2         5       7  610.      40
+##  2     2 male      65   180.   75.2 10900. obligatory… confessionle…        2         7       8 1550.       0
+##  3     3 female    31   168.   55.5  5100. SEK_III     &lt;NA&gt;                 2         7       6  720.      14
+##  4     4 male      27   209.   93.8  4200. SEK_III     catholic             2         7       8  680.      39
+##  5     5 male      24   177.   NA    4000. SEK_III     catholic             1         5       4  260.      19
+##  6     6 male      63   187.   67.4 11400. SEK_III     evangelical-…        0         7       1 1240.       0
+##  7     7 male      71   152.   83.3 12000. SEK_III     evangelical-…        2         8       5 1160.      38
+##  8     8 female    41   156.   67.8  7600. SEK_III     confessionle…        1         7       2 1350.       0
+##  9     9 male      43   176.   69.3  8500. apprentice… catholic             2         7       5  150.      50
+## 10    10 female    31   166.   66.3  6100. SEK_II      catholic             1         6       7  700.       0
 ## # ... with 9,990 more rows, and 7 more variables: tattoos &lt;int&gt;, rhine &lt;int&gt;, datause &lt;int&gt;,
 ## #   consultations &lt;int&gt;, hiking &lt;int&gt;, fasnacht &lt;chr&gt;, eyecor &lt;chr&gt;
 ```
@@ -446,7 +446,7 @@ R's own formats provide the possibility to store &lt;high&gt;data as R objects&l
 
 ```r
 # save data as .RData
-save(baslelers, zuerichers, ...,
+save(baselers, zuerichers, ...,
      file = "my_data.RData")
 
 # load data from .RData
@@ -462,7 +462,7 @@ load("my_data.RData")
 
 ```r
 # save data as .RDS
-saveRDS(baslelers,
+saveRDS(baselers,
         file = "baselers.rds")
 
 # load data from .RDS
