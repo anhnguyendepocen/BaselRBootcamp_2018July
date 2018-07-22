@@ -19,7 +19,7 @@ layout: true
 <div class="my-footer"><span>
 <a href="https://therbootcamp.github.io/"><font color="#7E7E7E">BaselRBootcamp, July 2018</font></a>
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+&emsp;&emsp;&emsp;&emsp;&emsp;
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 &emsp;&emsp;&emsp;&emsp;&emsp;
 <a href="https://therbootcamp.github.io/"><font color="#7E7E7E">www.therbootcamp.com</font></a>
@@ -452,10 +452,13 @@ my_glm <- glm(formula = income ~ food * alcohol,
 
 ---
 
+# Exploring statistical objects
+
 .pull-left35[
-## Exploring statistical objects
 
 Explore statistical objects using <high>generic</high> functions such as `print()`, `summary()`, `predict()` and `plot()`.
+
+<high>Generic</high> functions different things depending on the <high>class label</high> of the object. 
 
 ```{r, eval = FALSE}
 # Create statistical object
@@ -469,23 +472,16 @@ plot(obj)        # Plotting
 predict(obj, ..) # Predict
 ```
 
-Generic functions won't work for all statistical objects, but it is a great idea to try each of them!
-
 ]
 
 .pull-right6[
-<br>
 
 ```{r, eval = TRUE}
 # Create a glm object
 my_glm <- glm(formula = income ~ happiness + age,
               data = baselers)
-```
 
-Apply the `print()` function to a statistical object
-
-```{r, eval = TRUE}
-# Print the object
+# print the my_glm object
 print(my_glm)
 ```
 
@@ -495,10 +491,13 @@ print(my_glm)
 
 ---
 
+# Exploring statistical objects
+
 .pull-left35[
-## Exploring statistical objects
 
 Explore statistical objects using <high>generic</high> functions such as `print()`, `summary()`, `predict()` and `plot()`.
+
+<high>Generic</high> functions different things depending on the <high>class label</high> of the object. 
 
 ```{r, eval = FALSE}
 # Create statistical object
@@ -512,22 +511,16 @@ plot(obj)        # Plotting
 predict(obj, ..) # Predict
 ```
 
-Generic functions won't work for all statistical objects, but it is a great idea to try each of them!
 ]
 
 .pull-right6[
-<br>
 
 ```{r, eval = TRUE}
 # Create a glm object
 my_glm <- glm(formula = income ~ happiness + age,
               data = baselers)
-```
 
-Apply the `summary()` function to a statistical object
-
-```{r, eval = TRUE}
-# Print the object
+# Show summary of the my_glm object
 summary(my_glm)
 ```
 
@@ -536,10 +529,13 @@ summary(my_glm)
 
 ---
 
+# Exploring statistical objects
+
 .pull-left35[
-## Exploring statistical objects
 
 Explore statistical objects using <high>generic</high> functions such as `print()`, `summary()`, `predict()` and `plot()`.
+
+<high>Generic</high> functions different things depending on the <high>class label</high> of the object. 
 
 ```{r, eval = FALSE}
 # Create statistical object
@@ -553,35 +549,39 @@ plot(obj)        # Plotting
 predict(obj, ..) # Predict
 ```
 
-Generic functions won't work for all statistical objects, but it is a great idea to try each of them!
 ]
 
 .pull-right6[
 
-### Statistical objects are lists! Explore them!
+Many <high>statistical objects are lists</high>. Show elements with `names()`, access them with <high>`$`</high>.
 
-Almost <high>all statistical objects are lists</high>. They all have named elements you can access with <high>`$`</high>. To see all of the named elements, use `names()`
-
-```{r, eval = TRUE}
+```{r, eval = FALSE}
 # What are the named elements
 names(my_glm)
 ```
  
+```{r, echo = FALSE}
+# What are the named elements
+names(my_glm)[1:10]
+``` 
  
-```{r, echo = FALSE, out.width = "70%", fig.align = 'center'}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/list_tab.png")
-```
-
+<p align="left">
+  <img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/list_tab.png" height="180px" vspace="10px">
+</p>
+ 
 
 ]
 
 
 ---
 
+# Exploring statistical objects
+
 .pull-left35[
-## Exploring statistical objects
 
 Explore statistical objects using <high>generic</high> functions such as `print()`, `summary()`, `predict()` and `plot()`.
+
+<high>Generic</high> functions different things depending on the <high>class label</high> of the object. 
 
 ```{r, eval = FALSE}
 # Create statistical object
@@ -595,37 +595,51 @@ plot(obj)        # Plotting
 predict(obj, ..) # Predict
 ```
 
-Generic functions won't work for all statistical objects, but it is a great idea to try each of them!
-
 ]
 
 .pull-right6[
 
-### Statistical objects are lists! Explore them!
 
-Explore statistical objects using many <high>generic</high> functions such as `print()`, `summary()`, `predict()` and `plot()`.
-
-```{r}
+```{r, eval = FALSE}
 # Look at coefficients
 my_glm$coefficients
-
-# First 5 fitted values
-my_glm$fitted.values[1:5]
-
-# First 5 residuals
-my_glm$residuals[1:5]
 ```
 
+```{r, echo = FALSE}
+# Look at coefficients
+my_glm$coefficients
+```
+
+```{r, eval = FALSE}
+# First 5 fitted values
+my_glm$fitted.values
+```
+
+```{r, echo = FALSE}
+# First 5 fitted values
+my_glm$fitted.values[1:8]
+```
+
+```{r, eval = FALSE}
+# First 5 residuals
+my_glm$residuals
+```
+
+```{r, echo = FALSE}
+# First 5 residuals
+my_glm$residuals[1:6]
+```
 
 ]
 
 
 ---
 
-.pull-left35[
-## predict()
+# `predict`
 
-`predict(object, newdata)` allows you to use your statistical `object` to <high>predict outcomes</high> from a new data frame called `newdata`.
+.pull-left4[
+
+`predict(model, newdata)` allows you to use your `model` to <high>predict outcomes</high> for `newdata`.
 
 ```{r, echo = FALSE}
 lastyear <- baselers %>% slice(1:100)
@@ -633,36 +647,34 @@ thisyear <- baselers %>% slice(101:200)
 ```
 
 ```{r, eval = FALSE}
-lastyear
+last_year
 ```
 
 ```{r, echo = FALSE}
 lastyear  %>% select(id, age, fitness, tattoos, income) %>% 
-  slice(1:3) %>% knitr::kable(format = "markdown")
+  slice(1:2) %>% knitr::kable(format = "markdown")
 ```
 
 ```{r, echo = TRUE, eval = FALSE}
-thisyear
+this_year
 ```
 
 
 ```{r, echo = FALSE}
-thisyear  %>% select(id, age, fitness, tattoos) %>% slice(1:3) %>% mutate(income = NA) %>% knitr::kable(format = "markdown")
+thisyear  %>% select(id, age, fitness, tattoos) %>% slice(1:2) %>% mutate(income = NA) %>% knitr::kable(format = "markdown")
 ```
 
 
 ]
 
 
-.pull-right6[
+.pull-right55[
 
-<br><br>
-
-Create <high>`model`</high> based on `leastyear`
+<high>Fit `model`</high> based on `leastyear`
 
 ```{r}
 # Create regression model predicting income
-model <- lm(formula = income ~ age + fitness + tattoos,
+model <- lm(formula = income ~ age + tattoos,
             data = lastyear)
 
 model$coefficients
@@ -679,7 +691,7 @@ predict(object = model,
 ```{r, eval = TRUE, echo = FALSE}
 # Predict the income of people in thisyear
 predict(object = model, 
-        newdata = thisyear)[1:3]
+        newdata = thisyear)[1:2]
 ```
 
 ]
@@ -688,85 +700,90 @@ predict(object = model,
 
 .pull-left4[
 
-## tidy()
+# `tidy`
 
-The `tidy()` function from the `broom` package converts the most important results of many statistical object like "glm" to a data frame
-
-```{r, echo = FALSE, out.width = "70%", fig.align="center"}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/broom_hex.png")
-```
+The `tidy()` function from the `broom` package <high>converts</high> the most important results of many statistical object like "glm" to a <high>data frame</high>.
 
 ```{r, eval = FALSE}
-# Install the broom package
-install.packages("broom")
+# install and load broom
+install.packages('broom')
+library(broom)
 ```
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/broom_hex.png" height="200px" vspace="10">
+</p>
 
 
 ]
 
 .pull-right55[
 
-```{r}
-# Load boom package
-library(broom)
+<br><br>
 
+```{r}
 # Original printout
 my_glm
 ```
 
+```{r, echo = FALSE, message=F,warning=F}
+# Tidy printout
+require(broom)
+```
 
 ```{r}
 # Tidy printout
 tidy(my_glm)
 ```
 
-Try it on your favorite models and see the magic!
-
 ]
 
 
 
 ---
 
-.pull-left45[
+# Sampling Functions
 
-## Sampling Functions
+.pull-left4[
 
-R gives you a host of functions for sampling data from common <high>statistical distributions</high>
+R gives you a host of functions for sampling data from common <high>statistical distributions</high> (see `?distributions`).
+
+Use these to easily <high>simulate data</high>:
+
+.pull-left55[
 
 | Distribution| R Function|
-|------:|----:|
+|------:|------------:|
 |    Normal| `rnorm()`|    
 |      Uniform|`runif()`|
 |      Beta|`rbeta()`|  
 |      Binomial|`rbinom()`|  
 
-Use these to easily <high>simulate data</high>
+]
 
 ]
 
 .pull-right5[
 
-<font size = 5>?distributions</font>
-
-```{r, echo = FALSE, out.width = "90%", fig.align = 'center'}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/distributions_help.png")
-```
+<p align="left">
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/distributions_help.png" height = "450px">
+</p>
 
 ]
 
 ---
 
+
 .pull-left45[
 
-## sample()
+# sample()
 
-Use `sample()` to draw a random sample from a vector
+Use `sample()` to <high>draw a random sample</high> from a vector.
 
 ```{r}
 # Simulate 10 flips of a fair coin
 coin_flips <- sample(x = c("H", "T"), 
-                     size = 10, 
+                     size = 8, 
                      prob = c(.5, .5),
                      replace = TRUE)
 
@@ -776,16 +793,18 @@ coin_flips
 table(coin_flips) 
 ```
 
+
 ]
 
 
 .pull-right5[
+<br>
+<p align="left">
+  <font size=5><high>The Birthday problem</high></font size=5>
+  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+  <img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/balloons.png" height = "100px">
+</p>
 
-### Simulate the birthday problem
-
-```{r, out.width = "20%", echo = FALSE, fig.align = 'center'}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/balloons.png")
-```
 
 ```{r}
 # Create an empty room
@@ -811,16 +830,15 @@ length(birthdays)
 
 ---
 
+# `rnorm`, `runif()`, `...`
+
 .pull-left5[
 
-## rnorm(), runif()...
-
-Use the `rnorm()`, `runif()`... functions to draw random samples from probability distributions
+Use the `rnorm()`, `runif()`, `...` functions to draw random <high>samples from probability distributions</high>.
 
 
 ```{r, fig.width = 5, fig.height = 5, message = FALSE, warning = FALSE, out.width = "90%"}
 # Random sample from Normal distribution
-
 mysamp <- rnorm(n = 100,   # Number of samples
                 mean = 10, # Mean of pop
                 sd = 5)    # SD of pop ...
@@ -835,7 +853,7 @@ sd(mysamp)   # Standard deviation
 
 .pull-right45[
 
-```{r, fig.width = 3, fig.height = 3, message = FALSE, warning = FALSE, out.width = "100%",dpi=300}
+```{r, echo=F, fig.width = 3, fig.height = 3, message = FALSE, warning = FALSE, out.width = "100%",dpi=300}
 ggplot(data = tibble(x = mysamp),
        aes(x = x, y = ..density..)) +
   geom_histogram(col = "white", 
@@ -848,10 +866,10 @@ ggplot(data = tibble(x = mysamp),
 
 ---
 
-.pull-left45[
-<br><br>
-## Other great statistics packages
-<br>
+
+.pull-left4[
+
+# Other great statistics packages
 
 |package|Description|
 |:----|:-----|
@@ -866,59 +884,56 @@ ggplot(data = tibble(x = mysamp),
 ]
 
 
-.pull-right5[
+.pull-right55[
 
-```{r, echo = FALSE, fig.align = 'center'}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/lavaan_ss.jpg")
-```
+<br><br>
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/BayesFactor_ss.png" height= "120px">
+</p>
 
-```{r, echo = FALSE, fig.align = 'center'}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/BayesFactor_ss.png")
-```
-
+<p align="center">
+  <img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/lavaan_ss.jpg" height= "320px" vspace="50px">
+</p>
 
 ]
 
 ---
+
+# Summary
 
 .pull-left45[
-<br><br>
-## Summary
 
-R has a package for every statistical procedure you can imagine.
+1 - There are <high>packages for every statistical procedure</high> you can imagine in R.
 
-Most have <high>formula</high> and <high>data</high> arguments (among many others).
+2 - Most have <high>formula</high> and <high>data</high> arguments (among many others).
 
-Use help menus to understand arguments!
+3 - Use <high>help files</high> to understand the arguments of functions!
 
-Once you've created a statistical object, use generic functions (`print()`, `names()`, `summary()`), to explore it.
+4 - Once you've created a statistical object, use <high>generic functions</high> to explore it: `print()`, `names()`, `summary()`, etc.
 
-Use random sampling functions to run simulations.
+5 - Use <high>random sampling</high> functions to run simulations.
 
 ]
 
 .pull-right5[
 
-`?t.test`
-
-```{r, echo = FALSE, out.width = "100%", fig.align = 'center'}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/ttesthelp_ss.png")
+```{r, eval = F}
+?t.test
 ```
+
+<p align="left">
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/ttesthelp_ss.png" height= "380px" >
+</p>
 
 ]
 
 
 ---
 
-<br>
+<p>
+  <font size=6>
+    <a href="https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/Statistics/Statistics_practical.html"><b>Link to practical<b></a>
+  </font>
+</p>
 
-## Questions?
-
-## [Demo and Practical](https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/Statistics/Statistics_practical.html)
-
-<br>
-
-```{r, echo = FALSE, out.width = "55%", fig.align = 'center', fig.cap="Source: Lynda.com"}
-knitr::include_graphics("https://cdn.lynda.com/course/495322/495322-636154038826424503-16x9.jpg")
-```
