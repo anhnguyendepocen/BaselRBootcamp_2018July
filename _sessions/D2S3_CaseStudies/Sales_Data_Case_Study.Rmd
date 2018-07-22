@@ -55,10 +55,10 @@ stores <- read_csv("../_data/complete/stores.csv")
 ```
 
 
-|File | Rows | Columns | Description |
-|:----|:-----|:------|:-----------------------------------------|
-|`sales.csv` | 1017209 | 9| Sales data of a large retail store |
-|`stores.csv` | 1115 | 10| Data about the individual stores of the retailor |
+|File | Rows | Columns | Description | Source |
+|:----|:-----|:------|:-----------------------------------------|:----------|
+|`sales.csv` | 1017209 | 9| Sales data of a large retail store | [Download Link](https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_data/sales.csv) |
+|`stores.csv` | 1115 | 10| Data about the individual stores of the retailor | [Download Link](https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_data/stores.csv) |
 
 
 | Variable| Description|
@@ -141,7 +141,7 @@ sales <- sales %>%
                                    TRUE ~ 0))
 ```
 
-4. Rename the variables to be lower case and with underscores between words. Afterwards your variables should be named like this: "store", "week_day", "date", "sales", "customers", "open", "promo", "state_holiday", "school_holiday", "assortment", "competition_distance", "competition_open_since", and "store_promo".
+4. Rename the variables to be al lowercase and with underscores between words. Afterwards your variables should be named like this: "store", "week_day", "date", "sales", "customers", "open", "promo", "state_holiday", "school_holiday", "assortment", "competition_distance", "competition_open_since", and "store_promo".
 
 ```{r eval = TRUE}
 names(sales) <- c("store", "week_day", "date", "sales", "customers", "open",
@@ -384,7 +384,7 @@ me_mod <- lmer(dependent_var ~ fixed_eff_1 + fixed_eff_2 +
 
 Here is an example for a mixed effects model you could run with the sales data that takes the same predictors we've used in task 18, but this time we use the unaggregated data and add the days variable as a random effect with varying intercepts (note that for a real analysis you'd probably want to rescale some variables and make sure all the labels make sense. But this here is just to show you how in principle you can run a mixed effects model in R.
 
-```{r, echo = TRUE, eval = TRUE, message=FALSE, warning=FALSE}
+```{r, echo = TRUE, eval = FALSE, message=FALSE, warning=FALSE}
 library(lme4)
 
 # first get rid of days where stores were closed

@@ -92,9 +92,6 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
-.html-widget {
-  margin-bottom: 20px;
-}
 button.code-folding-btn:focus {
   outline: none;
 }
@@ -169,12 +166,20 @@ $(document).ready(function () {
 <div id="datasets" class="section level2">
 <h2>Datasets</h2>
 <table>
+<colgroup>
+<col width="7%"></col>
+<col width="9%"></col>
+<col width="10%"></col>
+<col width="56%"></col>
+<col width="15%"></col>
+</colgroup>
 <thead>
 <tr class="header">
 <th align="left">File</th>
 <th align="left">Rows</th>
 <th align="left">Columns</th>
 <th align="left">Description</th>
+<th align="left">Source</th>
 </tr>
 </thead>
 <tbody>
@@ -183,12 +188,14 @@ $(document).ready(function () {
 <td align="left">1017209</td>
 <td align="left">9</td>
 <td align="left">Sales data of a large retail store</td>
+<td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_data/sales.csv">Download Link</a></td>
 </tr>
 <tr class="even">
 <td align="left"><code>stores.csv</code></td>
 <td align="left">1115</td>
 <td align="left">10</td>
 <td align="left">Data about the individual stores of the retailor</td>
+<td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_data/stores.csv">Download Link</a></td>
 </tr>
 </tbody>
 </table>
@@ -317,7 +324,7 @@ stores &lt;- read_csv(&quot;XX/XXX&quot;)</code></pre>
 <li><p>From the stores data, only select the following variables: Store, Assortment, CompetitionDistance, CompetitionOpenSinceYear, Promo2. The variable Assortment contains the values “a”, “b”, and “c”. This is not very helpful. Change them so that “a” is now “basic”, “b” is now “extra”, and “c” is now “extended”.</p></li>
 <li><p>Join the stores data with the sales data (check out the <code>left_join()</code> function for this).</p></li>
 <li><p>The sales data contains an error in the state_holiday variable. There are <code>NA</code>s where there should be <code>1</code>s. Change this (remember that <code>variable == NA</code> won’t yield the result you want; use <code>is.na(variable)</code> instead).</p></li>
-<li><p>Rename the variables to be lower case and with underscores between words. Afterwards your variables should be named like this: “store”, “week_day”, “date”, “sales”, “customers”, “open”, “promo”, “state_holiday”, “school_holiday”, “assortment”, “competition_distance”, “competition_open_since”, and “store_promo”.</p></li>
+<li><p>Rename the variables to be al lowercase and with underscores between words. Afterwards your variables should be named like this: “store”, “week_day”, “date”, “sales”, “customers”, “open”, “promo”, “state_holiday”, “school_holiday”, “assortment”, “competition_distance”, “competition_open_since”, and “store_promo”.</p></li>
 <li><p>Save the prepared data as “retailer_sales.csv” (this is easy to do with the <code>write_csv()</code> function).</p></li>
 </ol>
 </div>
@@ -412,42 +419,6 @@ me_mod &lt;- lmer(sales ~ customers + store_promo + competition_distance +
                data = sales_open)
 
 summary(me_mod)</code></pre>
-<pre><code>Linear mixed model fit by REML ['lmerMod']
-Formula: 
-sales ~ customers + store_promo + competition_distance + assortment +  
-    (1 | store)
-   Data: sales_open
-
-REML criterion at convergence: 13679867
-
-Scaled residuals: 
-   Min     1Q Median     3Q    Max 
--49.77  -0.58  -0.08   0.48  32.39 
-
-Random effects:
- Groups   Name        Variance Std.Dev.
- store    (Intercept) 3328175  1824    
- Residual              656168   810    
-Number of obs: 842206, groups:  store, 1112
-
-Fixed effects:
-                      Estimate Std. Error t value
-(Intercept)          -2.20e+03   1.02e+02  -21.51
-customers             1.07e+01   5.32e-03 2021.29
-store_promo           1.06e+03   1.11e+02    9.59
-competition_distance  6.56e-02   7.31e-03    8.97
-assortmentextended    4.79e+02   1.11e+02    4.30
-assortmentextra      -1.18e+04   6.13e+02  -19.19
-
-Correlation of Fixed Effects:
-            (Intr) cstmrs str_pr cmptt_ assrtmntxtn
-customers   -0.045                                 
-store_promo -0.602  0.009                          
-cmpttn_dstn -0.397  0.006  0.148                   
-assrtmntxtn -0.436 -0.001 -0.023 -0.147            
-assrtmntxtr -0.112 -0.011  0.018  0.040  0.077     
-fit warnings:
-Some predictor variables are on very different scales: consider rescaling</code></pre>
 </div>
 </div>
 
