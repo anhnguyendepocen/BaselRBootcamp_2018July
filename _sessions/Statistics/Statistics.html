@@ -69,45 +69,24 @@ layout: true
 
 .pull-left45[
 
+# In this session...
 
-
-<<<<<<< HEAD
 1 - Basic structure and arguments of most &lt;high&gt;statistical functions&lt;/high&gt;
-=======
-1 - Basic structure and arguments of most statistical functions
->>>>>>> be0fb9a08eeaf3d50b46b3fffb3456358c84a209
 
 - `formula`: Specify your &lt;high&gt;variables&lt;/high&gt;
 - `data`: A &lt;high&gt;data frame&lt;/high&gt; containing variables.
     
-<<<<<<< HEAD
 2 - Simple &lt;high&gt;`htest`&lt;/high&gt; objects
-=======
-2 - Simple hypothesis tests
->>>>>>> be0fb9a08eeaf3d50b46b3fffb3456358c84a209
 
 - `t.test()`, `cor`relation
 
-<<<<<<< HEAD
 3 - (Generalized) &lt;high&gt;linear model&lt;/high&gt; 
-- `lm()`, `glm()`, `aov()`
-
-4 - &lt;high&gt;Common methods&lt;/high&gt; to explore statistical objects
-- `print()`, `summary()`, `names()`, `predict()`, `plot()`
-
-5 - &lt;high&gt;Dissect&lt;/high&gt; statistical objects &lt;high&gt;with `$`&lt;/high&gt;
-
-6 - Work with R's library of &lt;high&gt;statistical distributions&lt;/high&gt;
-- `rnorm()`, `runif()`
-=======
-3 - (Generalized) linear model 
 - `lm()`, `glm()`, `aov()`
 
 4 - Explore statistical objects
 - `MODEL$NAME`, `print()`, `summary()`, `names()`, `predict()`, `plot()`
 
 5 - Conduct simulations
->>>>>>> be0fb9a08eeaf3d50b46b3fffb3456358c84a209
 
 ]
 
@@ -170,14 +149,8 @@ They also require a &lt;high&gt;formula&lt;/high&gt; that specifies a &lt;high&g
 
 .pull-right55[
 
-<<<<<<< HEAD
-Apply a statistical function `STAT_FUN` with the `formula` and `data` arguments:
-
-![](https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/formula_description.png)&lt;!-- --&gt;
-
-=======
 How to create a statistical object:
->>>>>>> be0fb9a08eeaf3d50b46b3fffb3456358c84a209
+
 
 
 ```r
@@ -933,11 +906,7 @@ coin_flips
 ```
 
 ```
-<<<<<<< HEAD
-##  [1] "H" "H" "H" "H" "T" "T" "T" "H" "H" "T"
-=======
-##  [1] "H" "H" "H" "H" "H" "T" "T" "T" "T" "T"
->>>>>>> be0fb9a08eeaf3d50b46b3fffb3456358c84a209
+##  [1] "T" "T" "H" "H" "H" "H" "H" "T" "T" "T"
 ```
 
 ```r
@@ -948,11 +917,7 @@ table(coin_flips)
 ```
 ## coin_flips
 ## H T 
-<<<<<<< HEAD
-## 6 4
-=======
 ## 5 5
->>>>>>> be0fb9a08eeaf3d50b46b3fffb3456358c84a209
 ```
 
 ]
@@ -986,11 +951,7 @@ length(birthdays)
 ```
 
 ```
-<<<<<<< HEAD
-## [1] 26
-=======
-## [1] 41
->>>>>>> be0fb9a08eeaf3d50b46b3fffb3456358c84a209
+## [1] 14
 ```
 
 ]
@@ -1016,11 +977,7 @@ mysamp[1:5]  # First 5 values
 ```
 
 ```
-<<<<<<< HEAD
-## [1] 12.747  5.526 11.280 10.980 14.629
-=======
-## [1] 10.16 10.82 13.62 10.20  5.88
->>>>>>> be0fb9a08eeaf3d50b46b3fffb3456358c84a209
+## [1] 12.19 14.00 14.02 10.49  5.67
 ```
 
 ```r
@@ -1028,11 +985,7 @@ mean(mysamp) # Mean
 ```
 
 ```
-<<<<<<< HEAD
-## [1] 10.07
-=======
-## [1] 10.3
->>>>>>> be0fb9a08eeaf3d50b46b3fffb3456358c84a209
+## [1] 11.68
 ```
 
 ```r
@@ -1040,11 +993,7 @@ sd(mysamp)   # Standard deviation
 ```
 
 ```
-<<<<<<< HEAD
-## [1] 4.569
-=======
-## [1] 4.952
->>>>>>> be0fb9a08eeaf3d50b46b3fffb3456358c84a209
+## [1] 5.003
 ```
 
 
@@ -1062,7 +1011,7 @@ ggplot(data = tibble(x = mysamp),
   theme_minimal()
 ```
 
-&lt;img src="Statistics_files/figure-html/unnamed-chunk-46-1.png" width="100%" /&gt;
+&lt;img src="Statistics_files/figure-html/unnamed-chunk-47-1.png" width="100%" /&gt;
 
 ]
 

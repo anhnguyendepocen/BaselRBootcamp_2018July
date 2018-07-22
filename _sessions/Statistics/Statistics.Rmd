@@ -91,38 +91,24 @@ knitr::opts_chunk$set(warning = FALSE)
 
 .pull-left45[
 
-
+# In this session...
 
 1 - Basic structure and arguments of most <high>statistical functions</high>
 
 - `formula`: Specify your <high>variables</high>
 - `data`: A <high>data frame</high> containing variables.
     
-<<<<<<< HEAD
 2 - Simple <high>`htest`</high> objects
-=======
-2 - Simple hypothesis tests
->>>>>>> be0fb9a08eeaf3d50b46b3fffb3456358c84a209
 
 - `t.test()`, `cor`relation
 
 3 - (Generalized) <high>linear model</high> 
 - `lm()`, `glm()`, `aov()`
 
-<<<<<<< HEAD
-4 - <high>Common methods</high> to explore statistical objects
-- `print()`, `summary()`, `names()`, `predict()`, `plot()`
-
-5 - <high>Dissect</high> statistical objects <high>with `$`</high>
-
-6 - Work with R's library of <high>statistical distributions</high>
-- `rnorm()`, `runif()`
-=======
 4 - Explore statistical objects
 - `MODEL$NAME`, `print()`, `summary()`, `names()`, `predict()`, `plot()`
 
 5 - Conduct simulations
->>>>>>> be0fb9a08eeaf3d50b46b3fffb3456358c84a209
 
 ]
 
@@ -182,16 +168,7 @@ They also require a <high>formula</high> that specifies a <high>dependent</high>
 
 .pull-right55[
 
-<<<<<<< HEAD
-Apply a statistical function `STAT_FUN` with the `formula` and `data` arguments:
-
-```{r, echo = FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/formula_description.png")
-```
-
-=======
 How to create a statistical object:
->>>>>>> be0fb9a08eeaf3d50b46b3fffb3456358c84a209
 
 ```{r}
 # Example: Create regression object (my_glm)
