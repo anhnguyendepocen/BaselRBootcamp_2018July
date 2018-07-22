@@ -58,10 +58,10 @@ stores <- read_csv("../_data/complete/stores.csv")
 ```
 
 
-|File | Rows | Columns | Description | Source |
-|:----|:-----|:------|:-----------------------------------------|:----------|
-|`sales.csv` | 1017209 | 9| Sales data of a large retail store | [Download Link](https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_data/sales.csv) |
-|`stores.csv` | 1115 | 10| Data about the individual stores of the retailer | [Download Link](https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_data/stores.csv) |
+|File | Rows | Columns | Description |
+|:----|:-----|:------|:-----------------------------------------|
+|[sales.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/sales.csv) | 1017209 | 9| Sales data of a large retail store | 
+|[stores.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/stores.csv) | 1115 | 10| Data about the individual stores of the retailer |
 
 
 | Variable| Description|
