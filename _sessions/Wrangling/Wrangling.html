@@ -352,11 +352,11 @@ patients_df   # Demographic data
 ## # A tibble: 5 x 3
 ##      id     b     c
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1     1    37     1
-## 2     2    65     2
-## 3     3    57     2
-## 4     4    34     1
-## 5     5    45     2
+## 1    1.   37.    1.
+## 2    2.   65.    2.
+## 3    3.   57.    2.
+## 4    4.   34.    1.
+## 5    5.   45.    2.
 ```
 
 
@@ -389,17 +389,17 @@ patients_df  # Original
 ## # A tibble: 5 x 3
 ##      id     b     c
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1     1    37     1
-## 2     2    65     2
-## 3     3    57     2
-## 4     4    34     1
-## 5     5    45     2
+## 1    1.   37.    1.
+## 2    2.   65.    2.
+## 3    3.   57.    2.
+## 4    4.   34.    1.
+## 5    5.   45.    2.
 ```
 ]
 
 .pull-right45[
 
-Change the old name "a" to "age", and "b" to "arm"
+Change the old name "b" to "age", and "c" to "arm"
 
 
 ```r
@@ -415,11 +415,11 @@ patients_df %&gt;%
 ## # A tibble: 5 x 3
 ##      id   age   arm
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1     1    37     1
-## 2     2    65     2
-## 3     3    57     2
-## 4     4    34     1
-## 5     5    45     2
+## 1    1.   37.    1.
+## 2    2.   65.    2.
+## 3    3.   57.    2.
+## 4    4.   34.    1.
+## 5    5.   45.    2.
 ```
 
 
@@ -465,11 +465,11 @@ patients_df %&gt;%
 ## # A tibble: 5 x 5
 ##      id   age   arm age_months age_decades
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;      &lt;dbl&gt;       &lt;dbl&gt;
-## 1     1    37     1        444         3.7
-## 2     2    65     2        780         6.5
-## 3     3    57     2        684         5.7
-## 4     4    34     1        408         3.4
-## 5     5    45     2        540         4.5
+## 1    1.   37.    1.       444.        3.70
+## 2    2.   65.    2.       780.        6.50
+## 3    3.   57.    2.       684.        5.70
+## 4    4.   34.    1.       408.        3.40
+## 5    5.   45.    2.       540.        4.50
 ```
 
 ]
@@ -515,11 +515,11 @@ patients_df %&gt;%
 ## # A tibble: 5 x 4
 ##      id   age   arm arm_char
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   
-## 1     1    37     1 placebo 
-## 2     2    65     2 drug    
-## 3     3    57     2 drug    
-## 4     4    34     1 placebo 
-## 5     5    45     2 drug
+## 1    1.   37.    1. placebo 
+## 2    2.   65.    2. drug    
+## 3    3.   57.    2. drug    
+## 4    4.   34.    1. placebo 
+## 5    5.   45.    2. drug
 ```
 
 ]
@@ -580,11 +580,11 @@ combined_df %&gt;%
 ## # A tibble: 5 x 5
 ##      id   arm   age    t1    t2
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1     1     1    37   123   135
-## 2     2     2    65   143   140
-## 3     3     2    57    NA    NA
-## 4     4     1    34   100   105
-## 5     5     2    45    NA    NA
+## 1    1.    1.   37.  123.  135.
+## 2    2.    2.   65.  143.  140.
+## 3    3.    2.   57.   NA    NA 
+## 4    4.    1.   34.  100.  105.
+## 5    5.    2.   45.   NA    NA
 ```
 
 ]
@@ -681,11 +681,11 @@ combined_df %&gt;%
 ## # A tibble: 5 x 6
 ##      id   age   arm arm_char    t1    t2
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;
-## 1     1    37     1 placebo    123   135
-## 2     2    65     2 drug       143   140
-## 3     3    57     2 drug        NA    NA
-## 4     4    34     1 placebo    100   105
-## 5     5    45     2 drug        NA    NA
+## 1    1.   37.    1. placebo   123.  135.
+## 2    2.   65.    2. drug      143.  140.
+## 3    3.   57.    2. drug       NA    NA 
+## 4    4.   34.    1. placebo   100.  105.
+## 5    5.   45.    2. drug       NA    NA
 ```
 
 ]
@@ -725,9 +725,9 @@ combined_df %&gt;%
 ## # A tibble: 3 x 6
 ##      id   age   arm arm_char    t1    t2
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;
-## 1     2    65     2 drug       143   140
-## 2     3    57     2 drug        NA    NA
-## 3     5    45     2 drug        NA    NA
+## 1    2.   65.    2. drug      143.  140.
+## 2    3.   57.    2. drug       NA    NA 
+## 3    5.   45.    2. drug       NA    NA
 ```
 
 ]
@@ -779,9 +779,9 @@ combined_df %&gt;%
 ## # A tibble: 3 x 4
 ##      id arm_char    t1    t2
 ##   &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;
-## 1     2 drug       143   140
-## 2     3 drug        NA    NA
-## 3     5 drug        NA    NA
+## 1    2. drug      143.  140.
+## 2    3. drug       NA    NA 
+## 3    5. drug       NA    NA
 ```
 
 ]
@@ -838,8 +838,8 @@ combined_df %&gt;%
 ## # A tibble: 2 x 5
 ##   arm         N age_mean t1_mean t2_mean
 ##   &lt;chr&gt;   &lt;int&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-## 1 drug        3     55.7    143      140
-## 2 placebo     2     35.5    112.     120
+## 1 drug        3     55.7    143.    140.
+## 2 placebo     2     35.5    112.    120.
 ```
 
 
