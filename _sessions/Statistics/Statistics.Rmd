@@ -871,6 +871,8 @@ ggplot(data = tibble(x = mysamp),
 
 # Other great statistics packages
 
+<br>
+
 |package|Description|
 |:----|:-----|
 |`afex`|Factorial experiments|
@@ -893,7 +895,7 @@ ggplot(data = tibble(x = mysamp),
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/lavaan_ss.jpg" height= "320px" vspace="50px">
+  <img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/lavaan_ss.jpg" height= "320px" vspace="35px">
 </p>
 
 ]
