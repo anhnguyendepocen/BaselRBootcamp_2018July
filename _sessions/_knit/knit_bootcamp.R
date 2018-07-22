@@ -29,10 +29,10 @@ for(i in 1:length(htmls)){
                    paste0(to_path, pdfs[i]),
                    vheight = 900 * .8,
                    vwidth = 1600 * .8)
-  
 }
 
 # zip files
-zip(paste0(to_path, 'Baselrbootcamp_pt1.zip'),
-    list.files(to_path, full.names = TRUE))
+zip(paste0(to_path, 'Baselrbootcamp_slides_pt1.zip'),
+    c(paste0(to_path, pdfs), paste0(to_path, 'README.rtf'))
+    )
 
