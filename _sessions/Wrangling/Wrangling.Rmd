@@ -98,7 +98,7 @@ table(baslers$sex)  # How many of each sex?
 ---
 .pull-left45[
 
-# Wrangling <font size=7>= Everything prior to the actual analysis</font>
+# What is wrangling?
 
 <font size = 5><high>Transform</high></font>
 
@@ -123,7 +123,7 @@ Group data and summarise
 .pull-right5[
 <br>
 <p align="center">
-  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/organise_transform_aggregate.png" height = "520px">
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/organise_transform_aggregate.png" height = "550px">
 </p>
 
 ]
@@ -197,7 +197,7 @@ DO_SOMETHING %>% # AND THEN...
 
 <p align="center">
   <img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b9/MagrittePipe.jpg/300px-MagrittePipe.jpg" width = "450px"><br>
-  This is not a pipe (but `%>%` is!)
+  This is not a pipe (but %>% is!)
 </p>
 
 ]
@@ -220,7 +220,7 @@ score <- c(8, 4, 6, 3, 7, 3)
 Base-R method
 
 ```{r}
-mean(score)
+mean(x = score)
 ```
 
 Pipe <high>%>%</high> method
@@ -247,7 +247,7 @@ score %>%  # AND THEN
 
 .pull-left4[
 
-Task: Calculate the mean of a vector of `scores` and round to 0 digits.
+Task: Calculate the mean of a vector of `scores` and round to 1 digit.
 
 ```{r}
 # Create a vector score
@@ -257,7 +257,7 @@ score <- c(8, 4, 6, 3, 7, 3)
 Base-R method
 
 ```{r}
-round(mean(score), digits = 0)
+round(x = mean(score), digits = 1)
 ```
 
 Pipe <high>%>%</high> method
@@ -265,7 +265,7 @@ Pipe <high>%>%</high> method
 ```{r}
 score %>%        # AND THEN
   mean() %>%       # AND THEN
-  round(digits = 0)
+  round(digits = 1)
 ```
 
 ]
@@ -282,21 +282,26 @@ score %>%        # AND THEN
 
 ---
 
+.pull-left35[
 
-# Functions in `dplyr`
+# `dplyr` Functions
 
-.pull-left3[
+There are <high>dozens of wrangling functions</high> in `dplyr`.
 
-There are <high>dozens of functions in `dplyr`</high> that allow you to wrangle data.
+For an overview, check out <a href='http://dplyr.tidyverse.org/'>dplyr.tidyverse.org</a>
 
-For an overview, look at the <a href='https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf'>cheatsheet!</a>
+<p align="center"> <a href = 'https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf'>
+  <img src="https://image.slidesharecdn.com/data-wrangling-cheatsheet-160705210122/95/data-wrangling-with-dplyr-and-tidyr-cheat-sheet-2-638.jpg?cb=1467752577g" height="270px"></a>
+  <a href= 'https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf'> Wrangling Cheat Sheet</a>
+</p>
+
 
 ]
 
 .pull-right65[
-
+<br><br>
 <p align="center">
-  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/dplyr_functions.png" height="400px">
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/dplyr_functions.png" height="420px">
 </p>
 
 ]
@@ -344,12 +349,12 @@ patients_df   # Demographic data
 ---
 
 
-# `rename` 
+# `rename()` 
 
 .pull-left45[
 
 
-How to change column names with `rename()`.
+Change <high>column names</high> with `rename()`.
 
 ```{r, eval = FALSE, echo = TRUE}
 df %>%
@@ -364,7 +369,7 @@ patients_df  # Original
 
 .pull-right45[
 
-Change column names with `rename()`.
+Change the old name "a" to "age", and "b" to "arm"
 
 ```{r}
 # 0) Start with patients_df data
@@ -380,11 +385,11 @@ patients_df %>%
 
 ---
 
-# `mutate` 
+# `mutate()` 
 
 .pull-left35[
 
-Add new columns (or change existing ones) with `mutate()`.
+Calculate <high>new columns</high>, or change existing ones, with `mutate()`.
 
 ```{r, eval = FALSE}
 df %>%
@@ -398,6 +403,8 @@ df %>%
 ]
 
 .pull-right6[
+
+Calculate two new columns `age_months` and `age_years`
 
 ```{r, warning = FALSE}
 patients_df %>% 
@@ -414,11 +421,11 @@ patients_df %>%
 
 ---
 
-# `case_when`
+# `case_when()`
 
 .pull-left4[
 
-Use `case_when()` with `mutate()` to <high>define new columns based on logical conditions</high>
+Use `case_when()` with `mutate()` to define <high>new columns based on logical conditions</high>.
 
 ```{r, eval = FALSE}
 # Using mutate(case_when())
@@ -444,8 +451,8 @@ patients_df %>%
   
   # Create column arm_char based on values of arm
   
-  mutate(arm_char = case_when(arm == 0 ~ "placebo",
-                              arm == 1 ~ "drug"))
+  mutate(arm_char = case_when(arm == 1 ~ "placebo",
+                              arm == 2 ~ "drug"))
 ```
 
 ]
@@ -462,7 +469,7 @@ patients_df %>%
 
 ---
 
-# `left_join`
+# `left_join()`
 
 .pull-left35[
 
@@ -489,8 +496,8 @@ df1 %>%
 # Join patients_df with results_df to create combined_df
 combined_df <- patients_df %>% 
   rename(age = b, arm = c) %>%
-  mutate(arm_char = case_when(arm == 0 ~ "placebo",
-                              arm == 1 ~ "drug")) %>%
+  mutate(arm_char = case_when(arm == 1 ~ "placebo",
+                              arm == 2 ~ "drug")) %>%
   
 # Join with results_df with left_join()
   left_join(results_df, by = "id")
@@ -636,7 +643,7 @@ df %>%
   select(id, age)
 ```
 
-<high>Select everything except</high> certain columns with `-`.
+<high>Remove columns</high> with `-`.
 
 ```{r, eval = FALSE}
 # Select everything BUT sex and id
@@ -649,7 +656,7 @@ df %>%
 
 .pull-right55[
 
-Drop age_months and age_decades colummns.
+Remove `age_months` and `age_decades` colummns.
 
 ```{r}
 

@@ -91,7 +91,7 @@ table(baslers$sex)  # How many of each sex?
 ---
 .pull-left45[
 
-# Wrangling &lt;font size=7&gt;= Everything prior to the actual analysis&lt;/font&gt;
+# What is wrangling?
 
 &lt;font size = 5&gt;&lt;high&gt;Transform&lt;/high&gt;&lt;/font&gt;
 
@@ -116,7 +116,7 @@ Group data and summarise
 .pull-right5[
 &lt;br&gt;
 &lt;p align="center"&gt;
-  &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/organise_transform_aggregate.png" height = "520px"&gt;
+  &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/organise_transform_aggregate.png" height = "550px"&gt;
 &lt;/p&gt;
 
 ]
@@ -188,7 +188,7 @@ DO_SOMETHING %&gt;% # AND THEN...
 
 &lt;p align="center"&gt;
   &lt;img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b9/MagrittePipe.jpg/300px-MagrittePipe.jpg" width = "450px"&gt;&lt;br&gt;
-  This is not a pipe (but `%&gt;%` is!)
+  This is not a pipe (but %&gt;% is!)
 &lt;/p&gt;
 
 ]
@@ -213,7 +213,7 @@ Base-R method
 
 
 ```r
-mean(score)
+mean(x = score)
 ```
 
 ```
@@ -249,7 +249,7 @@ score %&gt;%  # AND THEN
 
 .pull-left4[
 
-Task: Calculate the mean of a vector of `scores` and round to 0 digits.
+Task: Calculate the mean of a vector of `scores` and round to 1 digit.
 
 
 ```r
@@ -261,11 +261,11 @@ Base-R method
 
 
 ```r
-round(mean(score), digits = 0)
+round(x = mean(score), digits = 1)
 ```
 
 ```
-## [1] 5
+## [1] 5.2
 ```
 
 Pipe &lt;high&gt;%&gt;%&lt;/high&gt; method
@@ -274,11 +274,11 @@ Pipe &lt;high&gt;%&gt;%&lt;/high&gt; method
 ```r
 score %&gt;%        # AND THEN
   mean() %&gt;%       # AND THEN
-  round(digits = 0)
+  round(digits = 1)
 ```
 
 ```
-## [1] 5
+## [1] 5.2
 ```
 
 ]
@@ -295,21 +295,26 @@ score %&gt;%        # AND THEN
 
 ---
 
+.pull-left35[
 
-# Functions in `dplyr`
+# `dplyr` Functions
 
-.pull-left3[
+There are &lt;high&gt;dozens of wrangling functions&lt;/high&gt; in `dplyr`.
 
-There are &lt;high&gt;dozens of functions in `dplyr`&lt;/high&gt; that allow you to wrangle data.
+For an overview, check out &lt;a href='http://dplyr.tidyverse.org/'&gt;dplyr.tidyverse.org&lt;/a&gt;
 
-For an overview, look at the &lt;a href='https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf'&gt;cheatsheet!&lt;/a&gt;
+&lt;p align="center"&gt; &lt;a href = 'https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf'&gt;
+  &lt;img src="https://image.slidesharecdn.com/data-wrangling-cheatsheet-160705210122/95/data-wrangling-with-dplyr-and-tidyr-cheat-sheet-2-638.jpg?cb=1467752577g" height="270px"&gt;&lt;/a&gt;
+  &lt;a href= 'https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf'&gt; Wrangling Cheat Sheet&lt;/a&gt;
+&lt;/p&gt;
+
 
 ]
 
 .pull-right65[
-
+&lt;br&gt;&lt;br&gt;
 &lt;p align="center"&gt;
-  &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/dplyr_functions.png" height="400px"&gt;
+  &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/dplyr_functions.png" height="420px"&gt;
 &lt;/p&gt;
 
 ]
@@ -361,12 +366,12 @@ patients_df   # Demographic data
 ---
 
 
-# `rename` 
+# `rename()` 
 
 .pull-left45[
 
 
-How to change column names with `rename()`.
+Change &lt;high&gt;column names&lt;/high&gt; with `rename()`.
 
 
 ```r
@@ -394,7 +399,7 @@ patients_df  # Original
 
 .pull-right45[
 
-Change column names with `rename()`.
+Change the old name "a" to "age", and "b" to "arm"
 
 
 ```r
@@ -422,11 +427,11 @@ patients_df %&gt;%
 
 ---
 
-# `mutate` 
+# `mutate()` 
 
 .pull-left35[
 
-Add new columns (or change existing ones) with `mutate()`.
+Calculate &lt;high&gt;new columns&lt;/high&gt;, or change existing ones, with `mutate()`.
 
 
 ```r
@@ -441,6 +446,8 @@ df %&gt;%
 ]
 
 .pull-right6[
+
+Calculate two new columns `age_months` and `age_years`
 
 
 ```r
@@ -469,11 +476,11 @@ patients_df %&gt;%
 
 ---
 
-# `case_when`
+# `case_when()`
 
 .pull-left4[
 
-Use `case_when()` with `mutate()` to &lt;high&gt;define new columns based on logical conditions&lt;/high&gt;
+Use `case_when()` with `mutate()` to define &lt;high&gt;new columns based on logical conditions&lt;/high&gt;.
 
 
 ```r
@@ -500,19 +507,19 @@ patients_df %&gt;%
   
   # Create column arm_char based on values of arm
   
-  mutate(arm_char = case_when(arm == 0 ~ "placebo",
-                              arm == 1 ~ "drug"))
+  mutate(arm_char = case_when(arm == 1 ~ "placebo",
+                              arm == 2 ~ "drug"))
 ```
 
 ```
 ## # A tibble: 5 x 4
 ##      id   age   arm arm_char
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;   
-## 1     1    37     1 drug    
-## 2     2    65     2 &lt;NA&gt;    
-## 3     3    57     2 &lt;NA&gt;    
-## 4     4    34     1 drug    
-## 5     5    45     2 &lt;NA&gt;
+## 1     1    37     1 placebo 
+## 2     2    65     2 drug    
+## 3     3    57     2 drug    
+## 4     4    34     1 placebo 
+## 5     5    45     2 drug
 ```
 
 ]
@@ -529,7 +536,7 @@ patients_df %&gt;%
 
 ---
 
-# `left_join`
+# `left_join()`
 
 .pull-left35[
 
@@ -558,8 +565,8 @@ df1 %&gt;%
 # Join patients_df with results_df to create combined_df
 combined_df &lt;- patients_df %&gt;% 
   rename(age = b, arm = c) %&gt;%
-  mutate(arm_char = case_when(arm == 0 ~ "placebo",
-                              arm == 1 ~ "drug")) %&gt;%
+  mutate(arm_char = case_when(arm == 1 ~ "placebo",
+                              arm == 2 ~ "drug")) %&gt;%
   
 # Join with results_df with left_join()
   left_join(results_df, by = "id")
@@ -674,11 +681,11 @@ combined_df %&gt;%
 ## # A tibble: 5 x 6
 ##      id   age   arm arm_char    t1    t2
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;
-## 1     1    37     1 drug       123   135
-## 2     2    65     2 &lt;NA&gt;       143   140
-## 3     3    57     2 &lt;NA&gt;        NA    NA
-## 4     4    34     1 drug       100   105
-## 5     5    45     2 &lt;NA&gt;        NA    NA
+## 1     1    37     1 placebo    123   135
+## 2     2    65     2 drug       143   140
+## 3     3    57     2 drug        NA    NA
+## 4     4    34     1 placebo    100   105
+## 5     5    45     2 drug        NA    NA
 ```
 
 ]
@@ -715,11 +722,12 @@ combined_df %&gt;%
 ```
 
 ```
-## # A tibble: 2 x 6
+## # A tibble: 3 x 6
 ##      id   age   arm arm_char    t1    t2
 ##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;
-## 1     1    37     1 drug       123   135
-## 2     4    34     1 drug       100   105
+## 1     2    65     2 drug       143   140
+## 2     3    57     2 drug        NA    NA
+## 3     5    45     2 drug        NA    NA
 ```
 
 ]
@@ -739,7 +747,7 @@ df %&gt;%
   select(id, age)
 ```
 
-&lt;high&gt;Select everything except&lt;/high&gt; certain columns with `-`.
+&lt;high&gt;Remove columns&lt;/high&gt; with `-`.
 
 
 ```r
@@ -753,7 +761,7 @@ df %&gt;%
 
 .pull-right55[
 
-Drop age_months and age_decades colummns.
+Remove `age_months` and `age_decades` colummns.
 
 
 ```r
@@ -768,11 +776,12 @@ combined_df %&gt;%
 ```
 
 ```
-## # A tibble: 2 x 4
+## # A tibble: 3 x 4
 ##      id arm_char    t1    t2
 ##   &lt;dbl&gt; &lt;chr&gt;    &lt;dbl&gt; &lt;dbl&gt;
-## 1     1 drug       123   135
-## 2     4 drug       100   105
+## 1     2 drug       143   140
+## 2     3 drug        NA    NA
+## 3     5 drug        NA    NA
 ```
 
 ]
@@ -827,10 +836,10 @@ combined_df %&gt;%
 
 ```
 ## # A tibble: 2 x 5
-##   arm       N age_mean t1_mean t2_mean
-##   &lt;chr&gt; &lt;int&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
-## 1 drug      2     35.5    112.     120
-## 2 &lt;NA&gt;      3     55.7    143      140
+##   arm         N age_mean t1_mean t2_mean
+##   &lt;chr&gt;   &lt;int&gt;    &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+## 1 drug        3     55.7    143      140
+## 2 placebo     2     35.5    112.     120
 ```
 
 
