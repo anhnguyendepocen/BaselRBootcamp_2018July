@@ -10,7 +10,6 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-
 ```{r, echo = FALSE, fig.align = 'center', out.width = "80%"}
 knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/b/b8/Sao_Paulo_Stock_Exchange.jpg")
 ```
