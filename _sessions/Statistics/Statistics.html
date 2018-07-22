@@ -94,7 +94,7 @@ layout: true
 
 
 ```r
-# T-test comparing height based on gender
+# t-test comparing height based on gender
 t.test(formula = height ~ sex,
          data = baselers)
 
@@ -282,7 +282,7 @@ These tests take either a &lt;high&gt;formula&lt;/high&gt; for the argument `for
 
 | Hypothesis Test| R Function|
 |------------:|------------:|
-|     T-test|    `t.test()`|
+|     t-test|    `t.test()`|
 |     Correlation Test|    `cor.test()`|
 |     Chi-Square Test|   `chisq.test()`|
 ]
@@ -292,7 +292,7 @@ These tests take either a &lt;high&gt;formula&lt;/high&gt; for the argument `for
 
 .pull-right5[
 
-### T-Test with `t.test()`
+### t-test with `t.test()`
 
 
 ```r
@@ -341,7 +341,7 @@ These tests take either a &lt;high&gt;formula&lt;/high&gt; for the argument `for
 
 | Hypothesis Test| R Function|
 |------------:|------------:|
-|     T-test|    `t.test()`|
+|     t-test|    `t.test()`|
 |     Correlation Test|    `cor.test()`|
 |     Chi-Square Test|   `chisq.test()`|
 ]
@@ -892,7 +892,7 @@ Use `sample()` to &lt;high&gt;draw a random sample&lt;/high&gt; from a vector.
 
 
 ```r
-# Simulate 10 flips of a fair coin
+# Simulate 8 flips of a fair coin
 coin_flips &lt;- sample(x = c("H", "T"), 
                      size = 8, 
                      prob = c(.5, .5),
@@ -902,7 +902,11 @@ coin_flips
 ```
 
 ```
+<<<<<<< HEAD
 ## [1] "T" "T" "H" "H" "T" "H" "T" "T"
+=======
+## [1] "H" "T" "H" "H" "T" "T" "T" "H"
+>>>>>>> 57343262f063e289e06827d36f156b22e7edc7dd
 ```
 
 ```r
@@ -913,7 +917,11 @@ table(coin_flips)
 ```
 ## coin_flips
 ## H T 
+<<<<<<< HEAD
 ## 3 5
+=======
+## 4 4
+>>>>>>> 57343262f063e289e06827d36f156b22e7edc7dd
 ```
 
 
@@ -951,7 +959,11 @@ length(birthdays)
 ```
 
 ```
+<<<<<<< HEAD
 ## [1] 13
+=======
+## [1] 39
+>>>>>>> 57343262f063e289e06827d36f156b22e7edc7dd
 ```
 
 ]
@@ -976,7 +988,11 @@ mysamp[1:5]  # First 5 values
 ```
 
 ```
+<<<<<<< HEAD
 ## [1]  8.567 14.250 15.241  3.318  7.258
+=======
+## [1] 13.317  8.822 18.485 10.627 19.035
+>>>>>>> 57343262f063e289e06827d36f156b22e7edc7dd
 ```
 
 ```r
@@ -984,7 +1000,11 @@ mean(mysamp) # Mean
 ```
 
 ```
+<<<<<<< HEAD
 ## [1] 10.13
+=======
+## [1] 11.16
+>>>>>>> 57343262f063e289e06827d36f156b22e7edc7dd
 ```
 
 ```r
@@ -992,7 +1012,11 @@ sd(mysamp)   # Standard deviation
 ```
 
 ```
+<<<<<<< HEAD
 ## [1] 4.562
+=======
+## [1] 5.017
+>>>>>>> 57343262f063e289e06827d36f156b22e7edc7dd
 ```
 
 
