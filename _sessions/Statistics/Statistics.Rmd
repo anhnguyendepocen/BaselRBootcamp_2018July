@@ -59,7 +59,7 @@ knitr::opts_chunk$set(warning = FALSE)
 
 .pull-left45[
 
-<br2>
+<br>
 
 | Package| Models|
 |------:|:----|
@@ -80,9 +80,9 @@ knitr::opts_chunk$set(warning = FALSE)
 
 .pull-right5[
 
-```{r, echo = FALSE, out.width = "100%", fig.align = 'center'}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/statistical_procedures.png")
-```
+<p align="center">
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/statistical_procedures.png" height="450px" vspace="20">
+</p>
 
 ]
 
@@ -91,18 +91,18 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 
 .pull-left45[
 
+# In this session...
 
-
-1 - Basic structure and arguments of most statistical functions
+1 - Basic structure and arguments of most <high>statistical functions</high>
 
 - `formula`: Specify your <high>variables</high>
 - `data`: A <high>data frame</high> containing variables.
     
-2 - Simple hypothesis tests
+2 - Simple <high>`htest`</high> objects
 
-- t.test, correlation
+- `t.test()`, `cor`relation
 
-3 - (Generalized) linear model 
+3 - (Generalized) <high>linear model</high> 
 - `lm()`, `glm()`, `aov()`
 
 4 - Explore statistical objects
@@ -153,18 +153,16 @@ lm(formula = y ~ .,
 
 .pull-left4[
 
-Statistical functions always require a <high>data frame</high> called `data`
+Statistical functions always require a <high>data frame</high> called `data`, e.g.,...
 
 ```{r, echo = FALSE}
 baselers %>%
   slice(1:3) %>% select(2:6) %>% knitr::kable(format = 'markdown')
 ```
-
+<br>
 They also require a <high>formula</high> that specifies a <high>dependent</high> variable (y) as a function of one or more <high>independent</high> variables (x1, x2, ...) in the form:
 
 <p align='center'><font size = 6>formula = y ~ x1 + x2 +...</font></p>
-
-The short hand `formula = y ~ .` means include all variables
 
 ]
 
@@ -173,7 +171,7 @@ The short hand `formula = y ~ .` means include all variables
 How to create a statistical object:
 
 ```{r}
-# Create regression object (my_glm)
+# Example: Create regression object (my_glm)
 my_glm <- glm(formula = income ~ age + height,
               data = baselers)
 ```
@@ -189,32 +187,23 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/Erfurt_2
 
 ---
  
-.pull-left4[
+.pull-left35[
 
-## Look for optional arguments
+ # Look for optional arguments
 
-Statistical functions may have many optional arguments (look at help menus!)
+Statistical functions usually have many optional arguments.
 
-Each of these have <high>default</high> values. If you don't specify them, the function will use the default.
-
-To customise a test, look at the help menu and specify arguments explicitly.
-
-### ?glm()
-
-```{r, echo = FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/glm_help.jpg")
-```
+Each of these have <high>default</high> values. To customise a test, <high>look at the help menu</high> and specify arguments explicitly.
 
 ]
 
 
-.pull-right55[
+.pull-right6[
 
-Default vs. Customised Generalized linear model (GLM)
+<br><br>
 
+<u>Default vs. customised `glm()` (Generalized linear model)</u>
 ```{r, eval = FALSE}
-# GLM
-
 # Default
 glm(formula = income ~ age + education,
     data = baselers)
@@ -225,11 +214,9 @@ glm(formula = eyecor ~ age + education,
     family = "binomial")  # Logistic regression
 ```
 
-Default vs. Customised t-test
+<u>Default vs. customised `t-test`</u>
 
 ```{r, eval = FALSE}
-# T-test
-
 # Default
 t.test(formula = age ~ sex,
        data = baselers)
@@ -244,45 +231,102 @@ t.test(formula = age ~ sex,
 ]
 
 
+---
+ 
+.pull-left35[
+
+ # Look for optional arguments
+
+```{r}
+?glm
+```
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/glm_help.jpg">
+</p>
+
+]
+
+
+.pull-right6[
+
+<br><br>
+
+<u>Default vs. customised `glm()` (Generalized linear model)</u>
+```{r, eval = FALSE}
+# Default
+glm(formula = income ~ age + education,
+    data = baselers)
+
+# Customised
+glm(formula = eyecor ~ age + education,
+    data = baselers,
+    family = "binomial")  # Logistic regression
+```
+
+<u>Default vs. customised `t-test`</u>
+
+```{r, eval = FALSE}
+# Default
+t.test(formula = age ~ sex,
+       data = baselers)
+
+# Customised
+t.test(formula = age ~ sex,
+       data = baselers,
+       alternative = "less", # One sided test
+       var.equal = TRUE)     # Assume equal variance
+```
+
+]
+
 
 ---
 
+# Simple hypothesis tests
+
 .pull-left45[
 
-## Simple hypothesis tests
+All of the basic <high>one and two sample hypothesis tests</high> are included in the `stats` package.
 
-All of the basic one and two sample hypothesis tests are included in the stats package
+These tests take either a <high>formula</high> for the argument `formula`, or <high>individual vectors</high> for the arguments `x`, and `y`
+
+<br>
+
+.pull-left6[
 
 | Hypothesis Test| R Function|
-|------:|----:|
+|------------:|------------:|
 |     T-test|    `t.test()`|
 |     Correlation Test|    `cor.test()`|
 |     Chi-Square Test|   `chisq.test()`|
-
-These tests are unique because they can take either formula arguments, or individual vector arguments `x`, and `y`
+]
 
 ]
 
 
 .pull-right5[
 
-### T-Test with t.test()
+### T-Test with `t.test()`
 
-```{r}
+```{r, eval = F}
+# 1-sample t-test
+t.test(x = baselers$age, 
+       mu = 40)  # Mean under H0
+
+# 2-sample t-test (Output hidden)
+t.test(formula = income ~ sex,
+       data = baselers)
+
+```
+
+```{r, eval = T, echo = F}
 # 1-sample t-test
 t.test(x = baselers$age, 
        mu = 40)  # Mean under H0
 
 ```
 
-```{r, eval = FALSE}
-# 2-sample t-test
-t.test(formula = income ~ sex,
-       data = baselers)
-
-# Note: Output hidden
-```
-
 
 ]
 
@@ -290,38 +334,47 @@ t.test(formula = income ~ sex,
 
 ---
 
+# Simple hypothesis tests
+
 .pull-left45[
 
-## Simple hypothesis tests
+All of the basic <high>one and two sample hypothesis tests</high> are included in the `stats` package.
 
-All of the basic one and two sample hypothesis tests are included in the stats package
+These tests take either a <high>formula</high> for the argument `formula`, or <high>individual vectors</high> for the arguments `x`, and `y`
+
+<br>
+
+.pull-left6[
 
 | Hypothesis Test| R Function|
-|------:|----:|
+|------------:|------------:|
 |     T-test|    `t.test()`|
 |     Correlation Test|    `cor.test()`|
 |     Chi-Square Test|   `chisq.test()`|
-
-These tests are unique because they can take either formula arguments, or individual vector arguments `x`, and `y`
+]
 
 ]
 
 
 .pull-right5[
 
-### Correlation test with cor.test()
+### Correlation test with `cor.test()`
 
-```{r}
+```{r, eval = F}
 # Correlation test
 cor.test(x = baselers$age,
          y = baselers$income)
-```
 
-
-```{r, eval = FALSE}
 # Version using formula (same result as above)
 cor.test(formula = ~ age + income,
          data = baselers)
+```
+
+
+```{r, echo = FALSE}
+# Correlation test
+cor.test(x = baselers$age,
+         y = baselers$income)
 ```
 
 
@@ -330,12 +383,16 @@ cor.test(formula = ~ age + income,
 ---
 
 
+# Regression with `glm()`, `lm()`
+
 .pull-left35[
 
-## Regression with glm(), lm()
+How to <high>create a regression model</high> predicting, e.g., how much money people spend on `food` as a function of `income`?
 
-
+<br>
 Part of the `baselers` dataframe:
+
+.pull-left6[
 
 ```{r, echo = FALSE}
 baselers %>% 
@@ -344,20 +401,16 @@ baselers %>%
   knitr::kable(format = "markdown")
 ```
 
-**Goal**: Create a regression model predicting how much money people spend on `food` as a function of `income`
-
-<br>
+]
 <!-- $$\Large food = \beta_{0} + \beta_{1} \times Inc + \beta_{1} \times Hap+ \epsilon$$ -->
 
 ]
 
 .pull-right6[
 
-`lm()` is for simple linear regression, while `glm()` is <high>generalized</high>.
+### Generalized regression with `glm()`
 
 ```{r}
-# Create a glm object called food_glm
-
 # food (y) on income (x1) and happiness (x2)
 food_glm <- glm(formula = food ~ income + happiness,
               data = baselers)
@@ -371,7 +424,7 @@ food_glm
 
 ---
 
-## Customising formulas
+# Customising formulas
 
 Include additional independent variables to formulas by "adding" them with <high>`+`</high> 
 
@@ -389,7 +442,7 @@ my_glm <- glm(formula = income ~ .,
               data = baselers)
 ```
 
-To include <high>interaction terms</high> use `x1 * x2` instead of `x1 + x2`
+To include <high>interaction terms</high> use `x1 : x2` or  `x1 * x2` (also includes main effects) instead of `x1 + x2`
 
 ```{r}
 # Include an interaction term between food and alcohol

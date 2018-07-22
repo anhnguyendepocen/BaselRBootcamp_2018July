@@ -37,7 +37,7 @@ layout: true
 
 .pull-left45[
 
-&lt;br2&gt;
+&lt;br&gt;
 
 | Package| Models|
 |------:|:----|
@@ -58,7 +58,9 @@ layout: true
 
 .pull-right5[
 
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/statistical_procedures.png" width="100%" style="display: block; margin: auto;" /&gt;
+&lt;p align="center"&gt;
+  &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/statistical_procedures.png" height="450px" vspace="20"&gt;
+&lt;/p&gt;
 
 ]
 
@@ -67,18 +69,18 @@ layout: true
 
 .pull-left45[
 
+# In this session...
 
-
-1 - Basic structure and arguments of most statistical functions
+1 - Basic structure and arguments of most &lt;high&gt;statistical functions&lt;/high&gt;
 
 - `formula`: Specify your &lt;high&gt;variables&lt;/high&gt;
 - `data`: A &lt;high&gt;data frame&lt;/high&gt; containing variables.
     
-2 - Simple hypothesis tests
+2 - Simple &lt;high&gt;`htest`&lt;/high&gt; objects
 
-- t.test, correlation
+- `t.test()`, `cor`relation
 
-3 - (Generalized) linear model 
+3 - (Generalized) &lt;high&gt;linear model&lt;/high&gt; 
 - `lm()`, `glm()`, `aov()`
 
 4 - Explore statistical objects
@@ -130,7 +132,7 @@ lm(formula = y ~ .,
 
 .pull-left4[
 
-Statistical functions always require a &lt;high&gt;data frame&lt;/high&gt; called `data`
+Statistical functions always require a &lt;high&gt;data frame&lt;/high&gt; called `data`, e.g.,...
 
 
 |sex    | age| height| weight| income|
@@ -138,12 +140,10 @@ Statistical functions always require a &lt;high&gt;data frame&lt;/high&gt; calle
 |male   |  44|  174.3|  113.4|   6300|
 |male   |  65|  180.3|   75.2|  10900|
 |female |  31|  168.3|   55.5|   5100|
-
+&lt;br&gt;
 They also require a &lt;high&gt;formula&lt;/high&gt; that specifies a &lt;high&gt;dependent&lt;/high&gt; variable (y) as a function of one or more &lt;high&gt;independent&lt;/high&gt; variables (x1, x2, ...) in the form:
 
 &lt;p align='center'&gt;&lt;font size = 6&gt;formula = y ~ x1 + x2 +...&lt;/font&gt;&lt;/p&gt;
-
-The short hand `formula = y ~ .` means include all variables
 
 ]
 
@@ -152,8 +152,9 @@ The short hand `formula = y ~ .` means include all variables
 How to create a statistical object:
 
 
+
 ```r
-# Create regression object (my_glm)
+# Example: Create regression object (my_glm)
 my_glm &lt;- glm(formula = income ~ age + height,
               data = baselers)
 ```
@@ -167,31 +168,24 @@ my_glm &lt;- glm(formula = income ~ age + height,
 
 ---
  
-.pull-left4[
+.pull-left35[
 
-## Look for optional arguments
+ # Look for optional arguments
 
-Statistical functions may have many optional arguments (look at help menus!)
+Statistical functions usually have many optional arguments.
 
-Each of these have &lt;high&gt;default&lt;/high&gt; values. If you don't specify them, the function will use the default.
-
-To customise a test, look at the help menu and specify arguments explicitly.
-
-### ?glm()
-
-![](https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/glm_help.jpg)&lt;!-- --&gt;
+Each of these have &lt;high&gt;default&lt;/high&gt; values. To customise a test, &lt;high&gt;look at the help menu&lt;/high&gt; and specify arguments explicitly.
 
 ]
 
 
-.pull-right55[
+.pull-right6[
 
-Default vs. Customised Generalized linear model (GLM)
+&lt;br&gt;&lt;br&gt;
 
+&lt;u&gt;Default vs. customised `glm()` (Generalized linear model)&lt;/u&gt;
 
 ```r
-# GLM
-
 # Default
 glm(formula = income ~ age + education,
     data = baselers)
@@ -202,12 +196,10 @@ glm(formula = eyecor ~ age + education,
     family = "binomial")  # Logistic regression
 ```
 
-Default vs. Customised t-test
+&lt;u&gt;Default vs. customised `t-test`&lt;/u&gt;
 
 
 ```r
-# T-test
-
 # Default
 t.test(formula = age ~ sex,
        data = baselers)
@@ -222,36 +214,98 @@ t.test(formula = age ~ sex,
 ]
 
 
+---
+ 
+.pull-left35[
+
+ # Look for optional arguments
+
+
+```r
+?glm
+```
+
+&lt;p align="center"&gt;
+  &lt;img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/glm_help.jpg"&gt;
+&lt;/p&gt;
+
+]
+
+
+.pull-right6[
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;u&gt;Default vs. customised `glm()` (Generalized linear model)&lt;/u&gt;
+
+```r
+# Default
+glm(formula = income ~ age + education,
+    data = baselers)
+
+# Customised
+glm(formula = eyecor ~ age + education,
+    data = baselers,
+    family = "binomial")  # Logistic regression
+```
+
+&lt;u&gt;Default vs. customised `t-test`&lt;/u&gt;
+
+
+```r
+# Default
+t.test(formula = age ~ sex,
+       data = baselers)
+
+# Customised
+t.test(formula = age ~ sex,
+       data = baselers,
+       alternative = "less", # One sided test
+       var.equal = TRUE)     # Assume equal variance
+```
+
+]
+
 
 ---
 
+# Simple hypothesis tests
+
 .pull-left45[
 
-## Simple hypothesis tests
+All of the basic &lt;high&gt;one and two sample hypothesis tests&lt;/high&gt; are included in the `stats` package.
 
-All of the basic one and two sample hypothesis tests are included in the stats package
+These tests take either a &lt;high&gt;formula&lt;/high&gt; for the argument `formula`, or &lt;high&gt;individual vectors&lt;/high&gt; for the arguments `x`, and `y`
+
+&lt;br&gt;
+
+.pull-left6[
 
 | Hypothesis Test| R Function|
-|------:|----:|
+|------------:|------------:|
 |     T-test|    `t.test()`|
 |     Correlation Test|    `cor.test()`|
 |     Chi-Square Test|   `chisq.test()`|
-
-These tests are unique because they can take either formula arguments, or individual vector arguments `x`, and `y`
+]
 
 ]
 
 
 .pull-right5[
 
-### T-Test with t.test()
+### T-Test with `t.test()`
 
 
 ```r
 # 1-sample t-test
 t.test(x = baselers$age, 
        mu = 40)  # Mean under H0
+
+# 2-sample t-test (Output hidden)
+t.test(formula = income ~ sex,
+       data = baselers)
 ```
+
 
 ```
 ## 
@@ -268,48 +322,50 @@ t.test(x = baselers$age,
 ```
 
 
-```r
-# 2-sample t-test
-t.test(formula = income ~ sex,
-       data = baselers)
-
-# Note: Output hidden
-```
-
-
 ]
 
 
 
 ---
 
+# Simple hypothesis tests
+
 .pull-left45[
 
-## Simple hypothesis tests
+All of the basic &lt;high&gt;one and two sample hypothesis tests&lt;/high&gt; are included in the `stats` package.
 
-All of the basic one and two sample hypothesis tests are included in the stats package
+These tests take either a &lt;high&gt;formula&lt;/high&gt; for the argument `formula`, or &lt;high&gt;individual vectors&lt;/high&gt; for the arguments `x`, and `y`
+
+&lt;br&gt;
+
+.pull-left6[
 
 | Hypothesis Test| R Function|
-|------:|----:|
+|------------:|------------:|
 |     T-test|    `t.test()`|
 |     Correlation Test|    `cor.test()`|
 |     Chi-Square Test|   `chisq.test()`|
-
-These tests are unique because they can take either formula arguments, or individual vector arguments `x`, and `y`
+]
 
 ]
 
 
 .pull-right5[
 
-### Correlation test with cor.test()
+### Correlation test with `cor.test()`
 
 
 ```r
 # Correlation test
 cor.test(x = baselers$age,
          y = baselers$income)
+
+# Version using formula (same result as above)
+cor.test(formula = ~ age + income,
+         data = baselers)
 ```
+
+
 
 ```
 ## 
@@ -326,25 +382,21 @@ cor.test(x = baselers$age,
 ```
 
 
-
-```r
-# Version using formula (same result as above)
-cor.test(formula = ~ age + income,
-         data = baselers)
-```
-
-
 ]
 
 ---
 
 
+# Regression with `glm()`, `lm()`
+
 .pull-left35[
 
-## Regression with glm(), lm()
+How to &lt;high&gt;create a regression model&lt;/high&gt; predicting, e.g., how much money people spend on `food` as a function of `income`?
 
-
+&lt;br&gt;
 Part of the `baselers` dataframe:
+
+.pull-left6[
 
 
 | food| income| happiness|
@@ -355,21 +407,17 @@ Part of the `baselers` dataframe:
 |  680|   4200|         7|
 |  260|   4000|         5|
 
-**Goal**: Create a regression model predicting how much money people spend on `food` as a function of `income`
-
-&lt;br&gt;
+]
 &lt;!-- `$$\Large food = \beta_{0} + \beta_{1} \times Inc + \beta_{1} \times Hap+ \epsilon$$` --&gt;
 
 ]
 
 .pull-right6[
 
-`lm()` is for simple linear regression, while `glm()` is &lt;high&gt;generalized&lt;/high&gt;.
+### Generalized regression with `glm()`
 
 
 ```r
-# Create a glm object called food_glm
-
 # food (y) on income (x1) and happiness (x2)
 food_glm &lt;- glm(formula = food ~ income + happiness,
               data = baselers)
@@ -397,7 +445,7 @@ food_glm
 
 ---
 
-## Customising formulas
+# Customising formulas
 
 Include additional independent variables to formulas by "adding" them with &lt;high&gt;`+`&lt;/high&gt; 
 
@@ -417,7 +465,7 @@ my_glm &lt;- glm(formula = income ~ .,
               data = baselers)
 ```
 
-To include &lt;high&gt;interaction terms&lt;/high&gt; use `x1 * x2` instead of `x1 + x2`
+To include &lt;high&gt;interaction terms&lt;/high&gt; use `x1 : x2` or  `x1 * x2` (also includes main effects) instead of `x1 + x2`
 
 
 ```r
@@ -858,7 +906,7 @@ coin_flips
 ```
 
 ```
-##  [1] "H" "H" "H" "H" "H" "T" "T" "T" "T" "T"
+##  [1] "T" "T" "H" "H" "H" "H" "H" "T" "T" "T"
 ```
 
 ```r
@@ -903,7 +951,7 @@ length(birthdays)
 ```
 
 ```
-## [1] 41
+## [1] 14
 ```
 
 ]
@@ -929,7 +977,7 @@ mysamp[1:5]  # First 5 values
 ```
 
 ```
-## [1] 10.16 10.82 13.62 10.20  5.88
+## [1] 12.19 14.00 14.02 10.49  5.67
 ```
 
 ```r
@@ -937,7 +985,7 @@ mean(mysamp) # Mean
 ```
 
 ```
-## [1] 10.3
+## [1] 11.68
 ```
 
 ```r
@@ -945,7 +993,7 @@ sd(mysamp)   # Standard deviation
 ```
 
 ```
-## [1] 4.952
+## [1] 5.003
 ```
 
 
@@ -963,7 +1011,7 @@ ggplot(data = tibble(x = mysamp),
   theme_minimal()
 ```
 
-&lt;img src="Statistics_files/figure-html/unnamed-chunk-46-1.png" width="100%" /&gt;
+&lt;img src="Statistics_files/figure-html/unnamed-chunk-47-1.png" width="100%" /&gt;
 
 ]
 
