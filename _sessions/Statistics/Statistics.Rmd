@@ -781,7 +781,7 @@ Use these to easily <high>simulate data</high>:
 Use `sample()` to <high>draw a random sample</high> from a vector.
 
 ```{r}
-# Simulate 10 flips of a fair coin
+# Simulate 8 flips of a fair coin
 coin_flips <- sample(x = c("H", "T"), 
                      size = 8, 
                      prob = c(.5, .5),
