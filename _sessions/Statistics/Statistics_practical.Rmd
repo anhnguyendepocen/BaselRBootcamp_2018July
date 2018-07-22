@@ -201,7 +201,7 @@ tidy(my_glm)
 3. For this practical, we'll use the `kc_house.csv` data. This dataset contains house sale prices for King County, Washington. It includes homes sold between May 2014 and May 2015. Using the following template, load the data into R and store it as a new object called `kc_house`.
 
 ```{r, echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
-kc_house <- read_csv(file = "XX/XXX")
+kc_house <- read_csv(file = "XX")
 ```
 
 4. Using `print()`, `summary()`, and `head()`, explore the data to make sure it was loaded correctly.

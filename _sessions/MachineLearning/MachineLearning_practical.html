@@ -162,34 +162,30 @@ Source: Android Authority
 <td align="left"><code>install.packages(&quot;tidyverse&quot;)</code></td>
 </tr>
 <tr class="even">
-<td align="left"><code>skimr</code></td>
-<td align="left"><code>install.packages(&quot;skimr&quot;)</code></td>
-</tr>
-<tr class="odd">
 <td align="left"><code>broom</code></td>
 <td align="left"><code>install.packages(&quot;broom&quot;)</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>rpart</code></td>
 <td align="left"><code>install.packages(&quot;rpart&quot;)</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>FFTrees</code></td>
 <td align="left"><code>install.packages(&quot;FFTrees&quot;)</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>partykit</code></td>
 <td align="left"><code>install.packages(&quot;partykit&quot;)</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>party</code></td>
 <td align="left"><code>install.packages(&quot;party&quot;)</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>randomForest</code></td>
 <td align="left"><code>install.packages(&quot;randomForest&quot;)</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>caret</code></td>
 <td align="left"><code>install.packages(&quot;caret&quot;)</code></td>
 </tr>
@@ -266,10 +262,10 @@ Source: Android Authority
 # Step 0: Load packages-----------
 
 library(tidyverse)    # Load tidyverse for dplyr and tidyr
-library(skimr)        # For skim()
 library(rpart)        # For rpart()
 library(broom)        # For tidy()
 library(caret)        # For resamp 
+library(partykit)     # For nice decision trees
 
 # Step 1: Load Training and Test data ----------------------
 
@@ -279,7 +275,7 @@ house_test &lt;- read_csv(&quot;https://raw.githubusercontent.com/therbootcamp/t
 
 # Step 2: Explore training data -----------------------------
 
-skim(attrition_train)
+summary(house_train)
 
 # We will do a log-transformation on price
 #  because it is so heavily skewed

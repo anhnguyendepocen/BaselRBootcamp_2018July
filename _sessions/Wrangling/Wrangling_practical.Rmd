@@ -89,13 +89,9 @@ trial_act_demo <- read_csv("../_data/baselrbootcamp_data/trial_act_demo_fake.csv
 # Wrangling with dplyr and tidyr ---------------------------
 
 library(tidyverse)    # Load tidyverse for dplyr and tidyr
-library(skimr)        # For skim()
 
 # Load baselers data
 baselers <- read_csv("https://raw.githubusercontent.com/therbootcamp/baselers/master/inst/extdata/baselers.txt")
-
-# Skim the data
-skim(baselers)
 
 # Perform many dplyr operations in a row
 
@@ -153,19 +149,8 @@ baselers_agg <- baselers %>%
 
 3. Using `library()` load the set of packages for this practical listed in the packages section above.
 
-```{r, eval = FALSE, echo = TRUE}
-## NAME
-## DATE
-## Wrangling Practical
-
-library(XX)     
-library(XX)
-#...
-```
-
 ```{r, message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE}
 library(tidyverse)
-library(skimr)
 ```
 
 4. For this practical, we'll use the `trial_act` data, this is the result of a randomized clinical trial comparing the effects of different medications on adults infected with the human immunodeficiency virus. Using the following template, load the data into R and store it as a new object called `trial_act`.
@@ -173,7 +158,7 @@ library(skimr)
 ```{r, echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
 # Load trial_act.csv from the data folder in your working directory
 
-trial_act <- read_csv(file = "XXX/XXX")
+trial_act <- read_csv(file = "XX")
 ```
 
 5. Using the same code structure, load the `trial_act_demo_fake.csv` data as a new dataframe called `trial_act_demo_fake`
@@ -195,10 +180,10 @@ library(tidyverse)
 trial_act
 ```
 
-7. Use the the `summary()` or `skim()` function (from the `skimr` package) to get more details on the datasets.
+7. Use the the `summary()` function to get more details on the datasets.
 
 ```{r}
-skim(trial_act)
+summary(trial_act)
 ```
 
 ### B - Change column names with rename()

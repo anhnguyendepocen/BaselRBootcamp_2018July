@@ -41,7 +41,6 @@ By the end of this practical you will know how to:
 |Package| Installation|
 |:------|:------|
 |`tidyverse`|`install.packages("tidyverse")`|
-|`skimr`|`install.packages("skimr")`|
 |`broom`|`install.packages("broom")`|
 |`rpart`|`install.packages("rpart")`|
 |`FFTrees`|`install.packages("FFTrees")`|
@@ -95,10 +94,10 @@ house_test <- read_csv("https://raw.githubusercontent.com/therbootcamp/therbootc
 # Step 0: Load packages-----------
 
 library(tidyverse)    # Load tidyverse for dplyr and tidyr
-library(skimr)        # For skim()
 library(rpart)        # For rpart()
 library(broom)        # For tidy()
 library(caret)        # For resamp 
+library(partykit)     # For nice decision trees
 
 # Step 1: Load Training and Test data ----------------------
 
@@ -108,7 +107,7 @@ house_test <- read_csv("https://raw.githubusercontent.com/therbootcamp/therbootc
 
 # Step 2: Explore training data -----------------------------
 
-skim(attrition_train)
+summary(house_train)
 
 # We will do a log-transformation on price
 #  because it is so heavily skewed
