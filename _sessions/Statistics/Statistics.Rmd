@@ -55,7 +55,7 @@ knitr::opts_chunk$set(warning = FALSE)
 
 ```
 
-# There is always a package for that!
+# Stats? There is a package for that!
 
 .pull-left45[
 
@@ -98,20 +98,17 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 - `formula`: Specify your <high>variables</high>
 - `data`: A <high>data frame</high> containing variables.
     
-2 - Simple `htest` objects
+2 - Simple hypothesis tests
 
 - t.test, correlation
 
 3 - (Generalized) linear model 
 - `lm()`, `glm()`, `aov()`
 
-4 - Common methods to explore statistical objects
-- `print()`, `summary()`, `names()`, `predict()`, `plot()`
+4 - Explore statistical objects
+- `MODEL$NAME`, `print()`, `summary()`, `names()`, `predict()`, `plot()`
 
-5 - Dissect statistical objects with `$`
-
-Work with R's library of statistical distributions
-- `rnorm()`, `runif()`
+5 - Conduct simulations
 
 ]
 
@@ -173,18 +170,20 @@ The short hand `formula = y ~ .` means include all variables
 
 .pull-right55[
 
-To create a statistical object, apply the statistical function `STAT_FUN` with the `formula` and `data` arguments:
-
-```{r, echo = FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/formula_description.png")
-```
-
+How to create a statistical object:
 
 ```{r}
 # Create regression object (my_glm)
 my_glm <- glm(formula = income ~ age + height,
               data = baselers)
 ```
+
+
+```{r, echo = FALSE}
+knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/formula_description.png")
+```
+
+
 
 ]
 

@@ -22,7 +22,9 @@ options(digits = 3)
 knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/dplyr_functions.png")
 ```
 
-## Overview
+## {.tabset}
+
+### Overview
 
 In this practical you'll practice "data wrangling" with the `dplyr` and `tidyr` packages (part of the `tidyverse collection of packages).
 
@@ -35,7 +37,9 @@ By the end of this practical you will know how to:
 5. Combine multiple data sets through key columns
 6. Convert data between wide and long formats
 
-## Datasets
+### Datasets
+
+You'll need the following datasets for this practical:
 
 ```{r, eval = TRUE, message = FALSE}
 library(tidyverse)
@@ -48,13 +52,13 @@ trial_act_demo <- read_csv("../_data/baselrbootcamp_data/trial_act_demo_fake.csv
 |[trial_act.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/trial_act.csv) | 2139 | 27 |
 |[trial_act_demo_fake](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/trial_act_demo_fake.csv)| 2139 | 3|
 
-## Packages
+### Packages
 
 |Package| Installation|
 |:------|:------|
 |`tidyverse`|`install.packages("tidyverse")`|
 
-## Glossary
+### Glossary
 
 | Function| Package | Description |
 |:---|:------|:---------------------------------------------|
@@ -78,7 +82,7 @@ trial_act_demo <- read_csv("../_data/baselrbootcamp_data/trial_act_demo_fake.csv
   <figcaption>https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf</figcaption></a>
 </figure>
 
-## Examples
+### Examples
 
 ```{r, eval = FALSE, echo = TRUE}
 
