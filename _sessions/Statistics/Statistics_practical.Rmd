@@ -204,7 +204,7 @@ tidy(my_glm)
 kc_house <- read_csv(file = "XX/XXX")
 ```
 
-4. Using `print()`, `summary()`, `head()` and `skim()`, explore the data to make sure it was loaded correctly.
+4. Using `print()`, `summary()`, and `head()`, explore the data to make sure it was loaded correctly.
 
 ### B - Descriptive statistics
 
