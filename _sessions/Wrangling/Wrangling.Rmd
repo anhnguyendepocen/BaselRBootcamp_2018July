@@ -369,7 +369,7 @@ patients_df  # Original
 
 .pull-right45[
 
-Change the old name "a" to "age", and "b" to "arm"
+Change the old name "b" to "age", and "c" to "arm"
 
 ```{r}
 # 0) Start with patients_df data
