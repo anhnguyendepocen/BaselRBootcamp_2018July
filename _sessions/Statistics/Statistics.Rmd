@@ -931,6 +931,8 @@ ggplot(data = tibble(x = mysamp),
 
 ---
 
+# Practical
+
 <p>
   <font size=6>
     <a href="https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/Statistics/Statistics_practical.html"><b>Link to practical<b></a>
