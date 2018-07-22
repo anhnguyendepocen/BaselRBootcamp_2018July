@@ -349,7 +349,7 @@ patients_df   # Demographic data
 ---
 
 
-# `rename()` 
+# `rename` 
 
 .pull-left45[
 
@@ -385,7 +385,7 @@ patients_df %>%
 
 ---
 
-# `mutate()` 
+# `mutate` 
 
 .pull-left35[
 
@@ -421,7 +421,7 @@ patients_df %>%
 
 ---
 
-# `case_when()`
+# `case_when`
 
 .pull-left4[
 
@@ -469,7 +469,7 @@ patients_df %>%
 
 ---
 
-# `left_join()`
+# `left_join`
 
 .pull-left35[
 

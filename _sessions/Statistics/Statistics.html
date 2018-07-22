@@ -838,10 +838,12 @@ tidy(my_glm)
 ```
 
 ```
-##          term estimate std.error statistic   p.value
-## 1 (Intercept)   1575.5   94.3629    16.696 1.328e-61
-## 2   happiness   -100.4   12.5197    -8.022 1.180e-15
-## 3         age    149.3    0.8145   183.315 0.000e+00
+## # A tibble: 3 x 5
+##   term        estimate std.error statistic  p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)    1575.    94.4       16.7  1.33e-61
+## 2 happiness      -100.    12.5       -8.02 1.18e-15
+## 3 age             149.     0.815    183.   0.
 ```
 
 ]
@@ -900,7 +902,7 @@ coin_flips
 ```
 
 ```
-## [1] "T" "T" "H" "T" "T" "T" "T" "T"
+## [1] "T" "T" "H" "H" "T" "H" "T" "T"
 ```
 
 ```r
@@ -911,7 +913,7 @@ table(coin_flips)
 ```
 ## coin_flips
 ## H T 
-## 1 7
+## 3 5
 ```
 
 
@@ -949,7 +951,7 @@ length(birthdays)
 ```
 
 ```
-## [1] 25
+## [1] 13
 ```
 
 ]
@@ -974,7 +976,7 @@ mysamp[1:5]  # First 5 values
 ```
 
 ```
-## [1]  9.271 14.678 11.352  9.690 22.172
+## [1]  8.567 14.250 15.241  3.318  7.258
 ```
 
 ```r
@@ -982,7 +984,7 @@ mean(mysamp) # Mean
 ```
 
 ```
-## [1] 10.6
+## [1] 10.13
 ```
 
 ```r
@@ -990,7 +992,7 @@ sd(mysamp)   # Standard deviation
 ```
 
 ```
-## [1] 5.198
+## [1] 4.562
 ```
 
 
@@ -1097,12 +1099,23 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   d.head.appendChild(s);
 })();</script>
 
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  tex2jax: {
-    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
   }
-});
+})();
 </script>
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
