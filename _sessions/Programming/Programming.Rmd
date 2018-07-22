@@ -29,6 +29,12 @@ layout: true
 ---
 
 # ***Haven't we been programming in R for the last three days of the course?***
+
+<p align="center">
+  <img src="http://gifimage.net/wp-content/uploads/2017/10/bruce-almighty-typing-gif-9.gif" height="350">
+</p>
+
+
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 options(width=110)
@@ -95,7 +101,9 @@ Allow you to conditionally execute code blocks.
 
 *`if`; `else if`; and `else`*
 
-`if` lets you check a condition. If this condition is `FALSE` you **can** (but don't have to!) add another check with `else if` that is then, if `TRUE`, executed. An `else` in the end means this code block is always executed if the above checks evaluated to `FALSE`, i.e. it doesn't include a check.
+<p align="center">
+  <img src="image/conditional_statement.png">
+</p>
 
 
 ]
@@ -352,13 +360,33 @@ show_stats(x = baselers$sex)
 
 .pull-left35[
 
+A for loop lets you **repeat the execution of a block of code** as many times as you wish. It also allows you to loop through positions.
+
+
+
+]
+
+.pull-right6[
+
+<p align="center">
+  <img src="image/loop.gif">
+</p>
+
+]
+
+---
+
+# Iteration - `for` Loops
+
+.pull-left35[
+
 A for loop lets you repeat the execution of a block of code as many times as you wish. It also allows you to loop through positions.
 
 A `for` loop has three components:
 
-- output (object to be prepared before entering the loop)
-- sequence (defines the vector to loop through)
-- body (the code that does the actual work)
+- **output** (object to be prepared before entering the loop)
+- **sequence** (defines the vector to loop through)
+- **body** (the code that does the actual work)
 
 
 ]
@@ -469,7 +497,7 @@ sapply(baselers[, c("age", "weight", "height")],
 .pull-left45[
 
 
-You can specify *anonymous functions* in functions of the `apply` family. 
+You can specify **anonymous functions** in functions of the `apply` family. 
 
 An anonymous function exists only temporarily when the `apply` function is called. This means that the anonymous function is not defined in a separate step, but directly within the `apply` function.
 
@@ -506,7 +534,7 @@ lapply(baselers[, c("age", "weight", "height")],
 .pull-left45[
 
 
-The `map` functions are the purrr equivalent of the `apply` functions.
+The `map` functions are the **purrr** equivalent of the `apply` functions.
 
 ```{r, echo = FALSE, out.width = "60%", fig.align = 'center'}
 knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/purrr_hex.png")
@@ -535,7 +563,7 @@ map(baselers[, c("age", "weight", "height")],
 .pull-left45[
 
 
-The `map` functions are the purrr equivalent of the `apply` functions.
+The `map` functions are the **purrr** equivalent of the `apply` functions.
 
 There are several `map` functions that iterate over one vector. They are named after the type of object they return:
 
@@ -576,7 +604,7 @@ baselers %>%
 .pull-left45[
 
 
-The `map` functions are the purrr equivalent of the `apply` functions.
+The `map` functions are the **purrr** equivalent of the `apply` functions.
 
 There are also `map` functions that iterate over two or more vectors. 
 
