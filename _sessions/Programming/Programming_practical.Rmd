@@ -21,8 +21,8 @@ options(digits = 3)
 
 <figure>
 <center>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/R_logo.svg/724px-R_logo.svg.png" alt="Trulli" style="width:50%">
-  <figcaption>https://en.wikipedia.org/wiki/R_(programming_language)</figcaption>
+  <img src="https://i.kym-cdn.com/photos/images/original/000/976/339/ded.png" alt="Trulli" style="width:50%">
+  <figcaption>https://knowyourmeme.com/photos/976339-kung-fury</figcaption>
 </figure>
 
 ## Overview
