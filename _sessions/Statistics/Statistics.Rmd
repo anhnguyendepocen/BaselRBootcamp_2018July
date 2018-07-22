@@ -595,7 +595,7 @@ thisyear
 
 
 ```{r, echo = FALSE}
-thisyear  %>% select(id, age, fitness, tattoos) %>% slice(1:3) %>% knitr::kable(format = "markdown")
+thisyear  %>% select(id, age, fitness, tattoos) %>% slice(1:3) %>% mutate(income = NA) %>% knitr::kable(format = "markdown")
 ```
 
 
@@ -618,7 +618,13 @@ model$coefficients
 
 Now use `model` to <high>`predict`</high> values for `thisyear`
 
-```{r}
+```{r, eval = FALSE, echo = TRUE}
+# Predict the income of people in thisyear
+predict(object = model, 
+        newdata = thisyear)
+```
+
+```{r, eval = TRUE, echo = FALSE}
 # Predict the income of people in thisyear
 predict(object = model, 
         newdata = thisyear)[1:3]

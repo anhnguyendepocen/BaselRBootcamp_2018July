@@ -247,7 +247,7 @@ score %>%  # AND THEN
 
 .pull-left4[
 
-Task: Calculate the mean of a vector of `scores` and round to 1 digit.
+Task: Calculate the mean of a vector of `scores` and round to 0 digits.
 
 ```{r}
 # Create a vector score
@@ -257,15 +257,15 @@ score <- c(8, 4, 6, 3, 7, 3)
 Base-R method
 
 ```{r}
-round(mean(score), digits = 1)
+round(mean(score), digits = 0)
 ```
 
 Pipe <high>%>%</high> method
 
 ```{r}
 score %>%        # AND THEN
-  sd() %>%       # AND THEN
-  round(digits = 1)
+  mean() %>%       # AND THEN
+  round(digits = 0)
 ```
 
 ]
@@ -511,7 +511,7 @@ combined_df %>%
 
 1 - Don't forget to start by assigning to a new (or existing) object with <-<br>
 
-2 - Keep adding new functions connected by the pipe %>%<br>
+2 - Keep adding new functions connected by the pipe <high>%>%</high><br>
 
 3 - Order matters! You can refer to new columns in later code
 <br><br>
