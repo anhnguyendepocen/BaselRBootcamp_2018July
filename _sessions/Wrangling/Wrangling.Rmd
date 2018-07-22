@@ -35,14 +35,12 @@ baselers <- read_csv("https://raw.githubusercontent.com/therbootcamp/baselers/ma
 
 ```
 
-
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
 options(width=110)
 options(digits = 4)
 library(tidyverse)
 ```
-
 
 .pull-left4[
 
@@ -91,9 +89,7 @@ table(baslers$sex)  # How many of each sex?
 
 ```
 
-
 ]
-
 
 ---
 .pull-left45[
@@ -574,7 +570,7 @@ Organisation functions help you shuffle your data by <high>sorting rows</high> b
 
 ---
 
-# `arrange`
+# `arrange()`
 
 .pull-left3[
 
@@ -599,7 +595,7 @@ combined_df %>%
 
 ---
 
-# `filter`
+# `filter()`
 
 
 .pull-left4[
@@ -631,7 +627,7 @@ combined_df %>%
 
 ---
 
-# `select`
+# `select()`
 
 .pull-left4[
 
@@ -686,7 +682,7 @@ combined_df %>%
 
 ---
 
-# `group_by`, `summarise`
+# `group_by()`, `summarise()`
 
 .pull-left45[
 
@@ -776,7 +772,7 @@ stock_l
 
 .pull-left45[
 
-# `gather`
+# `gather()`
 
 ```{r}
 # Show wide data
@@ -795,7 +791,7 @@ stock_w %>%
 
 .pull-right45[
 
-# `spread`
+# `spread()`
 
 ```{r}
 # Show long data
@@ -860,7 +856,6 @@ baslers_agg <- baselers %>%
 ---
 
 # Practical
-
 
 <p>
   <font size=6>
