@@ -236,21 +236,13 @@ dimarta_df <- dimarta_df %>%
 dimarta_df
 ```
 
-8. Using `write_csv()`, save `dimarta_df` in a new `.csv` file in your `data` folder called `dimarta.csv`
-
-```{r, eval = FALSE}
-write_csv(x = dimarta_df,
-          path = "data/dimarta.csv")
-```
-
-
-9. Using the `mean()` function, calculate the mean age of all patients.
+8. Using the `mean()` function, calculate the mean age of all patients.
 
 ```{r}
 mean(dimarta_df$age)
 ```
 
-10. Using the following template, find out how many male and female patients were in the trial.
+9. Using the following template, find out how many male and female patients were in the trial.
 
 ```{r, eval = FALSE, echo = TRUE}
 dimarta_df %>%
@@ -269,7 +261,7 @@ dimarta_df %>%
   )
 ```
 
-11. Now, using similar code, find out how many patients were assigned to each study arm.
+10. Now, using similar code, find out how many patients were assigned to each study arm.
 
 ```{r}
 dimarta_df %>%
@@ -279,7 +271,7 @@ dimarta_df %>%
   )
 ```
 
-12. Find out how many men and women were assigned to each study arm (Hint: You can use very similar code to what you used above, just add a second grouping variable!)
+11. Find out how many men and women were assigned to each study arm (Hint: You can use very similar code to what you used above, just add a second grouping variable!)
 
 ```{r}
 dimarta_df %>%
@@ -289,9 +281,7 @@ dimarta_df %>%
   )
 ```
 
-
-13. Using `mutate()`, add a new column to the `dimarta_df` data called `histamine_change` that shows the *change* in patient's histamine levels from the start to the end of the trial (Hint: just subtract `histamine_start` from `histamine_end`!)
-
+12. Using `mutate()`, add a new column to the `dimarta_df` data called `histamine_change` that shows the *change* in patient's histamine levels from the start to the end of the trial (Hint: just subtract `histamine_start` from `histamine_end`!)
 
 ```{r}
 dimarta_df <- dimarta_df %>%
@@ -304,7 +294,7 @@ dimarta_df %>%
   select(histamine_change)
 ```
 
-14. Using `mutate()` again, add a new column to `dimarta_df` called `qol_change` that shows the change in patient's quality of life.
+13. Using `mutate()` again, add a new column to `dimarta_df` called `qol_change` that shows the change in patient's quality of life.
 
 ```{r}
 dimarta_df <- dimarta_df %>%
@@ -317,7 +307,7 @@ dimarta_df %>%
   select(qol_change)
 ```
 
-15. Calculate the percentage of patients who tested positive for each of the three biomarkers using the following template (Hint: If you calculate the `mean()` of a logical vector, you will get the percentage of TRUE values!)
+14. Calculate the percentage of patients who tested positive for each of the three biomarkers using the following template (Hint: If you calculate the `mean()` of a logical vector, you will get the percentage of TRUE values!)
 
 ```{r, eval = FALSE, echo = TRUE}
 # Calculate percent of patients with positive biomarkers
@@ -342,7 +332,7 @@ dimarta_df %>%
   )
 ```
 
-16. Were there different distributions of age in the different trial sites? To answer this, separately calculate the mean and standard deviations of patient ages in each site. (Hint: group the data by `site`, then calculate two separate summary statistics: `age_mean = mean(age)`, and `age_sd = sd(age)`.
+15. Were there different distributions of age in the different trial sites? To answer this, separately calculate the mean and standard deviations of patient ages in each site. (Hint: group the data by `site`, then calculate two separate summary statistics: `age_mean = mean(age)`, and `age_sd = sd(age)`.
 
 ```{r}
 # Calculate the mean change in histamine for each study site
@@ -354,7 +344,7 @@ dimarta_df %>%
   )
 ```
 
-17. Calculate the mean change in histamine results separately for each study site 
+16. Calculate the mean change in histamine results separately for each study site 
 
 ```{r}
 # Calculate the mean change in histamine for each study site
@@ -366,7 +356,7 @@ dimarta_df %>%
 ```
 
 
-18. Calculate the mean change in histamine results (`histamine_change`) for each study arm. Which study arm had a largest decrease in histamine?
+17. Calculate the mean change in histamine results (`histamine_change`) for each study arm. Which study arm had a largest decrease in histamine?
 
 ```{r}
 # Calculate the mean change in histamine for each study site
@@ -377,7 +367,7 @@ dimarta_df %>%
   )
 ```
 
-19. Calculate the mean change in quality of life (`qol_change`) for each study arm. Do the results match what you found with the histamine results?
+18. Calculate the mean change in quality of life (`qol_change`) for each study arm. Do the results match what you found with the histamine results?
 
 ```{r}
 # Calculate the mean change in histamine for each study site

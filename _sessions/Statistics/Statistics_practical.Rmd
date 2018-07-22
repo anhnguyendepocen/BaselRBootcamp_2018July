@@ -307,7 +307,7 @@ time_lm <- lm(formula = XX ~ XX,
 
 ```{r, eval = FALSE, echo = TRUE}
 price_lm <- lm(formula = XX ~ XX + XX + XX,
-                 data = XX)
+               data = XX)
 ```
 
 6. Print your `price_glm` object to see the main results.
@@ -391,7 +391,7 @@ ggplot(data = prices_results,
 # Note: 1e6 is a shortcut for 1000000
 
 kc_house <- kc_house %>%
-  mutate(million = price > 1e6)
+                mutate(million = price > 1e6)
 ```
 
 2. Using the following template, use the `glm()` function to conduct a logistic regression to see which of the variables `bedrooms`, `bathrooms`, `floors`, `waterfront`, `yr_built` predict whether or not a house will sell for over 1 Million. Be sure to include the argument `family = 'binomial'` to tell `glm()` that we are conducting a logistic regression analysis. 
