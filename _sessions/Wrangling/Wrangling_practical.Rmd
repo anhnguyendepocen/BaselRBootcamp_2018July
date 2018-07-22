@@ -22,7 +22,9 @@ options(digits = 3)
 knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/dplyr_functions.png")
 ```
 
-## Overview {.tabset}
+## {.tabset}
+
+### Overview
 
 In this practical you'll practice "data wrangling" with the `dplyr` and `tidyr` packages (part of the `tidyverse collection of packages).
 
