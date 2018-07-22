@@ -115,7 +115,7 @@ knitr::opts_chunk$set(warning = FALSE)
 .pull-right5[
 
 ```{r, eval = FALSE}
-# T-test comparing height based on gender
+# t-test comparing height based on gender
 t.test(formula = height ~ sex,
          data = baselers)
 
@@ -297,7 +297,7 @@ These tests take either a <high>formula</high> for the argument `formula`, or <h
 
 | Hypothesis Test| R Function|
 |------------:|------------:|
-|     T-test|    `t.test()`|
+|     t-test|    `t.test()`|
 |     Correlation Test|    `cor.test()`|
 |     Chi-Square Test|   `chisq.test()`|
 ]
@@ -307,7 +307,7 @@ These tests take either a <high>formula</high> for the argument `formula`, or <h
 
 .pull-right5[
 
-### T-Test with `t.test()`
+### t-test with `t.test()`
 
 ```{r, eval = F}
 # 1-sample t-test
@@ -348,7 +348,7 @@ These tests take either a <high>formula</high> for the argument `formula`, or <h
 
 | Hypothesis Test| R Function|
 |------------:|------------:|
-|     T-test|    `t.test()`|
+|     t-test|    `t.test()`|
 |     Correlation Test|    `cor.test()`|
 |     Chi-Square Test|   `chisq.test()`|
 ]
