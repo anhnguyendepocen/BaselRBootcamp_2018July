@@ -92,6 +92,9 @@ img {
 .tabbed-pane {
   padding-top: 12px;
 }
+.html-widget {
+  margin-bottom: 20px;
+}
 button.code-folding-btn:focus {
   outline: none;
 }
@@ -132,9 +135,11 @@ $(document).ready(function () {
 <a href="https://en.wikipedia.org/wiki/Retail" class="uri">https://en.wikipedia.org/wiki/Retail</a>
 </figcaption>
 </figure>
-<div id="overview" class="section level2">
-<h2>Overview</h2>
-<p>In this case study, we will look at sales data from a retailer. There are two datasets, one called “sales.csv”, and one called “stores.csv”. You will first perform some data wrangling and merge the two datasets and then save the merged dataset as “retailer_sales.csv”. Below you find two tables with the variable names and a short description of each variable of the two datasets. After that you will have the oportunity to “pick your adventure” and do the analysis you like. For example, you could check how large the fluctuations of sales are per store, or whether sales numbers go up or down in holidays, how well you can predict sales numbers from the other variables, e.g. using a regression, or you could run a time series analysis to predict future turnovers. For each of these suggestions you will find a short paragraph that provides some guidance and hints to what you could do, but feel free to play with the dataset as you wish. Because there are multiple timepoints per store involved, we will often have to either aggregate the data over these, or will not be able to interpret p-values. One method to address this issue is by using mixed effects models. This is rather advanced and we will not cover it here. However, if you are familiar with the method and want to give it a try in R, you can use the <code>lmer</code> function from the <code>lme4</code> package.</p>
+<div id="section" class="section level2 tabset">
+<h2></h2>
+<div id="overview" class="section level3">
+<h3>Overview</h3>
+<p>In this case study, we will look at sales data from a retailer. There are two datasets, one called “sales.csv”, and one called “stores.csv”. You will first perform some data wrangling and merge the two datasets and then save the merged dataset as “retailer_sales.csv”. Below you find two tables with the variable names and a short description of each variable of the two datasets. After that you will have the opportunity to “pick your adventure” and do the analysis you like. For example, you could check how large the fluctuations of sales are per store, or whether sales numbers go up or down in holidays, how well you can predict sales numbers from the other variables, e.g. using a regression, or you could run a time series analysis to predict future turnovers. For each of these suggestions you will find a short paragraph that provides some guidance and hints to what you could do, but feel free to play with the dataset as you wish. Because there are multiple timepoints per store involved, we will often have to either aggregate the data over these, or will not be able to interpret p-values. One method to address this issue is by using mixed effects models. This is rather advanced and we will not cover it here. However, if you are familiar with the method and want to give it a try in R, you can use the <code>lmer</code> function from the <code>lme4</code> package.</p>
 <p>By the end of this case study you will have practiced how to:</p>
 <ol style="list-style-type: decimal">
 <li>Load in data</li>
@@ -142,8 +147,8 @@ $(document).ready(function () {
 <li>Run regressions</li>
 </ol>
 </div>
-<div id="packages" class="section level2">
-<h2>Packages</h2>
+<div id="packages" class="section level3">
+<h3>Packages</h3>
 <table>
 <thead>
 <tr class="header">
@@ -163,8 +168,8 @@ $(document).ready(function () {
 </tbody>
 </table>
 </div>
-<div id="datasets" class="section level2">
-<h2>Datasets</h2>
+<div id="datasets" class="section level3">
+<h3>Datasets</h3>
 <table>
 <colgroup>
 <col width="7%"></col>
@@ -194,7 +199,7 @@ $(document).ready(function () {
 <td align="left"><code>stores.csv</code></td>
 <td align="left">1115</td>
 <td align="left">10</td>
-<td align="left">Data about the individual stores of the retailor</td>
+<td align="left">Data about the individual stores of the retailer</td>
 <td align="left"><a href="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_data/stores.csv">Download Link</a></td>
 </tr>
 </tbody>
@@ -285,7 +290,7 @@ $(document).ready(function () {
 </tr>
 <tr class="even">
 <td align="left">Promo2</td>
-<td align="left">Wheter a store is participating (1) or not (2) in a continuing and consecutive promotion for some stores</td>
+<td align="left">Whether a store is participating (1) or not (2) in a continuing and consecutive promotion for some stores</td>
 </tr>
 <tr class="odd">
 <td align="left">Promo2SinceWeek</td>
@@ -302,6 +307,7 @@ $(document).ready(function () {
 </tbody>
 </table>
 </div>
+</div>
 <div id="tasks" class="section level1">
 <h1>Tasks</h1>
 <div id="a---getting-setup" class="section level3">
@@ -309,7 +315,7 @@ $(document).ready(function () {
 <ol style="list-style-type: decimal">
 <li><p>Open your R project. It should already have the folders <code>0_Data</code> and <code>1_Code</code>. Make sure that all of the data files listed above are contained in the folder</p></li>
 <li><p>Open a new R script and save it as a new file called <code>sales_case_study.R</code>. At the top of the script, using comments, write your name and the date. Then, load the set of packages listed above with <code>library()</code>.</p></li>
-<li><p>For this practical, we’ll use the <code>sales.csv</code> and <code>stores.csv</code> data. These datasets contain sales numbers of various stores from a large retailor over a time period. Using the following template, load the data into R and store it as new objects called <code>sales</code> and <code>stores</code>.</p></li>
+<li><p>For this practical, we’ll use the <code>sales.csv</code> and <code>stores.csv</code> data. These datasets contain sales numbers of various stores from a large retailer over a time period. Using the following template, load the data into R and store it as new objects called <code>sales</code> and <code>stores</code>.</p></li>
 </ol>
 <pre class="r"><code># Load data from your local data file of your R project
 sales &lt;- read_csv(&quot;XX/XXX&quot;)
@@ -328,9 +334,9 @@ stores &lt;- read_csv(&quot;XX/XXX&quot;)</code></pre>
 <li><p>Save the prepared data as “retailer_sales.csv” (this is easy to do with the <code>write_csv()</code> function).</p></li>
 </ol>
 </div>
-<div id="c---statistics---flucutations-over-days" class="section level3">
-<h3>C - Statistics - Flucutations over Days</h3>
-<p>To look at the average fluctuations over days you, we suggest you take a subsample of a few stores. You could then plot the individual trajectories, and if you like also add a mean line. You can also use a repeated measures test, to have a statistical test of the stability (you could, for example, use a correlation between two timepoints, or aggregate sales data of stores for each timepoint and run a regression. Note that with these two methods you will violate the assumption of independence of the data, so you cannot interpret the p-value).</p>
+<div id="c---statistics---fluctuations-over-days" class="section level3">
+<h3>C - Statistics - Fluctuations over Days</h3>
+<p>To look at the average fluctuations over days you, we suggest you take a subsample of a few stores. You could then plot the individual trajectories, and if you like also add a mean line. You can also use a repeated measures test, to have a statistical test of the stability (you could, for example, use a correlation between two time points, or aggregate sales data of stores for each time point and run a regression. Note that with these two methods you will violate the assumption of independence of the data, so you cannot interpret the p-value).</p>
 <ol style="list-style-type: decimal">
 <li>Run the following code to get a visual impression of how large the fluctuations are.</li>
 </ol>
@@ -359,7 +365,7 @@ ggplot(sales_sub, aes(x = days, y = sales)) + # specify the data
   stat_smooth(lwd = 1.5) +  # add an average line
   theme_bw()                # theme for white plotting window</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li><p>Randomly sample two timepoints (use the <code>sample()</code> function for this) from the <code>days</code> variable created above, and run a correlation.</p></li>
+<li><p>Randomly sample two time points (use the <code>sample()</code> function for this) from the <code>days</code> variable created above, and run a correlation.</p></li>
 <li><p>Summarise the sales data over <code>days</code> (i.e. for each day, take the mean), and store this as an object called <code>sales_agg</code>. Then run a regression (the function to run a regression is <code>lm()</code>).</p></li>
 <li><p>Compute the coefficient of variation, i.e. the standard deviation scaled on the mean (use the <code>sd()</code> function and divide by the <code>mean()</code>), of each stores turnovers (<code>sales</code> variable). You can do this by using <code>dplyr</code>’s <code>summarise()</code> function. Store this as an object called <code>sales_cv</code>, with the variable <code>cv</code>. Only use days on which the stores were open to not introduce extra noise (use <code>filter()</code> for this).</p></li>
 <li><p>Plot the distribution of the coefficient of variation using the following code:</p></li>

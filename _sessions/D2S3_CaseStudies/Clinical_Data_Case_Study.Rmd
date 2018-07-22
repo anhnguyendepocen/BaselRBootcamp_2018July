@@ -82,6 +82,10 @@ trial_df$qol_end <- trial_df$qol_start + round(rnorm(n = 300, mean = 0, sd = 1),
 # write_csv(x = demographics_df, path = "_sessions/D2S3_CaseStudies/dimarta_demographics.csv")
 ```
 
+
+## {.tabset}
+
+
 ### Overview
 
 In this case study, we will look at the results of a clinical trial exploring the effectiveness of a new medication called dimarta on reducing histamine in patients with a disease that leads to chronically high histamine levels. In the study, 300 patients were assigned to one of three different treatment arms. One arm was given a placebo. The other arm was given adiclax -- the standard of care for the disease. Finally, the third arm was given dimarta. There were two main measures of interest in the trial: patient's changes in histamine from the beginning to the end of the trial, and their change in quality of life (measured by self report). 
@@ -89,7 +93,7 @@ In this case study, we will look at the results of a clinical trial exploring th
 In addition to exploring the effects of the three medications, the researchers are interested in the extent to which three different biomarkers, dw, ms, and np, are correlated with therapeutic outcomes. In other words, to patients that express one or more of these biomarkers have better, or worse, outcomes that those that do not express these biomarkers?
 
 
-## Datasets
+### Datasets
 
 ```{r, eval = TRUE, message = FALSE}
 library(tidyverse)
@@ -102,8 +106,7 @@ library(haven)
 |[dimarta_biomarker.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/dimarta_biomarker.csv) | 900 | 3 | Biomarker status' for 3 different biomarkers for each patient. |
 |[dimarta_demographics.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/dimarta_demographics.csv) | 300 | 5 | Demographic information for each patient |
 
-
-### Column Descriptions
+Column Descriptions
 
 **dimarta_trial.csv**
 
@@ -144,7 +147,7 @@ Table: Table3. `dimarta_biomarker.csv` variable description:
 
 # Tasks
 
-## A - Getting setup
+## A - Getting Setup
 
 1. Open your `baselrbootcamp` R project. It should already have the folders `1_Data` and `2_Code`.
 

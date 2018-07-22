@@ -128,13 +128,15 @@ $(document).ready(function () {
 </div>
 
 
+<div id="section" class="section level2 tabset">
+<h2></h2>
 <div id="overview" class="section level3">
 <h3>Overview</h3>
 <p>In this case study, we will look at the results of a clinical trial exploring the effectiveness of a new medication called dimarta on reducing histamine in patients with a disease that leads to chronically high histamine levels. In the study, 300 patients were assigned to one of three different treatment arms. One arm was given a placebo. The other arm was given adiclax – the standard of care for the disease. Finally, the third arm was given dimarta. There were two main measures of interest in the trial: patient’s changes in histamine from the beginning to the end of the trial, and their change in quality of life (measured by self report).</p>
 <p>In addition to exploring the effects of the three medications, the researchers are interested in the extent to which three different biomarkers, dw, ms, and np, are correlated with therapeutic outcomes. In other words, to patients that express one or more of these biomarkers have better, or worse, outcomes that those that do not express these biomarkers?</p>
 </div>
-<div id="datasets" class="section level2">
-<h2>Datasets</h2>
+<div id="datasets" class="section level3">
+<h3>Datasets</h3>
 <table style="width:89%;">
 <colgroup>
 <col width="8%"></col>
@@ -171,8 +173,7 @@ $(document).ready(function () {
 </tr>
 </tbody>
 </table>
-<div id="column-descriptions" class="section level3">
-<h3>Column Descriptions</h3>
+<p>Column Descriptions</p>
 <p><strong>dimarta_trial.csv</strong></p>
 <table>
 <caption>Table1. <code>dimarta_trial.csv</code> variable description:</caption>
@@ -274,7 +275,7 @@ $(document).ready(function () {
 <div id="tasks" class="section level1">
 <h1>Tasks</h1>
 <div id="a---getting-setup" class="section level2">
-<h2>A - Getting setup</h2>
+<h2>A - Getting Setup</h2>
 <ol style="list-style-type: decimal">
 <li><p>Open your <code>baselrbootcamp</code> R project. It should already have the folders <code>1_Data</code> and <code>2_Code</code>.</p></li>
 <li><p>Open a new R script and save it as a new file in your <code>R</code> folder called <code>dimarta_casestudy.R</code>. At the top of the script, using comments, write your name and the date. Then, load the <code>tidyverse</code> package. Here’s how the top of your script should look:</p></li>

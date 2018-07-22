@@ -25,10 +25,13 @@ options(digits = 3)
 </figure>
 
 
-## Overview
+## {.tabset}
 
 
-In this case study, we will look at sales data from a retailer. There are two datasets, one called "sales.csv", and one called "stores.csv". You will first perform some data wrangling and merge the two datasets and then save the merged dataset as "retailer_sales.csv". Below you find two tables with the variable names and a short description of each variable of the two datasets. After that you will have the oportunity to "pick your adventure" and do the analysis you like. For example, you could check how large the fluctuations of sales are per store, or whether sales numbers go up or down in holidays, how well you can predict sales numbers from the other variables, e.g. using a regression, or you could run a time series analysis to predict future turnovers. For each of these suggestions you will find a short paragraph that provides some guidance and hints to what you could do, but feel free to play with the dataset as you wish. Because there are multiple timepoints per store involved, we will often have to either aggregate the data over these, or will not be able to interpret p-values. One method to address this issue is by using mixed effects models. This is rather advanced and we will not cover it here. However, if you are familiar with the method and want to give it a try in R, you can use the `lmer` function from the `lme4` package.
+### Overview
+
+
+In this case study, we will look at sales data from a retailer. There are two datasets, one called "sales.csv", and one called "stores.csv". You will first perform some data wrangling and merge the two datasets and then save the merged dataset as "retailer_sales.csv". Below you find two tables with the variable names and a short description of each variable of the two datasets. After that you will have the opportunity to "pick your adventure" and do the analysis you like. For example, you could check how large the fluctuations of sales are per store, or whether sales numbers go up or down in holidays, how well you can predict sales numbers from the other variables, e.g. using a regression, or you could run a time series analysis to predict future turnovers. For each of these suggestions you will find a short paragraph that provides some guidance and hints to what you could do, but feel free to play with the dataset as you wish. Because there are multiple timepoints per store involved, we will often have to either aggregate the data over these, or will not be able to interpret p-values. One method to address this issue is by using mixed effects models. This is rather advanced and we will not cover it here. However, if you are familiar with the method and want to give it a try in R, you can use the `lmer` function from the `lme4` package.
 
 By the end of this case study you will have practiced how to:
 
@@ -37,7 +40,7 @@ By the end of this case study you will have practiced how to:
 3. Run regressions
 
 
-## Packages
+### Packages
 
 |Package| Installation|
 |:------|:------|
@@ -45,7 +48,7 @@ By the end of this case study you will have practiced how to:
 |`lme4`|`install.packages("lme4")`|
 
 
-## Datasets
+### Datasets
 
 ```{r, eval = TRUE, message = FALSE}
 library(tidyverse)
@@ -58,7 +61,7 @@ stores <- read_csv("../_data/complete/stores.csv")
 |File | Rows | Columns | Description | Source |
 |:----|:-----|:------|:-----------------------------------------|:----------|
 |`sales.csv` | 1017209 | 9| Sales data of a large retail store | [Download Link](https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_data/sales.csv) |
-|`stores.csv` | 1115 | 10| Data about the individual stores of the retailor | [Download Link](https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_data/stores.csv) |
+|`stores.csv` | 1115 | 10| Data about the individual stores of the retailer | [Download Link](https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_data/stores.csv) |
 
 
 | Variable| Description|
@@ -83,7 +86,7 @@ Table: Table1. "sales.csv" variable description:
 |     CompetitionDistance|  The distance in meters to the nearest competitor store|
 |     CompetitionOpenSinceMonth|  The month of the year in which the nearest competitor opened  |
 |     CompetitionOpenSinceYear|  The year when the nearest competitor opened  |
-|     Promo2|  Wheter a store is participating (1) or not (2) in a continuing and consecutive promotion for some stores|
+|     Promo2|  Whether a store is participating (1) or not (2) in a continuing and consecutive promotion for some stores|
 |     Promo2SinceWeek|  The week of the year in which the store promotion started|
 |     Promo2SinceYear|  The year in which the store promotion started|
 |     PromoInterval|  Describes the consecutive intervals Promo2 is started, naming the months the promotion is started anew. For example, "Feb,May,Aug,Nov" means each round starts in February, May, August, November of any given year for that store|
@@ -104,7 +107,7 @@ Table: Table 2. "stores.csv" variable description:
 
 2. Open a new R script and save it as a new file called `sales_case_study.R`. At the top of the script, using comments, write your name and the date. Then, load the set of packages listed above with `library()`.
 
-3. For this practical, we'll use the `sales.csv` and `stores.csv` data. These datasets contain sales numbers of various stores from a large retailor over a time period. Using the following template, load the data into R and store it as new objects called `sales` and `stores`.
+3. For this practical, we'll use the `sales.csv` and `stores.csv` data. These datasets contain sales numbers of various stores from a large retailer over a time period. Using the following template, load the data into R and store it as new objects called `sales` and `stores`.
 
 ```{r, echo = TRUE, eval = FALSE, message = FALSE, warning = FALSE}
 # Load data from your local data file of your R project
@@ -156,10 +159,10 @@ names(sales) <- c("store", "week_day", "date", "sales", "customers", "open",
 write_csv(sales, "retailer_sales.csv")
 ```
 
-### C - Statistics - Flucutations over Days
+### C - Statistics - Fluctuations over Days
 
 
-To look at the average fluctuations over days you, we suggest you take a subsample of a few stores. You could then plot the individual trajectories, and if you like also add a mean line. You can also use a repeated measures test, to have a statistical test of the stability (you could, for example, use a correlation between two timepoints, or aggregate sales data of stores for each timepoint and run a regression. Note that with these two methods you will violate the assumption of independence of the data, so you cannot interpret the p-value).
+To look at the average fluctuations over days you, we suggest you take a subsample of a few stores. You could then plot the individual trajectories, and if you like also add a mean line. You can also use a repeated measures test, to have a statistical test of the stability (you could, for example, use a correlation between two time points, or aggregate sales data of stores for each time point and run a regression. Note that with these two methods you will violate the assumption of independence of the data, so you cannot interpret the p-value).
 
 1. Run the following code to get a visual impression of how large the fluctuations are.
 
@@ -192,7 +195,7 @@ ggplot(sales_sub, aes(x = days, y = sales)) + # specify the data
 ```
 
 
-2. Randomly sample two timepoints (use the `sample()` function for this) from the `days` variable created above, and run a correlation. 
+2. Randomly sample two time points (use the `sample()` function for this) from the `days` variable created above, and run a correlation. 
 
 ```{r, message=FALSE, warning=FALSE}
 
