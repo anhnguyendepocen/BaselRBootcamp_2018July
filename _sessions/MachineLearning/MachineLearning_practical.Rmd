@@ -22,7 +22,10 @@ options(digits = 3)
 knitr::include_graphics("https://cdn57.androidauthority.net/wp-content/uploads/2018/01/machine-learning-algorithms-840x488.jpg")
 ```
 
-## Overview
+## {.tabset}
+
+
+### Overview
 
 In this practical you'll practice the basics of machine learning in R
 
@@ -33,7 +36,7 @@ By the end of this practical you will know how to:
 3. Predict outcomes from new data with all models.
 4. Evaluate the model's fitting and prediction performance.
 
-## Packages
+### Packages
 
 |Package| Installation|
 |:------|:------|
@@ -48,7 +51,7 @@ By the end of this practical you will know how to:
 |`caret`|`install.packages("caret")`|
 
 
-## Datasets
+### Datasets
 
 ```{r, eval = TRUE, message = FALSE}
 library(tidyverse)
@@ -75,7 +78,7 @@ house_test <- read_csv("https://raw.githubusercontent.com/therbootcamp/therbootc
 |[house_train.csv](https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_data/house_train.csv)| 1000 | 21|
 |[house_test.csv](https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_data/house_test.csv)| 15000 | 21|
 
-## Glossary
+### Glossary
 
 | Function| Package | Description |
 |:---|:------|:---------------------------------------------|
@@ -84,7 +87,7 @@ house_test <- read_csv("https://raw.githubusercontent.com/therbootcamp/therbootc
 | `LIST$NAME()`|`base`|    Get the named element `NAME` from a list `OBJECT`| 
 | `predict(object, newdata)`|`base`|    Predict the criterion values of `newdata` based on `object`|
 
-## Examples
+### Examples
 
 ```{r, eval = FALSE, echo = TRUE}
 # Machine learning basics ------------------------------------

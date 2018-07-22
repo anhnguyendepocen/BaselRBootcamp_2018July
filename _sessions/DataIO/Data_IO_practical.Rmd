@@ -28,8 +28,11 @@ library(tidyverse)
   <center>
 </figure>
 
+## {.tabset}
 
-## Overview
+
+
+### Overview
 
 In this practical you'll learn how to read and save data. By the end of this practical you will know how to:
 
@@ -37,7 +40,7 @@ In this practical you'll learn how to read and save data. By the end of this pra
 2. Read in data of various types
 3. Handle header, type, and missing data issues
 
-## Datasets
+### Datasets
 
 ```{r, eval = TRUE, message = FALSE}
 library(tidyverse)
@@ -51,7 +54,7 @@ library(haven)
 |[sleep.sav](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/sleep.sav) | 271 | 55 | Survey on sleeping behavior completed by staff at the University of Melbourne. |
 |[airbnb_zuerich.sas7bdat](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/airbnb_zuerich.sas7bdat) | 2392 | 20 | Data on AirBnB listings in Zürich, Switzerland|
 
-## Packages
+### Packages
 
 |Package| Installation|
 |:------|:------|

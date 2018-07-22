@@ -30,8 +30,11 @@ library(kableExtra)
   <figcaption>https://www.baslerfasnacht.info/basel-fasnacht/index.php</figcaption>
 </figure>
 
+## {.tabset}
 
-## Overview
+
+
+### Overview
 
 In this practical you'll learn how to work with simple data objects and functions. By the end of this practical you will know how to:
 
@@ -41,11 +44,11 @@ In this practical you'll learn how to work with simple data objects and function
 4. Access vectors from data frames using `$`
 5. Calculate basic descriptive statistics using `mean()`, `median()`, `table()` (and more!)
 
-## Datasets
+### Datasets
 
 *None!*
 
-## Packages
+### Packages
 
 |Package| Installation|
 |:------|:------|

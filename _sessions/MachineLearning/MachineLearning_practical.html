@@ -134,8 +134,10 @@ $(document).ready(function () {
 Source: Android Authority
 </p>
 </div>
-<div id="overview" class="section level2">
-<h2>Overview</h2>
+<div id="section" class="section level2 tabset">
+<h2></h2>
+<div id="overview" class="section level3">
+<h3>Overview</h3>
 <p>In this practical you’ll practice the basics of machine learning in R</p>
 <p>By the end of this practical you will know how to:</p>
 <ol style="list-style-type: decimal">
@@ -145,8 +147,8 @@ Source: Android Authority
 <li>Evaluate the model’s fitting and prediction performance.</li>
 </ol>
 </div>
-<div id="packages" class="section level2">
-<h2>Packages</h2>
+<div id="packages" class="section level3">
+<h3>Packages</h3>
 <table>
 <thead>
 <tr class="header">
@@ -194,8 +196,8 @@ Source: Android Authority
 </tbody>
 </table>
 </div>
-<div id="datasets" class="section level2">
-<h2>Datasets</h2>
+<div id="datasets" class="section level3">
+<h3>Datasets</h3>
 <table>
 <thead>
 <tr class="header">
@@ -218,8 +220,8 @@ Source: Android Authority
 </tbody>
 </table>
 </div>
-<div id="glossary" class="section level2">
-<h2>Glossary</h2>
+<div id="glossary" class="section level3">
+<h3>Glossary</h3>
 <table style="width:83%;">
 <colgroup>
 <col width="6%"></col>
@@ -257,8 +259,8 @@ Source: Android Authority
 </tbody>
 </table>
 </div>
-<div id="examples" class="section level2">
-<h2>Examples</h2>
+<div id="examples" class="section level3">
+<h3>Examples</h3>
 <pre class="r"><code># Machine learning basics ------------------------------------
 
 # Step 0: Load packages-----------
@@ -353,17 +355,20 @@ postResample(pred = rpart_pred,
 
 # Plot results
 
+# Tidy competition results
 competition_results &lt;- tibble(truth = house_test$price,
                               Regression = lm_pred,
                               Decision_Trees = rpart_pred) %&gt;%
                        gather(group, prediction, -truth)
 
+# Plot!
 ggplot(data = competition_results,
        aes(x = truth, y = prediction, col = group)) +
   geom_point(alpha = .2) +
   geom_abline(slope = 1, intercept = 0) +
   labs(title = &quot;Predicting housing prices&quot;,
        subtitle = &quot;Regression versus decision trees&quot;)</code></pre>
+</div>
 </div>
 <div id="tasks" class="section level1">
 <h1>Tasks</h1>
