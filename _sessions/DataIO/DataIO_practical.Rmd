@@ -1,0 +1,531 @@
+---
+title: "Data I/O"
+author: "Basel R Bootcamp, July 2018<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
+output:
+  html_document:
+    css: practical.css
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(comment = NA, 
+                      fig.width = 6, 
+                      fig.height = 6,
+                      fig.align = 'center',
+                      echo = FALSE, 
+                      eval = FALSE, 
+                      warning = FALSE)
+
+options(digits = 3)
+
+library(baselers)
+library(tidyverse)
+```
+
+
+<figure  alt="Trulli" style="width:90%">
+  <center>
+  <img src="https://i.pinimg.com/originals/94/e2/98/94e29802d7473690bdbc5acb85a5302d.gif">
+  <center>
+</figure>
+
+## {.tabset}
+
+
+
+### Overview
+
+In this practical you'll learn how to read and save data. By the end of this practical you will know how to:
+
+1. Identify the location of a file (on your hard drive)
+2. Read in data of various types
+3. Handle header, type, and missing data issues
+
+### Datasets
+
+```{r, eval = TRUE, message = FALSE}
+library(tidyverse)
+library(haven)
+```
+
+|File | Rows | Columns | Description |
+|:----|:-----|:------|:-----------------------------------------|
+|[diamonds.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/diamonds.csv) | 100 | 7 | Subset of the well-known diamonds data set containing specifications and prices of a large number of recorded diamonds.  |
+|[titanic.xls](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/titanic.xls) | 1309 | 14 | Information on the survival of titanic passengers. |
+|[sleep.sav](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/sleep.sav) | 271 | 55 | Survey on sleeping behavior completed by staff at the University of Melbourne. |
+|[airbnb_zuerich.sas7bdat](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/airbnb_zuerich.sas7bdat) | 2392 | 20 | Data on AirBnB listings in Zürich, Switzerland|
+
+### Packages
+
+|Package| Installation|
+|:------|:------|
+|`tidyverse`|`install.packages("tidyverse")`|
+|`readr`|`install.packages("readr")`|
+|`haven`|`install.packages("haven")`|
+|`readxl`|`install.packages("readxl")`|
+|`xml2`|`install.packages("xml2")`|
+|`rvest`|`install.packages("rvest")`|
+
+### Glossary
+
+*Reading/writing text data*
+
+| Extension | File Type |Read | Write |
+|:------|:------|:--------------------------|:-----------------------------|
+| `.csv` | Comma-separated text |`read_csv(file)` | `write_csv(x, file)` |
+| `.csv` | Semi-colon separated text |`read_csv2(file)` | *not available* |
+| `.txt` |Other text | `read_delim(file)` |`write_delim(x, file)` | 
+
+*Reading/writing other data formats*
+
+|Extension| File Type | Read | Write|
+|:--------|:-----|:--------------------------|:-----------------------------|
+|`.xls`, `.xlsx`|Excel | `read_excel(file)` | `xlsx::write.xlsx()` |
+|`.sav`| SPSS | `read_spss(file)` | `write_spss(x, file)`| 
+|`.sas7bdat`| SAS | `read_sas(file)` | `write_sas(x, file)`|
+
+*Processing websites*
+
+| Function| Description|
+|:--------------------------|:-----------------------------|
+| `read_html(file)`, `write_html(x, file)`| Read/write websites files with extension `.html` |
+| `hmlt_node(html)` | Select specific element in `.html`-file |
+| `html_table` | Transform `.html`-table to data frame |
+
+
+### Examples
+
+```{r, eval = FALSE, echo = TRUE, message = FALSE, warning = FALSE}
+# load packages
+library(tidyverse)
+library(readxl)
+library(haven)
+
+# delim-separated -------------------
+
+# read chickens data
+chickens <- read_csv(file = "1_Data/chickens.csv")
+
+# fix header of chickens_nohead.csv with known column names
+chickens <- read_csv(file = "1_Data/chickens_nohead.csv",
+                     col_names = c("weight", "time", "chick", "diet"))
+
+# fix NA values of chickens_na.csv
+chickens <- read_csv(file = "1_Data/chickens_na.csv",
+                     na = c('NA', 'NULL'))
+
+# write clean data to disc
+write_csv(x = chickens, 
+          path = "1_Data/chickens_clean.csv")
+
+# fix types -------------------
+# Note: the survey data is fictional!
+
+# remove character from rating
+survey$rating[survey$rating == "2,1"] <- 2.1
+
+# rerun type convert
+survey <- type_convert(survey)
+
+# other formats -------------------
+
+# .xlsx (Excel)
+chickens <- read_excel("1_Data/chickens.xlsx")
+
+# .sav (SPSS)
+chickens <- read_spss("1_Data/chickens.sav")
+
+# .sad7bdata (SAS)
+chickens <- read_sas("1_Data/chickens.sas7bdat")
+
+# scraping the web ----------------
+
+# load packages for web scraping
+library(rvest)
+library(xml2)
+
+# get html
+url <- 'https://en.wikipedia.org/wiki/R_(programming_language)' 
+page <- read_html(url)
+
+# get raw html table
+# use XPath from inspect page (e.g., in Chrome)
+table_raw <- html_node(page, xpath = '//*[@id="mw-content-text"]/div/table[2]')
+
+# transform to data frame
+table <- html_table(table_raw)
+
+# create tibble
+as_tibble(table)
+```
+
+# Tasks
+
+## A - Getting setup
+
+1. Open your `baselrbootcamp` R project. It should already have the folders `1_Data` and `2_Code`.
+
+2. Open a new R script and save it as a new file called `dataio_practical.R` in the `2_Code` folder. At the top of the script, using comments, write your name and the date. Then, load all package(s) listed in the Packages section above with `library()`.
+
+## B - Read delim-separated text files
+
+In this section, you will read in a subset of the well known diamonds data set and prepare it for data analysis. 
+
+1. Identify the file path to the `diamonds.csv` dataset by using the `""` (quotation marks) auto-complete trick. Place the cursor between two quotation marks, hit &#8677; (tab-key), and browse through the folders. Save the file path in an object called `diamonds_path`.
+
+```{r, eval = F, echo =T}
+# place cursor in-between "" and hit tab
+diamonds_path <- ""
+```
+
+
+```{r, eval = F, echo = FALSE}
+# place cursor in-between and hit tab
+diamonds_path <- "1_Data/diamonds.csv"
+```
+
+2. Using `read_csv()` and the `diamonds_path` object, read the `diamonds.csv` dataset as a new object called `diamonds`.
+
+```{r, eval = F, echo = T}
+# read diamonds data
+diamonds <- read_csv(file = XX)
+```
+
+```{r, eval = F, echo = F}
+# read diamonds data
+diamonds <- read_csv(file = diamonds_path)
+```
+
+3. Print the `diamonds` data and inspect the column names in the header line. Something's wrong!
+
+```{r, eval = F, echo = F}
+# print diamonds
+diamonds
+```
+
+4. Fix the header by reading in the data again using the `col_names`-argument. Assign to `col_names` a character vector containing the correct column names: `carat`, `cut`, `color`, `clarity`, `depth`, `table`, `price`.
+
+```{r, eval = F, echo = T}
+# read diamonds data while specifying col_names
+diamonds <- read_csv(file = "XX", 
+                     col_names = XX)  # Vector of column names
+```
+
+```{r, eval = F, echo = F}
+# read diamonds data while specifying col_names
+diamonds <- read_csv(file = diamonds_path,
+                     col_names = c("carat", "cut", "color", "clarity", "depth", "table", "price"))
+```
+
+5. Re-inspect the header by printing the data. Has the header been fixed?
+
+```{r, eval = F, echo = F}
+# print diamonds
+diamonds
+```
+
+6. Now pay attention to the classes of the individuals columns (variables). Have all classes been identified correctly? What about the `carat` column? It should be `numeric`, right?
+
+```{r, eval = F, echo = F}
+# print diamonds
+diamonds
+```
+
+7. Let's see what went wrong. Select and print the `carat` variable to identify the one entry that caused the variable to become a `character` vector (Hint: look for a comma). 
+
+```{r, eval = F, echo = F}
+# print the carat column
+diamonds$carat
+```
+
+8. Change the `carat` variable's element at position `XX` to the same value `YY` but with a period instead of a comma. Use the code below.  
+
+```{r, eval = F, echo = T}
+# Change the value at position XX to YY
+diamonds$carat[XX] <- YY
+```
+
+```{r, eval = F, echo = F}
+# Change the value at position XX to YY
+diamonds$carat[17] <- 0.37
+```
+
+9. Ok you fixed the value but `carat` is still `character`. We can fix it with the `type_convert()` function. Apply the `type_convert()` function to the `diamonds` data to have R fix all the data types. Make sure to assign the result back to `diamonds` so that you change the object!
+
+```{r, eval = F, echo = F}
+# re-infer data types
+diamonds <- type_convert(diamonds)
+```
+
+10. Print the `diamonds` object and look at the column types. Has the type of `carat` changed to `double`?
+
+```{r, eval = F, echo = F}
+# print diamonds data set
+diamonds
+```
+
+11. The data is now ready for analysis. Let's calculate a few statistics. What is the average `carat` or `price` (use `mean()`)? What  `cut` and `clarity` levels exist and how often do they occur (use `table()`)? You can learn more about the variable values from the help file `?diamonds`.
+
+```{r, eval = F, echo = F}
+# simple stats of diamonds
+mean(diamonds$carat)
+mean(diamonds$price)
+table(diamonds$cut)
+table(diamonds$clarity)
+```
+
+## C - Write delim-separated text files
+
+1. Write the, now, properly formatted diamonds data to your data folder as a `.csv` file using the name `diamonds_clean.csv`. Don't forget to include both the file name and the folder (separated by `/`) in the character string specifying the `path` argument. 
+
+```{r, eval = F, echo = F}
+# write clean diamonds data to disc
+write_csv(x = XX, path = "XX")
+```
+
+```{r, eval = F, echo = F}
+# write clean diamonds data to disc
+write_csv(x = diamonds, "1_Data/diamonds_clean.csv")
+```
+
+2. Read `diamonds_clean.csv` back into R as a new object called `diamonds_clean`. Then, print the object and verify that this time the types been correctly identified from the start.
+
+```{r, eval = F, echo = F}
+# read clean diamonds data from disc
+diamonds_clean <- read_csv(file = "1_Data/diamonds_clean.csv")
+```
+
+3. Using `write_delim`, write the data to disc with a different delimiter calling it `diamonds_delim.csv`. Specifically, set the `delim`-argument to `"@"`.
+
+```{r, eval = F, echo = F}
+# write with "@" as delimiter
+write_delim(x = XX, 
+            path = "XX", 
+            delim = "XX")
+```
+
+```{r, eval = F, echo = F}
+# write with @ as delimiter
+write_delim(diamonds_clean, path = "1_Data/diamonds_delim.csv", delim = "@")
+```
+
+4. Read `diamonds_delim.csv` back in using `read_csv()`. What happens?
+
+```{r, eval = F, echo = F}
+# read @-delimited diamonds data
+read_csv(file = "1_Data/diamonds_delim.csv")
+```
+
+5. Fix the delimiter issue by using `read_delim()` instead of `read_csv()` and specifying the `delim`-argument. Verify that everything is in order again by printing the data.
+
+```{r, eval = F, echo = F}
+# read @-delimited diamonds data
+read_delim(file = "1_Data/diamonds_delim.csv", delim = "@")
+```
+
+## D - Read other file formats
+
+#### Excel
+
+```{r, out.width = "10%", fig.align = 'left', eval = TRUE, echo = FALSE}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Microsoft_Excel_2013_logo.svg/2000px-Microsoft_Excel_2013_logo.svg.png")
+```
+
+1. Using `read_excel()`, read in the `titanic.xls` dataset as a new object called `titanic` (Make sure you have alredy loaded the `readxl` package at the beginning of your script).
+
+```{r, eval = F, echo = T}
+titanic <- read_excel(path = "XX")
+```
+
+```{r, eval = F, echo = F}
+# Read titanic data
+titanic <- read_excel("1_Data/titanic.xls")
+```
+
+2. Print `titanic` and evaluate its dimensions using `dim()`.
+
+```{r, eval = F, echo = F}
+# print and show dimenisons
+titanic
+dim(titanic)
+```
+
+3. Using `table()`, how many people survived (variable `survived`) in each cabin class (variable `pclass`)?
+
+```{r, eval = F, echo = T}
+# determine survival rate by cabin class
+table(titanic$XX, 
+      titanic$XX)
+```
+
+```{r, eval = F, echo = F}
+# determine survival rate by cabin class
+table(titanic$pclass, titanic$survived)
+```
+
+4. Using `write_csv()`, write the `titanic` dataframe as a new comma separated text file called `titanic.csv` in your `1_Data`  folder. Now you have the data saved as a text file any software can use!
+
+```{r, eval = F, echo = F}
+# write data to .csv
+write_csv(x = titanic, 
+          path = "1_Data/titanic.csv")
+```
+
+#### SPSS
+
+```{r, out.width = "10%", fig.align = 'left', eval = TRUE, echo = FALSE}
+knitr::include_graphics("http://www.sqlearn.gr/wp-content/uploads/2010/12/2000px-SPSS_logo.jpg")
+```
+
+5. Using `read_spss()` read in the sleep data set `sleep.sav` of staff at he University of Melbourne as a new object called `sleep`. (Make sure that you have first loaded the `haven` package).
+
+```{r, eval = F, echo = T}
+XX <- read_spss(file = "XX")
+```
+
+```{r, eval = F, echo = F}
+# Read sleep data
+sleep <- read_spss(file = "1_Data/sleep.sav")
+```
+
+6. Print your `sleep` object and evaluate its dimensions using `dim()`.
+
+```{r, eval = F, echo = F}
+# print and show dimensions
+sleep
+dim(sleep)
+```
+
+7. How many drinks do staff at the University of Melbourne consumer per day (variable `alcohol`). To do this, use the `mean()` function, while taking care of missing values using the `na.rm` argument. 
+
+```{r, eval = F, echo = F}
+# compute mean number of drinks
+mean(x = sleep, na.rm = TRUE)
+```
+
+8. Using the `write_csv()` function, write the `sleep` data to a new file called `sleep.csv` in your `1_Data` folder. Now you have the `sleep` data stored as a text file any software can use!
+
+```{r, eval = F, echo = F}
+# write data to .csv
+write_csv(x = sleep, 
+          path = "1_Data/sleep.csv")
+```
+
+
+#### SAS
+
+```{r, out.width = "10%", fig.align = 'left', eval = TRUE, echo = FALSE}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/1/10/SAS_logo_horiz.svg")
+```
+
+9. Using `read_sas()`, read in `airbnb_zuerich.sas7bdat` containing AirBnB listings in Zürich, Switzerland and call the object `airbnb_zuerich`.
+
+```{r, eval = F, echo = T}
+# read sas data
+XX <- read_sas(data_file = "XX")
+```
+
+```{r, eval = F, echo = F}
+# read airbnb_zuerich.sas7bdat
+airbnb_zuerich <- read_sas(data_file = "1_Data/airbnb_zuerich.sas7bdat")
+```
+
+10. Print `airbnb_zuerich` and then evaluate its dimensions using `dim()`.
+
+```{r, eval = F, echo = F}
+# print and show dimenisons
+airbnb_zuerich
+dim(airbnb_zuerich)
+```
+
+11. How many AirBnB listings were there of each `room_type` in Zürich? (Hint: Using `table()`)
+
+```{r, eval = F, echo = F}
+# table room type
+table(airbnb_zuerich$room_type)
+```
+
+12. Using `write_csv()` write your `airbnb_zuerich` data frame to as new comma-separated text file called `airbnb_zuerich.csv` in your `1_Data` folder.
+
+```{r, eval = F, echo = F}
+# write data to .csv
+write_csv(x = airbnb_zuerich, 
+          path = "1_Data/airbnb_zuerich.csv")
+```
+
+## E - Use R's data format
+
+R has two data formats of its own - `.Rdata` and `.RDS`. We recommend to use only `.RDS` as its use follows the same logic as with other read and write functions. A benefit of using R's data formats is compression, leading to often substantially smaller file sizes. 
+
+1. First, using `read_csv()` read back in the `diamonds_clean.csv` dataset as an object called `diamonds_clean`. 
+
+```{r, eval = F, echo = F}
+# read diamonds_clean.csv
+diamonds_clean <- read_csv("1_Data/diamonds_clean.csv")
+```
+
+2. Using `saveRDS()` write `diamonds_clean` to an `.RDS`-file called `diamonds_clean.RDS` into your `1_Data` folder. The function works just like the other write functions.
+
+```{r, eval = F, echo = T}
+# write to RDS
+saveRDS(object = XX, 
+        file = "XX")
+```
+
+```{r, eval = F, echo = F}
+# write to RDS
+saveRDS(diamonds_clean, 
+        file = "1_Data/diamonds_clean.RDS")
+```
+
+3. Using `readRDS()`, read the `diamonds_clean.RDS` back into R as a new object called `diamonds_clean_rds`. Then, print the `diamonds_clean_rds` object and see that it looks the same as the original `diamonds_clean` object.
+
+```{r, eval = F, echo = F}
+# read from RDS
+diamonds_clean_rds <- readRDS("1_Data/diamonds_clean.RDS")
+```
+
+4. Using the `file.size()` function, compare the file size of your `diamonds_clean.csv` and `diamonds_clean.RDS` files. Which file is larger?
+
+```{r, eval = F, echo = TRUE}
+# Check the file sizes of diamonds_clean.csv and  diamonds_clean.RDS
+file.size("1_Data/XX")
+file.size("1_Data/XX")
+```
+
+```{r, eval = F, echo = F}
+# read from RDS
+file.size("1_Data/diamonds_clean.csv")
+file.size("1_Data/diamonds_clean.RDS")
+```
+
+## X - Scraping the internet
+
+1. Finally on to something completely new. These days a lot of data is available not come in a ready-made, spreadsheet-like form, but must be extracted and processed in order to be used. One such data source is the world wide web. The code below based on the `rvest` and `xml2` packages shows a short example of how to extract a table from R's Wikipedia page. Run the code and experience how easy it is to extract data from a webpage.
+
+```{r, eval=F, echo=T}
+# load package
+library(tidyverse)
+library(rvest)
+library(xml2)
+
+# get html
+url <- 'https://en.wikipedia.org/wiki/R_(programming_language)' 
+page <- read_html(url)
+
+# get raw html table
+# use XPath from inspect page (e.g., in Chrome)
+table_raw <- html_node(page, xpath = '//*[@id="mw-content-text"]/div/table[2]')
+
+# transform to data frame
+table <- html_table(table_raw)
+
+# create tibble
+as_tibble(table)
+```
+
+2. If you like, tweak the code to extract tables from other websites. The only things you need to change is the `url` and the `xpath` location. To extract the latter, use the feature of *Chrome* or *Firefox* to show you the html code for a given webpage element. To access the html code right-click on the website element of interest and select `Inspect` or `Inspect element` depending on whether you use Chrome or Firefox. Next right-click on the currently marked element in the html code pane and select `Copy/Copy XPath` or `Copy/XPath` again depending on the browser. Now, you can insert the `XPath` location into your code using `cmd + v` (Mac) or `ctrl + v`. If the code does not work, you probably selected the wrong element. Look out for an element called, e.g., `<table class="wikitable">`, in the case of *Wikipedia*. 
+
+
+## Additional Resources
+
+- For more information on reading and writing see Grolemund`s and Wickham's [R for Data Science](http://r4ds.had.co.nz/data-import.html).

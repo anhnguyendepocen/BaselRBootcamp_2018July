@@ -23,7 +23,7 @@ layout: true
 &lt;div class="my-footer"&gt;&lt;span&gt;
 &lt;a href="https://therbootcamp.github.io/"&gt;&lt;font color="#7E7E7E"&gt;BaselRBootcamp, July 2018&lt;/font&gt;&lt;/a&gt;
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
-&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
 &lt;a href="https://therbootcamp.github.io/"&gt;&lt;font color="#7E7E7E"&gt;www.therbootcamp.com&lt;/font&gt;&lt;/a&gt;
@@ -94,7 +94,7 @@ layout: true
 
 
 ```r
-# T-test comparing height based on gender
+# t-test comparing height based on gender
 t.test(formula = height ~ sex,
          data = baselers)
 
@@ -150,7 +150,6 @@ They also require a &lt;high&gt;formula&lt;/high&gt; that specifies a &lt;high&g
 .pull-right55[
 
 How to create a statistical object:
-
 
 
 ```r
@@ -283,7 +282,7 @@ These tests take either a &lt;high&gt;formula&lt;/high&gt; for the argument `for
 
 | Hypothesis Test| R Function|
 |------------:|------------:|
-|     T-test|    `t.test()`|
+|     t-test|    `t.test()`|
 |     Correlation Test|    `cor.test()`|
 |     Chi-Square Test|   `chisq.test()`|
 ]
@@ -293,7 +292,7 @@ These tests take either a &lt;high&gt;formula&lt;/high&gt; for the argument `for
 
 .pull-right5[
 
-### T-Test with `t.test()`
+### t-test with `t.test()`
 
 
 ```r
@@ -342,7 +341,7 @@ These tests take either a &lt;high&gt;formula&lt;/high&gt; for the argument `for
 
 | Hypothesis Test| R Function|
 |------------:|------------:|
-|     T-test|    `t.test()`|
+|     t-test|    `t.test()`|
 |     Correlation Test|    `cor.test()`|
 |     Chi-Square Test|   `chisq.test()`|
 ]
@@ -476,10 +475,13 @@ my_glm &lt;- glm(formula = income ~ food * alcohol,
 
 ---
 
+# Exploring statistical objects
+
 .pull-left35[
-## Exploring statistical objects
 
 Explore statistical objects using &lt;high&gt;generic&lt;/high&gt; functions such as `print()`, `summary()`, `predict()` and `plot()`.
+
+&lt;high&gt;Generic&lt;/high&gt; functions different things depending on the &lt;high&gt;class label&lt;/high&gt; of the object. 
 
 
 ```r
@@ -494,25 +496,17 @@ plot(obj)        # Plotting
 predict(obj, ..) # Predict
 ```
 
-Generic functions won't work for all statistical objects, but it is a great idea to try each of them!
-
 ]
 
 .pull-right6[
-&lt;br&gt;
 
 
 ```r
 # Create a glm object
 my_glm &lt;- glm(formula = income ~ happiness + age,
               data = baselers)
-```
 
-Apply the `print()` function to a statistical object
-
-
-```r
-# Print the object
+# print the my_glm object
 print(my_glm)
 ```
 
@@ -536,10 +530,13 @@ print(my_glm)
 
 ---
 
+# Exploring statistical objects
+
 .pull-left35[
-## Exploring statistical objects
 
 Explore statistical objects using &lt;high&gt;generic&lt;/high&gt; functions such as `print()`, `summary()`, `predict()` and `plot()`.
+
+&lt;high&gt;Generic&lt;/high&gt; functions different things depending on the &lt;high&gt;class label&lt;/high&gt; of the object. 
 
 
 ```r
@@ -554,24 +551,17 @@ plot(obj)        # Plotting
 predict(obj, ..) # Predict
 ```
 
-Generic functions won't work for all statistical objects, but it is a great idea to try each of them!
 ]
 
 .pull-right6[
-&lt;br&gt;
 
 
 ```r
 # Create a glm object
 my_glm &lt;- glm(formula = income ~ happiness + age,
               data = baselers)
-```
 
-Apply the `summary()` function to a statistical object
-
-
-```r
-# Print the object
+# Show summary of the my_glm object
 summary(my_glm)
 ```
 
@@ -607,10 +597,13 @@ summary(my_glm)
 
 ---
 
+# Exploring statistical objects
+
 .pull-left35[
-## Exploring statistical objects
 
 Explore statistical objects using &lt;high&gt;generic&lt;/high&gt; functions such as `print()`, `summary()`, `predict()` and `plot()`.
+
+&lt;high&gt;Generic&lt;/high&gt; functions different things depending on the &lt;high&gt;class label&lt;/high&gt; of the object. 
 
 
 ```r
@@ -625,42 +618,41 @@ plot(obj)        # Plotting
 predict(obj, ..) # Predict
 ```
 
-Generic functions won't work for all statistical objects, but it is a great idea to try each of them!
 ]
 
 .pull-right6[
 
-### Statistical objects are lists! Explore them!
-
-Almost &lt;high&gt;all statistical objects are lists&lt;/high&gt;. They all have named elements you can access with &lt;high&gt;`$`&lt;/high&gt;. To see all of the named elements, use `names()`
+Many &lt;high&gt;statistical objects are lists&lt;/high&gt;. Show elements with `names()`, access them with &lt;high&gt;`$`&lt;/high&gt;.
 
 
 ```r
 # What are the named elements
 names(my_glm)
 ```
+ 
 
 ```
 ##  [1] "coefficients"      "residuals"         "fitted.values"     "effects"           "R"                
-##  [6] "rank"              "qr"                "family"            "linear.predictors" "deviance"         
-## [11] "aic"               "null.deviance"     "iter"              "weights"           "prior.weights"    
-## [16] "df.residual"       "df.null"           "y"                 "converged"         "boundary"         
-##  [ reached getOption("max.print") -- omitted 11 entries ]
+##  [6] "rank"              "qr"                "family"            "linear.predictors" "deviance"
 ```
  
+&lt;p align="left"&gt;
+  &lt;img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/list_tab.png" height="180px" vspace="10px"&gt;
+&lt;/p&gt;
  
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/list_tab.png" width="70%" style="display: block; margin: auto;" /&gt;
-
 
 ]
 
 
 ---
 
+# Exploring statistical objects
+
 .pull-left35[
-## Exploring statistical objects
 
 Explore statistical objects using &lt;high&gt;generic&lt;/high&gt; functions such as `print()`, `summary()`, `predict()` and `plot()`.
+
+&lt;high&gt;Generic&lt;/high&gt; functions different things depending on the &lt;high&gt;class label&lt;/high&gt; of the object. 
 
 
 ```r
@@ -675,15 +667,10 @@ plot(obj)        # Plotting
 predict(obj, ..) # Predict
 ```
 
-Generic functions won't work for all statistical objects, but it is a great idea to try each of them!
-
 ]
 
 .pull-right6[
 
-### Statistical objects are lists! Explore them!
-
-Explore statistical objects using many &lt;high&gt;generic&lt;/high&gt; functions such as `print()`, `summary()`, `predict()` and `plot()`.
 
 
 ```r
@@ -691,47 +678,52 @@ Explore statistical objects using many &lt;high&gt;generic&lt;/high&gt; function
 my_glm$coefficients
 ```
 
+
 ```
 ## (Intercept)   happiness         age 
 ##      1575.5      -100.4       149.3
 ```
 
+
 ```r
 # First 5 fitted values
-my_glm$fitted.values[1:5]
+my_glm$fitted.values
 ```
 
+
 ```
-##     1     2     3     4     5 
-##  7643 10578  5501  4904  4657
+##     1     2     3     4     5     6     7     8 
+##  7643 10578  5501  4904  4657 10279 11373  6994
 ```
+
 
 ```r
 # First 5 residuals
-my_glm$residuals[1:5]
+my_glm$residuals
 ```
 
-```
-##       1       2       3       4       5 
-## -1343.1   322.2  -401.2  -703.9  -656.8
-```
 
+```
+##       1       2       3       4       5       6 
+## -1343.1   322.2  -401.2  -703.9  -656.8  1120.8
+```
 
 ]
 
 
 ---
 
-.pull-left35[
-## predict()
+# `predict`
 
-`predict(object, newdata)` allows you to use your statistical `object` to &lt;high&gt;predict outcomes&lt;/high&gt; from a new data frame called `newdata`.
+.pull-left4[
+
+`predict(model, newdata)` allows you to use your `model` to &lt;high&gt;predict outcomes&lt;/high&gt; for `newdata`.
 
 
 
 
 ```r
-lastyear
+last_year
 ```
 
 
@@ -739,11 +731,10 @@ lastyear
 |--:|---:|-------:|-------:|------:|
 |  1|  44|       7|       6|   6300|
 |  2|  65|       8|       5|  10900|
-|  3|  31|       6|       3|   5100|
 
 
 ```r
-thisyear
+this_year
 ```
 
 
@@ -752,30 +743,27 @@ thisyear
 |---:|---:|-------:|-------:|:------|
 | 101|  21|       3|       4|NA     |
 | 102|  23|       6|       8|NA     |
-| 103|  26|       6|       3|NA     |
 
 
 ]
 
 
-.pull-right6[
+.pull-right55[
 
-&lt;br&gt;&lt;br&gt;
-
-Create &lt;high&gt;`model`&lt;/high&gt; based on `leastyear`
+&lt;high&gt;Fit `model`&lt;/high&gt; based on `leastyear`
 
 
 ```r
 # Create regression model predicting income
-model &lt;- lm(formula = income ~ age + fitness + tattoos,
+model &lt;- lm(formula = income ~ age + tattoos,
             data = lastyear)
 
 model$coefficients
 ```
 
 ```
-## (Intercept)         age     fitness     tattoos 
-##       994.1       146.8        75.1      -173.3
+## (Intercept)         age     tattoos 
+##      1418.3       145.7      -175.5
 ```
 
 Now use `model` to &lt;high&gt;`predict`&lt;/high&gt; values for `thisyear`
@@ -789,8 +777,8 @@ predict(object = model,
 
 
 ```
-##    1    2    3 
-## 3610 3436 4742
+##    1    2 
+## 3776 3366
 ```
 
 ]
@@ -799,28 +787,30 @@ predict(object = model,
 
 .pull-left4[
 
-## tidy()
+# `tidy`
 
-The `tidy()` function from the `broom` package converts the most important results of many statistical object like "glm" to a data frame
-
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/broom_hex.png" width="70%" style="display: block; margin: auto;" /&gt;
+The `tidy()` function from the `broom` package &lt;high&gt;converts&lt;/high&gt; the most important results of many statistical object like "glm" to a &lt;high&gt;data frame&lt;/high&gt;.
 
 
 ```r
-# Install the broom package
-install.packages("broom")
+# install and load broom
+install.packages('broom')
+library(broom)
 ```
+
+&lt;p align="center"&gt;
+  &lt;img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/broom_hex.png" height="200px" vspace="10"&gt;
+&lt;/p&gt;
 
 
 ]
 
 .pull-right55[
 
+&lt;br&gt;&lt;br&gt;
+
 
 ```r
-# Load boom package
-library(broom)
-
 # Original printout
 my_glm
 ```
@@ -841,19 +831,20 @@ my_glm
 
 
 
+
 ```r
 # Tidy printout
 tidy(my_glm)
 ```
 
 ```
-##          term estimate std.error statistic   p.value
-## 1 (Intercept)   1575.5   94.3629    16.696 1.328e-61
-## 2   happiness   -100.4   12.5197    -8.022 1.180e-15
-## 3         age    149.3    0.8145   183.315 0.000e+00
+## # A tibble: 3 x 5
+##   term        estimate std.error statistic  p.value
+##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)    1575.    94.4       16.7  1.33e-61
+## 2 happiness      -100.    12.5       -8.02 1.18e-15
+## 3 age             149.     0.815    183.   0.
 ```
-
-Try it on your favorite models and see the magic!
 
 ]
 
@@ -861,44 +852,49 @@ Try it on your favorite models and see the magic!
 
 ---
 
-.pull-left45[
+# Sampling Functions
 
-## Sampling Functions
+.pull-left4[
 
-R gives you a host of functions for sampling data from common &lt;high&gt;statistical distributions&lt;/high&gt;
+R gives you a host of functions for sampling data from common &lt;high&gt;statistical distributions&lt;/high&gt; (see `?distributions`).
+
+Use these to easily &lt;high&gt;simulate data&lt;/high&gt;:
+
+.pull-left55[
 
 | Distribution| R Function|
-|------:|----:|
+|------:|------------:|
 |    Normal| `rnorm()`|    
 |      Uniform|`runif()`|
 |      Beta|`rbeta()`|  
 |      Binomial|`rbinom()`|  
 
-Use these to easily &lt;high&gt;simulate data&lt;/high&gt;
+]
 
 ]
 
 .pull-right5[
 
-&lt;font size = 5&gt;?distributions&lt;/font&gt;
-
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/distributions_help.png" width="90%" style="display: block; margin: auto;" /&gt;
+&lt;p align="left"&gt;
+  &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/distributions_help.png" height = "450px"&gt;
+&lt;/p&gt;
 
 ]
 
 ---
 
+
 .pull-left45[
 
-## sample()
+# sample()
 
-Use `sample()` to draw a random sample from a vector
+Use `sample()` to &lt;high&gt;draw a random sample&lt;/high&gt; from a vector.
 
 
 ```r
-# Simulate 10 flips of a fair coin
+# Simulate 8 flips of a fair coin
 coin_flips &lt;- sample(x = c("H", "T"), 
-                     size = 10, 
+                     size = 8, 
                      prob = c(.5, .5),
                      replace = TRUE)
 
@@ -906,7 +902,11 @@ coin_flips
 ```
 
 ```
-##  [1] "T" "T" "H" "H" "H" "H" "H" "T" "T" "T"
+<<<<<<< HEAD
+## [1] "T" "T" "H" "H" "T" "H" "T" "T"
+=======
+## [1] "H" "T" "H" "H" "T" "T" "T" "H"
+>>>>>>> 57343262f063e289e06827d36f156b22e7edc7dd
 ```
 
 ```r
@@ -917,17 +917,25 @@ table(coin_flips)
 ```
 ## coin_flips
 ## H T 
-## 5 5
+<<<<<<< HEAD
+## 3 5
+=======
+## 4 4
+>>>>>>> 57343262f063e289e06827d36f156b22e7edc7dd
 ```
+
 
 ]
 
 
 .pull-right5[
+&lt;br&gt;
+&lt;p align="left"&gt;
+  &lt;font size=5&gt;&lt;high&gt;The Birthday problem&lt;/high&gt;&lt;/font size=5&gt;
+  &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+  &lt;img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/balloons.png" height = "100px"&gt;
+&lt;/p&gt;
 
-### Simulate the birthday problem
-
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/balloons.png" width="20%" style="display: block; margin: auto;" /&gt;
 
 
 ```r
@@ -951,24 +959,27 @@ length(birthdays)
 ```
 
 ```
-## [1] 14
+<<<<<<< HEAD
+## [1] 13
+=======
+## [1] 39
+>>>>>>> 57343262f063e289e06827d36f156b22e7edc7dd
 ```
 
 ]
 
 ---
 
+# `rnorm`, `runif()`, `...`
+
 .pull-left5[
 
-## rnorm(), runif()...
-
-Use the `rnorm()`, `runif()`... functions to draw random samples from probability distributions
+Use the `rnorm()`, `runif()`, `...` functions to draw random &lt;high&gt;samples from probability distributions&lt;/high&gt;.
 
 
 
 ```r
 # Random sample from Normal distribution
-
 mysamp &lt;- rnorm(n = 100,   # Number of samples
                 mean = 10, # Mean of pop
                 sd = 5)    # SD of pop ...
@@ -977,7 +988,11 @@ mysamp[1:5]  # First 5 values
 ```
 
 ```
-## [1] 12.19 14.00 14.02 10.49  5.67
+<<<<<<< HEAD
+## [1]  8.567 14.250 15.241  3.318  7.258
+=======
+## [1] 13.317  8.822 18.485 10.627 19.035
+>>>>>>> 57343262f063e289e06827d36f156b22e7edc7dd
 ```
 
 ```r
@@ -985,7 +1000,11 @@ mean(mysamp) # Mean
 ```
 
 ```
-## [1] 11.68
+<<<<<<< HEAD
+## [1] 10.13
+=======
+## [1] 11.16
+>>>>>>> 57343262f063e289e06827d36f156b22e7edc7dd
 ```
 
 ```r
@@ -993,7 +1012,11 @@ sd(mysamp)   # Standard deviation
 ```
 
 ```
-## [1] 5.003
+<<<<<<< HEAD
+## [1] 4.562
+=======
+## [1] 5.017
+>>>>>>> 57343262f063e289e06827d36f156b22e7edc7dd
 ```
 
 
@@ -1001,25 +1024,17 @@ sd(mysamp)   # Standard deviation
 
 .pull-right45[
 
-
-```r
-ggplot(data = tibble(x = mysamp),
-       aes(x = x, y = ..density..)) +
-  geom_histogram(col = "white", 
-                 bins = 10) + 
-  geom_density(col = "red", size = 1.5) + 
-  theme_minimal()
-```
-
-&lt;img src="Statistics_files/figure-html/unnamed-chunk-47-1.png" width="100%" /&gt;
+&lt;img src="Statistics_files/figure-html/unnamed-chunk-48-1.png" width="100%" /&gt;
 
 ]
 
 ---
 
-.pull-left45[
-&lt;br&gt;&lt;br&gt;
-## Other great statistics packages
+
+.pull-left4[
+
+# Other great statistics packages
+
 &lt;br&gt;
 
 |package|Description|
@@ -1035,57 +1050,61 @@ ggplot(data = tibble(x = mysamp),
 ]
 
 
-.pull-right5[
+.pull-right55[
 
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/lavaan_ss.jpg" style="display: block; margin: auto;" /&gt;
+&lt;br&gt;&lt;br&gt;
 
+&lt;p align="center"&gt;
+  &lt;img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/BayesFactor_ss.png" height= "120px"&gt;
+&lt;/p&gt;
 
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/BayesFactor_ss.png" style="display: block; margin: auto;" /&gt;
-
+&lt;p align="center"&gt;
+  &lt;img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/lavaan_ss.jpg" height= "320px" vspace="35px"&gt;
+&lt;/p&gt;
 
 ]
 
 ---
+
+# Summary
 
 .pull-left45[
-&lt;br&gt;&lt;br&gt;
-## Summary
 
-R has a package for every statistical procedure you can imagine.
+1 - There are &lt;high&gt;packages for every statistical procedure&lt;/high&gt; you can imagine in R.
 
-Most have &lt;high&gt;formula&lt;/high&gt; and &lt;high&gt;data&lt;/high&gt; arguments (among many others).
+2 - Most have &lt;high&gt;formula&lt;/high&gt; and &lt;high&gt;data&lt;/high&gt; arguments (among many others).
 
-Use help menus to understand arguments!
+3 - Use &lt;high&gt;help files&lt;/high&gt; to understand the arguments of functions!
 
-Once you've created a statistical object, use generic functions (`print()`, `names()`, `summary()`), to explore it.
+4 - Once you've created a statistical object, use &lt;high&gt;generic functions&lt;/high&gt; to explore it: `print()`, `names()`, `summary()`, etc.
 
-Use random sampling functions to run simulations.
+5 - Use &lt;high&gt;random sampling&lt;/high&gt; functions to run simulations.
 
 ]
 
 .pull-right5[
 
-`?t.test`
 
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/ttesthelp_ss.png" width="100%" style="display: block; margin: auto;" /&gt;
+```r
+?t.test
+```
+
+&lt;p align="left"&gt;
+  &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/ttesthelp_ss.png" height= "380px" &gt;
+&lt;/p&gt;
 
 ]
 
 
 ---
 
-&lt;br&gt;
+# Practical
 
-## Questions?
-
-## [Demo and Practical](https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/Statistics/Statistics_practical.html)
-
-&lt;br&gt;
-
-&lt;div class="figure" style="text-align: center"&gt;
-&lt;img src="https://cdn.lynda.com/course/495322/495322-636154038826424503-16x9.jpg" alt="Source: Lynda.com" width="55%" /&gt;
-&lt;p class="caption"&gt;Source: Lynda.com&lt;/p&gt;
-&lt;/div&gt;
+&lt;p&gt;
+  &lt;font size=6&gt;
+    &lt;a href="https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/Statistics/Statistics_practical.html"&gt;&lt;b&gt;Link to practical&lt;b&gt;&lt;/a&gt;
+  &lt;/font&gt;
+&lt;/p&gt;
     </textarea>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
@@ -1104,12 +1123,23 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   d.head.appendChild(s);
 })();</script>
 
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  tex2jax: {
-    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
   }
-});
+})();
 </script>
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

@@ -203,7 +203,7 @@ skim(trial_act)
 
 ### B - Change column names with rename()
 
-1. Printthe names of the `trial_act` data with `names()`
+1. Print the names of the `trial_act` data with `names()`
 
 2. Using `rename()`, change the column name `wtkg` in the `trial_act` dataframe to `weight_kg`. Be sure to assign the result back to `trial_act` to change it!
 

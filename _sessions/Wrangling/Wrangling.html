@@ -362,7 +362,7 @@ patients_df   # Demographic data
 ---
 
 
-# `rename()` 
+# `rename` 
 
 .pull-left45[
 
@@ -395,7 +395,7 @@ patients_df  # Original
 
 .pull-right45[
 
-Change the old name "a" to "age", and "b" to "arm"
+Change the old name "b" to "age", and "c" to "arm"
 
 
 ```r
@@ -423,7 +423,7 @@ patients_df %&gt;%
 
 ---
 
-# `mutate()` 
+# `mutate` 
 
 .pull-left35[
 
@@ -472,7 +472,7 @@ patients_df %&gt;%
 
 ---
 
-# `case_when()`
+# `case_when`
 
 .pull-left4[
 
@@ -532,7 +532,7 @@ patients_df %&gt;%
 
 ---
 
-# `left_join()`
+# `left_join`
 
 .pull-left35[
 
@@ -1049,12 +1049,23 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   d.head.appendChild(s);
 })();</script>
 
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  tex2jax: {
-    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
   }
-});
+})();
 </script>
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

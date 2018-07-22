@@ -1,0 +1,462 @@
+---
+title: "Data I/O"
+author: "The R Bootcamp <br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
+date: "July 2018"
+output:
+  xaringan::moon_reader:
+    css: ["default", "baselrbootcamp.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: '16:9'
+---
+
+layout: true
+
+<div class="my-footer"><span>
+<a href="https://therbootcamp.github.io/"><font color="#7E7E7E">Basel, July 2018</font></a>
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+&emsp;&emsp;&emsp;&emsp;&emsp;
+<a href="https://therbootcamp.github.io/"><font color="#7E7E7E">www.therbootcamp.com</font></a>
+</span></div> 
+
+
+---
+
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+
+options(width=110)
+options(digits = 4)
+
+require(readr)
+require(tibble)
+```
+
+# Data Input/Output
+
+.pull-left45[
+
+Raw data can come in many shapes and sizes, but <high>R's got you covered</high>.
+<br><br>
+.pull-left65[
+
+| Package     |   Description|
+|:----------------|:-------------------------------------------------------|
+| `readr`| `.csv`, `.txt`, etc. |
+| `haven`| `.sav`, `.sas7bdat`, `.dta`          |
+| `readxl`  | `.xls`, `.xlsx` |
+| `R.matlab` | `.mat` |
+| `jsonlite` | `.json` |
+| `rvest` | `.html` |
+| `XML`, `xml2` | `.xml` |
+
+]
+
+]
+
+.pull-right45[
+
+<img src="http://blog.datasift.com/wp-content/uploads/2014/10/ms-files-3.jpg">
+
+]
+
+---
+
+# Raw (structured) Data
+
+.pull-left45[
+
+<high>delim-separated data</high>
+*.csv, .txt, etc.*
+
+<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/baselers_raw.png">
+
+]
+
+.pull-right45[
+
+<high>markup data</high>
+*.xml, .xls, .html, (.json), etc.*
+
+<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/rbootcamp_raw.png">
+
+]
+
+---
+
+# Delim-separated data 
+
+.pull-left45[
+
+1 - Most typical file format.
+
+2 - Requires <high>delimiter</high> to separate entries. 
+
+<br>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/PNG/readr.png" height=200>
+</p>
+
+]
+
+.pull-right45[
+
+<high>delim-separated data</high>
+*.csv, .txt, etc.*
+
+<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/baselers_raw.png">
+
+]
+
+---
+
+# `readr`
+
+`readr` is a `tidyverse` package that provides convenient functions to **read in** *flat* (non-nested) data files into data frames (`tibble`s to be precise):
+
+.pull-left3[
+<br>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/PNG/readr.png" height=200>
+</p>
+] 
+
+.pull-right65[
+<br>
+```{r, eval=F}
+# Importing data from a file
+
+data <- read_csv(file, ...)   # comma-delimited
+data <- read_csv2(file, ...)  # semicolon-delimeted
+data <- read_delim(file, ...) # arbitrary-delimited
+
+# Writing a data frame to a file
+
+write_csv(data_object, file, ...)    # comma-delimited
+write_delim(data_object, file, ...)  # arbitrary-delimited
+```
+]
+
+---
+
+# Finding the file path
+
+.pull-left4[
+
+1 - Identify the file path using the <high>auto-complete</high>.  
+
+2 - Initiate auto-complete and browse through the folder structure by placing the cursor between two quotation marks and using the <high>tab key</high>.
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/tab.png" height="80px"></img>
+</p>
+
+3 - Auto-complete begins with the project folder - <high>place your data inside your project folder!</high>
+
+] 
+
+.pull-right55[
+
+<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/load_baselers_ss.jpg"></img>
+
+]
+
+---
+
+# Identifying the delimiter
+
+.pull-left5[
+
+1 - <high>Find the file</high> on your hard drive. Should be in your data folder inside your project.
+
+2 - <high>Open the file</high> in RStudio (right-click on the file in the *Files* pane) a text viewer, e.g., *TextEdit* (Mac), *TextWranger* (Mac), *WordPad* (Windows).
+<br><br><br>
+<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/find_data.png">
+
+]
+
+.pull-right45[
+
+<center>`baselers.csv`
+
+<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/baselers_raw.png">
+
+]
+
+---
+
+# Identifying the delimiter
+
+.pull-left5[
+
+1 - <high>Find the file</high> on your hard drive. Should be in your data folder inside your project.
+
+2 - <high>Open the file</high> in RStudio (right-click on the file in the *Files* pane) a text viewer, e.g., *TextEdit* (Mac), *TextWranger* (Mac), *WordPad* (Windows).
+<br><br><br>
+```{r, eval=F}
+# Read with explicit column names
+baselers <- read_delim(file = ".../baselers.csv",
+                       delim = c(",")
+```
+
+]
+
+.pull-right45[
+
+<center>`baselers.csv`
+
+<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/baselers_raw.png">
+
+]
+
+
+---
+
+# Handling headers
+
+.pull-left5[
+
+1 - `readr`- functions typically expect the <high>column names</high> in the first line.
+
+2 - If no column names are available, use the <high>`col_names`-argument</high> to provide them.
+<br><br><br>
+```{r, eval=F}
+# Read with explicit column names
+baselers <- read_csv(file = ".../baselers.csv",
+                     col_names = c("id",
+                                  "age",
+                                   ...))
+```
+
+]
+
+.pull-right45[
+
+<center>`baselers.csv`
+
+<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/baselers_raw.png">
+
+]
+
+---
+
+# Handling data types
+
+.pull-left5[
+
+Reading in data, <high>`readr` infers the type of data</high> for each column. 
+
+```{r}
+# Read baselers
+read_csv(file = "1_Data/baselers.csv")
+```
+
+]
+
+.pull-right45[
+
+<center>`baselers.csv`
+
+<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/baselers_raw.png">
+
+]
+
+---
+
+# Handling data types
+
+.pull-left5[
+
+Incorrect data types can be fixed. Typically this involves:
+
+1 - <high>removing character elements</high> from otherwise numeric variables.<br><br2>
+2 - Setting <high>explicit `NA` strings</high> using the `na`-argument.<br><br2>
+3 - Re-running <high>`type_convert`</high>.<br><br>
+
+```{r, eval = F}
+# Read baselers
+baseslers <- read_csv(file = ".../baselers.csv",
+                      na = c('NA'))
+
+# Try to fix incorrect data types
+baselers <- type_convert(baselers)
+```
+
+]
+
+.pull-right45[
+
+<center>`baselers.csv`</center>
+
+<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/baselers_raw.png">
+
+]
+
+---
+
+# Other data
+
+R provides <high>read and write functions</high> for practically all data file formats. See [rio](https://cran.r-project.org/web/packages/rio/vignettes/rio.html).
+
+.pull-left45[
+### `readr` <img src="http://d33wubrfki0l68.cloudfront.net/66d3133b4a19949d0b9ddb95fc48da074b69fb07/7dfb6/images/hex-readr.png" width="50", align="right"> 
+```{r, eval = F}
+# read fixed width files (can be fast)
+data <- read_fwf(file, ...)
+
+# read Apache style log files
+data <- read_log(file, ...)
+
+```
+
+### `haven` <img src="http://haven.tidyverse.org/logo.png" width="50" align="right">
+```{r, eval = F}
+# read SAS's .sas7bat and sas7bcat files
+data <- read_sas(file, ...)
+
+# read SPSS's .sav files
+data <- read_sav(file, ...)
+
+# etc
+```
+]
+
+.pull-right45[
+### `readxl` <img src="https://www.rstudio.com/wp-content/uploads/2017/05/readxl-259x300.png" width="50" align="right">
+```{r, eval = F}
+# read Excel's .xls and xlsx files
+data <- read_excel(file, ...)
+```
+<br>
+### Other
+```{r, eval = F}
+# Read Matlab .mat files
+data <- R.matlab::readMat(file, ...)
+
+# Read and wrangle .xml and .html
+data <- XML::xmlParseParse(file, ...)
+
+# from package jsonlite: read .json files
+data <- jsonlite::read_json(file, ...)
+```
+]
+
+---
+
+# Websites
+
+R provides <high>read and write functions</high> for practically all data file formats. See [rio](https://cran.r-project.org/web/packages/rio/vignettes/rio.html).
+
+.pull-left4[
+
+```{r, eval = F}
+# load package
+library(rvest)
+library(xml2)
+
+# get html page (abbreviated)
+url <- '.../R_(programming_language)' 
+page <- read_html(u)
+
+# get xpath (abbreviated)
+xpath <- '.../div/table[2]'
+
+# get table using XPath
+table <- page %>% 
+  html_node(
+    xpath = xpath) %>% 
+  html_table()
+```
+]
+
+.pull-right55[
+```{r, echo = F, message = F}
+# load package
+library(rvest)
+library(xml2)
+
+# get html page
+u = 'https://en.wikipedia.org/wiki/R_(programming_language)' 
+page = read_html(u)
+
+# get xpath
+xpath = '//*[@id="mw-content-text"]/div/table[2]'
+
+# get table using XPath
+table = page %>% 
+  html_node(
+    xpath = xpath) %>% 
+  html_table()
+
+# return tibble
+a = as_tibble(table)
+a$Description = stringr::str_sub(a$Description,1,30)
+a
+```
+]
+
+
+---
+
+# Remote databases
+
+R provides <high>all necessary tools to pull data from or directly work with</high> remote databases such as, e.g., a `SQL` database. Find out more at:
+
+<br><br>
+<div class="center_text_2">
+  <span>
+  <a href="https://db.rstudio.com/">db.rstudio.com</a>
+  </span>
+</div> 
+
+
+
+---
+
+# R's data formats
+
+R's own formats provide the possibility to store <high>data as R objects</high> as well as substantial <high>compression</high>. 
+
+.pull-left45[
+### `.RData`  
+1 - Bundles <high>several R objects</high>.<br>
+2 - Loads objects <high>directly into workspace</high>.
+<br><br><br>
+```{r, eval = F}
+# save data as .RData
+save(baselers, zuerichers, ...,
+     file = "my_data.RData")
+
+# load data from .RData
+load("my_data.RData")
+```
+]
+
+.pull-right45[
+### `.RDS`  
+1 - Stores <high>single R objects</high>.<br>
+2 - Import is <high>assigned to object</high>.
+<br><br><br>
+```{r, eval = F}
+# save data as .RDS
+saveRDS(baselers,
+        file = "baselers.rds")
+
+# load data from .RDS
+baselers <- readRDS("baselers.rds")
+```
+]
+
+---
+
+# Practical
+
+<font size=6><b><a href="https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/DataIO/Data_IO_practical.html">Link to practical</a>
+
+

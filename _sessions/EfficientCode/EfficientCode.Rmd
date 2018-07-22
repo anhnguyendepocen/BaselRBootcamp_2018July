@@ -71,13 +71,13 @@ options(digits = 4)
 
 .pull-right45[
 <font size = 5>*Reasons for R being slow*<br><br>
-**Extreme dynamism** - allows you to code flexibly.
+<high>Extreme dynamism</high> - allows you to code flexibly.
 - weak dynamic typing
 - copy-on-modify semantics
 - Pass-by-value
 
 <br2>
-**Name lookup** (in environments/namespaces) - allows you to import packages and name your objects flexibly.
+<high>Name lookup</high> (in environments/namespaces) - allows you to import packages and name your objects flexibly.
 ]
 
 ---
@@ -85,9 +85,15 @@ options(digits = 4)
 # When is R slow?
 
 .pull-left35[
-- (R) programs are slow when a large number computations of computations are required.
 
-- Usually this involves, explicitly or implicitly (i.e., in the background), running a **loop**. 
+<font size = 5>
+
+(R) programs are slow when a large number computations of computations are required.<br><br>
+
+Usually this involves, explicitly or implicitly (i.e., in the background), running a <high>loop</high>. 
+
+</font>
+
 ]
 
 .pull-right55[

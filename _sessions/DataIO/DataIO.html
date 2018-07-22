@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Data I/O</title>
+    <meta charset="utf-8">
+    <meta name="author" content="The R Bootcamp  www.therbootcamp.com @therbootcamp" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="baselrbootcamp.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Data I/O
+### The R Bootcamp <br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'><span class="citation">@therbootcamp</span></a>
+### July 2018
+
+---
+
+
+layout: true
+
+&lt;div class="my-footer"&gt;&lt;span&gt;
+&lt;a href="https://therbootcamp.github.io/"&gt;&lt;font color="#7E7E7E"&gt;Basel, July 2018&lt;/font&gt;&lt;/a&gt;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&lt;a href="https://therbootcamp.github.io/"&gt;&lt;font color="#7E7E7E"&gt;www.therbootcamp.com&lt;/font&gt;&lt;/a&gt;
+&lt;/span&gt;&lt;/div&gt; 
+
+
+---
+
+
+
+
+# Data Input/Output
+
+.pull-left45[
+
+Raw data can come in many shapes and sizes, but &lt;high&gt;R's got you covered&lt;/high&gt;.
+&lt;br&gt;&lt;br&gt;
+.pull-left65[
+
+| Package     |   Description|
+|:----------------|:-------------------------------------------------------|
+| `readr`| `.csv`, `.txt`, etc. |
+| `haven`| `.sav`, `.sas7bdat`, `.dta`          |
+| `readxl`  | `.xls`, `.xlsx` |
+| `R.matlab` | `.mat` |
+| `jsonlite` | `.json` |
+| `rvest` | `.html` |
+| `XML`, `xml2` | `.xml` |
+
+]
+
+]
+
+.pull-right45[
+
+&lt;img src="http://blog.datasift.com/wp-content/uploads/2014/10/ms-files-3.jpg"&gt;
+
+]
+
+---
+
+# Raw (structured) Data
+
+.pull-left45[
+
+&lt;high&gt;delim-separated data&lt;/high&gt;
+*.csv, .txt, etc.*
+
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/baselers_raw.png"&gt;
+
+]
+
+.pull-right45[
+
+&lt;high&gt;markup data&lt;/high&gt;
+*.xml, .xls, .html, (.json), etc.*
+
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/rbootcamp_raw.png"&gt;
+
+]
+
+---
+
+# Delim-separated data 
+
+.pull-left45[
+
+1 - Most typical file format.
+
+2 - Requires &lt;high&gt;delimiter&lt;/high&gt; to separate entries. 
+
+&lt;br&gt;
+&lt;p align="center"&gt;
+  &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/PNG/readr.png" height=200&gt;
+&lt;/p&gt;
+
+]
+
+.pull-right45[
+
+&lt;high&gt;delim-separated data&lt;/high&gt;
+*.csv, .txt, etc.*
+
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/baselers_raw.png"&gt;
+
+]
+
+---
+
+# `readr`
+
+`readr` is a `tidyverse` package that provides convenient functions to **read in** *flat* (non-nested) data files into data frames (`tibble`s to be precise):
+
+.pull-left3[
+&lt;br&gt;
+&lt;p align="center"&gt;
+  &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/PNG/readr.png" height=200&gt;
+&lt;/p&gt;
+] 
+
+.pull-right65[
+&lt;br&gt;
+
+```r
+# Importing data from a file
+
+data &lt;- read_csv(file, ...)   # comma-delimited
+data &lt;- read_csv2(file, ...)  # semicolon-delimeted
+data &lt;- read_delim(file, ...) # arbitrary-delimited
+
+# Writing a data frame to a file
+
+write_csv(data_object, file, ...)    # comma-delimited
+write_delim(data_object, file, ...)  # arbitrary-delimited
+```
+]
+
+---
+
+# Finding the file path
+
+.pull-left4[
+
+1 - Identify the file path using the &lt;high&gt;auto-complete&lt;/high&gt;.  
+
+2 - Initiate auto-complete and browse through the folder structure by placing the cursor between two quotation marks and using the &lt;high&gt;tab key&lt;/high&gt;.
+
+&lt;p align="center"&gt;
+  &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/tab.png" height="80px"&gt;&lt;/img&gt;
+&lt;/p&gt;
+
+3 - Auto-complete begins with the project folder - &lt;high&gt;place your data inside your project folder!&lt;/high&gt;
+
+] 
+
+.pull-right55[
+
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/load_baselers_ss.jpg"&gt;&lt;/img&gt;
+
+]
+
+---
+
+# Identifying the delimiter
+
+.pull-left5[
+
+1 - &lt;high&gt;Find the file&lt;/high&gt; on your hard drive. Should be in your data folder inside your project.
+
+2 - &lt;high&gt;Open the file&lt;/high&gt; in RStudio (right-click on the file in the *Files* pane) a text viewer, e.g., *TextEdit* (Mac), *TextWranger* (Mac), *WordPad* (Windows).
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/find_data.png"&gt;
+
+]
+
+.pull-right45[
+
+&lt;center&gt;`baselers.csv`
+
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/baselers_raw.png"&gt;
+
+]
+
+---
+
+# Identifying the delimiter
+
+.pull-left5[
+
+1 - &lt;high&gt;Find the file&lt;/high&gt; on your hard drive. Should be in your data folder inside your project.
+
+2 - &lt;high&gt;Open the file&lt;/high&gt; in RStudio (right-click on the file in the *Files* pane) a text viewer, e.g., *TextEdit* (Mac), *TextWranger* (Mac), *WordPad* (Windows).
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+```r
+# Read with explicit column names
+baselers &lt;- read_delim(file = ".../baselers.csv",
+                       delim = c(",")
+```
+
+]
+
+.pull-right45[
+
+&lt;center&gt;`baselers.csv`
+
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/baselers_raw.png"&gt;
+
+]
+
+
+---
+
+# Handling headers
+
+.pull-left5[
+
+1 - `readr`- functions typically expect the &lt;high&gt;column names&lt;/high&gt; in the first line.
+
+2 - If no column names are available, use the &lt;high&gt;`col_names`-argument&lt;/high&gt; to provide them.
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+```r
+# Read with explicit column names
+baselers &lt;- read_csv(file = ".../baselers.csv",
+                     col_names = c("id",
+                                  "age",
+                                   ...))
+```
+
+]
+
+.pull-right45[
+
+&lt;center&gt;`baselers.csv`
+
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/baselers_raw.png"&gt;
+
+]
+
+---
+
+# Handling data types
+
+.pull-left5[
+
+Reading in data, &lt;high&gt;`readr` infers the type of data&lt;/high&gt; for each column. 
+
+
+```r
+# Read baselers
+read_csv(file = "1_Data/baselers.csv")
+```
+
+```
+## Parsed with column specification:
+## cols(
+##   .default = col_integer(),
+##   sex = col_character(),
+##   height = col_double(),
+##   weight = col_double(),
+##   income = col_double(),
+##   education = col_character(),
+##   confession = col_character(),
+##   food = col_double(),
+##   fasnacht = col_character(),
+##   eyecor = col_character()
+## )
+```
+
+```
+## See spec(...) for full column specifications.
+```
+
+```
+## # A tibble: 10,000 x 20
+##       id sex     age height weight income education confession children happiness fitness  food alcohol
+##    &lt;int&gt; &lt;chr&gt; &lt;int&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;chr&gt;         &lt;int&gt;     &lt;int&gt;   &lt;int&gt; &lt;dbl&gt;   &lt;int&gt;
+##  1     1 male     44   174.  113.    6300 SEK_III   catholic          2         5       7   610      40
+##  2     2 male     65   180.   75.2  10900 obligato… confessio…        2         7       8  1550       0
+##  3     3 fema…    31   168.   55.5   5100 SEK_III   &lt;NA&gt;              2         7       6   720      14
+##  4     4 male     27   209    93.8   4200 SEK_III   catholic          2         7       8   680      39
+##  5     5 male     24   177.   NA     4000 SEK_III   catholic          1         5       4   260      19
+##  6     6 male     63   187.   67.4  11400 SEK_III   evangelic…        0         7       1  1240       0
+##  7     7 male     71   152.   83.3  12000 SEK_III   evangelic…        2         8       5  1160      38
+##  8     8 fema…    41   156.   67.8   7600 SEK_III   confessio…        1         7       2  1350       0
+##  9     9 male     43   176.   69.3   8500 apprenti… catholic          2         7       5   150      50
+## 10    10 fema…    31   166.   66.3   6100 SEK_II    catholic          1         6       7   700       0
+## # ... with 9,990 more rows, and 7 more variables: tattoos &lt;int&gt;, rhine &lt;int&gt;, datause &lt;int&gt;,
+## #   consultations &lt;int&gt;, hiking &lt;int&gt;, fasnacht &lt;chr&gt;, eyecor &lt;chr&gt;
+```
+
+]
+
+.pull-right45[
+
+&lt;center&gt;`baselers.csv`
+
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/baselers_raw.png"&gt;
+
+]
+
+---
+
+# Handling data types
+
+.pull-left5[
+
+Incorrect data types can be fixed. Typically this involves:
+
+1 - &lt;high&gt;removing character elements&lt;/high&gt; from otherwise numeric variables.&lt;br&gt;&lt;br2&gt;
+2 - Setting &lt;high&gt;explicit `NA` strings&lt;/high&gt; using the `na`-argument.&lt;br&gt;&lt;br2&gt;
+3 - Re-running &lt;high&gt;`type_convert`&lt;/high&gt;.&lt;br&gt;&lt;br&gt;
+
+
+```r
+# Read baselers
+baseslers &lt;- read_csv(file = ".../baselers.csv",
+                      na = c('NA'))
+
+# Try to fix incorrect data types
+baselers &lt;- type_convert(baselers)
+```
+
+]
+
+.pull-right45[
+
+&lt;center&gt;`baselers.csv`&lt;/center&gt;
+
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/baselers_raw.png"&gt;
+
+]
+
+---
+
+# Other data
+
+R provides &lt;high&gt;read and write functions&lt;/high&gt; for practically all data file formats. See [rio](https://cran.r-project.org/web/packages/rio/vignettes/rio.html).
+
+.pull-left45[
+### `readr` &lt;img src="http://d33wubrfki0l68.cloudfront.net/66d3133b4a19949d0b9ddb95fc48da074b69fb07/7dfb6/images/hex-readr.png" width="50", align="right"&gt; 
+
+```r
+# read fixed width files (can be fast)
+data &lt;- read_fwf(file, ...)
+
+# read Apache style log files
+data &lt;- read_log(file, ...)
+```
+
+### `haven` &lt;img src="http://haven.tidyverse.org/logo.png" width="50" align="right"&gt;
+
+```r
+# read SAS's .sas7bat and sas7bcat files
+data &lt;- read_sas(file, ...)
+
+# read SPSS's .sav files
+data &lt;- read_sav(file, ...)
+
+# etc
+```
+]
+
+.pull-right45[
+### `readxl` &lt;img src="https://www.rstudio.com/wp-content/uploads/2017/05/readxl-259x300.png" width="50" align="right"&gt;
+
+```r
+# read Excel's .xls and xlsx files
+data &lt;- read_excel(file, ...)
+```
+&lt;br&gt;
+### Other
+
+```r
+# Read Matlab .mat files
+data &lt;- R.matlab::readMat(file, ...)
+
+# Read and wrangle .xml and .html
+data &lt;- XML::xmlParseParse(file, ...)
+
+# from package jsonlite: read .json files
+data &lt;- jsonlite::read_json(file, ...)
+```
+]
+
+---
+
+# Websites
+
+R provides &lt;high&gt;read and write functions&lt;/high&gt; for practically all data file formats. See [rio](https://cran.r-project.org/web/packages/rio/vignettes/rio.html).
+
+.pull-left4[
+
+
+```r
+# load package
+library(rvest)
+library(xml2)
+
+# get html page (abbreviated)
+url &lt;- '.../R_(programming_language)' 
+page &lt;- read_html(u)
+
+# get xpath (abbreviated)
+xpath &lt;- '.../div/table[2]'
+
+# get table using XPath
+table &lt;- page %&gt;% 
+  html_node(
+    xpath = xpath) %&gt;% 
+  html_table()
+```
+]
+
+.pull-right55[
+
+```
+## # A tibble: 15 x 3
+##    Release Date       Description                     
+##    &lt;chr&gt;   &lt;chr&gt;      &lt;chr&gt;                           
+##  1 0.16    ""         This is the last alpha version  
+##  2 0.49    1997-04-23 This is the oldest source rele  
+##  3 0.60    1997-12-05 "R becomes an official part of "
+##  4 0.65.1  1999-10-07 First versions of update.packa  
+##  5 1.0     2000-02-29 Considered by its developers s  
+##  6 1.4     2001-12-19 "S4 methods are introduced and "
+##  7 2.0     2004-10-04 Introduced lazy loading, which  
+##  8 2.1     2005-04-18 Support for UTF-8 encoding, an  
+##  9 2.11    2010-04-22 Support for Windows 64 bit sys  
+## 10 2.13    2011-04-14 Adding a new compiler function  
+## 11 2.14    2011-10-31 Added mandatory namespaces for  
+## 12 2.15    2012-03-30 "New load balancing functions. "
+## 13 3.0     2013-04-03 Support for numeric index valu  
+## 14 3.4     2017-04-21 Just-in-time compilation (JIT)  
+## 15 3.5     2018-04-23 Packages byte-compiled on inst
+```
+]
+
+
+---
+
+# Remote databases
+
+R provides &lt;high&gt;all necessary tools to pull data from or directly work with&lt;/high&gt; remote databases such as, e.g., a `SQL` database. Find out more at:
+
+&lt;br&gt;&lt;br&gt;
+&lt;div class="center_text_2"&gt;
+  &lt;span&gt;
+  &lt;a href="https://db.rstudio.com/"&gt;db.rstudio.com&lt;/a&gt;
+  &lt;/span&gt;
+&lt;/div&gt; 
+
+
+
+---
+
+# R's data formats
+
+R's own formats provide the possibility to store &lt;high&gt;data as R objects&lt;/high&gt; as well as substantial &lt;high&gt;compression&lt;/high&gt;. 
+
+.pull-left45[
+### `.RData`  
+1 - Bundles &lt;high&gt;several R objects&lt;/high&gt;.&lt;br&gt;
+2 - Loads objects &lt;high&gt;directly into workspace&lt;/high&gt;.
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+```r
+# save data as .RData
+save(baselers, zuerichers, ...,
+     file = "my_data.RData")
+
+# load data from .RData
+load("my_data.RData")
+```
+]
+
+.pull-right45[
+### `.RDS`  
+1 - Stores &lt;high&gt;single R objects&lt;/high&gt;.&lt;br&gt;
+2 - Import is &lt;high&gt;assigned to object&lt;/high&gt;.
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+```r
+# save data as .RDS
+saveRDS(baselers,
+        file = "baselers.rds")
+
+# load data from .RDS
+baselers &lt;- readRDS("baselers.rds")
+```
+]
+
+---
+
+# Practical
+
+&lt;font size=6&gt;&lt;b&gt;&lt;a href="https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/DataIO/Data_IO_practical.html"&gt;Link to practical&lt;/a&gt;
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
