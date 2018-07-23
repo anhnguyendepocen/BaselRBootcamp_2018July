@@ -400,15 +400,14 @@ include_graphics(path = "https://raw.githubusercontent.com/therbootcamp/therboot
 ## Rendering output
 
 
-The `datatable()` function from the `DT` package will include a rich HTML table in your document. See [https://rstudio.github.io/DT/options.html](https://rstudio.github.io/DT/options.html) for customisation options
+The `datatable()` function from the `DT` package will include a rich HTML table in your document. See [rstudio.github.io/DT/options.html](https://rstudio.github.io/DT/options.html) for customisation options
 
 ```{r}
 library(DT)
 
 datatable(baselers %>% 
-            slice(1:1000) %>%
-            select(id, sex, age, height, weight, income),
-          options = list(pageLength = 4))
+            select(id, sex, age, height, weight, income), # Only these columns
+          options = list(pageLength = 4))                 # 4 Rows at a time please
 ```
 
 
