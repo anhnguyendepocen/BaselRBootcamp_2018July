@@ -397,6 +397,22 @@ include_graphics(path = "https://raw.githubusercontent.com/therbootcamp/therboot
 
 ---
 
+## Rendering output
+
+
+The `datatable()` function from the `DT` package will include a rich HTML table in your document. See [https://rstudio.github.io/DT/options.html](https://rstudio.github.io/DT/options.html) for customisation options
+
+```{r}
+library(DT)
+
+datatable(baselers %>% select(id, sex, age, height, weight, income),
+          options = list(pageLength = 4))
+```
+
+
+
+---
+
 ## Managing working directories with RMarkdown
 
 When you knit `Markdown.Rmd`, the working directory will be *changed to the location of* `Markdown.Rmd`.
@@ -485,12 +501,7 @@ chickens <- read_csv("1_Data/chickens.csv")
 ```
 
 
-
-
 ]
-
-
-
 
 
 ---
