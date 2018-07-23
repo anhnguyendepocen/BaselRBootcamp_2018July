@@ -405,7 +405,7 @@ If your `MyMarkdown.Rmd` file is in a sub folder like `4_Markdown`...
 
 &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/DynamicReports_SubFolder.png" width="70%" style="display: block; margin: auto;" /&gt;
 
-Include the following code in the first chunk to tell Markdown that the main project directory is one folder "up"
+Include the following code &lt;high&gt;in the first chunk&lt;/high&gt; to tell Markdown that the main project directory is &lt;high&gt;one folder "up"&lt;/high&gt;
 
 
 ```r
@@ -413,12 +413,11 @@ Include the following code in the first chunk to tell Markdown that the main pro
 knitr::opts_knit$set(root.dir = "../")
 ```
 
-
 ]
 
 .pull-right5[
-
-Without root directory fix
+&lt;br&gt;&lt;br&gt;
+Loading files &lt;high&gt;without&lt;/high&gt; root directory fix
 
 
 ```r
@@ -428,7 +427,9 @@ baselers &lt;- read_csv("../1_Data/baselers.csv")
 chickens &lt;- read_csv("../1_Data/chickens.csv")
 ```
 
-With root directory fix
+Loading files &lt;high&gt;with&lt;/high&gt; root directory fix
+
+&lt;i&gt;Recommended!&lt;/i&gt;
 
 
 ```r
@@ -493,7 +494,7 @@ http://rmarkdown.rstudio.com/gallery.html
 
 ## Why are dynamic documents so great?
 
-.pull-left45[
+.pull-left6[
 
 
 1. &lt;high&gt;Tidy!&lt;/high&gt; Data, code, and output are all in the same place.
@@ -511,7 +512,7 @@ http://rmarkdown.rstudio.com/gallery.html
 
 ]
 
-.pull-right45[
+.pull-right35[
 &lt;br&gt;
 &lt;center&gt;&lt;a href="https://bookdown.org/yihui/rmarkdown/"&gt;&lt;img src="https://bookdown.org/yihui/rmarkdown/images/cover.png" width="250"&gt;&lt;/a&gt;
 

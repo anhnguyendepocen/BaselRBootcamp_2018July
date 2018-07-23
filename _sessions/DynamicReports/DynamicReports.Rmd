@@ -450,19 +450,18 @@ If your `MyMarkdown.Rmd` file is in a sub folder like `4_Markdown`...
 knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/DynamicReports_SubFolder.png")
 ```
 
-Include the following code in the first chunk to tell Markdown that the main project directory is one folder "up"
+Include the following code <high>in the first chunk</high> to tell Markdown that the main project directory is <high>one folder "up"</high>
 
 ```{r, echo = TRUE, eval = FALSE}
 # Fix working directory issue
 knitr::opts_knit$set(root.dir = "../")
 ```
 
-
 ]
 
 .pull-right5[
-
-Without root directory fix
+<br><br>
+Loading files <high>without</high> root directory fix
 
 ```{r, eval = FALSE, echo = TRUE}
 library(tidyverse)
@@ -471,7 +470,9 @@ baselers <- read_csv("../1_Data/baselers.csv")
 chickens <- read_csv("../1_Data/chickens.csv")
 ```
 
-With root directory fix
+Loading files <high>with</high> root directory fix
+
+<i>Recommended!</i>
 
 ```{r, eval = FALSE, echo = TRUE}
 # Fix working directory issue
@@ -537,7 +538,7 @@ http://rmarkdown.rstudio.com/gallery.html
 
 ## Why are dynamic documents so great?
 
-.pull-left45[
+.pull-left6[
 
 
 1. <high>Tidy!</high> Data, code, and output are all in the same place.
@@ -557,7 +558,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 
 ]
 
-.pull-right45[
+.pull-right35[
 <br>
 <center><a href="https://bookdown.org/yihui/rmarkdown/"><img src="https://bookdown.org/yihui/rmarkdown/images/cover.png" width="250"></a>
 
