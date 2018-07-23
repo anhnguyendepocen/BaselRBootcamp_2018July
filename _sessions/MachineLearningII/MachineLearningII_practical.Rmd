@@ -92,7 +92,6 @@ The following set of example code will take you through the basic steps of machi
 ```{r, echo = TRUE, eval = FALSE, results = 'hide', message = FALSE}
 # Load packages
 library(tidyverse)
-library(GGally)
 library(caret)
 
 # ------------------------------------
