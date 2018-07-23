@@ -405,7 +405,9 @@ The `datatable()` function from the `DT` package will include a rich HTML table 
 ```{r}
 library(DT)
 
-datatable(baselers %>% select(id, sex, age, height, weight, income),
+datatable(baselers %>% 
+            slice(1:1000) %>%
+            select(id, sex, age, height, weight, income),
           options = list(pageLength = 4))
 ```
 
