@@ -218,7 +218,7 @@ my_mean <- function(x){
   
   # check precondition and
   # if it's not met return NA
-  if (any(is.na(NA) | !is.numeric(x))){
+  if (!is.numeric(x) | length(x) == 0){
     return(NA)
   }
   
@@ -323,7 +323,7 @@ Let's create a function called `show_stats()` which takes a numeric vector as an
 ```{r}
 show_stats <- function(x, digits = 2) {
   
-  if(class(x) != "numeric") {
+  if(!is.numeric(x)) {
     
     stop("x is not numeric!!!")}
   
@@ -660,5 +660,5 @@ Let's go through some examples together
 
 # Programming in R Practical
 
-<p><font size=6><b><a href="https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/D4S1_ProgrammingInR/Programming_in_R_practical.html">Link to practical</a>
+<p><font size=6><b><a href="https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/Programming/Programming_practical.html">Link to practical</a>
 
