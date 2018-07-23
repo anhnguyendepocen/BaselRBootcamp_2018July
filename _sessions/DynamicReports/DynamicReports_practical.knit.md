@@ -73,7 +73,7 @@ By the end of this practical you will know how to:
 
 <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/rmarkdown_ss_C.png" width="60%" style="display: block; margin: auto;" />
 
-5. Save your markdown file *in your main project directory* (not in the `4_Markdown` folder! -- you'll put it there later!) under the name `mcdonalds.Rmd`
+5. Save your markdown file *in your main project directory* (not a sub-folder -- you'll put it there later!) under the name `Mcdonalds_Nutrition.Rmd`
 
 6. Now *knit* your document to an HTML file. To do this, click the *knit* button (or use the Command + Shift + K shortcut)
 

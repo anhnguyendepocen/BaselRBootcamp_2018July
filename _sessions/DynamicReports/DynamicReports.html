@@ -78,17 +78,19 @@ Many opportunities for &lt;high&gt;human error&lt;/high&gt; in transferring resu
 
 
 ---
-## Dynamic report workflow
+## Dynamic report
+
+A &lt;high&gt;Dynamic Report&lt;/high&gt; &lt;u&gt;automatically generates&lt;/u&gt; output from a combination of data, code, images, and text.
+
 &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/DynamicReports_ProcessHorizontal.png" style="display: block; margin: auto;" /&gt;
 
 ---
 
 .pull-left55[
 
-## What is a dynamic report?
+## Why are dynamic reports great?
 
-A document that is &lt;u&gt;automatically generated&lt;/u&gt; from a combination of data, code, images, and text.
-
+&lt;br&gt;
 &lt;high&gt;Accurate&lt;/high&gt;
 
 - Statistical output are never mistyped
@@ -356,38 +358,97 @@ include_graphics(path = "images/rlogo.png")
 
 ## Managing working directories with RMarkdown
 
-.pull-left4[
-&lt;br&gt;&lt;br&gt;
-When you knit a \*.Rmd file, the working directory will be *temporarily changed to the location of that file*.
+When you knit `Markdown.Rmd`, the working directory will be *changed to the location of* `Markdown.Rmd`.
 
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/wd_ss.png" width="70%" style="display: block; margin: auto;" /&gt;
+.pull-left45[
 
+Situation 1: Markdown.Rmd is in the &lt;high&gt;same folder&lt;/high&gt; as `*.Rproj`
 
-If your Markdown file is **not** in the root working directory of your project (is in a folder), then your code may no longer work.
-
-
-]
-
-.pull-right55[
-
-This code might work when you evaluate it directly in your RStudio session
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/DynamicReports_SameFolder.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 
 ```r
-mydata &lt;- read_csv(file = "data/mydata.csv")
+# Load data from 1_Data folder
+read_csv(file = "1_Data/baselers.csv")
 ```
 
-But when you **knit** the document, you might see an error like this:
+Can read data normally because `Markdown.Rmd` is in the same folder as the project.
 
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/error_wd.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 ]
+
+.pull-right45[
+
+Situation 2: Markdown.Rmd is in a &lt;high&gt;sub folder&lt;/high&gt; (e.g.; `4_Markdown`)
+
+
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/DynamicReports_SubFolder.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+
+```r
+# Load data from 1_Data folder
+read_csv(file = "../1_Data/baselers.csv")
+```
+
+Must include `../` in your path to tell Markdown that the project directory is one folder 'up'
+
+]
+
 
 ---
 
 ## Managing working directories with RMarkdown
 
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/markdown_wd_B.png" width="90%" style="display: block; margin: auto;" /&gt;
+.pull-left45[
+
+If your `MyMarkdown.Rmd` file is in a sub folder like `4_Markdown`...
+
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/DynamicReports_SubFolder.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+Include the following code in the first chunk to tell Markdown that the main project directory is one folder "up"
+
+
+```r
+# Fix working directory issue
+knitr::opts_knit$set(root.dir = "../")
+```
+
+
+]
+
+.pull-right5[
+
+Without root directory fix
+
+
+```r
+library(tidyverse)
+
+baselers &lt;- read_csv("../1_Data/baselers.csv")
+chickens &lt;- read_csv("../1_Data/chickens.csv")
+```
+
+With root directory fix
+
+
+```r
+# Fix working directory issue
+knitr::opts_knit$set(root.dir = "../")
+
+library(tidyverse)
+
+baselers &lt;- read_csv("1_Data/baselers.csv")
+chickens &lt;- read_csv("1_Data/chickens.csv")
+```
+
+
+
+
+]
+
+
+
+
 
 ---
 

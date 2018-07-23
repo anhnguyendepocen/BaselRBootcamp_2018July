@@ -92,7 +92,10 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 
 
 ---
-## Dynamic report workflow
+## Dynamic report
+
+A <high>Dynamic Report</high> <u>automatically generates</u> output from a combination of data, code, images, and text.
+
 ```{r, echo = FALSE}
 knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/DynamicReports_ProcessHorizontal.png")
 ```
@@ -101,10 +104,9 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 
 .pull-left55[
 
-## What is a dynamic report?
+## Why are dynamic reports great?
 
-A document that is <u>automatically generated</u> from a combination of data, code, images, and text.
-
+<br>
 <high>Accurate</high>
 
 - Statistical output are never mistyped
@@ -397,43 +399,98 @@ include_graphics(path = "https://raw.githubusercontent.com/therbootcamp/therboot
 
 ## Managing working directories with RMarkdown
 
-.pull-left4[
-<br><br>
-When you knit a \*.Rmd file, the working directory will be *temporarily changed to the location of that file*.
+When you knit `Markdown.Rmd`, the working directory will be *changed to the location of* `Markdown.Rmd`.
+
+.pull-left45[
+
+Situation 1: Markdown.Rmd is in the <high>same folder</high> as `*.Rproj`
 
 ```{r, echo = FALSE, out.width = "70%"}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/wd_ss.png")
+knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/DynamicReports_SameFolder.png")
 ```
-
-
-If your Markdown file is **not** in the root working directory of your project (is in a folder), then your code may no longer work.
-
-
-]
-
-.pull-right55[
-
-This code might work when you evaluate it directly in your RStudio session
 
 ```{r, eval = FALSE}
-mydata <- read_csv(file = "data/mydata.csv")
+# Load data from 1_Data folder
+read_csv(file = "1_Data/baselers.csv")
 ```
 
-But when you **knit** the document, you might see an error like this:
+Can read data normally because `Markdown.Rmd` is in the same folder as the project.
 
-```{r, echo = FALSE, out.width = "90%"}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/error_wd.png")
-```
 
 ]
+
+.pull-right45[
+
+Situation 2: Markdown.Rmd is in a <high>sub folder</high> (e.g.; `4_Markdown`)
+
+
+```{r, echo = FALSE, out.width = "70%"}
+knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/DynamicReports_SubFolder.png")
+```
+
+```{r, eval = FALSE}
+# Load data from 1_Data folder
+read_csv(file = "../1_Data/baselers.csv")
+```
+
+Must include `../` in your path to tell Markdown that the project directory is one folder 'up'
+
+]
+
 
 ---
 
 ## Managing working directories with RMarkdown
 
-```{r, echo = FALSE, out.width = "90%"}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/markdown_wd_B.png")
+.pull-left45[
+
+If your `MyMarkdown.Rmd` file is in a sub folder like `4_Markdown`...
+
+```{r, echo = FALSE, out.width = "70%"}
+knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/DynamicReports_SubFolder.png")
 ```
+
+Include the following code in the first chunk to tell Markdown that the main project directory is one folder "up"
+
+```{r, echo = TRUE, eval = FALSE}
+# Fix working directory issue
+knitr::opts_knit$set(root.dir = "../")
+```
+
+
+]
+
+.pull-right5[
+
+Without root directory fix
+
+```{r, eval = FALSE, echo = TRUE}
+library(tidyverse)
+
+baselers <- read_csv("../1_Data/baselers.csv")
+chickens <- read_csv("../1_Data/chickens.csv")
+```
+
+With root directory fix
+
+```{r, eval = FALSE, echo = TRUE}
+# Fix working directory issue
+knitr::opts_knit$set(root.dir = "../")
+
+library(tidyverse)
+
+baselers <- read_csv("1_Data/baselers.csv")
+chickens <- read_csv("1_Data/chickens.csv")
+```
+
+
+
+
+]
+
+
+
+
 
 ---
 
