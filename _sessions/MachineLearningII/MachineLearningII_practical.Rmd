@@ -30,7 +30,9 @@ library(tidyverse)
 </figure>
 
 
-## Overview
+## {.tabset}
+
+### Overview
 
 In this practical you'll practice advanced machnine learning using the `caret` package
 
@@ -43,13 +45,12 @@ By the end of this practical you will know how to:
 5. Predict new data with `predict()`
 6. Evaluate model performance with `postResample()`
 
-## Packages
+### Packages
 
 |Package| Installation|
 |:------|:------|
 |`tidyverse`|`install.packages("tidyverse")`|
 |`caret`|`install.packages("caret")`|
-|`skimr`|`install.packages("skimr")`|
 
 ### Cheatsheet
 
@@ -92,7 +93,6 @@ The following set of example code will take you through the basic steps of machi
 # Load packages
 library(tidyverse)
 library(GGally)
-library(skimr)
 library(caret)
 
 # ------------------------------------
@@ -116,13 +116,6 @@ diamonds_train <- diamonds %>%
 
 diamonds_test <- diamonds %>%
   slice(-train_v$Resample1)
-
-# ---------------
-# Explore
-# ---------------
-
-# Explore columns with summarizeColumns
-skim(diamonds_train)
 
 # ---------------
 # Step 1: Define control parameters
@@ -209,7 +202,7 @@ Step 0: Setup
 
 - Load the training data `XXX_train.csv` as a new dataframe called `XXX_train` and the test data `XXX_test.csv` as a new dataframe called `XXX_test`.
 
-- Explore the `XXX_train` dataframe with a combination of `skim()`, `names()`, `summary()` and other similar functions.
+- Explore the `XXX_train` dataframe with a combination of `names()`, `summary()` and other similar functions.
 
 - If there are any predictors in the data that you *don't* want in the model, consider excluding them when you train the model in Step 2 (`train()`)
 

@@ -53,15 +53,15 @@ layout: true
 &lt;br&gt;&lt;br&gt;
 ## What is wrong?
 
-Many opportunities for human error in transferring results.
+Many opportunities for &lt;high&gt;human error&lt;/high&gt; in transferring results.
 
 &gt; Wait is the p-value .07 or 0.70?
 
-No clear documentation on exactly how the analysis was conducted. 
+&lt;high&gt;No documentation&lt;/high&gt; on exactly how the analysis was conducted. 
 
 &gt; How did I exactly do that analysis again??
 
-Slow. 
+&lt;high&gt;Slow&lt;/high&gt; 
 &gt; You want me to do that analysis again with new data?! Do you know how long that took me?!
 
 ### The solution? A Dynamic Report
@@ -79,36 +79,37 @@ Slow.
 
 ---
 ## Dynamic report workflow
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/reproducible_workflow.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/DynamicReports_ProcessHorizontal.png" style="display: block; margin: auto;" /&gt;
 
 ---
 
-## What is a dynamic report?
-
 .pull-left55[
 
-A dynamic report is a document that is, to  *automatically generated* from a combination of data, code, images, and text.
+## What is a dynamic report?
 
-Accurate
+A document that is &lt;u&gt;automatically generated&lt;/u&gt; from a combination of data, code, images, and text.
+
+&lt;high&gt;Accurate&lt;/high&gt;
 
 - Statistical output are never mistyped
 - The code *must* be correct because it is being run as the report is created.
 
-Reproducible
+&lt;high&gt;Reproducible&lt;/high&gt;
 
-- All instructions to create the document are contained in code that anyone (including your future self) else can see and run.
+- All processes are contained in code that anyone can see and run.
+- The code *must* be correct because it is evaluated as the report is created.
 - Original data is always connected to the final output
 
-Efficient
+&lt;high&gt;Efficient&lt;/high&gt;
 
-- If you get new data, you can easily repeat your analyses in seconds.
+- If you get new data, you can easily repeat your analyses with one click!
 
 
 ]
 
 .pull-right45[
 
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/reproducible_workflow.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/DynamicReports_ProcessVertical.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 
 
@@ -148,13 +149,24 @@ Efficient
 
 ---
 
-## What is Markdown?
+## What is Markdown (.md)?
 
-Markdown is a simple, readable **markup language** that allows you to easily write text with special formatting **tags**, which are then converted to formatted outputs.
+Markdown is a simple, readable markup &lt;high&gt;language&lt;/high&gt; that allows you to easily write text with special &lt;high&gt;formatting tags&lt;/high&gt;, which are then converted to formatted outputs.
 
-**R Markdown** is a combination of Markdown and R code.
 
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/rmarkdown_ss2.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/DynamicReports_BasicMarkdown.png" width="90%" style="display: block; margin: auto;" /&gt;
+
+
+
+---
+
+## What is RMarkdown (.Rmd)?
+
+&lt;high&gt;RMarkdown&lt;/high&gt; is a combination of standard markdown combined with &lt;high&gt;R Code&lt;/high&gt;
+
+
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/DynamicReports_BasicRMarkdown.png" width="90%" style="display: block; margin: auto;" /&gt;
+
 
 ---
 
@@ -165,54 +177,16 @@ Markdown is a simple, readable **markup language** that allows you to easily wri
 
 ---
 
-## Output types
-
-.pull-left4[
-
-- There are *many* different output formats you can create from an R Markdown document
-
-- Many come with RStudio, many are distributed in packages:
-
-| Package|Description|
-|:------|:----|
-|     `xaringan`*| Slideshows (like this one!)|
-|     `papaja`*|APA Manuscripts|
-|     `rmdformats`|Many templates|
-|     `prettydoc`|Many templates|
-
-* = On GitHub
-
-]
-
-.pull-right55[
-
-### R Markdown templates in R Studio
-
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/rmarkdown_templates.png" width="100%" style="display: block; margin: auto;" /&gt;
-
-]
-
-
----
-
-## R Markdown Gallery
-
-http://rmarkdown.rstudio.com/gallery.html
-
-&lt;iframe src="rmarkdown_gallery.htm" width="800" height="450"&gt;&lt;/iframe&gt;
-
----
-
 ## Code Chunks in R Markdown
 
 
-.pull-left35[
+.pull-left4[
 
-Incorporate code in your document in code chunks
+Incorporate code in your document in &lt;high&gt;code chunks&lt;/high&gt;
 
 Everything in a code chunk will be evaluated when you "knit" the document
 
-Each chunk can have arguments that change how it behaves
+Each chunk can have arguments
 
 |Argument| Description|
 |:-----|:------|
@@ -225,7 +199,7 @@ See a list of all chunk options at Yihui's site [here](https://yihui.name/knitr/
 
 ]
 
-.pull-right6[
+.pull-right55[
 
 &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/chunkoptions.png" width="90%" style="display: block; margin: auto;" /&gt;
 
@@ -249,6 +223,81 @@ You can include *inline chunks* where R code is included in a sentence. This all
 
 
 
+
+---
+
+
+.pull-left4[
+
+&lt;br&gt;&lt;br&gt;
+# Keep your project tidy!
+
+&lt;br&gt;
+
+
+1. Easily read in external files like images, R code, or datasets in your R Markdown document.
+
+2. All raw data files (.csv, .sav, etc) should be in a folder (e.g.; `1_Data`) in your R Project directory
+
+3. Keep other files such as images (.jpg, .png) in another well named folder (e.g.; `0_Materials` or `4_Images`)
+&lt;br&gt;&lt;br&gt;
+
+
+]
+
+.pull-right55[
+&lt;br&gt;&lt;br&gt;
+
+&lt;center&gt;&lt;h3&gt;Everything in your project!!&lt;/h3&gt;
+&lt;center&gt;&lt;high&gt;Every&lt;/high&gt; file (data, images) necessary to create your RMarkdown document should be somewhere &lt;high&gt;in your R project folder&lt;/high&gt;!
+
+&lt;img src="https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/DynamicReports_ProjectStructure.png?raw=true" width="100%" style="display: block; margin: auto;" /&gt;
+
+]
+
+---
+## Your code must be complete!
+
+When you knit a Markdown file, R will &lt;high&gt;forget&lt;/high&gt; everything you've done and &lt;high&gt;start from scratch&lt;/high&gt; 
+
+You must &lt;high&gt;load all packages&lt;/high&gt; with `library()` and &lt;high&gt;define all objects&lt;/high&gt;
+
+&lt;img src="https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/DynamicReports_badknit.png?raw=true" width="95%" style="display: block; margin: auto;" /&gt;
+
+
+---
+## Your code must be complete!
+
+When you knit a Markdown file, R will &lt;high&gt;forget&lt;/high&gt; everything you've done and &lt;high&gt;start from scratch&lt;/high&gt; 
+
+You must &lt;high&gt;load all packages&lt;/high&gt; with `library()` and &lt;high&gt;define all objects&lt;/high&gt;
+
+&lt;img src="https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/DynamicReports_goodknit.png?raw=true" width="95%" style="display: block; margin: auto;" /&gt;
+
+
+---
+
+## Keep your code complete and tidy
+
+.pull-left45[
+
+Don't include unnecessary code like random calculations or package installation.
+
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/DynamicReports_BadMarkdown.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+]
+
+.pull-right45[
+
+If you want to save some code for you, comment it out with \#
+
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/DynamicReports_GoodMarkdown.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+]
+
+
+
+
 ---
 
 ## Rendering output with `knitr`
@@ -257,100 +306,50 @@ You can include *inline chunks* where R code is included in a sentence. This all
 
 &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/knitr_hex.png" width="30%" style="display: block; margin: auto;" /&gt;
 
-Special outputs such as images and tables need to be explicitly *rendered* using the `knitr` package.
-
-Two helpful `knitr` functions are `include_graphics()` and `kable()`
-
-| Function|Output|
-|:------|:----|
-|     `kable(df, format)`|Include a dataframe as a table|
-|     `include_graphics(path)`| Include an external image (e.g.; .png, .jpg)|
-
-]
-
-.pull-right45[
-
-Print a table with `kable()`
+Non-text ouputs such as images and tables need to be &lt;u&gt;rendered&lt;/u&gt; using functions from the amazing &lt;high&gt;knitr&lt;/high&gt; package.
 
 
 ```r
-kable(x = baselers %&gt;% 
-        slice(1:3) %&gt;% 
-        select("id", "sex", "height"), 
+# Load the knitr package
+library(knitr)
+```
+
+
+| Function|Output|
+|:------|:----|
+|     `kable(df, format)`|Print a dataframe as a table|
+|     `include_graphics(path)`| Include an image (e.g.; .png, .jpg)|
+
+]
+
+.pull-right5[
+
+Render a table with &lt;high&gt;kable()&lt;/high&gt;
+
+
+```r
+kable(x = baselers,  # A data frame
       format = 'markdown')
 ```
 
 
+| id|sex    | age| height| weight| income|
+|--:|:------|---:|------:|------:|------:|
+|  1|male   |  44|  174.3|  113.4|   6300|
+|  2|male   |  65|  180.3|   75.2|  10900|
+|  3|female |  31|  168.3|   55.5|   5100|
 
-| id|sex    | height|
-|--:|:------|------:|
-|  1|male   |  174.3|
-|  2|male   |  180.3|
-|  3|female |  168.3|
 
-Include an image with `include_graphics()`
+Render an image with &lt;high&gt;include_graphics()&lt;/high&gt;
 
 
 ```r
 include_graphics(path = "images/rlogo.png")
 ```
 
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/rlogo.png" width="20%" style="display: block; margin: auto;" /&gt;
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/rlogo.png" width="30%" style="display: block; margin: auto;" /&gt;
 
 ]
-
----
-
-## Keep your projects tidy
-
-.pull-left4[
-
-&lt;br&gt;
-&lt;br&gt;
-
-1. You can easily read in external files like images, R code, or datasets in your document.
-
-2. All external files should be in a folder in the "Root" Directory containing the Markdown (.Rmd) file
-
-3. All data necessary for your report *must* be explicitly read into the document. So keep them close by!
-
-]
-
-.pull-right55[
-
-#### Here is the "Root" directory of the R Markdown file `dynamicreports.Rmd` that created *this* presentation
-
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/rmarkdown_directory.png" width="100%" style="display: block; margin: auto;" /&gt;
-
-]
-
-
----
-
-## Key points in R Markdown
-
-.pull-left35[
-
-&lt;br&gt;
-&lt;br&gt;
-
-1. When you "Knit" an R markdown document, it will start with an *empty* workspace (ie. it will forget everything!)
-
-2. You must load all packages with `library()` and load in external datasets at the beginning 
-
-3. If you have any typos, errors, or missing code, the document will *not* knit (this is a *good* thing!)
-
-]
-
-.pull-right6[
-
-#### Well formatted R Markdown document
-
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/wellformattedmarkdown.png" width="100%" style="display: block; margin: auto;" /&gt;
-
-]
-
-
 
 
 ---
@@ -358,7 +357,7 @@ include_graphics(path = "images/rlogo.png")
 ## Managing working directories with RMarkdown
 
 .pull-left4[
-
+&lt;br&gt;&lt;br&gt;
 When you knit a \*.Rmd file, the working directory will be *temporarily changed to the location of that file*.
 
 &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/wd_ss.png" width="70%" style="display: block; margin: auto;" /&gt;
@@ -388,14 +387,45 @@ But when you **knit** the document, you might see an error like this:
 
 ## Managing working directories with RMarkdown
 
-
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/markdown_wd_A.png" width="90%" style="display: block; margin: auto;" /&gt;
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/markdown_wd_B.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 ---
 
-## Managing working directories with RMarkdown
+.pull-left4[
+&lt;br&gt;&lt;br&gt;
+## Output types
 
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/markdown_wd_B.png" width="90%" style="display: block; margin: auto;" /&gt;
+There are *many* different output formats you can create from an R Markdown document
+
+Many come with RStudio, many are distributed in packages:
+
+| Package|Description|
+|:------|:----|
+|     `xaringan`*| Slideshows (like this one!)|
+|     `papaja`*|APA Manuscripts|
+|     `rmdformats`|Many templates|
+|     `prettydoc`|Many templates|
+
+* = On GitHub
+
+]
+
+.pull-right55[
+&lt;br&gt;
+### R Markdown templates in R Studio
+
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/rmarkdown_templates.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+]
+
+
+---
+
+## R Markdown Gallery
+
+http://rmarkdown.rstudio.com/gallery.html
+
+&lt;iframe src="rmarkdown_gallery.htm" width="800" height="450"&gt;&lt;/iframe&gt;
 
 
 ---
@@ -404,20 +434,28 @@ But when you **knit** the document, you might see an error like this:
 
 .pull-left45[
 
-&lt;br&gt;
-&lt;br&gt;
 
-1. The data, code, and output are all in the same place.
+1. &lt;high&gt;Tidy!&lt;/high&gt; Data, code, and output are all in the same place.
 
-2. Everything works and is replicable! (If it wasn't, the document wouldn't *Knit*!)
+2. Everything works and is &lt;high&gt;replicable&lt;/high&gt;!
 
-3. You can produce great looking documents, from simple PDFs, to webpages, to presentations (like this one), to books.
+3. You can produce &lt;high&gt;great looking documents&lt;/high&gt;, from simple PDFs, to webpages, to presentations (like this one!).
+
+4. &lt;high&gt;Update your documents&lt;/high&gt; with new data with just one line of code!
+
+
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/RMarkdownOutputFormats.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+
 
 ]
 
 .pull-right45[
+&lt;br&gt;
+&lt;center&gt;&lt;a href="https://bookdown.org/yihui/rmarkdown/"&gt;&lt;img src="https://bookdown.org/yihui/rmarkdown/images/cover.png" width="250"&gt;&lt;/a&gt;
 
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/markdown_complete.png" width="100%" style="display: block; margin: auto;" /&gt;
+[Yihui Xie's free R Markdown guide](https://bookdown.org/yihui/rmarkdown/)
+
 
 ]
 
