@@ -338,5 +338,8 @@ output$table <- renderDT({
 3. Run your app! Do you see your new table!
 
 
+### K - Change the dataset!
 
+1. Because your code is totally flexible, you can easily try your app on a new dataset. Copy the `kc_house.csv` file into your `1_Data` folder inside of your `5_Shiny` folder. Then, in your Shiny code, remove the `baselers.csv` data and replace it with the `kc_house.csv` data.
 
+2. Re run the app! Can you now analyse the `kc_house.csv` data instead of the `baselers.csv` data?
