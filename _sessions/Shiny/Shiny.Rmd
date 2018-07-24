@@ -91,10 +91,9 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 
 ---
 
-## Histogram Shiny App
+## Scatterplot App
 
-<iframe src="https://econpsychbasel.shinyapps.io/geyser_app/" width="1200" height="7500"></iframe>
-
+<iframe src="https://econpsychbasel.shinyapps.io/FinalApp/" width="1200" height="7500"></iframe>
 
 ---
 
@@ -106,7 +105,7 @@ https://econpsychbasel.shinyapps.io/shinyfftrees/
 
 ---
 
-## Balloon Analogue Risk Task (BART) Shinyu App
+## Balloon Analogue Risk Task (BART) Shiny App
 
 <iframe src="https://econpsychbasel.shinyapps.io/shinypsych_bart/" width="1200" height="750"></iframe>
 
@@ -170,7 +169,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
  
  # Let's explore the user interface of an app!
  
- ### P.S. You'll create this app in the practical!
+ ### P.S. You'll create a very similar app in the practical!
 
 ---
 ## User Interface
@@ -260,15 +259,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 ```
 
 ---
-## User Interface, Layout
 
-- You can control the layouts of apps with layout functions
-
-```{r, echo = FALSE, fig.align = 'center', out.width = "60%"}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/shinylayouts.png")
-```
-
----
 ## Server
 
 <font size = 4>All R code that creates plots, does machine learning, accesses databases, searches twitter data (really anything!) goes in the `server()` function.</font>
@@ -278,6 +269,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 ```
 
 ---
+
 ## Server
 
 .pull-left4[
@@ -303,6 +295,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 ]
 
 ---
+
 ## Server
 
 .pull-left45[
@@ -341,6 +334,7 @@ shinyApp(ui = ui, server = server)
 ]
 
 ---
+
 ## Rendering output
 
 The Shiny cheatsheet explains the most common functions for rendering and presenting output.
@@ -350,6 +344,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 ```
 
 ---
+
 ## Publishing (hosting) an app
 
 .pull-left45[
@@ -374,13 +369,14 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 ---
 ## Practical
 
-- In the practical, we will create the following app from scratch, and publish it online!
+In the practical, we will create the following app from scratch, and publish it online!
 
-```{r, echo = FALSE, fig.align = 'center', out.width = "70%"}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/exampleapp_A.png")
-```
+<iframe src="https://econpsychbasel.shinyapps.io/FinalApp/" width="1200" height="7500"></iframe>
+
+
 
 ---
+
 ## Questions?
 
 .pull-left45[
@@ -405,8 +401,3 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 
 <p><font size=6><b><a href="https://therbootcamp.github.io/BaselRBootcamp_2018April/_sessions/D3S3_PlottingII/PlottingII_practical.html">Link to Plotting II practical</a>
 
----
-
-## ggplotgui
-
-<iframe src="http://shiny.gmw.rug.nl/ggplotgui/" width="1200" height="750"></iframe>
