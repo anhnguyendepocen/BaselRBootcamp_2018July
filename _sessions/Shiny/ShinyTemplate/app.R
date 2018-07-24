@@ -21,6 +21,7 @@ ui <- fluidPage(
     
     sidebarPanel(
       
+      # Add Title
       textInput(inputId = "title",
                 label = "Title",
                 value = "Plot Title"),
@@ -58,6 +59,9 @@ ui <- fluidPage(
                   # Plot Tab
                   
                   tabPanel("Plot", br(), plotOutput("my_plot")),
+                  
+                  # Table tab
+                  tabPanel("Data"),
                   
                   # Description Tab
                   
@@ -115,7 +119,7 @@ server <- function(input, output) {
   
   # Add output$table
 
-  # Add  output$downloadPlot!
+  # Add output$downloadPlot!
 
   
   
