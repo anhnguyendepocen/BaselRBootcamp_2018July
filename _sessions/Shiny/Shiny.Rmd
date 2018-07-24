@@ -5,7 +5,7 @@ author: "BaselRBootcamp<br/><a href='https://therbootcamp.github.io'>www.therboo
 date: "July 2018"
 output:
   xaringan::moon_reader:
-    css: ["default", "my-theme.css"]
+    css: ["default", "baselrbootcamp.css"]
     lib_dir: libs
     nature:
       highlightStyle: github
@@ -54,6 +54,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 # [https://www.showmeshiny.com/](https://www.showmeshiny.com/)
 
 ---
+
 ## What is Shiny?
 
 ```{r, echo = FALSE, fig.align = 'center', fig.cap = '<a href=http://shiny.rstudio.com/https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/shiny-cheatsheet.pdf>R Studio</a>', out.width = "90%"}
@@ -62,6 +63,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 
 
 ---
+
 ## What does that mean?
 
 .pull-left45[
@@ -79,7 +81,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 
 .pull-right45[
 
-### I can easily do this all in Shiny!
+### I can do this all in Shiny!
 
 ```{r, echo = FALSE, fig.align = 'center', out.width = "100%"}
 knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/shiny_ss.png")
@@ -88,26 +90,30 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 ]
 
 ---
-## Histogram Example
+
+## Histogram Shiny App
 
 <iframe src="https://econpsychbasel.shinyapps.io/geyser_app/" width="1200" height="7500"></iframe>
 
 
 ---
-## FFTrees Example
+
+## FFTrees Shiny App
 
 <iframe src="https://econpsychbasel.shinyapps.io/shinyfftrees/" width="1200" height="750"></iframe>
 
 https://econpsychbasel.shinyapps.io/shinyfftrees/
 
 ---
-## Balloon Analogue Risk Task
+
+## Balloon Analogue Risk Task (BART) Shinyu App
 
 <iframe src="https://econpsychbasel.shinyapps.io/shinypsych_bart/" width="1200" height="750"></iframe>
 
 https://econpsychbasel.shinyapps.io/shinypsych_bart/
 
 ---
+
 ## Shiny
 
 ```{r, echo = FALSE, fig.align = 'center', out.width = "60%", fig.cap = "<a href = http://shiny.rstudio.com>R Studio</a>"}
@@ -115,26 +121,31 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 ```
 
 ---
+
 ## Shiny Tutorials
 
 .pull-left45[
 
-### R Studio has great tutorials for creating Shiny Apps
+### R Studio has great tutorials
 
-```{r, echo = FALSE, fig.align = 'center', out.width = "100%", fig.cap = "<a href = http://shiny.rstudio.com>R Studio</a>"}
+```{r, echo = FALSE, fig.align = 'center', out.width = "100%"}
 knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/learnshiny_B.png")
 ```
+
+<a href = http://shiny.rstudio.com>shiny.rstudio.com</a>
 
 ]
 
 
 .pull-right45[
 
-### Learn by example. Tons of shiny apps online. Most code is available.
+Learn by example. Tons of shiny apps online. Most code is available.
 
-```{r, echo = FALSE, fig.align = 'center', out.width = "90%", fig.cap = "<a href = http://shiny.rstudio.com>R Studio</a>"}
+```{r, echo = FALSE, fig.align = 'center', out.width = "90%"}
 knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/shinygallery.png")
 ```
+
+<a href = "https://shiny.rstudio.com/gallery/">shiny.rstudio.com/gallery</a>
 
 ]
 
