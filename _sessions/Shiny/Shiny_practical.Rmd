@@ -21,11 +21,8 @@ knitr::opts_chunk$set(comment = NA,
 options(digits = 3)
 ```
 
+<iframe src="https://econpsychbasel.shinyapps.io/FinalApp/" width="800" height="600"></iframe>
 
-<figure>
-<center>
-  <img src="https://d21ii91i3y6o6h.cloudfront.net/gallery_images/from_proof/9306/small/1447177198/rstudio-hex-shiny-dot-psd.png" alt="Trulli" style="width:50%">
-</figure>
 
 
 ## {.tabset}
@@ -34,9 +31,8 @@ options(digits = 3)
 
 In this practical you'll practice creating interactive graphics with `shiny`.
 
-By the end of this practical, you'll try to create the following app:
+By the end of this practical, you'll try to create the app above!
 
-<iframe src="https://econpsychbasel.shinyapps.io/FinalApp/" width="800" height="600"></iframe>
 
 ### Datasets
 
