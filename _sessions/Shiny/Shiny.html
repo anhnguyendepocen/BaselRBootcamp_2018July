@@ -41,9 +41,9 @@ layout: true
 ---
 ## This is Shiny
 
-# [https://shiny.rstudio.com/gallery/](https://shiny.rstudio.com/gallery/)
 
-# [https://www.showmeshiny.com/](https://www.showmeshiny.com/)
+&lt;iframe src="https://shiny.rstudio.com/gallery/movie-explorer.html" width="1200" height="7500"&gt;&lt;/iframe&gt;
+
 
 ---
 
@@ -61,14 +61,13 @@ layout: true
 
 .pull-left45[
 
-- Shiny allows you to easy create interactive websites to explore, analyse, and visualize data
+Create interactive websites to explore, analyse, and visualize data all within R Studio!
 
-- No need to learn HTML, CSS, Javascript
+No need to learn HTML, CSS, Javascript
 
 &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/nohtml.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 ]
-
 
 .pull-right45[
 
@@ -111,29 +110,34 @@ https://econpsychbasel.shinyapps.io/shinypsych_bart/
 
 ---
 
-## Shiny Tutorials
+.pull-left4[
+&lt;br&gt;&lt;br&gt;
+## Shiny is a new world...
 
-.pull-left45[
+Shiny is built on R, but it is a &lt;high&gt;very&lt;/high&gt; different animal.
 
-### R Studio has great tutorials
+&lt;u&gt;Good News&lt;/u&gt;
 
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/learnshiny_B.png" width="100%" style="display: block; margin: auto;" /&gt;
+All of your standard plotting and analysis code will still be "regular R"
 
-&lt;a href = http://shiny.rstudio.com&gt;shiny.rstudio.com&lt;/a&gt;
+&lt;u&gt;Bad News&lt;/u&gt;
 
-]
-
-
-.pull-right45[
+To program a full app, you must learn the &lt;high&gt;reactive&lt;/high&gt; language of Shiny.
 
 Learn by example. Tons of shiny apps online. Most code is available.
 
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/shinygallery.png" width="90%" style="display: block; margin: auto;" /&gt;
-
-&lt;a href = "https://shiny.rstudio.com/gallery/"&gt;shiny.rstudio.com/gallery&lt;/a&gt;
-
 ]
 
+.pull-right55[
+&lt;br&gt;&lt;br&gt;
+
+&lt;center&gt;&lt;a href = http://shiny.rstudio.com&gt;shiny.rstudio.com&lt;/a&gt;
+
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/learnshiny_B.png" width="70%" style="display: block; margin: auto;" /&gt;
+&lt;br&gt;
+&lt;center&gt;&lt;a href = "https://shiny.rstudio.com/gallery/"&gt;RStudio Shiny Example Gallery&lt;/a&gt;
+
+]
 ---
 # How programming a Shiny App looks
 
@@ -142,7 +146,7 @@ Learn by example. Tons of shiny apps online. Most code is available.
 ---
 ## Structure of a Shiny App
 
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/uiandserver.png" width="75%" style="display: block; margin: auto;" /&gt;
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/uiandserver.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
  &lt;br&gt;
@@ -199,14 +203,14 @@ Learn by example. Tons of shiny apps online. Most code is available.
 &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/exampleapp_B.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
-### The final app!
+## The final app!
 
-&lt;iframe src="https://econpsychbasel.shinyapps.io/histogram_app/" width="1200" height="800"&gt;&lt;/iframe&gt;
+&lt;iframe src="https://econpsychbasel.shinyapps.io/histogram_app/" width="1200" height="700"&gt;&lt;/iframe&gt;
 
 ---
 ## User Interface
 
-The user interface typically contains two main components: Widgets and
+The user interface typically contains two main components: Widgets, layouts, and plots
 
 &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/userinterface_description.png" width="80%" style="display: block; margin: auto;" /&gt;
 
@@ -214,40 +218,30 @@ The user interface typically contains two main components: Widgets and
 
 ## User Interface, Widgets
 
-- Widgets are simple fields added to the user interface for users to add inputs.
+Widgets are simple fields added to the user interface for users to add inputs.
 
 &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/widgetcode_output.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 
-## Server
-
-&lt;font size = 4&gt;All R code that creates plots, does machine learning, accesses databases, searches twitter data (really anything!) goes in the `server()` function.&lt;/font&gt;
-
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/serverdescription.png" width="55%" style="display: block; margin: auto;" /&gt;
-
----
-
-## Server
-
 .pull-left4[
-
-
 &lt;br&gt;
+## Server
 &lt;br&gt;
 
-&lt;font size = 5&gt;To present output (e.g.; a plot), it must be &lt;b&gt;rendered&lt;/b&gt; in the server using a special rendering function renderXX()&lt;/font&gt;&lt;br&gt;&lt;br&gt;
+All code that creates plots, does machine learning ... (really anything!) goes in the &lt;high&gt;server()&lt;/high&gt; function.
 
-&lt;font size = 5&gt;Once it is rendered, it is sent to the &lt;b&gt;output&lt;/b&gt; and displayed in the user interface using an &lt;b&gt;xxOutput()&lt;/b&gt; function.&lt;/font&gt;
+To present output like a plot, it must be &lt;high&gt;rendered&lt;/high&gt; in the server using a special rendering function like `renderPlot()`
+
+Once it is rendered, it is sent to the output and displayed in the user interface using an &lt;high&gt;output function&lt;/high&gt; like `plotOutput()`.
+
 
 ]
 
 .pull-right55[
 
-### To send output to the user interface, you must use a render function
-
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/render_example.png" width="100%" style="display: block; margin: auto;" /&gt;
-
+&lt;br&gt;
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/serverdescription.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 ---
@@ -292,7 +286,7 @@ shinyApp(ui = ui, server = server)
 
 ---
 
-## Rendering output
+## Cheatsheet
 
 The Shiny cheatsheet explains the most common functions for rendering and presenting output.
 
@@ -300,21 +294,28 @@ The Shiny cheatsheet explains the most common functions for rendering and presen
 
 ---
 
-## Publishing (hosting) an app
 
 .pull-left45[
+
+## Publishing (hosting) an app
+
+
 &lt;br&gt;
-&lt;br&gt;
-- You can always run a Shiny app locally on your machine.
-- To get it online, you need to put it on a Shiny Server.
-- Publish an app (with some restrictions) at http://shinyapps.io from RStudio with one click!
-- Install a local server at your business (RStudio: $10,000 / year)
-- Other providers exist (e.g.; Amazon Web Services)
+
+You can always run a Shiny app locally on your machine.
+
+To get it online, you need to put it on a Shiny Server.
+
+Publish an app (with some restrictions) at http://shinyapps.io from RStudio with one click!
+
+Install a local server at your business (RStudio: $10,000 / year)
+
+Other providers exist (e.g.; Amazon Web Services)
 
 ]
 
 .pull-right45[
-
+&lt;br&gt;&lt;br&gt;
 &lt;div class="figure" style="text-align: center"&gt;
 &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/shinypublish.png" alt="&amp;lt;a href = http://shiny.rstudio.com&amp;gt;R Studio&amp;lt;/a&amp;gt;" width="100%" /&gt;
 &lt;p class="caption"&gt;&lt;a href = http://shiny.rstudio.com&gt;R Studio&lt;/a&gt;&lt;/p&gt;
@@ -329,32 +330,15 @@ In the practical, we will create the following app from scratch, and publish it 
 
 &lt;iframe src="https://econpsychbasel.shinyapps.io/FinalApp/" width="1200" height="7500"&gt;&lt;/iframe&gt;
 
-
-
 ---
 
-## Questions?
+# Practical
 
-.pull-left45[
-
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/exampleapp_A.png" width="100%" style="display: block; margin: auto;" /&gt;
-
-]
-
-.pull-right45[
-
-&lt;div class="figure" style="text-align: center"&gt;
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/shinygallery.png" alt="&amp;lt;a href = http://shiny.rstudio.com&amp;gt;R Studio&amp;lt;/a&amp;gt;" width="90%" /&gt;
-&lt;p class="caption"&gt;&lt;a href = http://shiny.rstudio.com&gt;R Studio&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-
-]
-
----
-
-## Plotting II Pratical
-
-&lt;p&gt;&lt;font size=6&gt;&lt;b&gt;&lt;a href="https://therbootcamp.github.io/BaselRBootcamp_2018April/_sessions/D3S3_PlottingII/PlottingII_practical.html"&gt;Link to Plotting II practical&lt;/a&gt;
+&lt;p&gt;
+  &lt;font size=6&gt;
+    &lt;a href="https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/Shiny/Shiny_practical.html"&gt;&lt;b&gt;Link to practical&lt;b&gt;&lt;/a&gt;
+  &lt;/font&gt;
+&lt;/p&gt;
     </textarea>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
