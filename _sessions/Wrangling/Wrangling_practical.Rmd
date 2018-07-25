@@ -162,6 +162,12 @@ library(tidyverse)
 trial_act <- read_csv(file = "XX")
 ```
 
+
+```{r}
+trial_act <- read_csv(file = "1_Data/rial")
+```
+
+
 5. Using the same code structure, load the `trial_act_demo_fake.csv` data as a new dataframe called `trial_act_demo_fake`
 
 ```{r, echo = FALSE, eval = FALSE, message = FALSE, warning = FALSE}
