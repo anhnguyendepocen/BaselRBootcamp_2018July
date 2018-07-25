@@ -4,6 +4,7 @@ author: "Basel R Bootcamp July 2018<br/><a href='https://therbootcamp.github.io'
 output:
   html_document:
     css: practical.css
+    code_folding: hide
 ---
 
 ```{r setup, echo = FALSE}
