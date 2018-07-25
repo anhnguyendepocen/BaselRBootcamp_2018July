@@ -1,0 +1,12 @@
+name: FinalApp
+title: FinalApp
+username:
+account: econpsychbasel
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 387289
+bundleId: 1497907
+url: https://econpsychbasel.shinyapps.io/FinalApp/
+when: 1532468175.09952
+asMultiple: FALSE
+asStatic: FALSE

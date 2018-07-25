@@ -29,8 +29,10 @@ library(tidyverse)
   <figcaption>www.rstudio.com</figcaption>
 </figure>
 
+## {.tabset}
 
-## Overview
+
+### Overview
 
 By the end of this practical you will know how to:
 
@@ -41,7 +43,20 @@ By the end of this practical you will know how to:
 5. Add plots and tables
 5. Include code output in sentences with inline chunks
 
-## Packages
+
+### Datasets
+
+```{r, eval = TRUE, message = FALSE}
+library(tidyverse)
+mcdonalds <- read_csv("https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/mcdonalds.csv")
+```
+
+|File  |Description| Rows | Columns |
+|:----|:-----------------------------|:-----|:------|
+|[mcdonalds.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/mcdonalds.csv)| Nutrition information from McDonalds menu items| 260 | 24 |
+|[happiness.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/happiness.csv)| Results from the World Health Organisation happiness survey | 155 | 12 |
+
+### Packages
 
 |Package| Installation|
 |:------|:------|
@@ -57,17 +72,14 @@ By the end of this practical you will know how to:
   <center><img src="http://westandproud.info/wp-content/uploads/2018/04/reproducible-and-interactive-research-with-regard-to-cheat-sheet-r-markdown.png" width="600px">
 </a>
 
-## Datasets
 
-```{r, eval = TRUE, message = FALSE}
-library(tidyverse)
-mcdonalds <- read_csv("https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/mcdonalds.csv")
-```
 
-|File  |Description| Rows | Columns |
-|:----|:-----------------------------|:-----|:------|
-|[mcdonalds.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/mcdonalds.csv)| Nutrition information from McDonalds menu items| 260 | 24 |
-|[happiness.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/happiness.csv)| Results from the World Health Organisation happiness survey | 155 | 12 |
+### References and Links
+
+- The `rmdformats` package has many nice templates for .Rmd files. Look at their GitHub page at [https://github.com/juba/rmdformats](https://github.com/juba/rmdformats) for examples. If you install the package from CRAN with `install.packages('rmdformats')`, you'll get lots of new templates when you open a new Markdown file in RStudio. 
+
+- If you want to use custom .css files, check out the the [R Studio HTML document guide](http://rmarkdown.rstudio.com/html_document_format.html#custom_css). You can also look at the .css files underlying the `rmdformats` package on their GitHub page here [https://github.com/juba/rmdformats](https://github.com/juba/rmdformats). For example, here is their .css file for the "html docco" template [https://raw.githubusercontent.com/juba/rmdformats/master/inst/templates/html_docco/docco.css](https://raw.githubusercontent.com/juba/rmdformats/master/inst/templates/html_docco/docco.css)
+
 
 ## Tasks
 
@@ -97,7 +109,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/rmarkdown_ss_C.png")
 ```
 
-5. Save your markdown file *in your main project directory* (not in the `4_Markdown` folder! -- you'll put it there later!) under the name `mcdonalds.Rmd`
+5. Save your markdown file *in your main project directory* (not a sub-folder -- you'll put it there later!) under the name `dynamicreports_practical.Rmd`
 
 6. Now *knit* your document to an HTML file. To do this, click the *knit* button (or use the Command + Shift + K shortcut)
 
@@ -117,7 +129,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 
 ## C - Load packages, data and set default chunk options
 
-1. You should always start your markdown file by loading packages and data in a code chunk. We'll do this inside of the first chunk with the `setup` label. Inside of this chunk, write the comment `# Load Packages -------------`. Then, using the `library()` function, load the packages listed in the `Packages` section above. 
+1. The first chunk in your document already has the label `setup`. This is your setup chunk. This is a good place to load your packages and import your data. Inside of this chunk, write the comment `# Load Packages -------------`. Then, using the `library()` function, load the packages listed in the `Packages` section above. 
 
 ```{r, echo = FALSE, fig.align = 'center', eval = TRUE, out.width = "50%"}
 knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/setup_chunk.jpg")
@@ -139,10 +151,10 @@ XXX <- read_csv()
 
 4. Knit your document! Make sure you don't get any errors!
 
-5. Now it's time to change some of the default chunk options. In your *setup* chunk, change the existing values of `knitr::opts_chunk$set` to the following:
+5. Now it's time to change some of the *default* chunk options. In your *setup* chunk, change the existing values of `knitr::opts_chunk$set` to the following:
 
 ```{r, echo = TRUE, eval = FALSE}
-# INCLUDE ALL OF THIS CODE IN YOUR FIRST CHUNK!
+# INCLUDE ALL OF THIS CODE IN YOUR FIRST 'setup' CHUNK!
 
 knitr::opts_chunk$set(fig.width = 6,        # Figure width (in)
                       fig.height = 4,       # Figure height (in)
@@ -153,25 +165,23 @@ knitr::opts_chunk$set(fig.width = 6,        # Figure width (in)
                       fig.align = 'center') # Center figures
 
 options(digits = 2)  # Round all output to 2 digits
-
-
 ```
 
 6. Knit your document! Make sure you see an output!
 
 ## D - Add formatted text and an image
 
-1. Below your last markdown chunk, write the necessary text and Markdown tags to create the following sentence. Be sure to create italic and bold text using the proper formatting tags!
+1. Below your last markdown chunk, write the necessary text and Markdown tags to create the following sentence. Be sure to create italic text using single astricies \*ITALIC\* and and bold text using two astricies \*\*BOLD\*\*
 
 - In this practical, I will analyse two datasets and show reproducible results in a dynamic document created in R Markdown. R Markdown is great because I can integrate R code directly into my document, and easily use *italics* and **bold** using formatting tags.
 
-2. Create a new first level header with the text "Fast Food Nutrition" using a single hashtag.
+2. Create a new third level header with the text "Overview" using three hashtags `### Overview`
 
 3. Knit the document!
 
 4. Create a new code chunk by either clicking the "Insert - R" button, or by using the "Command + Option + I"" shortcut on Mac
 
-5. Now it's time to add an image to your document! In the chunk you just created, use the following template to include [this image of a burger](https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cheeseburger.jpg/2560px-Cheeseburger.jpg) in your document. You can find the image at the following link: [Link](https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cheeseburger.jpg/2560px-Cheeseburger.jpg).
+5. Now it's time to add an image to your document! In the chunk you just created, use the following template to include an image of a burger in your document. You can find the image here: https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cheeseburger.jpg/2560px-Cheeseburger.jpg.
 
 ```{r, out.width = "30%", fig.cap="Source: Wikipedia", echo = TRUE, eval = FALSE}
 # Include a buger image
@@ -193,23 +203,29 @@ include_graphics(path = "XXX")
 
 ## E - Add a formatted table with `datatable()`
 
-1. Create a new code chunk.
+1. Add a new 3rd level header called "Data"
 
-2. Inside the chunk, include the following code which uses the `datatable` function to render a dataframe as a nicely formatted HTML table.
+2. Below the header, write the sentence: "Here is a table showing the first 6 columns in the data"
+
+3. Create a new code chunk
+
+4. Inside the chunk, include the following code which uses the `datatable` function to render a dataframe as a nicely formatted HTML table.
 
 ```{r, eval = FALSE, echo = TRUE}
 datatable(mcdonalds %>% select(1:6))
 ```
 
-3. Knit the document! Do you see your nicely formatted table?
+5. Knit the document! Do you see your nicely formatted table?
 
-4. Play around with your table. Instead of selecting the first 6 columns, select the columns `Item`, `Category`, `Calories`, `Sodium`
+6. Play around with your table. Instead of selecting the first 6 columns, select the columns `Item`, `Category`, `Calories`, `Sodium`
 
-5. Knit the document!
+7. Knit the document!
 
 ## F - Add plots
 
-1. Write the appropriate combination of markdown, text, and code to create the following output. Be sure to specify the mean and maximum umber of calories using inline chunks!. Here's some `ggplot2` code that might help in creating your plot.
+1. Add a new 3rd level header called "Calories Histogram"
+
+2. Write the appropriate combination of markdown, text, and code to create the following output. Be sure to specify the mean and maximum umber of calories using inline chunks!. Here's some `ggplot2` code that might help in creating your plot.
 
 ```{r, eval = TRUE, echo = FALSE, out.width="75%"}
 knitr::include_graphics("https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/calories_histogram.jpg?raw=true")
@@ -227,9 +243,11 @@ ggplot(data = mcdonalds,
   theme_bw()
 ```
 
-2. Knit the document! Diagnose and correct any errors!
+3. Knit the document! Diagnose and correct any errors!
 
-3. Write the appropriate combination of markdown, text, and code to create the following output (Here's some `ggplot2` code that might help!):
+4. Add a new 3rd level header called "Calories and Sodium"
+
+5. Write the appropriate combination of markdown, text, and code to create the following output (Here's some `ggplot2` code that might help!):
 
 ```{r, eval = TRUE, echo = FALSE, out.width="75%"}
 knitr::include_graphics("https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/calories_sodium_ss.jpg?raw=true")
@@ -248,24 +266,59 @@ ggplot(data = XX,
   theme_bw()
 ```
 
-4. Knit the document! Diagnose and correct any errors!
+6. Knit the document! Diagnose and correct any errors!
+
+7. Add a 3rd level header called "Calories by Category"
+
+8. Write the appropriate combination of markdown, text, and code to create the following output (Here's some `ggplot2` and `dplyr` code that might help!)
+
+```{r, echo = TRUE, eval = FALSE}
+# ggplot
+
+ggplot(data = XX,
+       aes(x = XX, y = XX, fill = XX)) +
+  stat_summary(geom = "bar", fun.y = "mean") +
+  guides(fill = FALSE) +
+  labs(title = "McDonalds Menu Items",
+       subtitle = "Created with ggplot2",
+       caption = "Source: Kaggle.com") +
+  theme_bw()
+
+# dplyr
+
+Calories_agg <- XX %>%
+  group_by(XX) %>%
+  summarise(
+    Min = min(XX),
+    Mean = mean(XX),
+    Median = median(XX),
+    Max = max(XX)
+  )
+
+kable(x = Calories_agg, 
+      caption = "Summary Statistics of McDonalds Menu item Calories")
+```
+
+
+```{r, eval = TRUE, echo = FALSE, out.width="75%"}
+knitr::include_graphics("https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/DynamicReports_CaloriesCategory.jpg?raw=true")
+```
+
 
 ## G - Add a table of statistical test results
 
 Now let's show the results of a regression analysis predicting the sodium content of an item as a function of its calories.
 
-1. Create a new code chunk. Inside of the chunk, create an object called `cal_sod_lm`  that is the result of a regression analysis predicting `Sodium` as a function of `Calories`. Use the following template
+1. Add a new 3rd level header called "Regression"
 
-```{r, eval = FALSE, echo = TRUE}
+2. Using the appropriate combination of text and code chunks, create the following output. Use the following template for help!
+
+```{r, echo = TRUE, eval = FALSE}
 # Create regression model predicting Sodium from Calories
 
 cal_sod_lm <- lm(formula = XX ~ XX,
                  data = mcdonalds)
-```
 
-2. Now, using the following template for help, write the appropriate text / code to create the following output.
-
-```{r, echo = TRUE, eval = FALSE}
 # Export cal_sod_lm to a nicely formatted table
 
 kable(x = tidy(cal_sod_lm), 
@@ -279,73 +332,15 @@ knitr::include_graphics("https://github.com/therbootcamp/therbootcamp.github.io/
 
 3. Knit the document! Diagnose and correct any errors!
 
-## H - Keep going!
 
-1. Add the appropriate code to add the following output. 
+## I - Add tabs!
 
-```{r, eval = TRUE, echo = FALSE, out.width="75%"}
-knitr::include_graphics("https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/calories_category_ss.jpg?raw=true")
-```
+1. Now it's time to convert some of your sections to tabs! To do this, just add the second level header `## {.tabset}`  *above* your `### Overview` header
 
-```{r, echo = TRUE, eval = FALSE}
-ggplot(data = mcdonalds,
-       aes(x = XX, y = XX, fill = XX)) +
-  stat_summary(geom = "bar", fun.y = "mean") +
-  guides(fill = FALSE) +
-  labs(title = "McDonalds Menu Items",
-       subtitle = "Created with ggplot2",
-       caption = "Source: Kaggle.com") +
-  theme_bw()
-```
+2. Knit your document! Do you see the tabs now?
 
-2. Knit the document! Diagnose and correct any errors!
-
-3. Add the appropriate code to add the following table of summary statistics of Calories for each category. Use the following code chunk below for help if you need it! 
-
-```{r, eval = TRUE, echo = FALSE, out.width="75%"}
-knitr::include_graphics("https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/calories_category_summary_ss.jpg?raw=true")
-```
-
-```{r, echo = TRUE, eval = FALSE}
-# Calculate several summary statitics of Calories
-
-Calories_agg <- mcdonalds %>%
-  group_by(XX) %>%
-  summarise(
-    Min = min(Calories),
-    Mean = mean(Calories),
-    Median = median(Calories),
-    Max = max(Calories)
-  )
-
-# Export Calories_agg to an HTML table
-kable(x = XX)
-```
-
-4. Knit the document! Diagnose and correct any errors!
-
-## I - Managing working directories with Markdown
-
-1. Now it's time to move your Markdown file to your `4_Markdown` folder. Move your `speffanalysis.Rmd` file to your `4_Markdown` folder using your computer file browser (Finder on Mac, Windows explorer on PC). Now, try knitting your document. You should get an error! What happened?!
-
-2. The problem is that when you knit your Markdown file, R changes your working directory to the folder where your markdown file is located. However, now that you moved your file to your `4_Markdown` folder, this isn't true anymore. You need to tell Markdown that the root directory of your project is one directory up! Thankfully this is easy to do. Just add the following code to your initial `setup` R chunk:
-
-```{r, echo = TRUE}
-# Tell R Markdown that the root directory is now one folder
-#   up from the folder the markdown file is in
-
-knitr::opts_knit$set(root.dir = "../")
-```
-
-3. Knit your document! Did everything work? If not, try to correct the working directory issues. Don't be afraid to ask for help!
 
 ## X - Add results from the happiness survey
 
 1. If you've gotten this far, then you've really gotten the hang of R Markdown! Try adding the correct combination of text, tags, and code to add all of the results from the `happiness` data contained here: [https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/DynamicReports/DynamicReports_answers.html](https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/DynamicReports/DynamicReports_answers.html)
 
-
-### References and Links
-
-- The `rmdformats` package has many nice templates for .Rmd files. Look at their GitHub page at [https://github.com/juba/rmdformats](https://github.com/juba/rmdformats) for examples. If you install the package from CRAN with `install.packages('rmdformats')`, you'll get lots of new templates when you open a new Markdown file in RStudio. 
-
-- If you want to use custom .css files, check out the the [R Studio HTML document guide](http://rmarkdown.rstudio.com/html_document_format.html#custom_css). You can also look at the .css files underlying the `rmdformats` package on their GitHub page here [https://github.com/juba/rmdformats](https://github.com/juba/rmdformats). For example, here is their .css file for the "html docco" template [https://raw.githubusercontent.com/juba/rmdformats/master/inst/templates/html_docco/docco.css](https://raw.githubusercontent.com/juba/rmdformats/master/inst/templates/html_docco/docco.css)

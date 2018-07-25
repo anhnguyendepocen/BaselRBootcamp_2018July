@@ -25,11 +25,25 @@ options(digits = 3)
   <figcaption>Wikipedia</figcaption>
 </figure>
 
+## {.tabset}
+
 ### Overview
 
-In this practical you'll practice plotting data with the `ggplot2` package. 
+In this practical you'll practice plotting data with the amazing `ggplot2` package. 
 
-## Packages
+### Datasets
+
+```{r, eval = TRUE, message = FALSE}
+library(tidyverse)
+mcdonalds <- read_csv("https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/mcdonalds.csv")
+```
+
+|File  |Rows | Columns |
+|:----|:-----|:------|
+|[mcdonalds.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/mcdonalds.csv)| 260 | 24 |
+
+
+### Packages
 
 |Package| Installation|
 |:------|:------|
@@ -150,17 +164,13 @@ ggplot(data = mpg,
 ```
 
 
-## Datasets
+### References and Further Reading
 
-```{r, eval = TRUE, message = FALSE}
-library(tidyverse)
-mcdonalds <- read_csv("https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/baselrbootcamp_data/mcdonalds.csv")
-```
+- The main `ggplot2` webpage at [http://ggplot2.tidyverse.org/](http://ggplot2.tidyverse.org/) has great tutorials and examples.
 
-|File  |Rows | Columns |
-|:----|:-----|:------|
-|[mcdonalds.csv](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/_data/complete/mcdonalds.csv)| 260 | 24 |
+- Check out Selva Prabhakaran's website for a nice gallery of ggplot2 graphics [http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html](http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html)
 
+- `ggplot2` is also great for making maps. For examples, check out Eric Anderson's page at [http://eriqande.github.io/rep-res-web/lectures/making-maps-with-R.html](http://eriqande.github.io/rep-res-web/lectures/making-maps-with-R.html)
 
 ## Tasks
 
@@ -566,10 +576,4 @@ ggsave(filename = "mcdonalds",
 5. Customize your code to create a jpeg image called `mcdonalds.jpeg`
 
 
-### References and Further Reading
 
-- The main `ggplot2` webpage at [http://ggplot2.tidyverse.org/](http://ggplot2.tidyverse.org/) has great tutorials and examples.
-
-- Check out Selva Prabhakaran's website for a nice gallery of ggplot2 graphics [http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html](http://r-statistics.co/Top50-Ggplot2-Visualizations-MasterList-R-Code.html)
-
-- `ggplot2` is also great for making maps. For examples, check out Eric Anderson's page at [http://eriqande.github.io/rep-res-web/lectures/making-maps-with-R.html](http://eriqande.github.io/rep-res-web/lectures/making-maps-with-R.html)

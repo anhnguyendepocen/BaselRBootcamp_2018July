@@ -65,15 +65,15 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 <br><br>
 ## What is wrong?
 
-Many opportunities for human error in transferring results.
+Many opportunities for <high>human error</high> in transferring results.
 
 > Wait is the p-value .07 or 0.70?
 
-No clear documentation on exactly how the analysis was conducted. 
+<high>No documentation</high> on exactly how the analysis was conducted. 
 
 > How did I exactly do that analysis again??
 
-Slow. 
+<high>Slow</high> 
 > You want me to do that analysis again with new data?! Do you know how long that took me?!
 
 ### The solution? A Dynamic Report
@@ -92,40 +92,43 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 
 
 ---
-## Dynamic report workflow
+## Dynamic report
+
+A <high>Dynamic Report</high> <u>automatically generates</u> output from a combination of data, code, images, and text.
+
 ```{r, echo = FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/reproducible_workflow.png")
+knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/DynamicReports_ProcessHorizontal.png")
 ```
 
 ---
 
-## What is a dynamic report?
-
 .pull-left55[
 
-A dynamic report is a document that is, to  *automatically generated* from a combination of data, code, images, and text.
+## Why are dynamic reports great?
 
-Accurate
+<br>
+<high>Accurate</high>
 
 - Statistical output are never mistyped
 - The code *must* be correct because it is being run as the report is created.
 
-Reproducible
+<high>Reproducible</high>
 
-- All instructions to create the document are contained in code that anyone (including your future self) else can see and run.
+- All processes are contained in code that anyone can see and run.
+- The code *must* be correct because it is evaluated as the report is created.
 - Original data is always connected to the final output
 
-Efficient
+<high>Efficient</high>
 
-- If you get new data, you can easily repeat your analyses in seconds.
+- If you get new data, you can easily repeat your analyses with one click!
 
 
 ]
 
 .pull-right45[
 
-```{r, echo = FALSE}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/reproducible_workflow.png")
+```{r, echo = FALSE, out.width = "80%"}
+knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/DynamicReports_ProcessVertical.png")
 ```
 
 
@@ -168,15 +171,28 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 
 ---
 
-## What is Markdown?
+## What is Markdown (.md)?
 
-Markdown is a simple, readable **markup language** that allows you to easily write text with special formatting **tags**, which are then converted to formatted outputs.
+Markdown is a simple, readable markup <high>language</high> that allows you to easily write text with special <high>formatting tags</high>, which are then converted to formatted outputs.
 
-**R Markdown** is a combination of Markdown and R code.
 
-```{r, echo = FALSE, out.width="60%", fig.align = 'center'}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/rmarkdown_ss2.png")
+```{r, echo = FALSE, out.width = "90%"}
+knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/DynamicReports_BasicMarkdown.png")
 ```
+
+
+
+---
+
+## What is RMarkdown (.Rmd)?
+
+<high>RMarkdown</high> is a combination of standard markdown combined with <high>R Code</high>
+
+
+```{r, echo = FALSE, out.width = "90%"}
+knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/DynamicReports_BasicRMarkdown.png")
+```
+
 
 ---
 
@@ -189,56 +205,16 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 
 ---
 
-## Output types
-
-.pull-left4[
-
-- There are *many* different output formats you can create from an R Markdown document
-
-- Many come with RStudio, many are distributed in packages:
-
-| Package|Description|
-|:------|:----|
-|     `xaringan`*| Slideshows (like this one!)|
-|     `papaja`*|APA Manuscripts|
-|     `rmdformats`|Many templates|
-|     `prettydoc`|Many templates|
-
-* = On GitHub
-
-]
-
-.pull-right55[
-
-### R Markdown templates in R Studio
-
-```{r, echo = FALSE, out.width="100%", fig.align = 'center'}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/rmarkdown_templates.png")
-```
-
-]
-
-
----
-
-## R Markdown Gallery
-
-http://rmarkdown.rstudio.com/gallery.html
-
-<iframe src="rmarkdown_gallery.htm" width="800" height="450"></iframe>
-
----
-
 ## Code Chunks in R Markdown
 
 
-.pull-left35[
+.pull-left4[
 
-Incorporate code in your document in code chunks
+Incorporate code in your document in <high>code chunks</high>
 
 Everything in a code chunk will be evaluated when you "knit" the document
 
-Each chunk can have arguments that change how it behaves
+Each chunk can have arguments
 
 |Argument| Description|
 |:-----|:------|
@@ -251,7 +227,7 @@ See a list of all chunk options at Yihui's site [here](https://yihui.name/knitr/
 
 ]
 
-.pull-right6[
+.pull-right55[
 
 ```{r, echo = FALSE, out.width="90%", fig.align = 'center'}
 knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/chunkoptions.png")
@@ -281,6 +257,91 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 
 
 
+
+---
+
+
+.pull-left4[
+
+<br><br>
+# Keep your project tidy!
+
+<br>
+
+
+1. Easily read in external files like images, R code, or datasets in your R Markdown document.
+
+2. All raw data files (.csv, .sav, etc) should be in a folder (e.g.; `1_Data`) in your R Project directory
+
+3. Keep other files such as images (.jpg, .png) in another well named folder (e.g.; `0_Materials` or `4_Images`)
+<br><br>
+
+
+]
+
+.pull-right55[
+<br><br>
+
+<center><h3>Everything in your project!!</h3>
+<center><high>Every</high> file (data, images) necessary to create your RMarkdown document should be somewhere <high>in your R project folder</high>!
+
+```{r, echo = FALSE, out.width="100%", fig.align = 'center'}
+knitr::include_graphics("https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/DynamicReports_ProjectStructure.png?raw=true")
+```
+
+]
+
+---
+## Your code must be complete!
+
+When you knit a Markdown file, R will <high>forget</high> everything you've done and <high>start from scratch</high> 
+
+You must <high>load all packages</high> with `library()` and <high>define all objects</high>
+
+```{r, echo = FALSE, out.width = "95%"}
+knitr::include_graphics("https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/DynamicReports_badknit.png?raw=true")
+```
+
+
+---
+## Your code must be complete!
+
+When you knit a Markdown file, R will <high>forget</high> everything you've done and <high>start from scratch</high> 
+
+You must <high>load all packages</high> with `library()` and <high>define all objects</high>
+
+```{r, echo = FALSE, out.width = "95%"}
+knitr::include_graphics("https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/DynamicReports_goodknit.png?raw=true")
+```
+
+
+---
+
+## Keep your code complete and tidy
+
+.pull-left45[
+
+Don't include unnecessary code like random calculations or package installation.
+
+```{r, echo = FALSE, out.width="100%", fig.align = 'center'}
+knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/DynamicReports_BadMarkdown.png")
+```
+
+]
+
+.pull-right45[
+
+If you want to save some code for you, comment it out with \#
+
+```{r, echo = FALSE, out.width="100%", fig.align = 'center'}
+knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/DynamicReports_GoodMarkdown.png")
+```
+
+]
+
+
+
+
 ---
 
 ## Rendering output with `knitr`
@@ -291,95 +352,63 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/knitr_hex.png")
 ```
 
-Special outputs such as images and tables need to be explicitly *rendered* using the `knitr` package.
+Non-text ouputs such as images and tables need to be <u>rendered</u> using functions from the amazing <high>knitr</high> package.
 
-Two helpful `knitr` functions are `include_graphics()` and `kable()`
+```{r}
+# Load the knitr package
+library(knitr)
+```
+
 
 | Function|Output|
 |:------|:----|
-|     `kable(df, format)`|Include a dataframe as a table|
-|     `include_graphics(path)`| Include an external image (e.g.; .png, .jpg)|
+|     `kable(df, format)`|Print a dataframe as a table|
+|     `include_graphics(path)`| Include an image (e.g.; .png, .jpg)|
 
 ]
 
-.pull-right45[
+.pull-right5[
 
-Print a table with `kable()`
+Render a table with <high>kable()</high>
 
-```{r, echo = TRUE, eval = TRUE, results = 'asis'}
-kable(x = baselers %>% 
-        slice(1:3) %>% 
-        select("id", "sex", "height"), 
+```{r, echo = TRUE, eval = FALSE, results = 'asis'}
+kable(x = baselers,  # A data frame
       format = 'markdown')
 ```
 
-Include an image with `include_graphics()`
+```{r, echo = FALSE, eval = TRUE, results = 'asis'}
+kable(x = baselers %>% slice(1:3) %>% select(1:6),
+      format = 'markdown')
+```
 
-```{r, echo = TRUE, out.width = "20%", eval = FALSE}
+
+Render an image with <high>include_graphics()</high>
+
+```{r, echo = TRUE, out.width = "15%", eval = FALSE}
 include_graphics(path = "images/rlogo.png")
 ```
 
-```{r, echo = FALSE, out.width = "20%", fig.align = 'center', fig.width = 10}
+```{r, echo = FALSE, out.width = "30%", fig.align = 'center', fig.width = 10}
 include_graphics(path = "https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/rlogo.png")
 ```
 
 ]
 
----
-
-## Keep your projects tidy
-
-.pull-left4[
-
-<br>
-<br>
-
-1. You can easily read in external files like images, R code, or datasets in your document.
-
-2. All external files should be in a folder in the "Root" Directory containing the Markdown (.Rmd) file
-
-3. All data necessary for your report *must* be explicitly read into the document. So keep them close by!
-
-]
-
-.pull-right55[
-
-#### Here is the "Root" directory of the R Markdown file `dynamicreports.Rmd` that created *this* presentation
-
-```{r, echo = FALSE, out.width="100%", fig.align = 'center'}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/rmarkdown_directory.png")
-```
-
-]
-
 
 ---
 
-## Key points in R Markdown
+## Rendering output
 
-.pull-left35[
 
-<br>
-<br>
+The `datatable()` function from the `DT` package will include a rich HTML table in your document. See [rstudio.github.io/DT/options.html](https://rstudio.github.io/DT/options.html) for customisation options
 
-1. When you "Knit" an R markdown document, it will start with an *empty* workspace (ie. it will forget everything!)
+```{r}
+library(DT)
 
-2. You must load all packages with `library()` and load in external datasets at the beginning 
-
-3. If you have any typos, errors, or missing code, the document will *not* knit (this is a *good* thing!)
-
-]
-
-.pull-right6[
-
-#### Well formatted R Markdown document
-
-```{r, echo = FALSE, out.width="100%", fig.align = 'center'}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/wellformattedmarkdown.png")
+datatable(baselers %>% 
+            select(id, sex, age, height, weight, income), # Only these columns
+          options = list(pageLength = 4))                 # 4 Rows at a time please
 ```
-
-]
-
 
 
 
@@ -387,76 +416,166 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 
 ## Managing working directories with RMarkdown
 
-.pull-left4[
+When you knit `Markdown.Rmd`, the working directory will be *changed to the location of* `Markdown.Rmd`.
 
-When you knit a \*.Rmd file, the working directory will be *temporarily changed to the location of that file*.
+.pull-left45[
+
+Situation 1: Markdown.Rmd is in the <high>same folder</high> as `*.Rproj`
 
 ```{r, echo = FALSE, out.width = "70%"}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/wd_ss.png")
+knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/DynamicReports_SameFolder.png")
+```
+
+```{r, eval = FALSE}
+# Load data from 1_Data folder
+read_csv(file = "1_Data/baselers.csv")
+```
+
+Can read data normally because `Markdown.Rmd` is in the same folder as the project.
+
+
+]
+
+.pull-right45[
+
+Situation 2: Markdown.Rmd is in a <high>sub folder</high> (e.g.; `4_Markdown`)
+
+
+```{r, echo = FALSE, out.width = "70%"}
+knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/DynamicReports_SubFolder.png")
+```
+
+```{r, eval = FALSE}
+# Load data from 1_Data folder
+read_csv(file = "../1_Data/baselers.csv")
+```
+
+Must include `../` in your path to tell Markdown that the project directory is one folder 'up'
+
+]
+
+
+---
+
+## Managing working directories with RMarkdown
+
+.pull-left45[
+
+If your `MyMarkdown.Rmd` file is in a sub folder like `4_Markdown`...
+
+```{r, echo = FALSE, out.width = "70%"}
+knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/DynamicReports_SubFolder.png")
+```
+
+Include the following code <high>in the first chunk</high> to tell Markdown that the main project directory is <high>one folder "up"</high>
+
+```{r, echo = TRUE, eval = FALSE}
+# Fix working directory issue
+knitr::opts_knit$set(root.dir = "../")
+```
+
+]
+
+.pull-right5[
+<br><br>
+Loading files <high>without</high> root directory fix
+
+```{r, eval = FALSE, echo = TRUE}
+library(tidyverse)
+
+baselers <- read_csv("../1_Data/baselers.csv")
+chickens <- read_csv("../1_Data/chickens.csv")
+```
+
+Loading files <high>with</high> root directory fix
+
+<i>Recommended!</i>
+
+```{r, eval = FALSE, echo = TRUE}
+# Fix working directory issue
+knitr::opts_knit$set(root.dir = "../")
+
+library(tidyverse)
+
+baselers <- read_csv("1_Data/baselers.csv")
+chickens <- read_csv("1_Data/chickens.csv")
 ```
 
 
-If your Markdown file is **not** in the root working directory of your project (is in a folder), then your code may no longer work.
+]
 
+
+---
+
+.pull-left4[
+<br><br>
+## Output types
+
+There are *many* different output formats you can create from an R Markdown document
+
+Many come with RStudio, many are distributed in packages:
+
+| Package|Description|
+|:------|:----|
+|     `xaringan`*| Slideshows (like this one!)|
+|     `papaja`*|APA Manuscripts|
+|     `rmdformats`|Many templates|
+|     `prettydoc`|Many templates|
+
+* = On GitHub
 
 ]
 
 .pull-right55[
+<br>
+### R Markdown templates in R Studio
 
-This code might work when you evaluate it directly in your RStudio session
-
-```{r, eval = FALSE}
-mydata <- read_csv(file = "data/mydata.csv")
-```
-
-But when you **knit** the document, you might see an error like this:
-
-```{r, echo = FALSE, out.width = "90%"}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/error_wd.png")
+```{r, echo = FALSE, out.width="100%", fig.align = 'center'}
+knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/rmarkdown_templates.png")
 ```
 
 ]
 
----
-
-## Managing working directories with RMarkdown
-
-
-```{r, echo = FALSE, out.width = "90%"}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/markdown_wd_A.png")
-```
 
 ---
 
-## Managing working directories with RMarkdown
+## R Markdown Gallery
 
-```{r, echo = FALSE, out.width = "90%"}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/markdown_wd_B.png")
-```
+http://rmarkdown.rstudio.com/gallery.html
+
+<iframe src="rmarkdown_gallery.htm" width="800" height="450"></iframe>
 
 
 ---
 
 ## Why are dynamic documents so great?
 
-.pull-left45[
+.pull-left6[
 
-<br>
-<br>
 
-1. The data, code, and output are all in the same place.
+1. <high>Tidy!</high> Data, code, and output are all in the same place.
 
-2. Everything works and is replicable! (If it wasn't, the document wouldn't *Knit*!)
+2. Everything works and is <high>replicable</high>!
 
-3. You can produce great looking documents, from simple PDFs, to webpages, to presentations (like this one), to books.
+3. You can produce <high>great looking documents</high>, from simple PDFs, to webpages, to presentations (like this one!).
+
+4. <high>Update your documents</high> with new data with just one line of code!
+
+
+```{r, echo = FALSE, out.width="50%", fig.align = 'center'}
+knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/RMarkdownOutputFormats.png")
+```
+
+
 
 ]
 
-.pull-right45[
+.pull-right35[
+<br>
+<center><a href="https://bookdown.org/yihui/rmarkdown/"><img src="https://bookdown.org/yihui/rmarkdown/images/cover.png" width="250"></a>
 
-```{r, echo = FALSE, out.width="100%", fig.align = 'center'}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/markdown_complete.png")
-```
+[Yihui Xie's free R Markdown guide](https://bookdown.org/yihui/rmarkdown/)
+
 
 ]
 

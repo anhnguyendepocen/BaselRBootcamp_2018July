@@ -296,28 +296,23 @@ These tests take either a &lt;high&gt;formula&lt;/high&gt; for the argument `for
 
 
 ```r
-# 1-sample t-test
-t.test(x = baselers$age, 
-       mu = 40)  # Mean under H0
-
-# 2-sample t-test (Output hidden)
+# 2-sample t-test
 t.test(formula = income ~ sex,
        data = baselers)
 ```
 
-
 ```
 ## 
-## 	One Sample t-test
+## 	Welch Two Sample t-test
 ## 
-## data:  baselers$age
-## t = 28, df = 10000, p-value &lt;2e-16
-## alternative hypothesis: true mean is not equal to 40
+## data:  income by sex
+## t = 4, df = 8500, p-value = 6e-05
+## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  44.29 44.93
+##  120.6 352.2
 ## sample estimates:
-## mean of x 
-##     44.61
+## mean in group female   mean in group male 
+##                 7650                 7414
 ```
 
 
@@ -713,7 +708,7 @@ my_glm$residuals
 
 ---
 
-# `predict`
+# `predict()`
 
 .pull-left4[
 
@@ -787,7 +782,7 @@ predict(object = model,
 
 .pull-left4[
 
-# `tidy`
+# `tidy()`
 
 The `tidy()` function from the `broom` package &lt;high&gt;converts&lt;/high&gt; the most important results of many statistical object like "glm" to a &lt;high&gt;data frame&lt;/high&gt;.
 
@@ -838,12 +833,10 @@ tidy(my_glm)
 ```
 
 ```
-## # A tibble: 3 x 5
-##   term        estimate std.error statistic  p.value
-##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
-## 1 (Intercept)    1575.    94.4       16.7  1.33e-61
-## 2 happiness      -100.    12.5       -8.02 1.18e-15
-## 3 age             149.     0.815    183.   0.
+##          term estimate std.error statistic   p.value
+## 1 (Intercept)   1575.5   94.3629    16.696 1.328e-61
+## 2   happiness   -100.4   12.5197    -8.022 1.180e-15
+## 3         age    149.3    0.8145   183.315 0.000e+00
 ```
 
 ]
@@ -902,11 +895,7 @@ coin_flips
 ```
 
 ```
-<<<<<<< HEAD
-## [1] "T" "T" "H" "H" "T" "H" "T" "T"
-=======
-## [1] "H" "T" "H" "H" "T" "T" "T" "H"
->>>>>>> 57343262f063e289e06827d36f156b22e7edc7dd
+## [1] "T" "H" "T" "H" "H" "H" "T" "H"
 ```
 
 ```r
@@ -917,11 +906,7 @@ table(coin_flips)
 ```
 ## coin_flips
 ## H T 
-<<<<<<< HEAD
-## 3 5
-=======
-## 4 4
->>>>>>> 57343262f063e289e06827d36f156b22e7edc7dd
+## 5 3
 ```
 
 
@@ -959,11 +944,7 @@ length(birthdays)
 ```
 
 ```
-<<<<<<< HEAD
-## [1] 13
-=======
-## [1] 39
->>>>>>> 57343262f063e289e06827d36f156b22e7edc7dd
+## [1] 51
 ```
 
 ]
@@ -988,11 +969,7 @@ mysamp[1:5]  # First 5 values
 ```
 
 ```
-<<<<<<< HEAD
-## [1]  8.567 14.250 15.241  3.318  7.258
-=======
-## [1] 13.317  8.822 18.485 10.627 19.035
->>>>>>> 57343262f063e289e06827d36f156b22e7edc7dd
+## [1]  4.265  6.066 10.210  9.924 18.168
 ```
 
 ```r
@@ -1000,11 +977,7 @@ mean(mysamp) # Mean
 ```
 
 ```
-<<<<<<< HEAD
-## [1] 10.13
-=======
-## [1] 11.16
->>>>>>> 57343262f063e289e06827d36f156b22e7edc7dd
+## [1] 10.24
 ```
 
 ```r
@@ -1012,11 +985,7 @@ sd(mysamp)   # Standard deviation
 ```
 
 ```
-<<<<<<< HEAD
-## [1] 4.562
-=======
-## [1] 5.017
->>>>>>> 57343262f063e289e06827d36f156b22e7edc7dd
+## [1] 5.065
 ```
 
 
@@ -1024,7 +993,7 @@ sd(mysamp)   # Standard deviation
 
 .pull-right45[
 
-&lt;img src="Statistics_files/figure-html/unnamed-chunk-48-1.png" width="100%" /&gt;
+&lt;img src="Statistics_files/figure-html/unnamed-chunk-47-1.png" width="100%" /&gt;
 
 ]
 
@@ -1123,23 +1092,12 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   d.head.appendChild(s);
 })();</script>
 
-<script>
-(function() {
-  var i, text, code, codes = document.getElementsByTagName('code');
-  for (i = 0; i < codes.length;) {
-    code = codes[i];
-    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
-      text = code.textContent;
-      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
-          /^\$\$(.|\s)+\$\$$/.test(text) ||
-          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
-        code.outerHTML = code.innerHTML;  // remove <code></code>
-        continue;
-      }
-    }
-    i++;
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
   }
-})();
+});
 </script>
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

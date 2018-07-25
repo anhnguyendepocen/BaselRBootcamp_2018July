@@ -309,21 +309,10 @@ These tests take either a <high>formula</high> for the argument `formula`, or <h
 
 ### t-test with `t.test()`
 
-```{r, eval = F}
-# 1-sample t-test
-t.test(x = baselers$age, 
-       mu = 40)  # Mean under H0
-
-# 2-sample t-test (Output hidden)
+```{r}
+# 2-sample t-test
 t.test(formula = income ~ sex,
        data = baselers)
-
-```
-
-```{r, eval = T, echo = F}
-# 1-sample t-test
-t.test(x = baselers$age, 
-       mu = 40)  # Mean under H0
 
 ```
 
@@ -635,7 +624,7 @@ my_glm$residuals[1:6]
 
 ---
 
-# `predict`
+# `predict()`
 
 .pull-left4[
 
@@ -700,7 +689,7 @@ predict(object = model,
 
 .pull-left4[
 
-# `tidy`
+# `tidy()`
 
 The `tidy()` function from the `broom` package <high>converts</high> the most important results of many statistical object like "glm" to a <high>data frame</high>.
 

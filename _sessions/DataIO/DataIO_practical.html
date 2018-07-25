@@ -429,9 +429,19 @@ diamonds$carat[XX] &lt;- YY</code></pre>
 <div id="c---write-delim-separated-text-files" class="section level2">
 <h2>C - Write delim-separated text files</h2>
 <ol style="list-style-type: decimal">
-<li><p>Write the, now, properly formatted diamonds data to your data folder as a <code>.csv</code> file using the name <code>diamonds_clean.csv</code>. Don’t forget to include both the file name and the folder (separated by <code>/</code>) in the character string specifying the <code>path</code> argument.</p></li>
+<li>Write the, now, properly formatted diamonds data to your data folder as a <code>.csv</code> file using the name <code>diamonds_clean.csv</code>. Don’t forget to include both the file name and the folder (separated by <code>/</code>) in the character string specifying the <code>path</code> argument.</li>
+</ol>
+<pre class="r"><code># write clean diamonds data to disc
+write_csv(x = XX, path = &quot;XX&quot;)</code></pre>
+<ol start="2" style="list-style-type: decimal">
 <li><p>Read <code>diamonds_clean.csv</code> back into R as a new object called <code>diamonds_clean</code>. Then, print the object and verify that this time the types been correctly identified from the start.</p></li>
 <li><p>Using <code>write_delim</code>, write the data to disc with a different delimiter calling it <code>diamonds_delim.csv</code>. Specifically, set the <code>delim</code>-argument to <code>&quot;@&quot;</code>.</p></li>
+</ol>
+<pre class="r"><code># write with &quot;@&quot; as delimiter
+write_delim(x = XX, 
+            path = &quot;XX&quot;, 
+            delim = &quot;XX&quot;)</code></pre>
+<ol start="4" style="list-style-type: decimal">
 <li><p>Read <code>diamonds_delim.csv</code> back in using <code>read_csv()</code>. What happens?</p></li>
 <li><p>Fix the delimiter issue by using <code>read_delim()</code> instead of <code>read_csv()</code> and specifying the <code>delim</code>-argument. Verify that everything is in order again by printing the data.</p></li>
 </ol>

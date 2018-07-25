@@ -7,8 +7,8 @@ output:
 ---
 
 ```{r setup, include = FALSE}
-knitr::opts_chunk$set(echo = FALSE,
-                      eval = FALSE,
+knitr::opts_chunk$set(echo = TRUE,
+                      eval = TRUE,
                       message = FALSE,
                       warning = FALSE,
                       error = FALSE)
@@ -318,7 +318,7 @@ XX <- XX > XX
 
 ```{r}
 # Create a logical vector tall_180
-tall_180 <- hieght > 180
+tall_180 <- height > 180
 ```
 
 2. Print your `tall_180` vector to the console. Do you see only TRUE and FALSE values? If so, do the values that are TRUE match the ten Baselers that are actually over 180cm?
@@ -417,7 +417,7 @@ ten_tibble = tibble(id, sex, height, weight, tall_180)
 ```{r}
 # print tibble
 ten_tibble
-max(ten_tibble) == max(ten_df)
+max(ten_tibble$age) == max(ten_df$age)
 ```
 
 ## X - Challenges
@@ -463,7 +463,7 @@ mean(ten_tibble$age[ten_tibble$weight > 80])
 
 ```{r}
 # Mean age of baselers heavier than 80kg
-ten_tibble$id[ten_tibble$sex == "male"] & )
+ten_tibble$id[ten_tibble$sex == "male" & ten_tibble$height < 165]
 ```
 
 ## Additional Resources
