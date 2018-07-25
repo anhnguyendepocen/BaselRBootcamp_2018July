@@ -7,13 +7,11 @@ output:
 ---
 
 ```{r setup, include = FALSE}
-knitr::opts_chunk$set(comment = NA, 
-                      fig.width = 6, 
-                      fig.height = 6,
-                      fig.align = 'center',
-                      echo = FALSE, 
-                      eval = FALSE, 
-                      warning = FALSE)
+knitr::opts_chunk$set(echo = TRUE,
+                      eval = TRUE,
+                      message = FALSE,
+                      warning = FALSE,
+                      error = FALSE)
 
 options(digits = 3)
 
@@ -31,7 +29,6 @@ library(kableExtra)
 </figure>
 
 ## {.tabset}
-
 
 
 ### Overview
@@ -89,7 +86,7 @@ In this practical you'll learn how to work with simple data objects and function
 
 ### Examples
 
-```{r, eval = FALSE, echo = TRUE, message = FALSE, warning = FALSE}
+```{r, eval = FALSE, echo = TRUE}
 library(tidyverse)
 
 # Create vectors of (fake) stock data
@@ -159,7 +156,7 @@ XX <- c(XX, XX, ...)
 XX
 ```
 
-```{r, eval = FALSE, echo = FALSE}
+```{r}
 # Create an id vector 
 id <- 1:10 # shortcut to creating the sequence from 1 to 10
 
@@ -174,7 +171,7 @@ id
 class(XX)
 ```
 
-```{r, eval = FALSE, echo = FALSE}
+```{r}
 # Show the class of the id vector
 class(id)
 ```
@@ -186,7 +183,7 @@ class(id)
 length(XX)
 ```
 
-```{r, eval = FALSE, echo = FALSE}
+```{r}
 # Show the length of the id vector
 length(id)
 ```
@@ -198,7 +195,7 @@ length(id)
 XX <- c("XX", "XX", "...")
 ```
 
-```{r, eval = FALSE, echo = FALSE}
+```{r}
 # Create a sex vector 
 sex <- c("male", "male", "female", "male", "male", "male", "male", "female", "male", "female")
 
@@ -208,21 +205,21 @@ sex
 
 5. Using the `class()` function, check the class of your `sex` vector. Is it  `"character"`?
 
-```{r, eval = FALSE, echo = FALSE}
+```{r}
 # Show the class of the sex vector
 class(sex)
 ```
 
 6. Using the `length()` function, find out the length of your `sex` object. Does it have length 10? If not, make sure you defined it correctly!
 
-```{r, eval = FALSE, echo = FALSE}
+```{r}
 # Show the length of the sex vector
 length(sex)
 ```
 
 7. Using the same steps as before, create a `age` and `height` vector.
 
-```{r, eval = FALSE, echo = FALSE}
+```{r}
 # Create a age vector 
 age <- c(44, 65, 31, 27, 24, 63, 71, 41, 43, 31)
 
@@ -250,7 +247,7 @@ length(height)
 
 8. Look at the weight data, you'll notice it contains an missing value. Create a vector called `weight` containing these data, following the same steps as before, making sure to specify the missing value as `NA` (no quotation marks). 
 
-```{r, eval = FALSE, echo = FALSE}
+```{r}
 # Create a weight vector 
 weight <- c(113.4, 75.2, 55.5, 93.8, NA, 67.4, 83.3, 67.8, 69.3, 66.3)
 
@@ -268,42 +265,42 @@ length(weight)
 
 1. Using the `table()` function, find out how many males and females are in the data. You should find `r sum(data$sex == "male")` males and `r sum(data$sex == "female")` females!
 
-```{r, eval = FALSE, echo = FALSE}
+```{r}
 # Count types in sex
 table(sex)
 ```
 
 2. Using the `mean()` function, calculate the mean `age`. It should be `r mean(data$age)`!
 
-```{r, eval = FALSE, echo = FALSE}
+```{r}
 # Compute mean of age
 mean(age)
 ```
 
 3. Try calculating the mean value of `sex`. What happens? Why?
 
-```{r, eval = FALSE, echo = FALSE}
+```{r}
 # Compute mean of sex
 mean(sex)
 ```
 
 4. Try calculating the mean `weight`. You should get an `NA` value. Why?
 
-```{r, eval = FALSE, echo = FALSE}
+```{r}
 # Compute mean of sex
 mean(weight)
 ```
 
 5. Look at the help menu for the `mean()` function (using `?mean`) to look for an argument that will help you with your problem.
 
-```{r, eval = FALSE, echo = FALSE}
+```{r}
 # Inspect help for mean
 ?mean
 ```
 
 6. Using the correct argument for the mean function, calculate the mean weight ignoring `NA` values. It should be `r round(mean(data$weight, na.rm = TRUE), 2)`!
 
-```{r, eval = FALSE, echo = FALSE}
+```{r}
 # Compute mean weight, ignoring NAs 
 mean(weight, na.rm = TRUE)
 ```
@@ -319,35 +316,35 @@ mean(weight, na.rm = TRUE)
 XX <- XX > XX
 ```
 
-```{r, eval = FALSE, echo = FALSE}
+```{r}
 # Create a logical vector tall_180
-tall_180 <- hieght > 180
+tall_180 <- height > 180
 ```
 
 2. Print your `tall_180` vector to the console. Do you see only TRUE and FALSE values? If so, do the values that are TRUE match the ten Baselers that are actually over 180cm?
 
-```{r, eval = FALSE, echo = FALSE}
+```{r}
 # print tall
 tall_180
 ```
 
 3. Using the `table()` function, create a table showing how many of the ten Baselers are taller than 180cm and how many are not
 
-```{r, eval = FALSE, echo = FALSE}
+```{r}
 # count baselers taller than 180
 table(tall_180)
 ```
 
 4. Using the `mean()` function, determine the percentage of the ten Baselers that are taller than 180cm, i.e., `mean(tall_180)`. Should this have worked?
 
-```{r, eval = FALSE, echo = FALSE}
+```{r}
 # percentage of baselers taller than 180
 mean(tall_180)
 ```
 
 5. What percent of the ten Baselers were older than 30?
 
-```{r, eval = FALSE, echo = FALSE}
+```{r}
 # percentage of baselers older than 30
 mean(age > 30)
 ```
@@ -361,66 +358,66 @@ mean(age > 30)
 XX <- data.frame(XX, XX, XX, XX, XX, XX) 
 ```
 
-```{r, eval = FALSE, echo = FALSE}
+```{r}
 # Create ten_df data frame from vectors
 ten_df <- data.frame(id, age, sex, height, weight, tall_180) 
 ```
 
 2. Print your `ten_df` object to see how it looks! Does it contain all of the vectors?
 
-```{r, eval = FALSE, echo = FALSE}
+```{r}
 # Print ten_df
 ten_df
 ```
 
 3. Using the `dim()` function, print the number of rows and columns in your data frame. Do you get 10 rows and 5 columns?
 
-```{r, eval = FALSE, echo = FALSE}
+```{r}
 # Inspect dimensions
 dim(ten_df)
 ```
 
 4. What is the class of your `ten_df` object? Use the `class()` function to find out!
 
-```{r, eval = FALSE, echo = FALSE}
+```{r}
 # Inspect class
 class(ten_df)
 ```
 
 5. Use the `summary()` function to print descriptive statistics from each column of `ten_df`
 
-```{r, eval = FALSE, echo = FALSE}
+```{r}
 # Inspect class
 summary(ten_df)
 ```
 
 6. Using the `$` operator, print the `age` column from the `ten_df` data frame.
 
-```{r, eval = FALSE, echo = FALSE}
+```{r}
 # Inspect age
 ten_df$age
 ```
 
 7. Calculate the maximum `age` value from the `ten_df` data frame using `max()`. Do you get the same result from when you calculated it from the original vector `age`?
 
-```{r, eval = FALSE, echo = FALSE}
+```{r}
 # Get max
 max(ten_df$age)
 ```
 
 8. Instead of creating a data frame of the data using the `data.frame()` function, try creating a tibble called `ten_tibble` using the `tibble()` function. `tibble`s are a more modern, leaner variant of data frame that we prefer over classic `data.frame`s You can use the exact same arguments you used before.
 
-```{r, eval = FALSE, echo = FALSE}
+```{r}
 # create tibble
 ten_tibble = tibble(id, sex, height, weight, tall_180)
 ```
 
 9. Print your new `ten_tibble` object, how does it look different from `ten_df`? Try calculating the maximum `age` from this object. Is it different from what you got before?
 
-```{r, eval = FALSE, echo = FALSE}
+```{r}
 # print tibble
 ten_tibble
-max(ten_tibble) == max(ten_df)
+max(ten_tibble$age) == max(ten_df$age)
 ```
 
 ## X - Challenges
@@ -432,7 +429,7 @@ max(ten_tibble) == max(ten_df)
 sum(XX == XX)
 ```
 
-```{r, eval = FALSE, echo = FALSE}
+```{r}
 # Determine the frequency of a case in a vector
 sum(ten_tibble == "male")
 ```
@@ -447,7 +444,7 @@ young_30 <- XX$XX < 30
 XX$XX[young_30]
 ```
 
-```{r, eval = FALSE, echo = FALSE}
+```{r}
 # Create a logical vector indicating which baselers are younger than 30
 young_30 <- ten_tibble$age < 30
 
@@ -457,16 +454,16 @@ ten_tibble$id[young_30]
 
 3. Use a combination of logical vectors and the `mean()` function to answer the question: "What is the mean age of Baselers who are heavier than 80kg?"
 
-```{r, eval = FALSE, echo = FALSE}
+```{r}
 # Mean age of baselers heavier than 80kg
 mean(ten_tibble$age[ten_tibble$weight > 80])
 ```
 
 4. What are the id values of Baselers who are male *and* are shorter than 165cm? (Hint: You will need to use the logical AND operator `&` to combine multiple logical vectors)
 
-```{r, eval = FALSE, echo = FALSE}
+```{r}
 # Mean age of baselers heavier than 80kg
-ten_tibble$id[ten_tibble$sex == "male"] & )
+ten_tibble$id[ten_tibble$sex == "male" & ten_tibble$height < 165]
 ```
 
 ## Additional Resources

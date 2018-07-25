@@ -401,38 +401,134 @@ XX &lt;- c(XX, XX, ...)
 
 # Print the vector id
 XX</code></pre>
+<pre class="r"><code># Create an id vector 
+id &lt;- 1:10 # shortcut to creating the sequence from 1 to 10
+
+# Print the vector
+id</code></pre>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Using the <code>class()</code> function, check the class of your <code>id</code> vector. Is it <code>&quot;numeric&quot;</code>?</li>
 </ol>
 <pre class="r"><code># Show the class of an object XX
 class(XX)</code></pre>
+<pre class="r"><code># Show the class of the id vector
+class(id)</code></pre>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>Using the <code>length()</code> function, find out the length of your <code>id</code> vector. Does it have length 10? If not, make sure you defined it correctly!</li>
 </ol>
 <pre class="r"><code># Show the length of the id vector
 length(XX)</code></pre>
+<pre class="r"><code># Show the length of the id vector
+length(id)</code></pre>
+<pre><code>## [1] 10</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li>Create a character vector called <code>sex</code> that shows the sex values. Make sure to use quotation marks “” to enclose each element to tell R that the data are of type <code>&quot;character&quot;</code>! When you finish, print the object to see it!</li>
 </ol>
 <pre class="r"><code># Create a character vector sex
 XX &lt;- c(&quot;XX&quot;, &quot;XX&quot;, &quot;...&quot;)</code></pre>
+<pre class="r"><code># Create a sex vector 
+sex &lt;- c(&quot;male&quot;, &quot;male&quot;, &quot;female&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;female&quot;, &quot;male&quot;, &quot;female&quot;)
+
+# Print the vector
+sex</code></pre>
+<pre><code>##  [1] &quot;male&quot;   &quot;male&quot;   &quot;female&quot; &quot;male&quot;   &quot;male&quot;   &quot;male&quot;   &quot;male&quot;  
+##  [8] &quot;female&quot; &quot;male&quot;   &quot;female&quot;</code></pre>
 <ol start="5" style="list-style-type: decimal">
-<li><p>Using the <code>class()</code> function, check the class of your <code>sex</code> vector. Is it <code>&quot;character&quot;</code>?</p></li>
-<li><p>Using the <code>length()</code> function, find out the length of your <code>sex</code> object. Does it have length 10? If not, make sure you defined it correctly!</p></li>
-<li><p>Using the same steps as before, create a <code>age</code> and <code>height</code> vector.</p></li>
-<li><p>Look at the weight data, you’ll notice it contains an missing value. Create a vector called <code>weight</code> containing these data, following the same steps as before, making sure to specify the missing value as <code>NA</code> (no quotation marks).</p></li>
+<li>Using the <code>class()</code> function, check the class of your <code>sex</code> vector. Is it <code>&quot;character&quot;</code>?</li>
 </ol>
+<pre class="r"><code># Show the class of the sex vector
+class(sex)</code></pre>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>Using the <code>length()</code> function, find out the length of your <code>sex</code> object. Does it have length 10? If not, make sure you defined it correctly!</li>
+</ol>
+<pre class="r"><code># Show the length of the sex vector
+length(sex)</code></pre>
+<pre><code>## [1] 10</code></pre>
+<ol start="7" style="list-style-type: decimal">
+<li>Using the same steps as before, create a <code>age</code> and <code>height</code> vector.</li>
+</ol>
+<pre class="r"><code># Create a age vector 
+age &lt;- c(44, 65, 31, 27, 24, 63, 71, 41, 43, 31)
+
+# Print the age vector
+age</code></pre>
+<pre><code>##  [1] 44 65 31 27 24 63 71 41 43 31</code></pre>
+<pre class="r"><code># Show the class of the age vector
+class(age)</code></pre>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<pre class="r"><code># Show the length of the age vector
+length(age)</code></pre>
+<pre><code>## [1] 10</code></pre>
+<pre class="r"><code># Create a height vector 
+height &lt;- c(174.3, 180.3, 168.3, 209, 176.7, 186.6, 151.6, 155.7, 176.1, 166.1)
+
+# Print the height vector
+height</code></pre>
+<pre><code>##  [1] 174 180 168 209 177 187 152 156 176 166</code></pre>
+<pre class="r"><code># Show the class of the height vector
+class(height)</code></pre>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<pre class="r"><code># Show the length of the height vector
+length(height)</code></pre>
+<pre><code>## [1] 10</code></pre>
+<ol start="8" style="list-style-type: decimal">
+<li>Look at the weight data, you’ll notice it contains an missing value. Create a vector called <code>weight</code> containing these data, following the same steps as before, making sure to specify the missing value as <code>NA</code> (no quotation marks).</li>
+</ol>
+<pre class="r"><code># Create a weight vector 
+weight &lt;- c(113.4, 75.2, 55.5, 93.8, NA, 67.4, 83.3, 67.8, 69.3, 66.3)
+
+# Print the weight vector
+weight</code></pre>
+<pre><code>##  [1] 113.4  75.2  55.5  93.8    NA  67.4  83.3  67.8  69.3  66.3</code></pre>
+<pre class="r"><code># Show the class of the weight vector
+class(weight)</code></pre>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<pre class="r"><code># Show the length of the weight vector
+length(weight)</code></pre>
+<pre><code>## [1] 10</code></pre>
 </div>
 <div id="c---functions" class="section level2">
 <h2>C - Functions</h2>
 <ol style="list-style-type: decimal">
-<li><p>Using the <code>table()</code> function, find out how many males and females are in the data. You should find 7 males and 3 females!</p></li>
-<li><p>Using the <code>mean()</code> function, calculate the mean <code>age</code>. It should be 44!</p></li>
-<li><p>Try calculating the mean value of <code>sex</code>. What happens? Why?</p></li>
-<li><p>Try calculating the mean <code>weight</code>. You should get an <code>NA</code> value. Why?</p></li>
-<li><p>Look at the help menu for the <code>mean()</code> function (using <code>?mean</code>) to look for an argument that will help you with your problem.</p></li>
-<li><p>Using the correct argument for the mean function, calculate the mean weight ignoring <code>NA</code> values. It should be 76.89!</p></li>
+<li>Using the <code>table()</code> function, find out how many males and females are in the data. You should find 7 males and 3 females!</li>
 </ol>
+<pre class="r"><code># Count types in sex
+table(sex)</code></pre>
+<pre><code>## sex
+## female   male 
+##      3      7</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Using the <code>mean()</code> function, calculate the mean <code>age</code>. It should be 44!</li>
+</ol>
+<pre class="r"><code># Compute mean of age
+mean(age)</code></pre>
+<pre><code>## [1] 44</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Try calculating the mean value of <code>sex</code>. What happens? Why?</li>
+</ol>
+<pre class="r"><code># Compute mean of sex
+mean(sex)</code></pre>
+<pre><code>## [1] NA</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Try calculating the mean <code>weight</code>. You should get an <code>NA</code> value. Why?</li>
+</ol>
+<pre class="r"><code># Compute mean of sex
+mean(weight)</code></pre>
+<pre><code>## [1] NA</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Look at the help menu for the <code>mean()</code> function (using <code>?mean</code>) to look for an argument that will help you with your problem.</li>
+</ol>
+<pre class="r"><code># Inspect help for mean
+?mean</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>Using the correct argument for the mean function, calculate the mean weight ignoring <code>NA</code> values. It should be 76.89!</li>
+</ol>
+<pre class="r"><code># Compute mean weight, ignoring NAs 
+mean(weight, na.rm = TRUE)</code></pre>
+<pre><code>## [1] 76.9</code></pre>
 </div>
 <div id="d---logical-vectors" class="section level2">
 <h2>D - Logical Vectors</h2>
@@ -443,12 +539,34 @@ XX &lt;- c(&quot;XX&quot;, &quot;XX&quot;, &quot;...&quot;)</code></pre>
 #  which baselers are taller than 180cm
 
 XX &lt;- XX &gt; XX</code></pre>
+<pre class="r"><code># Create a logical vector tall_180
+tall_180 &lt;- height &gt; 180</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li><p>Print your <code>tall_180</code> vector to the console. Do you see only TRUE and FALSE values? If so, do the values that are TRUE match the ten Baselers that are actually over 180cm?</p></li>
-<li><p>Using the <code>table()</code> function, create a table showing how many of the ten Baselers are taller than 180cm and how many are not</p></li>
-<li><p>Using the <code>mean()</code> function, determine the percentage of the ten Baselers that are taller than 180cm, i.e., <code>mean(tall_180)</code>. Should this have worked?</p></li>
-<li><p>What percent of the ten Baselers were older than 30?</p></li>
+<li>Print your <code>tall_180</code> vector to the console. Do you see only TRUE and FALSE values? If so, do the values that are TRUE match the ten Baselers that are actually over 180cm?</li>
 </ol>
+<pre class="r"><code># print tall
+tall_180</code></pre>
+<pre><code>##  [1] FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Using the <code>table()</code> function, create a table showing how many of the ten Baselers are taller than 180cm and how many are not</li>
+</ol>
+<pre class="r"><code># count baselers taller than 180
+table(tall_180)</code></pre>
+<pre><code>## tall_180
+## FALSE  TRUE 
+##     7     3</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Using the <code>mean()</code> function, determine the percentage of the ten Baselers that are taller than 180cm, i.e., <code>mean(tall_180)</code>. Should this have worked?</li>
+</ol>
+<pre class="r"><code># percentage of baselers taller than 180
+mean(tall_180)</code></pre>
+<pre><code>## [1] 0.3</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>What percent of the ten Baselers were older than 30?</li>
+</ol>
+<pre class="r"><code># percentage of baselers older than 30
+mean(age &gt; 30)</code></pre>
+<pre><code>## [1] 0.8</code></pre>
 </div>
 <div id="e---creating-data-frames" class="section level2">
 <h2>E - Creating data frames</h2>
@@ -457,16 +575,94 @@ XX &lt;- XX &gt; XX</code></pre>
 </ol>
 <pre class="r"><code># Create data frame ten_df containing vectors id, age, sex, height, weight, and tall_180
 XX &lt;- data.frame(XX, XX, XX, XX, XX, XX) </code></pre>
+<pre class="r"><code># Create ten_df data frame from vectors
+ten_df &lt;- data.frame(id, age, sex, height, weight, tall_180) </code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li><p>Print your <code>ten_df</code> object to see how it looks! Does it contain all of the vectors?</p></li>
-<li><p>Using the <code>dim()</code> function, print the number of rows and columns in your data frame. Do you get 10 rows and 5 columns?</p></li>
-<li><p>What is the class of your <code>ten_df</code> object? Use the <code>class()</code> function to find out!</p></li>
-<li><p>Use the <code>summary()</code> function to print descriptive statistics from each column of <code>ten_df</code></p></li>
-<li><p>Using the <code>$</code> operator, print the <code>age</code> column from the <code>ten_df</code> data frame.</p></li>
-<li><p>Calculate the maximum <code>age</code> value from the <code>ten_df</code> data frame using <code>max()</code>. Do you get the same result from when you calculated it from the original vector <code>age</code>?</p></li>
-<li><p>Instead of creating a data frame of the data using the <code>data.frame()</code> function, try creating a tibble called <code>ten_tibble</code> using the <code>tibble()</code> function. <code>tibble</code>s are a more modern, leaner variant of data frame that we prefer over classic <code>data.frame</code>s You can use the exact same arguments you used before.</p></li>
-<li><p>Print your new <code>ten_tibble</code> object, how does it look different from <code>ten_df</code>? Try calculating the maximum <code>age</code> from this object. Is it different from what you got before?</p></li>
+<li>Print your <code>ten_df</code> object to see how it looks! Does it contain all of the vectors?</li>
 </ol>
+<pre class="r"><code># Print ten_df
+ten_df</code></pre>
+<pre><code>##    id age    sex height weight tall_180
+## 1   1  44   male    174  113.4    FALSE
+## 2   2  65   male    180   75.2     TRUE
+## 3   3  31 female    168   55.5    FALSE
+## 4   4  27   male    209   93.8     TRUE
+## 5   5  24   male    177     NA    FALSE
+## 6   6  63   male    187   67.4     TRUE
+## 7   7  71   male    152   83.3    FALSE
+## 8   8  41 female    156   67.8    FALSE
+## 9   9  43   male    176   69.3    FALSE
+## 10 10  31 female    166   66.3    FALSE</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Using the <code>dim()</code> function, print the number of rows and columns in your data frame. Do you get 10 rows and 5 columns?</li>
+</ol>
+<pre class="r"><code># Inspect dimensions
+dim(ten_df)</code></pre>
+<pre><code>## [1] 10  6</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>What is the class of your <code>ten_df</code> object? Use the <code>class()</code> function to find out!</li>
+</ol>
+<pre class="r"><code># Inspect class
+class(ten_df)</code></pre>
+<pre><code>## [1] &quot;data.frame&quot;</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Use the <code>summary()</code> function to print descriptive statistics from each column of <code>ten_df</code></li>
+</ol>
+<pre class="r"><code># Inspect class
+summary(ten_df)</code></pre>
+<pre><code>##        id             age           sex        height        weight     
+##  Min.   : 1.00   Min.   :24.0   female:3   Min.   :152   Min.   : 55.5  
+##  1st Qu.: 3.25   1st Qu.:31.0   male  :7   1st Qu.:167   1st Qu.: 67.4  
+##  Median : 5.50   Median :42.0              Median :175   Median : 69.3  
+##  Mean   : 5.50   Mean   :44.0              Mean   :174   Mean   : 76.9  
+##  3rd Qu.: 7.75   3rd Qu.:58.2              3rd Qu.:179   3rd Qu.: 83.3  
+##  Max.   :10.00   Max.   :71.0              Max.   :209   Max.   :113.4  
+##                                                          NA's   :1      
+##   tall_180      
+##  Mode :logical  
+##  FALSE:7        
+##  TRUE :3        
+##                 
+##                 
+##                 
+## </code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>Using the <code>$</code> operator, print the <code>age</code> column from the <code>ten_df</code> data frame.</li>
+</ol>
+<pre class="r"><code># Inspect age
+ten_df$age</code></pre>
+<pre><code>##  [1] 44 65 31 27 24 63 71 41 43 31</code></pre>
+<ol start="7" style="list-style-type: decimal">
+<li>Calculate the maximum <code>age</code> value from the <code>ten_df</code> data frame using <code>max()</code>. Do you get the same result from when you calculated it from the original vector <code>age</code>?</li>
+</ol>
+<pre class="r"><code># Get max
+max(ten_df$age)</code></pre>
+<pre><code>## [1] 71</code></pre>
+<ol start="8" style="list-style-type: decimal">
+<li>Instead of creating a data frame of the data using the <code>data.frame()</code> function, try creating a tibble called <code>ten_tibble</code> using the <code>tibble()</code> function. <code>tibble</code>s are a more modern, leaner variant of data frame that we prefer over classic <code>data.frame</code>s You can use the exact same arguments you used before.</li>
+</ol>
+<pre class="r"><code># create tibble
+ten_tibble = tibble(id, sex, height, weight, tall_180)</code></pre>
+<ol start="9" style="list-style-type: decimal">
+<li>Print your new <code>ten_tibble</code> object, how does it look different from <code>ten_df</code>? Try calculating the maximum <code>age</code> from this object. Is it different from what you got before?</li>
+</ol>
+<pre class="r"><code># print tibble
+ten_tibble</code></pre>
+<pre><code>## # A tibble: 10 x 5
+##       id sex    height weight tall_180
+##    &lt;int&gt; &lt;chr&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;lgl&gt;   
+##  1     1 male     174.  113.  FALSE   
+##  2     2 male     180.   75.2 TRUE    
+##  3     3 female   168.   55.5 FALSE   
+##  4     4 male     209    93.8 TRUE    
+##  5     5 male     177.   NA   FALSE   
+##  6     6 male     187.   67.4 TRUE    
+##  7     7 male     152.   83.3 FALSE   
+##  8     8 female   156.   67.8 FALSE   
+##  9     9 male     176.   69.3 FALSE   
+## 10    10 female   166.   66.3 FALSE</code></pre>
+<pre class="r"><code>max(ten_tibble$age) == max(ten_df$age)</code></pre>
+<pre><code>## [1] FALSE</code></pre>
 </div>
 <div id="x---challenges" class="section level2">
 <h2>X - Challenges</h2>
@@ -475,6 +671,9 @@ XX &lt;- data.frame(XX, XX, XX, XX, XX, XX) </code></pre>
 </ol>
 <pre class="r"><code># Determine the frequency of a case in a vector
 sum(XX == XX)</code></pre>
+<pre class="r"><code># Determine the frequency of a case in a vector
+sum(ten_tibble == &quot;male&quot;)</code></pre>
+<pre><code>## [1] NA</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>You can use logical vectors to select rows from a data frame based on certain criteria. using the following template, get the id values of Baselers who are younger than 30:</li>
 </ol>
@@ -483,10 +682,24 @@ young_30 &lt;- XX$XX &lt; 30
 
 # Print the ids of baselers younger than 30
 XX$XX[young_30]</code></pre>
+<pre class="r"><code># Create a logical vector indicating which baselers are younger than 30
+young_30 &lt;- ten_tibble$age &lt; 30
+
+# Print the ids of baselers younger than 30
+ten_tibble$id[young_30]</code></pre>
+<pre><code>## integer(0)</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li><p>Use a combination of logical vectors and the <code>mean()</code> function to answer the question: “What is the mean age of Baselers who are heavier than 80kg?”</p></li>
-<li><p>What are the id values of Baselers who are male <em>and</em> are shorter than 165cm? (Hint: You will need to use the logical AND operator <code>&amp;</code> to combine multiple logical vectors)</p></li>
+<li>Use a combination of logical vectors and the <code>mean()</code> function to answer the question: “What is the mean age of Baselers who are heavier than 80kg?”</li>
 </ol>
+<pre class="r"><code># Mean age of baselers heavier than 80kg
+mean(ten_tibble$age[ten_tibble$weight &gt; 80])</code></pre>
+<pre><code>## [1] NA</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>What are the id values of Baselers who are male <em>and</em> are shorter than 165cm? (Hint: You will need to use the logical AND operator <code>&amp;</code> to combine multiple logical vectors)</li>
+</ol>
+<pre class="r"><code># Mean age of baselers heavier than 80kg
+ten_tibble$id[ten_tibble$sex == &quot;male&quot; &amp; ten_tibble$height &lt; 165]</code></pre>
+<pre><code>## [1] 7</code></pre>
 </div>
 <div id="additional-resources" class="section level2">
 <h2>Additional Resources</h2>

@@ -7,13 +7,13 @@ output:
 ---
 
 ```{r setup, include = FALSE}
-knitr::opts_chunk$set(comment = NA, 
-                      fig.width = 6, 
-                      fig.height = 6,
-                      fig.align = 'center',
-                      echo = FALSE, 
-                      eval = FALSE, 
-                      warning = FALSE)
+knitr::opts_chunk$set(echo = FALSE,
+                      eval = FALSE,
+                      message = FALSE,
+                      warning = FALSE,
+                      error = FALSE,
+                      fig.width = 6,
+                      fig.height = 6)
 
 options(digits = 3)
 
@@ -94,7 +94,7 @@ library(haven)
 
 ### Examples
 
-```{r, eval = FALSE, echo = TRUE, message = FALSE, warning = FALSE}
+```{r, eval = FALSE, echo = TRUE}
 # load packages
 library(tidyverse)
 library(readxl)
@@ -178,7 +178,7 @@ diamonds_path <- ""
 ```
 
 
-```{r, eval = F, echo = FALSE}
+```{r}
 # place cursor in-between and hit tab
 diamonds_path <- "1_Data/diamonds.csv"
 ```
@@ -190,14 +190,14 @@ diamonds_path <- "1_Data/diamonds.csv"
 diamonds <- read_csv(file = XX)
 ```
 
-```{r, eval = F, echo = F}
+```{r}
 # read diamonds data
 diamonds <- read_csv(file = diamonds_path)
 ```
 
 3. Print the `diamonds` data and inspect the column names in the header line. Something's wrong!
 
-```{r, eval = F, echo = F}
+```{r}
 # print diamonds
 diamonds
 ```
@@ -210,7 +210,7 @@ diamonds <- read_csv(file = "XX",
                      col_names = XX)  # Vector of column names
 ```
 
-```{r, eval = F, echo = F}
+```{r}
 # read diamonds data while specifying col_names
 diamonds <- read_csv(file = diamonds_path,
                      col_names = c("carat", "cut", "color", "clarity", "depth", "table", "price"))
@@ -218,21 +218,21 @@ diamonds <- read_csv(file = diamonds_path,
 
 5. Re-inspect the header by printing the data. Has the header been fixed?
 
-```{r, eval = F, echo = F}
+```{r}
 # print diamonds
 diamonds
 ```
 
 6. Now pay attention to the classes of the individuals columns (variables). Have all classes been identified correctly? What about the `carat` column? It should be `numeric`, right?
 
-```{r, eval = F, echo = F}
+```{r}
 # print diamonds
 diamonds
 ```
 
 7. Let's see what went wrong. Select and print the `carat` variable to identify the one entry that caused the variable to become a `character` vector (Hint: look for a comma). 
 
-```{r, eval = F, echo = F}
+```{r}
 # print the carat column
 diamonds$carat
 ```
@@ -244,28 +244,28 @@ diamonds$carat
 diamonds$carat[XX] <- YY
 ```
 
-```{r, eval = F, echo = F}
+```{r}
 # Change the value at position XX to YY
 diamonds$carat[17] <- 0.37
 ```
 
 9. Ok you fixed the value but `carat` is still `character`. We can fix it with the `type_convert()` function. Apply the `type_convert()` function to the `diamonds` data to have R fix all the data types. Make sure to assign the result back to `diamonds` so that you change the object!
 
-```{r, eval = F, echo = F}
+```{r}
 # re-infer data types
 diamonds <- type_convert(diamonds)
 ```
 
 10. Print the `diamonds` object and look at the column types. Has the type of `carat` changed to `double`?
 
-```{r, eval = F, echo = F}
+```{r}
 # print diamonds data set
 diamonds
 ```
 
 11. The data is now ready for analysis. Let's calculate a few statistics. What is the average `carat` or `price` (use `mean()`)? What  `cut` and `clarity` levels exist and how often do they occur (use `table()`)? You can learn more about the variable values from the help file `?diamonds`.
 
-```{r, eval = F, echo = F}
+```{r}
 # simple stats of diamonds
 mean(diamonds$carat)
 mean(diamonds$price)
@@ -277,47 +277,47 @@ table(diamonds$clarity)
 
 1. Write the, now, properly formatted diamonds data to your data folder as a `.csv` file using the name `diamonds_clean.csv`. Don't forget to include both the file name and the folder (separated by `/`) in the character string specifying the `path` argument. 
 
-```{r, eval = F, echo = F}
+```{r, eval = F, echo = T}
 # write clean diamonds data to disc
 write_csv(x = XX, path = "XX")
 ```
 
-```{r, eval = F, echo = F}
+```{r}
 # write clean diamonds data to disc
 write_csv(x = diamonds, "1_Data/diamonds_clean.csv")
 ```
 
 2. Read `diamonds_clean.csv` back into R as a new object called `diamonds_clean`. Then, print the object and verify that this time the types been correctly identified from the start.
 
-```{r, eval = F, echo = F}
+```{r}
 # read clean diamonds data from disc
 diamonds_clean <- read_csv(file = "1_Data/diamonds_clean.csv")
 ```
 
 3. Using `write_delim`, write the data to disc with a different delimiter calling it `diamonds_delim.csv`. Specifically, set the `delim`-argument to `"@"`.
 
-```{r, eval = F, echo = F}
+```{r, eval = F, echo = T}
 # write with "@" as delimiter
 write_delim(x = XX, 
             path = "XX", 
             delim = "XX")
 ```
 
-```{r, eval = F, echo = F}
+```{r}
 # write with @ as delimiter
 write_delim(diamonds_clean, path = "1_Data/diamonds_delim.csv", delim = "@")
 ```
 
 4. Read `diamonds_delim.csv` back in using `read_csv()`. What happens?
 
-```{r, eval = F, echo = F}
+```{r}
 # read @-delimited diamonds data
 read_csv(file = "1_Data/diamonds_delim.csv")
 ```
 
 5. Fix the delimiter issue by using `read_delim()` instead of `read_csv()` and specifying the `delim`-argument. Verify that everything is in order again by printing the data.
 
-```{r, eval = F, echo = F}
+```{r}
 # read @-delimited diamonds data
 read_delim(file = "1_Data/diamonds_delim.csv", delim = "@")
 ```
@@ -336,14 +336,14 @@ knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/thumb/8/
 titanic <- read_excel(path = "XX")
 ```
 
-```{r, eval = F, echo = F}
+```{r}
 # Read titanic data
 titanic <- read_excel("1_Data/titanic.xls")
 ```
 
 2. Print `titanic` and evaluate its dimensions using `dim()`.
 
-```{r, eval = F, echo = F}
+```{r}
 # print and show dimenisons
 titanic
 dim(titanic)
@@ -357,14 +357,14 @@ table(titanic$XX,
       titanic$XX)
 ```
 
-```{r, eval = F, echo = F}
+```{r}
 # determine survival rate by cabin class
 table(titanic$pclass, titanic$survived)
 ```
 
 4. Using `write_csv()`, write the `titanic` dataframe as a new comma separated text file called `titanic.csv` in your `1_Data`  folder. Now you have the data saved as a text file any software can use!
 
-```{r, eval = F, echo = F}
+```{r}
 # write data to .csv
 write_csv(x = titanic, 
           path = "1_Data/titanic.csv")
@@ -382,14 +382,14 @@ knitr::include_graphics("http://www.sqlearn.gr/wp-content/uploads/2010/12/2000px
 XX <- read_spss(file = "XX")
 ```
 
-```{r, eval = F, echo = F}
+```{r}
 # Read sleep data
 sleep <- read_spss(file = "1_Data/sleep.sav")
 ```
 
 6. Print your `sleep` object and evaluate its dimensions using `dim()`.
 
-```{r, eval = F, echo = F}
+```{r}
 # print and show dimensions
 sleep
 dim(sleep)
@@ -397,14 +397,14 @@ dim(sleep)
 
 7. How many drinks do staff at the University of Melbourne consumer per day (variable `alcohol`). To do this, use the `mean()` function, while taking care of missing values using the `na.rm` argument. 
 
-```{r, eval = F, echo = F}
+```{r}
 # compute mean number of drinks
 mean(x = sleep, na.rm = TRUE)
 ```
 
 8. Using the `write_csv()` function, write the `sleep` data to a new file called `sleep.csv` in your `1_Data` folder. Now you have the `sleep` data stored as a text file any software can use!
 
-```{r, eval = F, echo = F}
+```{r}
 # write data to .csv
 write_csv(x = sleep, 
           path = "1_Data/sleep.csv")
@@ -424,14 +424,14 @@ knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/1/10/SAS
 XX <- read_sas(data_file = "XX")
 ```
 
-```{r, eval = F, echo = F}
+```{r}
 # read airbnb_zuerich.sas7bdat
 airbnb_zuerich <- read_sas(data_file = "1_Data/airbnb_zuerich.sas7bdat")
 ```
 
 10. Print `airbnb_zuerich` and then evaluate its dimensions using `dim()`.
 
-```{r, eval = F, echo = F}
+```{r}
 # print and show dimenisons
 airbnb_zuerich
 dim(airbnb_zuerich)
@@ -439,14 +439,14 @@ dim(airbnb_zuerich)
 
 11. How many AirBnB listings were there of each `room_type` in Zürich? (Hint: Using `table()`)
 
-```{r, eval = F, echo = F}
+```{r}
 # table room type
 table(airbnb_zuerich$room_type)
 ```
 
 12. Using `write_csv()` write your `airbnb_zuerich` data frame to as new comma-separated text file called `airbnb_zuerich.csv` in your `1_Data` folder.
 
-```{r, eval = F, echo = F}
+```{r}
 # write data to .csv
 write_csv(x = airbnb_zuerich, 
           path = "1_Data/airbnb_zuerich.csv")
@@ -458,7 +458,7 @@ R has two data formats of its own - `.Rdata` and `.RDS`. We recommend to use onl
 
 1. First, using `read_csv()` read back in the `diamonds_clean.csv` dataset as an object called `diamonds_clean`. 
 
-```{r, eval = F, echo = F}
+```{r}
 # read diamonds_clean.csv
 diamonds_clean <- read_csv("1_Data/diamonds_clean.csv")
 ```
@@ -471,7 +471,7 @@ saveRDS(object = XX,
         file = "XX")
 ```
 
-```{r, eval = F, echo = F}
+```{r}
 # write to RDS
 saveRDS(diamonds_clean, 
         file = "1_Data/diamonds_clean.RDS")
@@ -479,7 +479,7 @@ saveRDS(diamonds_clean,
 
 3. Using `readRDS()`, read the `diamonds_clean.RDS` back into R as a new object called `diamonds_clean_rds`. Then, print the `diamonds_clean_rds` object and see that it looks the same as the original `diamonds_clean` object.
 
-```{r, eval = F, echo = F}
+```{r}
 # read from RDS
 diamonds_clean_rds <- readRDS("1_Data/diamonds_clean.RDS")
 ```
@@ -492,7 +492,7 @@ file.size("1_Data/XX")
 file.size("1_Data/XX")
 ```
 
-```{r, eval = F, echo = F}
+```{r}
 # read from RDS
 file.size("1_Data/diamonds_clean.csv")
 file.size("1_Data/diamonds_clean.RDS")

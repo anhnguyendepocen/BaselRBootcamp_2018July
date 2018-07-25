@@ -1,42 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Natural language processsing</title>
+    <meta charset="utf-8">
+    <meta name="author" content="The R Bootcamp  www.therbootcamp.com @therbootcamp" />
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="baselrbootcamp.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Natural language processsing
+### The R Bootcamp <br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'><span class="citation">@therbootcamp</span></a>
+### July 2018
+
 ---
-title: "Natural Language Processing"
-subtitle: ""
-author: "The R Bootcamp<br/>Twitter: <a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
-date: "April 2018"
-output:
-  xaringan::moon_reader:
-    css: ["default", "my-theme.css"]
-    lib_dir: libs
-    nature:
-      highlightStyle: github
-      highlightLines: true
-      countIncrementalSlides: false
-      ratio: '16:9'
+
+
+layout: true
+
+&lt;div class="my-footer"&gt;&lt;span&gt;
+&lt;a href="https://therbootcamp.github.io/"&gt;&lt;font color="#7E7E7E"&gt;Basel, July 2018&lt;/font&gt;&lt;/a&gt;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&lt;a href="https://therbootcamp.github.io/"&gt;&lt;font color="#7E7E7E"&gt;www.therbootcamp.com&lt;/font&gt;&lt;/a&gt;
+&lt;/span&gt;&lt;/div&gt; 
+
 ---
 
 # Definitions 
 
 **Natural-language processing (NLP)** according to [Wikipedia](https://en.wikipedia.org/wiki/Natural-language_processing):
 
-> Natural-language processing (NLP) is an area of computer science and artificial intelligence concerned with the **interactions between computers and human (natural) languages**, in particular how to program computers to fruitfully **process large amounts of natural language data**.
+&gt; Natural-language processing (NLP) is an area of computer science and artificial intelligence concerned with the **interactions between computers and human (natural) languages**, in particular how to program computers to fruitfully **process large amounts of natural language data**.
 
-<br><br>
+&lt;br&gt;&lt;br&gt;
 
 **Natural language** according [Wikipedia](https://en.wikipedia.org/wiki/Natural_language):
 
->In neuropsychology, linguistics, and the philosophy of language, a **natural language or ordinary language** is any language that has **evolved naturally in humans** through use and repetition without conscious planning or premeditation. Natural languages can take different forms, such as speech or signing. They are distinguished from constructed and formal languages such as those used to program computers or to study logic.[1]
+&gt;In neuropsychology, linguistics, and the philosophy of language, a **natural language or ordinary language** is any language that has **evolved naturally in humans** through use and repetition without conscious planning or premeditation. Natural languages can take different forms, such as speech or signing. They are distinguished from constructed and formal languages such as those used to program computers or to study logic.[1]
 
 ---
 
 
 # Sources
 
-<img src="https://www.popsci.com/sites/popsci.com/files/images/2017/11/books.jpg" alt="test" height = 200>
-<img src="http://scidle.com/wp-content/uploads/2016/03/wikipedia.jpg" alt="test" height = 200>
-<img src="https://cdn.wccftech.com/wp-content/uploads/2018/02/Twitter.jpeg" alt="test" height = 200>
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Facebook_New_Logo_%282015%29.svg/2000px-Facebook_New_Logo_%282015%29.svg.png" height = 200>
-<img src="https://blog.richmond.edu/richmondlawcdo/files/2017/02/Email.jpg" height = 200>
-<img src="http://www.vitecinc.com/wp-content/uploads/2016/04/voice-recognition-640x480.jpg" height = 200 width = 206>
+&lt;img src="https://www.popsci.com/sites/popsci.com/files/images/2017/11/books.jpg" alt="test" height = 200&gt;
+&lt;img src="http://scidle.com/wp-content/uploads/2016/03/wikipedia.jpg" alt="test" height = 200&gt;
+&lt;img src="https://cdn.wccftech.com/wp-content/uploads/2018/02/Twitter.jpeg" alt="test" height = 200&gt;
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Facebook_New_Logo_%282015%29.svg/2000px-Facebook_New_Logo_%282015%29.svg.png" height = 200&gt;
+&lt;img src="https://blog.richmond.edu/richmondlawcdo/files/2017/02/Email.jpg" height = 200&gt;
+&lt;img src="http://www.vitecinc.com/wp-content/uploads/2016/04/voice-recognition-640x480.jpg" height = 200 width = 206&gt;
 
 ---
 
@@ -45,18 +62,18 @@ output:
 .pull-left5[
 
 ### Basics
-[**Tokenizing**](https://en.wikipedia.org/wiki/Word_segmentation)<br>
-[Stemming](https://en.wikipedia.org/wiki/Stemming)<br>
-[Part-of-speech tagging](https://en.wikipedia.org/wiki/Part-of-speech_tagging)<br>
-[Parsing](https://en.wikipedia.org/wiki/Parsing)<br>
+[**Tokenizing**](https://en.wikipedia.org/wiki/Word_segmentation)&lt;br&gt;
+[Stemming](https://en.wikipedia.org/wiki/Stemming)&lt;br&gt;
+[Part-of-speech tagging](https://en.wikipedia.org/wiki/Part-of-speech_tagging)&lt;br&gt;
+[Parsing](https://en.wikipedia.org/wiki/Parsing)&lt;br&gt;
 etc.
 
 ### Semantics
-[Lexical semantics](https://en.wikipedia.org/wiki/Word_segmentation)<br>
-[Machine Translation](https://en.wikipedia.org/wiki/Machine_translation)<br>
-[Relationship extraction](https://en.wikipedia.org/wiki/Relationship_extraction)<br>
-[**Sentiment analysis**](https://en.wikipedia.org/wiki/Sentiment_analysis)<br>
-[**Topic analysis**](https://en.wikipedia.org/wiki/Topic_segmentation)<br>
+[Lexical semantics](https://en.wikipedia.org/wiki/Word_segmentation)&lt;br&gt;
+[Machine Translation](https://en.wikipedia.org/wiki/Machine_translation)&lt;br&gt;
+[Relationship extraction](https://en.wikipedia.org/wiki/Relationship_extraction)&lt;br&gt;
+[**Sentiment analysis**](https://en.wikipedia.org/wiki/Sentiment_analysis)&lt;br&gt;
+[**Topic analysis**](https://en.wikipedia.org/wiki/Topic_segmentation)&lt;br&gt;
 etc.
 
 ]
@@ -64,20 +81,20 @@ etc.
 .pull-right5[
 
 ### Discourse
-[Automatic summarization](https://en.wikipedia.org/wiki/Automatic_summarization)<br>
-[Discourse analysis](https://en.wikipedia.org/wiki/Discourse_analysis)<br>
+[Automatic summarization](https://en.wikipedia.org/wiki/Automatic_summarization)&lt;br&gt;
+[Discourse analysis](https://en.wikipedia.org/wiki/Discourse_analysis)&lt;br&gt;
 etc.
 
 ### Semantics
-[Speech recognition](https://en.wikipedia.org/wiki/Speech_recognition)<br>
-[Speech segmentation](https://en.wikipedia.org/wiki/Speech_segmentation)<br>
-[Relationship extraction](https://en.wikipedia.org/wiki/Relationship_extraction)<br>
-[Text-to-speech](https://en.wikipedia.org/wiki/Text-to-speech)<br>
+[Speech recognition](https://en.wikipedia.org/wiki/Speech_recognition)&lt;br&gt;
+[Speech segmentation](https://en.wikipedia.org/wiki/Speech_segmentation)&lt;br&gt;
+[Relationship extraction](https://en.wikipedia.org/wiki/Relationship_extraction)&lt;br&gt;
+[Text-to-speech](https://en.wikipedia.org/wiki/Text-to-speech)&lt;br&gt;
 etc.
 
 ]
 
-<font size="2"> from <a href="https://en.wikipedia.org/wiki/Natural-language_processing">Wikipedia</a></font>
+&lt;font size="2"&gt; from &lt;a href="https://en.wikipedia.org/wiki/Natural-language_processing"&gt;Wikipedia&lt;/a&gt;&lt;/font&gt;
 
 
 ---
@@ -85,22 +102,22 @@ etc.
 # Encoding 
 
 .pull-left55[
-<font size="5">1960: ASCII</font>
-<img src="https://www.asciitable.com/index/asciifull.gif">
+&lt;font size="5"&gt;1960: ASCII&lt;/font&gt;
+&lt;img src="https://www.asciitable.com/index/asciifull.gif"&gt;
 
 
-More info: [here](https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about-unicode-and-character-sets-no-excuses/) & [here](http://kunststube.net/encoding/)
+More info: [here](https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about-unicode-and-character-sets-no-excuses/) &amp; [here](http://kunststube.net/encoding/)
 
 ]
 
 .pull-right4[
-<font size="5">1991: Unicode</font>
-<a href="http://unicode.org/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Unicode_logo.svg/512px-Unicode_logo.svg.png" width = 365></a>
+&lt;font size="5"&gt;1991: Unicode&lt;/font&gt;
+&lt;a href="http://unicode.org/"&gt;&lt;img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Unicode_logo.svg/512px-Unicode_logo.svg.png" width = 365&gt;&lt;/a&gt;
 
 ]
 
 ---
-<br><br>
+&lt;br&gt;&lt;br&gt;
 
 | Character| Code Point | Encoding | Precision | Representation|
 |:------|:--------|:--------||:--------|
@@ -124,16 +141,16 @@ More info: [here](https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum
 .pull-left45[
 
 According to [Wikipedia](https://en.wikipedia.org/wiki/Regular_expression):
->A regular expression, **regex or regexp** (sometimes called a rational expression) is, in theoretical computer science and formal language theory, **a sequence of characters that define a search pattern**. Usually this pattern is then used by **string searching algorithms** for **"find"** or **"find and replace"** operations on strings.
+&gt;A regular expression, **regex or regexp** (sometimes called a rational expression) is, in theoretical computer science and formal language theory, **a sequence of characters that define a search pattern**. Usually this pattern is then used by **string searching algorithms** for **"find"** or **"find and replace"** operations on strings.
 
 ]
 
 .pull-right45[
 
-<img src="https://upload.wikimedia.org/wikipedia/commons/2/23/The_river_effect_in_justified_text.jpg">
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/2/23/The_river_effect_in_justified_text.jpg"&gt;
 
 
-<p align="center">`(?<=\.) {2,}(?=[A-Z])`<p>
+&lt;p align="center"&gt;`(?&lt;=\.) {2,}(?=[A-Z])`&lt;p&gt;
 
 ]
 
@@ -144,11 +161,12 @@ According to [Wikipedia](https://en.wikipedia.org/wiki/Regular_expression):
 .pull-left45[
 
 
-```{r, eval = F}
+
+```r
 str_*(string, pattern, ...)
 ```
 
-<br>
+&lt;br&gt;
 
 | Function suffix | Use |
 |:------|:--------------|
@@ -163,9 +181,9 @@ str_*(string, pattern, ...)
 
 .pull-right25[
 
-<img src="https://www.rstudio.com/wp-content/uploads/2014/04/stringr.png" height=200>
+&lt;img src="https://www.rstudio.com/wp-content/uploads/2014/04/stringr.png" height=200&gt;
 
-<img src="http://www.unicode.org/announcements/ICU-logo.png" height=200>
+&lt;img src="http://www.unicode.org/announcements/ICU-logo.png" height=200&gt;
 
 ]
 
@@ -174,20 +192,33 @@ str_*(string, pattern, ...)
 
 # Regular expressions: Segmentation
 
-```{r, eval = T, echo = F, warning = F, message=F}
-require(stringr)
-```
 
-```{r, eval = T}
+
+
+```r
 # text
-txt <- "Happy families are all alike; every unhappy family is unhappy in its own way."
+txt &lt;- "Happy families are all alike; every unhappy family is unhappy in its own way."
 
 # Tokenize
 str_extract_all(txt, "[A-Za-z]+")
+```
 
+```
+## [[1]]
+##  [1] "Happy"    "families" "are"      "all"      "alike"    "every"   
+##  [7] "unhappy"  "family"   "is"       "unhappy"  "in"       "its"     
+## [13] "own"      "way"
+```
+
+```r
 # Sentenize
 str_extract_all(txt, '[^[:space:]][^[.!?;]]*[.!?;]')
+```
 
+```
+## [[1]]
+## [1] "Happy families are all alike;"                  
+## [2] "every unhappy family is unhappy in its own way."
 ```
 
 
@@ -197,7 +228,7 @@ str_extract_all(txt, '[^[:space:]][^[.!?;]]*[.!?;]')
 
 Number of mention of stark family members across the first seven seasons of [Game of Thrones](https://de.wikipedia.org/wiki/Game_of_Thrones)
 
-<br>
+&lt;br&gt;
 
 |        | Winter Is Coming| The Kingsroad| Lord Snow| Cripples, Bastards, and Broken Things| The Wolf and the Lion| A Golden Crown| You Win or You Die| The Pointy End| Baelor| Fire and Blood|
 |:-------|----------------:|-------------:|---------:|-------------------------------------:|---------------------:|--------------:|------------------:|--------------:|------:|--------------:|
@@ -280,9 +311,9 @@ Aims to identify the sentiment, i.e., **affective value**, of natural language, 
 
 .pull-right55[
 
-<br><br>
+&lt;br&gt;&lt;br&gt;
 
-<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/sentiment.png" width="550">
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/sentiment.png" width="550"&gt;
 
 ]
 
@@ -310,11 +341,11 @@ Aims to identify the sentiment, i.e., **affective value**, of natural language, 
 
 .pull_right65[
 
-<p align="center">
+&lt;p align="center"&gt;
 
-<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/sentiment_got.png" width="550">
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/sentiment_got.png" width="550"&gt;
 
-</p>
+&lt;/p&gt;
 
 ]
 
@@ -374,9 +405,53 @@ Aims to identify the sentiment, i.e., **affective value**, of natural language, 
 
 # Practical
 
-<p><font size=6><b><a href="https://therbootcamp.github.io/_sessions/D3S3_NaturalLanguageProcessing/NaturalLanguageProcessing.html">Link to practical</a>
+&lt;p&gt;&lt;font size=6&gt;&lt;b&gt;&lt;a href="https://therbootcamp.github.io/_sessions/D3S3_NaturalLanguageProcessing/NaturalLanguageProcessing.html"&gt;Link to practical&lt;/a&gt;
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
 
-
-
-
-
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
