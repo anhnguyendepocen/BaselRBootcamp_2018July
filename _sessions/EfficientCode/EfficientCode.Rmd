@@ -62,7 +62,7 @@ options(digits = 4)
 
 ---
 
-# Why is R slow? And, is it?
+# Why is R slow? And is it?
 
 .pull-left45[
 ><font size = 5>R is not a fast language. This is not an accident. R was purposely designed to make data analysis and statistics easier for you to do. It was not designed to make life easier for your computer. While R is slow compared to other programming languages, for most purposes, it’s fast enough.
@@ -70,7 +70,7 @@ options(digits = 4)
 ]
 
 .pull-right45[
-<font size = 5>*Reasons for R being slow*<br><br>
+<font size = 5>*Reasons for R being slow*<br>
 <high>Extreme dynamism</high> - allows you to code flexibly.
 - weak dynamic typing
 - copy-on-modify semantics
@@ -82,13 +82,13 @@ options(digits = 4)
 
 ---
 
-# When is R slow?
-
 .pull-left35[
+
+# When is R slow?
 
 <font size = 5>
 
-(R) programs are slow when a large number computations of computations are required.<br><br>
+(R) programs are <high>slow</high> when a <high>large number computations</high> of computations are required.<br><br>
 
 Usually this involves, explicitly or implicitly (i.e., in the background), running a <high>loop</high>. 
 
@@ -97,7 +97,9 @@ Usually this involves, explicitly or implicitly (i.e., in the background), runni
 ]
 
 .pull-right55[
+<br><br>
 ```{r, message=F, warning=F, eval = T}
+# define a vector of variables
 vars <- c('sex', 'age', 'height', 'income')
 
 # loop that copies
@@ -125,9 +127,38 @@ for(i in 1:length(vars)){
 
 ---
 
+# Hierarchy of programming lanuguages
+
+.pull-left4[
+
+There is a general <high>trade-off</high> between <high>readability and flexibility</high> on the one hand and <high>speed</high> on the other.
+
+Languages close to the machine are <high>fast but impossible to read</high> and very rigid, e.g., `Assembly`.   
+
+<u>A function written in `Assembly`</u>
+
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/assembly.png">
+</p>
+
+]
+
+.pull-right55[
+
+<p align="center">
+  <img src="https://cdn-images-1.medium.com/max/1600/1*8j2PmhExz4q87OoddaH7ag.png" height = 400 vspace="10px">
+</p>
+
+
+]
+
+
+---
+
 # Profiling
 
-The first step to making your code efficient is to **identify critical parts** of your code. Do this using one of the following: 
+The first step to making your code efficient is to <high>identify critical parts</high> of your code. There are several options...
 
 | Function| Package| Description| 
 |:------|:------|:------------|
@@ -141,7 +172,7 @@ The first step to making your code efficient is to **identify critical parts** o
 
 # Profiling: Example
 
-Often some small part of your code takes orders of magnitudes longer than everything else. Profiling is about figuring out which parts of your code take so long.
+Responsible for slow code are often <high>small parts of the code</high> that take orders of magnitudes longer than everything else. Profiling is about figuring out which parts of your code take so long.
 
 .pull-left45[
 ```{r, eval = F}
@@ -201,11 +232,11 @@ Almost always your problem has been solved by someone else.
 
 <font size = 4><i>Look for solutions in:</i></font>
 
-**Base R** which can be amazingly fast.
+<high>Base R</high> which can be amazingly fast.
 
-**Other packages** which often provide faster versions of one and the same function.
+<high>Other packages</high> which often provide faster versions of one and the same function.
 
-<a href="http://google.com" align="center">**google**</a>, <a href="http://stackoverflow.com" align="center">**stackoverflow**</a>, <a href="http://rseek.org/" align="center">**rseek**</a>  
+<a href="http://google.com" align="center">google</a>, <a href="http://stackoverflow.com" align="center">stackoverflow</a>, <a href="http://rseek.org/" align="center">rseek</a>  
 
 ]
 
@@ -230,13 +261,13 @@ Almost always your problem has been solved by someone else.
 
 .pull-left3[
 
-**Do everything only once** (or exactly as often as needed). Don't repeated yourself. 
+<high>Do everything only once</high> (or exactly as often as needed). Don't repeated yourself. 
 
-Use **tailor-made** functions, e.g., `data.table::fread()`.
+Use <high>tailor-made</high> functions, e.g., `data.table::fread()`.
 
-Use **primitive** functions, e.g., `sum(x)/length(x)` rather than `mean(x)`.
+Use <high>primitive</high> functions, e.g., `sum(x)/length(x)` rather than `mean(x)`.
 
-**Be specific**, e.g., `unlist(x, use.names = F)` vs. `unlist()`.
+<high>Be specific</high>, e.g., `unlist(x, use.names = F)` vs. `unlist()`.
 ]
 
 .pull-right65[
@@ -266,11 +297,11 @@ library(microbenchmark, quietly = T)
 # Vectorise
 
 .pull-left35[
-Whenever possible **use vector operations** or functions that do vectorized operations. 
+Whenever possible <high>use vector operations</high> or functions that do vectorized operations. 
 
-In other words, **don't use loops**, stay away from all **apply idoms**, such as `apply()`, `sapply()`, `tapply()`, etc.
+In other words, <high>don't use loops</high>, stay away from all <high>apply idoms</high>, such as `apply()`, `sapply()`, `tapply()`, etc.
 
-Yet in other words, **use functions** that have been **implemented in C/C++**. 
+Yet in other words, <high>use functions</high> that have been <high>implemented in C/C++</high>. 
 ]
 
 .pull-right6[
@@ -327,9 +358,9 @@ microbenchmark(
 .pull-left2[
 # Byte-code<br>compilation
 
-R can be compiled to byte-code, to create a faster, **lower-level version of the code**.
+R can be compiled to byte-code, to create a faster, <high>lower-level version of the code</high>.
 
-R does this automatically with the first execution of a function. Thus, the second time a function is executed it will be faster.  
+<high>R does this automatically</high> with the first execution of a function. Thus, the second time a function is executed it will be faster.  
 
 ]
 .pull-right7[
@@ -353,9 +384,9 @@ microbenchmark(my_fun(x, is.null), my_fun_c(x, is.null), unit='us')
 .pull-left2[
 # Parallel<br>computing
 
-When working with large data one of the **best ways to speed up** execution is parallel execution. 
+When working with large data one of the <high>best ways to speed up</high> execution is parallel execution. 
 
-Parallel execution means splitting the data in many **jobs** and having many **workers** (separate R instances equipped with a worker function) complete the jobs in parallel. 
+Parallel execution means splitting the data in many <high>jobs</high> and having many <high>workers</high> (separate R instances equipped with a worker function) complete the jobs in parallel. 
 ]
 
 .pull-right7[
@@ -393,11 +424,11 @@ stopCluster(clu)
 .pull-left2[
 # Rcpp
 
-Another very effective, but quite advanced option is to write essential code chunks in C++ using Rcpp - **R's C++ interface**.
+Another very effective, but quite advanced option is to write essential code chunks in C++ using Rcpp - <high>R's C++ interface</high>.
 
-Many functions are already implemented in C++ or Fortran. Thus, large benefits will only be seen for **for custom functions**. 
+Many functions are already implemented in C++ or Fortran. Thus, large benefits will only be seen for <high>for custom functions</high>. 
 
-<a href="http://dirk.eddelbuettel.com/code/rcpp/Rcpp-quickref.pdf">**Quick-Guide**</a>
+<a href="http://dirk.eddelbuettel.com/code/rcpp/Rcpp-quickref.pdf"><high>Quick-Guide</high></a>
 
 ]
 
@@ -430,7 +461,7 @@ microbenchmark(vector_implementation = colMeans(my_data),
 
 # Alternative R implementations
 
-from <a href="http://adv-r.had.co.nz/Performance.html"> **Advanced R**</a>
+from <a href="http://adv-r.had.co.nz/Performance.html"> <high>Advanced R</high></a>
 
 | R implementation| Author | Description| 
 |:------|:------|:------------|
@@ -446,9 +477,9 @@ from <a href="http://adv-r.had.co.nz/Performance.html"> **Advanced R**</a>
 .pull-left4[
 Microsoft [R Open](https://mran.microsoft.com/) is the enhanced distribution of R from Microsoft Corporation.
 
-Open R interfaces with the high-performance, multi-threaded [**BLAS/LAPACK**](http://www.netlib.org/lapack/lug/node11.html) linear algebra libraries for superior performance. 
+Open R interfaces with the high-performance, multi-threaded [<high>BLAS/LAPACK</high>](http://www.netlib.org/lapack/lug/node11.html) linear algebra libraries for superior performance. 
 
-**Maximize reproducibility** by freezing the set of base packages with every version of Open R. 
+<high>Maximize reproducibility</high> by freezing the set of base packages with every version of Open R. 
 Sort of R's Matlab.
 ]
 
@@ -460,7 +491,7 @@ Sort of R's Matlab.
 
 # Efficient code is readable and maintainable 
 
-A lot of time in programming is consumed by reading, understanding, debugging your own code and that of others, and this time often far outweighs the benefits of making code faster. 
+Time-wise <high>one of the biggest cost factors is reading, understanding, debugging</high> your own code and that of others, and this time often far outweighs the benefits of making code faster. 
 
 .pull-left45[
 ```{r, message=F, warning=F, eval = F}

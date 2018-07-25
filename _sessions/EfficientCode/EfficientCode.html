@@ -52,7 +52,7 @@ layout: true
 
 ---
 
-# Why is R slow? And, is it?
+# Why is R slow? And is it?
 
 .pull-left45[
 &gt;&lt;font size = 5&gt;R is not a fast language. This is not an accident. R was purposely designed to make data analysis and statistics easier for you to do. It was not designed to make life easier for your computer. While R is slow compared to other programming languages, for most purposes, it’s fast enough.
@@ -60,7 +60,7 @@ layout: true
 ]
 
 .pull-right45[
-&lt;font size = 5&gt;*Reasons for R being slow*&lt;br&gt;&lt;br&gt;
+&lt;font size = 5&gt;*Reasons for R being slow*&lt;br&gt;
 &lt;high&gt;Extreme dynamism&lt;/high&gt; - allows you to code flexibly.
 - weak dynamic typing
 - copy-on-modify semantics
@@ -72,13 +72,13 @@ layout: true
 
 ---
 
-# When is R slow?
-
 .pull-left35[
+
+# When is R slow?
 
 &lt;font size = 5&gt;
 
-(R) programs are slow when a large number computations of computations are required.&lt;br&gt;&lt;br&gt;
+(R) programs are &lt;high&gt;slow&lt;/high&gt; when a &lt;high&gt;large number computations&lt;/high&gt; of computations are required.&lt;br&gt;&lt;br&gt;
 
 Usually this involves, explicitly or implicitly (i.e., in the background), running a &lt;high&gt;loop&lt;/high&gt;. 
 
@@ -87,8 +87,10 @@ Usually this involves, explicitly or implicitly (i.e., in the background), runni
 ]
 
 .pull-right55[
+&lt;br&gt;&lt;br&gt;
 
 ```r
+# define a vector of variables
 vars &lt;- c('sex', 'age', 'height', 'income')
 
 # loop that copies
@@ -115,9 +117,38 @@ for(i in 1:length(vars)){
 
 ---
 
+# Hierarchy of programming lanuguages
+
+.pull-left4[
+
+There is a general &lt;high&gt;trade-off&lt;/high&gt; between &lt;high&gt;readability and flexibility&lt;/high&gt; on the one hand and &lt;high&gt;speed&lt;/high&gt; on the other.
+
+Languages close to the machine are &lt;high&gt;fast but impossible to read&lt;/high&gt; and very rigid, e.g., `Assembly`.   
+
+&lt;u&gt;A function written in `Assembly`&lt;/u&gt;
+
+
+&lt;p align="center"&gt;
+  &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/assembly.png"&gt;
+&lt;/p&gt;
+
+]
+
+.pull-right55[
+
+&lt;p align="center"&gt;
+  &lt;img src="https://cdn-images-1.medium.com/max/1600/1*8j2PmhExz4q87OoddaH7ag.png" height = 400 vspace="10px"&gt;
+&lt;/p&gt;
+
+
+]
+
+
+---
+
 # Profiling
 
-The first step to making your code efficient is to **identify critical parts** of your code. Do this using one of the following: 
+The first step to making your code efficient is to &lt;high&gt;identify critical parts&lt;/high&gt; of your code. There are several options...
 
 | Function| Package| Description| 
 |:------|:------|:------------|
@@ -131,7 +162,7 @@ The first step to making your code efficient is to **identify critical parts** o
 
 # Profiling: Example
 
-Often some small part of your code takes orders of magnitudes longer than everything else. Profiling is about figuring out which parts of your code take so long.
+Responsible for slow code are often &lt;high&gt;small parts of the code&lt;/high&gt; that take orders of magnitudes longer than everything else. Profiling is about figuring out which parts of your code take so long.
 
 .pull-left45[
 
@@ -190,11 +221,11 @@ Almost always your problem has been solved by someone else.
 
 &lt;font size = 4&gt;&lt;i&gt;Look for solutions in:&lt;/i&gt;&lt;/font&gt;
 
-**Base R** which can be amazingly fast.
+&lt;high&gt;Base R&lt;/high&gt; which can be amazingly fast.
 
-**Other packages** which often provide faster versions of one and the same function.
+&lt;high&gt;Other packages&lt;/high&gt; which often provide faster versions of one and the same function.
 
-&lt;a href="http://google.com" align="center"&gt;**google**&lt;/a&gt;, &lt;a href="http://stackoverflow.com" align="center"&gt;**stackoverflow**&lt;/a&gt;, &lt;a href="http://rseek.org/" align="center"&gt;**rseek**&lt;/a&gt;  
+&lt;a href="http://google.com" align="center"&gt;google&lt;/a&gt;, &lt;a href="http://stackoverflow.com" align="center"&gt;stackoverflow&lt;/a&gt;, &lt;a href="http://rseek.org/" align="center"&gt;rseek&lt;/a&gt;  
 
 ]
 
@@ -219,13 +250,13 @@ Almost always your problem has been solved by someone else.
 
 .pull-left3[
 
-**Do everything only once** (or exactly as often as needed). Don't repeated yourself. 
+&lt;high&gt;Do everything only once&lt;/high&gt; (or exactly as often as needed). Don't repeated yourself. 
 
-Use **tailor-made** functions, e.g., `data.table::fread()`.
+Use &lt;high&gt;tailor-made&lt;/high&gt; functions, e.g., `data.table::fread()`.
 
-Use **primitive** functions, e.g., `sum(x)/length(x)` rather than `mean(x)`.
+Use &lt;high&gt;primitive&lt;/high&gt; functions, e.g., `sum(x)/length(x)` rather than `mean(x)`.
 
-**Be specific**, e.g., `unlist(x, use.names = F)` vs. `unlist()`.
+&lt;high&gt;Be specific&lt;/high&gt;, e.g., `unlist(x, use.names = F)` vs. `unlist()`.
 ]
 
 .pull-right65[
@@ -250,11 +281,11 @@ library(microbenchmark, quietly = T)
 # Vectorise
 
 .pull-left35[
-Whenever possible **use vector operations** or functions that do vectorized operations. 
+Whenever possible &lt;high&gt;use vector operations&lt;/high&gt; or functions that do vectorized operations. 
 
-In other words, **don't use loops**, stay away from all **apply idoms**, such as `apply()`, `sapply()`, `tapply()`, etc.
+In other words, &lt;high&gt;don't use loops&lt;/high&gt;, stay away from all &lt;high&gt;apply idoms&lt;/high&gt;, such as `apply()`, `sapply()`, `tapply()`, etc.
 
-Yet in other words, **use functions** that have been **implemented in C/C++**. 
+Yet in other words, &lt;high&gt;use functions&lt;/high&gt; that have been &lt;high&gt;implemented in C/C++&lt;/high&gt;. 
 ]
 
 .pull-right6[
@@ -273,9 +304,9 @@ microbenchmark(
 
 ```
 ## Unit: microseconds
-##      expr   min    lq  mean median    uq   max neval cld
-##  colMeans   772   780   849    801   864  1190    10  a 
-##     apply 10552 14510 26213  15485 43601 48105    10   b
+##      expr   min    lq  mean median    uq   max neval
+##  colMeans   775   792   837    830   855   948    10
+##     apply 11957 14679 16324  15750 16793 23040    10
 ```
 ]
 
@@ -317,11 +348,11 @@ microbenchmark(
 
 ```
 ## Unit: nanoseconds
-##     expr   min    lq  mean median    uq     max neval cld
-##   loop10  2372  2798  3029   2992  3202    5381   100  a 
-##  loop100 34306 50663 79244  52167 56170 2629066   100   b
-##    vec10   120   193   266    222   280    1457   100  a 
-##   vec100   306   350   753    397   524    2962   100  a
+##     expr   min    lq  mean median    uq     max neval
+##   loop10  2388  2763  2963   2966  3130    3710   100
+##  loop100 33896 53014 79297  54916 57412 2442228   100
+##    vec10   122   148   231    202   227    2983   100
+##   vec100   321   370   925    430  2021    2687   100
 ```
 
 ]
@@ -329,9 +360,9 @@ microbenchmark(
 .pull-left2[
 # Byte-code&lt;br&gt;compilation
 
-R can be compiled to byte-code, to create a faster, **lower-level version of the code**.
+R can be compiled to byte-code, to create a faster, &lt;high&gt;lower-level version of the code&lt;/high&gt;.
 
-R does this automatically with the first execution of a function. Thus, the second time a function is executed it will be faster.  
+&lt;high&gt;R does this automatically&lt;/high&gt; with the first execution of a function. Thus, the second time a function is executed it will be faster.  
 
 ]
 .pull-right7[
@@ -350,9 +381,9 @@ microbenchmark(my_fun(x, is.null), my_fun_c(x, is.null), unit='us')
 
 ```
 ## Unit: microseconds
-##                  expr  min   lq  mean median   uq    max neval cld
-##    my_fun(x, is.null) 7.64 8.23 20.30   9.06 9.73 1085.5   100   a
-##  my_fun_c(x, is.null) 7.61 8.20  9.05   8.95 9.52   16.6   100   a
+##                  expr  min   lq  mean median   uq    max neval
+##    my_fun(x, is.null) 8.16 8.95 20.55   9.29 9.74 1037.3   100
+##  my_fun_c(x, is.null) 8.09 8.61  9.77   9.08 9.61   20.9   100
 ```
 
 ```r
@@ -362,9 +393,9 @@ microbenchmark(my_fun(x, is.null), my_fun_c(x, is.null), unit='us')
 
 ```
 ## Unit: microseconds
-##                  expr  min   lq mean median    uq  max neval cld
-##    my_fun(x, is.null) 7.54 8.29 9.40   9.01 10.21 13.5   100   a
-##  my_fun_c(x, is.null) 7.47 8.30 9.92   9.12  9.99 62.1   100   a
+##                  expr  min   lq mean median   uq  max neval
+##    my_fun(x, is.null) 7.92 8.23 8.75   8.37 8.59 31.1   100
+##  my_fun_c(x, is.null) 7.82 8.22 8.45   8.41 8.61 13.3   100
 ```
 ]
 ---
@@ -372,9 +403,9 @@ microbenchmark(my_fun(x, is.null), my_fun_c(x, is.null), unit='us')
 .pull-left2[
 # Parallel&lt;br&gt;computing
 
-When working with large data one of the **best ways to speed up** execution is parallel execution. 
+When working with large data one of the &lt;high&gt;best ways to speed up&lt;/high&gt; execution is parallel execution. 
 
-Parallel execution means splitting the data in many **jobs** and having many **workers** (separate R instances equipped with a worker function) complete the jobs in parallel. 
+Parallel execution means splitting the data in many &lt;high&gt;jobs&lt;/high&gt; and having many &lt;high&gt;workers&lt;/high&gt; (separate R instances equipped with a worker function) complete the jobs in parallel. 
 ]
 
 .pull-right7[
@@ -405,9 +436,9 @@ microbenchmark(vectorz = colMeans(data),
 
 ```
 ## Unit: milliseconds
-##     expr  min   lq mean median   uq  max neval cld
-##  vectorz 7.66 8.11 8.33   8.25 8.51 9.74   100   b
-##  cluster 4.10 4.60 4.86   4.80 5.10 6.82   100  a
+##     expr  min   lq mean median   uq  max neval
+##  vectorz 7.88 8.27 8.55   8.42 8.63 13.5   100
+##  cluster 4.18 4.45 4.95   4.75 5.10 10.9   100
 ```
 
 
@@ -418,11 +449,11 @@ microbenchmark(vectorz = colMeans(data),
 .pull-left2[
 # Rcpp
 
-Another very effective, but quite advanced option is to write essential code chunks in C++ using Rcpp - **R's C++ interface**.
+Another very effective, but quite advanced option is to write essential code chunks in C++ using Rcpp - &lt;high&gt;R's C++ interface&lt;/high&gt;.
 
-Many functions are already implemented in C++ or Fortran. Thus, large benefits will only be seen for **for custom functions**. 
+Many functions are already implemented in C++ or Fortran. Thus, large benefits will only be seen for &lt;high&gt;for custom functions&lt;/high&gt;. 
 
-&lt;a href="http://dirk.eddelbuettel.com/code/rcpp/Rcpp-quickref.pdf"&gt;**Quick-Guide**&lt;/a&gt;
+&lt;a href="http://dirk.eddelbuettel.com/code/rcpp/Rcpp-quickref.pdf"&gt;&lt;high&gt;Quick-Guide&lt;/high&gt;&lt;/a&gt;
 
 ]
 
@@ -454,16 +485,16 @@ microbenchmark(vector_implementation = colMeans(my_data),
 
 ```
 ## Unit: milliseconds
-##                   expr  min   lq mean median   uq   max neval cld
-##  vector_implementation 7.56 7.76 8.05   7.95 8.33 10.98   100   a
-##    rcpp_implementation 7.54 7.74 8.02   7.99 8.23  8.79   100   a
+##                   expr  min   lq mean median   uq  max neval
+##  vector_implementation 7.54 7.72 7.93   7.87 8.13 8.90   100
+##    rcpp_implementation 7.54 7.76 8.02   7.91 8.18 9.76   100
 ```
 ]
 ---
 
 # Alternative R implementations
 
-from &lt;a href="http://adv-r.had.co.nz/Performance.html"&gt; **Advanced R**&lt;/a&gt;
+from &lt;a href="http://adv-r.had.co.nz/Performance.html"&gt; &lt;high&gt;Advanced R&lt;/high&gt;&lt;/a&gt;
 
 | R implementation| Author | Description| 
 |:------|:------|:------------|
@@ -479,9 +510,9 @@ from &lt;a href="http://adv-r.had.co.nz/Performance.html"&gt; **Advanced R**&lt;
 .pull-left4[
 Microsoft [R Open](https://mran.microsoft.com/) is the enhanced distribution of R from Microsoft Corporation.
 
-Open R interfaces with the high-performance, multi-threaded [**BLAS/LAPACK**](http://www.netlib.org/lapack/lug/node11.html) linear algebra libraries for superior performance. 
+Open R interfaces with the high-performance, multi-threaded [&lt;high&gt;BLAS/LAPACK&lt;/high&gt;](http://www.netlib.org/lapack/lug/node11.html) linear algebra libraries for superior performance. 
 
-**Maximize reproducibility** by freezing the set of base packages with every version of Open R. 
+&lt;high&gt;Maximize reproducibility&lt;/high&gt; by freezing the set of base packages with every version of Open R. 
 Sort of R's Matlab.
 ]
 
@@ -493,7 +524,7 @@ Sort of R's Matlab.
 
 # Efficient code is readable and maintainable 
 
-A lot of time in programming is consumed by reading, understanding, debugging your own code and that of others, and this time often far outweighs the benefits of making code faster. 
+Time-wise &lt;high&gt;one of the biggest cost factors is reading, understanding, debugging&lt;/high&gt; your own code and that of others, and this time often far outweighs the benefits of making code faster. 
 
 .pull-left45[
 
@@ -556,12 +587,23 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   d.head.appendChild(s);
 })();</script>
 
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  tex2jax: {
-    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
   }
-});
+})();
 </script>
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
