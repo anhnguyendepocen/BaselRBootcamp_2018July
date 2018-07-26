@@ -12,8 +12,8 @@ knitr::opts_chunk$set(comment = NA,
                       fig.width = 6, 
                       fig.height = 6,
                       fig.align = 'center',
-                      echo = TRUE, 
-                      eval = TRUE, 
+                      echo = FALSE, 
+                      eval = FALSE, 
                       warning = FALSE)
 
 options(digits = 3)
@@ -81,6 +81,14 @@ trial_df$qol_end <- trial_df$qol_start + round(rnorm(n = 300, mean = 0, sd = 1),
 # write_csv(x = biomarker_df, path = "_sessions/D2S3_CaseStudies/dimarta_biomarker.csv")
 # write_csv(x = demographics_df, path = "_sessions/D2S3_CaseStudies/dimarta_demographics.csv")
 ```
+
+
+<figure>
+<center>
+  <img src="http://www.formerfda.com/wp-content/uploads/2014/08/clinical-trials.jpg" alt="Trulli">
+  <figcaption><a href="http://www.formerfda.com/wp-content/uploads/2014/08/clinical-trials.jpg">source</a></figcaption>
+</figure>
+
 
 
 ## {.tabset}

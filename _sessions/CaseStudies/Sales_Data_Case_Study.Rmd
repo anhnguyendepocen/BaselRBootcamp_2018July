@@ -20,8 +20,8 @@ options(digits = 3)
 
 <figure>
 <center>
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Supermarket_full_of_goods.jpg/1920px-Supermarket_full_of_goods.jpg" alt="Trulli" style="width:60%">
-  <figcaption>https://en.wikipedia.org/wiki/Retail</figcaption>
+  <img src="http://cfcdn.streetfightmag.com/wp-content/uploads/3026844-poster-p-shutterstock155054024-e1433421133417.jpg" alt="Trulli">
+  <figcaption><a href="http://cfcdn.streetfightmag.com/wp-content/uploads/3026844-poster-p-shutterstock155054024-e1433421133417.jpg">source</a></figcaption>
 </figure>
 
 
