@@ -214,7 +214,7 @@ str_*(string, pattern, ...)
 |   `str_detect`  | Test if pattern is present. |
 |   `str_count`   | Count number of pattern matches. |
 |   `str_locate`  | Find location of pattern. |
-|   `str_extract` | Extractt strings matching pattern. |
+|   `str_extract` | Extract strings matching pattern. |
 |   `str_replace` | Replace string matching pattern by other string. |
 |   `str_split`   | Split string around pattern. |
 
@@ -276,7 +276,7 @@ str_extract_all(txt, '[^[:space:]][^[.!?;]]*[.!?;]')
 
 # Term-document matrix (TDM)
 
-Number of mention of &lt;high&gt;stark family&lt;/high&gt; members across the &lt;high&gt;first seasons&lt;/high&gt; of [Game of Thrones](https://de.wikipedia.org/wiki/Game_of_Thrones)
+Number of mention of &lt;high&gt;Stark family&lt;/high&gt; members across the &lt;high&gt;first seasons&lt;/high&gt; of [Game of Thrones](https://de.wikipedia.org/wiki/Game_of_Thrones)
 
 |        | Winter Is Coming| The Kingsroad| Lord Snow| Cripples, Bastards, and Broken Things| The Wolf and the Lion| A Golden Crown| You Win or You Die| The Pointy End| Baelor| Fire and Blood|
 |:-------|----------------:|-------------:|---------:|-------------------------------------:|---------------------:|--------------:|------------------:|--------------:|------:|--------------:|
@@ -341,7 +341,7 @@ Use terms as variables to detect properties of documents, e.g., spam status or q
 
 # Term-document matrix (TDM)
 
-Number of mention of &lt;high&gt;stark family&lt;/high&gt; members across the &lt;high&gt;first seasons&lt;/high&gt; of [Game of Thrones](https://de.wikipedia.org/wiki/Game_of_Thrones)
+Number of mention of &lt;high&gt;Stark family&lt;/high&gt; members across the &lt;high&gt;first seasons&lt;/high&gt; of [Game of Thrones](https://de.wikipedia.org/wiki/Game_of_Thrones)
 
 |        | Winter Is Coming| The Kingsroad| Lord Snow| Cripples, Bastards, and Broken Things| The Wolf and the Lion| A Golden Crown| You Win or You Die| The Pointy End| Baelor| Fire and Blood|
 |:-------|----------------:|-------------:|---------:|-------------------------------------:|---------------------:|--------------:|------------------:|--------------:|------:|--------------:|
@@ -384,7 +384,7 @@ Aims to identify the sentiment, i.e., &lt;high&gt;affective value&lt;/high&gt;, 
 
 &lt;high&gt;Human judgment&lt;/high&gt;&lt;br&gt; Identify words that were judged by humans based on their sentimenta and aggregate the values.
 
-&lt;high&gt;Heuristic rules&lt;/high&gt;&lt;br&gt; Completements the first approach with rules, e.g., negation. 
+&lt;high&gt;Heuristic rules&lt;/high&gt;&lt;br&gt; Complements the first approach with rules, e.g., negation. 
 
 &lt;high&gt;Machine learning&lt;/high&gt;&lt;br&gt; Learns a mapping of terms and document sentiment based on a training set of judged and estimated document sentiments.
 
@@ -443,7 +443,7 @@ Analysis of &lt;high&gt;Game of Thrones episode sentiment&lt;/high&gt; as a func
 
 .pull-left45[
 
-&lt;high&gt;Framworks&lt;/high&gt;
+&lt;high&gt;Frameworks&lt;/high&gt;
 
 | Package   | Use |
 |:------------|:----------------|
@@ -508,23 +508,12 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   d.head.appendChild(s);
 })();</script>
 
-<script>
-(function() {
-  var i, text, code, codes = document.getElementsByTagName('code');
-  for (i = 0; i < codes.length;) {
-    code = codes[i];
-    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
-      text = code.textContent;
-      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
-          /^\$\$(.|\s)+\$\$$/.test(text) ||
-          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
-        code.outerHTML = code.innerHTML;  // remove <code></code>
-        continue;
-      }
-    }
-    i++;
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
   }
-})();
+});
 </script>
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

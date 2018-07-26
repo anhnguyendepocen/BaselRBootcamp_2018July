@@ -34,7 +34,7 @@ library(tidyverse)
 
 ### Overview
 
-In this practical you'll practice advanced machnine learning using the `caret` package
+In this practical you'll practice advanced machine learning using the `caret` package
 
 By the end of this practical you will know how to:
 

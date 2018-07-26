@@ -304,9 +304,9 @@ microbenchmark(
 
 ```
 ## Unit: microseconds
-##      expr   min    lq  mean median    uq   max neval
-##  colMeans   775   792   837    830   855   948    10
-##     apply 11957 14679 16324  15750 16793 23040    10
+##      expr   min    lq  mean median    uq   max neval cld
+##  colMeans   760   792  1045    942  1070  2096    10  a 
+##     apply 12665 14329 15722  14947 16634 22279    10   b
 ```
 ]
 
@@ -348,11 +348,11 @@ microbenchmark(
 
 ```
 ## Unit: nanoseconds
-##     expr   min    lq  mean median    uq     max neval
-##   loop10  2388  2763  2963   2966  3130    3710   100
-##  loop100 33896 53014 79297  54916 57412 2442228   100
-##    vec10   122   148   231    202   227    2983   100
-##   vec100   321   370   925    430  2021    2687   100
+##     expr   min    lq  mean median    uq     max neval cld
+##   loop10  2165  2400  2552   2526  2723    3308   100  a 
+##  loop100 34112 49652 73627  51326 53288 2273761   100   b
+##    vec10   112   138   184    166   224     561   100  a 
+##   vec100   313   367   884    420   534    8745   100  a
 ```
 
 ]
@@ -381,9 +381,9 @@ microbenchmark(my_fun(x, is.null), my_fun_c(x, is.null), unit='us')
 
 ```
 ## Unit: microseconds
-##                  expr  min   lq  mean median   uq    max neval
-##    my_fun(x, is.null) 8.16 8.95 20.55   9.29 9.74 1037.3   100
-##  my_fun_c(x, is.null) 8.09 8.61  9.77   9.08 9.61   20.9   100
+##                  expr  min   lq mean median    uq    max neval cld
+##    my_fun(x, is.null) 8.01 8.28 21.5   8.54 11.19 1044.3   100   a
+##  my_fun_c(x, is.null) 7.83 8.29 10.7   8.46  9.05   53.2   100   a
 ```
 
 ```r
@@ -393,9 +393,9 @@ microbenchmark(my_fun(x, is.null), my_fun_c(x, is.null), unit='us')
 
 ```
 ## Unit: microseconds
-##                  expr  min   lq mean median   uq  max neval
-##    my_fun(x, is.null) 7.92 8.23 8.75   8.37 8.59 31.1   100
-##  my_fun_c(x, is.null) 7.82 8.22 8.45   8.41 8.61 13.3   100
+##                  expr  min   lq  mean median   uq  max neval cld
+##    my_fun(x, is.null) 8.89 9.05 11.07   9.14 9.30 71.5   100   a
+##  my_fun_c(x, is.null) 8.84 9.07  9.58   9.20 9.33 21.8   100   a
 ```
 ]
 ---
@@ -436,9 +436,9 @@ microbenchmark(vectorz = colMeans(data),
 
 ```
 ## Unit: milliseconds
-##     expr  min   lq mean median   uq  max neval
-##  vectorz 7.88 8.27 8.55   8.42 8.63 13.5   100
-##  cluster 4.18 4.45 4.95   4.75 5.10 10.9   100
+##     expr  min   lq mean median   uq  max neval cld
+##  vectorz 7.79 8.01 8.32   8.21 8.55 9.82   100   b
+##  cluster 4.58 4.79 5.18   4.98 5.30 9.48   100  a
 ```
 
 
@@ -485,9 +485,9 @@ microbenchmark(vector_implementation = colMeans(my_data),
 
 ```
 ## Unit: milliseconds
-##                   expr  min   lq mean median   uq  max neval
-##  vector_implementation 7.54 7.72 7.93   7.87 8.13 8.90   100
-##    rcpp_implementation 7.54 7.76 8.02   7.91 8.18 9.76   100
+##                   expr   min    lq  mean median   uq  max neval cld
+##  vector_implementation  7.84  7.99  8.39   8.14  8.6 11.9   100  a 
+##    rcpp_implementation 10.25 10.40 11.16  10.74 11.5 15.2   100   b
 ```
 ]
 ---
@@ -568,7 +568,7 @@ t.test(father, mother)
 
 # Practical
 
-&lt;p&gt;&lt;font size=6&gt;&lt;b&gt;&lt;a href="https://therbootcamp.github.io/Erfurt_2018June/_sessions/D2S3_EfficientCode/EfficientCode_practical.html"&gt;Link to practical&lt;/a&gt;
+&lt;p&gt;&lt;font size=6&gt;&lt;b&gt;&lt;a href="https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/EfficientCode/EfficientCode_practical.html"&gt;Link to practical&lt;/a&gt;
     </textarea>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
@@ -587,23 +587,12 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   d.head.appendChild(s);
 })();</script>
 
-<script>
-(function() {
-  var i, text, code, codes = document.getElementsByTagName('code');
-  for (i = 0; i < codes.length;) {
-    code = codes[i];
-    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
-      text = code.textContent;
-      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
-          /^\$\$(.|\s)+\$\$$/.test(text) ||
-          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
-        code.outerHTML = code.innerHTML;  // remove <code></code>
-        continue;
-      }
-    }
-    i++;
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
   }
-})();
+});
 </script>
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

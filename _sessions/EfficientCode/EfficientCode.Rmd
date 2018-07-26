@@ -535,4 +535,4 @@ t.test(father, mother)
 
 # Practical
 
-<p><font size=6><b><a href="https://therbootcamp.github.io/Erfurt_2018June/_sessions/D2S3_EfficientCode/EfficientCode_practical.html">Link to practical</a>
+<p><font size=6><b><a href="https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/EfficientCode/EfficientCode_practical.html">Link to practical</a>

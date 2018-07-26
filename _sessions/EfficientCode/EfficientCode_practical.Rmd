@@ -42,6 +42,20 @@ In this practical you'll learn how to create efficient programs in R. By the end
 |`microbenchmark`|`install.packages("microbenchmark")`|
 |`profvis`|`install.packages("profvis")`|
 
+<<<<<<< HEAD
+=======
+### Datasets
+
+```{r, eval = TRUE, message = FALSE}
+library(tidyverse)
+house <- read_csv("../_data/complete/kc_house.csv")
+```
+
+|File | Rows | Columns | Description |Source
+|:----|:-----|:------|:-----------------------------------------|:--------|
+|`xx.csv` | xxx | xx| DESCRIPTION OF DATASET |SOURCE + LINK
+
+>>>>>>> 9816ab77991d1cf627cf6c659beeaf593c4ab7c1
 
 ### Glossary
 
@@ -144,7 +158,7 @@ profvis({
 
 # Tasks
 
-### A - Microbenchmark
+## A - Microbenchmark
 
 1. Run the microbenchmark example from above. What do you observe? Is retrieving a variable from a `tibble` faster or slower than retrieving a variable from a `data.frame`? 
 
@@ -212,7 +226,7 @@ is.primitive(length)
 
 **Explanation**: Many functions in R are so-called `primitives`. This means that the function has not been implemented in R, but in a lower-level language such as C or C++. When speed is important, it is preferable to resort to `primitive` functions.  
 
-### B - Profiling
+## B - Profiling
 
 Let us now turn to a more complex code example. In this section, you will profile a larger code chunk on the level of a small analysis script to identify opportunities  to make the code more efficient. Before you start, please install and load the `profvis` package. 
 
@@ -272,7 +286,7 @@ profvis({
 
 2. There was some part of the code that took much more time than the rest. Why is the code slow? Is it R or could there be some other reason?
 
-### C - Making code efficient
+## C - Making code efficient
 
 Now, try to make the code more efficient. 
 
@@ -445,11 +459,11 @@ profvis({
 
 ```
 
-## Advanced section
+# Advanced section
 
 In most cases, it is possible to produce efficient code using existing R functions. Sometimes, however, data sets are so big or computations is so complex that additional measures must be taken. Generally, there are two fundamental ways to make code really fast: (a) to implement code in a lower-level language that runs inherently faster and (b) to run code in parallel. In this section you will be getting a taste of both of these approaches.    
 
-### X - Parallel R
+## X - Parallel R
 
 Running code in parallel requires using a somewhat different programming approach. That is, you must split the data into parcels, often called *jobs*, and specify a function built to process individual parcels, often called a *worker*. Then, you can use functions in R's `parallel` package to assign jobs to workers and collect the results. Let's begin by definding the jobs and the worker. In this section, we will be looking at a very simple task, to compute the means of every column in a matrix, e.g., `my_df = as.data.frame(matrix(as.double(1:100000000), ncol = 100))`. (Note: `as.double` is needed to avoid integer overflow)
 
@@ -544,7 +558,7 @@ system.time(apply(my_df, 2, mean))
 
 Was the parallel version really faster than the non-parallel version? I would not be surprised, if not. Parallelization needs to be carefully set up and may, in some cases, even hurt execution time. In this case, the reason why the parallel code may have been slower is that it takes R quite some time to set up the R instances in the background. It's literally the same as you opening R on your computer several times in a row. Thus, (this kind of) parallelization will only be worth it, when the entire job runs in minutes, hours, or more.  
 
-### Y - Rcpp
+## Y - Rcpp
 
 Another option to speed up code is to implement essential code chunks in C++ using Rcpp. C++ is a compiled language, meaning that any C++ code will be translated into highly efficient machine code, before it is executed, making the code execution extremely fast. Implementing R code in C++ and importing it using Rcpp can mean 10-100x faster code execution (if the original code wasn't C code in the first place; remember `primitives`). Using high performance libraries such as, e.g., [RcppArmadillo](http://dirk.eddelbuettel.com/code/rcpp.armadillo.html), and multi-threading, e.g., using [RcppParallel](https://rcppcore.github.io/RcppParallel/), further speed ups are possible. 
 
@@ -641,7 +655,7 @@ microbenchmark(
 ```
 
 
-### Z - Microsoft R Open
+## Z - Microsoft R Open
 
 Lastly, I want to touch upon yet another option to speed up code, namely to use a different implementations of R. One such implementation is Microsoft Open R. Open R features the high-performance, multi-threaded [BLAS/LAPACK](http://www.netlib.org/lapack/lug/node11.html) linear algebra libraries plus several other features that aim to maximize reproducibility. 
 

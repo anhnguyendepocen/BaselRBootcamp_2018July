@@ -1,7 +1,7 @@
 ---
 title: "Plotting"
 subtitle: "with ggplot2"
-author: "BaselRBootcamp<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
+author: "Basel R Bootcamp<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
 date: "July 2018"
 output:
   xaringan::moon_reader:
@@ -202,7 +202,7 @@ knitr::include_graphics("https://www.r-graph-gallery.com/wp-content/uploads/2014
 
 .pull-right55[
 
-Thhis plot would take <b>a lot of code in Base R</b> but **just 10 lines of code**, 5 of which controlling the labels, in `ggplot2`.
+This plot would take <b>a lot of code in Base R</b> but **just 10 lines of code**, 5 of which controlling the labels, in `ggplot2`.
 
 ```{r, echo = FALSE, fig.width=7, fig.height = 4}
 # Add a regression line for all classes
@@ -276,7 +276,7 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) +
 
 **Geometric objects**
 
-- Show data as points.
+- Show data as points
 - Add a regression line
 
 **Labels and themes**

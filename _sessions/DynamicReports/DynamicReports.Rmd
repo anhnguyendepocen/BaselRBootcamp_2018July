@@ -522,7 +522,7 @@ Many come with RStudio, many are distributed in packages:
 |     `rmdformats`|Many templates|
 |     `prettydoc`|Many templates|
 
-* = On GitHub
+`* = On GitHub
 
 ]
 
@@ -585,7 +585,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 ---
 # Questions?
 
-# [Dynamic Reports Practical](https://therbootcamp.github.io/Erfurt_2018June/_sessions/D2S4_DynamicReports/DynamicReports_practical.html)
+# [Dynamic Reports Practical](https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/DynamicReports/DynamicReports_practical.html)
 
 ```{r, echo = FALSE, out.width = "80%"}
 knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/minichunk_big_ss.png")
