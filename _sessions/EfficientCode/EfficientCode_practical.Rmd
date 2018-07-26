@@ -42,21 +42,6 @@ In this practical you'll learn how to create efficient programs in R. By the end
 |`microbenchmark`|`install.packages("microbenchmark")`|
 |`profvis`|`install.packages("profvis")`|
 
-<<<<<<< HEAD
-=======
-### Datasets
-
-```{r, eval = TRUE, message = FALSE}
-library(tidyverse)
-house <- read_csv("../_data/complete/kc_house.csv")
-```
-
-|File | Rows | Columns | Description |Source
-|:----|:-----|:------|:-----------------------------------------|:--------|
-|`xx.csv` | xxx | xx| DESCRIPTION OF DATASET |SOURCE + LINK
-
->>>>>>> 9816ab77991d1cf627cf6c659beeaf593c4ab7c1
-
 ### Glossary
 
 | Function| Description|
