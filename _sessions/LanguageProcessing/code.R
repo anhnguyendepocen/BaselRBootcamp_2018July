@@ -1,6 +1,6 @@
 
 
-setwd('~/Dropbox (2.0)/Work/Software/BaselRBootcamp_2018April/_sessions/D3S3_NaturalLanguageProcessing/')
+setwd('~/Dropbox (2.0)/Work/Software/R Bootcamps/BaselRBootcamp_2018July/_sessions/LanguageProcessing/')
 
 require(readr)
 require(stringr)
@@ -76,6 +76,29 @@ cnts <- got %>%
 
 # -------- DTM
 
+# # read data
+# got <- readRDS('data/game_of_thrones.RDS')
+# 
+# # count words
+# got_counts <- got %>%
+#   unnest_tokens(word, text) %>%
+#   count(season, word) %>%
+#   ungroup()
+# 
+# starks = c('jon','ned','robb','sansa','arya','bran','rickon','catelyn')
+# titles = unique(got_counts$season)
+# cnts = got_counts %>% filter(word %in% starks) %>% print(n=42)
+# 
+# m = data.frame(matrix(ncol=7,nrow=6))
+# for(i in 1:length(starks)){
+#   for(j in 1:length(titles)){
+#     cnt = cnts$n[cnts$season == titles[j] & cnts$word == starks[i]]
+#     m[i,j] = ifelse(length(cnt)==0,0,cnt)
+#   }
+# }
+# names(m) = titles
+# rownames(m) = starks
+# 
 
 
 # read data
@@ -89,10 +112,10 @@ got_counts <- got %>%
   ungroup()
 
 starks = c('jon','ned','robb','sansa','arya','bran','rickon','catelyn')
-titles = unique(season_words$title)
-cnts = season_words %>% filter(word %in% starks) %>% print(n=42)
+titles = unique(got_counts$title)
+cnts = got_counts %>% filter(word %in% starks) %>% print(n=42)
 
-m = data.frame(matrix(ncol=7,nrow=6))
+m = data.frame(matrix(ncol=10,nrow=6))
 for(i in 1:length(starks)){
   for(j in 1:length(titles)){
     cnt = cnts$n[cnts$title == titles[j] & cnts$word == starks[i]]
@@ -105,9 +128,10 @@ rownames(m) = starks
 knitr::kable(m[c(9, 6, 5, 3, 8, 1, 10, 7, 2, 4)])
 
 
+(cor(t(m)))
+
 cnts <- cnts %>%
   bind_tf_idf(word, title, n)
-
 
 m = data.frame(matrix(ncol=7,nrow=6))
 for(i in 1:length(starks)){
@@ -122,6 +146,8 @@ rownames(m) = starks
 knitr::kable(round(m[c(9, 6, 5, 3, 8, 1, 10, 7, 2, 4)],2))
 
 round(cor(as.data.frame(t(m))),1)
+
+
 
 
 
@@ -216,7 +242,6 @@ wordcloud::comparison.cloud(b,colors = c(yarrr::piratepal('basel')['green'], yar
 dev.off()
 
 
-png('figs/sentiment_got.png',width=800,height=600) 
 
 # count words
 title_words <- got %>%
@@ -233,9 +258,8 @@ ggplot(aes(x = episode, y = sentiment, col = sentiment), data = title_words) +
   geom_point() + 
   #facet_wrap(~season) + 
   scale_colour_gradientn(colours = c('red','green')) + 
-  geom_smooth()
+  geom_smooth() + theme_light() + ggsave('image/sentiment_got.png')
 
-dev.off()
 
 
 tidy_books %>%
@@ -243,6 +267,7 @@ tidy_books %>%
   count(word, sort = TRUE)
 
 
+a = readRDS('data/game_of_thrones.RDS')
 
 
 

@@ -370,7 +370,7 @@ write_csv(x = titanic,
           path = "1_Data/titanic.csv")
 ```
 
-#### SPSS
+#### SPSS 
 
 ```{r, out.width = "10%", fig.align = 'left', eval = TRUE, echo = FALSE}
 knitr::include_graphics("http://www.sqlearn.gr/wp-content/uploads/2010/12/2000px-SPSS_logo.jpg")
