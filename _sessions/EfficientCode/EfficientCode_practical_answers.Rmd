@@ -12,11 +12,14 @@ knitr::opts_chunk$set(comment = NA,
                       fig.width = 6, 
                       fig.height = 6,
                       fig.align = 'center',
-                      echo = FALSE, 
-                      eval = FALSE, 
+                      echo = TRUE, 
+                      eval = TRUE, 
+                      error = FALSE,
                       warning = FALSE)
 
 options(digits = 3)
+require(profvis)
+require(tidyverse)
 ```
 
 <br>
@@ -41,6 +44,17 @@ In this practical you'll learn how to create efficient programs in R. By the end
 |:------|:------|
 |`microbenchmark`|`install.packages("microbenchmark")`|
 |`profvis`|`install.packages("profvis")`|
+|`data.table`|`install.packages("data.table")`|
+
+### Datasets
+
+```{r, eval = TRUE, echo = FALSE, message=F, warning=F}
+
+```
+
+|File | Rows | Columns | Description |
+|:----|:-----|:------|:-----------------------------------------|
+|[happiness.csv](https://tinyurl.com/happy-csv) | 17,137 | 34 |  contains cross sectional data of the even years from 1994 through 2006, obtained from the General Social Survey (see [Introductory Econometrics](http://download.library1.org/main/935000/a96c6c5af5dbe7011b01c3d8ac3af248/Jeffrey%20M.%20Wooldridge-Introductory%20Econometrics_%20A%20Modern%20Approach-Cengage%20Learning%20%282012%29.pdf)) |
 
 
 ### Glossary
