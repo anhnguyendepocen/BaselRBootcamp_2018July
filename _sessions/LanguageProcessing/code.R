@@ -269,7 +269,24 @@ tidy_books %>%
 
 a = readRDS('data/game_of_thrones.RDS')
 
+# tokenize
+got_words <- got %>%
+  unnest_tokens(word, text) 
 
+got_counts <- got_words %>%
+  anti_join(stop_words, by = "word") %>%
+  count(word) %>%
+  ungroup()
+
+# reduce to n > 50
+got_counts_50 <- got_counts %>% 
+  filter(n > 50)
+
+# create word cloud
+png('image/wordcloud.png',width=500,height=500)
+par(mar=c(0,0,0,0))
+wordcloud(words = got_counts_50$word, freq = got_counts_50$n)
+dev.off()
 
 
 season_words %>%

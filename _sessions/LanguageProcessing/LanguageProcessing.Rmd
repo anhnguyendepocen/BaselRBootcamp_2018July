@@ -43,6 +43,11 @@ layout: true
 
 # Sources
 
+
+<p align="center">
+  <img scr="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/sources.png">
+</p>
+
 <img src="https://www.popsci.com/sites/popsci.com/files/images/2017/11/books.jpg" alt="test" height = 200>
 <img src="http://scidle.com/wp-content/uploads/2016/03/wikipedia.jpg" alt="test" height = 200>
 <img src="https://cdn.wccftech.com/wp-content/uploads/2018/02/Twitter.jpeg" alt="test" height = 200>
@@ -244,7 +249,7 @@ str_extract_all(txt, '[^[:space:]][^[.!?;]]*[.!?;]')
 # The Stark family: A Game of Thrones example
 
 <p align="center">
-  <img src="image/starks.png" height="450px"></img><br>
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/starks.png" height="450px"></img><br>
 </p>
 
 
@@ -405,7 +410,7 @@ Analysis of <high>Game of Thrones episode sentiment</high> as a function episode
 
 <p align="center">
 
-<img src="image/sentiment_got.png" width="550">
+<img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/sentiment_got.png" width="550">
 
 </p>
 
@@ -465,7 +470,7 @@ Analysis of <high>Game of Thrones episode sentiment</high> as a function episode
 
 # Practical
 
-<p><font size=6><b><a href="https://therbootcamp.github.io/_sessions/D3S3_NaturalLanguageProcessing/NaturalLanguageProcessing.html">Link to practical</a>
+<p><font size=6><b><a href="https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/LanguageProcessing/LanguageProcessing_practical.html">Link to practical</a>
 
 
 

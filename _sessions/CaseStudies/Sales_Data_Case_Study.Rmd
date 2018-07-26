@@ -195,18 +195,18 @@ ggplot(sales_sub, aes(x = days, y = sales)) + # specify the data
 ```
 
 
-2. Randomly sample two time points (use the `sample()` function for this) from the `days` variable created above, and run a correlation. 
+2. Randomly sample two time points (use the `sample()` function for this) from the `date` variable created above, and run a correlation. 
 
 ```{r, message=FALSE, warning=FALSE}
 
 # correlation between two of the timepoints
-r_ds <- sample(sales$days, 2)
+r_ds <- sample(sales$date, 2)
 
 cor(sales$sales[sales$days == r_ds[1]], sales$sales[sales$days == r_ds[2]])
 
 ```
 
-3. Summarise the sales data over `days` (i.e. for each day, take the mean), and store this as an object called `sales_agg`. Then run a regression (the function to run a regression is `lm()`).
+3. Summarise the sales data over `date` (i.e. for each day, take the mean), and store this as an object called `sales_agg`. Then run a regression (the function to run a regression is `lm()`).
 
 ```{r, message=FALSE, warning=FALSE}
 
@@ -214,13 +214,13 @@ cor(sales$sales[sales$days == r_ds[1]], sales$sales[sales$days == r_ds[2]])
 
 # first summarise the data
 sales_agg <- sales %>%
-  group_by(days) %>%
+  group_by(date) %>%
   summarise(
     sales = mean(sales)
   )
 
 # then run regression
-mod <- lm(sales ~ days, data = sales_agg)
+mod <- lm(sales ~ date, data = sales_agg)
 
 summary(mod)
 

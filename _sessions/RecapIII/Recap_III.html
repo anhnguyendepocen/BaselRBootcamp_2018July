@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Recap: Day 3</title>
+    <title>Recap III</title>
     <meta charset="utf-8">
     <meta name="author" content="The R Bootcamp  www.therbootcamp.com @therbootcamp" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
@@ -11,25 +11,44 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Recap: Day 3
+# Recap III
 ### The R Bootcamp <br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'><span class="citation">@therbootcamp</span></a>
 ### July 2018
 
 ---
 
 
+layout: true
 
-
-
-
-
-# You can do amazing plots in R!
-
-&lt;img src="https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/ggplotgallery.png?raw=true" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;div class="my-footer"&gt;&lt;span&gt;
+&lt;a href="https://therbootcamp.github.io/"&gt;&lt;font color="#7E7E7E"&gt;Basel, July 2018&lt;/font&gt;&lt;/a&gt;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&lt;a href="https://therbootcamp.github.io/"&gt;&lt;font color="#7E7E7E"&gt;www.therbootcamp.com&lt;/font&gt;&lt;/a&gt;
+&lt;/span&gt;&lt;/div&gt; 
 
 ---
 
-## Final result!
+
+
+
+
+.pull-left35[
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+&gt; ### "As good as R is for statistics, it's as good if not better for data visualisation."
+&gt; ### Nathaniel D. Phllips
+]
+
+.pull-right65[
+&lt;br&gt;&lt;br&gt;
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/ggplotgallery.png" width="100%" style="display: block; margin: auto;" /&gt;
+
+]
+---
+
+# Beuatiful plot in 8 lines of code!
 
 
 ```r
@@ -37,33 +56,30 @@ ggplot(data = mpg,
        mapping = aes(x = displ, y = hwy, col = class)) +
   geom_point() + 
   geom_smooth(col = "blue", method = "lm")+
-  labs(x = "Engine Displacement in Liters",
-       y = "Highway miles per gallon",
-       title = "MPG data",
-       subtitle = "Cars with higher engine displacement tend to have lower highway mpg",
-       caption = "Source: mpg data in ggplot2") + 
+  labs(x = "Engine Displacement in Liters", y = "Highway miles per gallon", 
+       title = "MPG data", caption = "Source: mpg data in ggplot2", 
+       subtitle = "Cars with higher engine displacement tend to have lower highway mpg") + 
   theme_bw()
 ```
 
-&lt;img src="Recap_III_files/figure-html/unnamed-chunk-2-1.png" width="40%" style="display: block; margin: auto;" /&gt;
+&lt;img src="Recap_III_files/figure-html/unnamed-chunk-2-1.png" width="45%" style="display: block; margin: auto;" /&gt;
 
 
 
 ---
 
-.pull-left55[
-
 # Caret
 
+.pull-left55[
 
 
-Caret stands for &lt;b&gt;C&lt;/b&gt;lassification &lt;b&gt;A&lt;/b&gt;nd &lt;b&gt;RE&lt;/b&gt;gression &lt;b&gt;T&lt;/b&gt;raining.
 
-`caret` is a 'wrapper' packages that automates much of the the machine learning process.
+Caret stands for &lt;high&gt;C&lt;/high&gt;lassification &lt;high&gt;A&lt;/high&gt;nd &lt;high&gt;RE&lt;/high&gt;gression &lt;high&gt;T&lt;/high&gt;raining.
 
-Do very complex machine learning tasks with a few simple functions
+`caret` is a 'wrapper' packages that automates much of the the machine learning process and provides hundreds of different ML algorithms by changing &lt;high&gt;one `character` string&lt;/high&gt; (not line!).
 
-Use any of hundreds of different ML algorithms by changing one "string' (not line!) to use a different model
+`caret` also knows each model's tuning parameters and chooses the best ones for your data using cross validation (or other method).
+
 
 
 ```r
@@ -73,13 +89,9 @@ train(..., method = "lm") # Regression!
 train(..., method = "rf") # Random forests!
 train(..., method = "ada") # Boosted trees
 ```
-
-Knows each model's tuning parameters and chooses the best ones for your data using cross validation (or other method).
-
 ]
 
 .pull-right4[
-&lt;br&gt;&lt;br&gt;&lt;br&gt;
 &lt;div class="figure" style="text-align: center"&gt;
 &lt;img src="https://3qeqpr26caki16dnhd19sv6by6v-wpengine.netdna-ssl.com/wp-content/uploads/2014/09/Caret-package-in-R.png" alt="The almighty Caret!" width="90%" /&gt;
 &lt;p class="caption"&gt;The almighty Caret!&lt;/p&gt;
@@ -91,13 +103,11 @@ Knows each model's tuning parameters and chooses the best ones for your data usi
 ]
 
 
----
-
 
 ---
 .pull-left5[
 
-## Recap - ML steps with caret
+# ML steps with `caret`
 
 Step 0: Create training and test data (if necessary)
 
@@ -132,7 +142,7 @@ rpart_train &lt;- train(form = income ~ .,
 ]
 
 .pull-right45[
-&lt;br&gt;&lt;br&gt;&lt;br&gt;
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 Step 3: Explore
 
 
@@ -168,28 +178,105 @@ postResample(pred = bas_pred,
 
 ---
 
-## What is Shiny?
+# Interactive plots with Shiny
 
-&lt;div class="figure" style="text-align: center"&gt;
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/shiny_definition.png" alt="&amp;lt;a href=http://shiny.rstudio.com/https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/shiny-cheatsheet.pdf&amp;gt;R Studio&amp;lt;/a&amp;gt;" width="90%" /&gt;
-&lt;p class="caption"&gt;&lt;a href=http://shiny.rstudio.com/https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/shiny-cheatsheet.pdf&gt;R Studio&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
+&lt;p align="center"&gt;
+  &lt;img src=https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/shiny_definition.png?raw=true" height="450px"&gt;&lt;/img&gt;&lt;br&gt;
+  &lt;a href="http://shiny.rstudio.com/https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/shiny-cheatsheet.pdf"&gt;RStudio cheat sheet&lt;/a&gt;
+&lt;/p&gt;
 
 ---
-## Practical
+# You built this app
 
-In the practical, we will create the following app from scratch, and publish it online!
-
-&lt;iframe src="https://econpsychbasel.shinyapps.io/FinalApp/" width="1200" height="7500"&gt;&lt;/iframe&gt;
+&lt;iframe src="https://econpsychbasel.shinyapps.io/FinalApp/" width="1200" height="450"&gt;&lt;/iframe&gt;
 
 
 ---
-## What is Shiny?
 
-&lt;div class="figure" style="text-align: center"&gt;
-&lt;img src="https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/shiny_definition.png?raw=true" alt="Source: http://shiny.rstudio.com/images/shiny-cheatsheet.pdf" width="95%" /&gt;
-&lt;p class="caption"&gt;Source: http://shiny.rstudio.com/images/shiny-cheatsheet.pdf&lt;/p&gt;
-&lt;/div&gt;
+# Interactive plots with Shiny
+
+&lt;p align="center"&gt;
+  &lt;img src=https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/shiny_definition.png?raw=true" height="450px"&gt;&lt;/img&gt;&lt;br&gt;
+  &lt;a href="http://shiny.rstudio.com/https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/shiny-cheatsheet.pdf"&gt;RStudio cheat sheet&lt;/a&gt;
+&lt;/p&gt;
+
+
+---
+
+# The Stark family: A Game of Thrones example
+
+&lt;p align="center"&gt;
+  &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/starks.png" height="450px"&gt;&lt;/img&gt;&lt;br&gt;
+&lt;/p&gt;
+
+---
+
+# Tools &amp; Methods
+
+.pull-left5[
+
+### Basics
+[**Tokenizing**](https://en.wikipedia.org/wiki/Word_segmentation)&lt;br&gt;
+[Stemming](https://en.wikipedia.org/wiki/Stemming)&lt;br&gt;
+[Part-of-speech tagging](https://en.wikipedia.org/wiki/Part-of-speech_tagging)&lt;br&gt;
+[Parsing](https://en.wikipedia.org/wiki/Parsing)&lt;br&gt;
+etc.
+
+### Semantics
+[Lexical semantics](https://en.wikipedia.org/wiki/Word_segmentation)&lt;br&gt;
+[Machine Translation](https://en.wikipedia.org/wiki/Machine_translation)&lt;br&gt;
+[Relationship extraction](https://en.wikipedia.org/wiki/Relationship_extraction)&lt;br&gt;
+[**Sentiment analysis**](https://en.wikipedia.org/wiki/Sentiment_analysis)&lt;br&gt;
+[**Topic analysis**](https://en.wikipedia.org/wiki/Topic_segmentation)&lt;br&gt;
+etc.
+
+]
+
+.pull-right5[
+
+### Discourse
+[Automatic summarization](https://en.wikipedia.org/wiki/Automatic_summarization)&lt;br&gt;
+[Discourse analysis](https://en.wikipedia.org/wiki/Discourse_analysis)&lt;br&gt;
+etc.
+
+### Speech
+[Speech recognition](https://en.wikipedia.org/wiki/Speech_recognition)&lt;br&gt;
+[Speech segmentation](https://en.wikipedia.org/wiki/Speech_segmentation)&lt;br&gt;
+[Relationship extraction](https://en.wikipedia.org/wiki/Relationship_extraction)&lt;br&gt;
+[Text-to-speech](https://en.wikipedia.org/wiki/Text-to-speech)&lt;br&gt;
+etc.
+
+]
+
+&lt;font size="2"&gt; from &lt;a href="https://en.wikipedia.org/wiki/Natural-language_processing"&gt;Wikipedia&lt;/a&gt;&lt;/font&gt;
+
+---
+
+# Text analysis
+
+.pull-left45[
+Analysis of &lt;high&gt;Game of Thrones word frequencies&lt;/high&gt; displayed as a word cloud. 
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/wordcloud.png" height="350px"&gt;
+
+&lt;/p&gt;
+
+]
+
+.pull_right45[
+&lt;br&gt;
+Analysis of &lt;high&gt;Game of Thrones episode sentiment&lt;/high&gt; as a function episode's index within a season. 
+
+&lt;p align="center"&gt;
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/sentiment_got.png" height="350px"&gt;
+
+&lt;/p&gt;
+
+]
+
+
+
 
 ---
 # Today
@@ -213,12 +300,23 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   d.head.appendChild(s);
 })();</script>
 
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  tex2jax: {
-    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
   }
-});
+})();
 </script>
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

@@ -355,8 +355,8 @@ ggplot(sales_sub, aes(x = days, y = sales)) + # specify the data
   stat_smooth(lwd = 1.5) +  # add an average line
   theme_bw()                # theme for white plotting window</code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li><p>Randomly sample two time points (use the <code>sample()</code> function for this) from the <code>days</code> variable created above, and run a correlation.</p></li>
-<li><p>Summarise the sales data over <code>days</code> (i.e. for each day, take the mean), and store this as an object called <code>sales_agg</code>. Then run a regression (the function to run a regression is <code>lm()</code>).</p></li>
+<li><p>Randomly sample two time points (use the <code>sample()</code> function for this) from the <code>date</code> variable created above, and run a correlation.</p></li>
+<li><p>Summarise the sales data over <code>date</code> (i.e. for each day, take the mean), and store this as an object called <code>sales_agg</code>. Then run a regression (the function to run a regression is <code>lm()</code>).</p></li>
 <li><p>Compute the coefficient of variation, i.e. the standard deviation scaled on the mean (use the <code>sd()</code> function and divide by the <code>mean()</code>), of each stores turnovers (<code>sales</code> variable). You can do this by using <code>dplyr</code>’s <code>summarise()</code> function. Store this as an object called <code>sales_cv</code>, with the variable <code>cv</code>. Only use days on which the stores were open to not introduce extra noise (use <code>filter()</code> for this).</p></li>
 <li><p>Plot the distribution of the coefficient of variation using the following code:</p></li>
 </ol>
