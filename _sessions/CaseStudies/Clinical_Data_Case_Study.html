@@ -137,6 +137,8 @@ $(document).ready(function () {
 </div>
 <div id="datasets" class="section level3">
 <h3>Datasets</h3>
+<pre class="r"><code>library(tidyverse)
+library(haven)</code></pre>
 <table style="width:89%;">
 <colgroup>
 <col width="8%"></col>
@@ -292,18 +294,83 @@ library(tidyverse)</code></pre>
 <li><p>Using <code>read_csv()</code>, load the <code>dimarta_trial.csv</code>, <code>dimarta_demographics.csv</code>, and <code>dimarta_biomarker.csv</code> datasets as <em>three</em> new objects called <code>trial_df</code>, <code>demographics_df</code>, and <code>biomarker_df</code>.</p></li>
 <li><p>Get a first impression of the objects you just created by exploring them with a mixture of the <code>View()</code>, <code>head()</code>, <code>names()</code>, and <code>str()</code> functions. Were they all loaded correctly?</p></li>
 </ol>
+<pre class="r"><code>trial_df</code></pre>
+<pre><code># A tibble: 300 x 6
+   PatientID   arm histamine_start histamine_end qol_start qol_end
+   &lt;chr&gt;     &lt;dbl&gt;           &lt;dbl&gt;         &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+ 1 txdjezeo      1            58.6          67.0         3       3
+ 2 htxfjlxk      3            36.1          26.0         3       4
+ 3 vkdqhyez      1            57.7          57.3         2       2
+ 4 dbuvrwfq      3            56.6          55.4         2       3
+ 5 ydaitaah      2            64.7          62.9         5       7
+ 6 omhxokdr      1            37.4          41.7         2       2
+ 7 dsybafny      1            88.4          95.9         4       6
+ 8 fdfmcoto      2            20.2          13.9         2       2
+ 9 rwsbykxe      2            48.3          38.0         3       3
+10 xocueqqe      3            48.6          53.2         1       1
+# ... with 290 more rows</code></pre>
+<pre class="r"><code>demographics_df</code></pre>
+<pre><code># A tibble: 300 x 5
+   PatientID   age gender site   diseasestatus
+   &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;        
+ 1 pkyivajv     36      0 Tokyo  Mid          
+ 2 dbuvrwfq     39      0 Paris  Late         
+ 3 jhuztppp     30      0 Tokyo  Mid          
+ 4 qejexgza     34      1 Tokyo  Late         
+ 5 cszrjxju     41      1 Tokyo  Late         
+ 6 uhvgttqh     31      0 London Late         
+ 7 cflnybdw     45      1 Tokyo  Mid          
+ 8 igobmmvj     48      0 Tokyo  Late         
+ 9 lcrtmerg     35      0 London Late         
+10 fjjrnsnt     43      1 London Mid          
+# ... with 290 more rows</code></pre>
+<pre class="r"><code>biomarker_df</code></pre>
+<pre><code># A tibble: 900 x 3
+   PatientID Biomarker BiomarkerStatus
+   &lt;chr&gt;     &lt;chr&gt;     &lt;lgl&gt;          
+ 1 ygazqssv  dw        FALSE          
+ 2 qosueuyw  ms        FALSE          
+ 3 bhhykjvw  ms        FALSE          
+ 4 ifajorty  np        TRUE           
+ 5 gxnsybdt  ms        FALSE          
+ 6 igobmmvj  ms        FALSE          
+ 7 knnzlzun  ms        FALSE          
+ 8 glzcbmby  ms        FALSE          
+ 9 gxnsybdt  dw        TRUE           
+10 fzrhdpdu  np        FALSE          
+# ... with 890 more rows</code></pre>
 </div>
 <div id="c---data-wrangling" class="section level2">
 <h2>C - Data Wrangling</h2>
 <ol style="list-style-type: decimal">
-<li><p>Using <code>rename()</code>, change the name of the column <code>arm</code> in the <code>trial_df</code> data to <code>StudyArm</code>.</p></li>
-<li><p>Using the <code>table()</code> function, look at the values of the <code>StudyArm</code> column in <code>trial_df</code>. You’ll notice the values are 1, 2, and 3. Using <code>mutate()</code> and <code>case_when()</code> change these values to the appropriate names of the study arms (look at the variable descriptions to see which is which!)</p></li>
-<li><p>In the <code>demographics_df</code> data, you’ll see that gender is coded as 0 and 1. Using <code>mutate()</code> create a <em>new</em> column in <code>demographics_df</code> called <code>gender_c</code> that shows gender as a string, where 0 = “male”, and 1 = “female”.</p></li>
-<li><p>Now let’s create a new object called <code>dimarta_df</code> that combines data from <code>trial_df</code> and <code>demographics_df</code>. To do this, use <code>left_join()</code> to combine the <code>trial_df</code> data with the <code>demographics_df</code> data. This will merge the two datasets so you can have the study results and demographic data in the same dataframe. Make sure to assign the result to a new object called <code>dimarta_df</code></p></li>
+<li>Using <code>rename()</code>, change the name of the column <code>arm</code> in the <code>trial_df</code> data to <code>StudyArm</code>.</li>
+</ol>
+<pre class="r"><code>trial_df &lt;- trial_df %&gt;%
+  rename(StudyArm = arm)</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Using the <code>table()</code> function, look at the values of the <code>StudyArm</code> column in <code>trial_df</code>. You’ll notice the values are 1, 2, and 3. Using <code>mutate()</code> and <code>case_when()</code> change these values to the appropriate names of the study arms (look at the variable descriptions to see which is which!)</li>
+</ol>
+<pre class="r"><code>trial_df &lt;- trial_df %&gt;%
+  mutate(StudyArm = case_when(
+    StudyArm == 1 ~ &quot;placebo&quot;,
+    StudyArm == 2 ~ &quot;adiclax&quot;,
+    StudyArm == 3 ~ &quot;dimarta&quot;
+  ))</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>In the <code>demographics_df</code> data, you’ll see that gender is coded as 0 and 1. Using <code>mutate()</code> create a <em>new</em> column in <code>demographics_df</code> called <code>gender_c</code> that shows gender as a string, where 0 = “male”, and 1 = “female”.</li>
+</ol>
+<pre class="r"><code>demographics_df &lt;- demographics_df %&gt;%
+  mutate(gender_c = case_when(
+    gender == 0 ~ &quot;male&quot;,
+    gender == 1 ~ &quot;female&quot;
+  ))</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Now let’s create a new object called <code>dimarta_df</code> that combines data from <code>trial_df</code> and <code>demographics_df</code>. To do this, use <code>left_join()</code> to combine the <code>trial_df</code> data with the <code>demographics_df</code> data. This will merge the two datasets so you can have the study results and demographic data in the same dataframe. Make sure to assign the result to a new object called <code>dimarta_df</code></li>
 </ol>
 <pre class="r"><code># Create a new dataframe called dimarta_df that contains both trial_df and demographics_df
 dimarta_df &lt;- trial_df %&gt;%
   left_join(demographics_df)</code></pre>
+<pre><code>Joining, by = &quot;PatientID&quot;</code></pre>
 <ol start="5" style="list-style-type: decimal">
 <li>You’ll notice that the <code>biomarker_df</code> dataframe is in the ‘long’ format, where each row is a patient’s biomarker result. Using the code below, making use of the <code>spread()</code> function, create a new dataframe called <code>biomarker_wide_df</code> where each row is a patient, and the results from different biomarkers are in different columns. When you finish, look at <code>biomarker_wide_df</code> to see how it looks!</li>
 </ol>
@@ -312,23 +379,153 @@ biomarker_wide_df &lt;- biomarker_df %&gt;%
   spread(Biomarker, BiomarkerStatus)
 
 biomarker_wide_df</code></pre>
+<pre><code># A tibble: 300 x 4
+   PatientID dw    ms    np   
+   &lt;chr&gt;     &lt;lgl&gt; &lt;lgl&gt; &lt;lgl&gt;
+ 1 aiadwpbo  FALSE FALSE FALSE
+ 2 ajshuufj  FALSE FALSE FALSE
+ 3 ammweoxu  FALSE FALSE FALSE
+ 4 amzacliz  FALSE FALSE FALSE
+ 5 apeddxgo  TRUE  FALSE FALSE
+ 6 aqadnoup  TRUE  FALSE FALSE
+ 7 arinkxww  FALSE FALSE FALSE
+ 8 arpvtvxl  FALSE FALSE FALSE
+ 9 asquxnty  FALSE FALSE TRUE 
+10 atzluemr  FALSE FALSE FALSE
+# ... with 290 more rows</code></pre>
 <ol start="6" style="list-style-type: decimal">
-<li><p>Now, using the <code>left_join</code> function, add the <code>biomarker_wide_df</code> data to the <code>dimarta_df</code> data! Now you should hve all of the data in a single dataframe called <code>dimarta_df</code></p></li>
-<li><p>View <code>dimarta_df</code> to make sure the data look correct! The data should have one row for each patient, and 13 separate columns, including <code>dw</code>, <code>ms</code>, and <code>np</code></p></li>
-<li><p>Using the <code>mean()</code> function, calculate the mean age of all patients.</p></li>
-<li><p>Using the following template, find out how many male and female patients were in the trial.</p></li>
+<li>Now, using the <code>left_join</code> function, add the <code>biomarker_wide_df</code> data to the <code>dimarta_df</code> data! Now you should hve all of the data in a single dataframe called <code>dimarta_df</code></li>
+</ol>
+<pre class="r"><code>dimarta_df &lt;- dimarta_df %&gt;% 
+  left_join(biomarker_wide_df)</code></pre>
+<pre><code>Joining, by = &quot;PatientID&quot;</code></pre>
+<ol start="7" style="list-style-type: decimal">
+<li>View <code>dimarta_df</code> to make sure the data look correct! The data should have one row for each patient, and 13 separate columns, including <code>dw</code>, <code>ms</code>, and <code>np</code></li>
+</ol>
+<pre class="r"><code>dimarta_df</code></pre>
+<pre><code># A tibble: 300 x 14
+   PatientID StudyArm histamine_start histamine_end qol_start qol_end
+   &lt;chr&gt;     &lt;chr&gt;              &lt;dbl&gt;         &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+ 1 txdjezeo  placebo             58.6          67.0         3       3
+ 2 htxfjlxk  dimarta             36.1          26.0         3       4
+ 3 vkdqhyez  placebo             57.7          57.3         2       2
+ 4 dbuvrwfq  dimarta             56.6          55.4         2       3
+ 5 ydaitaah  adiclax             64.7          62.9         5       7
+ 6 omhxokdr  placebo             37.4          41.7         2       2
+ 7 dsybafny  placebo             88.4          95.9         4       6
+ 8 fdfmcoto  adiclax             20.2          13.9         2       2
+ 9 rwsbykxe  adiclax             48.3          38.0         3       3
+10 xocueqqe  dimarta             48.6          53.2         1       1
+# ... with 290 more rows, and 8 more variables: age &lt;dbl&gt;, gender &lt;dbl&gt;,
+#   site &lt;chr&gt;, diseasestatus &lt;chr&gt;, gender_c &lt;chr&gt;, dw &lt;lgl&gt;, ms &lt;lgl&gt;,
+#   np &lt;lgl&gt;</code></pre>
+<ol start="8" style="list-style-type: decimal">
+<li>Using the <code>mean()</code> function, calculate the mean age of all patients.</li>
+</ol>
+<pre class="r"><code>mean(dimarta_df$age)</code></pre>
+<pre><code>[1] 39.9</code></pre>
+<ol start="9" style="list-style-type: decimal">
+<li>Using the following template, find out how many male and female patients were in the trial.</li>
 </ol>
 <pre class="r"><code>dimarta_df %&gt;%
   group_by(XXX) %&gt;%
   summarise(
     Counts = n()    
   )</code></pre>
+<pre class="r"><code>dimarta_df %&gt;%
+  group_by(gender_c) %&gt;%
+  summarise(
+    Counts = n()    
+  )</code></pre>
+<pre><code># A tibble: 2 x 2
+  gender_c Counts
+  &lt;chr&gt;     &lt;int&gt;
+1 female      140
+2 male        160</code></pre>
 <ol start="10" style="list-style-type: decimal">
-<li><p>Now, using similar code, find out how many patients were assigned to each study arm.</p></li>
-<li><p>Find out how many men and women were assigned to each study arm (Hint: You can use very similar code to what you used above, just add a second grouping variable!)</p></li>
-<li><p>Using <code>mutate()</code>, add a new column to the <code>dimarta_df</code> data called <code>histamine_change</code> that shows the <em>change</em> in patient’s histamine levels from the start to the end of the trial (Hint: just subtract <code>histamine_start</code> from <code>histamine_end</code>!)</p></li>
-<li><p>Using <code>mutate()</code> again, add a new column to <code>dimarta_df</code> called <code>qol_change</code> that shows the change in patient’s quality of life.</p></li>
-<li><p>Calculate the percentage of patients who tested positive for each of the three biomarkers using the following template (Hint: If you calculate the <code>mean()</code> of a logical vector, you will get the percentage of TRUE values!)</p></li>
+<li>Now, using similar code, find out how many patients were assigned to each study arm.</li>
+</ol>
+<pre class="r"><code>dimarta_df %&gt;%
+  group_by(StudyArm) %&gt;%
+  summarise(
+    Counts = n()    
+  )</code></pre>
+<pre><code># A tibble: 3 x 2
+  StudyArm Counts
+  &lt;chr&gt;     &lt;int&gt;
+1 adiclax     100
+2 dimarta     100
+3 placebo     100</code></pre>
+<ol start="11" style="list-style-type: decimal">
+<li>Find out how many men and women were assigned to each study arm (Hint: You can use very similar code to what you used above, just add a second grouping variable!)</li>
+</ol>
+<pre class="r"><code>dimarta_df %&gt;%
+  group_by(StudyArm, gender_c) %&gt;%
+  summarise(
+    Counts = n()    
+  )</code></pre>
+<pre><code># A tibble: 6 x 3
+# Groups:   StudyArm [?]
+  StudyArm gender_c Counts
+  &lt;chr&gt;    &lt;chr&gt;     &lt;int&gt;
+1 adiclax  female       41
+2 adiclax  male         59
+3 dimarta  female       49
+4 dimarta  male         51
+5 placebo  female       50
+6 placebo  male         50</code></pre>
+<ol start="12" style="list-style-type: decimal">
+<li>Using <code>mutate()</code>, add a new column to the <code>dimarta_df</code> data called <code>histamine_change</code> that shows the <em>change</em> in patient’s histamine levels from the start to the end of the trial (Hint: just subtract <code>histamine_start</code> from <code>histamine_end</code>!)</li>
+</ol>
+<pre class="r"><code>dimarta_df &lt;- dimarta_df %&gt;%
+  mutate(
+    histamine_change = histamine_end - histamine_start
+  )
+
+# Look at result
+dimarta_df %&gt;% 
+  select(histamine_change)</code></pre>
+<pre><code># A tibble: 300 x 1
+   histamine_change
+              &lt;dbl&gt;
+ 1             8.4 
+ 2           -10.1 
+ 3            -0.39
+ 4            -1.24
+ 5            -1.75
+ 6             4.34
+ 7             7.47
+ 8            -6.35
+ 9           -10.3 
+10             4.58
+# ... with 290 more rows</code></pre>
+<ol start="13" style="list-style-type: decimal">
+<li>Using <code>mutate()</code> again, add a new column to <code>dimarta_df</code> called <code>qol_change</code> that shows the change in patient’s quality of life.</li>
+</ol>
+<pre class="r"><code>dimarta_df &lt;- dimarta_df %&gt;%
+  mutate(
+    qol_change = qol_end - qol_start
+  )
+
+# Look at result
+dimarta_df %&gt;% 
+  select(qol_change)</code></pre>
+<pre><code># A tibble: 300 x 1
+   qol_change
+        &lt;dbl&gt;
+ 1          0
+ 2          1
+ 3          0
+ 4          1
+ 5          2
+ 6          0
+ 7          2
+ 8          0
+ 9          0
+10          0
+# ... with 290 more rows</code></pre>
+<ol start="14" style="list-style-type: decimal">
+<li>Calculate the percentage of patients who tested positive for each of the three biomarkers using the following template (Hint: If you calculate the <code>mean()</code> of a logical vector, you will get the percentage of TRUE values!)</li>
 </ol>
 <pre class="r"><code># Calculate percent of patients with positive biomarkers
 
@@ -338,12 +535,79 @@ dimarta_df %&gt;%
     ms_percent = mean(XXX),
     np_percent = mean(XXX)
   )</code></pre>
+<pre class="r"><code># Calculate percent of patients with positive biomarkers
+
+dimarta_df %&gt;%
+  summarise(
+    dw_mean = mean(dw),
+    ms_percent = mean(ms),
+    np_percent = mean(np)
+  )</code></pre>
+<pre><code># A tibble: 1 x 3
+  dw_mean ms_percent np_percent
+    &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;
+1   0.257       0.19      0.233</code></pre>
 <ol start="15" style="list-style-type: decimal">
-<li><p>Were there different distributions of age in the different trial sites? To answer this, separately calculate the mean and standard deviations of patient ages in each site. (Hint: group the data by <code>site</code>, then calculate two separate summary statistics: <code>age_mean = mean(age)</code>, and <code>age_sd = sd(age)</code>.</p></li>
-<li><p>Calculate the mean change in histamine results separately for each study site</p></li>
-<li><p>Calculate the mean change in histamine results (<code>histamine_change</code>) for each study arm. Which study arm had a largest decrease in histamine?</p></li>
-<li><p>Calculate the mean change in quality of life (<code>qol_change</code>) for each study arm. Do the results match what you found with the histamine results?</p></li>
+<li>Were there different distributions of age in the different trial sites? To answer this, separately calculate the mean and standard deviations of patient ages in each site. (Hint: group the data by <code>site</code>, then calculate two separate summary statistics: <code>age_mean = mean(age)</code>, and <code>age_sd = sd(age)</code>.</li>
 </ol>
+<pre class="r"><code># Calculate the mean change in histamine for each study site
+dimarta_df %&gt;%
+  group_by(site) %&gt;%
+  summarise(
+    age_mean = mean(age),
+    age_sd = sd(age)
+  )</code></pre>
+<pre><code># A tibble: 3 x 3
+  site   age_mean age_sd
+  &lt;chr&gt;     &lt;dbl&gt;  &lt;dbl&gt;
+1 London     39.9   5.86
+2 Paris      39.8   4.84
+3 Tokyo      40.1   4.50</code></pre>
+<ol start="16" style="list-style-type: decimal">
+<li>Calculate the mean change in histamine results separately for each study site</li>
+</ol>
+<pre class="r"><code># Calculate the mean change in histamine for each study site
+dimarta_df %&gt;%
+  group_by(site) %&gt;%
+  summarise(
+    histamine_change_mean = mean(histamine_change, na.rm = TRUE)
+  )</code></pre>
+<pre><code># A tibble: 3 x 2
+  site   histamine_change_mean
+  &lt;chr&gt;                  &lt;dbl&gt;
+1 London               -0.352 
+2 Paris                 0.0180
+3 Tokyo                -1.10  </code></pre>
+<ol start="17" style="list-style-type: decimal">
+<li>Calculate the mean change in histamine results (<code>histamine_change</code>) for each study arm. Which study arm had a largest decrease in histamine?</li>
+</ol>
+<pre class="r"><code># Calculate the mean change in histamine for each study site
+dimarta_df %&gt;%
+  group_by(StudyArm) %&gt;%
+  summarise(
+    histamine_change_mean = mean(histamine_change, na.rm = TRUE)
+  )</code></pre>
+<pre><code># A tibble: 3 x 2
+  StudyArm histamine_change_mean
+  &lt;chr&gt;                    &lt;dbl&gt;
+1 adiclax                 -4.79 
+2 dimarta                  0.513
+3 placebo                  2.90 </code></pre>
+<ol start="18" style="list-style-type: decimal">
+<li>Calculate the mean change in quality of life (<code>qol_change</code>) for each study arm. Do the results match what you found with the histamine results?</li>
+</ol>
+<pre class="r"><code># Calculate the mean change in histamine for each study site
+dimarta_df %&gt;%
+  group_by(StudyArm) %&gt;%
+  summarise(
+    qol_change_mean = mean(qol_change, na.rm = TRUE)
+  )</code></pre>
+<pre><code># A tibble: 3 x 2
+  StudyArm qol_change_mean
+  &lt;chr&gt;              &lt;dbl&gt;
+1 adiclax             0.06
+2 dimarta             0.01
+3 placebo            -0.15</code></pre>
 </div>
 <div id="d---plotting" class="section level2">
 <h2>D - Plotting</h2>
@@ -354,6 +618,7 @@ dimarta_df %&gt;%
        mapping = aes(x = StudyArm, 
                      y = histamine_change)) +
   geom_boxplot()</code></pre>
+<p><img src="data:image/png;base64,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zJMqCRAgQIAAAQIECBAgQIAAAQINCwiAGqZzIAECBAgQIECAAAECBAgQIECgHAICoHLMkyoJECBAgAABAgQIECBAgAABAg0LCIAapnMgAQIECBAgQIAAAQIECBAgQKAcAgKgcsyTKgkQIECAAAECBAgQIECAAAECDQsIgBqmcyABAgQIECBAgAABAgQIECBAoBwCAqByzJMqCRAgQIAAAQIECBAgQIAAAQINCwiAGqZzIAECBAgQIECAAAECBAgQIECgHAICoHLMkyoJECBAgAABAgQIECBAgAABAg0LCIAapnMgAQIECBAgQIAAAQIECBAgQKAcAgKgcsyTKgkQIECAAAECBAgQIECAAAECDQsIgBqmcyABAgQIECBAgAABAgQIECBAoBwCAqByzJMqCRAgQIAAAQIECBAgQIAAAQINCwiAGqZzIAECBAgQIECAAAECBAgQIECgHAICoHLMkyoJECBAgAABAgQIECBAgAABAg0LCIAapnMgAQIECBAgQIAAAQIECBAgQKAcAgKgcsyTKgkQIECAAAECBAgQIECAAAECDQsIgBqmcyABAgQIECBAgAABAgQIECBAoBwCAqByzJMqCRAgQIAAAQIECBAgQIAAAQINCwiAGqZzIAECBAgQIECAAAECBAgQIECgHAICoHLMkyoJECBAgAABAgQIECBAgAABAg0LCIAapnMgAQIECBAgQIAAAQIECBAgQKAcAgKgcsyTKgkQIECAAAECBAgQIECAAAECDQsIgBqmcyABAgQIECBAgAABAgQIECBAoBwCAqByzJMqCRAgQIAAAQIECBAgQIAAAQINCwiAGqZzIAECBAgQIECAAAECBAgQIECgHAICoHLMkyoJECBAgAABAgQIECBAgAABAg0LCIAapnMgAQIECBAgQIAAAQIECBAgQKAcAgKgcsyTKgkQIECAAAECBAgQIECAAAECDQsIgBqmcyABAgQIECBAgAABAgQIECBAoBwCAqByzJMqCRAgQIAAAQIECBAgQIAAAQINCwiAGqZzIAECBAgQIECAAAECBAgQIECgHAICoHLMkyoJECBAgAABAgQIECBAgAABAg0LCIAapnMgAQIECBAgQIAAAQIECBAgQKAcAgKgcsyTKgkQIECAAAECBAgQIECAAAECDQsIgBqmcyABAgQIECBAgAABAgQIECBAoBwCAqByzJMqCRAgQIAAAQIECBAgQIAAAQINCwiAGqZzIAECBAgQIECAAAECBAgQIECgHAICoHLMkyoJECBAgAABAgQIECBAgAABAg0LCIAapnMgAQIECBAgQIAAAQIECBAgQKAcAgKgcsyTKgkQIECAAAECBAgQIECAAAECDQu0NHykAwkQIECAAAECBAgQIECAQI4Czz77bFxxxRXpGcaNGxfTpk3L8Wy6JlBtAQFQtefX6AgQIECAAAECBAgQIFBagRdffDHmzJmT1j958mQBUGlnUuFFEHALWBFmQQ0ECBAgQIAAAQIECBAgQIAAgRwFBEA54uqaAAECBAgQIECAAAECBAgQIFAEAQFQEWZBDQQIECBAgAABAgQIECBAgACBHAUEQDni6poAAQIECBAgQIAAAQIECBAgUAQBAVARZkENBAgQIECAAAECBAgQIECAAIEcBQRAOeLqmgABAgQIECBAgAABAgQIECBQBAEBUBFmQQ0ECBAgQIAAAQIECBAgQIAAgRwFBEA54uqaAAECBAgQIECAAAECBAgQIFAEAQFQEWZBDQQIECBAgAABAgQIECBAgACBHAUEQDni6poAAQIECBAgQIAAAQIECBAgUAQBAVARZkENBAgQIECAAAECBAgQIECAAIEcBQRAOeLqmgABAgQIECBAgAABAgQIECBQBAEBUBFmQQ0ECBAgQIAAAQIECBAgQIAAgRwFBEA54uqaAAECBAgQIECAAAECBAgQIFAEAQFQEWZBDQQIECBAgAABAgQIECBAgACBHAUEQDni6poAAQIECBAgQIAAAQIECBAgUAQBAVARZkENBAgQIECAAAECBAgQIECAAIEcBQRAOeLqmgABAgQIECBAgAABAgQIECBQBAEBUBFmQQ0ECBAgQIAAAQIECBAgQIAAgRwFBEA54uqaAAECBAgQIECAAAECBAgQIFAEAQFQEWZBDQQIECBAgAABAgQIECBAgACBHAUEQDni6poAAQIECBAgQIAAAQIECBAgUAQBAVARZkENBAgQIECAAAECBAgQIECAAIEcBQRAOeLqmgABAgQIECBAgAABAgQIECBQBAEBUBFmQQ0ECBAgQIAAAQIECBAgQIAAgRwFBEA54uqaAAECBAgQIECAAAECBAgQIFAEAQFQEWZBDQQIECBAgAABAgQIECBAgACBHAUEQDni6poAAQIECBAgQIAAAQIECBAgUAQBAVARZkENBAgQIECAAAECBAgQIECAAIEcBQRAOeLqmgABAgQIECBAgAABAgQIECBQBAEBUBFmQQ0ECBAgQIAAAQIECBAgQIAAgRwFBEA54uqaAAECBAgQIECAAAECBAgQIFAEAQFQEWZBDQQIECBAgAABAgQIECBAgACBHAUEQDni6poAAQIECBAgQIAAAQIECBAgUAQBAVARZkENBAgQIECAAAECBAgQIECAAIEcBQRAOeLqmgABAgQIECBAgAABAgQIECBQBAEBUBFmQQ0ECBAgQIAAAQIECBAgQIAAgRwFBEA54uqaAAECBAgQIECAAAECBAgQIFAEAQFQEWZBDQQIECBAgAABAgQIECBAgACBHAUEQDni6poAAQIECBAgQIAAAQIECBAgUAQBAVARZkENBAgQIECAAAECBAgQIECAAIEcBQRAOeLqmgABAgQIECBAgAABAgQIECBQBAEBUBFmQQ0ECBAgQIAAAQIECBAgQIAAgRwFBEA54uqaAAECBAgQIECAAAECBAgQIFAEAQFQEWZBDQQIECBAgAABAgQIECBAgACBHAUEQDni6poAAQIECBAgQIAAAQIECBAgUAQBAVARZkENBAgQIECAAAECBAgQIECAAIEcBQRAOeLqmgABAgQIECBAgAABAgQIECBQBAEBUBFmQQ0ECBAgQIAAAQIECBAgQIAAgRwFBEA54uqaAAECBAgQIECAAAECBAgQIFAEAQFQEWZBDQQIECBAgAABAgQIECBAgACBHAUEQDni6poAAQIECBAgQIAAAQIECBAgUAQBAVARZkENBAgQIECAAAECBAgQIECAAIEcBQRAOeLqmgABAgQIECBAgAABAgQIECBQBAEBUBFmQQ0ECBAgQIAAAQIECBAgQIAAgRwFBEA54uqaAAECBAgQIECAAAECBAgQIFAEAQFQEWZBDQQIECBAgAABAgQIECBAgACBHAUEQDni6poAAQIECBAgQIAAAQIECBAgUAQBAVARZkENBAgQIECAAAECBAgQIECAAIEcBQRAOeLqmgABAgQIECBAgAABAgQIECBQBAEBUBFmQQ0ECBAgQIAAAQIECBAgQIAAgRwFBEA54uqaAAECBAgQIECAAAECBAgQIFAEAQFQEWZBDQQIECBAgAABAgQIECBAgACBHAUEQDni6poAAQIECBAgQIAAAQIECBAgUAQBAVARZkENBAgQIECAAAECBAgQIECAAIEcBQRAOeLqmgABAgQIECBAgAABAgQIECBQBAEBUBFmQQ0ECBAgQIAAAQIECBAgQIAAgRwFBEA54uqaAAECBAgQIECAAAECBAgQIFAEAQFQEWZBDQQIECBAgAABAgQIECBAgACBHAUEQDni6poAAQIECBAgQIAAAQIECBAgUAQBAVARZkENBAgQIECAAAECBAgQIECAAIEcBQRAOeLqmgABAgQIECBAgAABAgQIECBQBAEBUBFmQQ0ECBAgQIAAAQIECBAgQIAAgRwFBEA54uqaAAECBAgQIECAAAECBAgQIFAEAQFQEWZBDQQIECBAgAABAgQIECBAgACBHAUEQDni6poAAQIECBAgQIAAAQIECBAgUASBliIUoQYCBAgQIECAAIG/CqxduzaefvrpdGXw4MExYMAANAQIECBAgACBXgu4AqjXhDogQIAAAQIECGQncNddd8W73/3u9Gvu3LnZdawnAgQIECBAoKkFBEBNPf0GT4AAAQIECBAgQIAAAQIECDSDgACoGWbZGAkQIECAAAECBAgQIECAAIGmFhAANfX0GzwBAgQIECBAgAABAgQIECDQDAICoGaYZWMkQIAAAQIECBAgQIAAAQIEmlpAANTU02/wBAgQIECAAAECBAgQIECAQDMICICaYZaNkQABAgQIECBAgAABAgQIEGhqAQFQU0+/wRMgQIAAAQIECBAgQIAAAQLNICAAaoZZNkYCBAgQIECAAAECBAgQIECgqQUEQE09/QZPgAABAgQIECBAgAABAgQINIOAAKgZZtkYCRAgQIAAAQIECBAgQIAAgaYWEAA19fQbPAECBAgQIECAAAECBAgQINAMAgKgZphlYyRAgAABAgQIECBAgAABAgSaWkAA1NTTb/AECBAgQIAAAQIECBAgQIBAMwi0NMMgOxvj+vXr4/zzz49Ro0bF5z//+c6apdt///vfxw033BBPPPFEDB06NA466KCYMmVKvPa1r+3yODsJECBAgAABAgQIECBAgAABAjtboGkDoNbW1pgxY0Y8/PDD0dLSNcOcOXPiyiuvTOdq2LBhsWnTpliwYEHMnj07vvKVr8Sb3vSmnT2Pzk+AAAECBAgQIECAAAECBAgQ6FSgKW8B27BhQ1x++eVxzz33dArTtiMJiK666qoYMGBAXHbZZXHLLbfErbfeGuecc04k/SRXED399NNtzX0nQIAAAQIECBAgQIAAAQIECBROoOkCoAcffDA++MEPxs033xx9+3Y//GuvvTaSq4U+8IEPxNve9rbo06dP9O/fP04++eQ46aSTYvPmzTF37tzCTayCCBAgQIAAAQIECBAgQIAAAQJtAt0nIG0tK/D99ttvj3PPPTe9Yuewww6L8847r8tRJc8IeuCBB9I206ZN265t27abbroptmzZst1+GwgQIECAAAECBAgQIECAAAECRRBoqgDoz3/+c4wePTouvPDC+NrXvha77rprl3OwePHi9OqfMWPGpMe9svH48eNjl112ieeffz6efPLJV+62ToAAAQIECBAgQIAAAQIECBAohEDXTz8uRInZFTF16tR473vf2+1Dn9vOuHz58vTjiBEj2jZt9z3Zt3bt2njqqac6fSPYt7/97bjtttu2OzbZMGHChDSQqrnTRgJNIvDy2zFf9apXpcFrkwzdMAkQILCdwKBBg9q3Jc8g3GOPPdrXfSBAgECzCST/s71tSf7O6M/ENg3fCfRcoKkCoJ7+YbFu3bpUtKsAaPjw4Wmbtra1pmDFihWxaNGiWrtit912S58pVHOnjQSaUKC7t/I1IYkhEyDQZAL9+vVrH3Hyj53k2YMWAgQINKvAy/8MbHsea7NaGDeB3go01S1gPcVKngGULMltXp0tyWvhk+Wll17qrIntBAgQIECAAAECBAgQIECAAIGdKtBUVwD1VHro0KHpIZs2ber00I0bN6b7Bg4c2Gmbiy++OD7zmc/U3J9c7eA18jVpbGwigSRkbfv9ljyrq6vfc03EYqgECDSpwMuvKk7+nuHvCU36g2DYBAikAsnfDduWrVu3+jOxDcP3phUYNWpUw2MXAHVB13bL2AsvvNBpq+T5P8nS9o/XWg2T+/eTr86W5DXzFgIE/iqQ/H7we8JPAwECBP4q4M9EPwkECBDoKODviR09rBHoiYBbwLrQaguA2kKeWk3bwqHu3ihW61jbCBAgQIAAAQIECBAgQIAAAQI7QkAA1IXyq1/96nRv8oavzZs3b9cyeSJ9ckli8oDGcePGbbffBgIECBAgQIAAAQIECBAgQIBAEQQEQF3MwujRo2P8+PHx4osvxv33379dyzvvvDOS+1CTNkOGDNluvw0ECBAgQIAAAQIECBAgQIAAgSIIeAZQN7Nw6qmnxvTp0+Oaa66Jgw8+uP2NYM8880zMmjUrPfrkk0/uphe7CRCoJZAEqEmQ+otf/CJWrFiRPitr//33j2OOOSYOPPDAWofYRoAAAQIECBAgQIAAAQINCAiAukGbNGlS+g/RxYsXx+mnnx6TJ0+OLVu2xLx582L16tVxxBFHxJQpU7rpxW4CBF4pkAQ+l1xySTz22GMddi1cuDBuvPHGeOc73xmf/OQno3///h32WyFAgAABAgQIECBAgACBngsIgLox69evX8ycOTO+8Y1vxE9+8pO47rrr0iOS7SeddFJ89KMfTZ8B1E03dhMg8DKB5557Lj71qU/FypUrX7a148ebbropktcff/azn+24wxoBAgQIECBAgAABAgQI9FigqQOgt73tbTF//vxu0QYOHBgXXnhhnH/++bF06dL0FdVjxozp8tXv3XaqAYEmFrj66qu7DH/aaG6//fZ4xzveEYcddljbJt8JECBAgAABAgQIECBAoAEBD4HuAVpLS0u8/vWvTx/6PHTo0B4cqSkBAm0CGzZsiNtuu61ttdvvc+fO7baNBgQIECBAgAABAgQIECDQtYAAqGsfewkQyFggeebP5s2b6+71d7/7Xd1tNSRAgAABAgQIECBAgACB2gICoNouthIgkJPA+vXre9RzT9v3qHONCRAgQIAAAQIECBAg0CQCAqAmmWjDJFAUgZEjR/aolJ6271HnGhMgQIAAAQIECBAgQKBJBARATTLRhkmgKAL7779/9CTUOfzww4tSujoIECBAgAABAgQIECBQWgEBUGmnTuEEyinQp0+f+OAHP1hX8QMGDIj3ve99dbXViAABAgQIECBAgAABAgQ6FxAAdW5jDwECOQm8613vimOOOabL3vv27RsXX3xx7Lnnnl22s5MAAQIECBAgQIAAAQIEuhcQAHVvpAUBAjkIXHTRRXHmmWfGkCFDtut93333ja9//evx9re/fbt9NhAgQIAAAQIECBAgQIBAzwVaen6IIwgQINB7geRWsFNOOSVOOOGEWLx4caxatSqSW75Gjx4d48aNi2S/hQABAgQIECBAgAABAgSyERAAZeOoFwIEGhQYNGhQTJo0KYYOHZr2sHr16ti0aVODvTmMAAECBAgQIECAAAECBGoJuAWsloptBAgQIECAAAECBAgQIECAAIEKCQiAKjSZhkKAAAECBAgQIECAAAECBAgQqCUgAKqlYhsBAgQIECBAgAABAgQIECBAoEICAqAKTaahECBAgAABAgQIECBAgAABAgRqCQiAaqnYRoAAAQIECBAgQIAAAQIECBCokIAAqEKTaSgECBAgQIAAAQIECBAgQIAAgVoCAqBaKrYRIECAAAECBAgQIECAAAECBCokIACq0GQaCgECBAgQIECAAAECBAgQIECgloAAqJaKbQQIECBAgAABAgQIECBAgACBCgkIgCo0mYZCgAABAgQIECBAgAABAgQIEKglIACqpWIbAQIECBAgQIAAAQIECBAgQKBCAgKgCk2moRAgQIAAAQIECBAgQIAAAQIEagkIgGqp2EaAAAECBAgQIECAAAECBAgQqJCAAKhCk2koBAgQIECAAAECBAgQIECAAIFaAgKgWiq2ESBAgAABAgQIECBAgAABAgQqJCAAqtBkGgoBAgQIECBAgAABAgQIECBAoJaAAKiWim0ECBAgQIAAAQIECBAgQIAAgQoJCIAqNJmGQoAAAQIECBAgQIAAAQIECBCoJSAAqqViGwECBAgQIECAAAECBAgQIECgQgICoApNpqEQIECAAAECBAgQIECAAAECBGoJCIBqqdhGgAABAgQIECBAgAABAgQIEKiQgACoQpNpKAQIECBAgAABAgQIECBAgACBWgICoFoqthEgQIAAAQIECBAgQIAAAQIEKiQgAKrQZBoKAQIECBAgQIAAAQIECBAgQKCWgAColoptBAgQIECAAAECBAgQIECAAIEKCQiAKjSZhkKAAAECBAgQIECAAAECBAgQqCUgAKqlYhsBAgQIECBAgAABAgQIECBAoEICAqAKTaahECBAgAABAgQIECBAgAABAgRqCQiAaqnYRoAAAQIECBAgQIAAAQIECBCokIAAqEKTaSgECBAgQIAAAQIECBAgQIAAgVoCAqBaKrYRIECAAAECBAgQIECAAAECBCokIACq0GQaCgECBAgQIECAAAECBAgQIECgloAAqJaKbQQIECBAgAABAgQIECBAgACBCgkIgCo0mYZCgAABAgQIECBAgAABAgQIEKglIACqpWIbAQIECBAgQIAAAQIECBAgQKBCAgKgCk2moRAgQIAAAQIECBAgQIAAAQIEagkIgGqp2EaAAAECBAgQIECAAAECBAgQqJCAAKhCk2koBAgQIECAAAECBAgQIECAAIFaAgKgWiq2ESBAgAABAgQIECBAgAABAgQqJCAAqtBkGgoBAgQIECBAgAABAgQIECBAoJaAAKiWim0ECBAgQIAAAQIECBAgQIAAgQoJCIAqNJmGQoAAAQIECBAgQIAAAQIECBCoJSAAqqViGwECBAgQIECAAAECBAgQIECgQgICoApNpqEQIECAAAECBAgQIECAAAECBGoJCIBqqdhGgAABAgQIECBAgAABAgQIEKiQgACoQpNpKAQIECBAgAABAgQIECBAgACBWgICoFoqthEgQIAAAQIECBAgQIAAAQIEKiQgAKrQZBoKAQIECBAgQIAAAQIECBAgQKCWgAColoptBAgQIECAAAECBAgQIECAAIEKCQiAKjSZhkKAAAECBAgQIECAAAECBAgQqCUgAKqlYhsBAgQIECBAgAABAgQIECBAoEICAqAKTaahECBAgAABAgQIECBAgAABAgRqCQiAaqnYRoAAAQIECBAgQIAAAQIECBCokIAAqEKTaSgECBAgQIAAAQIECBAgQIAAgVoCAqBaKrYRIECAAAECBAgQIECAAAECBCokIACq0GQaCgECBAgQIECAAAECBAgQIECgloAAqJaKbQQIECBAgAABAgQIECBAgACBCgkIgCo0mYZCgAABAgQIECBAgAABAgQIEKglIACqpWIbAQIECBAgQIAAAQIECBAgQKBCAgKgCk2moRAgQIAAAQIECBAgQIAAAQIEagkIgGqp2EaAAAECBAgQIECAAAECBAgQqJCAAKhCk2koBAgQIECAAAECBAgQIECAAIFaAgKgWiq2ESBAgAABAgQIECBAgAABAgQqJCAAqtBkGgoBAgQIECBAgAABAgQIECBAoJaAAKiWim0ECBAgQIAAAQIECBAgQIAAgQoJCIAqNJmGQoAAAQIECBAgQIAAAQIECBCoJSAAqqViGwECBAgQIECAAAECBAgQIECgQgICoApNpqEQIECAAAECBAgQIECAAAECBGoJCIBqqdhGgAABAgQIECBAgAABAgQIEKiQgACoQpNpKAQIECBAgAABAgQIECBAgACBWgICoFoqthEgQIAAAQIECBAgQIAAAQIEKiQgAKrQZBoKAQIECBAgQIAAAQIECBAgQKCWgAColoptBAgQIECAAAECBAgQIECAAIEKCQiAKjSZhkKAAAECBAgQIECAAAECBAgQqCUgAKqlYhsBAgQIECBAgAABAgQIECBAoEICAqAKTaahECBAgAABAgQIECBAgAABAgRqCQiAaqnYRoAAAQIECBAgQIAAAQIECBCokIAAqEKTaSgECBAgQIAAAQIECBAgQIAAgVoCAqBaKrYRIECAAAECBAgQIECAAAECBCokIACq0GQaCgECBAgQIECAAAECBAgQIECgloAAqJaKbQQIECBAgAABAgQIECBAgACBCgkIgCo0mYZCgAABAgQIECBAgAABAgQIEKglIACqpWIbAQIECBAgQIAAAQIECBAgQKBCAgKgCk2moRAgQIAAAQIECBAgQIAAAQIEagkIgGqp2EaAAAECBAgQIECAAAECBAgQqJCAAKhCk2koBAgQIECAAAECBAgQIECAAIFaAgKgWiq2ESBAgAABAgQIECBAgAABAgQqJCAAqtBkGgoBAgQIECBAgAABAgQIECBAoJaAAKiWim0ECBAgQIAAAQIECBAgQIAAgQoJCIAqNJmGQoAAAQIECBAgQIAAAQIECBCoJSAAqqViGwECBAgQIECAAAECBAgQIECgQgICoApNpqEQIECAAAECBAgQIECAAAECBGoJCIBqqdhGgAABAgQIECBAgAABAgQIEKiQgACoQpNpKAQIECBAgAABAgQIECBAgACBWgICoFoqthEgQIAAAQIECBAgQIAAAQIEKiQgAKrQZBoKAQIECBAgQIAAAQIECBAgQKCWgAColoptBAgQIECAAAECBAgQIECAAIEKCbRUaCyGQoAAAQIECBAgQIBAEwnMmTMn7rrrrti2bVsTjbq5hrpx48b2AS9YsCA+8YlPtK/7UD2B4cOHp3M8evTo6g2uACMSABVgEpRAgAABAgQIECBAgEDPBF544YX45je/2bODtC61wPPPPx/Jl6XaAnvssUecd9551R7kThqdW8B2ErzTEiBAgAABAgQIECDQuMBLL73U+MGOJECgsAIbNmwobG1lL8wVQGWfQfUTIECAAAECBAgQaHKBQw89NGbOnNnkCoZPoLwCixcvjtNOO628AyhJ5QKgkkyUMgkQIECAAAECBAgQqC3Q0tISu+66a+2dthIgUHiBXXbZpfA1VqFAt4BVYRaNgQABAgQIECBAgAABAgQIECDQhYAAqAscuwgQIECAAAECBAgQIECAAAECVRAQAFVhFo2BAAECBAgQIECAAAECBAgQINCFgACoCxy7CBAgQIAAAQIECBAgQIAAAQJVEBAAVWEWjYEAAQIECBAgQIAAAQIECBAg0IWAAKgLHLsIECBAgAABAgQIECBAgAABAlUQ8Br4KsyiMRAoucA999wTS5YsSUfx9re/PfbYY4+Sj0j5BAgQIECAAAECBAgQKJaAAKhY86EaAk0pMH/+/Jg9e3Y69nHjxgmAmvKnwKAJECBAgAABAgQIEMhTwC1geerqmwABAgQIECBAgAABAgQIECBQAAEBUAEmQQkECBAgQIAAAQIECBAgQIAAgTwFBEB56uqbAAECBAgQIECAAAECBAgQIFAAAQFQASZBCQQIECBAgAABAgQIECBAgACBPAUEQHnq6psAAQIECBAgQIAAAQIECBAgUAABAVABJkEJBAgQIECAAAECBAgQIECAAIE8BQRAeerqmwABAgQIECBAgAABAgQIECBQAAEBUAEmQQkECBAgQIAAAQIECBAgQIAAgTwFBEB56uqbAAECBAgQIECAAAECBAgQIFAAAQFQASZBCQQIECBAgAABAgQIECBAgACBPAUEQHnq6psAAQIECBAgQIAAAQIECBAgUAABAVABJkEJBAgQIECAAAECBAgQIECAAIE8BQRAeerqmwABAgQIECBAgAABAgQIECBQAAEBUAEmQQkECBAgQIAAAQIECBAgQIAAgTwFBEB56uqbAAECBAgQIECAAAECBAgQIFAAAQFQASZBCQQIECBAgAABAgQIECBAgACBPAUEQHnq6psAAQIECBAgQIAAAQIECBAgUAABAVABJkEJBAgQIECAAAECBAgQIECAAIE8BQRAeerqmwABAgQIECBAgAABAgQIECBQAAEBUAEmQQkECBAgQIAAAQIECBAgQIAAgTwFBEB56uqbAAECBAgQIECAAAECBAgQIFAAAQFQASZBCQQIECBAgAABAgQIECBAgACBPAUEQHnq6psAAQIECBAgQIAAAQIECBAgUAABAVABJkEJBAgQIECAAAECBAgQIECAAIE8BQRAeerqmwABAgQIECBAgAABAgQIECBQAAEBUAEmQQkECBAgQIAAAQIECBAgQIAAgTwFBEB56uqbAAECBAgQIECAAAECBAgQIFAAAQFQASZBCQQIECBAgAABAgQIECBAgACBPAUEQHnq6psAAQIECBAgQIAAAQIECBAgUAABAVABJkEJBAgQIECAAAECBAgQIECAAIE8BQRAeerqmwABAgQIECBAgAABAgQIECBQAIGWAtTQ9CUMHjy46Q0ANLdA375/y6IHDBgQfk8098+D0RNodoGWlr/99axfv37+TGz2Hwjj71Rg0KBBne6zgwCB8gr4b19+c/e3v2Hkdw49dyMwYsSIblrYTaDaAskf8m1L8pc5vyfaNHwnQKAZBQYOHNg+7P79+/szsV3DBwIdBTZs2NBxgzUCBCohkPwPYf8eyGcqBUD5uPao16effrpH7TUmUDWBzZs3tw9p7dq14fdEO4cPBAg0ocC6devaR71x40Z/JrZr+ECgo8CqVas6brBGgEAlBJJw178HOp/KUaNGdb6zmz0CoG6AdsTu1tbWHXEa5yBQCoHk94PfE6WYKkUSILADBPyZuAOQnaK0Av6+UNqpUziBbgX8/u6WqKEGf3vwRkOHO4gAAQIECBAgQIAAAQIECBAgQKDoAgKgos+Q+ggQIECAAAECBAgQIECAAAECvRQQAPUS0OEECBAgQIAAAQIECBAgQIAAgaILCICKPkPqI0CAAAECBAgQIECAAAECBAj0UkAA1EtAhxMgQIAAAQIECBAgQIAAAQIEii4gACr6DKmPAAECBAgQIECAAAECBAgQINBLAQFQLwEdToAAAQIECBAgQIAAAQIECBAouoAAqOgzpD4CBAgQIECAAAECBAgQIECAQC8FBEC9BHQ4AQIECBAgQIAAAQIECBAgQKDoAgKgos+Q+ggQIECAAAECBAgQIECAAAECvRQQAPUS0OEECBAgQIAAAQIECBAgQIAAgaILCICKPkPqI0CAAAECBAgQIECAAAECBAj0UkAA1EtAhxMgQIAAAQIECBAgQIAAAQIEii4gACr6DKmPAAECBAgQIECAAAECBAgQINBLAQFQLwEdToAAAQIECBAgQIAAAQIECBAouoAAqOgzpD4CBAgQIECAAAECBAgQIECAQC8FWnp5vMMJECBAgACBHShwyy23xGOPPbYDz+hUO1rgqaeeaj/l/Pnz4+mnn25f96F6AnvttVeceOKJ0bev/y9bvdk1IgIECBRLQABUrPlQDQECBAgQ6FTg4Ycfjq9+9aud7rejegLJnCdflmoL7L777vH2t7+92oM0OgIECBDY6QL+V8NOnwIFECBAgACB+gTWrFlTX0OtCBAolcDq1atLVa9iCRAgQKCcAq4AKue8qZoAAQIEmlzguOOOi/e+971NrmD4BMorcMcdd8R1111X3gGonAABAgRKJyAAKt2UKZgAAQIECETsvffeccQRR6AgQKCkAsuWLStp5comQIAAgbIKuAWsrDOnbgIECBAgQIAAAQIECBAgQIBAnQICoDqhNCNAgAABAgQIECBAgAABAgQIlFVAAFTWmVM3AQIECBAgQIAAAQIECBAgQKBOAQFQnVCaESBAgAABAgQIECBAgAABAgTKKiAAKuvMqZsAAQIECBAgQIAAAQIECBAgUKeAAKhOKM0IECBAgAABAgQIECBAgAABAmUVEACVdebUTYAAAQIECBAgQIAAAQIECBCoU0AAVCeUZgQIECBAgAABAgQIECBAgACBsgoIgMo6c+omQIAAAQIECBAgQIAAAQIECNQpIACqE0ozAgQIECBAgAABAgQIECBAgEBZBQRAZZ05dRMgQIAAAQIECBAgQIAAAQIE6hQQANUJpRkBAgQIECBAgAABAgQIECBAoKwCAqCyzpy6CRAgQIAAAQIECBAgQIAAAQJ1CgiA6oTSjAABAgQIECBAgAABAgQIECBQVgEBUFlnTt0ECBAgQIAAAQIECBAgQIAAgToFBEB1QmlGgAABAgQIECBAgAABAgQIECirgACorDOnbgIECBAgQIAAAQIECBAgQIBAnQICoDqhNCNAgAABAgQIECBAgAABAgQIlFVAAFTWmVM3AQIECBAgQIAAAQIECBAgQKBOAQFQnVCaESBAgAABAgQIECBAgAABAgTKKiAAKuvMqZsAAQIECBAgQIAAAQIECBAgUKeAAKhOKM0IECBAgAABAgQIECBAgAABAmUVEACVdebUTYAAAQIECBAgQIAAAQIECBCoU0AAVCeUZgQIECBAgAABAgQIECBAgACBsgoIgMo6c+omQIAAAQIECBAgQIAAAQIECNQpIACqE0ozAgQIECBAgAABAgQIECBAgEBZBQRAZZ05dRMgQIAAAQIECBAgQIAAAQIE6hQQANUJpRkBAgQIECBAgAABAgQIECBAoKwCAqCyzpy6CRAgQIAAAQIECBAgQIAAAQJ1CgiA6oTSjAABAgQIECBAgAABAgQIECBQVgEBUFlnTt0ECBAgQIAAAQIECBAgQIAAgToFBEB1QmlGgAABAgQIECBAgAABAgQIECirgACorDOnbgIECBAgQIAAAQIECBAgQIBAnQICoDqhNCNAgAABAgQIECBAgAABAgQIlFVAAFTWmVM3AQIECBAgQIAAAQIECBAgQKBOAQFQnVCaESBAgAABAgQIECBAgAABAgTKKiAAKuvMqZsAAQIECBAgQIAAAQIECBAgUKeAAKhOKM0IECBAgAABAgQIECBAgAABAmUVEACVdebUTYAAAQIECBAgQIAAAQIECBCoU0AAVCeUZgQIECBAgAABAgQIECBAgACBsgoIgMo6c+omQIAAAQIECBAgQIAAAQIECNQpIACqE0ozAgQIECBAgAABAgQIECBAgEBZBQRAZZ05dRMgQIAAAQIECBAgQIAAAQIE6hQQANUJpRkBAgQIECBAgAABAgQIECBAoKwCAqCyzpy6CRAgQIAAAQIECBAgQIAAAQJ1CgiA6oTSjAABAgQIECBAgAABAgQIECBQVgEBUFlnTt0ECBAgQIAAAQIECBAgQIAAgToFBEB1QmlGgAABAgQIECBAgAABAgQIECirgACorDOnbgIECBAgQIAAAQIECBAgQIBAnQICoDqhNCNAgAABAgQIECBAgAABAgQIlFVAAFTWmVM3AQIECBAgQIAAAQIECBAgQKBOgZY622lGgAABAgQIECBAgACBQgqsXLkyZs+eXcjaFEWAQPcCy5cv776RFr0WEAD1mlAHBAgQIECAAAECBAjsTIE//OEPcckll+zMEpybAAEChRdwC1jhp0iBBAgQIECAAAECBAgQIECAAIHeCQiAeufnaAIECBAgQIAAAQIECBAgQIBA4QUEQIWfIgUSIECAAAECBAgQIECAAAECBHonIADqnZ+jCRAgQIAAAQIECBAgQIAAAQKFF/AQ6MJPkQIJECBAgAABAgQIEOhKYPz48fGpT32qqyb2ESBQYIFly5bFV77ylQJXWI3SBEDVmEejIECAAAECBAgQINC0ArvuumtMnjy5acdv4ATKLvDwww+XfQilqN8tYKWYJkUSIECAAAECBAgQIECAAAECBBoXEAA1budIAgQIECBAgAABAgQIECBAgEApBARApZgmRRIgQIAAAQIECBAgQIAAAQIEGhcQADVu50gCBAgQIECAAAECBAgQIECAQCkEBEClmCZFEiBAgAABAgQIECBAgAABAgQaFxAANW7nSAIECBAgQIAAAQIECBAgQIBAKQQEQKWYJkUSIECAAAECBAgQIECAAAECBBoXEAA1budIAgQIECBAgAABAgQIECBAgEApBARApZgmRRIgQIAAAQIECBAgQIAAAQIEGhcQADVu50gCBAgQIECAAAECBAgQIECAQCkEBEClmCZFEiBAgAABAgQIECBAgAABAgQaFxAANW7nSAIECBAgQIAAAQIECBAgQIBAKQQEQKWYJkUSIECAAAECBAgQIECAAAECBBoXEAA1budIAgQIECBAgAABAgQIECBAgEApBHZoALRu3bp48cUXSwGjSAIECBAgQIAAAQIECBAgQIBAVQRyDYBWrVoV559/fkyaNClGjx4dw4YNi+nTp6d2jz/+eBx11FExZ86c2LZtW1U8jYMAAQIECBAgQIAAAQIECBAgUDiBljwqam1tjSuvvDK+8IUvxHPPPVfzFMuWLYu77747/Xr/+98f3/3ud6N///4129pIgAABAgQIECBAgAABAgQIECDQuEAuVwBdccUVce6556bhT0tLS0yYMCHGjh3bocotW7a0Bz7f+9734qyzzuqw3woBAgQIECBAgAABAgQIECBAgEA2ApkHQA8//HBcdNFFaXXHHXdcLF26NBYsWBDJ55cvRx99dLovuQ0sWZIrgJYsWfLyJj4TIECAAAECBAgQIECAAAECBAhkIJB5APSNb3wjNm7cmF71c8MNN8Q+++zTaZljxoyJ2267LXbbbbfYunVrfOc73+m0rR0ECBAgQIAAAQIECBAgQIAAAQKNCWQeAC1cuDCtJLkKaPDgwd1WlbRpuzro0Ucf7ba9BgQIECBAgAABAgQIECBAgAABAj0TyDQASq7iWbRoUVrBxIkT667k2GOPTds++eSTdR+jIQECBAgQIECAAAECBAgQIECAQH0CmQZA/fr1S1/1npz6+eefr6+Cv7RKXhefLMmr4i0ECBAgQIAAAQIECBAgQIAAAQLZCmQaACWlHXzwwWmFd9xxR92VJs8BSpY3vOENdR+jIQECBAgQIECAAAECBAgQIECAQH0CmQdAhx12WHrmGTNmxGOPPdZtFddcc038+Mc/Ttv15LaxbjvWgAABAgQIECBAgAABAgQIECBAIBXIPAC64IILInm719q1a+OQQw6Jb33rW7Fy5crtuJ944ok4/fTT48Mf/nC678gjj4z3vOc927WzgQABAgQIECBAgAABAgQIECBAoHcCmQdAI0aMiGuvvTb69u2bPgforLPOilGjRqVBUFLqrFmzYuTIkbHffvulr31vbW2NIUOGRHIlUHKMhQABAgQIECBAgAABAgQIECBAIFuBXBKXyZMnx3333ReHH354e7UbN25MP69YsSKeffbZ9u1Tp06NBx98MMaOHdu+zQcCBAgQIECAAAECBAgQIECAAIHsBFqy66pjT4ceemjce++9MWfOnPT7o48+GslXcsXPAQccEOPGjYskKDr++OM7HmiNAAECBAgQIECAAAECBAgQIEAgU4HcAqCkyj59+sTJJ5+cfmVatc4IECBAgAABAgQIECBAgAABAgTqFsjlFrC6z64hAQIECBAgQIAAAQIECBAgQIBA7gKZXwH085//PJYvX96jwvv16xfDhw+PV73qVbHnnnvG6173uh4drzEBAgQIECBAgAABAgQIECBAgEDnApkHQF/96lfjlltu6fyMdezZe++946STToovfvGLMXTo0DqO0IQAAQIECBAgQIAAAQIECBAgQKAzgULeAvbHP/4xrrjiipg4cWKsWbOms9ptJ0CAAAECBAgQIECAAAECBAgQqEMg8wDo//7v/yL56tv3r10feeSRMWvWrHjggQfi6aefjkceeSRuv/32uPTSS2PEiBFpiclbwW6++ea48cYb46qrrmq/BWzJkiVxxhln1DEMTQgQIECAAAECBAgQIECAAAECBDoTyDwAWrp0aXzwgx+Mbdu2xXe+852YP39+nHLKKZG8Fj55vk/y+vd3vOMdMX369Hj88cfT7UkotHDhwjjhhBPi7LPPjt/85jfx8Y9/PK35Bz/4QSxbtqyz+m0nQIAAAQIECBAgQIAAAQIECBDoRiDzAOjyyy+P559/Ps4888z40Ic+1OXpkyuAZs+eHQMGDIhLLrkkVq9enbYfMmRIzJw5M8aPHx+tra3plUFddmQnAQIECBAgQIAAAQIECBAgQIBApwKZB0C/+MUv0pO9733v6/SkL9+x3377xRvf+Mb0iqHkNrG2pU+fPjF16tR01RVAbSq+EyBAgAABAgQIECBAgAABAgR6LpBpALRly5ZIntuTLHvttVfd1bz61a9O2y5evLjDMbvvvnu6/uyzz3bYboUAAQIECBAgQIAAAQIECBAgQKB+gUwDoJaWlthjjz3Ss//yl7+su4qHHnoobZvc8vXy5b777ktXR40a9fLNPhMgQIAAAQIECBAgQIAAAQIECPRAINMAKDlv8ur2ZPn85z8fzz33XPq5q1++9rWvxYoVK9ImbccmKy+99FL6AOnkc3KbmIUAAQIECBAgQIAAAQIECBAgQKAxgcwDoHPPPTetJHkb2JQpU2LevHk1K1u1alVccMEFcfHFF6f7p02blr4lLFn53e9+l745bMOGDdGvX7847rjjavZhIwECBAgQIECAAAECBAgQIECAQPcCLd036VmLY445Jj7xiU/EN7/5zfjVr34VRx99dOy///7x2te+Nvbee+/485//HE899VT6rKAk4EmW5NXws2bNaj/REUcc0X71UPIw6eRYCwECBAgQIECAAAECBAgQIECAQGMCmQdASRlXXXVV+iygr3zlK+mtXI8//ngkX7WWY489Ng2Ldt1113R3cmVQ261jJ554Ynz729+udZhtBAgQIECAAAECBAgQIECAAAECdQrkEgAlr3CfPn16nHbaafHjH/84koc8L1iwIH77299G//790yt+kgc+f+xjH4sjjzyyQ6mbN2+O//zP/4yDDjoo3vrWt0bSl4UAAQIECBAgQIAAAQIECBAgQKBxgVwCoLZy9tlnn/joRz/athpbt25Nn+nTvqHGh9GjR8eZZ55ZY49NBAgQIECAAAECBAgQIECAAAECjQhk/hDoropIHuhsIUCAAAECBAgQIECAAAECBAgQ2LECOzQA2rFDczYCBAgQIECAAAECBAgQIECAAIFEINdbwJ555pn0bV/r16+PLVu2dCt+wAEHpM8H6rahBgQIECBAgAABAgQIECBAgAABAnUL5BIALVmyJD73uc/F3Llz6wp+2qpNHhx96aWXtq36ToAAAQIECBAgQIAAAQIECBAgkIFA5gHQ2rVr4/jjj49HHnkkg/J0QYAAAQIECBAgQIAAAQIECBAg0FuBzAOgGTNmtIc/48aNi1NPPTX222+/GDVqVLevdB87dmxvx+N4AgQIECBAgAABAgQIECBAgACBVwhkHgDdfffd6SkmTJgQ8+bNi9122+0Vp7RKgAABAgQIECBAgAABAgQIECCwIwUyfQvY1q1b49e//nVa/4c+9CHhz46cSeciQIAAAQIECBAgQIAAAQIECHQikGkA1K9fvxg6dGh6quQKIAsBAgQIECBAgAABAgQIECBAgMDOF8g0AEqG85a3vCUd1bJly9LvfiFAgAABAgQIECBAgAABAgQIENi5Apk/A2jKlCnxox/9KK6++ur4l3/5l507OmcnQIAAAQIVFZg7d2788pe/rOjoDItA9QVWrVpV/UEaIQECBAgUSiDzAOjss8+O+fPnxw9/+MM455xz4rLLLotddtmlUINWDAECBAgQKLvAypUrI/myECBAgAABAgQIEKhHIPMAaNGiRfGRj3wkHnjggZg5c2Z8//vfj4kTJ8a+++4bI0eO7LKm5OqhyZMnd9nGTgIECBAgQIAAAQIECBAgQIAAgZ4JZB4AXXTRRXHLLbe0V5Fc3nrrrbe2r3f1oaWlRQDUFZB9BAgQIECAAAECBAgQIECAAIEGBDJ/CHQDNTiEAAECBAgQIECAAAECBAgQIEAgR4HMrwC6/vrrY8uWLQ2VPGjQoIaOcxABAgQIEGg2gYEDB8bgwYObbdjGS6AyAhs3bowNGzZUZjwGQoAAAQLFF8g8ABo2bFjxR61CAgQIECBQcoF///d/j/POO6/ko1A+geYVuO6662LGjBnNC2DkBAgQILDDBQp1C1hra+sOB3BCAgQIECBAgAABAgQIECBAgEDVBTK/AujlYMuWLYunn346Nm3aFNu2bWvflQQ9yW1iW7dujXXr1qWvsb355pvjrW99a3z2s59tb+cDAQIECBAgQIAAAQIECBAgQIBA7wVyCYDuu+++uPDCC+PnP/95jyo89NBDe9ReYwIECBAgQIAAAQIECBAgQIAAge4FMg+A1qxZEyeeeGJ65U/3p/9bi9GjR8f48eP/tsEnAgQIECBAgAABAgQIECBAgACBTAQyD4C+9KUvtYc/U6dOjeOPPz59S8kZZ5wRyRtLrr766vS2ryeeeCJmz54dS5cujde+9rXx+9//Pvr375/JoHRCgAABAgQIECBAgAABAgQIECDwN4HMA6CHHnoo7f2YY46J2267rf1Ml19+eRr2HHDAAfHmN7853f6Zz3wmjj322Lj//vvj61//enrbWPsBPhAgQIAAAQIECBAgQIAAAQIECGQikPlbwB599NG0sE9+8pMdCnzLW96Srt95553t20eMGBHz5s2L173udelrMB9//PH2fT4QIECAAAECBAgQIECAAAECBAhkI5BpALR58+ZYvnx5Wtm4ceM6VPj6178+Xf/Nb37TYfuwYcPiH//xH2PDhg1x4403dthnhQABAgQIECBAgAABAgQIECBAoPcCmQZAyTN8dt9997SqlpaOd5d1FgAljSdNmpQe8/DDD6ff/UKAAAECBAgQIECAAAECBAgQIJCdQMeUJoN+kzd53X333ZHczrX//vu393jggQemn5OHPW/atCkGDBjQvm/IkCHp50WLFrVvK9qHpO4bbrghkodXDx06NA466KCYMmVK+gDrotWqHgIECBAgQIAAAQIECBAgQIDAywUyvQIo6bjtVe7f+ta3Xn6eSK4ASq4K2rJlS9x1110d9t10003p+i677NJhe1FW5syZEx/5yEfiJz/5SXqL229/+9u49tpr48wzz4wFCxYUpUx1ECBAgAABAgQIECBAgAABAgRqCmQeAP3rv/5r9OnTJ71a5qSTTooHH3wwPXFye9gRRxyRfv7Yxz4Wf/rTn6K1tTV+9KMfRRKwJMvYsWPT70X6Jbkt7aqrrkqvWLrsssvilltuiVtvvTXOOeec9LlF55/Mta/IAABAAElEQVR/fvtr74tUt1oIECBAgAABAgQIECBAgAABAm0CmQdAb3vb2+Lss89O+//BD34Qxx9/fNu54rzzzks/J28KGzNmTLzmNa9J969atSrdnoRHRVuSK32SoOoDH/hAJGNLwq0kzDr55JMjCbiSB1/PnTu3aGWrhwABAgQIECBAgAABAgQIECDQLpB5AJT0/OUvfzk+8YlPRPKGr+QV723Lu971rvj4xz+erm7bti1WrlzZtiu9xerII49sXy/Ch/Xr18cDDzyQljJt2rTtSmrbltzCltzaZiFAgAABAgQIECBAgAABAgQIFFEg84dAJ4NMHuo8c+bMSG6ZWrhwYfu4k6tnvvnNb8bEiRPTq2Z+9atfpbd9vf/974/TTz+9vV1RPixevDi9+ie5Wmn06NHblZU87yh5btHzzz8fTz75pAdCbydkAwECBAgQIECAAAECBAgQIFAEgVwCoLaBDR8+PL1tqm297ftpp50WyVfRl+XLl6cljhgxotNSk31r166Np556qtMAKHmO0LJly2r28epXvzoOOOCAmvtsJNAsAkk43LYkt1gOGjSobdV3AgReJpD8/rAQIFA9Af/ta2xOBw4c2NiBjiJAoNAC/fr18++BnGYo1wAop5p3WLfr1q1Lz9VVAJSEXMnS1jZdecUvybOQZs2a9Yqt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CBCoWyDTACg567vf/e705NOnT09fAd9dJclDoL/73e+mzZLXwVsIECBAgAABAgQIECBAgAABAgSyFcg8ADrzzDPTW7nWrl0bhx9+eCRvBXvmmWc6VN3a2po+K+hTn/pUHH/88enr3w855JAePTeoQ4dWCBAgQIAAAQIECBAgQIAAAQIEOhXIPAAaO3Zs/Md//Ed6wjVr1sQll1ySvhI+eRX8gQceGK973eti8ODBsf/++8eVV14ZGzZsSNf/93//N30dfKeV2kGAAAECBAgQIECAAAECBAgQINCQQOYBUFJF8gr4uXPnxl577dVe1Lp16+L3v/99/OEPf4iNGze2b3/nO98ZCxcujPHjx7dv84EAAQIECBAgQIAAAQIECBAgQCA7gZbsuurYU/IsoGnTpkXyjJ+bb745DX5WrlwZQ4YMieQqoeQref375MmTOx5ojQABAgQIECBAgAABAgQIECBAIFOB3AKgpMrkte7JFT7JVyPL9ddfHz/60Y/inHPOiTe/+c2NdOEYAgQIECBAgAABAgQIECBAgEDTC+RyC1hWqr/61a/iuuuuiyeffDKrLvVDgAABAgQIECBAgAABAgQIEGg6gUIHQE03GwZMgAABAgQIECBAgAABAgQIEMhBQACUA6ouCRAgQIAAAQIECBAgQIAAAQJFEhAAFWk21EKAAAECBAgQIECAAAECBAgQyEFAAJQDqi4JECBAgAABAgQIECBAgAABAkUSEAAVaTbUQoAAAQIECBAgQIAAAQIECBDIQUAAlAOqLgkQIECAAAECBAgQIECAAAECRRIQABVpNtRCgAABAgQIECBAgAABAgQIEMhBQACUA6ouCRAgQIAAAQIECBAgQIAAAQJFEhAAFWk21EKAAAECBAgQIECAAAECBAgQyEFAAJQDqi4JECBAgAABAgQIECBAgAABAkUSEAAVaTbUQoAAAQIECBAgQIAAAQIECBDIQaAlhz51SSAzgfXr18c111wTq1atyqxPHRVPYOnSpe1FJfM9YsSI9nUfqiXQp0+feOMb3xjvfve7qzUwoyFAgAABAgQIECBQcAEBUMEnqNnLmzt3btxwww3NztBU41+4cGFTjbcZB3vnnXfGm970phgzZkwzDt+YCRAgQIAAAQIECOwUAbeA7RR2J61XYO3atfU21Y4AgRIJvPDCCyWqVqkECBAgQIAAAQIEyi/gCqDyz2HTjODiiy+Oww47rGnGa6AEqiZw5ZVXxk9/+tOqDct4CBAgQIAAAQIECJRCYIcGQOvWrYvW1tYYNmxYXTjvfOc7Y88994yDDz64rvYaVVtgr732ivHjx1d7kEZHoMICw4cPr/DoDI0AAQIECBAgQIBAsQVyvQUseXDv+eefH5MmTYrRo0enwc/06dNTkccffzyOOuqomDNnTmzbtq2m0pFHHhnnnntujBs3ruZ+GwkQIECAAAECBAgQIECAAAECBLoXyOUKoOQqn+RS/y984Qvx3HPP1axi2bJlcffdd6df73//++O73/1u9O/fv2ZbGwkQIECAAAECBAgQIECAAAECBBoXyOUKoCuuuCK9cicJf1paWmLChAkxduzYDlVu2bKlPfD53ve+F2eddVaH/VYIECBAgAABAgQIECBAgAABAgSyEcg8AHr44YfjoosuSqs77rjjYunSpbFgwYJIPr98Ofroo9N9yW1gyZJcAbRkyZKXN/GZAAECBAgQIECAAAECBAgQIEAgA4HMA6BvfOMbsXHjxvSqnxtuuCH22WefTsscM2ZM3HbbbbHbbrvF1q1b4zvf+U6nbe0gQIAAAQIECBAgQIAAAQIECBBoTCDzAGjhwoVpJclVQIMHD+62qqRN29VBjz76aLftNSBAgAABAgQIECBAgAABAgQIEOiZQKYBUHIVz6JFi9IKJk6cWHclxx57bNr2ySefrPsYDQkQIECAAAECBAgQIECAAAECBOoTyDQA6tevX/qq9+TUzz//fH0V/KVV8rr4ZEleFW8hQIAAAQIECBAgQIAAAQIECBDIViDTACgp7eCDD04rvOOOO+quNHkOULK84Q1vqPsYDQkQIECAAAECBAgQIECAAAECBOoTyDwAOuyww9Izz5gxIx577LFuq7jmmmvixz/+cdquJ7eNdduxBgQIECBAgAABAgQIECBAgAABAqlA5gHQBRdcEMnbvdauXRuHHHJIfOtb34qVK1dux/3EE0/E6aefHh/+8IfTfUceeWS85z3v2a6dDQQIECBAgAABAgQIECBAgAABAr0TyDwAGjFiRFx77bXRt2/f9DlAZ511VowaNSoNgpJSZ82aFSNHjoz99tsvfe17a2trDBkyJJIrgZJjLAQIECBAgAABAgQIECBAgAABAtkK5JK4TJ48Oe677744/PDD26vduHFj+nnFihXx7LPPtm+fOnVqPPjggzF27Nj2bT4QIECAAAECBAgQIECAAAECBAhkJ9CSXVcdezr00EPj3nvvjTlz5qTfH3300Ui+kit+DjjggBg3blwkQdHxxx/f8UBrBAgQIECAAAECBAgQIECAAAECmQrkFgAlVfbp0ydOPvnk9CvTqnVGgAABAgQIECBAgAABAgQIECBQt0Aut4DVfXYNCRAgQIAAAQIECBAgQIAAAQIEchcQAOVO7AQECBAgQIAAAQIECBAgQIAAgZ0rkOstYM8880wsWbIk1q9fH1u2bOl2pG3PBuq2oQYECBAgQIAAAQIECBAgQIAAAQJ1C+QSACWhz+c+97mYO3duXcFPW7XTp0+PSy+9tG3VdwIECBAgQIAAAQIECBAgQIAAgQwEMg+A1q5dm77Z65FHHsmgPF0QIECAAAECBAgQIECAAAECBAj0ViDzAGjGjBnRFv4kr3o/9dRTY7/99otRo0albwXrquCxY8d2tds+AgQIECBAgAABAgQIECBAgACBBgQyD4DuvvvutIwJEybEvHnzYrfddmugLIcQIECAAAECBAgQIECAAAECBAhkJZDpW8C2bt0av/71r9PaPvShDwl/spol/RAgQIAAAQIECBAgQIAAAQIEeiGQaQDUr1+/GDp0aFpOcgWQhQABAgQIECBAgAABAgQIECBAYOcLZBoAJcN5y1veko5q2bJl6Xe/ECBAgAABAgQIECBAgAABAgQI7FyBzAOgKVOmpCO6+uqrd+7InJ0AAQIECBAgQIAAAQIECBAgQCAVyDwAOvvss+M973lP/OxnP4tzzjknktfCWwgQIECAAAECBAgQIECAAAECBHaeQOZvAVu0aFF85CMfiQceeCBmzpwZ3//+92PixImx7777xsiRI7scaXL10OTJk7tsYycBAgQIECBAgAABAgQIECBAgEDPBDIPgC666KK45ZZb2qtYtWpV3Hrrre3rXX1oaWkRAHUFZB8BAgQIECBAgAABAgQIECBAoAGBzG8Ba6AGhxAgQIAAAQIECBAgQIAAAQIECOQokPkVQNdff31s2bKloZIHDRrU0HEOIkCAAAECBAgQIECAAAECBAgQ6Fwg8wBo2LBhnZ/NHgIECBAgQIAAAQIECBAgQIAAgR0u4BawHU7uhAQIECBAgAABAgQIECBAgACBHSvQ8BVAP/3pT2PevHlptdOmTYtJkyaln6+99tpYsmRJQ6OYOnVqJF8WAgQIECBAgAABAgQIECBAgACB7AQaDoDmz58fX/7yl9NKXvWqV7UHQLNnz+7wFrCelDpw4EABUE/AtCVAgAABAgQIECBAgAABAgQI1CHgFrA6kDQhQIAAAQIECBAgQIAAAQIECJRZoOErgC666KI477zz0rEnV+60LXPmzGn4LWAv76etP98JECBAgAABAgQIECBAgAABAgR6J9BwADRgwIBIvl65DB48+JWbrBMgQIAAAQIECBAgQIAAAQIECOxEAbeA7UR8pyZAgAABAgQIECBAgAABAgQI7AgBAdCOUHYOAgQIECBAgAABAgQIECBAgMBOFGj4FrDuav7Tn/4U99xzTyxdujRWr17dXfN0/zHHHBNHH310XW01IkCAAAECBAgQIECAAAECBAgQqE8glwDoS1/6Ulx22WWxfv36+qr4/62GDh0qAOqRmMYECBAgQIAAAQIECBAgQIAAge4FMg+AfvCDH8RnP/vZ7s+sBQECBAgQIECAAAECBAgQIECAwA4RyDwAuvzyy9PC+/XrF1/+8pfjlFNOid133z369+/f7YCSYywECBAgQIAAAQIECBAgQIAAAQLZCmQeAC1evDit8DOf+Ux8+tOfzrZavREgQIAAAQIECBAgQIAAAQIECPRYINO3gG3durW9AA9zbqfwgQABAgQIECBAgAABAgQIECCwUwUyDYCSW7iOOuqodEBr1qzZqQNzcgIECBAgQIAAAQIECBAgQIAAgb8KZBoAJV0mr3JPltmzZ6ff/UKAAAECBAgQIECAAAECBAgQILBzBTIPgM4+++x473vfG9dff33MmDEjNm7cuHNH6OwECBAgQIAAAQIECBAgQIAAgSYXyPwh0MltYLNmzYp/+qd/iunTp8d//dd/xYQJE2LfffeNQYMGdcmdXD3UdgVRlw3tJECAAAECBAgQIECAAAECBAgQqFsg8wAoOfPtt98eDz30UFrE8uXLI/mqZxk2bJgAqB4obQgQIECAAAECBAgQIECAAAECPRDIPAC68cYb01vAWltbe1CGpgQIECBAgAABAgQIECBAgAABAnkJZB4A/fCHP4wk/Elu90qeAXTCCSfEa17zmujfv3+3Y2hpybycbs+pAQECBAgQKKPApk2bYu3atWUsXc0ECPxFwHMy/RgQIECAwI4WyDxx+dnPfpaO4dJLL41Pf/rTO3o8zkeAAAECBJpC4Jprronky0KAAAECBAgQ+H/s3Qe8HFXdMOCTThoGSCiBgESRUFUCigQpCSCI0hNRQSyIhSaRF0QsiCjy+lqxKyAi0hGlS4mAKEhRREooIipgaIFAKElIvvufz1k3N3fv3dy7e7fMc36/cGdnZuec85xldvY/55whQKAagZo+BWzx4sXpmWeeyfKdMmVKNfnbhwABAgQIEKhSYNiwYVXuaTcCBFpJYPjw4a1UXGUlQIAAgRYVqGkPoIEDB6att946XXHFFenuu+/OllvURbEJECBAgEDTCUyePDnttttu6f7778+GWzddARWoJgLz5s1Ljz76aHasVVddNa288so1Oa6DNKfAhAkT0nbbbdechVMqAgQIEGgrgZoGgEJm2rRpWQAoJoM+6KCD2gpLZQgQIECAQCMFYq68mTNnNrII8u4HgWuvvTabRzGy2meffdKMGTP6IVdZECBAgAABAu0uUNMhYIF16KGHloJAccEyf/78djdUPwIECBAgQIAAAQIECBAgQIBAUwvUvAfQAw88kD75yU+mu+66K5133nkpJoWO+YDWWmuttOKKK6YYJlYpTZ06NW2//faVNltPgAABAgQIECBAgAABAgQIECDQC4GaB4COOuqodNlll5WK8sQTT6SLLrqo9Lq7hejaLgDUnZBtBAgQIECAAAECBAgQIECAAIHlF6jcHWf5j+UdBAgQIECAAAECBAgQIECAAAECTShQ8x5A55xzTlq0aFGvqrrCCiv06n3eRIAAAQIECBAgQIAAAQIECBAgUFmg5gGgUaNGVc7NFgIECBAgQIAAAQIECBAgQIAAgX4XaKohYEuWLOl3ABkSIECAAAECBAgQIECAAAECBNpdoOY9gMrB/v73v6d///vfacGCBWnx4sWlTRHoiWFir7zySvaY+Dlz5qRLL700bbXVVunYY48t7WeBAAECBAgQIECAAAECBAgQIECg7wJ1CQDddNNN6VOf+lS67rrrlquEW2yxxXLtb2cCBAgQIECAAAECBAgQIECAAIGeBWoeAJo7d27ac889s54/PWf/3z3Gjx+fJk2a9N8VlggQIECAAAECBAgQIECAAAECBGoiUPMA0Je//OVS8GfatGlpt912S8OHD08HHXRQGjZsWPrJT36SDft6+OGH07nnnpsefPDBNHHixHTvvfemIUOG1KRSDkKAAAECBAgQIECAAAECBAgQIPBfgZoHgG677bbs6DvttFO68sorSzmddNJJWbDnda97XXrTm96UrT/qqKPSzjvvnG6++eb0ta99LRs2VnqDBQIECBAgQIAAAQIECBAgQIAAgZoI1PwpYPfff39WsMMPP3ypAr7lLW/JXs+aNau0fsyYMenqq69Or3nNa9Lxxx+fHnroodI2CwQIECBAgAABAgQIECBAgAABArURqGkAaOHChemRRx7JSrbeeustVcL1118/e/2Xv/xlqfWjRo1Ku+yyS3rxxRfTL3/5y6W2eUGAAAECBAgQIECAAAECBAgQINB3gZoGgGIOn1VWWSUr1eDBS48uqxQAip233Xbb7D133nln9td/CBAgQIAAAQIECBAgQIAAAQIEaidQ0wBQFCt/klfn4VwbbLBBVuqY7HnBggVL1WDEiBHZ67vuumup9V4QIECAAAECBAgQIECAAAECBAj0XaBuAaAf/OAHS5UuegBFr6BFixal66+/fqltl1xySfZ69OjRS633ggABAgQIECBAgAABAgQIECBAoO8CNQ8A7b///mnAgAHpvPPOS/vss0+69dZbs1LG8LApU6Zkyx//+MfTo48+mpYsWZIuvvjidP7552frX/va1/a9Ro5AgAABAgQIECBAgAABAgQIECCwlEDNA0DbbLNNOvTQQ7NMLrjggrTbbruVMpw5c2a2HE8KmzBhQlpjjTWy7U888US2PoJHEgECBAgQIECAAAECBAgQIECAQG0Fah4AiuKdeOKJ6ZBDDknxhK94xHue3vnOd6aDDz44e7l48eI0Z86cfFP68Ic/nLbeeuvSawsECBAgQIAAAQIECBAgQIAAAQK1EVj6UV21OWaKSZ1PPvnk9KUvfSn9+c9/Lh01hoZ95zvfSZMnT04XXXRR+tOf/pRi2Nd73vOedOCBB5b2s0CAAAECBAgQIECAAAECBAgQIFA7gboEgPLirbjiiimGhHVOH/jAB1L8kwgQIECAAAECBAgQIECAAAECBOovUPMhYD/60Y/SJz7xiXT33XdXXfovfvGLaauttsqGjlX9JjsSIECAAAECBAgQIECAAAECBAhUJVDzANCvfvWr9K1vfSs99NBDVRUgdvrtb3+b/vCHPyxX0Kjqg9uRAAECBAgQIECAAAECBAgQIFBwgboOAevJ9pVXXknxRLA77rgj2zXmDpIIECBAgAABAgQIECBAgAABAgRqK9CnANCuu+6arrnmmqVKtHDhwuz1nnvumQYO7L6DUewbTwPL0+abb54v+kuAAAECBAgQIECAAAECBAgQIFAjgT4FgL72ta+lTTfdNOVBn/IydbWufHvn5Y033jjtsccenVd7TYAAAQIECBAgQIAAAQIECBAg0EeBPgWAJk2alL7//e+nW265pVSMyy+/PP3jH/9Iu+yyS1p77bVL67taGDJkSBo5cmRad91104wZM9JKK63U1W7WESBAgAABAgQIECBAgAABAgQI9EGgTwGgyPdDH/pQ9i8vQwwLiwDQwQcfnGJZIkCAAAECBAgQIECAAAECBAgQaKxAnwNAnYu///77Z490X3/99Ttv8poAAQIECBAgQIAAAQIECBAgQKABAjUPAO27774NqIYsCRAgQIAAAQIECBAgQIAAAQIEKgnUPABUKaPy9Y888ki68sor05IlS9I73/nOtOqqq5ZvtkyAAAECBAgQIECAAAECBAgQIFBDge6f097LjBYtWpQuuuiitPvuu6drr712qaMcd9xxaa211srmDTrwwAPTGmuskd73vvdlwaCldvSCAAECBAgQIECAAAECBAgQIECgJgJ1CQAdc8wxac8990y//vWv0+zZs0sFveSSS9Lxxx9feh0LixcvTmeccUb6whe+sNR6LwgQIECAAAECBAgQIECAAAECBGojUPMA0HXXXZe+/vWvZ6UbPHhwGjFiRKmkJ5xwQtbTZ9CgQemII45It912WzrkkEOy7REYitcSAQIECBAgQIAAAQIECBAgQIBAbQVqPgfQKaeckvXq2XjjjdMFF1yQXve612Ulfvjhh9PNN9+cLe+1116lINFmm22W7rnnnnTNNdek3/3ud2ny5Mm1raGjESBAgAABAgQIECBAgAABAgQKLlDzHkB33313RnrAAQeUgj+x4rLLLitR77333qXlWJg+fXr2+vbbb19qvRcECBAgQIAAAQIECBAgQIAAAQJ9F6hpACie6nXvvfdmpXrb2962VOkuv/zy7HUM/9ppp52W2hYTQUe66667llrvBQECBAgQIECAAAECBAgQIECAQN8FahoAigmdFyxYkJVq9OjRpdLFulmzZmWvt9hii7TSSiuVtsXC448/nr0eM2bMUuu9IECAAAECBAgQIECAAAECBAgQ6LtATQNA0btnnXXWyUqV9wSKFzEx9PPPP5+t79wzKFbG/D+R1l577eyv/xAgQIAAAQIECBAgQIAAAQIECNROoKYBoCjWlltumZXuuOOOSw8++GB64YUXUjwWPk8zZszIF9NLL72UTQZ9zjnnZOu23nrr0jYLBAgQIECAAAECBAgQIECAAAECtRGo+VPA4vHuP//5z7Mnfm2wwQZp2LBhpd4/O++8c9pwww2zkt94440pgkGPPvpo9nrChAlpv/32q02tHIUAAQIECBAgQIAAAQIECBAgQKAkUPMeQPFY95/+9KdpyJAhaeHChaXgz0YbbZTOPvvsUsbPPvtsKfgzbty4bNvQoUNL2y0QIECAAAECBAgQIECAAAECBAjURqDmPYCiWPEI+MmTJ2ePfn/ooYfSdtttl6L3z6te9apSqSdNmpRWW221FI+EP+qoo0pzB5V2sECAAAECBAgQIECAAAECBAgQIFATgboEgKJkG2+8cfavUinXXXfdrAfQwIE174RUKUvrCRAgQIAAAQIECBAgQIAAAQKFFKhbAKgnzQEDBqT4JxEgQIAAAQIECBAgQIAAAQIECNRXoNcBoGuvvTZdffXVWeni0e7bbrtttnz66aen2bNn96rU06ZNS/FPIkCAAAECBAgQIECAAAECBAgQqJ1ArwNAN9xwQzrxxBOzksTcPnkA6Nxzz83m/ulNEeOJYQJAvZHzHgIECBAgQIAAAQIECBAgQIBAZQET8FS2sYUAAQIECBAgQIAAAQIECBAg0BYCve4BdMwxx6SZM2dmCNFzJ0/nn39+WrRoUf5yuf6WH2e53mhnAgQIECBAgAABAgQIECBAgACBigK9DgANHTo0xb/Oafjw4Z1XeU2AAAECBAgQIECAAAECBAgQINBAAUPAGogvawIECBAgQIAAAQIECBAgQIBAfwgIAPWHsjwIECBAgAABAgQIECBAgAABAg0U6PUQsGrK/MQTT6T7778/Pf3002nBggU9vmWDDTZI8U8iQIAAAQIECBAgQIAAAQIECBConUBdAkDPPPNMmjFjRrr66qvTkiVLqi7t5z//+XTcccdVvb8dCRAgQIAAAQIECBAgQIAAAQIEehaoeQAoevvsuOOO6fbbb+85d3sQIECAAAECBAgQIECAAAECBAjUXaDmAaBvf/vbpeDPRhttlA466KC07rrrplGjRvVYmdhPIkCAAAECBAgQIECAAAECBAgQqK1AzQNAv//977MSbrXVVun6669PgwYNqm2JHY0AAQIECBAgQIAAAQIECBAgQGC5BGoaAFq8eHG66aabsgLMnDlT8KfKplhttdWq3LN4u40cObJ4lVZjAgUQWHnllZNzXwEaWhV7JTB8+PDS+4YOHer/lZKGBQIEiijw/PPPl6o9cOBA58SShgUCyy9Q0wDQgAED0uDB//+Qa6655vKXpqDvmD9/fkFr3nO1Fy5c2PNO9iBAoOUEXnrppeTc13LNpsD9JLBo0aJSTnFzzf8rJQ4LBAgUUCCuGfIUDxhyTsw1/C2qwOjRo3td9ZoHgDbffPN01VVXpRtvvDFtueWWvS5Ykd5YHtUuUr2rqeuCBQuq2c0+BAi0mMALL7yQnPtarNEUt98Eym9+RDDI/yv9Ri8jAgSaUKBzAMg5sQkbSZH6VaAvAaCBtS7prrvumh3ywgsvTOV3sGqdj+MRIECAAAECBAgQIECAAAECBAhUJ1DTHkCR5WGHHZauuOKK7N8ee+yRzj333DRixIjqSmMvAt0IfO9730vnnHNON3vYRIBAMwvMnj27mYunbAQIECBAgAABAgTaWqDXAaBZs2ala6+9tkuc/HHul156aVprrbXShhtumNZff/00fvz4LvfPV06dOjVtv/32+Ut/CSwlcNdddy312gsCBAgQIECAAAECBAgQIECgOoFeB4DiEe8nnHBCj7nMnTs3mw8o5gTqKcUE0gJAPSnZToAAAQIECBAgQIAAAQIECBBYPoGazwG0fNnbmwABAgQIECBAgAABAgQIECBAoN4Cve4BdPTRR6fDDz+8puVbYYUVano8ByNAgAABAgQIECBAgAABAgQIEEip1wGgCNYI2PgI9afAwIED04ABA/ozS3kRIFBDgcWLF6clS5bU8IgORYAAAQIECBAgQIBAtQK9DgBVm4H9CNRK4OSTT0477LBDrQ7nOAQI9LNA9By96KKL+jlX2REgQIAAAQIECBAgEALmAPI5IECAAAECBAgQIECAAAECBAi0uYAAUJs3sOoRIECAAAECBAgQIECAAAECBASAfAYIECBAgAABAgQIECBAgAABAm0uIADU5g2segQIECBAgAABAgQIECBAgAABASCfAQIECBAgQIAAAQIECBAgQIBAmwsIALV5A6seAQIECBAgQIAAAQIECBAgQEAAyGeAAAECBAgQIECAAAECBAgQINDmAgJAbd7AqkeAAAECBAgQIECAAAECBAgQEADyGSBAgAABAgQIECBAgAABAgQItLmAAFCbN7DqESBAgAABAgQIECBAgAABAgQEgHwGCBAgQIAAAQIECBAgQIAAAQJtLiAA1OYNrHoECBAgQIAAAQIECBAgQIAAAQEgnwECBAgQIECAAAECBAgQIECAQJsLCAC1eQOrHgECBAgQIECAAAECBAgQIEBAAMhngAABAgQIECBAgAABAgQIECDQ5gICQG3ewKpHgAABAgQIECBAgAABAgQIEBAA8hkgQIAAAQIECBAgQIAAAQIECLS5gABQmzew6hEgQIAAAQIECBAgQIAAAQIEBIB8BggQIECAAAECBAgQIECAAAECbS4gANTmDax6BAgQIECAAAECBAgQIECAAAEBIJ8BAgQIECBAgAABAgQIECBAgECbCwgAtXkDqx4BAgQIECBAgAABAgQIECBAQADIZ4AAAQIECBAgQIAAAQIECBAg0OYCAkBt3sCqR4AAAQIECBAgQIAAAQIECBAQAPIZIECAAAECBAgQIECAAAECBAi0uYAAUJs3sOoRIECAAAECBAgQIECAAAECBASAfAYIECBAgAABAgQIECBAgAABAm0uIADU5g2segQIECBAgAABAgQIECBAgAABASCfAQIECBAgQIAAAQIECBAgQIBAmwsIALV5A6seAQIECBAgQIAAAQIECBAgQEAAyGeAAAECBAgQIECAAAECBAgQINDmAgJAbd7AqkeAAAECBAgQIECAAAECBAgQEADyGSBAgAABAgQIECBAgAABAgQItLmAAFCbN7DqESBAgAABAgQIECBAgAABAgQEgHwGCBAgQIAAAQIECBAgQIAAAQJtLiAA1OYNrHoECBAgQIAAAQIECBAgQIAAAQEgnwECBAgQIECAAAECBAgQIECAQJsLCAC1eQOrHgECBAgQIECAAAECBAgQIEBAAMhngAABAgQIECBAgAABAgQIECDQ5gICQG3ewKpHgAABAgQIECBAgAABAgQIEBAA8hkgQIAAAQIECBAgQIAAAQIECLS5gABQmzew6hEgQIAAAQIECBAgQIAAAQIEBIB8BggQIECAAAECBAgQIECAAAECbS4gANTmDax6BAgQIECAAAECBAgQIECAAAEBIJ8BAgQIECBAgAABAgQIECBAgECbCwgAtXkDqx4BAgQIECBAgAABAgQIECBAQADIZ4AAAQIECBAgQIAAAQIECBAg0OYCAkBt3sCqR4AAAQIECBAgQIAAAQIECBAQAPIZIECAAAECBAgQIECAAAECBAi0uYAAUJs3sOoRIECAAAECBAgQIECAAAECBASAfAYIECBAgAABAgQIECBAgAABAm0uIADU5g2segQIECBAgAABAgQIECBAgAABASCfAQIECBAgQIAAAQIECBAgQIBAmwsIALV5A6seAQIECBAgQIAAAQIECBAgQEAAyGeAAAECBAgQIECAAAECBAgQINDmAgJAbd7AqkeAAAECBAgQIECAAAECBAgQEADyGSBAgAABAgQIECBAgAABAgQItLmAAFCbN7DqESBAgAABAgQIECBAgAABAgQEgHwGCBAgQIAAAQIECBAgQIAAAQJtLiAA1OYNrHoECBAgQIAAAQIECBAgQIAAAQEgnwECBAgQIECAAAECBAgQIECAQJsLCAC1eQOrHgECBAgQIECAAAECBAgQIEBAAMhngAABAgQIECBAgAABAgQIECDQ5gICQG3ewKpHgAABAgQIECBAgAABAgQIEBAA8hkgQIAAAQIECBAgQIAAAQIECLS5gABQmzew6hEgQIAAAQIECBAgQIAAAQIEBIB8BggQIECAAAECBAgQIECAAAECbS4gANTmDax6BAgQIECAAAECBAgQIECAAAEBIJ8BAgQIECBAgAABAgQIECBAgECbCwgAtXkDqx4BAgQIECBAgAABAgQIECBAQADIZ4AAAQIECBAgQIAAAQIECBAg0OYCAkBt3sCqR4AAAQIECBAgQIAAAQIECBAQAPIZIECAAAECBAgQIECAAAECBAi0uYAAUJs3sOoRIECAAAECBAgQIECAAAECBASAfAYIECBAgAABAgQIECBAgAABAm0uIADU5g2segQIECBAgAABAgQIECBAgAABASCfAQIECBAgQIAAAQIECBAgQIBAmwsIALV5A6seAQIECBAgQIAAAQIECBAgQEAAyGeAAAECBAgQIECAAAECBAgQINDmAgJAbd7AqkeAAAECBAgQIECAAAECBAgQEADyGSBAgAABAgQIECBAgAABAgQItLmAAFCbN7DqESBAgAABAgQIECBAgAABAgQEgHwGCBAgQIAAAQIECBAgQIAAAQJtLiAA1OYNrHoECBAgQIAAAQIECBAgQIAAAQEgnwECBAgQIECAAAECBAgQIECAQJsLDG7z+qleGwlcfvnl6b777mujGqkKgWIJzJ49u1gVVlsCBAgQIECAAAECTSQgANREjaEo3Qtccskl3e9gKwECLSMwYMCAlimrghIgQIAAAQIECBBoBwFDwNqhFdu4DhMnTmzj2qkagWIKDBs2LI0fP76YlVdrAgQIECBAgAABAg0S0AOoQfCyrU5gxx13TGPHjk1PPvlkdW+wV0sKXH311enmm2/Oyr7//vuntddeuyXrodA9C0TPn0mTJqUxY8b0vLM9CBAgQIAAAQIECBComYAAUM0oHaheAm984xvrdWjHbRKB+++/vxQA2nzzzdPrX//6JimZYhAgQIAAAQIECBAgQKA9BAwBa492VAsCBAgQIECAAAECBAgQIECAQEUBAaCKNDYQIECAAAECBAgQIECAAAECBNpDQACoPdpRLQgQIECAAAECBAgQIECAAAECFQUEgCrS2ECAAAECBAgQIECAAAECBAgQaA8BAaD2aEe1IECAAAECBAgQIECAAAECBAhUFBAAqkhjAwECBAgQIECAAAECBAgQIECgPQQEgNqjHdWCAAECBAgQIECAAAECBAgQIFBRQACoIo0NBAgQIECAAAECBAgQIECAAIH2EBAAao92VAsCBAgQIECAAAECBAgQIECAQEUBAaCKNDYQIECAAAECBAgQIECAAAECBNpDQACoPdpRLQgQIECAAAECBAgQIECAAAECFQUEgCrS2ECAAAECBAgQIECAAAECBAgQaA8BAaD2aEe1IECAAAECBAgQIECAAAECBAhUFBAAqkhjAwECBAgQIECAAAECBAgQIECgPQQEgNqjHdWCAAECBAgQIECAAAECBAgQIFBRQACoIo0NBAgQIECAAAECBAgQIECAAIH2EBAAao92VAsCBAgQIECAAAECBAgQIECAQEUBAaCKNDYQIECAAAECBAgQIECAAAECBNpDQACoPdpRLQgQIECAAAECBAgQIECAAAECFQUEgCrS2ECAAAECBAgQIECAAAECBAgQaA8BAaD2aEe1IECAAAECBAgQIECAAAECBAhUFBAAqkhjAwECBAgQIECAAAECBAgQIECgPQQEgNqjHdWCAAECBAgQIECAAAECBAgQIFBRQACoIo0NBAgQIECAAAECBAgQIECAAIH2EBAAao92VAsCBAgQIECAAAECBAgQIECAQEUBAaCKNDYQIECAAAECBAgQIECAAAECBNpDQACoPdpRLQgQIECAAAECBAgQIECAAAECFQUEgCrS2ECAAAECBAgQIECAAAECBAgQaA8BAaD2aEe1IECAAAECBAgQIECAAAECBAhUFBAAqkhjAwECBAgQIECAAAECBAgQIECgPQQEgNqjHdWCAAECBAgQIECAAAECBAgQIFBRQACoIo0NBAgQIECAAAECBAgQIECAAIH2EBAAao92VAsCBAgQIECAAAECBAgQIECAQEUBAaCKNDYQIECAAAECBAgQIECAAAECBNpDQACoPdpRLQgQIECAAAECBAgQIECAAAECFQUGV9xiAwECBAgQIECAAAECBAgQaKDAmDFj0iGHHJKVYMKECQ0siawJtL6AAFDrt6EaECBAgAABAgQIECBAoC0FIgB06KGHZnV76aWX0ty5c9uynipFoD8EDAHrD2V5ECBAgAABAgQIECBAgAABAgQaKCAA1EB8WRMgQIAAAQIECBAgQIAAAQIE+kNAAKg/lOVBgAABAgQIECBAgAABAgQIEGiggABQA/FlTYAAAQIECBAgQIAAAQIECBDoDwEBoP5QlgcBAgQIECBAgAABAgQIECBAoIECAkANxJc1AQIECBAgQIAAAQIECBAgQKA/BASA+kNZHgQIECBAgAABAgQIECBAgACBBgoIADUQX9YECBAgQIAAAQIECBAgQIAAgf4QEADqD2V5ECBAgAABAgQIECBAgAABAgQaKCAA1EB8WRMgQIAAAQIECBAgQIAAAQIE+kNAAKg/lOVBgAABAgQIECBAgAABAgQIEGiggABQA/FlTYAAAQIECBAgQIAAAQIECBDoDwEBoP5QlgcBAgQIECBAgAABAgQIECBAoIECAkANxJc1AQIECBAgQIAAAQIECBAgQKA/BASA+kNZHgQIECBAgAABAgQIECBAgACBBgoIADUQX9YECBAgQIAAAQIECBAgQIAAgf4QEADqD2V5ECBAgAABAgQIECBAgAABAgQaKDC4gXk3POsXXnghHXnkkWn11VdPn/vc57otz7333pvOO++89PDDD6eRI0emTTbZJE2dOjVNnDix2/fZSIAAAQIECBAgQIAAAQIECBBotEBhA0BLlixJxx9/fLrzzjvT4MHdM5x//vnpW9/6VtZWo0aNSgsWLEi33357Ovfcc9NXvvKVtNlmmzW6HeVPgAABAgQIECBAgAABAgQIEKgoUMghYC+++GI66aST0o033lgRJt8QAaJvf/vbaejQoelLX/pSuuyyy9IVV1yRDjvssBTHiR5E//73v/Pd/SVAgAABAgQIECBAgAABAgQINJ1A4QJAt956a3rf+96XLr300jRwYM/VP/3001P0Ftpvv/3SNttskwYMGJCGDBmSpk+fnvbZZ5+0cOHCdNFFFzVdwyoQAQIECBAgQIAAAQIECBAgQCAX6DkCku/ZBn+vuuqqdMQRR2Q9dt785jenmTNndlurmCPoj3/8Y7bP2972tmX2zdddcskladGiRctst4IAAQIECBAgQIAAAQIECBAg0AwChQoAPf3002n8+PHpU5/6VPrqV7+aVlpppW7b4J577sl6/0yYMCF7X+edJ02alEaPHp2effbZ9I9//KPzZq8JECBAgAABAgQIECBAgAABAk0h0P3sx01RxNoVYtq0aWnvvffucdLnPMdHHnkkWxwzZky+apm/se25555L//znPz0RbBkdKwgQIECAAAECBAgQIECAAIFmEChUAGjs2LHLZT5//vxs/+4CQCuuuGK2T75vVxn83//9X7rwwgu72pS23HLLrDdSlxutJFAQgfIn8cWT9lZdddWC1Fw1CRAgsKzA8OHDSyvjIRTOiSUOCwQIFFxg2LBhzokF/wyoft8EChUAWl6qmAMoUgzzqpTix2qkl156qdIu6fnnn09PPfVUl9vnzZuXBg0a1OU2KwkURSAmV89TTM7u/4lcw18CBIooUP6QCufEIn4C1JkAgUoCcc3oOrGSjvUEehZomwDQ3Llz04IFC5ap8YgRI7oN4CzzhrIVI0eOzF51ddx8t5dffjlbjGh0pbTCCitULEOUb/HixZXeaj2BQgjEk/byFMv+n8g1/CVAoIgC5efAWC5/XUQPdSZAgEAeGI/rxPLrRjIEiiiQ///Qm7q3TQDos5/9bLrjjjuWMdhzzz17fNrXMm/6z4p8yFj00qmUYv6fSHmwqKv9YtLp+FcpPfbYY5U2WU+gEALlT9GL/6fmzJlTiHqrJAECBLoSePHFF0ur4yaUc2KJwwIBAgUUiKkCxo0bl9U8br7HjX+JQJEF1lhjjV5Xv20CQDFGvqteOEOGDOk1Th4AyoM8XR0oDw719ESxrt5rHQECBAgQIECAAAECBAgQIECgPwTaJgD09a9/veZe+aSL8YSvhQsXps7BpHj8ezxaPrpgrbfeejXP3wEJECBAgAABAgQIECBAgAABArUQGFiLg7TrMcaPH58mTZqUTeJ88803L1PNWbNmpVdeeSXbJ+bykQgQIECAAAECBAgQIECAAAECzSggANRDq7z73e/O9jjttNNS+VCwxx9/PJ111lnZtunTp/dwFJsJECBAgAABAgQIECBAgAABAo0TaJshYPUi3HbbbdMGG2yQ7rnnnnTggQem7bffPsWEtVdffXX2aPcpU6akqVOn1it7xyVAgAABAgQIECBAgAABAgQI9FlAAKgHwkGDBqWTTz45feMb30i/+c1v0plnnpm9I9bvs88+6SMf+Ug2B1APh7GZAAECBAgQIECAAAECBAgQINAwgUIHgLbZZpt0ww039IgfTxeLx7gfeeSR6cEHH0xLlixJEyZM6PbR7z0e1A4ECBAgQIAAAQIECBAgQIAAgX4SKHQAaHmNBw8enNZff/3lfZv9CRAgQIAAAQIECBAgQIAAAQINFTAJdEP5ZU6AAAECBAgQIECAAAECBAgQqL+AAFD9jeVAgAABAgQIECBAgAABAgQIEGiogABQQ/llToAAAQIECBAgQIAAAQIECBCov4AAUP2N5UCAAAECBAgQIECAAAECBAgQaKiAAFBD+WVOgAABAgQIECBAgAABAgQIEKi/gABQ/Y3lQIAAAQIECBAgQIAAAQIECBBoqIAAUEP5ZU6AAAECBAgQIECAAAECBAgQqL+AAFD9jeVAgAABAgQIECBAgAABAgQIEGiogABQQ/llToAAAQIECBAgQIAAAQIECBCov4AAUP2N5UCAAAECBAgQIECAAAECBAgQaKiAAFBD+WVOgAABAgQIECBAgAABAgQIEKi/gABQ/Y3lQIAAAQIECBAgQIAAAQIECBBoqIAAUEP5ZU6AAAECBAgQIECAAAECBAgQqL+AAFD9jeVAgAABAgQIECBAgAABAgQIEGiogABQQ/llToAAAQIECBAgQIAAAQIECBCov4AAUP2N5UCAAAECBAgQIECAAAECBAgQaKiAAFBD+WVOgAABAgQIECBAgAABAgQIEKi/gABQ/Y3lQIAAAQIECBAgQIAAAQIECBBoqIAAUEP5ZU6AAAECBAgQIECAAAECBAgQqL+AAFD9jeVAgAABAgQIECBAgAABAgQIEGiogABQQ/llToAAAQIECBAgQIAAAQIECBCov4AAUP2N5UCAAAECBAgQIECAAAECBAgQaKiAAFBD+WVOgAABAgQIECBAgAABAgQIEKi/gABQ/Y3lQIAAAQIECBAgQIAAAQIECBBoqIAAUEP5ZU6AAAECBAgQIECAAAECBAgQqL+AAFD9jeVAgAABAgQIECBAgAABAgQIEGiogABQQ/llToAAAQIECBAgQIAAAQIECBCov4AAUP2N5UCAAAECBAgQIECAAAECBAgQaKiAAFBD+WVOgAABAgQIECBAgAABAgQIEKi/gABQ/Y3lQIAAAQIECBAgQIAAAQIECBBoqIAAUEP5ZU6AAAECBAgQIECAAAECBAgQqL+AAFD9jeVAgAABAgQIECBAgAABAgQIEGiogABQQ/llToAAAQIECBAgQIAAAQIECBCov4AAUP2N5UCAAAECBAgQIECAAAECBAgQaKiAAFBD+WVOgAABAgQIECBAgAABAgQIEKi/gABQ/Y3lQIAAAQIECBAgQIAAAQIECBBoqIAAUEP5ZU6AAAECBAgQIECAAAECBAgQqL+AAFD9jeVAgAABAgQIECBAgAABAgQIEGiogABQQ/llToAAAQIECBAgQIAAAQIECBCov4AAUP2N5UCAAAECBAgQIECAAAECBAgQaKiAAFBD+WVOgAABAgQIECBAgAABfxSZVQAAPSRJREFUAgQIEKi/gABQ/Y3lQIAAAQIECBAgQIAAAQIECBBoqIAAUEP5ZU6AAAECBAgQIECAAAECBAgQqL+AAFD9jeVAgAABAgQIECBAgAABAgQIEGiogABQQ/llToAAAQIECBAgQIAAAQIECBCov4AAUP2N5UCAAAECBAgQIECAAAECBAgQaKjA4IbmLnMCBAgQIECAAIGlBMaMGZM22WSTbN24ceOW2uYFAQIECBAgQKC3AgJAvZXzPgIECBAgQIBAHQSmTJmSdt111+zI8+bNS/Pnz69DLg5JgAABAgQIFE3AELCitbj6EiBAgAABAgQIECBAgAABAoUTEAAqXJOrMAECBAgQIECAAAECBAgQIFA0AQGgorW4+hIgQIAAAQIECBAgQIAAAQKFExAAKlyTqzABAgQIECBAgAABAgQIECBQNAEBoKK1uPoSIECAAAECBAgQIECAAAEChRMQACpck6swAQIECBAgQIAAAQIECBAgUDQBAaCitbj6EiBAgAABAgQIECBAgAABAoUTEAAqXJOrMAECBAgQIECAAAECBAgQIFA0AQGgorW4+hIgQIAAAQIECBAgQIAAAQKFExAAKlyTqzABAgQIECBAgAABAgQIECBQNAEBoKK1uPoSIECAAAECBAgQIECAAAEChRMQACpck6swAQIECBAgQIAAAQIECBAgUDQBAaCitbj6EiBAgAABAgQIECBAgAABAoUTEAAqXJOrMAECBAgQIECAAAECBAgQIFA0AQGgorW4+hIgQIAAAQIECBAgQIAAAQKFExAAKlyTqzABAgQIECBAgAABAgQIECBQNAEBoKK1uPoSIECAAAECBAgQIECAAAEChRMQACpck6swAQIECBAgQIAAAQIECBAgUDQBAaCitbj6EiBAgAABAgQIECBAgAABAoUTEAAqXJOrMAECBAgQIECAAAECBAgQIFA0AQGgorW4+hIgQIAAAQIECBAgQIAAAQKFExAAKlyTqzABAgQIECBAgAABAgQIECBQNAEBoKK1uPoSIECAAAECBAgQIECAAAEChRMQACpck6swAQIECBAgQIAAAQIECBAgUDQBAaCitbj6EiBAgAABAgQIECBAgAABAoUTEAAqXJOrMAECBAgQIECAAAECBAgQIFA0AQGgorW4+hIgQIAAAQIECBAgQIAAAQKFExAAKlyTqzABAgQIECBAgAABAgQIECBQNAEBoKK1uPoSIECAAAECBAgQIECAAAEChRMQACpck6swAQIECBAgQIAAAQIECBAgUDQBAaCitbj6EiBAgAABAgQIECBAgAABAoUTEAAqXJOrMAECBAgQIECAAAECBAgQIFA0AQGgorW4+hIgQIAAAQIECBAgQIAAAQKFExAAKlyTqzABAgQIECBAgAABAgQIECBQNAEBoKK1uPoSIECAAAECBAgQIECAAAEChRMQACpck6swAQIECBAgQIAAAQIECBAgUDQBAaCitbj6EiBAgAABAgQIECBAgAABAoUTEAAqXJOrMAECBAgQIECAAAECBAgQIFA0AQGgorW4+hIgQIAAAQIECBAgQIAAAQKFExAAKlyTqzABAgQIECBAgAABAgQIECBQNAEBoKK1uPoSIECAAAECBAgQIECAAAEChRMQACpck6swAQIECBAgQIAAAQIECBAgUDQBAaCitbj6EiBAgAABAgQIECBAgAABAoUTEAAqXJOrMAECBAgQIECAAAECBAgQIFA0AQGgorW4+hIgQIAAAQIECBAgQIAAAQKFExAAKlyTqzABAgQIECBAgAABAgQIECBQNAEBoKK1uPoSIECAAAECBAgQIECAAAEChRMQACpck6swAQIECBAgQIAAAQIECBAgUDQBAaCitbj6EiBAgAABAgQIECBAgAABAoUTEAAqXJOrMAECBAgQIECAAAECBAgQIFA0AQGgorW4+hIgQIAAAQIECBAgQIAAAQKFExAAKlyTqzABAgQIECBAgAABAgQIECBQNAEBoKK1uPoSIECAAAECBAgQIECAAAEChRMQACpck6swAQIECBAgQIAAAQIECBAgUDQBAaCitbj6EiBAgAABAgQIECBAgAABAoUTEAAqXJOrMAECBAgQIECAAAECBAgQIFA0AQGgorW4+hIgQIAAAQIECBAgQIAAAQKFExAAKlyTqzABAgQIECBAgAABAgQIECBQNAEBoKK1uPoSIECAAAECBAgQIECAAAEChRMQACpck6swAQIECBAgQIAAAQIECBAgUDQBAaCitbj6EiBAgAABAgQIECBAgAABAoUTEAAqXJOrMAECBAgQIECAAAECBAgQIFA0AQGgorW4+hIgQIAAAQIECBAgQIAAAQKFExAAKlyTqzABAgQIECBAgAABAgQIECBQNAEBoKK1uPoSIECAAAECBAgQIECAAAEChRMQACpck6swAQIECBAgQIAAAQIECBAgUDQBAaCitbj6EiBAgAABAgQIECBAgAABAoUTEAAqXJOrMAECBAgQIECAAAECBAgQIFA0AQGgorW4+hIgQIAAAQIECBAgQIAAAQKFExAAKlyTqzABAgQIECBAgAABAgQIECBQNAEBoKK1uPoSIECAAAECBAgQIECAAAEChRMQACpck6swAQIECBAgQIAAAQIECBAgUDQBAaCitbj6EiBAgAABAgQIECBAgAABAoUTEAAqXJOrMAECBAgQIECAAAECBAgQIFA0AQGgorW4+hIgQIAAAQIECBAgQIAAAQKFExAAKlyTqzABAgQIECBAgAABAgQIECBQNAEBoKK1uPoSIECAAAECBAgQIECAAAEChRMQACpck6swAQIECBAgQIAAAQIECBAgUDQBAaCitbj6EiBAgAABAgQIECBAgAABAoUTEAAqXJOrMAECBAgQIECAAAECBAgQIFA0AQGgorW4+hIgQIAAAQIECBAgQIAAAQKFExAAKlyTqzABAgQIECBAgAABAgQIECBQNAEBoKK1uPoSIECAAAECBAgQIECAAAEChRMQACpck6swAQIECBAgQIAAAQIECBAgUDQBAaCitbj6EiBAgAABAgQIECBAgAABAoUTEAAqXJOrMAECBAgQIECAAAECBAgQIFA0AQGgorW4+hIgQIAAAQIECBAgQIAAAQKFExAAKlyTqzABAgQIECBAgAABAgQIECBQNAEBoKK1uPoSIECAAAECBAgQIECAAAEChRMQACpck6swAQIECBAgQIAAAQIECBAgUDQBAaCitbj6EiBAgAABAgQIECBAgAABAoUTEAAqXJOrMAECBAgQIECAAAECBAgQIFA0AQGgorW4+hIgQIAAAQIECBAgQIAAAQKFExAAKlyTqzABAgQIECBAgAABAgQIECBQNAEBoKK1uPoSIECAAAECBAgQIECAAAEChRMQACpck6swAQIECBAgQIAAAQIECBAgUDQBAaCitbj6EiBAgAABAgQIECBAgAABAoUTEAAqXJOrMAECBAgQIECAAAECBAgQIFA0AQGgorW4+hIgQIAAAQIECBAgQIAAAQKFExAAKlyTqzABAgQIECBAgAABAgQIECBQNAEBoKK1uPoSIECAAAECBAgQIECAAAEChRMQACpck6swAQIECBAgQIAAAQIECBAgUDQBAaCitbj6EiBAgAABAgQIECBAgAABAoUTGFy4GjdhhUeOHNmEpVIkAv0nMHDgf2PRQ4cOTf6f6D97OREg0HwCQ4YMKRUqzokSAQIEiixQfp04aNAg14lF/jCoe58FBID6TNj3A4waNarvB3EEAi0sUP7FPmzYsOT/iRZuTEUnQKCmAhEAEgSqKamDESDQwgKDBw92ndjC7afojRcQAGp8G6Q5c+Y0QSkUgUDjBBYtWlTK/LnnnvP/REnDAgECRRQYPnx4GjNmTFb1559/Ps2fP7+IDOpMgACBTCCCPuPGjcuWX3755TR37lwyBAotsMYaa/S6/v8dd9HrQ3gjAQIECBAgQIAAAQIECBAgQIBAMwsIADVz6ygbAQIECBAgQIAAAQIECBAgQKAGAgJANUB0CAIECBAgQIAAAQIECBAgQIBAMwsIADVz6ygbAQIECBAgQIAAAQIECBAgQKAGAgJANUB0CAIECBAgQIAAAQIECBAgQIBAMwsIADVz6ygbAQIECBAgQIAAAQIECBAgQKAGAgJANUB0CAIECBAgQIAAAQIECBAgQIBAMwsIADVz6ygbAQIECBAgQIAAAQIECBAgQKAGAgJANUB0CAIECBAgQIAAAQIECBAgQIBAMwsIADVz6ygbAQIECBAgQIAAAQIECBAgQKAGAgJANUB0CAIECBAgQIAAAQIECBAgQIBAMwsIADVz6ygbAQIECBAgQIAAAQIECBAgQKAGAgJANUB0CAIECBAgQIAAAQIECBAgQIBAMwsIADVz6ygbAQIECBAgQIAAAQIECBAgQKAGAgJANUB0CAIECBAgQIAAAQIECBAgQIBAMwsIADVz6ygbAQIECBAgQIAAAQIECBAgQKAGAgJANUB0CAIECBAgQIAAAQIECBAgQIBAMwsIADVz6ygbAQIECBAgQIAAAQIECBAgQKAGAgJANUB0CAIECBAgQIAAAQIECBAgQIBAMwsIADVz6ygbAQIECBAgQIAAAQIECBAgQKAGAgJANUB0CAIECBAgQIAAAQIECBAgQIBAMwsIADVz6ygbAQIECBAgQIAAAQIECBAgQKAGAgJANUB0CAIECBAgQIAAAQIECBAgQIBAMwsIADVz6ygbAQIECBAgQIAAAQIECBAgQKAGAgJANUB0CAIECBAgQIAAAQIECBAgQIBAMwsIADVz6ygbAQIECBAgQIAAAQIECBAgQKAGAgJANUB0CAIECBAgQIAAAQIECBAgQIBAMwsIADVz6ygbAQIECBAgQIAAAQIECBAgQKAGAgJANUB0CAIECBAgQIAAAQIECBAgQIBAMwsIADVz6ygbAQIECBAgQIAAAQIECBAgQKAGAgJANUB0CAIECBAgQIAAAQIECBAgQIBAMwsIADVz6ygbAQIECBAgQIAAAQIECBAgQKAGAgJANUB0CAIECBAgQIAAAQIECBAgQIBAMwsIADVz6ygbAQIECBAgQIAAAQIECBAgQKAGAgJANUB0CAIECBAgQIAAAQIECBAgQIBAMwsIADVz6ygbAQIECBAgQIAAAQIECBAgQKAGAgJANUB0CAIECBAgQIAAAQIECBAgQIBAMwsIADVz6ygbAQIECBAgQIAAAQIECBAgQKAGAgJANUB0CAIECBAgQIAAAQIECBAgQIBAMwsMbubCKRsBAsUQGD16dFp11VWzyg4bNqwYlVZLAgQIECBAgAABAgQI9KPAgCUdqR/zk1UXAo899lgXa60iUByBFVdcMY0cOTKr8FNPPZUWLFhQnMqrKQECBDoJDB8+PI0ZMyZbO2/evDR//vxOe3hJgACB4ggMHjw4jRs3LqvwSy+9lObOnVucyqspgS4E1lhjjS7WVrfKELDqnOxFgAABAgQIECBAgAABAgQIEGhZAQGglm06BSdAgAABAgQIECBAgAABAgQIVCcgAFSdk70IECBAgAABAgQIECBAgAABAi0rIADUsk2n4AQIECBAgAABAgQIECBAgACB6gQEgKpzshcBAgQIECBAgAABAgQIECBAoGUFBIBatukUnAABAgQIECBAgAABAgQIECBQnYAAUHVO9iJAgAABAgQIECBAgAABAgQItKyAAFDLNp2CEyBAgAABAgQIECBAgAABAgSqExAAqs7JXgQIECBAgAABAgQIECBAgACBlhUQAGrZplNwAgQIECBAgAABAgQIECBAgEB1AgJA1TnZiwABAgQIECBAgAABAgQIECDQsgICQC3bdApOgAABAgQIECBAgAABAgQIEKhOQACoOid7ESBAgAABAgQIECBAgAABAgRaVkAAqGWbTsEJECBAgAABAgQIECBAgAABAtUJCABV52QvAgQIECBAgAABAgQIECBAgEDLCggAtWzTKTgBAgQIECBAgAABAgQIECBAoDoBAaDqnOxFgAABAgQIECBAgAABAgQIEGhZAQGglm06BSdAgAABAgQIECBAgAABAgQIVCcgAFSdk70IECBAgAABAgQIECBAgAABAi0rIADUsk2n4AQIECBAgAABAgQIECBAgACB6gQEgKpzshcBAgQIECBAgAABAgQIECBAoGUFBIBatukUnAABAgQIECBAgAABAgQIECBQnYAAUHVO9iJAgAABAgQIECBAgAABAgQItKyAAFDLNp2CEyBAgAABAgQIECBAgAABAgSqExAAqs7JXgQIECBAgAABAgQIECBAgACBlhUQAGrZplNwAgQIECBAgAABAgQIECBAgEB1AgJA1TnZiwABAgQIECBAgAABAgQIECDQsgICQC3bdApOgAABAgQIECBAgAABAgQIEKhOQACoOid7ESBAgAABAgQIECBAgAABAgRaVkAAqGWbTsEJECBAgAABAgQIECBAgAABAtUJCABV52QvAgQIECBAgAABAgQIECBAgEDLCggAtWzTKTgBAgQIECBAgAABAgQIECBAoDoBAaDqnOxFgAABAgQIECBAgAABAgQIEGhZAQGglm06BSdAgAABAgQIECBAgAABAgQIVCcgAFSdk70IECBAgAABAgQIECBAgAABAi0rIADUsk2n4AQIECBAgAABAgQIECBAgACB6gQEgKpzshcBAgQIECBAgAABAgQIECBAoGUFBIBatukUnAABAgQIECBAgAABAgQIECBQnYAAUHVO9iJAgAABAgQIECBAgAABAgQItKyAAFDLNp2CEyBAgAABAgQIECBAgAABAgSqExAAqs7JXgQIECBAgAABAgQIECBAgACBlhUQAGrZplNwAgQIECBAgAABAgQIECBAgEB1AgJA1TnZiwABAgQIECBAgAABAgQIECDQsgICQC3bdApOgAABAgQIECBAgAABAgQIEKhOQACoOid7ESBAgAABAgQIECBAgAABAgRaVkAAqGWbTsEJECBAgAABAgQIECBAgAABAtUJDFjSkarb1V71Epg7d269Du24BFpC4IEHHkiPPvpoVtZNNtkkrbTSSi1RboUkQIBAPQTmzJmTZs+enR163XXXTRMmTKhHNo5JgACBlhB44YUX0q233pqVdezYsWnDDTdsiXIrJIF6CfTlt9LgehXKcasX6EsDVp+LPQk0r8Dll1+ezjzzzKyAp512Wpo4cWLzFlbJCBAgUGeB6667Lh199NFZLjNnzkybbrppnXN0eAIECDSvwNNPP52OOuqorIA77LBD+u53v9u8hVUyAk0uYAhYkzeQ4hEgQIAAAQIECBAgQIAAAQIE+iogANRXQe8nQIAAAQIECBAgQIAAAQIECDS5gABQkzeQ4hEgQIAAAQIECBAgQIAAAQIE+iogANRXQe8nQIAAAQIECBAgQIAAAQIECDS5gABQkzeQ4hEgQIAAAQIECBAgQIAAAQIE+irgKWB9FfR+AgT6LDBo0KA0ZMiQ7DgDB4pL9xnUAQgQaGmBOA86J7Z0Eyo8AQI1FsjPiYMH+/laY1qHK5jAgCUdqWB1Vl0CBAgQIECAAAECBAgQIECAQKEE3GovVHOrLAECBAgQIECAAAECBAgQIFBEAQGgIra6OhMgQIAAAQIECBAgQIAAAQKFEhAAKlRzqywBAgQIECBAgAABAgQIECBQRAEBoCK2ujoTIECAAAECBAgQIECAAAEChRIQACpUc6ssAQIECBAgQIAAAQIECBAgUEQBAaAitro6E6ijwMknn5wOPPDAdNNNN5Vyueqqq7J1p512Wmnd8i78+te/zo5x9tlnL+9b7U+AAIFeC/zjH//Izj2f/vSnlzrGoYcemq1/6qmnllrfCi9eeeWV9Oijj7ZCUZWRAIEmF2il67MrrrgiO2//7Gc/a3JVxSNQPwEBoPrZOjKBQgr861//SrNnz07PPfdcqf5PP/10tu7f//53ad3yLjz55JPZMebMmbO8b7U/AQIEei3w4osvZueehx56aKlj3Hfffdn6RYsWLbW+2V/ce++96UMf+lC65pprmr2oykeAQAsItNL1WQTs4xrVtWQLfLAUsW4Cg+t2ZAcmQIDAfwRe97rXpb333jttuOGGTAgQINAWArvvvntasGBBGjFiREvV5/LLL08PPvhgmjZtWkuVW2EJECBAgACBvgsIAPXd0BEIEOhB4I1vfGOKfxIBAgTaReDjH/94u1RFPQgQIECAAIGCCAgAFaShVZNATwLRhffhhx9OjzzySFpxxRXTWmutldZZZ500ZMiQim994YUX0q233ppt33TTTdOYMWO63PfZZ59NMQxs9OjRaezYsRX3+dOf/pReeumlNGHChKy30IABA7rct6uVL7/8cvrnP/+Z/Xv++efTmmuumdZee+1l8os6Ll68OI0aNSqNGzdumUPFvBhxrLirv9pqqy2z3QoCBNpbIIZ63XPPPem1r31tes1rXlOxsvm5JM5Xgwf//8up/FwX57k438W56I477sh6Cr3hDW9IK620Uul40XvorrvuSjFsNs63r3/969PAgV2PzK/2/BYHj/IPGjQoO/899thjWf5xfo7zWcxnNG/evKwMcU6OfV/1qlellVdeuVSuWOjN98FSB/CCAIGWFMjPYausskp2Lfj444+nv/71r9k5bL311uv2nFipwr05n8R12v33358N14qybLDBBsucp8rzi2kHHnjggewacPz48SnKGue2nlJMTRD1i2vdyGPVVVft9i1Rl8gnXOI6M74jKl37dnsgGwk0UEAAqIH4sibQDALxJXbS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AgQIECDQFwEBoL7oeS8BAgQIECBAgAABAgQIECBAoAUEBIBaoJEUkQABAgQIECBAgAABAgQIECDQF4HBfXmz9xIgQIAAAQIEGiHw1FNPpTvuuCMtXrw4vf71r0/jxo1rRDHkSYAAAQIECBBoGQE9gFqmqRSUAAECBAgUW+Daa69Nu+22W5owYUIaO3ZsmjZtWtpxxx3TqquumsaPH5922WWXdNppp6UlS5b0CPX73/++x33qucPEiRPTgAED0u67717PbLJjT58+Pcsr8gsjiQABAgQIECimgABQMdtdrQkQIECAQEsJHHrooVnA5+KLL07/+te/lin7Y489lq644or0wQ9+ML31rW9N8+bNW2afWDFnzpy0//77Z8fqcoc2W/nkk0+mX//616VaXXnllelvf/tb6bUFAgQIECBAoDgCAkDFaWs1JUCAAAECLSnwta99LX3nO9/Jyv6qV70qHX300emqq65K99xzT3rggQdS9Aw64YQTsl5BsdONN96Y9tprry7retxxx6Wf//znVfUS6vIALbYy6rpgwYK0zjrrpDFjxmT1/uEPf9hitVBcAgQIECBAoBYCAkC1UHQMAgQIECBAoC4CL7zwQjrxxBOzY8dQrz//+c/pK1/5Stphhx3SpEmT0mte85q0/fbbp2OPPTbdf//9ab311sv2veaaa9Jll11WlzK10kFPPfXUrLhvf/vb0zve8Y5sOYbJvfzyy61UDWUlQIAAAQIEaiAgAFQDRIcgQIAAAQIE6iNw6623ppjwOdInPvGJ9OpXvzpb7uo/0cMlght5+tnPfpYvFvJv2N15551Z3Xfeeec0Y8aMbPmJJ55I559/fiFNVJoAAQIECBRZwFPAitz66k6AAAECBJpcIOawyVNM/txT2mqrrbKhYPG+hx56qLT7o48+ms0d9Pjjj2frYqLoP/7xj9ny6quvntZee+1sqFT0MIoUr2N9VykCUg8++GC2aaONNkojR47sarf07LPPpksvvTQbprbKKqukrbfeOm2yySZp4MCu77/lZYyDrb/++imGu1VK8+fPT3fddVe2OXpBxfE7p1NOOSVbNXTo0DR16tQ0bNiwks0PfvCD9N73vrfzW0qvFy5cmP70pz9lrzfccMM0YsSIFBNnx3C7NdZYIxtiF3m+8sor6bbbbivtN2rUqLRo0aJ0++23p+uuuy6tvPLKabvttst6apUO3rGQv++3v/1tGjRoUNpggw3STjvtlAYPdmla7mSZAAECBAjUVKDjAkgiQIAAAQIECDSlQEfAZknH06visV5L9thjj6rK+PTTTy/pGOK01L4dcwRlx4jjdP7X0bMo2/fvf/97adtXv/rVpd5f/uL0008v7dcRRCrfVFqO/EaPHl3aL89z0003XfLPf/5zybrrrptt63iqWek9HcGV0v6f+9znSuu7WvjWt75V2ve+++5bZpeOoXNLOgJI2T4dT/4qbT/44INL7+voHVRa33mhY1Lt0n4dcyot2XfffUuvoy4rrrjikueff37J3LlzS+uvv/76JR3D7kr55nWOv294wxuWdEzMnWVzww03LOkIDJXel+8X+3TM69S5KF4TIECAAAECNRLo+hZUxzexRIAAAQIECBBotMC4cePS5MmTs2JcdNFF6Z3vfGe65ZZbui3WSiutlKLXS3mKXiubb755iuNFikeix+v4V03PovJj9bR80EEHpc985jPpueeeS9EjJh5V/653vSvrVfSXv/wlvfnNb04dgZNlDhM9ZfIhbmeeeeYy28tX5MPbpkyZUpr3qHz7hRdemPVAinUHHHBAadP73//+0vL3v//90nJ3Cz/+8Y/T2WefvdQukW/nnk/nnXde9lj76Pk0fvz47ElruXf0rPrABz6QYm6mGI4WT2mL3lDbbLNN1jMpDh77RPk6rnGXyssLAgQIECBAoDYCAkC1cXQUAgQIECBAoE4C3/ve91JMAB3pkksuSW9605vSWmutlT3y/ayzzkrxCPieUjwePgJHe++9d7ZrBIjidfybOXNmT2+vevvll1+eImASaYsttkj33ntv+s1vfpMFUDp6GGWTVcdQr2eeeWaZY0ZQKg/WxBCzP/zhD8vsEyvuvvvu0rCr8oBO+c758K+YF2n33XcvbYqA18Ybb5y9jieEdfTiKW2rtPDTn/40G/YVAaMYFvbNb34zHXnkkcvsfvLJJ2cBryj3I488kq6++urskfPbbrtttu8FF1yQDfOKIFcMEYtgWAwTizmJNttss2yfm2++OXX0JFrm2FYQIECAAAECfRcQAOq7oSMQIECAAAECdRSIQMpNN92UzYuTZxMBhpjw+T3veU/W2ySeCHbEEUeU5vXJ9+vvv1/+8pezLFdYYYV08cUXpzXXXLNUhAjwxOPq99tvv9K6zgsR0In9IkWApqt0xhlnZKuHDx9emti5fL+Y+yjm1onUMXQrRVnKUx40il44v/jFL8o3VVyOINBHP/rR1DFMKx1++OHZnEKdd465jSIgt+WWW5Y2RQ+ojuFspdexEPWK3j956hgqlyLIl6fZs2fni/4SIECAAAECNRQQAKohpkMRIECAAAEC9RHomDMnGyIUwYMYQhTBj/IUQYPomRLDq2Iy4XgkfH+nxYsXlyZOjuFOq622WpdF+PSnP10K8nTeIXrHxFCwSOecc06KyZjLU+SRB4b23HPP1DEXT/nmbDkCY/kwqjzYU75TBKDyyZarGQYWE1KHaU8pevG87W1vW2a3mCg7TxEciiBS5xR55Onhhx/OF/0lQIAAAQIEaiggAFRDTIciQIAAAQIE6icQPVniyVUxzKpjoud01VVXpWOOOSbrcRJPkspTrI9AUP4I9Hx9vf/GsK14OlekeBpZpRRPvIo5ciqlCB5FiqeNXXHFFUvtNmvWrOxpZrGyq+BOBIiit06k6BUVDp1TBKY6JobOVse8O9G7qru03nrrdbe5tK2rwE5sjGFoeYonlnWVyucTWrBgQVe7WEeAAAECBAj0UcCzNvsI6O0ECBAgQIBA/wtEMGiHHXbI/kXuERCKnjH55MsxyfL06dOz+XIqPXa91qW+4447SoeMOYq6SzHxdAxj6yrFPEWHHHJINlFy1Ckmvs5TPvlzHH/atGn56tLfCH51PGUsex29gPJgUmmH/yzMmTOntCp6AZUP2ypt+M/Ca1/72s6runxdHujpcoeOlflcTp2358PeOq/3mgABAgQIEKidgABQ7SwdiQABAgQIEGiQQMdjxdNhhx2WYljUrrvumvX+iWFhERDpalhSPYoZPYDyFOXpLq2++uoVN48YMSKb2+cnP/lJNo9QzNUTQ72id1E83SvS/vvvn7oKbJ166qml40b9q5lP59xzz03f+MY3UqUyjx07tnTM7hY6zzXU3b62ESBAgAABAv0vYAhY/5vLkQABAgQIEKhCIHqpxLwy0dslesRUk6Jnzcc+9rHSrr0dBhZDqSqlF198sctNq6yySml9POmruxTDu7pLec+dyCsP+vzyl78sPbXr/7V3N6E6bWEAgNctPwOEoWQmE6UkSvkpfwNFiqKTKEQZGSAT6kwUSYTykwyUqDPARISJn4EiMzKVnDAgklN0732Xu3f7fL7vnONzcfbn2XWyv732WnvtZ89e73pXs+VfkQV1+fLlPGzUEorlcgP9zZo1K9/76dOnctnYQHMarE0Wz2BC2gkQIECAwO8VkAH0e/09nQABAgQIEGghEJknseV5X19fLoh89OjRVK3106Jbuc15tH/58qXVbd9cr2bUNBZfrt7cKngTwafiGKyQ8WDtUUMoCiNHBk9snx4BnwgAxTF37tw0bdq04lHlv7FcrKifE7WRtm7dWrY1O4ng2IwZM3LTqVOn8i5qgjjNpFwjQIAAAQKdISADqDO+o7cgQIAAAQIdJxDBnnnz5uX3evPmTerp6RnSO8b268URBZerRxHgKHbJqrZVdxaL57U6Hjx40LRp/vz5KZZvxTHQXCOoVdTpaTrQfxeLLJ+bN2/mgtDXr1/PLcX1xr7F8q/Ro0fn+keN7Y2/Yyv22bNn58vPnj1Lt27darzFbwIECBAgQKCDBASAOuhjehUCBAgQINBpArt27SpfKZYzHThwoNzivGyonEQWzMmTJ/OVyZMn5y3jK82pqFMTmTIfPnyoNqVYwjV27Nh87eLFi+nt27f92uNHZONUA0zVGyL4s3bt2nwpgja3b9+uNpfn+/btG/Adihs3bNiQM55iidbu3btzDaCYf/GM4r7499GjR6koQh01kCZOnFhtbnm+efPmsq1wKy84IUCAAAECBDpKQACooz6nlyFAgAABAp0lEAWct2zZkl8qlnPt2bMn71i1c+fOdOHChRz0iMyYw4cPp5UrV+biyO/fv0+R6XPkyJE0atSofiDVwEh3d3e6c+dOXmYWN0Wfrq6ufH9vb2/auHFjevjwYQ7WxJKtEydOpPXr16eRI0f2G7P649ixY2nmzJn5Uszn0qVL5TK0d+/e5TEjiDSUI7aKX7ZsWb713Llz+d9Vq1al8ePHf9P97Nmz5bUoED3UY926danIfLpy5UoarHbRUMd1HwECBAgQIDD8BNQAGn7fxIwIECBAgACBikBkpkRwJnbFiqVbsQSr1TKs6BZZMhH8WbNmTWWUr6cLFy7MY8U4hw4dyn8RqIngRxw7duzIWT5R5+fq1av5b9y4cSmCSnHENuYRjIksm2bHmDFjcobQnDlzcjAlAizRP7KRYplVFJeOZVcRmLp3716zIfpdi2LQ165dKzOGmi3/igyhCIbFETt5LV++vN8YA/2IYFI4nT9/Pn3+/DkbR4aSgwABAgQIEOg8ARlAnfdNvREBAgQIEOgogagFdPr06Zyts3r16rwlerMXnDBhQoplU1HceNu2bc1uSQsWLEjHjx9PkV1THE+ePClOU9QMevz4cVq6dGkaMeLr/5NF8CcCNlHj5+7du3lnsrJDk5MI9ty4caNcfhb9nz59msdbsWJFrrXTasv1xuEiOFXcG+MuWbKk8ZZcHLpYrhbLwxqznr7p0HBh06ZN5ZUzZ86UGUvlRScECBAgQIBARwj89e//gP3dEW/iJQgQIECAAIE/QiB26IrdsV6/fp2LI0fWzaRJk9L06dMHXJ7ViPPy5cv08ePHvM18FE5uPGIL9ggGRWZMZO0U9YMa7xvo94sXL3LwJ4Iy7YwRz47Az6tXr1Ls7LV///6BHqeNAAECBAgQINBSQACoJY0GAgQIECBAgMDvFYiC05EFFEvgYgnZ1KlTf++EPJ0AAQIECBCorYAlYLX9dCZOgAABAgQIdLJAZDodPHgwv+LixYsFfzr5Y3s3AgQIECDwCwQUgf4FyB5BgAABAgQIEBiKwP379/POZrFNfU9PT645FP1i+ZeDAAECBAgQIPAjAgJAP6KnLwECBAgQIEDgfxR4/vx52r59e78R9+7dmxYtWtTvmh8ECBAgQIAAge8VEAD6XjH3EyBAgAABAgR+kkDU+ImC1H19fWnKlCmpq6srdXd3/6SnGZYAAQIECBD4kwQUgf6TvrZ3JUCAAAECBIa9QOz81dvbm3cnG/aTNUECBAgQIECgNgICQLX5VCZKgAABAgQIECBAgAABAgQIEGhPwC5g7bnpRYAAAQIECBAgQIAAAQIECBCojYAAUG0+lYkSIECAAAECBAgQIECAAAECBNoTEABqz00vAgQIECBAgAABAgQIECBAgEBtBASAavOpTJQAAQIECBAgQIAAAQIECBAg0J6AAFB7bnoRIECAAAECBAgQIECAAAECBGojIABUm09logQIECBAgAABAgQIECBAgACB9gQEgNpz04sAAQIECBAgQIAAAQIECBAgUBsBAaDafCoTJUCAAAECBAgQIECAAAECBAi0JyAA1J6bXgQIECBAgAABAgQIECBAgACB2ggIANXmU5koAQIECBAgQIAAAQIECBAgQKA9AQGg9tz0IkCAAAECBAgQIECAAAECBAjURkAAqDafykQJECBAgAABAgQIECBAgAABAu0JCAC156YXAQIECBAgQIAAAQIECBAgQKA2Av8AOckbBZkb7poAAAAASUVORK5CYII=" width="576" style="display: block; margin: auto;" /></p>
 <ol start="2" style="list-style-type: decimal">
 <li>Create the same plot as above, but instead of analysing study arm, try analysing gender. What do you find? Did one gender have better histamine improvements than the other?</li>
 </ol>
@@ -368,16 +633,223 @@ dimarta_df %&gt;%
 t.test(formula = XX ~ XX,
        data = XXX %&gt;%
               filter(XXX %in% c(XXX, XXX)))  # Only include placebo and dimarta</code></pre>
+<pre class="r"><code># T.test comparing change in histamine between placebo and dimarta
+
+t.test(formula = histamine_change ~ StudyArm,
+       data = dimarta_df %&gt;%
+              filter(StudyArm %in% c(&quot;placebo&quot;, &quot;dimarta&quot;)))  # Only include placebo and dimarta</code></pre>
+<pre><code>
+    Welch Two Sample t-test
+
+data:  histamine_change by StudyArm
+t = -3, df = 200, p-value = 0.001
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -3.789 -0.976
+sample estimates:
+mean in group dimarta mean in group placebo 
+                0.513                 2.895 </code></pre>
 <ol start="2" style="list-style-type: decimal">
-<li><p>Using <code>t.test()</code> conduct a t-test comparing the change in histamine results between the adiclax (the standard of care) and dimarta. Did dimarta improve over the standard of care?</p></li>
-<li><p>Using <code>glm()</code> conduct a regression analysis predicting <code>histamine_change</code> as a function of 4 variables: treatment arm, histamine test results at the start of the trial, age, and quality of life at the start of the trial. Save the result as an object called <code>histamine_change_glm</code>. Once you do, apply the <code>summary()</code> function to the <code>histamine_change_glm</code> object to explore the results. Which variables reliably predict changes in test results?</p></li>
-<li><p>Repeat your previous regression analysis, but now predict change in quality of life. Do you get different results compared to your previous analysis?</p></li>
-<li><p>Now it’s time to see if the patient’s biomarkers were related to treatment success. For the <code>dw</code> biomarker, calculate the mean change in test results (<code>histamine_change</code>) separately for patients with different outcomes on the <code>dw</code> biomarker (hint: just group the data by <code>dw</code> and use <code>summarise()</code> to calculate the mean <code>histamine_change</code>).</p></li>
-<li><p>Do the same analysis for the other two biomarkers <code>ms</code> and <code>np</code>. Do either of these biomarkers seem to predict changes in test results?</p></li>
-<li><p>Using <code>glm()</code>, create a new regression object called <code>histamine_change_bio_glm</code> predicting <code>histamine_change</code> as a function of the 3 biomarkers. Explore the results with <code>summary()</code>. Do you find that any of these biomarkers predict changes in histamine?</p></li>
-<li><p>Did some drugs work better for patients with some biomarkers than others? For example, did patients who expressed the <code>dw</code> biomarker have better results when given dimarta compared to patients who do not express the <code>dw</code> biomarker? To answer this, start by calculating the descriptive statistics by calculating mean change in histamine <code>histamine_change</code> for all groups of <code>dw</code> and <code>StudyArm</code> (Hint: Just use <code>group_by(dw, StudyArm)</code> and <code>summarise(histamine_change_mean = mean(histamine_change))</code>).</p></li>
-<li><p>Once you’ve looked at the descriptive statistics, conduct a regression analysis predicting <code>histamine_change</code> based on the <em>interaction</em> between <code>dw</code> and <code>StudyArm</code>. Remember to calculate an interaction term in regression, use the <code>*</code> symbol in the formula. What do the results show?</p></li>
+<li>Using <code>t.test()</code> conduct a t-test comparing the change in histamine results between the adiclax (the standard of care) and dimarta. Did dimarta improve over the standard of care?</li>
 </ol>
+<pre class="r"><code># T.test comparing change in histamine between placebo and dimarta
+
+t.test(formula = histamine_change ~ StudyArm,
+       data = dimarta_df %&gt;%
+              filter(StudyArm %in% c(&quot;adiclax&quot;, &quot;dimarta&quot;)))  # Only include placebo and dimarta</code></pre>
+<pre><code>
+    Welch Two Sample t-test
+
+data:  histamine_change by StudyArm
+t = -7, df = 200, p-value = 2e-12
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -6.70 -3.91
+sample estimates:
+mean in group adiclax mean in group dimarta 
+               -4.790                 0.513 </code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Using <code>glm()</code> conduct a regression analysis predicting <code>histamine_change</code> as a function of 4 variables: treatment arm, histamine test results at the start of the trial, age, and quality of life at the start of the trial. Save the result as an object called <code>histamine_change_glm</code>. Once you do, apply the <code>summary()</code> function to the <code>histamine_change_glm</code> object to explore the results. Which variables reliably predict changes in test results?</li>
+</ol>
+<pre class="r"><code>histamine_change_glm &lt;- glm(histamine_change ~ StudyArm + histamine_start + qol_start + age,
+                            data = dimarta_df)
+
+summary(histamine_change_glm)</code></pre>
+<pre><code>
+Call:
+glm(formula = histamine_change ~ StudyArm + histamine_start + 
+    qol_start + age, data = dimarta_df)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-12.731   -3.500   -0.163    3.656   14.256  
+
+Coefficients:
+                Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)     -7.56074    2.68214   -2.82   0.0051 ** 
+StudyArmdimarta  5.32408    0.70476    7.55  5.4e-13 ***
+StudyArmplacebo  7.64855    0.70645   10.83  &lt; 2e-16 ***
+histamine_start -0.00124    0.01722   -0.07   0.9424    
+qol_start       -0.23120    0.28517   -0.81   0.4182    
+age              0.08874    0.05696    1.56   0.1203    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for gaussian family taken to be 24.8)
+
+    Null deviance: 10464.4  on 299  degrees of freedom
+Residual deviance:  7291.8  on 294  degrees of freedom
+AIC: 1823
+
+Number of Fisher Scoring iterations: 2</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Repeat your previous regression analysis, but now predict change in quality of life. Do you get different results compared to your previous analysis?</li>
+</ol>
+<pre class="r"><code>qol_change_glm &lt;- glm(qol_change ~ StudyArm + histamine_start + qol_start + age,
+                            data = dimarta_df)
+
+summary(qol_change_glm)</code></pre>
+<pre><code>
+Call:
+glm(formula = qol_change ~ StudyArm + histamine_start + qol_start + 
+    age, data = dimarta_df)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-3.0477  -0.7925   0.0022   0.8319   2.9564  
+
+Coefficients:
+                Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept)       0.5085     0.5138    0.99     0.32
+StudyArmdimarta  -0.0506     0.1350   -0.37     0.71
+StudyArmplacebo  -0.2090     0.1353   -1.54     0.12
+histamine_start  -0.0023     0.0033   -0.70     0.49
+qol_start         0.0365     0.0546    0.67     0.50
+age              -0.0111     0.0109   -1.02     0.31
+
+(Dispersion parameter for gaussian family taken to be 0.91)
+
+    Null deviance: 271.79  on 299  degrees of freedom
+Residual deviance: 267.63  on 294  degrees of freedom
+AIC: 831.1
+
+Number of Fisher Scoring iterations: 2</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Now it’s time to see if the patient’s biomarkers were related to treatment success. For the <code>dw</code> biomarker, calculate the mean change in test results (<code>histamine_change</code>) separately for patients with different outcomes on the <code>dw</code> biomarker (hint: just group the data by <code>dw</code> and use <code>summarise()</code> to calculate the mean <code>histamine_change</code>).</li>
+</ol>
+<pre class="r"><code>dimarta_df %&gt;%
+  group_by(dw) %&gt;%
+  summarise(
+    histamine_change_mean = mean(histamine_change, na.rm = TRUE)
+  )</code></pre>
+<pre><code># A tibble: 2 x 2
+  dw    histamine_change_mean
+  &lt;lgl&gt;                 &lt;dbl&gt;
+1 FALSE                -0.464
+2 TRUE                 -0.450</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>Do the same analysis for the other two biomarkers <code>ms</code> and <code>np</code>. Do either of these biomarkers seem to predict changes in test results?</li>
+</ol>
+<pre class="r"><code>dimarta_df %&gt;%
+  group_by(ms) %&gt;%
+  summarise(
+    histamine_change_mean = mean(histamine_change, na.rm = TRUE)
+  )</code></pre>
+<pre><code># A tibble: 2 x 2
+  ms    histamine_change_mean
+  &lt;lgl&gt;                 &lt;dbl&gt;
+1 FALSE               -0.549 
+2 TRUE                -0.0812</code></pre>
+<pre class="r"><code>dimarta_df %&gt;%
+  group_by(np) %&gt;%
+  summarise(
+    histamine_change_mean = mean(histamine_change, na.rm = TRUE)
+  )</code></pre>
+<pre><code># A tibble: 2 x 2
+  np    histamine_change_mean
+  &lt;lgl&gt;                 &lt;dbl&gt;
+1 FALSE                -0.635
+2 TRUE                  0.113</code></pre>
+<ol start="7" style="list-style-type: decimal">
+<li>Using <code>glm()</code>, create a new regression object called <code>histamine_change_bio_glm</code> predicting <code>histamine_change</code> as a function of the 3 biomarkers. Explore the results with <code>summary()</code>. Do you find that any of these biomarkers predict changes in histamine?</li>
+</ol>
+<pre class="r"><code>histamine_change_bio_glm &lt;- glm(histamine_change ~ dw + np + ms,
+                                data = dimarta_df)
+
+summary(histamine_change_bio_glm)</code></pre>
+<pre><code>
+Call:
+glm(formula = histamine_change ~ dw + np + ms, data = dimarta_df)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-16.026   -4.411    0.105    4.111   13.422  
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept)  -0.7225     0.4703   -1.54     0.13
+dwTRUE        0.0263     0.7848    0.03     0.97
+npTRUE        0.7343     0.8106    0.91     0.37
+msTRUE        0.4420     0.8744    0.51     0.61
+
+(Dispersion parameter for gaussian family taken to be 35.2)
+
+    Null deviance: 10464  on 299  degrees of freedom
+Residual deviance: 10425  on 296  degrees of freedom
+AIC: 1926
+
+Number of Fisher Scoring iterations: 2</code></pre>
+<ol start="8" style="list-style-type: decimal">
+<li>Did some drugs work better for patients with some biomarkers than others? For example, did patients who expressed the <code>dw</code> biomarker have better results when given dimarta compared to patients who do not express the <code>dw</code> biomarker? To answer this, start by calculating the descriptive statistics by calculating mean change in histamine <code>histamine_change</code> for all groups of <code>dw</code> and <code>StudyArm</code> (Hint: Just use <code>group_by(dw, StudyArm)</code> and <code>summarise(histamine_change_mean = mean(histamine_change))</code>).</li>
+</ol>
+<pre class="r"><code>dimarta_df %&gt;%
+  group_by(dw, StudyArm) %&gt;%
+  summarise(
+    histamine_change_mean = mean(histamine_change, na.rm = TRUE)
+  )</code></pre>
+<pre><code># A tibble: 6 x 3
+# Groups:   dw [?]
+  dw    StudyArm histamine_change_mean
+  &lt;lgl&gt; &lt;chr&gt;                    &lt;dbl&gt;
+1 FALSE adiclax                 -4.95 
+2 FALSE dimarta                  0.518
+3 FALSE placebo                  2.88 
+4 TRUE  adiclax                 -4.37 
+5 TRUE  dimarta                  0.495
+6 TRUE  placebo                  2.94 </code></pre>
+<ol start="9" style="list-style-type: decimal">
+<li>Once you’ve looked at the descriptive statistics, conduct a regression analysis predicting <code>histamine_change</code> based on the <em>interaction</em> between <code>dw</code> and <code>StudyArm</code>. Remember to calculate an interaction term in regression, use the <code>*</code> symbol in the formula. What do the results show?</li>
+</ol>
+<pre class="r"><code>dw_arm_glm &lt;- glm(histamine_change ~ dw * StudyArm,
+                  data = dimarta_df)
+
+summary(dw_arm_glm)</code></pre>
+<pre><code>
+Call:
+glm(formula = histamine_change ~ dw * StudyArm, data = dimarta_df)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-12.278   -3.400   -0.243    3.635   14.562  
+
+Coefficients:
+                       Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)              -4.952      0.590   -8.40  2.0e-15 ***
+dwTRUE                    0.579      1.115    0.52     0.60    
+StudyArmdimarta           5.470      0.820    6.67  1.3e-10 ***
+StudyArmplacebo           7.832      0.828    9.45  &lt; 2e-16 ***
+dwTRUE:StudyArmdimarta   -0.602      1.630   -0.37     0.71    
+dwTRUE:StudyArmplacebo   -0.520      1.595   -0.33     0.74    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for gaussian family taken to be 25)
+
+    Null deviance: 10464.4  on 299  degrees of freedom
+Residual deviance:  7362.4  on 294  degrees of freedom
+AIC: 1825
+
+Number of Fisher Scoring iterations: 2</code></pre>
 </div>
 </div>
 
