@@ -12,6 +12,7 @@
 class: center, middle, inverse, title-slide
 
 # Machine Learning II
+## caret
 ### Basel R Bootcamp<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'><span class="citation">@therbootcamp</span></a>
 ### July 2018
 
@@ -30,12 +31,10 @@ layout: true
 &lt;/span&gt;&lt;/div&gt; 
 
 ---
-  
 
 
 
-
-
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 # Recap from Machine Learning
 
 ---
@@ -67,25 +66,34 @@ Given data, an algorithm tunes its *parameters* to match the data, understand ho
 &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/MLdiagram.png" width="90%" /&gt;
 
 
+
 ---
 
 # Why do we separate training from prediction?
 
-.pull-left4[
+.pull-left35[
+&lt;br&gt;
+Just because a model can &lt;high&gt;fit past data well&lt;/high&gt;, does *not* necessarily mean that it will &lt;high&gt;predict new data well&lt;/high&gt;.
 
-Just because an algorithm can fit past (training) data well, does *not* necessarily mean that it will *predict* new data well.
+Anyone can come up with a model of past data (e.g.; stock performance, lottery winnings). 
 
-Anyone can come up with a model of *past* data (e.g.; stock performance, lottery winnings). Predicting future performance is much more difficult.
+&lt;high&gt;Predicting what you can't see in the future is much more difficult.&lt;/high&gt;
 
 &gt; "An economist is an expert who will know tomorrow why the things he predicted yesterday didn't happen today." ~ Evan Esar
+
 
 ]
  
 .pull-right6[
 
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/prediction_collage.png" width="80%" /&gt;
+&lt;p align="center"&gt;
+  &lt;img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/prediction_collage.png"&gt;
+&lt;/p&gt;
+
 
 ]
+
+
 
 ---
 &lt;br&gt;&lt;br&gt;
@@ -147,7 +155,7 @@ Anyone can come up with a model of *past* data (e.g.; stock performance, lottery
 
 ## Overfitting
 
-&lt;img src="MachineLearningII_files/figure-html/unnamed-chunk-11-1.png" width="100%" /&gt;
+&lt;img src="MachineLearningII_files/figure-html/unnamed-chunk-9-1.png" width="100%" /&gt;
 
 
 
@@ -160,14 +168,14 @@ Anyone can come up with a model of *past* data (e.g.; stock performance, lottery
 
 .pull-left45[
 
-Most machine learning models have two types of parameters, *raw parameters* that dictate how an individual model makes predictions, and *tuning parameters* that determine how those raw parameters are calculated.
+Most ML models have two types of parameters, &lt;high&gt;raw parameters&lt;/high&gt; that dictate how an individual model makes predictions, and &lt;high&gt;tuning parameters&lt;/high&gt; that determine how those raw parameters are calculated.
 
 |Model| Raw parameters|Tuning parameters|
 |:------|:------|:------|
 |Decision Trees|Nodes, splits, decisions |Minimum number of cases in each node|
 |Regularised regression |Model coefficients | Coefficient penalty term|
 
-To determine 'optimal' tuning parameters, which maximize prediction performance, techniques such as cross validation are often used.
+To determine 'optimal' tuning parameters, which maximize prediction performance, techniques such as &lt;high&gt;cross validation&lt;/high&gt; are often used.
 
 ]
 
@@ -307,7 +315,7 @@ The `caret` package has some of the *best* documentation (vignettes) you'll ever
 .pull-left6[
 ### createDataPartition()
 
-Use `createDataPartition()` to split a dataset into separate partitions.
+Use `createDataPartition()` to &lt;high&gt;split a dataset&lt;/high&gt; into separate partitions.
 
 Useful to split a large dataset into separate training and test data
 
@@ -392,14 +400,15 @@ dim(baselers_test)
 .pull-left55[
 ### trainControl()
 
-Use `trainControl()` to define how `carat` should select the best parameters for any ML model (that you will specify later with `train()`)
+Use `trainControl()` to define how `carat` should select the best parameters for any ML model
 
-Many methods are available in the `method` argument, look at the help menu with `?trainControl` for additional details
+Here you can specify repeated &lt;high&gt;cross validation&lt;/high&gt;
+
+Many other methods are available in the `method` argument, check the help menu with `?trainControl`
 
 
 ```r
-# Define how caraet should 
-#  select best model parameters
+# Define how caret should fit models
 
 ctrl &lt;- trainControl(method = "repeatedcv",
                      number = 10,  # 10 folds
@@ -429,7 +438,7 @@ ctrl &lt;- trainControl(method = "repeatedcv",
 
 ### train()
 
-Use `train()` to fit **any** of over 280 models **and** get best parameters
+Use `train()` to &lt;high&gt;fit any&lt;/high&gt; of over 280 models using &lt;high&gt;optimal parameters&lt;/high&gt;
 
 
 ```r
@@ -465,7 +474,7 @@ See all &gt;280 models on the [Caret Documentation Page](http://topepo.github.io
 
 .pull-left55[
 
-For classification tasks, make sure your criterion is a factor. For regression tasks, make sure it is numeric
+For &lt;high&gt;classification tasks&lt;/high&gt;, make sure your &lt;high&gt;criterion is a factor&lt;/high&gt;. For regression tasks, make sure it is numeric
 
 
 
@@ -476,11 +485,11 @@ heartdisease$diagnosis[1:10]
 
 # Will be a regression model
 reg_mod &lt;- train(form = diagnosis ~ .,
-             data = heartdisease,
-             method = "rpart")
+                 data = heartdisease,
+                 method = "rpart")
 ```
 
-&lt;font color='red' size = 3&gt;Warning messages:...&lt;/font&gt;
+&lt;font color='red' size = 3&gt;Warning messages:...Are you sure you wanted to do regression?&lt;/font&gt;
 
 Use `factor()` to convert your criterion to a factor, now you are doing classification!
 
@@ -585,7 +594,7 @@ plot(rpart_train$finalModel)
 text(rpart_train$finalModel)
 ```
 
-&lt;img src="MachineLearningII_files/figure-html/unnamed-chunk-34-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="MachineLearningII_files/figure-html/unnamed-chunk-32-1.png" style="display: block; margin: auto;" /&gt;
 
 
 ]
@@ -596,12 +605,13 @@ text(rpart_train$finalModel)
 
 ### varImp()
 
-Use `varImp()` to extract **variable importance** from a model
+Use `varImp()` to extract &lt;high&gt;variable importance&lt;/high&gt; from a model
 
-Result will be be a model-specific method indicaating how important each variable was in predicting the criterion.
+Result will indicate how (relatively) important each variable was in predicting the criterion.
     
 
 ```r
+# Get veriable importance from rpart_train
 varImp(rpart_train)
 ```
 
@@ -637,13 +647,15 @@ varImp(rpart_train)
 
 .pull-right45[
 
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
 
 ```r
 # Plot variable importance
 plot(varImp(rpart_train))
 ```
 
-![](MachineLearningII_files/figure-html/unnamed-chunk-36-1.png)&lt;!-- --&gt;
+![](MachineLearningII_files/figure-html/unnamed-chunk-34-1.png)&lt;!-- --&gt;
 
 ]
 
@@ -652,7 +664,7 @@ plot(varImp(rpart_train))
 .pull-left5[
 ## predict(), postResample()
 
-Test a models prediction performance with `predict()`
+Test a models prediction performance with &lt;high&gt;predict()&lt;/high&gt;
 
 
 ```r
@@ -670,7 +682,7 @@ bas_pred[1:5]
 ##  5864  9113 12310  5864  5864
 ```
 
-Then summarise overall performance with `postResample()`
+Then summarise overall performance with &lt;high&gt;postResample()&lt;/high&gt;
 
 
 ```r
@@ -707,7 +719,7 @@ ggplot(data = end,
   geom_smooth(method = "lm")
 ```
 
-&lt;img src="MachineLearningII_files/figure-html/unnamed-chunk-39-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="MachineLearningII_files/figure-html/unnamed-chunk-37-1.png" style="display: block; margin: auto;" /&gt;
 
 
 ]
@@ -791,7 +803,7 @@ postResample(pred = bas_pred,
 
 There are *many* other great features of caret we haven't touched
 
-- Use the `preProcess()` function to process your data (Imputing (replacing) missing values and transforming predictors)
+- Use the `preProcess()` function to pre-process your data (Imputing missing values)
 
 - Add your own custom model
 
@@ -801,7 +813,7 @@ Be sure to check out the **excellent** documentation site to learn all the detai
 
 .pull-right45[
 
-### http://topepo.github.io/caret/index.html
+http://topepo.github.io/caret/index.html
 
 &lt;img src="caret_package_md.jpg" width="2251" /&gt;
 

@@ -1,6 +1,6 @@
 ---
 title: "Machine Learning II"
-subtitle: ""
+subtitle: "caret"
 author: "Basel R Bootcamp<br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'>@therbootcamp</a>"
 date: "July 2018"
 output:
@@ -26,11 +26,6 @@ layout: true
 </span></div> 
 
 ---
-  
-```{r, eval = FALSE, echo = FALSE}
-# Code to knit slides
-xaringan::inf_mr('_sessions/D2S2_MachineLearning/MachineLearning.Rmd')
-```
 
 
 ```{r setup, include=FALSE}
@@ -46,8 +41,8 @@ library(baselers)
 
 library(tidyverse)
 ```
-
-# Recap from Machine Learning
+<br><br><br><br>
+# Recap from Machine Learning I
 
 ---
 
@@ -84,27 +79,34 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 ```
 
 
+
 ---
 
 # Why do we separate training from prediction?
 
-.pull-left4[
+.pull-left35[
+<br>
+Just because a model can <high>fit past data well</high>, does *not* necessarily mean that it will <high>predict new data well</high>.
 
-Just because an algorithm can fit past (training) data well, does *not* necessarily mean that it will *predict* new data well.
+Anyone can come up with a model of past data (e.g.; stock performance, lottery winnings). 
 
-Anyone can come up with a model of *past* data (e.g.; stock performance, lottery winnings). Predicting future performance is much more difficult.
+<high>Predicting what you can't see in the future is much more difficult.</high>
 
 > "An economist is an expert who will know tomorrow why the things he predicted yesterday didn't happen today." ~ Evan Esar
+
 
 ]
  
 .pull-right6[
 
-```{r, echo = FALSE, out.width = "80%"}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/prediction_collage.png")
-```
+<p align="center">
+  <img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/prediction_collage.png">
+</p>
+
 
 ]
+
+
 
 ---
 <br><br>
@@ -260,14 +262,14 @@ ggpubr::ggarrange(overfit_gg, fit_gg)
 
 .pull-left45[
 
-Most machine learning models have two types of parameters, *raw parameters* that dictate how an individual model makes predictions, and *tuning parameters* that determine how those raw parameters are calculated.
+Most ML models have two types of parameters, <high>raw parameters</high> that dictate how an individual model makes predictions, and <high>tuning parameters</high> that determine how those raw parameters are calculated.
 
 |Model| Raw parameters|Tuning parameters|
 |:------|:------|:------|
 |Decision Trees|Nodes, splits, decisions |Minimum number of cases in each node|
 |Regularised regression |Model coefficients | Coefficient penalty term|
 
-To determine 'optimal' tuning parameters, which maximize prediction performance, techniques such as cross validation are often used.
+To determine 'optimal' tuning parameters, which maximize prediction performance, techniques such as <high>cross validation</high> are often used.
 
 ]
 
@@ -415,7 +417,7 @@ knitr::include_graphics("caret_vignette.jpg")
 .pull-left6[
 ### createDataPartition()
 
-Use `createDataPartition()` to split a dataset into separate partitions.
+Use `createDataPartition()` to <high>split a dataset</high> into separate partitions.
 
 Useful to split a large dataset into separate training and test data
 
@@ -470,13 +472,14 @@ dim(baselers_test)
 .pull-left55[
 ### trainControl()
 
-Use `trainControl()` to define how `carat` should select the best parameters for any ML model (that you will specify later with `train()`)
+Use `trainControl()` to define how `carat` should select the best parameters for any ML model
 
-Many methods are available in the `method` argument, look at the help menu with `?trainControl` for additional details
+Here you can specify repeated <high>cross validation</high>
+
+Many other methods are available in the `method` argument, check the help menu with `?trainControl`
 
 ```{r, echo = TRUE, out.width = "90%", eval = TRUE}
-# Define how caraet should 
-#  select best model parameters
+# Define how caret should fit models
 
 ctrl <- trainControl(method = "repeatedcv",
                      number = 10,  # 10 folds
@@ -509,7 +512,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/Erfurt_2
 
 ### train()
 
-Use `train()` to fit **any** of over 280 models **and** get best parameters
+Use `train()` to <high>fit any</high> of over 280 models using <high>optimal parameters</high>
 
 ```{r, echo = TRUE, out.width = "90%", eval = TRUE, warning = FALSE}
 rpart_train <- train(form = income ~ .,  
@@ -546,7 +549,7 @@ knitr::include_graphics("caret_models.jpg")
 
 .pull-left55[
 
-For classification tasks, make sure your criterion is a factor. For regression tasks, make sure it is numeric
+For <high>classification tasks</high>, make sure your <high>criterion is a factor</high>. For regression tasks, make sure it is numeric
 
 ```{r, echo = FALSE, message = FALSE}
 library(FFTrees)
@@ -558,11 +561,11 @@ heartdisease$diagnosis[1:10]
 
 # Will be a regression model
 reg_mod <- train(form = diagnosis ~ .,
-             data = heartdisease,
-             method = "rpart")
+                 data = heartdisease,
+                 method = "rpart")
 ```
 
-<font color='red' size = 3>Warning messages:...</font>
+<font color='red' size = 3>Warning messages:...Are you sure you wanted to do regression?</font>
 
 Use `factor()` to convert your criterion to a factor, now you are doing classification!
 
@@ -634,17 +637,20 @@ text(rpart_train$finalModel)
 
 ### varImp()
 
-Use `varImp()` to extract **variable importance** from a model
+Use `varImp()` to extract <high>variable importance</high> from a model
 
-Result will be be a model-specific method indicaating how important each variable was in predicting the criterion.
+Result will indicate how (relatively) important each variable was in predicting the criterion.
     
 ```{r}
+# Get veriable importance from rpart_train
 varImp(rpart_train)
 ```    
     
 ]
 
 .pull-right45[
+
+<br><br><br>
 
 ```{r, fig.width = 7, fig.height = 4}
 # Plot variable importance
@@ -658,7 +664,7 @@ plot(varImp(rpart_train))
 .pull-left5[
 ## predict(), postResample()
 
-Test a models prediction performance with `predict()`
+Test a models prediction performance with <high>predict()</high>
 
 ```{r}
 # Get predictions based on best 
@@ -671,7 +677,7 @@ bas_pred[1:5]
 
 ```
 
-Then summarise overall performance with `postResample()`
+Then summarise overall performance with <high>postResample()</high>
 
 ```{r}
 # Assess performance with postResample()
@@ -777,7 +783,7 @@ postResample(pred = bas_pred,
 
 There are *many* other great features of caret we haven't touched
 
-- Use the `preProcess()` function to process your data (Imputing (replacing) missing values and transforming predictors)
+- Use the `preProcess()` function to pre-process your data (Imputing missing values)
 
 - Add your own custom model
 
@@ -787,7 +793,7 @@ Be sure to check out the **excellent** documentation site to learn all the detai
 
 .pull-right45[
 
-### http://topepo.github.io/caret/index.html
+http://topepo.github.io/caret/index.html
 
 ```{r, echo = FALSE}
 knitr::include_graphics("caret_package_md.jpg")

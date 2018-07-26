@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Recap: Day 3</title>
+    <meta charset="utf-8">
+    <meta name="author" content="The R Bootcamp  www.therbootcamp.com @therbootcamp" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="baselrbootcamp.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Recap: Day 3
+### The R Bootcamp <br/><a href='https://therbootcamp.github.io'>www.therbootcamp.com</a><br/><a href='https://twitter.com/therbootcamp'><span class="citation">@therbootcamp</span></a>
+### July 2018
+
+---
+
+
+
+
+
+
+
+# You can do amazing plots in R!
+
+&lt;img src="https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/ggplotgallery.png?raw=true" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Final result!
+
+
+```r
+ggplot(data = mpg, 
+       mapping = aes(x = displ, y = hwy, col = class)) +
+  geom_point() + 
+  geom_smooth(col = "blue", method = "lm")+
+  labs(x = "Engine Displacement in Liters",
+       y = "Highway miles per gallon",
+       title = "MPG data",
+       subtitle = "Cars with higher engine displacement tend to have lower highway mpg",
+       caption = "Source: mpg data in ggplot2") + 
+  theme_bw()
+```
+
+&lt;img src="Recap_III_files/figure-html/unnamed-chunk-2-1.png" width="40%" style="display: block; margin: auto;" /&gt;
+
+
+
+---
+
+.pull-left55[
+
+# Caret
+
+
+
+Caret stands for &lt;b&gt;C&lt;/b&gt;lassification &lt;b&gt;A&lt;/b&gt;nd &lt;b&gt;RE&lt;/b&gt;gression &lt;b&gt;T&lt;/b&gt;raining.
+
+`caret` is a 'wrapper' packages that automates much of the the machine learning process.
+
+Do very complex machine learning tasks with a few simple functions
+
+Use any of hundreds of different ML algorithms by changing one "string' (not line!) to use a different model
+
+
+```r
+library(caret)
+
+train(..., method = "lm") # Regression!
+train(..., method = "rf") # Random forests!
+train(..., method = "ada") # Boosted trees
+```
+
+Knows each model's tuning parameters and chooses the best ones for your data using cross validation (or other method).
+
+]
+
+.pull-right4[
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="https://3qeqpr26caki16dnhd19sv6by6v-wpengine.netdna-ssl.com/wp-content/uploads/2014/09/Caret-package-in-R.png" alt="The almighty Caret!" width="90%" /&gt;
+&lt;p class="caption"&gt;The almighty Caret!&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/1/1c/K-fold_cross_validation_EN.jpg" width="100%" style="display: block; margin: auto;" /&gt;
+
+
+]
+
+
+---
+
+
+---
+.pull-left5[
+
+## Recap - ML steps with caret
+
+Step 0: Create training and test data (if necessary)
+
+
+```r
+train_v &lt;- createDataPartition(y, times, p)
+
+data_train &lt;- data %&gt;% slice(train_v)
+data_test &lt;- data %&gt;% slice(-train_v)
+```
+
+Step 1: Define control parameters
+
+
+```r
+ctl &lt;- trainControl(method = "repeatedcv",
+                    number = 10, 
+                    repeats = 2) 
+```
+
+
+Step 2: Train model
+
+
+```r
+rpart_train &lt;- train(form = income ~ .,  
+                     data = data_train,
+                     method = "rpart",
+                     trControl = ctl)
+```
+
+]
+
+.pull-right45[
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+Step 3: Explore
+
+
+```r
+rpart_train            # Print object
+varImp(rpart_train)    # Var importance
+rpart_train$finalModel # Final model
+```
+
+
+Step 4: Predict 
+
+
+```r
+my_pred &lt;- predict(object = rpart_train, 
+                   newdata = data_test)
+```
+
+
+Step 4: Evaluate 
+
+
+```r
+postResample(pred = bas_pred, 
+             obs = baselers_test$income)
+```
+
+
+]
+
+
+
+
+---
+
+## What is Shiny?
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/shiny_definition.png" alt="&amp;lt;a href=http://shiny.rstudio.com/https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/shiny-cheatsheet.pdf&amp;gt;R Studio&amp;lt;/a&amp;gt;" width="90%" /&gt;
+&lt;p class="caption"&gt;&lt;a href=http://shiny.rstudio.com/https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/shiny-cheatsheet.pdf&gt;R Studio&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+---
+## Practical
+
+In the practical, we will create the following app from scratch, and publish it online!
+
+&lt;iframe src="https://econpsychbasel.shinyapps.io/FinalApp/" width="1200" height="7500"&gt;&lt;/iframe&gt;
+
+
+---
+## What is Shiny?
+
+&lt;div class="figure" style="text-align: center"&gt;
+&lt;img src="https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/shiny_definition.png?raw=true" alt="Source: http://shiny.rstudio.com/images/shiny-cheatsheet.pdf" width="95%" /&gt;
+&lt;p class="caption"&gt;Source: http://shiny.rstudio.com/images/shiny-cheatsheet.pdf&lt;/p&gt;
+&lt;/div&gt;
+
+---
+# Today
+
+&lt;p&gt;&lt;font size=6&gt;&lt;b&gt;&lt;a href="https://therbootcamp.github.io/BaselRBootcamp_2018April/schedule"&gt;Schedule&lt;/a&gt;
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+  }
+});
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
