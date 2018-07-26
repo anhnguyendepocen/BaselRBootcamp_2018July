@@ -35,7 +35,7 @@ layout: true
 
 
 &lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
-# Recap from Machine Learning
+# Recap from Machine Learning I
 
 ---
 
@@ -212,7 +212,7 @@ Caret stands for &lt;b&gt;C&lt;/b&gt;lassification &lt;b&gt;A&lt;/b&gt;nd &lt;b&
 
 Do very complex machine learning tasks with a few simple functions
 
-Use any of hundreds of different ML algorithms by changing one "string' (not line!) to use a different model
+Use any of hundreds of different ML algorithms by changing one "string" (not line!) to use a different model
 
 
 ```r
@@ -322,7 +322,7 @@ Useful to split a large dataset into separate training and test data
 
 ```r
 data &lt;- baselers %&gt;% 
-  drop_na     # Drop missing cases from baselers
+  drop_na()     # Drop missing cases from baselers
 
 # Get training cases
 train_v &lt;- createDataPartition(y = data$income, #crit
@@ -375,11 +375,11 @@ baselers_train %&gt;%
 ## # A tibble: 5 x 3
 ##      id sex      age
 ##   &lt;int&gt; &lt;chr&gt;  &lt;dbl&gt;
-## 1     4 male      27
-## 2     6 male      63
-## 3     8 female    41
-## 4    10 female    31
-## 5    12 male      31
+## 1     4 male     27.
+## 2     6 male     63.
+## 3     8 female   41.
+## 4    10 female   31.
+## 5    12 male     31.
 ```
 
 ```r

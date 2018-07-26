@@ -310,7 +310,7 @@ Caret stands for <b>C</b>lassification <b>A</b>nd <b>RE</b>gression <b>T</b>rain
 
 Do very complex machine learning tasks with a few simple functions
 
-Use any of hundreds of different ML algorithms by changing one "string' (not line!) to use a different model
+Use any of hundreds of different ML algorithms by changing one "string" (not line!) to use a different model
 
 ```{r, eval = FALSE}
 library(caret)
@@ -423,7 +423,7 @@ Useful to split a large dataset into separate training and test data
 
 ```{r, warning = FALSE}
 data <- baselers %>% 
-  drop_na     # Drop missing cases from baselers
+  drop_na()     # Drop missing cases from baselers
 
 # Get training cases
 train_v <- createDataPartition(y = data$income, #crit
