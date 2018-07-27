@@ -74,12 +74,13 @@ ggplot(data = mpg,
 
 
 
-Caret stands for &lt;high&gt;C&lt;/high&gt;lassification &lt;high&gt;A&lt;/high&gt;nd &lt;high&gt;RE&lt;/high&gt;gression &lt;high&gt;T&lt;/high&gt;raining.
+&lt;high&gt;Caret&lt;/high&gt; stands for &lt;high&gt;C&lt;/high&gt;lassification &lt;high&gt;A&lt;/high&gt;nd &lt;high&gt;RE&lt;/high&gt;gression &lt;high&gt;T&lt;/high&gt;raining.
 
-`caret` is a 'wrapper' packages that automates much of the the machine learning process and provides hundreds of different ML algorithms by changing &lt;high&gt;one `character` string&lt;/high&gt; (not line!).
+`caret` is a 'wrapper' packages that automates the machine learning process.
 
-`caret` also knows each model's tuning parameters and chooses the best ones for your data using cross validation (or other method).
+Evaluate and provides &lt;high&gt;hundreds of different ML algorithms&lt;/high&gt; by changing &lt;u&gt;one `character` string&lt;/u&gt; (not line!).
 
+`caret` knows each model's tuning parameters and &lt;high&gt;chooses the best ones&lt;/high&gt; for your data.
 
 
 ```r
@@ -101,8 +102,6 @@ train(..., method = "ada") # Boosted trees
 
 
 ]
-
-
 
 ---
 .pull-left5[
@@ -298,23 +297,12 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   d.head.appendChild(s);
 })();</script>
 
-<script>
-(function() {
-  var i, text, code, codes = document.getElementsByTagName('code');
-  for (i = 0; i < codes.length;) {
-    code = codes[i];
-    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
-      text = code.textContent;
-      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
-          /^\$\$(.|\s)+\$\$$/.test(text) ||
-          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
-        code.outerHTML = code.innerHTML;  // remove <code></code>
-        continue;
-      }
-    }
-    i++;
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
   }
-})();
+});
 </script>
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

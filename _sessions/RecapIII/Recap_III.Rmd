@@ -81,12 +81,13 @@ ggplot(data = mpg,
 knitr::include_graphics("https://vignette.wikia.nocookie.net/joke-battles/images/2/21/Bugs-Bunny-4.png/revision/latest?cb=20151231234917")
 ```
 
-Caret stands for <high>C</high>lassification <high>A</high>nd <high>RE</high>gression <high>T</high>raining.
+<high>Caret</high> stands for <high>C</high>lassification <high>A</high>nd <high>RE</high>gression <high>T</high>raining.
 
-`caret` is a 'wrapper' packages that automates much of the the machine learning process and provides hundreds of different ML algorithms by changing <high>one `character` string</high> (not line!).
+`caret` is a 'wrapper' packages that automates the machine learning process.
 
-`caret` also knows each model's tuning parameters and chooses the best ones for your data using cross validation (or other method).
+Evaluate and provides <high>hundreds of different ML algorithms</high> by changing <u>one `character` string</u> (not line!).
 
+`caret` knows each model's tuning parameters and <high>chooses the best ones</high> for your data.
 
 ```{r, eval = FALSE}
 library(caret)
@@ -108,8 +109,6 @@ knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/1/1c/K-f
 
 
 ]
-
-
 
 ---
 .pull-left5[
