@@ -34,37 +34,46 @@ layout: true
 
 
 
-&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
-# Recap from Machine Learning I
+
+&lt;div class="center_text_2"&gt;
+  &lt;span&gt;
+  Recap from Machine Learning I
+  &lt;/span&gt;
+&lt;/div&gt; 
+
 
 ---
+
 
 
 # What is machine learning?
 
-.pull-left6[
-
+.pull-left55[
 
 ### Algorithms autonomously learning from data.
 
-Given data, an algorithm tunes its *parameters* to match the data, understand how it works, and make predictions for what will occur in the future.
-
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/mldiagram_A.png" width="80%" style="display: block; margin: auto;" /&gt;
-
+Given data, an algorithm tunes its &lt;high&gt;parameters&lt;/high&gt; to match the data, understand how it works, and make predictions for what will occur in the future.
+&lt;br&gt;&lt;br&gt;
+&lt;p align="center"&gt;
+  &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/mldiagram_A.png"&gt;
+&lt;/p&gt;
 ]
 
 .pull-right4[
 
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/machinelearningcartoon.png" width="70%" style="display: block; margin: auto;" /&gt;
-
+&lt;p align="center"&gt;
+  &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/machinelearningcartoon.png"&gt;
+&lt;/p&gt;
 
 ]
+
 ---
 
 # What is the basic machine learning process?
 
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/MLdiagram.png" width="90%" /&gt;
-
+&lt;p align="center"&gt;
+  &lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/MLdiagram.png"&gt;
+&lt;/p&gt;
 
 
 ---
@@ -72,6 +81,7 @@ Given data, an algorithm tunes its *parameters* to match the data, understand ho
 # Why do we separate training from prediction?
 
 .pull-left35[
+
 &lt;br&gt;
 Just because a model can &lt;high&gt;fit past data well&lt;/high&gt;, does *not* necessarily mean that it will &lt;high&gt;predict new data well&lt;/high&gt;.
 
@@ -81,7 +91,6 @@ Anyone can come up with a model of past data (e.g.; stock performance, lottery w
 
 &gt; "An economist is an expert who will know tomorrow why the things he predicted yesterday didn't happen today." ~ Evan Esar
 
-
 ]
  
 .pull-right6[
@@ -90,23 +99,24 @@ Anyone can come up with a model of past data (e.g.; stock performance, lottery w
   &lt;img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/prediction_collage.png"&gt;
 &lt;/p&gt;
 
-
 ]
 
 
 
 ---
 &lt;br&gt;&lt;br&gt;
-&lt;font size = 6&gt;Can you come up with a model that will perfectly match past data but is worthless in predicting future data?&lt;/font&gt;&lt;br&gt;&lt;br&gt;
+&lt;font size = 6&gt;"Can you come up with a model that will perfectly match past data but is worthless in predicting future data?"&lt;/font&gt;&lt;br&gt;&lt;br&gt;
 
 
 
 
 .pull-left45[
 
-
-### Past "Training" Data
 &lt;br&gt;
+&lt;font size=5&gt;&lt;hfont&gt;Past &lt;high&gt;Training&lt;/high&gt; Data&lt;/hfont&gt;&lt;/font&gt;
+
+&lt;br&gt;
+
 
 | id|sex | age|fam_history |smoking | disease|
 |--:|:---|---:|:-----------|:-------|-------:|
@@ -121,7 +131,9 @@ Anyone can come up with a model of past data (e.g.; stock performance, lottery w
 
 .pull-right45[
 
-### Future "Test" Data
+&lt;br&gt;
+&lt;font size=5&gt;&lt;hfont&gt;Future &lt;high&gt; Test&lt;/high&gt; Data&lt;/hfont&gt;&lt;/font&gt;
+
 &lt;br&gt;
 
 
@@ -137,25 +149,9 @@ Anyone can come up with a model of past data (e.g.; stock performance, lottery w
 
 ---
 
-## Two types of prediction tasks
+# Overfitting
 
-.pull-left45[
-
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/classification_task.png" width="100%" style="display: block; margin: auto;" /&gt;
-
-]
-
-.pull-right45[
-
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/regression_task.png" width="100%" style="display: block; margin: auto;" /&gt;
-
-]
-
----
-
-## Overfitting
-
-&lt;img src="MachineLearningII_files/figure-html/unnamed-chunk-9-1.png" width="100%" /&gt;
+![](MachineLearningII_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
 
 
 
@@ -594,7 +590,7 @@ plot(rpart_train$finalModel)
 text(rpart_train$finalModel)
 ```
 
-&lt;img src="MachineLearningII_files/figure-html/unnamed-chunk-32-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="MachineLearningII_files/figure-html/unnamed-chunk-27-1.png" style="display: block; margin: auto;" /&gt;
 
 
 ]
@@ -655,7 +651,7 @@ varImp(rpart_train)
 plot(varImp(rpart_train))
 ```
 
-![](MachineLearningII_files/figure-html/unnamed-chunk-34-1.png)&lt;!-- --&gt;
+![](MachineLearningII_files/figure-html/unnamed-chunk-29-1.png)&lt;!-- --&gt;
 
 ]
 
@@ -719,7 +715,7 @@ ggplot(data = end,
   geom_smooth(method = "lm")
 ```
 
-&lt;img src="MachineLearningII_files/figure-html/unnamed-chunk-37-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="MachineLearningII_files/figure-html/unnamed-chunk-32-1.png" style="display: block; margin: auto;" /&gt;
 
 
 ]

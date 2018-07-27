@@ -41,43 +41,46 @@ library(baselers)
 
 library(tidyverse)
 ```
-<br><br><br><br>
-# Recap from Machine Learning I
+
+<div class="center_text_2">
+  <span>
+  Recap from Machine Learning I
+  </span>
+</div> 
+
 
 ---
+
 
 
 # What is machine learning?
 
-.pull-left6[
-
+.pull-left55[
 
 ### Algorithms autonomously learning from data.
 
-Given data, an algorithm tunes its *parameters* to match the data, understand how it works, and make predictions for what will occur in the future.
-
-```{r, echo = FALSE, out.width = "80%", fig.align = 'center'}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/mldiagram_A.png")
-```
-
+Given data, an algorithm tunes its <high>parameters</high> to match the data, understand how it works, and make predictions for what will occur in the future.
+<br><br>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/mldiagram_A.png">
+</p>
 ]
 
 .pull-right4[
 
-```{r, echo = FALSE, out.width = "70%", fig.align = 'center'}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/machinelearningcartoon.png")
-```
-
+<p align="center">
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/machinelearningcartoon.png">
+</p>
 
 ]
+
 ---
 
 # What is the basic machine learning process?
 
-```{r, echo = FALSE, out.width = "90%"}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/MLdiagram.png")
-```
-
+<p align="center">
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/MLdiagram.png">
+</p>
 
 
 ---
@@ -85,6 +88,7 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 # Why do we separate training from prediction?
 
 .pull-left35[
+
 <br>
 Just because a model can <high>fit past data well</high>, does *not* necessarily mean that it will <high>predict new data well</high>.
 
@@ -94,7 +98,6 @@ Anyone can come up with a model of past data (e.g.; stock performance, lottery w
 
 > "An economist is an expert who will know tomorrow why the things he predicted yesterday didn't happen today." ~ Evan Esar
 
-
 ]
  
 .pull-right6[
@@ -103,14 +106,13 @@ Anyone can come up with a model of past data (e.g.; stock performance, lottery w
   <img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/prediction_collage.png">
 </p>
 
-
 ]
 
 
 
 ---
 <br><br>
-<font size = 6>Can you come up with a model that will perfectly match past data but is worthless in predicting future data?</font><br><br>
+<font size = 6>"Can you come up with a model that will perfectly match past data but is worthless in predicting future data?"</font><br><br>
 
 
 ```{r, echo = FALSE}
@@ -132,9 +134,11 @@ present <- tibble(id = 91:95,
 
 .pull-left45[
 
-
-### Past "Training" Data
 <br>
+<font size=5><hfont>Past <high>Training</high> Data</hfont></font>
+
+<br>
+
 ```{r, results = 'asis', echo = FALSE}
 knitr::kable(past, format = "markdown")
 ```
@@ -144,41 +148,22 @@ knitr::kable(past, format = "markdown")
 
 .pull-right45[
 
-### Future "Test" Data
+<br>
+<font size=5><hfont>Future <high> Test</high> Data</hfont></font>
+
 <br>
 
 ```{r, echo = FALSE}
 knitr::kable(present, format = "markdown")
-
 ```
 
 ]
 
 ---
 
-## Two types of prediction tasks
+# Overfitting
 
-.pull-left45[
-
-```{r, echo = FALSE, out.width = "100%", fig.align = 'center'}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/classification_task.png")
-```
-
-]
-
-.pull-right45[
-
-```{r, echo = FALSE, out.width = "100%", fig.align = 'center'}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/regression_task.png")
-```
-
-]
-
----
-
-## Overfitting
-
-```{r, fig.width = 8, fig.height = 4, echo = FALSE, eval = TRUE, warning = FALSE, out.width = "100%", dpi = 200}
+```{r, fig.width = 8, fig.height = 3.5, echo = FALSE, eval = TRUE, warning = FALSE, dpi = 200}
 set.seed(5)
 
 N <- 40
