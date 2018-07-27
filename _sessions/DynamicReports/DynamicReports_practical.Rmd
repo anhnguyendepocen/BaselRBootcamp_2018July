@@ -151,7 +151,7 @@ XXX <- read_csv()
 
 4. Knit your document! Make sure you don't get any errors!
 
-5. Now it's time to change some of the *default* chunk options. In your *setup* chunk, change the existing values of `knitr::opts_chunk$set` to the following:
+5. Now it's time to change some of the *default* chunk options. *Inside of your setup code chunk* change the existing values of `knitr::opts_chunk$set` to the following:
 
 ```{r, echo = TRUE, eval = FALSE}
 # INCLUDE ALL OF THIS CODE IN YOUR FIRST 'setup' CHUNK!
@@ -212,7 +212,11 @@ include_graphics(path = "XXX")
 4. Inside the chunk, include the following code which uses the `datatable` function to render a dataframe as a nicely formatted HTML table.
 
 ```{r, eval = FALSE, echo = TRUE}
-datatable(mcdonalds %>% select(1:6))
+
+# Print the first 6 columns of the data as a datatable
+mcdonalds %>% 
+  select(1:6) %>% 
+  datatable()
 ```
 
 5. Knit the document! Do you see your nicely formatted table?

@@ -283,7 +283,7 @@ XXX &lt;- read_csv()
 XXX &lt;- read_csv()</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li><p>Knit your document! Make sure you don’t get any errors!</p></li>
-<li><p>Now it’s time to change some of the <em>default</em> chunk options. In your <em>setup</em> chunk, change the existing values of <code>knitr::opts_chunk$set</code> to the following:</p></li>
+<li><p>Now it’s time to change some of the <em>default</em> chunk options. <em>Inside of your setup code chunk</em> change the existing values of <code>knitr::opts_chunk$set</code> to the following:</p></li>
 </ol>
 <pre class="r"><code># INCLUDE ALL OF THIS CODE IN YOUR FIRST 'setup' CHUNK!
 
@@ -338,7 +338,10 @@ include_graphics(path = &quot;XXX&quot;)</code></pre>
 <li><p>Create a new code chunk</p></li>
 <li><p>Inside the chunk, include the following code which uses the <code>datatable</code> function to render a dataframe as a nicely formatted HTML table.</p></li>
 </ol>
-<pre class="r"><code>datatable(mcdonalds %&gt;% select(1:6))</code></pre>
+<pre class="r"><code># Print the first 6 columns of the data as a datatable
+mcdonalds %&gt;% 
+  select(1:6) %&gt;% 
+  datatable()</code></pre>
 <ol start="5" style="list-style-type: decimal">
 <li><p>Knit the document! Do you see your nicely formatted table?</p></li>
 <li><p>Play around with your table. Instead of selecting the first 6 columns, select the columns <code>Item</code>, <code>Category</code>, <code>Calories</code>, <code>Sodium</code></p></li>
