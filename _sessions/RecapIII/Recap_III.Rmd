@@ -217,7 +217,7 @@ postResample(pred = bas_pred,
 .pull-left5[
 
 ### Basics
-[**Tokenizing**](https://en.wikipedia.org/wiki/Word_segmentation)<br>
+[Tokenizing](https://en.wikipedia.org/wiki/Word_segmentation)<br>
 [Stemming](https://en.wikipedia.org/wiki/Stemming)<br>
 [Part-of-speech tagging](https://en.wikipedia.org/wiki/Part-of-speech_tagging)<br>
 [Parsing](https://en.wikipedia.org/wiki/Parsing)<br>
@@ -227,8 +227,8 @@ etc.
 [Lexical semantics](https://en.wikipedia.org/wiki/Word_segmentation)<br>
 [Machine Translation](https://en.wikipedia.org/wiki/Machine_translation)<br>
 [Relationship extraction](https://en.wikipedia.org/wiki/Relationship_extraction)<br>
-[**Sentiment analysis**](https://en.wikipedia.org/wiki/Sentiment_analysis)<br>
-[**Topic analysis**](https://en.wikipedia.org/wiki/Topic_segmentation)<br>
+[Sentiment analysis](https://en.wikipedia.org/wiki/Sentiment_analysis)<br>
+[Topic analysis](https://en.wikipedia.org/wiki/Topic_segmentation)<br>
 etc.
 
 ]
@@ -260,7 +260,6 @@ Analysis of <high>Game of Thrones word frequencies</high> displayed as a word cl
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/wordcloud.png" height="350px">
-
 </p>
 
 ]
@@ -271,7 +270,6 @@ Analysis of <high>Game of Thrones episode sentiment</high> as a function episode
 
 <p align="center">
 <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/sentiment_got.png" height="350px">
-
 </p>
 
 ]
