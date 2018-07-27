@@ -508,14 +508,14 @@ An anonymous function exists only temporarily when the `apply` function is calle
 .pull-right5[
 
 
-```{r, eval = FALSE}
+```{r, eval = TRUE}
 
 # calculate the mean of
 # age, weight, and height
 lapply(baselers[, c("age", "weight", "height")],
        function(x, na_rm){
   if (isTRUE(na_rm)){
-    x <- x[-is.na(x)]
+    x <- x[!is.na(x)]
   }
   sum(x) / length(x)
   

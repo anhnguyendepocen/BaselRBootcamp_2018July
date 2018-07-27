@@ -551,11 +551,22 @@ An anonymous function exists only temporarily when the `apply` function is calle
 lapply(baselers[, c("age", "weight", "height")],
        function(x, na_rm){
   if (isTRUE(na_rm)){
-    x &lt;- x[-is.na(x)]
+    x &lt;- x[!is.na(x)]
   }
   sum(x) / length(x)
   
 }, na_rm = TRUE)
+```
+
+```
+## $age
+## [1] 44.61
+## 
+## $weight
+## [1] 74.35
+## 
+## $height
+## [1] 171
 ```
 
 ]
