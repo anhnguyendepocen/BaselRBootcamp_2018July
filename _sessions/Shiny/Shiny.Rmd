@@ -72,7 +72,8 @@ Create interactive websites to explore, analyse, and visualize data all within R
 
 No need to learn HTML, CSS, Javascript
 
-```{r, echo = FALSE, fig.align = 'center', out.width = "80%"}
+<br><br>
+```{r, echo = FALSE, fig.align = 'center', out.width = "70%"}
 knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/nohtml.png")
 ```
 
