@@ -133,7 +133,7 @@ got_words <- got %>%
   unnest_tokens(word, text) 
 ```
 
-2. Print the orginal and the new data frame and compare their dimensions. How much has the object grown?
+2. Print the original and the new data frame and compare their dimensions. How much has the object grown?
 
 ```{r}
 # install
@@ -168,7 +168,7 @@ got_counts <- got_words %>%
   ungroup()
 ```
 
-4. Using `wordcloud()`, plot a word cloud of the words of game of thrones with words that occue more than 50 times (use `filter()`).
+4. Using `wordcloud()`, plot a word cloud of the words of game of thrones with words that occur more than 50 times (use `filter()`).
 
 ```{r, eval = F, echo = T}
 # reduce to n > 50
@@ -188,7 +188,7 @@ got_counts_50 <- got_counts %>%
 wordcloud(words = got_counts_50$word, freq = got_counts_50$n)
 ```
 
-5. You probably have noticed that the word cloud was dominated by some very unreavealing words. To obtain a representation of what the show is about remove socalled `stop_words` from `got_counts` using the `anti_join` function. See below.
+5. You probably have noticed that the word cloud was dominated by some very unrevealing words. To obtain a representation of what the show is about remove so-called `stop_words` from `got_counts` using the `anti_join` function. See below.
 
 ```{r, eval = F, echo = T}
 # count non-stopword words

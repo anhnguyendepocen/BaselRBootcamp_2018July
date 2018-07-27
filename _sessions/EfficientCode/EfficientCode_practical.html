@@ -164,47 +164,6 @@ $(document).ready(function () {
 </tbody>
 </table>
 </div>
-</div>
-<div id="head" class="section level1">
-<h1>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</h1>
-<div id="datasets" class="section level3">
-<h3>Datasets</h3>
-<table>
-<thead>
-<tr class="header">
-<th align="left">File</th>
-<th align="left">Rows</th>
-<th align="left">Columns</th>
-<th align="left">Description</th>
-<th align="left">Source</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left"><code>xx.csv</code></td>
-<td align="left">xxx</td>
-<td align="left">xx</td>
-<td align="left">DESCRIPTION OF DATASET</td>
-<td align="left">SOURCE + LINK</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>9816ab77991d1cf627cf6c659beeaf593c4ab7c1</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</div>
 <div id="glossary" class="section level3">
 <h3>Glossary</h3>
 <table>
@@ -248,7 +207,7 @@ $(document).ready(function () {
 <h2>A - Microbenchmark</h2>
 <ol style="list-style-type: decimal">
 <li><p>Run the microbenchmark example from above. What do you observe? Is retrieving a variable from a <code>tibble</code> faster or slower than retrieving a variable from a <code>data.frame</code>?</p></li>
-<li><p>Re-evaluate the results while paying attention to the temporal unit. How different are the durations in absolute and relative terms and do the differences matter in realisic settings? How often would you have to select a variable from either object in order to take up more than 1 second?</p></li>
+<li><p>Re-evaluate the results while paying attention to the temporal unit. How different are the durations in absolute and relative terms and do the differences matter in realistic settings? How often would you have to select a variable from either object in order to take up more than 1 second?</p></li>
 <li><p>Although the absolute duration of selecting a variable may be small, let us nonetheless look at another option. Rerun microbenchmark example and including the function <code>.subset2()</code>. Specifically, add <code>.subset2(df, 'var1')</code> and <code>.subset2(tbl, 'var1')</code> as additional arguments in the microbenchmark. What do you find?</p></li>
 <li><p>There is a particular reason for why some functions are faster than others. But before we go into that, let’s look at another striking example. Compare the function <code>mean()</code> to a function that uses its basic ingredients <code>sum()</code> and <code>length()</code>. You can define such a function using <code>my_mean_fun &lt;- function(my_vec) sum(my_vec) / length(my_vec)</code>. First, create a vector consisting of random numbers using <code>runif()</code> (see <code>?runif</code>), e.g., <code>my_vec &lt;- runif(1000000)</code>. Then, test the original and your own mean function using <code>microbenchmark()</code>. What do you find? Which function is faster, yours or R’s?</p></li>
 <li><p>So, why are some functions faster than others? Test the type of <code>mean</code>, <code>sum</code>, <code>length</code> using <code>typeof()</code>. Noticed a difference between <code>mean()</code> and the rest? Now, test each of these functions again using <code>is.primitive()</code>. What do you find?</p></li>
@@ -281,10 +240,10 @@ $(document).ready(function () {
 <p>In most cases, it is possible to produce efficient code using existing R functions. Sometimes, however, data sets are so big or computations is so complex that additional measures must be taken. Generally, there are two fundamental ways to make code really fast: (a) to implement code in a lower-level language that runs inherently faster and (b) to run code in parallel. In this section you will be getting a taste of both of these approaches.</p>
 <div id="x---parallel-r" class="section level2">
 <h2>X - Parallel R</h2>
-<p>Running code in parallel requires using a somewhat different programming approach. That is, you must split the data into parcels, often called <em>jobs</em>, and specify a function built to process individual parcels, often called a <em>worker</em>. Then, you can use functions in R’s <code>parallel</code> package to assign jobs to workers and collect the results. Let’s begin by definding the jobs and the worker. In this section, we will be looking at a very simple task, to compute the means of every column in a matrix, e.g., <code>my_df = as.data.frame(matrix(as.double(1:100000000), ncol = 100))</code>. (Note: <code>as.double</code> is needed to avoid integer overflow)</p>
+<p>Running code in parallel requires using a somewhat different programming approach. That is, you must split the data into parcels, often called <em>jobs</em>, and specify a function built to process individual parcels, often called a <em>worker</em>. Then, you can use functions in R’s <code>parallel</code> package to assign jobs to workers and collect the results. Let’s begin by defining the jobs and the worker. In this section, we will be looking at a very simple task, to compute the means of every column in a matrix, e.g., <code>my_df = as.data.frame(matrix(as.double(1:100000000), ncol = 100))</code>. (Note: <code>as.double</code> is needed to avoid integer overflow)</p>
 <ol start="9" style="list-style-type: decimal">
 <li><p>Define jobs by splitting the matrix into individual parcels. This could be done by rows or by columns, but we recommend splitting the data by rows. To split the matrix into, e.g., parcels of 1,000 rows, use the <code>split()</code> function. The <code>split()</code> function is build to slice data frames row-wise as a function of the levels of another variable. Thus, to use the function create a vector with one value for the first 1,000 entries, another for the next 1,000 entries and so on. You can create such a vector using <code>rep()</code>. <code>rep()</code>. For instance, <code>rep(10, 5)</code> will create <code>10 10 10 10 10</code>. To create a vector with the needed properties, make use of the fact that <code>rep()</code> is vectorized, i.e., <code>split_vec &lt;- rep(1:100, rep(1000, 100))</code>. Now apply <code>split()</code> to slice <code>my_df</code> using <code>split_vec</code> into 100 separate jobs. What type of object does <code>split()</code> return?</p></li>
-<li><p>Now, define your worker. The gaol is to compute the mean of matrix’ columns. However, since we sliced the data frame in 100 pieces of 1,000 rows each, every worker will only have access to pieces of each variable. Thus, we need to find a way to also split the computation of the mean. One way to do this is to have the workers compute the sum of all the values provided to them and then later, when the results of all of the workers have been collected, to compute the sum of sums and divide it by the total number of observations. In pseudo-code: <code>sum(c(sum(worker_1), sum(worker_2), ..., sum(worker_100)) / 100000</code>. One function to implement this is called <code>apply()</code>. <code>apply()</code> allows you to apply functions to data frames (or matrices) row or column wise. <code>apply(my_df, 2, sd)</code>, for instance, iterates through the columns (Note: 1 = rows, 2 = columns) and calculates the standard deviation using <code>sd()</code>. To instead calculate the sum, replace <code>sd</code> by <code>sum</code>. The last thing element in creating a worker, is to store it in its own function using. That is, define <code>worker &lt;- function(df) apply(df, 2, sum)</code>.</p></li>
+<li><p>Now, define your worker. The goal is to compute the mean of matrix’ columns. However, since we sliced the data frame in 100 pieces of 1,000 rows each, every worker will only have access to pieces of each variable. Thus, we need to find a way to also split the computation of the mean. One way to do this is to have the workers compute the sum of all the values provided to them and then later, when the results of all of the workers have been collected, to compute the sum of sums and divide it by the total number of observations. In pseudo-code: <code>sum(c(sum(worker_1), sum(worker_2), ..., sum(worker_100)) / 100000</code>. One function to implement this is called <code>apply()</code>. <code>apply()</code> allows you to apply functions to data frames (or matrices) row or column wise. <code>apply(my_df, 2, sd)</code>, for instance, iterates through the columns (Note: 1 = rows, 2 = columns) and calculates the standard deviation using <code>sd()</code>. To instead calculate the sum, replace <code>sd</code> by <code>sum</code>. The last thing element in creating a worker, is to store it in its own function using. That is, define <code>worker &lt;- function(df) apply(df, 2, sum)</code>.</p></li>
 <li><p>Now that you created a jobs object and a worker function, run them in parallel. Do this using R’s <code>parallel</code> package, which recently has become part of the standard R distribution. The first step is to initialize a cluster of R instances using <code>makeCluster()</code>. Specify the size of the cluster(i.e., number of R instances) and assign the cluster to an object, e.g., <code>cl &lt;- makeCluster(8)</code>. I have chosen 8 because I have 8 (virtual) processors in my computer. You may have more or fewer processors. It makes sense to choose a number that is close to the number of processors in your computer. You can find out the number of processors in your computer using <code>detectCores()</code>. The next step is to run the jobs in parallel using <code>clusterApplyLB()</code>. The function takes three arguments: (1) the cluster object, (2) the jobs, and (3) the worker in that order, i.e., <code>clusterApplyLB(cl, jobs, worker)</code>. When you run it don’t forget to assign the output to a new object. Finally, stop the cluster using <code>stopCluster(cl)</code>.</p></li>
 <li><p>Now process the results. This means that you sum up the values produced by the workers separately for each column and divide the respective sums by the total number of rows. One convenient way of doing this is to bind the results into a matrix, where the columns represent the original columns and the rows represent the number of jobs. Create this matrix using <code>my_result_mat &lt;- do.call(rbind, my_result)</code>. Then compute the sums of each column - here we you can make use of your worker - and to divide the results by the total number of rows.</p></li>
 <li><p>Finally, compare the speed of applying the worker to the entire object versus running it in parallel using <code>system.time()</code>. One convenient way to compare the two is store all of the parallel code, beginning with splitting the matrix and ending with calculating the sums of sums and dividing by N, inside a function. What do you observe?</p></li>

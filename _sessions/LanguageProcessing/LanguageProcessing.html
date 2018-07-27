@@ -313,7 +313,7 @@ Topic 2: Rickon, Arya, Bran
 &lt;high&gt;Spam detection&lt;/high&gt;
 Use terms as variables to detect properties of documents, e.g., spam status or quality of episode.
 
-"Which is the worst episde?"
+"Which is the worst episode?"
 
 
 
@@ -382,7 +382,7 @@ Accounts (usually) for (a) differences in the number of &lt;high&gt;terms within
 
 Aims to identify the sentiment, i.e., &lt;high&gt;affective value&lt;/high&gt;, of natural language, based on...
 
-&lt;high&gt;Human judgment&lt;/high&gt;&lt;br&gt; Identify words that were judged by humans based on their sentimenta and aggregate the values.
+&lt;high&gt;Human judgment&lt;/high&gt;&lt;br&gt; Identify words that were judged by humans based on their sentiments and aggregate the values.
 
 &lt;high&gt;Heuristic rules&lt;/high&gt;&lt;br&gt; Complements the first approach with rules, e.g., negation. 
 
@@ -508,12 +508,23 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   d.head.appendChild(s);
 })();</script>
 
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  tex2jax: {
-    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
   }
-});
+})();
 </script>
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

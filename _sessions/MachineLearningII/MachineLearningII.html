@@ -25,7 +25,7 @@ layout: true
 &lt;a href="https://therbootcamp.github.io/"&gt;&lt;font color="#7E7E7E"&gt;BaselRBootcamp, July 2018&lt;/font&gt;&lt;/a&gt;
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
-&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
+&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
 &amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;&amp;emsp;
 &lt;a href="https://therbootcamp.github.io/"&gt;&lt;font color="#7E7E7E"&gt;www.therbootcamp.com&lt;/font&gt;&lt;/a&gt;
 &lt;/span&gt;&lt;/div&gt; 
@@ -262,53 +262,14 @@ train(..., method = "ada") # Boosted trees
 ]
 
 
----
-.pull-left5[
-
-# Caret
-
-
-
-
-As always, you can install `caret` from CRAN
-
-
-```r
-# Install caret
-install.packages("caret")
-
-# Load the caret package
-library("caret")
-```
-
-Once you've installed `caret`, look at the vignette for a nice overview of the package
-
-
-```r
-# Open the main package vignette
-vignette("caret")
-```
-
-Today we will go over the main functions in the package
-
-]
-
-.pull-right45[
-
-### Caret Vignettes
-
-The `caret` package has some of the *best* documentation (vignettes) you'll ever see.
-
-&lt;img src="caret_vignette.jpg" width="90%" /&gt;
-
-]
 
 ---
 
-.pull-left5[
-# Caret
+# `caret`
 
-Here are the main functions we will cover in the `caret` package
+.pull-left55[
+
+Here are the &lt;high&gt;main functions&lt;/high&gt; we will cover from the `caret` package.
 
 | Function| Purpose|
 |--------|----------|
@@ -321,31 +282,29 @@ Here are the main functions we will cover in the `caret` package
 
 ]
 
-.pull-right45[
+.pull-right4[
 
-### Caret Vignettes
+The `caret` package has some of the *best* documentation (vignettes) you'll ever see...
 
-The `caret` package has some of the *best* documentation (vignettes) you'll ever see.
-
-&lt;img src="caret_vignette.jpg" width="90%" /&gt;
+&lt;p align="center"&gt;
+  &lt;img src="caret_vignette.jpg" height="350px"&gt;
+&lt;/p&gt;
 
 ]
 
 
 ---
 
+# `createDataPartition`
+
 .pull-left6[
-### createDataPartition()
 
-Use `createDataPartition()` to &lt;high&gt;split a dataset&lt;/high&gt; into separate partitions.
+Use `createDataPartition()` to &lt;high&gt;split a dataset&lt;/high&gt; into separate partitions, such as training and test data sets.
 
-Useful to split a large dataset into separate training and test data
+
 
 
 ```r
-data &lt;- baselers %&gt;% 
-  drop_na()     # Drop missing cases from baselers
-
 # Get training cases
 train_v &lt;- createDataPartition(y = data$income, #crit
                                times = 1, 
@@ -374,12 +333,9 @@ baselers_test &lt;- data %&gt;%
 
 .pull-right35[
 
-### Training and Test
-
 
 ```r
-### Training data
-
+# Testing data
 dim(baselers_train)
 ```
 
@@ -387,26 +343,26 @@ dim(baselers_train)
 ## [1] 3072   20
 ```
 
-```r
-baselers_train %&gt;%
-  slice(1:5) %&gt;%
-  select(1:3)
-```
 
 ```
-## # A tibble: 5 x 3
+## # A tibble: 4 x 3
 ##      id sex      age
 ##   &lt;int&gt; &lt;chr&gt;  &lt;dbl&gt;
 ## 1     4 male      27
 ## 2     6 male      63
 ## 3     8 female    41
 ## 4    10 female    31
-## 5    12 male      31
 ```
 
-```r
-### Testing data
 
+```r
+# Training data
+baselers_train
+```
+
+
+```r
+# Testing data
 dim(baselers_test)
 ```
 
@@ -419,25 +375,28 @@ dim(baselers_test)
 
 
 ---
+
+# `trainControl`
+
 .pull-left55[
-### trainControl()
 
-Use `trainControl()` to define how `carat` should select the best parameters for any ML model
+Use `trainControl()` to define how `carat` should &lt;high&gt;select the best parameters&lt;/high&gt; for a ML model.
 
-Here you can specify repeated &lt;high&gt;cross validation&lt;/high&gt;
-
-Many other methods are available in the `method` argument, check the help menu with `?trainControl`
+Here you can specify repeated &lt;high&gt;cross validation&lt;/high&gt;. Many other methods are available via the `method` argument (see `?trainControl`)
 
 
 ```r
 # Define how caret should fit models
-
 ctrl &lt;- trainControl(method = "repeatedcv",
                      number = 10,  # 10 folds
                      repeats = 2) # Repeat 2 times
 ```
 
-### trainControl methods
+]
+
+.pull-right4[
+
+&lt;u&gt;`method`-argument options&lt;/u&gt;
 
 |method|Description|
 |:----|:----|
@@ -445,22 +404,16 @@ ctrl &lt;- trainControl(method = "repeatedcv",
 |`"LOOCV"`| Leave one out cross-validation|
 |`"none"` | Fit one model with default parameters |
 
-]
-
-.pull-right4[
-&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
-### Cross Validation
-![](https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/crossvalidation.jpg)&lt;!-- --&gt;
 
 ]
 
 ---
 
-.pull-left55[
+# `train`
 
-### train()
+.pull-left6[
 
-Use `train()` to &lt;high&gt;fit any&lt;/high&gt; of over 280 models using &lt;high&gt;optimal parameters&lt;/high&gt;
+Use `train()` to &lt;high&gt;fit&lt;/high&gt; 280+ models using &lt;high&gt;optimal parameters&lt;/high&gt;.
 
 
 ```r
@@ -471,40 +424,41 @@ rpart_train &lt;- train(form = income ~ .,
 ```
 
 
-|Parameter|Description|
+&lt;p align="center"&gt;&lt;u&gt;train()-function arguments&lt;/u&gt;&lt;/p&gt;
+
+|Argument|Description|
 |:-----|:----|
 |`form`|Formula specifying criterion|
 |`data`|Training data|
 |`method`| Model|
 |`trControl`| Control parameters|
-
-
 ]
 
-.pull-right4[
 
-See all &gt;280 models on the [Caret Documentation Page](http://topepo.github.io/caret/available-models.html)
+.pull-right35[
 
-&lt;img src="caret_models.jpg" width="1699" /&gt;
+Find all 280+ models [here](http://topepo.github.io/caret/available-models.html)
+
+&lt;p align="center"&gt;
+  &lt;img src="caret_models.jpg" height="350px"&gt;
+&lt;/p&gt;
+
 
 ]
 
 
 ---
 
-### train()
+# `train`
 
-.pull-left55[
+.pull-left6[
 
-For &lt;high&gt;classification tasks&lt;/high&gt;, make sure your &lt;high&gt;criterion is a factor&lt;/high&gt;. For regression tasks, make sure it is numeric
+&lt;high&gt;Classification tasks&lt;/high&gt; require the &lt;high&gt;criterion to be factor&lt;/high&gt;, while regression tasks require it to be numeric.
 
 
 
 
 ```r
-# Diagnosis is currently coded as 0, 1
-heartdisease$diagnosis[1:10]
-
 # Will be a regression model
 reg_mod &lt;- train(form = diagnosis ~ .,
                  data = heartdisease,
@@ -513,7 +467,7 @@ reg_mod &lt;- train(form = diagnosis ~ .,
 
 &lt;font color='red' size = 3&gt;Warning messages:...Are you sure you wanted to do regression?&lt;/font&gt;
 
-Use `factor()` to convert your criterion to a factor, now you are doing classification!
+Use `factor()` to &lt;high&gt;convert your criterion&lt;/high&gt; to a factor, now you are doing classification!
 
 
 ```r
@@ -526,20 +480,21 @@ class_mod &lt;- train(form = factor(diagnosis) ~ .,
 
 ]
 
-.pull-right4[
+.pull-right35[
 
-[Caret Documentation Page](http://topepo.github.io/caret/available-models.html)
+Find all 280+ models [here](http://topepo.github.io/caret/available-models.html)
 
-&lt;img src="caret_models.jpg" width="1699" /&gt;
+&lt;p align="center"&gt;
+  &lt;img src="caret_models.jpg" height="350px"&gt;
+&lt;/p&gt;
+
 
 ]
 
 
 ---
 
-### train()
-
-Print the result of `train()` to obtain overall results
+# `train`
 
 
 ```r
@@ -569,11 +524,10 @@ rpart_train
 
 
 ---
+
+# Explore the `train` object
+
 .pull-left4[
-
-### train()
-
-Explore your `train` Object
 
 
 ```r
@@ -616,21 +570,34 @@ plot(rpart_train$finalModel)
 text(rpart_train$finalModel)
 ```
 
-&lt;img src="MachineLearningII_files/figure-html/unnamed-chunk-24-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="MachineLearningII_files/figure-html/unnamed-chunk-20-1.png" style="display: block; margin: auto;" /&gt;
 
 
 ]
 
 ---
 
+
 .pull-left5[
 
-### varImp()
+# `varImp`
 
-Use `varImp()` to extract &lt;high&gt;variable importance&lt;/high&gt; from a model
+Use `varImp()` to extract &lt;high&gt;variable importance&lt;/high&gt; from a model, i.e., how (relatively) important each variable was in predicting the criterion.
 
-Result will indicate how (relatively) important each variable was in predicting the criterion.
+
+```r
+# Plot variable importance
+plot(varImp(rpart_train))
+```
+
+![](MachineLearningII_files/figure-html/unnamed-chunk-21-1.png)&lt;!-- --&gt;
+
     
+
+]
+
+.pull-right45[
+
 
 ```r
 # Get veriable importance from rpart_train
@@ -642,51 +609,39 @@ varImp(rpart_train)
 ## 
 ##   only 20 most important variables shown (out of 24)
 ## 
-##                                  Overall
-## age                              100.000
-## food                              57.957
-## datause                            1.256
-## id                                 0.728
-## fitness                            0.626
-## consultations                      0.284
-## tattoos                            0.283
-## fasnachtyes                        0.000
-## children                           0.000
-## rhine                              0.000
-## hiking                             0.000
-## eyecoryes                          0.000
-## confessionother                    0.000
-## weight                             0.000
-## educationobligatory_school         0.000
-## happiness                          0.000
-## educationSEK_II                    0.000
-## height                             0.000
-## `confessionevangelical-reformed`   0.000
-## confessionmuslim                   0.000
+##                            Overall
+## age                        100.000
+## food                        57.957
+## datause                      1.256
+## id                           0.728
+## fitness                      0.626
+## consultations                0.284
+## tattoos                      0.283
+## fasnachtyes                  0.000
+## sexmale                      0.000
+## educationobligatory_school   0.000
+## alcohol                      0.000
+## rhine                        0.000
+## educationSEK_II              0.000
+## educationSEK_III             0.000
+## weight                       0.000
+## children                     0.000
+## confessionother              0.000
+## confessionmuslim             0.000
+## eyecoryes                    0.000
+## hiking                       0.000
 ```
     
-]
-
-.pull-right45[
-
-&lt;br&gt;&lt;br&gt;&lt;br&gt;
-
-
-```r
-# Plot variable importance
-plot(varImp(rpart_train))
-```
-
-![](MachineLearningII_files/figure-html/unnamed-chunk-26-1.png)&lt;!-- --&gt;
 
 ]
 
 ---
 
-.pull-left5[
-## predict(), postResample()
+# `predict`, `postResample`
 
-Test a models prediction performance with &lt;high&gt;predict()&lt;/high&gt;
+.pull-left5[
+
+Assess prediction performance with &lt;high&gt;`predict()`&lt;/high&gt;, summarise performance with &lt;high&gt;`postResample()`&lt;/high&gt;.
 
 
 ```r
@@ -704,9 +659,6 @@ bas_pred[1:5]
 ##  5864  9113 12310  5864  5864
 ```
 
-Then summarise overall performance with &lt;high&gt;postResample()&lt;/high&gt;
-
-
 ```r
 # Assess performance with postResample()
 postResample(pred = bas_pred, 
@@ -723,16 +675,12 @@ postResample(pred = bas_pred,
 
 .pull-right45[
 
-### Plot predictions vs Truth
-
 
 ```r
 # Plot predictions versus truth
-end &lt;- tibble(pred = bas_pred,
-              obs = baselers_test$income)
-
-ggplot(data = end,
-       aes(x = pred, y = obs)) + 
+tibble(pred = bas_pred,
+       obs = baselers_test$income) %&gt;%
+ggplot(aes(x = pred, y = obs)) + 
   geom_point(alpha = .1) +
   labs(title = "Rpart Performance",
        x = "Predictions",
@@ -741,7 +689,7 @@ ggplot(data = end,
   geom_smooth(method = "lm")
 ```
 
-&lt;img src="MachineLearningII_files/figure-html/unnamed-chunk-29-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="MachineLearningII_files/figure-html/unnamed-chunk-24-1.png" style="display: block; margin: auto;" /&gt;
 
 
 ]
@@ -749,7 +697,7 @@ ggplot(data = end,
 ---
 .pull-left5[
 
-## Recap - ML steps with caret
+# ML steps with caret
 
 Step 0: Create training and test data (if necessary)
 
@@ -784,7 +732,7 @@ rpart_train &lt;- train(form = income ~ .,
 ]
 
 .pull-right45[
-&lt;br&gt;&lt;br&gt;&lt;br&gt;
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 Step 3: Explore
 
 
@@ -804,7 +752,7 @@ my_pred &lt;- predict(object = rpart_train,
 ```
 
 
-Step 4: Evaluate 
+Step 5: Evaluate 
 
 
 ```r
@@ -818,48 +766,9 @@ postResample(pred = bas_pred,
 
 ---
 
-&lt;br&gt;&lt;br&gt;
-.pull-left5[
+# Practical
 
-# Caret
-
-There are *many* other great features of caret we haven't touched
-
-- Use the `preProcess()` function to pre-process your data (Imputing missing values)
-
-- Add your own custom model
-
-Be sure to check out the **excellent** documentation site to learn all the details
-
-]
-
-.pull-right45[
-
-http://topepo.github.io/caret/index.html
-
-&lt;img src="caret_package_md.jpg" width="2251" /&gt;
-
-]
-
----
-
-.pull-left4[
-&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
-# Questions?
-
-## [Machine Learning II Practical](https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/MachineLearningII/MachineLearningII_practical.html)
-
-
-]
-
-.pull-right55[
-&lt;br&gt;&lt;br&gt;&lt;br&gt;
-&lt;div class="figure"&gt;
-&lt;img src="https://www.petsmagazine.com.sg/img/articles/main/bugsbunny.jpg" alt="&amp;lt;font size = 4&amp;gt;Source: www.petsmagazine.com&amp;lt;/font&amp;gt;" width="90%" /&gt;
-&lt;p class="caption"&gt;&lt;font size = 4&gt;Source: www.petsmagazine.com&lt;/font&gt;&lt;/p&gt;
-&lt;/div&gt;
-
-]
+&lt;font size=6&gt;&lt;b&gt;&lt;a href="https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/MachineLearningII/MachineLearningII_practical.html"&gt;Link to practical&lt;/a&gt;
     </textarea>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({

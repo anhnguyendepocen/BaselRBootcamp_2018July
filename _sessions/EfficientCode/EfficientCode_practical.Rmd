@@ -161,7 +161,7 @@ tbl <- as.tibble(df)
 microbenchmark(df[['var_1']], df$var_1, tbl$var_1)
 ```
 
-2. Re-evaluate the results while paying attention to the temporal unit. How different are the durations in absolute and relative terms and do the differences matter in realisic settings? How often would you have to select a variable from either object in order to take up more than 1 second?
+2. Re-evaluate the results while paying attention to the temporal unit. How different are the durations in absolute and relative terms and do the differences matter in realistic settings? How often would you have to select a variable from either object in order to take up more than 1 second?
 
 ```{r}
 # microbenchmark
@@ -450,7 +450,7 @@ In most cases, it is possible to produce efficient code using existing R functio
 
 ## X - Parallel R
 
-Running code in parallel requires using a somewhat different programming approach. That is, you must split the data into parcels, often called *jobs*, and specify a function built to process individual parcels, often called a *worker*. Then, you can use functions in R's `parallel` package to assign jobs to workers and collect the results. Let's begin by definding the jobs and the worker. In this section, we will be looking at a very simple task, to compute the means of every column in a matrix, e.g., `my_df = as.data.frame(matrix(as.double(1:100000000), ncol = 100))`. (Note: `as.double` is needed to avoid integer overflow)
+Running code in parallel requires using a somewhat different programming approach. That is, you must split the data into parcels, often called *jobs*, and specify a function built to process individual parcels, often called a *worker*. Then, you can use functions in R's `parallel` package to assign jobs to workers and collect the results. Let's begin by defining the jobs and the worker. In this section, we will be looking at a very simple task, to compute the means of every column in a matrix, e.g., `my_df = as.data.frame(matrix(as.double(1:100000000), ncol = 100))`. (Note: `as.double` is needed to avoid integer overflow)
 
 9. Define jobs by splitting the matrix into individual parcels. This could be done by rows or by columns, but we recommend splitting the data by rows. To split the matrix into, e.g., parcels of 1,000 rows, use the `split()` function. The `split()` function is build to slice data frames row-wise as a function of the levels of another variable. Thus, to use the function create a vector with one value for the first 1,000 entries, another for the next 1,000 entries and so on. You can create such a vector using `rep()`. `rep()`. For instance, `rep(10, 5)` will create `10 10 10 10 10`. To create a vector with the needed properties, make use of the fact that `rep()` is vectorized, i.e., `split_vec <- rep(1:100, rep(1000, 100))`. Now apply `split()` to slice `my_df` using `split_vec` into 100 separate jobs. What type of object does `split()` return?
 
@@ -466,7 +466,7 @@ jobs <- split(my_df, split_vec)
 
 ```
 
-10. Now, define your worker. The gaol is to compute the mean of matrix' columns. However, since we sliced the data frame in 100 pieces of 1,000 rows each, every worker will only have access to pieces of each variable. Thus, we need to find a way to also split the computation of the mean. One way to do this is to have the workers compute the sum of all the values provided to them and then later, when the results of all of the workers have been collected, to compute the sum of sums and divide it by the total number of observations. In pseudo-code: `sum(c(sum(worker_1), sum(worker_2), ..., sum(worker_100)) / 100000`. One function to implement this is called `apply()`. `apply()` allows you to apply functions to data frames (or matrices) row or column wise. `apply(my_df, 2, sd)`, for instance, iterates through the columns (Note: 1 = rows, 2 = columns) and calculates the standard deviation using `sd()`. To instead calculate the sum, replace `sd` by `sum`. The last thing element in creating a worker, is to store it in its own function using. That is, define `worker <- function(df) apply(df, 2, sum)`.    
+10. Now, define your worker. The goal is to compute the mean of matrix' columns. However, since we sliced the data frame in 100 pieces of 1,000 rows each, every worker will only have access to pieces of each variable. Thus, we need to find a way to also split the computation of the mean. One way to do this is to have the workers compute the sum of all the values provided to them and then later, when the results of all of the workers have been collected, to compute the sum of sums and divide it by the total number of observations. In pseudo-code: `sum(c(sum(worker_1), sum(worker_2), ..., sum(worker_100)) / 100000`. One function to implement this is called `apply()`. `apply()` allows you to apply functions to data frames (or matrices) row or column wise. `apply(my_df, 2, sd)`, for instance, iterates through the columns (Note: 1 = rows, 2 = columns) and calculates the standard deviation using `sd()`. To instead calculate the sum, replace `sd` by `sum`. The last thing element in creating a worker, is to store it in its own function using. That is, define `worker <- function(df) apply(df, 2, sum)`.    
 
 ```{r}
 # define worker

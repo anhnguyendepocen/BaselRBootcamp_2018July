@@ -20,7 +20,7 @@ layout: true
 <a href="https://therbootcamp.github.io/"><font color="#7E7E7E">BaselRBootcamp, July 2018</font></a>
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+&emsp;&emsp;&emsp;&emsp;&emsp;
 &emsp;&emsp;&emsp;&emsp;&emsp;
 <a href="https://therbootcamp.github.io/"><font color="#7E7E7E">www.therbootcamp.com</font></a>
 </span></div> 
@@ -346,56 +346,14 @@ train(..., method = "ada") # Boosted trees
 ]
 
 
----
-
-# Caret
-
-.pull-left5[
-
-```{r, echo = FALSE, message = FALSE}
-library(caret)
-```
-
-
-As always, you can install `caret` from CRAN
-
-```{r, eval = FALSE, echo = TRUE}
-# Install caret
-install.packages("caret")
-
-# Load the caret package
-library("caret")
-```
-
-Once you've installed `caret`, look at the vignette for a nice overview of the package
-
-```{r, eval = FALSE}
-# Open the main package vignette
-vignette("caret")
-```
-
-Today we will go over the main functions in the package
-
-]
-
-.pull-right45[
-
-### Caret Vignettes
-
-The `caret` package has some of the *best* documentation (vignettes) you'll ever see.
-
-```{r, echo = FALSE, out.width = "90%"}
-knitr::include_graphics("caret_vignette.jpg")
-```
-
-]
 
 ---
 
-.pull-left5[
-# Caret
+# `caret`
 
-Here are the main functions we will cover in the `caret` package
+.pull-left55[
+
+Here are the <high>main functions</high> we will cover from the `caret` package.
 
 | Function| Purpose|
 |--------|----------|
@@ -408,32 +366,31 @@ Here are the main functions we will cover in the `caret` package
 
 ]
 
-.pull-right45[
+.pull-right4[
 
-### Caret Vignettes
+The `caret` package has some of the *best* documentation (vignettes) you'll ever see...
 
-The `caret` package has some of the *best* documentation (vignettes) you'll ever see.
-
-```{r, echo = FALSE, out.width = "90%"}
-knitr::include_graphics("caret_vignette.jpg")
-```
+<p align="center">
+  <img src="caret_vignette.jpg" height="350px">
+</p>
 
 ]
 
 
 ---
 
+# `createDataPartition`
+
 .pull-left6[
-### createDataPartition()
 
-Use `createDataPartition()` to <high>split a dataset</high> into separate partitions.
+Use `createDataPartition()` to <high>split a dataset</high> into separate partitions, such as training and test data sets.
 
-Useful to split a large dataset into separate training and test data
+```{r, echo = FALSE, warning=F, message=F}
+library(caret)
+data <- baselers %>% drop_na() # Drop missing cases
+```
 
 ```{r, warning = FALSE}
-data <- baselers %>% 
-  drop_na()     # Drop missing cases from baselers
-
 # Get training cases
 train_v <- createDataPartition(y = data$income, #crit
                                times = 1, 
@@ -456,19 +413,25 @@ baselers_test <- data %>%
 
 .pull-right35[
 
-### Training and Test
+```{r}
+# Testing data
+dim(baselers_train)
+```
+
+```{r, echo = F}
+# Training data
+baselers_train %>%
+  slice(1:4) %>%
+  select(1:3)
+```
+
+```{r, eval = F}
+# Training data
+baselers_train
+```
 
 ```{r}
-### Training data
-
-dim(baselers_train)
-
-baselers_train %>%
-  slice(1:5) %>%
-  select(1:3)
-
-### Testing data
-
+# Testing data
 dim(baselers_test)
 
 ```
@@ -478,24 +441,27 @@ dim(baselers_test)
 
 
 ---
+
+# `trainControl`
+
 .pull-left55[
-### trainControl()
 
-Use `trainControl()` to define how `carat` should select the best parameters for any ML model
+Use `trainControl()` to define how `carat` should <high>select the best parameters</high> for a ML model.
 
-Here you can specify repeated <high>cross validation</high>
-
-Many other methods are available in the `method` argument, check the help menu with `?trainControl`
+Here you can specify repeated <high>cross validation</high>. Many other methods are available via the `method` argument (see `?trainControl`)
 
 ```{r, echo = TRUE, out.width = "90%", eval = TRUE}
 # Define how caret should fit models
-
 ctrl <- trainControl(method = "repeatedcv",
                      number = 10,  # 10 folds
                      repeats = 2) # Repeat 2 times
 ```
 
-### trainControl methods
+]
+
+.pull-right4[
+
+<u>`method`-argument options</u>
 
 |method|Description|
 |:----|:----|
@@ -503,25 +469,16 @@ ctrl <- trainControl(method = "repeatedcv",
 |`"LOOCV"`| Leave one out cross-validation|
 |`"none"` | Fit one model with default parameters |
 
-]
-
-.pull-right4[
-<br><br><br><br>
-### Cross Validation
-```{r, echo = FALSE, message = FALSE}
-library(baselers)
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/crossvalidation.jpg")
-```
 
 ]
 
 ---
 
-.pull-left55[
+# `train`
 
-### train()
+.pull-left6[
 
-Use `train()` to <high>fit any</high> of over 280 models using <high>optimal parameters</high>
+Use `train()` to <high>fit</high> 280+ models using <high>optimal parameters</high>.
 
 ```{r, echo = TRUE, out.width = "90%", eval = TRUE, warning = FALSE}
 rpart_train <- train(form = income ~ .,  
@@ -531,43 +488,42 @@ rpart_train <- train(form = income ~ .,
 ```
 
 
-|Parameter|Description|
+<p align="center"><u>train()-function arguments</u></p>
+
+|Argument|Description|
 |:-----|:----|
 |`form`|Formula specifying criterion|
 |`data`|Training data|
 |`method`| Model|
 |`trControl`| Control parameters|
-
-
 ]
 
-.pull-right4[
 
-See all >280 models on the [Caret Documentation Page](http://topepo.github.io/caret/available-models.html)
+.pull-right35[
 
-```{r, echo = FALSE}
-knitr::include_graphics("caret_models.jpg")
-```
+Find all 280+ models [here](http://topepo.github.io/caret/available-models.html)
+
+<p align="center">
+  <img src="caret_models.jpg" height="350px">
+</p>
+
 
 ]
 
 
 ---
 
-### train()
+# `train`
 
-.pull-left55[
+.pull-left6[
 
-For <high>classification tasks</high>, make sure your <high>criterion is a factor</high>. For regression tasks, make sure it is numeric
+<high>Classification tasks</high> require the <high>criterion to be factor</high>, while regression tasks require it to be numeric.
 
 ```{r, echo = FALSE, message = FALSE}
 library(FFTrees)
 ```
 
 ```{r, eval = FALSE}
-# Diagnosis is currently coded as 0, 1
-heartdisease$diagnosis[1:10]
-
 # Will be a regression model
 reg_mod <- train(form = diagnosis ~ .,
                  data = heartdisease,
@@ -576,7 +532,7 @@ reg_mod <- train(form = diagnosis ~ .,
 
 <font color='red' size = 3>Warning messages:...Are you sure you wanted to do regression?</font>
 
-Use `factor()` to convert your criterion to a factor, now you are doing classification!
+Use `factor()` to <high>convert your criterion</high> to a factor, now you are doing classification!
 
 ```{r, eval = FALSE}
 # Use factor() to specify a classification model
@@ -588,22 +544,21 @@ class_mod <- train(form = factor(diagnosis) ~ .,
 
 ]
 
-.pull-right4[
+.pull-right35[
 
-[Caret Documentation Page](http://topepo.github.io/caret/available-models.html)
+Find all 280+ models [here](http://topepo.github.io/caret/available-models.html)
 
-```{r, echo = FALSE}
-knitr::include_graphics("caret_models.jpg")
-```
+<p align="center">
+  <img src="caret_models.jpg" height="350px">
+</p>
+
 
 ]
 
 
 ---
 
-### train()
-
-Print the result of `train()` to obtain overall results
+# `train`
 
 ```{r, echo = TRUE, out.width = "90%", eval = TRUE, warning = FALSE}
 rpart_train
@@ -612,11 +567,10 @@ rpart_train
 
 
 ---
+
+# Explore the `train` object
+
 .pull-left4[
-
-### train()
-
-Explore your `train` Object
 
 ```{r, echo = TRUE, out.width = "90%", eval = TRUE, warning = FALSE}
 # Best tuning parameters
@@ -631,7 +585,7 @@ rpart_train$finalModel
 
 .pull-right55[
 
-```{r, fig.align = 'center'}
+```{r, fig.align = 'center', fig.height = 6}
 # Plot final model
 plot(rpart_train$finalModel)
 text(rpart_train$finalModel)
@@ -642,38 +596,39 @@ text(rpart_train$finalModel)
 
 ---
 
+
 .pull-left5[
 
-### varImp()
+# `varImp`
 
-Use `varImp()` to extract <high>variable importance</high> from a model
+Use `varImp()` to extract <high>variable importance</high> from a model, i.e., how (relatively) important each variable was in predicting the criterion.
 
-Result will indicate how (relatively) important each variable was in predicting the criterion.
+```{r, fig.width = 7, fig.height = 3.8}
+# Plot variable importance
+plot(varImp(rpart_train))
+```
+
     
+
+]
+
+.pull-right45[
+
 ```{r}
 # Get veriable importance from rpart_train
 varImp(rpart_train)
 ```    
     
-]
-
-.pull-right45[
-
-<br><br><br>
-
-```{r, fig.width = 7, fig.height = 4}
-# Plot variable importance
-plot(varImp(rpart_train))
-```
 
 ]
 
 ---
 
-.pull-left5[
-## predict(), postResample()
+# `predict`, `postResample`
 
-Test a models prediction performance with <high>predict()</high>
+.pull-left5[
+
+Assess prediction performance with <high>`predict()`</high>, summarise performance with <high>`postResample()`</high>.
 
 ```{r}
 # Get predictions based on best 
@@ -684,14 +639,10 @@ bas_pred <- predict(object = rpart_train,
 #   for each row in newdata
 bas_pred[1:5]
 
-```
-
-Then summarise overall performance with <high>postResample()</high>
-
-```{r}
 # Assess performance with postResample()
 postResample(pred = bas_pred, 
              obs = baselers_test$income)
+
 ```
 
 
@@ -699,15 +650,11 @@ postResample(pred = bas_pred,
 
 .pull-right45[
 
-### Plot predictions vs Truth
-
 ```{r, fig.width = 4, fig.height = 3, fig.align = 'center'}
 # Plot predictions versus truth
-end <- tibble(pred = bas_pred,
-              obs = baselers_test$income)
-
-ggplot(data = end,
-       aes(x = pred, y = obs)) + 
+tibble(pred = bas_pred,
+       obs = baselers_test$income) %>%
+ggplot(aes(x = pred, y = obs)) + 
   geom_point(alpha = .1) +
   labs(title = "Rpart Performance",
        x = "Predictions",
@@ -722,7 +669,7 @@ ggplot(data = end,
 ---
 .pull-left5[
 
-## Recap - ML steps with caret
+# ML steps with caret
 
 Step 0: Create training and test data (if necessary)
 
@@ -754,7 +701,7 @@ rpart_train <- train(form = income ~ .,
 ]
 
 .pull-right45[
-<br><br><br>
+<br><br><br><br><br>
 Step 3: Explore
 
 ```{r, eval = FALSE}
@@ -772,7 +719,7 @@ my_pred <- predict(object = rpart_train,
 ```
 
 
-Step 4: Evaluate 
+Step 5: Evaluate 
 
 ```{r, eval = FALSE}
 postResample(pred = bas_pred, 
@@ -785,47 +732,8 @@ postResample(pred = bas_pred,
 
 ---
 
-<br><br>
-.pull-left5[
+# Practical
 
-# Caret
+<font size=6><b><a href="https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/MachineLearningII/MachineLearningII_practical.html">Link to practical</a>
 
-There are *many* other great features of caret we haven't touched
-
-- Use the `preProcess()` function to pre-process your data (Imputing missing values)
-
-- Add your own custom model
-
-Be sure to check out the **excellent** documentation site to learn all the details
-
-]
-
-.pull-right45[
-
-http://topepo.github.io/caret/index.html
-
-```{r, echo = FALSE}
-knitr::include_graphics("caret_package_md.jpg")
-```
-
-]
-
----
-
-.pull-left4[
-<br><br><br><br><br>
-# Questions?
-
-## [Machine Learning II Practical](https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/MachineLearningII/MachineLearningII_practical.html)
-
-
-]
-
-.pull-right55[
-<br><br><br>
-```{r, echo = FALSE, out.width = "90%", fig.cap="<font size = 4>Source: www.petsmagazine.com</font>"}
-knitr::include_graphics("https://www.petsmagazine.com.sg/img/articles/main/bugsbunny.jpg")
-```
-
-]
 
