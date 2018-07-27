@@ -1176,7 +1176,6 @@ Check these links for more in depth ggplot2 guides...
 knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/plotting_books.png")
 ```
 
-
 ---
 
 # Questions?
