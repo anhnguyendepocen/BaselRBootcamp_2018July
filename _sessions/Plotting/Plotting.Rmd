@@ -20,7 +20,7 @@ layout: true
 <a href="https://therbootcamp.github.io/"><font color="#7E7E7E">BaselRBootcamp, July 2018</font></a>
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+&emsp;&emsp;&emsp;&emsp;&emsp;
 &emsp;&emsp;&emsp;&emsp;&emsp;
 <a href="https://therbootcamp.github.io/"><font color="#7E7E7E">www.therbootcamp.com</font></a>
 </span></div> 
@@ -69,13 +69,16 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 
 ---
 
-.pull-left5[
+
+.pull-left45[
 
 # Base R Plotting
 
-The **classic framework** of plotting.
+The <high>classic framework</high> of plotting.
 
-Contains separate **function for each 'type'** of plot.
+Contains separate <high>function for each 'type'</high> of plot.
+
+E.g. `barplot()` for a bar plot, `boxplot()` for a box plot, and `plot()` for a scatterplot. 
 
 <br>
 
@@ -90,7 +93,7 @@ hist(x = baselers$age,
 ]
 
 .pull-right5[
-
+<br><br><br>
 ```{r, echo = F}
 # Histogram in base R
 hist(x = baselers$age,
@@ -101,19 +104,23 @@ hist(x = baselers$age,
 
 ]
 
+
+
 ---
 
 
-.pull-left5[
+.pull-left45[
 
 # Base R Plotting
 
+The <high>classic framework</high> of plotting.
 
-The **classic framework** of plotting.
+Contains separate <high>function for each 'type'</high> of plot.
 
-Contains separate **function for each 'type'** of plot.
+E.g. `barplot()` for a bar plot, `boxplot()` for a box plot, and `plot()` for a scatterplot. 
 
 <br>
+
 
 ```{r, eval = F}
 # Boxplot in base R
@@ -127,7 +134,7 @@ boxplot(formula = height ~ sex,
 ]
 
 .pull-right45[
-
+<br><br><br>
 ```{r, echo = F}
 # Boxplot in base R
 boxplot(formula = height ~ sex,
@@ -142,16 +149,18 @@ boxplot(formula = height ~ sex,
 ---
 
 
-.pull-left5[
-
+.pull-left45[
 
 # Base R Plotting
 
-The **classic framework** of plotting.
+The <high>classic framework</high> of plotting.
 
-Contains separate **function for each 'type'** of plot.
+Contains separate <high>function for each 'type'</high> of plot.
+
+E.g. `barplot()` for a bar plot, `boxplot()` for a box plot, and `plot()` for a scatterplot. 
 
 <br>
+
 
 ```{r, eval = F}
 # Scatterplot in base R
@@ -165,7 +174,7 @@ plot(x = baselers$height,
 ]
 
 .pull-right45[
-
+<br><br><br>
 ```{r, echo = F}
 # Scatterplot in base R
 plot(x = baselers$height,
@@ -184,13 +193,13 @@ plot(x = baselers$height,
 
 .pull-left35[
 
-- Default plots look pretty <b>outdated</b>.<br>
+- Default plots look pretty <high>outdated</high>.<br>
 
-- Plots can quickly require a <b>LOT of code</b>.<br>
+- Plots can quickly require a <high>LOT of code</high>.<br>
 
-- Can't store plots as <b>objects</b> to reference and update later</font><br>
+- Can't store plots as <high>objects</high> to reference and update later<br>
 
-### Solution: ggplot2
+<p align="center"><high>Solution: `ggplot2`</high></p>
 
 ```{r, echo = FALSE, out.width = "45%"}
 knitr::include_graphics("https://www.r-graph-gallery.com/wp-content/uploads/2014/09/ggplot_hex.jpg")
@@ -202,7 +211,7 @@ knitr::include_graphics("https://www.r-graph-gallery.com/wp-content/uploads/2014
 
 .pull-right55[
 
-This plot would take <b>a lot of code in Base R</b> but **just 10 lines of code**, 5 of which controlling the labels, in `ggplot2`.
+This plot would take <high>a lot of code in Base R</high> but <high>just 10 lines of code</high>, 5 of which controlling the labels, in `ggplot2`.
 
 ```{r, echo = FALSE, fig.width=7, fig.height = 4}
 # Add a regression line for all classes
@@ -222,7 +231,7 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) +
 
 ---
 
-## Grammar of Graphics in ggplot2
+# Grammar of Graphics in `ggplot2`
 
 .pull-left45[
 
@@ -260,26 +269,26 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) +
 
 ---
 
-## Our goal: Creating this plot
+# Our goal: Creating this plot
 
 .pull-left45[
 
-**Data**
+<high>Data</high>
 
 - Use the `mpg` tibble
 
-**Aesthetics**
+<high>Aesthetics</high>
 
-- Show engine displacement (`disp`) on the x axis
-- Show highway miles per gallon (`hwy`) on the y-axis
-- Color plotting elements by the class of car (`class`)
+- Engine displacement (`disp`) on the x axis
+- Highway miles per gallon (`hwy`) on the y-axis
+- Color plotting elements by the `class` of car
 
-**Geometric objects**
+<high>Geometric objects</high>
 
 - Show data as points
 - Add a regression line
 
-**Labels and themes**
+<high>Labels and themes</high>
 
 - Add plotting labels
 - Use a black and white plotting theme
@@ -288,7 +297,7 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy, color = class)) +
 
 
 .pull-right5[
-
+<br>
 ```{r, echo = FALSE, fig.width = 7, fig.height = 5}
 # Add a regression line for all classes
 
@@ -310,16 +319,16 @@ ggplot(data = mpg,
 
 ---
 
-# `ggplot(data)`
+# `ggplot`
 
 
 .pull-left45[
 
-To create a ggplot2 object, use the `ggplot()` function
+To <high>create a ggplot2 object</high>, use the `ggplot()` function
 
 `ggplot()` has two main arguments:
 
-- `data` - A data frame (aka tibble)
+- `data` - A data frame (aka `tibble)
 - `mapping` - A call to `aes()`
 
 ]
@@ -327,7 +336,7 @@ To create a ggplot2 object, use the `ggplot()` function
 
 .pull-right45[
 
-```{r, fig.width=4, fig.height=4}
+```{r, fig.width=4, fig.height=3}
 ggplot(data = mpg)
 ```
 
@@ -336,12 +345,12 @@ ggplot(data = mpg)
 
 ---
 
-# `ggplot(mapping = aes())`
+# `ggplot`
 
 
 .pull-left4[
 
-An **aesthetic mapping** is a visual property of the objects in your plot. 
+An <high>aesthetic mapping</high> is a visual property of the objects in your plot. 
 
 Use `aes()` to assign columns in your dataframe to properties in your plot.
 
@@ -372,9 +381,9 @@ ggplot(data = mpg,
 
 .pull-left45[
 
-Once you have specified data with `data` argument, and global aesthetics with `mapping = aes()`, add additional elements to the plot with `+`
+Once you have specified the `data` argument, and global aesthetics with `mapping = aes()`, <high>add additional elements to the plot with `+`</high>.
 
-The `+` sign works just like the pipe `%>%` in dplyr. It just means "and then..."
+The `+` operator works just like the pipe `%>%` in `dplyr`. <high>It just means "and then..."</high>
 
 ```{r, eval = FALSE, fig.width = 5, fig.height = 4, out.width = "90%"}
 ggplot(data = mpg,
@@ -401,12 +410,12 @@ ggplot(data = mpg,
 
 ---
 
-# Geometric objects (geoms)
+# Geometric objects (`geom`)
 
 
 .pull-left4[
 
-A **geom** is a geometric object in a plot that represents data
+A <high>`geom`</high> is a geometric object in a plot that represents data
 
 To add a geom to a plot, just include ` + geom_X()` where X is the type of geom.
 
@@ -440,7 +449,8 @@ ggplot(data = mpg,
 
 .pull-left45[
 
-## geom_boxplot()
+<br>
+## `geom_boxplot`
 <br>
 
 ```{r, out.width= "100%", fig.width = 6, fig.height = 4}
@@ -455,7 +465,8 @@ ggplot(data = mpg,
 
 .pull-right45[
 
-## geom_violin()
+<br>
+## `geom_violin`
 <br>
 
 ```{r, out.width= "100%", fig.width = 6, fig.height = 4}
@@ -474,7 +485,8 @@ ggplot(data = mpg,
 
 .pull-left45[
 
-## geom_bar()
+<br>
+## `geom_bar`
 <br>
 
 ```{r, out.width= "100%", echo = TRUE, fig.width = 6, fig.height = 4}
@@ -489,7 +501,8 @@ ggplot(data = mpg,
 
 .pull-right45[
 
-## geom_count()
+<br>
+## `geom_count`
 <br>
 
 ```{r, out.width= "100%", echo = TRUE, fig.width = 6, fig.height = 4}
@@ -505,11 +518,11 @@ ggplot(data = mpg,
 
 ---
 
-## aes(color)
+# `aes`
 
 .pull-left45[
 
-Color geoms according to a variable using `color`
+`color` geoms according to a variable. 
 
 ```{r, out.width = "100%", fig.width = 6, fig.height = 4, eval = FALSE}
 ggplot(data = mpg,
@@ -520,7 +533,7 @@ ggplot(data = mpg,
 ```
 
 
-### mpg
+<p align="center"> `mpg`</p>
 ```{r, echo = FALSE, eval = TRUE}
 knitr::kable(mpg %>% sample_n(5) %>% select(displ, hwy, class, year), format = "markdown")
 ```
@@ -530,6 +543,7 @@ knitr::kable(mpg %>% sample_n(5) %>% select(displ, hwy, class, year), format = "
 
 .pull-right5[
 
+<br>
 ```{r, out.width = "100%", fig.width = 6, fig.height = 4, echo = FALSE}
 ggplot(data = mpg,
        mapping = aes(x = displ, y = hwy, color = class)) + 
@@ -546,7 +560,7 @@ ggplot(data = mpg,
 
 .pull-left45[
 
-```{r, out.width = "90%", fig.width = 7, echo = FALSE}
+```{r, fig.width = 7, height = 7, echo = F}
 ggplot(data = mpg,
        mapping = aes(x = displ, 
                      y = hwy, 
@@ -560,7 +574,7 @@ ggplot(data = mpg,
 
 .pull-right45[
 
-```{r, echo = FALSE, fig.width = 7}
+```{r, fig.width = 7, height = 7, echo = FALSE}
 # Add a regression line for all classes
 
 ggplot(data = mpg, 
@@ -580,18 +594,18 @@ ggplot(data = mpg,
 
 ---
 
-# `geom_smooth()`
+# `geom_smooth`
 
 .pull-left45[
 
 `geom_smooth()` adds a smoothed (average) line.
 
-Change how the line is created with `method` (e.g.; method = 'lm')
+Change how the line is created with `method` (e.g.; method = 'lm').
 
-Color the line with `col`
+Color the line with `col`.
 
 <br>
-```{r, fig.width = 7, fig.height = 4, eval = F}
+```{r, fig.width = 7, height = 7, eval = F}
 ggplot(data = mpg, 
        mapping = aes(x = displ, y = hwy,
                      col = class)) +
@@ -604,7 +618,7 @@ ggplot(data = mpg,
 .pull-right45[
 
 
-```{r, fig.width = 7, echo = F}
+```{r, fig.width = 7, height = 7, echo = F}
 ggplot(data = mpg, 
        mapping = aes(x = displ, y = hwy,
                      col = class)) +
@@ -616,7 +630,7 @@ ggplot(data = mpg,
 
 ---
 
-# `geom_smooth()`
+# `geom_smooth`
 
 .pull-left45[
 
@@ -627,7 +641,7 @@ Change how the line is created with `method` (e.g.; method = 'lm')
 Color the line with `col`
 
 <br>
-```{r, fig.width = 7, fig.height = 4, eval = F}
+```{r, fig.width = 7, height = 7, eval = F}
 ggplot(data = mpg, 
        mapping = aes(x = displ, y = hwy,
                      col = class)) +
@@ -641,7 +655,7 @@ ggplot(data = mpg,
 .pull-right45[
 
 
-```{r, fig.width = 7, echo = F}
+```{r, fig.width = 7, height = 7, echo = F}
 ggplot(data = mpg, 
        mapping = aes(x = displ, y = hwy, col = class)) +
   geom_point() + 
@@ -657,12 +671,12 @@ ggplot(data = mpg,
 
 .pull-left45[
 
-If you add additional plotting aesthetics, they will <b>override</b> the general plotting aesthetics.
+If you add additional plotting aesthetics, they will <high>override</high> the general plotting aesthetics.
 
 This is what happens, when you don't override...
 
 <br>
-```{r, fig.width = 7, fig.height = 4, eval = F}
+```{r, fig.width = 7, height = 7, eval = F}
 ggplot(data = mpg, 
        mapping = aes(x = displ, y = hwy,
                      col = class)) +
@@ -675,7 +689,7 @@ ggplot(data = mpg,
 .pull-right45[
 
 
-```{r, fig.width = 6, echo = FALSE}
+```{r, fig.width = 7, height = 7, echo = F}
 ggplot(data = mpg, 
        mapping = aes(x = displ, y = hwy, col = class)) +
   geom_point() + 
@@ -691,7 +705,7 @@ ggplot(data = mpg,
 
 .pull-left5[
 
-```{r, out.width = "90%", fig.width = 8, echo = FALSE}
+```{r, fig.width = 7, height = 6, echo = FALSE}
 ggplot(data = mpg, 
        mapping = aes(x = displ, y = hwy, col = class)) +
   geom_point() + 
@@ -704,7 +718,7 @@ ggplot(data = mpg,
 
 .pull-right45[
 
-```{r, echo = FALSE, fig.width = 7}
+```{r, fig.width = 7, height = 7, echo = F}
 # Add a regression line for all classes
 
 ggplot(data = mpg, 
@@ -724,7 +738,7 @@ ggplot(data = mpg,
 
 ---
 
-# Add labels with `labs()`
+# `labs`
 
 .pull-left45[
 
@@ -751,7 +765,7 @@ ggplot(...) +
 
 .pull-right45[
 
-```{r, echo = FALSE,  fig.width = 7, fig.height = 5}
+```{r, echo = FALSE, fig.width = 7, height = 7}
 
 ggplot(data = mpg, 
        mapping = aes(x = displ, y = hwy, 
@@ -774,7 +788,7 @@ ggplot(data = mpg,
 
 .pull-left5[
 
-```{r, out.width = "90%", fig.width = 8, echo = FALSE}
+```{r, fig.width = 7, height = 6, echo = FALSE}
 ggplot(data = mpg, 
        mapping = aes(x = displ, y = hwy, 
                      col = class)) +
@@ -792,7 +806,7 @@ ggplot(data = mpg,
 
 .pull-right45[
 
-```{r, echo = FALSE, fig.width = 7}
+```{r, echo = FALSE, fig.width = 7, height = 7}
 # Add a regression line for all classes
 
 ggplot(data = mpg, 
@@ -812,11 +826,11 @@ ggplot(data = mpg,
 
 ---
 
-# Themes with `theme_XX()`
+# Themes with `theme_XX`
 
 .pull-left45[
 
-A plotting **theme** controls many aspects of its overall look, from the background, to the grid lines, to the label font to the spacing between plot labels and the plotting space.
+A plotting <high>theme</high> controls many aspects of its <high>overall look</high>, from the background, to the grid lines, to the label font to the spacing between plot labels and the plotting space.
 
 Common themes are...
 
@@ -851,11 +865,11 @@ ggplot(data = mpg,
 
 ---
 
-# Themes with `theme_XX()`
+# Themes with `theme_XX`
 
 .pull-left45[
 
-A plotting **theme** controls many aspects of its overall look, from the background, to the grid lines, to the label font to the spacing between plot labels and the plotting space.
+A plotting <high>theme</high> controls many aspects of its <high>overall look</high>, from the background, to the grid lines, to the label font to the spacing between plot labels and the plotting space.
 
 Common themes are...
 
@@ -890,11 +904,11 @@ ggplot(data = mpg,
 
 ---
 
-# Themes with `theme_XX()`
+# Themes with `theme_XX`
 
 .pull-left45[
 
-A plotting **theme** controls many aspects of its overall look, from the background, to the grid lines, to the label font to the spacing between plot labels and the plotting space.
+A plotting <high>theme</high> controls many aspects of its <high>overall look</high>, from the background, to the grid lines, to the label font to the spacing between plot labels and the plotting space.
 
 Common themes are...
 
@@ -949,7 +963,7 @@ ggplot(data = mpg,
 
 ---
 
-# `facet_wrap()`
+# `facet_wrap`
 
 .pull-left4[
 
@@ -983,7 +997,7 @@ ggplot(data = mpg,
 
 ---
 
-# `facet_wrap()`
+# `facet_wrap`
 
 .pull-left4[
 
@@ -1021,7 +1035,6 @@ ggplot(data = mpg,
 
 # Assigning a ggplot to an object
 
-
 .pull-left4[
 
 1) ggplot returns an object of the class "gg".<br>
@@ -1052,7 +1065,6 @@ myplot # Evaluate myplot
 ---
 
 # Assigning a ggplot to an object
-
 
 .pull-left4[
 
@@ -1129,23 +1141,17 @@ ggsave(filename = "myplot.pdf",
 
 ---
 
+
 .pull-left45[
-<br><br><br><br>
-# ggplot2 extensions
 
-ggplot2 has inspired *hundreds* of extension packages that make it even easier to make domain specific plots
+# `ggplot2` extensions
 
-Tip! Before writing complex ggplot2 code for a common task, look for an extension package!
+ggplot2 has inspired <high>hundreds</high> of extension packages that make it even easier to make domain specific plots
 
-[gplot2 Extension Gallaery](http://www.ggplot2-exts.org/gallery/)
+Check out: [`ggplot2` Extension Gallery](http://www.ggplot2-exts.org/gallery/)
 
-
-]
-
-
-.pull-right5[
-
-```{r, fig.height = 4, fig.width = 4, out.width = "70%"}
+<br><br><br>
+```{r, fig.height = 4, fig.width = 4, out.width = "70%", eval = F}
 # Create a survival plot using ggsurvplot
 library(survminer)
 library(survival)
@@ -1159,26 +1165,30 @@ ggsurvplot(fit, data = lung)
 ]
 
 
----
+.pull-right5[
 
-# So much more
+<br><br>
 
-We have only scratched the surface of what you can do with ggplot2
+```{r, fig.height = 4, fig.width = 4, echo = F}
+# Create a survival plot using ggsurvplot
+library(survminer)
+library(survival)
 
-Check these links for more in depth ggplot2 guides...
-
-1) `ggplot2` main page: http://ggplot2.tidyverse.org/index.html
-
-2) Wickham's data visualization guide: http://r4ds.had.co.nz/data-visualisation.html
-
-
-```{r, echo = FALSE, out.width="70%", fig.align = 'center'}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/plotting_books.png")
+fit <- survfit(Surv(time, status) ~ sex, 
+               data = lung)
+ggsurvplot(fit, data = lung)
 ```
 
+]
+
 ---
 
-# Questions?
+
+# Practical
+
+<font size=6><b><a href="https://therbootcamp.github.io/BaselRBootcamp_2018July/_sessions/Plotting/Plotting.html">Link to practical</a>
+
+
 
 
 
