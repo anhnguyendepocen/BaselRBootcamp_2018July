@@ -482,3 +482,11 @@ So far, we have predicted house prices based on many features. Now, see how well
 
 4. Which of your three models is the best at predicting the year a house was built?
 
+# Additional reading
+
+- For more details check out `caret`'s vignette using `vignette("caret")`.
+
+- Also check out [Applied Predictive Modeling](https://www.amazon.com/dp/B005Z29QT4/ref=cm_sw_su_dp) Kuhn & Johnson.
+
+
+

@@ -160,55 +160,84 @@ Anyone can come up with a model of past data (e.g.; stock performance, lottery w
 
 ---
 
-## Optimizing model parameters with cross validation
+# Optimizing model parameters with cross validation
 
-.pull-left45[
+.pull-left5[
 
-Most ML models have two types of parameters, &lt;high&gt;raw parameters&lt;/high&gt; that dictate how an individual model makes predictions, and &lt;high&gt;tuning parameters&lt;/high&gt; that determine how those raw parameters are calculated.
+### Two types of parameters
+
+Most ML models have two types of parameters: 
+
+0 - &lt;high&gt;Raw parameters&lt;/high&gt; ddetermine the models &lt;high&gt;predictions&lt;/high&gt;
+
+1 - &lt;high&gt;Tuning parameters&lt;/high&gt; determine the &lt;high&gt;estimation&lt;/high&gt; of those raw parameters.
+
+&lt;br&gt;
+To determine &lt;high&gt;optimal tuning parameters&lt;/high&gt;, which maximize prediction performance, techniques such as &lt;high&gt;cross validation&lt;/high&gt; are often used.
+
+]
+
+
+.pull-right4[
+&lt;br&gt;
+&lt;u&gt;Example&lt;/u&gt;
 
 |Model| Raw parameters|Tuning parameters|
 |:------|:------|:------|
 |Decision Trees|Nodes, splits, decisions |Minimum number of cases in each node|
 |Regularised regression |Model coefficients | Coefficient penalty term|
 
-To determine 'optimal' tuning parameters, which maximize prediction performance, techniques such as &lt;high&gt;cross validation&lt;/high&gt; are often used.
+]
+
+---
+
+# Optimizing model parameters with cross validation
+
+.pull-left5[
+
+### Cross validation procedure
+
+0 - Select &lt;high&gt;tuning parameters&lt;/high&gt;&lt;br&gt;
+
+1 - Split the training set into `K` &lt;high&gt;folds&lt;/high&gt;&lt;br&gt;
+
+2 - Use `K-1` folds for training, and `1` fold for &lt;high&gt;testing&lt;/high&gt;.&lt;br&gt;
+
+3 - &lt;high&gt;Repeat&lt;/high&gt; `K` times.&lt;br&gt;
+
+4 - &lt;high&gt;Average&lt;/high&gt; the `K` testing performances.&lt;br&gt;
+
 
 ]
 
-.pull-right5[
+.pull-right45[
+&lt;br&gt;
 
-### Cross Validation
+&lt;p align="center"&gt;
+  &lt;img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/crossvalidation.jpg" height="200px"&gt;&lt;/img&gt;
+&lt;/p&gt;
 
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/crossvalidation.jpg" width="80%" style="display: block; margin: auto;" /&gt;
-
-0) Select *tuning parameters*
-
-1) Split the training set into K "folds"
-
-2) Use K - 1 folds for training, and 1 fold for testing.
-
-3) Repeat K times.
-
-4) Average the K testing performances
 
 ]
+
 
 
 ---
 
+# `caret`
+
 .pull-left55[
 
-# Caret
 
 
+`caret` stands for &lt;high&gt;C&lt;/high&gt;lassification &lt;high&gt;A&lt;/high&gt;nd &lt;high&gt;RE&lt;/high&gt;gression &lt;high&gt;T&lt;/high&gt;raining.
 
-Caret stands for &lt;b&gt;C&lt;/b&gt;lassification &lt;b&gt;A&lt;/b&gt;nd &lt;b&gt;RE&lt;/b&gt;gression &lt;b&gt;T&lt;/b&gt;raining.
+`caret` is a &lt;high&gt;wrapper package&lt;/high&gt; that automates much of the the machine learning process.
 
-`caret` is a 'wrapper' packages that automates much of the the machine learning process.
+`caret` provides &lt;high&gt;hundreds of different ML algorithms&lt;/high&gt; by changing &lt;high&gt;one `character` string&lt;/high&gt; to use a different model.
 
-Do very complex machine learning tasks with a few simple functions
+`caret` knows each model's &lt;high&gt;tuning parameters&lt;/high&gt; and chooses the best ones for your data using cross validation (or other method).
 
-Use any of hundreds of different ML algorithms by changing one "string" (not line!) to use a different model
 
 
 ```r
@@ -219,19 +248,16 @@ train(..., method = "rf") # Random forests!
 train(..., method = "ada") # Boosted trees
 ```
 
-Knows each model's tuning parameters and chooses the best ones for your data using cross validation (or other method).
-
 ]
 
 .pull-right4[
+
+&lt;p align="center"&gt;
+
 &lt;br&gt;&lt;br&gt;&lt;br&gt;
-&lt;div class="figure" style="text-align: center"&gt;
-&lt;img src="https://3qeqpr26caki16dnhd19sv6by6v-wpengine.netdna-ssl.com/wp-content/uploads/2014/09/Caret-package-in-R.png" alt="The almighty Caret!" width="90%" /&gt;
-&lt;p class="caption"&gt;The almighty Caret!&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;img src="https://upload.wikimedia.org/wikipedia/commons/1/1c/K-fold_cross_validation_EN.jpg" width="100%" style="display: block; margin: auto;" /&gt;
-
+&lt;img src="https://3qeqpr26caki16dnhd19sv6by6v-wpengine.netdna-ssl.com/wp-content/uploads/2014/09/Caret-package-in-R.png"&gt;&lt;/img&gt;
+&lt;br&gt;`caret`
+&lt;/p&gt;
 
 ]
 
@@ -590,7 +616,7 @@ plot(rpart_train$finalModel)
 text(rpart_train$finalModel)
 ```
 
-&lt;img src="MachineLearningII_files/figure-html/unnamed-chunk-27-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="MachineLearningII_files/figure-html/unnamed-chunk-24-1.png" style="display: block; margin: auto;" /&gt;
 
 
 ]
@@ -651,7 +677,7 @@ varImp(rpart_train)
 plot(varImp(rpart_train))
 ```
 
-![](MachineLearningII_files/figure-html/unnamed-chunk-29-1.png)&lt;!-- --&gt;
+![](MachineLearningII_files/figure-html/unnamed-chunk-26-1.png)&lt;!-- --&gt;
 
 ]
 
@@ -715,7 +741,7 @@ ggplot(data = end,
   geom_smooth(method = "lm")
 ```
 
-&lt;img src="MachineLearningII_files/figure-html/unnamed-chunk-32-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="MachineLearningII_files/figure-html/unnamed-chunk-29-1.png" style="display: block; margin: auto;" /&gt;
 
 
 ]

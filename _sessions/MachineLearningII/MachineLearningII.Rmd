@@ -243,59 +243,86 @@ ggpubr::ggarrange(overfit_gg, fit_gg)
 
 ---
 
-## Optimizing model parameters with cross validation
+# Optimizing model parameters with cross validation
 
-.pull-left45[
+.pull-left5[
 
-Most ML models have two types of parameters, <high>raw parameters</high> that dictate how an individual model makes predictions, and <high>tuning parameters</high> that determine how those raw parameters are calculated.
+### Two types of parameters
+
+Most ML models have two types of parameters: 
+
+0 - <high>Raw parameters</high> ddetermine the models <high>predictions</high>
+
+1 - <high>Tuning parameters</high> determine the <high>estimation</high> of those raw parameters.
+
+<br>
+To determine <high>optimal tuning parameters</high>, which maximize prediction performance, techniques such as <high>cross validation</high> are often used.
+
+]
+
+
+.pull-right4[
+<br>
+<u>Example</u>
 
 |Model| Raw parameters|Tuning parameters|
 |:------|:------|:------|
 |Decision Trees|Nodes, splits, decisions |Minimum number of cases in each node|
 |Regularised regression |Model coefficients | Coefficient penalty term|
 
-To determine 'optimal' tuning parameters, which maximize prediction performance, techniques such as <high>cross validation</high> are often used.
+]
+
+---
+
+# Optimizing model parameters with cross validation
+
+.pull-left5[
+
+### Cross validation procedure
+
+0 - Select <high>tuning parameters</high><br>
+
+1 - Split the training set into `K` <high>folds</high><br>
+
+2 - Use `K-1` folds for training, and `1` fold for <high>testing</high>.<br>
+
+3 - <high>Repeat</high> `K` times.<br>
+
+4 - <high>Average</high> the `K` testing performances.<br>
+
 
 ]
 
-.pull-right5[
+.pull-right45[
+<br>
 
-### Cross Validation
+<p align="center">
+  <img src="https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/crossvalidation.jpg" height="200px"></img>
+</p>
 
-```{r, echo = FALSE, out.width = "80%", fig.align = 'center'}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/Erfurt_2018June/master/_sessions/_image/crossvalidation.jpg")
-```
-
-0) Select *tuning parameters*
-
-1) Split the training set into K "folds"
-
-2) Use K - 1 folds for training, and 1 fold for testing.
-
-3) Repeat K times.
-
-4) Average the K testing performances
 
 ]
+
 
 
 ---
 
-.pull-left55[
+# `caret`
 
-# Caret
+.pull-left55[
 
 ```{r, echo = FALSE, fig.align = 'center', out.width = "30%", eval = FALSE}
 knitr::include_graphics("https://vignette.wikia.nocookie.net/joke-battles/images/2/21/Bugs-Bunny-4.png/revision/latest?cb=20151231234917")
 ```
 
-Caret stands for <b>C</b>lassification <b>A</b>nd <b>RE</b>gression <b>T</b>raining.
+`caret` stands for <high>C</high>lassification <high>A</high>nd <high>RE</high>gression <high>T</high>raining.
 
-`caret` is a 'wrapper' packages that automates much of the the machine learning process.
+`caret` is a <high>wrapper package</high> that automates much of the the machine learning process.
 
-Do very complex machine learning tasks with a few simple functions
+`caret` provides <high>hundreds of different ML algorithms</high> by changing <high>one `character` string</high> to use a different model.
 
-Use any of hundreds of different ML algorithms by changing one "string" (not line!) to use a different model
+`caret` knows each model's <high>tuning parameters</high> and chooses the best ones for your data using cross validation (or other method).
+
 
 ```{r, eval = FALSE}
 library(caret)
@@ -305,28 +332,25 @@ train(..., method = "rf") # Random forests!
 train(..., method = "ada") # Boosted trees
 ```
 
-Knows each model's tuning parameters and chooses the best ones for your data using cross validation (or other method).
-
 ]
 
 .pull-right4[
+
+<p align="center">
+
 <br><br><br>
-```{r, echo = FALSE, fig.align = 'center', out.width = "90%", fig.cap = "The almighty Caret!"}
-knitr::include_graphics("https://3qeqpr26caki16dnhd19sv6by6v-wpengine.netdna-ssl.com/wp-content/uploads/2014/09/Caret-package-in-R.png")
-```
-
-```{r, echo = FALSE, out.width = "100%", fig.align = 'center'}
-knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/1/1c/K-fold_cross_validation_EN.jpg")
-```
-
+<img src="https://3qeqpr26caki16dnhd19sv6by6v-wpengine.netdna-ssl.com/wp-content/uploads/2014/09/Caret-package-in-R.png"></img>
+<br>`caret`
+</p>
 
 ]
 
 
 ---
-.pull-left5[
 
 # Caret
+
+.pull-left5[
 
 ```{r, echo = FALSE, message = FALSE}
 library(caret)
