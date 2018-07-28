@@ -248,7 +248,7 @@ my_mean <- function(x){
 
 .pull-left45[
 
-Functions can take any object as input to arguments. Also functions or expressions can be passed as arguments.
+Functions can take any object as input to arguments. This means also functions or expressions can be passed as arguments.
 
 
 
