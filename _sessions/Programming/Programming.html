@@ -137,11 +137,6 @@ The conditional statements often require you to specify checks (logical expressi
 - to prevent errors and warnings due to the vectorization use `any` and `all`
 
 
-]
-
-.pull-right45[
-
-
 ```r
 # since == is vectorized
 # this yields several logicals
@@ -151,6 +146,11 @@ head(baselers$sex) == "male"
 ```
 ## [1]  TRUE  TRUE FALSE  TRUE  TRUE  TRUE
 ```
+
+]
+
+.pull-right45[
+
 
 ```r
 # any and all summarize these logicals
@@ -169,6 +169,16 @@ all(head(baselers$sex) == "male")
 ## [1] FALSE
 ```
 
+```r
+if (any(head(baselers$sex) == "male")){
+  print("Sample contains at least 1 male")
+}
+```
+
+```
+## [1] "Sample contains at least 1 male"
+```
+
 
 
 ]
@@ -180,7 +190,7 @@ all(head(baselers$sex) == "male")
 
 .pull-left4[
 
-You can define your own functions. This can save a lot of time and space, because by writing your own function you only have to write the whole block of code once.
+Defining your own functions can save a lot of time and space. By writing your own function you only have to write the whole block of code once.
 
 Benefits of writing code in functions:
 - less typing
@@ -212,7 +222,7 @@ function_name &lt;- function(arg1,
 
 .pull-left45[
 
-The last object in a function code is returned to the global environment. If a function call should be terminated in the middle of the code and some value be returned, the `return()` function has to be used.
+Use `return()` to exit a function early, i.e. before the final line of its definition.
 
 
 ]
@@ -243,9 +253,8 @@ my_mean &lt;- function(x){
 
 .pull-left45[
 
-Functions can take any object as input to arguments. Since functions themselves are also objects, this means that also functions can be passed as arguments.
+Functions can take any object as input to arguments. Also functions or expressions can be passed as arguments.
 
-When calling a function you can use objects or expressions as input to an argument.
 
 
 ]
@@ -290,9 +299,9 @@ call_fun(dat = baselers$weight /
 
 When writing functions you can add checks and if they are not met provide your own error messages.
 
-Possible functions are `stop()`, `message()`, `warning()`.
+Possible functions are `stop()`, `warning()`, `message()`.
 
-- With `stop()`, `message()`, and `warning()` you have to use separate `if` statements to test each potential violation. 
+- With `stop()`, `warning()`, and `message()` you have to use separate `if` statements to test each potential violation. 
 
 
 ]
@@ -653,64 +662,6 @@ baselers %&gt;%
 
 ---
 
-# Iteration - `map` Family
-
-
-.pull-left45[
-
-
-The `map` functions are the **purrr** equivalent of the `apply` functions.
-
-There are also `map` functions that iterate over two or more vectors. 
-
-They are named `map2`, and `pmap`.
-
-If the objects in the list are named, pmap will use the name, otherwise the position in the list, to determine which object belongs to which argument.
-
-&lt;img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/purrr_hex.png" width="20%" style="display: block; margin: auto;" /&gt;
-
-]
-
-.pull-right45[
-
-
-
-```r
-x &lt;- baselers[, c("age", "weight")]
-trim &lt;- c(0, 0.2)
-
-map2(x, trim, mean)
-```
-
-```
-## $age
-## [1] 44.61
-## 
-## $weight
-## [1] NA
-```
-
-```r
-na.rm &lt;- c(FALSE, TRUE)
-
-pmap(list(x = x,
-          trim = trim,
-          na.rm = na.rm), mean)
-```
-
-```
-## $age
-## [1] 44.61
-## 
-## $weight
-## [1] 73.17
-```
-
-]
-
-
----
-
 # Summary - What We've Learned
 
 
@@ -721,12 +672,6 @@ pmap(list(x = x,
 This is very helpful to not having to type the same code many times and to keep it more flexible. Remember the DRY (Don't Repeat Yourself) principle, i.e. if you have to write the same block of code more than twice, create a function to do so and iterate over it.
 
 
-
----
-
-# Interactive session
-
-Let's go through some examples together
 
 ---
 
