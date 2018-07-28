@@ -185,8 +185,7 @@ postResample(pred = bas_pred,
 </p>
 
 ---
-# You built this app 
-### ...or you could have if you had more time
+# You built this app <font size=4>(...or you could have if you had more time)</font>
 
 <iframe src="https://econpsychbasel.shinyapps.io/FinalApp/" width="1200" height="450"></iframe>
 
@@ -196,7 +195,7 @@ postResample(pred = bas_pred,
 # Interactive plots with Shiny
 
 <p align="center">
-  <img src=https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/shiny_definition.png?raw=true" height="450px"></img><br>
+  <img src="https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/shiny_definition.png?raw=true" height="450px"></img><br>
   <a href="http://shiny.rstudio.com/https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/shiny-cheatsheet.pdf">RStudio cheat sheet</a>
 </p>
 

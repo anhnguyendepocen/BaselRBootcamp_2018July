@@ -62,7 +62,8 @@ trial_df <-  tibble(
   histamine_start = round(rnorm(n = 300, mean = 50, sd = 15), 2),
   histamine_end = NA
 ) %>% as_tibble() %>%
-  sample_frac(1)
+  sample_frac(1) 
+
 
 trial_df$histamine_end[trial_df$arm == 1] <- trial_df$histamine_start[trial_df$arm == 1] + round(rnorm(sum(trial_df$arm == 1), mean = 3, sd = 5), 2)
 trial_df$histamine_end[trial_df$arm == 2] <- trial_df$histamine_start[trial_df$arm == 2] + round(rnorm(sum(trial_df$arm == 2), mean = -4, sd = 5), 2)
@@ -202,11 +203,13 @@ trial_df <- trial_df %>%
 2. Using the `table()` function, look at the values of the `StudyArm` column in `trial_df`. You'll notice the values are 1, 2, and 3. Using `mutate()` and `case_when()` change these values to the appropriate names of the study arms (look at the variable descriptions to see which is which!)
 
 ```{r}
+table(trial_df$StudyArm)
+
 trial_df <- trial_df %>%
   mutate(StudyArm = case_when(
-    StudyArm == 1 ~ "placebo",
-    StudyArm == 2 ~ "adiclax",
-    StudyArm == 3 ~ "dimarta"
+    StudyArm == "I" ~ "placebo",
+    StudyArm == "II" ~ "adiclax",
+    StudyArm == "III" ~ "dimarta"
   ))
 ```
 

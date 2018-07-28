@@ -41,14 +41,15 @@ layout: true
 
 &lt;u&gt;Base track&lt;/u&gt;&lt;br&gt;
 
-&lt;font size="8"&gt;&lt;hfont&gt;Interactive plotting&lt;/hfont&gt;&lt;/font&gt;&lt;br&gt;
+&lt;font size="8"&gt;&lt;hfont&gt;Programming in R&lt;/hfont&gt;&lt;/font&gt;&lt;br&gt;
 
-Learn how to generate interactive website with shiny to... 
+Learn... 
 
-...&lt;high&gt;produce dynamic graphics and results&lt;/high&gt;.
+...about &lt;high&gt;control-statements&lt;/high&gt;.
 
-...&lt;high&gt;create interactive apps&lt;/high&gt;.
+...about &lt;high&gt;for-loops&lt;/high&gt;.
 
+...&lt;high&gt;functional programming&lt;/high&gt;.
 
 ]
 
@@ -56,13 +57,15 @@ Learn how to generate interactive website with shiny to...
 
 &lt;u&gt;Advanced track&lt;/u&gt;&lt;br&gt;
 
-&lt;font size="8"&gt;&lt;hfont&gt;Natural Language Processing&lt;/hfont&gt;&lt;/font&gt;&lt;br&gt;
+&lt;font size="8"&gt;&lt;hfont&gt;Efficient Code&lt;/hfont&gt;&lt;/font&gt;&lt;br&gt;
 
-Learn about how to work with Text in R to... 
+Learn about how to speed up R using, e.g.,... 
 
-...&lt;high&gt;extract relevant information&lt;/high&gt;.
+...&lt;high&gt;compiling&lt;/high&gt;.
 
-...&lt;high&gt;study its sentiment&lt;/high&gt; execution.
+...&lt;high&gt;parallel code&lt;/high&gt; execution.
+
+...&lt;high&gt;C++&lt;/high&gt;.
 
 ]
     </textarea>
@@ -83,23 +86,12 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   d.head.appendChild(s);
 })();</script>
 
-<script>
-(function() {
-  var i, text, code, codes = document.getElementsByTagName('code');
-  for (i = 0; i < codes.length;) {
-    code = codes[i];
-    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
-      text = code.textContent;
-      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
-          /^\$\$(.|\s)+\$\$$/.test(text) ||
-          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
-        code.outerHTML = code.innerHTML;  // remove <code></code>
-        continue;
-      }
-    }
-    i++;
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
   }
-})();
+});
 </script>
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

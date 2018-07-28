@@ -1128,7 +1128,6 @@ Faceting = Create different plots for different groups
 
 To facet plots, use `facet_wrap()`
 
-
 ```{r, fig.width = 6, fig.height = 4, out.width = "70%", echo = TRUE, eval = F}
 # With faceting
 ggplot(data = mpg, 
