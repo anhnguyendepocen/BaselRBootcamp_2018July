@@ -308,7 +308,6 @@ kable(x = Calories_agg,
 knitr::include_graphics("https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/DynamicReports_CaloriesCategory.jpg?raw=true")
 ```
 
-
 ## G - Add a table of statistical test results
 
 Now let's show the results of a regression analysis predicting the sodium content of an item as a function of its calories.

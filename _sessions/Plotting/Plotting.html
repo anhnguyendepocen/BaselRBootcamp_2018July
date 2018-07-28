@@ -481,11 +481,19 @@ ggplot(data = mpg,
 
 | displ| hwy|class      | year|
 |-----:|---:|:----------|----:|
+<<<<<<< HEAD
 |   6.2|  26|2seater    | 2008|
 |   5.4|  17|suv        | 1999|
 |   1.6|  33|subcompact | 1999|
 |   2.0|  28|subcompact | 2008|
 |   3.0|  26|midsize    | 1999|
+=======
+|   4.0|  20|pickup     | 2008|
+|   2.2|  27|compact    | 1999|
+|   5.2|  17|pickup     | 1999|
+|   4.0|  24|subcompact | 2008|
+|   4.6|  21|subcompact | 1999|
+>>>>>>> c27f4a99084727da7380c82dba27ad76198715ed
 
 
 ]
@@ -682,6 +690,7 @@ ggplot(...) +
 ]
 
 
+
 ---
 
 # Themes with `theme_XX`
@@ -690,13 +699,19 @@ ggplot(...) +
 
 A plotting &lt;high&gt;theme&lt;/high&gt; controls many aspects of its &lt;high&gt;overall look&lt;/high&gt;, from the background, to the grid lines, to the label font to the spacing between plot labels and the plotting space.
 
-Common themes are...
+Themes built into `ggplot2`
 
 `theme_bw()`&lt;br&gt;
 `theme_minimal()`&lt;br&gt;
 `theme_classic()`&lt;br&gt;
 `theme_light()`&lt;br&gt;
-`theme_dark()`
+`theme_void()`
+
+Themes from the `ggthemes` package
+
+`theme_excel()`&lt;br&gt;
+`theme_economist()`&lt;br&gt;
+*And many more!!*
 
 ]
 
@@ -704,7 +719,8 @@ Common themes are...
 
 
 ```r
-ggplot(...) + theme_light()
+ggplot(...) + 
+  theme_gray() # The Default theme
 ```
 
 &lt;img src="Plotting_files/figure-html/unnamed-chunk-41-1.png" style="display: block; margin: auto;" /&gt;
@@ -719,13 +735,21 @@ ggplot(...) + theme_light()
 
 A plotting &lt;high&gt;theme&lt;/high&gt; controls many aspects of its &lt;high&gt;overall look&lt;/high&gt;, from the background, to the grid lines, to the label font to the spacing between plot labels and the plotting space.
 
-Common themes are...
+Themes built into `ggplot2`
 
 `theme_bw()`&lt;br&gt;
 `theme_minimal()`&lt;br&gt;
 `theme_classic()`&lt;br&gt;
 `theme_light()`&lt;br&gt;
-`theme_dark()`
+`theme_void()`
+
+Themes from the `ggthemes` package
+
+`theme_excel()`&lt;br&gt;
+`theme_economist()`&lt;br&gt;
+*And many more!!*
+
+
 
 ]
 
@@ -733,7 +757,8 @@ Common themes are...
 
 
 ```r
-ggplot(...) + theme_dark()
+ggplot(...) + 
+  theme_light()
 ```
 
 &lt;img src="Plotting_files/figure-html/unnamed-chunk-43-1.png" style="display: block; margin: auto;" /&gt;
@@ -748,13 +773,21 @@ ggplot(...) + theme_dark()
 
 A plotting &lt;high&gt;theme&lt;/high&gt; controls many aspects of its &lt;high&gt;overall look&lt;/high&gt;, from the background, to the grid lines, to the label font to the spacing between plot labels and the plotting space.
 
-Common themes are...
+Themes built into `ggplot2`
 
 `theme_bw()`&lt;br&gt;
 `theme_minimal()`&lt;br&gt;
 `theme_classic()`&lt;br&gt;
 `theme_light()`&lt;br&gt;
-`theme_dark()`
+`theme_void()`
+
+Themes from the `ggthemes` package
+
+`theme_excel()`&lt;br&gt;
+`theme_economist()`&lt;br&gt;
+*And many more!!*
+
+
 
 ]
 
@@ -762,13 +795,93 @@ Common themes are...
 
 
 ```r
-ggplot(...) + theme_bw()
+ggplot(...) + 
+  theme_void()
 ```
 
 &lt;img src="Plotting_files/figure-html/unnamed-chunk-45-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
+---
+
+# Themes with `theme_XX`
+
+.pull-left45[
+
+A plotting &lt;high&gt;theme&lt;/high&gt; controls many aspects of its &lt;high&gt;overall look&lt;/high&gt;, from the background, to the grid lines, to the label font to the spacing between plot labels and the plotting space.
+
+Themes built into `ggplot2`
+
+`theme_bw()`&lt;br&gt;
+`theme_minimal()`&lt;br&gt;
+`theme_classic()`&lt;br&gt;
+`theme_light()`&lt;br&gt;
+`theme_void()`
+
+Themes from the `ggthemes` package
+
+`theme_excel()`&lt;br&gt;
+`theme_economist()`&lt;br&gt;
+*And many more!!*
+
+
+
+]
+
+.pull-right45[
+
+
+```r
+library(ggthemes) # Contains many themes!
+
+ggplot(...) + 
+  theme_excel()
+```
+
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-47-1.png" style="display: block; margin: auto;" /&gt;
+
+]
+
+
+---
+
+# Themes with `theme_XX`
+
+.pull-left45[
+
+A plotting &lt;high&gt;theme&lt;/high&gt; controls many aspects of its &lt;high&gt;overall look&lt;/high&gt;, from the background, to the grid lines, to the label font to the spacing between plot labels and the plotting space.
+
+Themes built into `ggplot2`:
+
+`theme_bw()`&lt;br&gt;
+`theme_minimal()`&lt;br&gt;
+`theme_classic()`&lt;br&gt;
+`theme_light()`&lt;br&gt;
+`theme_void()`
+
+Themes from the `ggthemes` package
+
+`theme_excel()`&lt;br&gt;
+`theme_economist()`&lt;br&gt;
+*And many more!!*
+
+
+]
+
+.pull-right45[
+
+
+```r
+library(ggthemes) # Contains many themes!
+
+ggplot(...) + 
+  theme_economist()
+```
+
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-49-1.png" style="display: block; margin: auto;" /&gt;
+
+]
 
 ---
 
@@ -788,8 +901,7 @@ ggplot(data = mpg,
   theme_bw()
 ```
 
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-46-1.png" width="40%" style="display: block; margin: auto;" /&gt;
-
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-50-1.png" width="40%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -802,7 +914,6 @@ Faceting = Create different plots for different groups
 To facet plots, use `facet_wrap()`
 
 
-
 ```r
 # Without faceting
 ggplot(data = mpg, 
@@ -811,12 +922,11 @@ ggplot(data = mpg,
   geom_point()
 ```
 
-
 ]
 
 .pull-right55[
 
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-48-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-52-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -846,7 +956,7 @@ ggplot(data = mpg,
 
 .pull-right55[
 
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-50-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-54-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -885,7 +995,7 @@ class(myplot)
 myplot # Evaluate myplot
 ```
 
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-52-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-56-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -925,7 +1035,7 @@ myplot +
   geom_smooth() # add geom
 ```
 
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-54-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-58-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 
@@ -1006,7 +1116,7 @@ ggsurvplot(fit, data = lung)
 
 &lt;br&gt;&lt;br&gt;
 
-&lt;img src="Plotting_files/figure-html/unnamed-chunk-57-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Plotting_files/figure-html/unnamed-chunk-61-1.png" style="display: block; margin: auto;" /&gt;
 
 ]
 

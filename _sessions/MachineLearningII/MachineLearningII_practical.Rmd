@@ -106,7 +106,7 @@ diamonds <- diamonds %>%
 
 train_v <- createDataPartition(y = diamonds$price, 
                                times = 1,
-                               p = .1)
+                               p = .5)
 
 # Create separate training and test data
 
@@ -128,8 +128,11 @@ ctr <- trainControl(method = "none")
 # ---------------
 
 # Predict price with linear regression
+#    Only using 4 numeric features
+
 diamonds_lm_train <- train(form = price ~ ., 
-                           data = diamonds_train,
+                           data = diamonds_train %>%
+                                      select(carat, depth, table, price),
                            method = "lm",
                            trControl = ctr)
 # ---------------
@@ -146,6 +149,10 @@ varImp(diamonds_lm_train)
 
 # Look at final model object
 diamonds_lm_train$finalModel
+
+# Look at fitting performance!
+postResample(pred = predict(diamonds_lm_train$finalModel, diamonds_train), 
+             obs = diamonds_train$price)
 
 # ---------------
 # Step 4: Predict
@@ -229,7 +236,6 @@ Step 5: Evaluate performance
 
 - Evaluate the model's prediction accuracy. For regression tasks, use `postResample()`, and for classification tasks, use `confusionMatrix()`.
 
-
 ### Tips
 
 If you want to plot the results of multiple models, you can try using the following code template:
@@ -286,12 +292,13 @@ ggplot(model_results,
        caption = "Caret is awesome!",
        x = "True Values",
        y = "Model Predictions")
-  
 ```
 
+### Further Reading
 
+- Max Kuhn, the author of `caret` has a fantastic overview of the package at [http://topepo.github.io/caret/index.html](http://topepo.github.io/caret/index.html). If you like the `caret` package as much as we do, be sure to go through this page in detail.
 
-
+- Max Kuhn is also the co-author of a fantastic book on machine learning called [Applied predictive modelling - http://appliedpredictivemodeling.com/](http://appliedpredictivemodeling.com/).
 
 # Tasks
 
@@ -303,33 +310,41 @@ ggplot(model_results,
 # Done!
 ```
 
-2. Open a new R script and save it as a new file called `ml_practical.R` in the `2_Code` folder. At the top of the script, using comments, write your name and the date. Then, load the all of the packages you'll need for this practical. Here's how the top of your script should look:
+2. Open a new R script and save it as a new file called `ml2_practical.R` in the `2_Code` folder. At the top of the script, using comments, write your name and the date. Then, load the all of the packages you'll need for this practical. Here's how the top of your script should look:
 
 ```{r, eval = FALSE, echo = TRUE}
 ## NAME
 ## DATE
-## Machine Learning Practical
+## Machine Learning 2 Practical
 
 library(XX)     
 library(XX)   
 library(XX)   
 ```
 
-## B - Regression with `house`
+3. Load each of the datasets listed in the `Datasets` section above as new objects using `read_csv()`. Call them `XX_train` and `XX_test`.
 
-In this task, you'll create the best possible model to predict the housing prices of houses in King County Washington. These the training data is stored in `house_train` and the test data is stored in `house_test`. The variable you are trying to predict is `price`!
+## B - Regression task with `house`
 
-1. Follow Steps A through I in the *Modelling Procedure* section above above to create your best decision tree model predicting price. Call the model `rpart_price`
+In this task, you'll create the best possible model to predict the housing prices of houses in King County Washington. The training data is stored in `house_train` and the test data is stored in `house_test`. The variable you are trying to predict is `price`!
+
+1. Follow Steps 1 through 3 in the *Modelling Procedure* section above above to create and explore your best decision tree model predicting `house_train$price` using `method = "rpart"`. Call the model `rpart_price`
 
 2. Do the same with random forests using `method = "rf"`. Call the model `rf_price`
 
 3. Do the same with regularised regression using `method = "glmnet"`. Call the model `glmnet_price`.
 
-4. Which of the three models was the best a predicting price? Were they very different? Is one easier to interpret than the other?
+4. Make sure you have explored each of your models!
 
-5. Go to [http://topepo.github.io/caret/available-models.html](http://topepo.github.io/caret/available-models.html) and find the craziest looking model you can find that works for regression tasks. Then, try it on the price dataset and see how well it works! Does it do much better than the models you already tried?
+5. Follow steps 4 and 5 to see which model did the best in *predicting* `house_test$price`
 
-6. Repeat your analyses, but now train your models using 10 fold cross validation by specifying `trainControl(method = "cv", number = 10, repeats = 1)`. How do the accuracy of the models change? Do they become more accurate when you use 10 fold cross validation compared to when you didn't?
+6. Which of the three models was the best at predicting price in the test data? Were they very different? Is one easier to interpret than the other?
+
+7. Go to [http://topepo.github.io/caret/available-models.html](http://topepo.github.io/caret/available-models.html) and find the craziest looking model you can find that works for regression tasks. Then, try it on the price dataset and see how well it works! Does it do much better than the models you already tried?
+
+8. Repeat your analyses, but now train your models using 10 fold cross validation by specifying `trainControl(method = "cv", number = 10, repeats = 1)`. After you do so, be sure complete the remaining steps to fit the model using `train()` and evaluate its prediction performance.
+
+9. How do the accuracy of the models change when you use 10 fold cross validation? Do they become more accurate when you use 10 fold cross validation compared to when you didn't?
 
 ## C - Classification with `heartdisease`
 
@@ -349,26 +364,26 @@ heartdisease_test <- heartdisease_test %>%
 
 In this task, you'll create the best possible model to predict whether or not a person is having a heart attack. These the training data is stored in `heartdisease_train` and the test data is stored in `housedisease_test`. The variable you are trying to predict is `diagnosis`!
 
-1. Follow Steps A through I above, to create your best decision tree model predicting diagnosis. Call the model `rpart_diagnosis`
+1. Follow Steps 1 through 3 above in the *Modelling Procedure* section above, to create your best decision tree model predicting diagnosis. Call the model `rpart_diagnosis`
 
 2. Do the same with random forests using `method = "rf"`. Call the model `rf_diagnosis`
 
 3. Do the same with nearest neighbors using `method = "knn"`. Call the model `knn_diagnosis`
 
-4. Which of the three models was the best a predicting diagnosis? Were they very different? Is one easier to interpret than the other?
+4. Make sure you have explored each of your models!
 
-5. Go to [http://topepo.github.io/caret/available-models.html](http://topepo.github.io/caret/available-models.html) and find the craziest looking model you can find that works for classification tasks. Then, try it on the heartdisease dataset and see how well it works! Does it do much better than the models you already tried?
+5. Follow steps 4 and 5 to see which model did the best in *predicting* `house_test$price`
 
-6. Repeat your analyses, but now train your models using 10 fold cross validation by specifying `trainControl(method = "cv", number = 10, repeats = 1)`. How do the accuracy of the models change? Do they become more accurate when you use 10 fold cross validation compared to when you didn't?
+6. Which of the three models was the best at predicting diagnosis? Were they very different? Is one easier to interpret than the other?
+
+7. Go to [http://topepo.github.io/caret/available-models.html](http://topepo.github.io/caret/available-models.html) and find the craziest looking model you can find that works for classification tasks. Then, try it on the heartdisease dataset and see how well it works! Does it do much better than the models you already tried?
+
+8. Repeat your analyses, but now train your models using 10 fold cross validation by specifying `trainControl(method = "cv", number = 10, repeats = 1)`. After you do so, be sure complete the remaining steps to fit the model using `train()` and evaluate its prediction performance.
+
+9. How do the accuracy of the models change when you use 10 fold cross validation? Do they become more accurate when you use 10 fold cross validation compared to when you didn't?
 
 ## D - Classification with `attrition`
 
-1. Try creating your best model to predict whether or not an employee will leave his/her job with the `attrition_train` dataset. The variable you want to predict is `Attrition`!
+1. Try creating your best model to predict whether or not an employee will leave his/her job with the `attrition_train` dataset. The variable you want to predict is `Attrition`! Use all of the techniques you have learned so far!
 
-
-### Further Reading
-
-- Max Kuhn, the author of `caret` has a fantastic overview of the package at [http://topepo.github.io/caret/index.html](http://topepo.github.io/caret/index.html). If you like the `caret` package as much as we do, be sure to go through this page in detail.
-
-- Max Kuhn is also the co-author of a fantastic book on machine learning called [Applied predictive modelling - http://appliedpredictivemodeling.com/](http://appliedpredictivemodeling.com/).
  
