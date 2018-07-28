@@ -44,7 +44,7 @@ layout: true
 .pull-left4[
 &lt;br&gt;&lt;br&gt;&lt;br&gt;
 &gt; ### As good as R is for statistics, it's as good if not better for data visualisation
-&gt; ### Nathaniel D. Phllips
+&gt; ### Nathaniel D. Phillips
 ]
 
 .pull-right6[
@@ -481,11 +481,11 @@ ggplot(data = mpg,
 
 | displ| hwy|class      | year|
 |-----:|---:|:----------|----:|
-|   2.7|  24|subcompact | 2008|
-|   5.9|  15|suv        | 1999|
-|   1.8|  29|midsize    | 1999|
-|   3.3|  24|minivan    | 2008|
-|   4.7|  17|suv        | 2008|
+|   6.2|  26|2seater    | 2008|
+|   5.4|  17|suv        | 1999|
+|   1.6|  33|subcompact | 1999|
+|   2.0|  28|subcompact | 2008|
+|   3.0|  26|midsize    | 1999|
 
 
 ]
@@ -1034,23 +1034,12 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   d.head.appendChild(s);
 })();</script>
 
-<script>
-(function() {
-  var i, text, code, codes = document.getElementsByTagName('code');
-  for (i = 0; i < codes.length;) {
-    code = codes[i];
-    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
-      text = code.textContent;
-      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
-          /^\$\$(.|\s)+\$\$$/.test(text) ||
-          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
-        code.outerHTML = code.innerHTML;  // remove <code></code>
-        continue;
-      }
-    }
-    i++;
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
   }
-})();
+});
 </script>
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
