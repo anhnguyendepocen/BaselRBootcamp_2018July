@@ -292,7 +292,6 @@ ggplot(model_results,
        caption = "Caret is awesome!",
        x = "True Values",
        y = "Model Predictions")
-  
 ```
 
 
@@ -338,7 +337,9 @@ In this task, you'll create the best possible model to predict the housing price
 
 7. Go to [http://topepo.github.io/caret/available-models.html](http://topepo.github.io/caret/available-models.html) and find the craziest looking model you can find that works for regression tasks. Then, try it on the price dataset and see how well it works! Does it do much better than the models you already tried?
 
-8. Repeat your analyses, but now train your models using 10 fold cross validation by specifying `trainControl(method = "cv", number = 10, repeats = 1)`. How do the accuracy of the models change? Do they become more accurate when you use 10 fold cross validation compared to when you didn't?
+8. Repeat your analyses, but now train your models using 10 fold cross validation by specifying `trainControl(method = "cv", number = 10, repeats = 1)`. After you do so, be sure complete the remaining steps to fit the model using `train()` and evaluate its prediction performance.
+
+9. How do the accuracy of the models change when you use 10 fold cross validation? Do they become more accurate when you use 10 fold cross validation compared to when you didn't?
 
 ## C - Classification with `heartdisease`
 
@@ -372,7 +373,9 @@ In this task, you'll create the best possible model to predict whether or not a 
 
 7. Go to [http://topepo.github.io/caret/available-models.html](http://topepo.github.io/caret/available-models.html) and find the craziest looking model you can find that works for classification tasks. Then, try it on the heartdisease dataset and see how well it works! Does it do much better than the models you already tried?
 
-8. Repeat your analyses, but now train your models using 10 fold cross validation by specifying `trainControl(method = "cv", number = 10, repeats = 1)`. How do the accuracy of the models change? Do they become more accurate when you use 10 fold cross validation compared to when you didn't?
+8. Repeat your analyses, but now train your models using 10 fold cross validation by specifying `trainControl(method = "cv", number = 10, repeats = 1)`. After you do so, be sure complete the remaining steps to fit the model using `train()` and evaluate its prediction performance.
+
+9. How do the accuracy of the models change when you use 10 fold cross validation? Do they become more accurate when you use 10 fold cross validation compared to when you didn't?
 
 ## D - Classification with `attrition`
 
