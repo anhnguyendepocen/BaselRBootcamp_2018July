@@ -375,10 +375,10 @@ CheckColor <- function(color) {
 }
 ```
 
-4. Write a function called `HigherLowerGame` that takes a number `guess` and compares it a number `thinking`...
+4. Write a function called `higher_lower_game` that takes a number `guess` and compares it a number `thinking`...
 
 ```{r, echo = TRUE, eval = FALSE}
-HigherLowerGame <- function(XX, XX) {
+higher_lower_game <- function(XX, XX) {
   
   if(XX < XX) {return(paste("My number is Higher!"))}
     
@@ -390,7 +390,7 @@ HigherLowerGame <- function(XX, XX) {
 ```
 
 ```{r}
-HigherLowerGame <- function(guess, thinking) {
+higher_lower_game <- function(guess, thinking) {
   
   if(guess < thinking) {return(paste("My number is Higher!"))}
     
@@ -407,9 +407,9 @@ HigherLowerGame <- function(guess, thinking) {
 ```{r}
 thinking <- sample(1:100, size = 1)
 
-HigherLowerGame(81, thinking)
+higher_lower_game(81, thinking)
 
-HigherLowerGame(20, thinking)
+higher_lower_game(20, thinking)
 ```
 
 6. Write your own function named `check_logical` that tests whether a given logical object is `TRUE` or `FALSE`, and returns "Argument is TRUE", and "Argument is FALSE", respectively. 
@@ -505,6 +505,22 @@ Remember that a `for` loop executes a block of code as many times as you specify
 
 1. In for loops you cannot only loop over sequences of numbers, but over any values of a vector, that are then used in the loop. To do this you simply write `for (val in vector){}`, instead of using either `1: length(vector)`, or `seq_along(vector)` (did you see that we used `val` instead of `i` when defining the sequence in the loop. You can enter any name you want there, just make sure to refer to this name in the body of the loop). Loop over the following vector containing variable names of the pirates dataset `c("age", "height", "tattoos", "beard.length")`, and compute the mean of each variable and store the value in a named vector (i.e. each value should be named to identify it, to do this use `names`) called `pirate_means`.
 
+
+```{r, eval=FALSE, echo=TRUE}
+vars <- c("XX", "XX", "XX", "XX")
+
+pirate_means <- vector("double", length(XXX))
+names(pirate_means) <- vars
+
+for (nms in vars){
+  
+  pirate_means[XXX] <- mean(pirates[[XXX]])
+  
+}
+
+pirate_means
+```
+
 ```{r}
 vars <- c("age", "height", "tattoos", "beard.length")
 
@@ -513,7 +529,7 @@ names(pirate_means) <- vars
 
 for (nms in vars){
   
-  pirate_means[nms] <- mean(pirates[, nms])
+  pirate_means[nms] <- mean(pirates[[nms]])
   
 }
 
@@ -531,6 +547,42 @@ for (v in vars){
 ```
 
 3. You want to check whether the college a pirate went to, is related to the number of groggs a pirate drinks a day on average. To get rid of the potentially influential factors of age, sex, and weight, you want to match the two subsamples of 100 pirates each, such that you have a maximum difference in the number of females between the two groups of 12, a maximum mean age difference of 10 years, a maximum difference in the standard deviation of age of 8 years, a maximum mean weight difference of 8 kilograms, and a maximum difference in the standard deviation of weight of 7 kilograms. Use a `while` loop where you take a subsample of 100 pirates from each college, and use the above parameters of this sample for the check. Note: don't bother about doing the analysis afterwards, the exercise is just about the looping part. Also the difference values for the check are arbitrary. If it takes too long for the loop to run just use larger values, for the exercise the precision doesn't have to be high.
+
+```{r, eval=FALSE, echo=TRUE}
+
+# prepare variable such that at least one iteration takes place
+sex_diff <- Inf
+age_diff_mean <- Inf
+age_diff_sd <- Inf
+weight_diff_mean <- Inf
+weight_diff_sd <- Inf
+
+
+while (XX > XX || XX > XX || v > XX ||
+       XX > XX || XX > XX){
+  
+  CCCC_pirates <- pirates %>%
+                    filter(college == "XXX") %>%
+                    sample_n(XXX, replace = FALSE)
+  
+  JSSFP_pirates <- pirates %>%
+                    filter(college == "XXX") %>%
+                    sample_n(XXX, replace = FALSE)
+  
+  sex_diff <- abs(sum(CCCC_pirates$sex == "XXX") -
+                    sum(JSSFP_pirates$sex == "XXX"))
+  
+  age_diff_mean <- abs(mean(XXX) - mean(XXX))
+  age_diff_sd <- abs(sd(XXX) - sd(XXX))
+  
+  weight_diff_mean <- abs(mean(XXX) - mean(XXX))
+  weight_diff_sd <- abs(sd(XXX) - sd(XXX))
+}
+
+
+# Here you would proceed with the analysis
+```
+
 
 ```{r}
 
@@ -568,9 +620,21 @@ while (sex_diff > 12 || age_diff_mean > 10 || age_diff_sd > 8 ||
 
 **`apply` and `map` functions**
 
-The `apply` and `map` function families are quite similar. The `map` functions from the `purrr` package were introduced as a more consistent and less ambiguous alternative to the `apply` functions. Both function families let you iterate over objects and call functions on the subsets in each iteration. So basically you can use these functions instead of loops. In general, the basic structure is that you first specify the object over which you want to iterate, then the function to call in each iteration and then additional arguments that function might take. Depending on which of the functions you use, there will be additional arguments to specify.If you don't remember how to specify these functions, revisit the examples in the beginning of this practical.
+The `apply` and `map` function families are quite similar. The `map` functions from the `purrr` package were introduced as a more consistent and less ambiguous alternative to the `apply` functions. Both function families let you iterate over objects and call functions on the subsets in each iteration. So basically you can use these functions instead of loops. In general, the basic structure is that you first specify the object over which you want to iterate, then the function to call in each iteration and then additional arguments that function might take. Depending on which of the functions you use, there will be additional arguments to specify.
 
 4. Remember the `for` loop you've used in task D2, to run the `abs_diff` function several times? Rewrite this by replacing the `for` loop once with `sapply` and once with a `map` function (figure out which `map` function would fit best here).
+
+```{r eval=FALSE, echo=TRUE}
+
+
+sapply(pirates[[c("XX", "XX", "XX")]], XXX, cat_vec = pirates$sex,
+       sep_list = list("male", "female"))
+map_dbl(pirates[[c("XX", "XX", "XX")]], XXX, cat_vec =pirates$sex,
+       sep_list = list("male", "female"))
+
+
+```
+
 
 ```{r}
 
@@ -615,10 +679,18 @@ smpls
 
 7. Now use `map` to plot each of the samples drawn. Note: use `par(mfrow = c(1, 3))` to draw three plots in a line in the same canvas (i.e., the 1 determines the number of rows of plots and the 3 determines the number of columns of plots. This way you can create multiple-plot panels).
 
+
+```{r eval = FALSE, echo = TRUE}
+
+par(mfrow = c(1, 3))
+map(XX, plot, type = "b", ylab = "XX") # uses the base plot() function
+
+```
+
 ```{r}
 
 par(mfrow = c(1, 3))
-map(smpls, plot, type = "b", ylab = "Random Sample")
+map(smpls, plot, type = "b", ylab = "Random Sample") #uses the base plot() function
 
 ```
 
