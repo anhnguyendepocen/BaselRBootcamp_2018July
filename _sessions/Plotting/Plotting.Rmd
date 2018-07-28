@@ -57,7 +57,7 @@ library(ggthemes)
 .pull-left4[
 <br><br><br>
 > ### As good as R is for statistics, it's as good if not better for data visualisation
-> ### Nathaniel D. Phllips
+> ### Nathaniel D. Phillips
 ]
 
 .pull-right6[
