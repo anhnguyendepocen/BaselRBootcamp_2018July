@@ -310,12 +310,12 @@ ggplot(model_results,
 # Done!
 ```
 
-2. Open a new R script and save it as a new file called `ml_practical.R` in the `2_Code` folder. At the top of the script, using comments, write your name and the date. Then, load the all of the packages you'll need for this practical. Here's how the top of your script should look:
+2. Open a new R script and save it as a new file called `ml2_practical.R` in the `2_Code` folder. At the top of the script, using comments, write your name and the date. Then, load the all of the packages you'll need for this practical. Here's how the top of your script should look:
 
 ```{r, eval = FALSE, echo = TRUE}
 ## NAME
 ## DATE
-## Machine Learning Practical
+## Machine Learning 2 Practical
 
 library(XX)     
 library(XX)   

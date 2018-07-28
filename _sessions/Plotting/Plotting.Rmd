@@ -50,6 +50,7 @@ knitr::opts_chunk$set(comment=NA, fig.width=6, fig.height=6, echo = TRUE, eval =
                       message = FALSE, warning = FALSE, fig.align = 'center', dpi = 200)
 library(tidyverse)
 library(baselers)
+library(ggthemes)
 ```
 
 
@@ -824,6 +825,7 @@ ggplot(data = mpg,
 ]
 
 
+
 ---
 
 # Themes with `theme_XX`
@@ -832,20 +834,75 @@ ggplot(data = mpg,
 
 A plotting <high>theme</high> controls many aspects of its <high>overall look</high>, from the background, to the grid lines, to the label font to the spacing between plot labels and the plotting space.
 
-Common themes are...
+Themes built into `ggplot2`
 
 `theme_bw()`<br>
 `theme_minimal()`<br>
 `theme_classic()`<br>
 `theme_light()`<br>
-`theme_dark()`
+`theme_void()`
+
+Themes from the `ggthemes` package
+
+`theme_excel()`<br>
+`theme_economist()`<br>
+*And many more!!*
 
 ]
 
 .pull-right45[
 
 ```{r, eval = F}
-ggplot(...) + theme_light()
+ggplot(...) + 
+  theme_gray() # The Default theme
+```
+
+```{r, fig.width = 8, echo = FALSE}
+ggplot(data = mpg, 
+       mapping = aes(x = displ, y = hwy, 
+                     col = class)) +
+  geom_point() + 
+  geom_smooth(col = "blue", method = "lm") +
+  labs(x = "Engine Displ...",
+       y = "Highway miles...",
+       title = "MPG data",
+       subtitle = "Cars with ...",
+       caption = "Source...") + theme_gray()
+```
+
+]
+
+---
+
+# Themes with `theme_XX`
+
+.pull-left45[
+
+A plotting <high>theme</high> controls many aspects of its <high>overall look</high>, from the background, to the grid lines, to the label font to the spacing between plot labels and the plotting space.
+
+Themes built into `ggplot2`
+
+`theme_bw()`<br>
+`theme_minimal()`<br>
+`theme_classic()`<br>
+`theme_light()`<br>
+`theme_void()`
+
+Themes from the `ggthemes` package
+
+`theme_excel()`<br>
+`theme_economist()`<br>
+*And many more!!*
+
+
+
+]
+
+.pull-right45[
+
+```{r, eval = F}
+ggplot(...) + 
+  theme_light()
 ```
 
 ```{r, fig.width = 8, echo = FALSE}
@@ -871,20 +928,29 @@ ggplot(data = mpg,
 
 A plotting <high>theme</high> controls many aspects of its <high>overall look</high>, from the background, to the grid lines, to the label font to the spacing between plot labels and the plotting space.
 
-Common themes are...
+Themes built into `ggplot2`
 
 `theme_bw()`<br>
 `theme_minimal()`<br>
 `theme_classic()`<br>
 `theme_light()`<br>
-`theme_dark()`
+`theme_void()`
+
+Themes from the `ggthemes` package
+
+`theme_excel()`<br>
+`theme_economist()`<br>
+*And many more!!*
+
+
 
 ]
 
 .pull-right45[
 
 ```{r, eval = F}
-ggplot(...) + theme_dark()
+ggplot(...) + 
+  theme_void()
 ```
 
 ```{r, fig.width = 8, echo = FALSE}
@@ -897,7 +963,7 @@ ggplot(data = mpg,
        y = "Highway miles...",
        title = "MPG data",
        subtitle = "Cars with ...",
-       caption = "Source...") + theme_dark()
+       caption = "Source...") + theme_void()
 ```
 
 ]
@@ -910,20 +976,31 @@ ggplot(data = mpg,
 
 A plotting <high>theme</high> controls many aspects of its <high>overall look</high>, from the background, to the grid lines, to the label font to the spacing between plot labels and the plotting space.
 
-Common themes are...
+Themes built into `ggplot2`
 
 `theme_bw()`<br>
 `theme_minimal()`<br>
 `theme_classic()`<br>
 `theme_light()`<br>
-`theme_dark()`
+`theme_void()`
+
+Themes from the `ggthemes` package
+
+`theme_excel()`<br>
+`theme_economist()`<br>
+*And many more!!*
+
+
 
 ]
 
 .pull-right45[
 
 ```{r, eval = F}
-ggplot(...) + theme_bw()
+library(ggthemes) # Contains many themes!
+
+ggplot(...) + 
+  theme_excel()
 ```
 
 ```{r, fig.width = 8, echo = FALSE}
@@ -936,11 +1013,60 @@ ggplot(data = mpg,
        y = "Highway miles...",
        title = "MPG data",
        subtitle = "Cars with ...",
-       caption = "Source...") + theme_bw()
+       caption = "Source...") + theme_excel()
 ```
 
 ]
 
+
+---
+
+# Themes with `theme_XX`
+
+.pull-left45[
+
+A plotting <high>theme</high> controls many aspects of its <high>overall look</high>, from the background, to the grid lines, to the label font to the spacing between plot labels and the plotting space.
+
+Themes built into `ggplot2`:
+
+`theme_bw()`<br>
+`theme_minimal()`<br>
+`theme_classic()`<br>
+`theme_light()`<br>
+`theme_void()`
+
+Themes from the `ggthemes` package
+
+`theme_excel()`<br>
+`theme_economist()`<br>
+*And many more!!*
+
+
+]
+
+.pull-right45[
+
+```{r, eval = F}
+library(ggthemes) # Contains many themes!
+
+ggplot(...) + 
+  theme_economist()
+```
+
+```{r, fig.width = 8, echo = FALSE}
+ggplot(data = mpg, 
+       mapping = aes(x = displ, y = hwy, 
+                     col = class)) +
+  geom_point() + 
+  geom_smooth(col = "blue", method = "lm") +
+  labs(x = "Engine Displ...",
+       y = "Highway miles...",
+       title = "MPG data",
+       subtitle = "Cars with ...",
+       caption = "Source...") + theme_economist()
+```
+
+]
 
 ---
 
