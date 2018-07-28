@@ -106,7 +106,7 @@ diamonds <- diamonds %>%
 
 train_v <- createDataPartition(y = diamonds$price, 
                                times = 1,
-                               p = .1)
+                               p = .5)
 
 # Create separate training and test data
 
@@ -128,8 +128,11 @@ ctr <- trainControl(method = "none")
 # ---------------
 
 # Predict price with linear regression
+#    Only using 4 numeric features
+
 diamonds_lm_train <- train(form = price ~ ., 
-                           data = diamonds_train,
+                           data = diamonds_train %>%
+                                      select(carat, depth, table, price),
                            method = "lm",
                            trControl = ctr)
 # ---------------
@@ -146,6 +149,10 @@ varImp(diamonds_lm_train)
 
 # Look at final model object
 diamonds_lm_train$finalModel
+
+# Look at fitting performance!
+postResample(pred = predict(diamonds_lm_train$finalModel, diamonds_train), 
+             obs = diamonds_train$price)
 
 # ---------------
 # Step 4: Predict
@@ -290,9 +297,6 @@ ggplot(model_results,
 ```
 
 
-
-
-
 # Tasks
 
 ## A - Setup
@@ -315,17 +319,19 @@ library(XX)
 library(XX)   
 ```
 
-## B - Regression with `house`
+## B - Regression task with `house`
 
-In this task, you'll create the best possible model to predict the housing prices of houses in King County Washington. These the training data is stored in `house_train` and the test data is stored in `house_test`. The variable you are trying to predict is `price`!
+In this task, you'll create the best possible model to predict the housing prices of houses in King County Washington. The training data is stored in `house_train` and the test data is stored in `house_test`. The variable you are trying to predict is `price`!
 
-1. Follow Steps A through I in the *Modelling Procedure* section above above to create your best decision tree model predicting price. Call the model `rpart_price`
+1. Follow Steps 1 through 3 in the *Modelling Procedure* section above above to create your best decision tree model predicting `house_train$price`. Call the model `rpart_price`
 
 2. Do the same with random forests using `method = "rf"`. Call the model `rf_price`
 
 3. Do the same with regularised regression using `method = "glmnet"`. Call the model `glmnet_price`.
 
-4. Which of the three models was the best a predicting price? Were they very different? Is one easier to interpret than the other?
+4. Follow steps 4 and 5 to see which model did the best in *predicting* `house_test$price`
+
+4. Which of the three models was the best at predicting price? Were they very different? Is one easier to interpret than the other?
 
 5. Go to [http://topepo.github.io/caret/available-models.html](http://topepo.github.io/caret/available-models.html) and find the craziest looking model you can find that works for regression tasks. Then, try it on the price dataset and see how well it works! Does it do much better than the models you already tried?
 
