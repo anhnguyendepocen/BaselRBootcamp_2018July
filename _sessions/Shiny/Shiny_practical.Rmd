@@ -97,7 +97,7 @@ knitr::include_graphics("../_image/newapp_e_ss.png")
 ```
 
 
-### B - Staring with a new template
+### B - Starting with a new template
 
 1. We have a new app template we'd like you to use. You can find it at this link: [Shiny Template - app.R](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/Shiny/ShinyTemplate/app.R). Open this link and copy *all* of the code it contains. Then, go back to your `app.R` file and delete *all* of the content in the file. After, paste all of the code you just copied.
 
