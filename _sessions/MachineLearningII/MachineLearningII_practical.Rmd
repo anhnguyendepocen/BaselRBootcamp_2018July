@@ -294,6 +294,11 @@ ggplot(model_results,
        y = "Model Predictions")
 ```
 
+### Further Reading
+
+- Max Kuhn, the author of `caret` has a fantastic overview of the package at [http://topepo.github.io/caret/index.html](http://topepo.github.io/caret/index.html). If you like the `caret` package as much as we do, be sure to go through this page in detail.
+
+- Max Kuhn is also the co-author of a fantastic book on machine learning called [Applied predictive modelling - http://appliedpredictivemodeling.com/](http://appliedpredictivemodeling.com/).
 
 # Tasks
 
@@ -381,9 +386,4 @@ In this task, you'll create the best possible model to predict whether or not a 
 
 1. Try creating your best model to predict whether or not an employee will leave his/her job with the `attrition_train` dataset. The variable you want to predict is `Attrition`! Use all of the techniques you have learned so far!
 
-### Further Reading
-
-- Max Kuhn, the author of `caret` has a fantastic overview of the package at [http://topepo.github.io/caret/index.html](http://topepo.github.io/caret/index.html). If you like the `caret` package as much as we do, be sure to go through this page in detail.
-
-- Max Kuhn is also the co-author of a fantastic book on machine learning called [Applied predictive modelling - http://appliedpredictivemodeling.com/](http://appliedpredictivemodeling.com/).
  
