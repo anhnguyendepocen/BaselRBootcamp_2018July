@@ -131,10 +131,12 @@ if (this) {
 
 .pull-left45[
 
-The conditional statements often require you to specify checks (logical expressions) which have to evaluate to `TRUE` to execute the following block of code. Note that:
+Conditional statements usually require you to specify **logical expressions**. If they evaluate to `TRUE` the code in the curly brackets is exected.
+
+Note that:
 
 - `&gt;`, `&lt;`, `==`, `&gt;=`, and `&lt;=` are vectorized
-- to prevent errors and warnings due to the vectorization use `any` and `all`
+- to prevent errors and warnings due to the vectorization use `any()` and `all()`
 
 
 ```r
@@ -190,7 +192,10 @@ if (any(head(baselers$sex) == "male")){
 
 .pull-left4[
 
-Defining your own functions can save a lot of time and space. By writing your own function you only have to write the whole block of code once.
+You can define your own functions in R. You only have to specify:
+- a function name
+- arguments (and their defaults)
+- the function body
 
 Benefits of writing code in functions:
 - less typing
@@ -297,11 +302,11 @@ call_fun(dat = baselers$weight /
 
 .pull-left45[
 
-When writing functions you can add checks and if they are not met provide your own error messages.
+You can define your own errors, warnings or messages.
 
-Possible functions are `stop()`, `warning()`, `message()`.
+To do this use `stop()`, `warning()`, `message()`.
 
-- With `stop()`, `warning()`, and `message()` you have to use separate `if` statements to test each potential violation. 
+- With `stop()`, `warning()`, and `message()` you have to use separate `if` statements if you want to only use them in specific conditions. 
 
 
 ]
@@ -389,7 +394,7 @@ show_stats(x = baselers$sex)
 
 .pull-left35[
 
-A for loop lets you **repeat the execution of a block of code** as many times as you wish. It also allows you to loop through positions.
+A `for` loop lets you **repeat the execution of a block of code** as many times as you wish. It also allows you to loop through positions.
 
 
 
