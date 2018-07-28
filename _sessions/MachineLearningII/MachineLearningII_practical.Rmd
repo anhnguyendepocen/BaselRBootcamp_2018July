@@ -318,6 +318,8 @@ library(XX)
 library(XX)   
 ```
 
+3. Load each of the datasets listed in the `Datasets` section above as new objects using `read_csv()`. Call them `XX_train` and `XX_test`.
+
 ## B - Regression task with `house`
 
 In this task, you'll create the best possible model to predict the housing prices of houses in King County Washington. The training data is stored in `house_train` and the test data is stored in `house_test`. The variable you are trying to predict is `price`!
