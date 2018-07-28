@@ -111,7 +111,7 @@ knitr::include_graphics("https://github.com/therbootcamp/therbootcamp.github.io/
 
 ### C - Add a subtitle
 
-1. Now it's time to add a new widget to the user interface! After the existing `textInput(inputID = "Title, ...)` code, add a singe comma (like you see below). Then, just below that in the section where you see `# Add subtitle`, add the following code:
+1. Now it's time to add a new widget to the user interface! After the existing `textInput(inputID = "Title, ...)` code, add a single comma (like you see below). Then, just below that in the section where you see `# Add subtitle`, add the following code:
 
 ```{r, echo = TRUE, eval = FALSE}
 
