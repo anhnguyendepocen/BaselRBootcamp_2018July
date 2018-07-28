@@ -137,11 +137,19 @@ if (this) {
 
 .pull-left45[
 
-The conditional statements often require you to specify checks (logical expressions) which have to evaluate to `TRUE` to execute the following block of code. Note that:
+Conditional statements usually require you to specify **logical expressions**. If they evaluate to `TRUE` the code in the curly brackets is exected.
+
+Note that:
 
 - `>`, `<`, `==`, `>=`, and `<=` are vectorized
-- to prevent errors and warnings due to the vectorization use `any` and `all`
+- to prevent errors and warnings due to the vectorization use `any()` and `all()`
 
+```{r, eval=TRUE}
+
+# since == is vectorized
+# this yields several logicals
+head(baselers$sex) == "male"
+```
 
 ]
 
@@ -149,14 +157,14 @@ The conditional statements often require you to specify checks (logical expressi
 
 ```{r, eval=TRUE}
 
-# since == is vectorized
-# this yields several logicals
-head(baselers$sex) == "male"
-
 # any and all summarize these logicals
 any(head(baselers$sex) == "male")
 
 all(head(baselers$sex) == "male")
+
+if (any(head(baselers$sex) == "male")){
+  print("Sample contains at least 1 male")
+}
 
 
 ```
@@ -172,7 +180,10 @@ all(head(baselers$sex) == "male")
 
 .pull-left4[
 
-You can define your own functions. This can save a lot of time and space, because by writing your own function you only have to write the whole block of code once.
+You can define your own functions in R. You only have to specify:
+- a function name
+- arguments (and their defaults)
+- the function body
 
 Benefits of writing code in functions:
 - less typing
@@ -206,7 +217,7 @@ function_name <- function(arg1,
 
 .pull-left45[
 
-The last object in a function code is returned to the global environment. If a function call should be terminated in the middle of the code and some value be returned, the `return()` function has to be used.
+Use `return()` to exit a function early, i.e. before the final line of its definition.
 
 
 ]
@@ -237,9 +248,8 @@ my_mean <- function(x){
 
 .pull-left45[
 
-Functions can take any object as input to arguments. Since functions themselves are also objects, this means that also functions can be passed as arguments.
+Functions can take any object as input to arguments. This means also functions or expressions can be passed as arguments.
 
-When calling a function you can use objects or expressions as input to an argument.
 
 
 ]
@@ -274,11 +284,11 @@ call_fun(dat = baselers$weight /
 
 .pull-left45[
 
-When writing functions you can add checks and if they are not met provide your own error messages.
+You can define your own errors, warnings or messages.
 
-Possible functions are `stop()`, `message()`, `warning()`.
+To do this use `stop()`, `warning()`, `message()`.
 
-- With `stop()`, `message()`, and `warning()` you have to use separate `if` statements to test each potential violation. 
+- With `stop()`, `warning()`, and `message()` you have to use separate `if` statements if you want to only use them in specific conditions. 
 
 
 ]
@@ -360,7 +370,7 @@ show_stats(x = baselers$sex)
 
 .pull-left35[
 
-A for loop lets you **repeat the execution of a block of code** as many times as you wish. It also allows you to loop through positions.
+A `for` loop lets you **repeat the execution of a block of code** as many times as you wish. It also allows you to loop through positions.
 
 
 
@@ -598,47 +608,6 @@ baselers %>%
 
 ---
 
-# Iteration - `map` Family
-
-
-.pull-left45[
-
-
-The `map` functions are the **purrr** equivalent of the `apply` functions.
-
-There are also `map` functions that iterate over two or more vectors. 
-
-They are named `map2`, and `pmap`.
-
-If the objects in the list are named, pmap will use the name, otherwise the position in the list, to determine which object belongs to which argument.
-
-```{r, echo = FALSE, out.width = "20%", fig.align = 'center'}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/purrr_hex.png")
-```
-
-]
-
-.pull-right45[
-
-
-```{r}
-x <- baselers[, c("age", "weight")]
-trim <- c(0, 0.2)
-
-map2(x, trim, mean)
-
-na.rm <- c(FALSE, TRUE)
-
-pmap(list(x = x,
-          trim = trim,
-          na.rm = na.rm), mean)
-```
-
-]
-
-
----
-
 # Summary - What We've Learned
 
 
@@ -649,12 +618,6 @@ pmap(list(x = x,
 This is very helpful to not having to type the same code many times and to keep it more flexible. Remember the DRY (Don't Repeat Yourself) principle, i.e. if you have to write the same block of code more than twice, create a function to do so and iterate over it.
 
 
-
----
-
-# Interactive session
-
-Let's go through some examples together
 
 ---
 

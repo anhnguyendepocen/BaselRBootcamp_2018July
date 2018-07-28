@@ -97,7 +97,7 @@ knitr::include_graphics("../_image/newapp_e_ss.png")
 ```
 
 
-### B - Staring with a new template
+### B - Starting with a new template
 
 1. We have a new app template we'd like you to use. You can find it at this link: [Shiny Template - app.R](https://raw.githubusercontent.com/therbootcamp/BaselRBootcamp_2018July/master/_sessions/Shiny/ShinyTemplate/app.R). Open this link and copy *all* of the code it contains. Then, go back to your `app.R` file and delete *all* of the content in the file. After, paste all of the code you just copied.
 
@@ -111,7 +111,7 @@ knitr::include_graphics("https://github.com/therbootcamp/therbootcamp.github.io/
 
 ### C - Add a subtitle
 
-1. Now it's time to add a new widget to the user interface! After the existing `textInput(inputID = "Title, ...)` code, add a singe comma (like you see below). Then, just below that in the section where you see `# Add subtitle`, add the following code:
+1. Now it's time to add a new widget to the user interface! After the existing `textInput(inputID = "Title, ...)` code, add a single comma (like you see below). Then, just below that in the section where you see `# Add subtitle`, add the following code:
 
 ```{r, echo = TRUE, eval = FALSE}
 
@@ -229,7 +229,7 @@ p <- ggplot(data = data,
 # Add alpha sliderInput to user interface
 
 sliderInput(inputId = "alpha",
-            lable = "alpha",
+            label = "alpha",
             min = 0,
             max = 1,
             value = 1)
@@ -317,7 +317,7 @@ output$downloadPlot <- downloadHandler(
 
 1. Now it's time to add our nice HTML table to your `Data` tab. Replace the current value `tabPanel("Data")` with the following:
 
-```{r, eval = FALSE, echo = FALSE}
+```{r, eval = FALSE, echo = TRUE}
 # Table tab
 tabPanel("Data", br(), dataTableOutput("table"))   # Add this!!!
 ```
