@@ -435,7 +435,7 @@ check_logical(all(pirates$height > 1.6))
 8. One important principle when programming is the *Don't Repeat Yourself* (DRY) principle. That is, if you have written a block of code several times, with only slight changes in it, it is time to write a function for this. For example:
 
 
-```{r, eval = TRUE, echo = TRUE}
+```{r, eval = FALSE, echo = TRUE}
 # Compute the absolute difference between means of a variable
 # separated by another variable
 
