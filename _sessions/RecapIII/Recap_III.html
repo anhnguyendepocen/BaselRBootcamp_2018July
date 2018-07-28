@@ -184,8 +184,7 @@ postResample(pred = bas_pred,
 &lt;/p&gt;
 
 ---
-# You built this app 
-### ...or you could have if you had more time
+# You built this app &lt;font size=4&gt;(...or you could have if you had more time)&lt;/font&gt;
 
 &lt;iframe src="https://econpsychbasel.shinyapps.io/FinalApp/" width="1200" height="450"&gt;&lt;/iframe&gt;
 
@@ -195,7 +194,7 @@ postResample(pred = bas_pred,
 # Interactive plots with Shiny
 
 &lt;p align="center"&gt;
-  &lt;img src=https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/shiny_definition.png?raw=true" height="450px"&gt;&lt;/img&gt;&lt;br&gt;
+  &lt;img src="https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/shiny_definition.png?raw=true" height="450px"&gt;&lt;/img&gt;&lt;br&gt;
   &lt;a href="http://shiny.rstudio.com/https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/shiny-cheatsheet.pdf"&gt;RStudio cheat sheet&lt;/a&gt;
 &lt;/p&gt;
 
@@ -297,12 +296,23 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   d.head.appendChild(s);
 })();</script>
 
-<script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  tex2jax: {
-    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
   }
-});
+})();
 </script>
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

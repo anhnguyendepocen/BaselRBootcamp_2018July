@@ -20,7 +20,7 @@ layout: true
 <a href="https://therbootcamp.github.io/"><font color="#7E7E7E">BaselRBootcamp, July 2018</font></a>
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
 &emsp;&emsp;&emsp;&emsp;&emsp;
 <a href="https://therbootcamp.github.io/"><font color="#7E7E7E">www.therbootcamp.com</font></a>
 </span></div> 
@@ -50,42 +50,40 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 ## This is Shiny
 
 
-<iframe src="https://shiny.rstudio.com/gallery/movie-explorer.html" width="1200" height="7500"></iframe>
+<iframe src="https://shiny.rstudio.com/gallery/movie-explorer.html" width="1200" height="500"></iframe>
 
 
 ---
 
-## What is Shiny?
+# What is Shiny?
 
-```{r, echo = FALSE, fig.align = 'center', fig.cap = '<a href=http://shiny.rstudio.com/https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/shiny-cheatsheet.pdf>R Studio</a>', out.width = "90%"}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/shiny_definition.png")
-```
+<p align="center">
+  <img src="https://github.com/therbootcamp/therbootcamp.github.io/blob/master/_sessions/_image/shiny_definition.png?raw=true" height="450px"></img><br>
+  <a href="http://shiny.rstudio.com/https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/shiny-cheatsheet.pdf">RStudio cheat sheet</a>
+</p>
 
 
 ---
 
-## What does that mean?
+# What does that mean?
 
-.pull-left45[
+.pull-left4[
 
-Create interactive websites to explore, analyse, and visualize data all within R Studio!
+<high>Create interactive websites</high> to explore, analyse, and visualize data all within R Studio!
 
-No need to learn HTML, CSS, Javascript
+No need to learn `HTML`, `CSS`, `Javascript`!
 
-<br><br>
-```{r, echo = FALSE, fig.align = 'center', out.width = "70%"}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/nohtml.png")
-```
+<p align="center">
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/nohtml.png" height="300px" vspace="20px"></img><br>
+</p>
 
 ]
 
-.pull-right45[
-
-### I can do this all in Shiny!
-
-```{r, echo = FALSE, fig.align = 'center', out.width = "100%"}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/shiny_ss.png")
-```
+.pull-right5[
+<u>Example</u>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/shiny_ss.png"></img><br>
+</p>
 
 ]
 
@@ -93,44 +91,48 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 
 ## Scatterplot App
 
-<iframe src="https://econpsychbasel.shinyapps.io/FinalApp/" width="1200" height="7500"></iframe>
+<iframe src="https://econpsychbasel.shinyapps.io/FinalApp/" width="1200" height="500"></iframe>
 
 ---
 
 ## FFTrees Shiny App
 
-<iframe src="https://econpsychbasel.shinyapps.io/shinyfftrees/" width="1200" height="750"></iframe>
+<iframe src="https://econpsychbasel.shinyapps.io/shinyfftrees/" width="1200" height="500"></iframe>
 
-https://econpsychbasel.shinyapps.io/shinyfftrees/
+<font size=3><a href="https://econpsychbasel.shinyapps.io/shinyfftrees/">econpsychbasel.shinyapps.io/shinyfftrees</a></font>
 
 ---
 
 ## Balloon Analogue Risk Task (BART) Shiny App
 
-<iframe src="https://econpsychbasel.shinyapps.io/shinypsych_bart/" width="1200" height="750"></iframe>
+<iframe src="https://econpsychbasel.shinyapps.io/shinypsych_bart/" width="1200" height="500"></iframe>
 
-https://econpsychbasel.shinyapps.io/shinypsych_bart/
+<font size=3><a href="https://econpsychbasel.shinyapps.io/shinypsych_bart/">econpsychbasel.shinyapps.io/shinypsych_bart</a></font>
+
+---
+
+# Shiny
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/whatyoucando.png" height="450px" bh></img><br>
+</p>
+
 
 ---
 
-## Shiny
-
-```{r, echo = FALSE, fig.align = 'center', out.width = "60%", fig.cap = "<a href = http://shiny.rstudio.com>R Studio</a>"}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/whatyoucando.png")
-```
-
----
 
 .pull-left4[
-<br><br>
-## Shiny is a new world...
+
+# Shiny is a new world...
 
 Shiny is built on R, but it is a <high>very</high> different animal.
 
+<br>
 <u>Good News</u>
 
-All of your standard plotting and analysis code will still be "regular R"
+All of your standard plotting and analysis code will still be <high>regular R</high>
 
+<br>
 <u>Bad News</u>
 
 To program a full app, you must learn the <high>reactive</high> language of Shiny.
@@ -140,120 +142,121 @@ Learn by example. Tons of shiny apps online. Most code is available.
 ]
 
 .pull-right55[
-<br><br>
-
-<center><a href = http://shiny.rstudio.com>shiny.rstudio.com</a>
-
-```{r, echo = FALSE, fig.align = 'center', out.width = "70%"}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/learnshiny_B.png")
-```
 <br>
-<center><a href = "https://shiny.rstudio.com/gallery/">RStudio Shiny Example Gallery</a>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/learnshiny_B.png"></img><br>
+</p>
+
+<center><font = size=4><a href = http://Shiny.rstudio.com>shiny.rstudio.com</font>, </a><font = size=4><a href = "https://shiny.rstudio.com/gallery/">RStudio Shiny Example Gallery</font></a>
 
 ]
 ---
 # How programming a Shiny App looks
 
-```{r, echo = FALSE, fig.align = 'center', out.width = "80%"}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/shinyprogramming_ss.png")
-```
+<p align="center">
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/shinyprogramming_ss.png" height="450px"></img><br>
+</p>
 
 ---
-## Structure of a Shiny App
+# Structure of a Shiny App
 
-```{r, echo = FALSE, fig.align = 'center', out.width = "70%"}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/uiandserver.png")
-```
-
----
- <br>
- <br>
- <br>
- 
- # Let's explore the user interface of an app!
- 
- ### P.S. You'll create a very similar app in the practical!
-
----
-## User Interface
-
-```{r, echo = FALSE, fig.align = 'center', out.width = "80%"}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/exampleapp_A.png")
-```
-
----
-## User Interface
-
-```{r, echo = FALSE, fig.align = 'center', out.width = "80%"}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/exampleapp_B.png")
-```
-
----
-## User Interface
-
-```{r, echo = FALSE, fig.align = 'center', out.width = "80%"}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/exampleapp_C.png")
-```
-
----
-## User Interface
-
-```{r, echo = FALSE, fig.align = 'center', out.width = "80%"}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/exampleapp_D.png")
-```
-
----
-## User Interface
-
-```{r, echo = FALSE, fig.align = 'center', out.width = "80%"}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/exampleapp_E.png")
-```
-
----
-## User Interface
-
-```{r, echo = FALSE, fig.align = 'center', out.width = "80%"}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/exampleapp_F.png")
-```
-
----
-## User Interface
-
-```{r, echo = FALSE, fig.align = 'center', out.width = "80%"}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/exampleapp_G.png")
-```
-
----
-## User Interface
-
-```{r, echo = FALSE, fig.align = 'center', out.width = "80%"}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/exampleapp_H.png")
-```
-
----
-## User Interface
-
-```{r, echo = FALSE, fig.align = 'center', out.width = "80%"}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/exampleapp_B.png")
-```
-
----
-## The final app!
-
-<iframe src="https://econpsychbasel.shinyapps.io/histogram_app/" width="1200" height="700"></iframe>
-
----
-## User Interface
-
-The user interface typically contains two main components: Widgets, layouts, and plots
-
-```{r, echo = FALSE, fig.align = 'center', out.width = "80%"}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/userinterface_description.png")
-```
+<p align="center">
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/uiandserver.png" height="450px"></img><br>
+</p>
 
 ---
 
-## User Interface, Widgets
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<p align = "center">
+  <font size=5>P.S. You'll create a very similar app in the practical!</font>
+</p>
+<div class="center_text_2">
+  <span>
+  Let's explore the user interface of an app!
+  </span>
+</div>
+
+
+---
+# User Interface
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/exampleapp_A.png" height="500px"></img><br>
+</p>
+
+---
+# User Interface
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/exampleapp_B.png" height="500px"></img><br>
+</p>
+
+---
+# User Interface
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/exampleapp_C.png" height="500px"></img><br>
+</p>
+
+---
+# User Interface
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/exampleapp_D.png" height="500px"></img><br>
+</p>
+
+---
+# User Interface
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/exampleapp_E.png" height="500px"></img><br>
+</p>
+
+---
+# User Interface
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/exampleapp_F.png" height="500px"></img><br>
+</p>
+
+---
+# User Interface
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/exampleapp_G.png" height="500px"></img><br>
+</p>
+
+---
+# User Interface
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/exampleapp_H.png" height="500px"></img><br>
+</p>
+
+---
+# User Interface
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/exampleapp_B.png" height="500px"></img><br>
+</p>
+
+---
+# The final app!
+
+<iframe src="https://econpsychbasel.shinyapps.io/histogram_app/" width="1200" height="500"></iframe>
+
+---
+# User Interface
+
+Main components: <high>Widgets</high>, <high>layouts</high>, and <high>plots</high>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/userinterface_description.png" height="400px"></img><br>
+</p>
+
+---
+
+# User Interface, Widgets
 
 Widgets are simple fields added to the user interface for users to add inputs.
 
@@ -263,10 +266,9 @@ knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therboot
 
 ---
 
-.pull-left4[
-<br>
-## Server
-<br>
+# Server
+
+.pull-left35[
 
 All code that creates plots, does machine learning ... (really anything!) goes in the <high>server()</high> function.
 
@@ -274,28 +276,23 @@ To present output like a plot, it must be <high>rendered</high> in the server us
 
 Once it is rendered, it is sent to the output and displayed in the user interface using an <high>output function</high> like `plotOutput()`.
 
-
 ]
 
-.pull-right55[
+.pull-right6[
 
-<br>
-```{r, echo = FALSE, fig.align = 'center', out.width = "100%"}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/serverdescription.png")
-```
+<p align="center">
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/serverdescription.png" height="400px"></img><br>
+</p>
+
 ]
 
 ---
 
-## Server
+
 
 .pull-left45[
 
-<iframe src="https://econpsychbasel.shinyapps.io/barebones_hist/" width="800" height="800"></iframe>
-
-]
-
-.pull-right45[
+# Server
 
 ```{r, eval = FALSE}
 library(shiny)
@@ -310,8 +307,7 @@ ui <- fluidPage(
 
 server <- function(input, output) {
 
-  # Define x
-  x <- ChickWeight$weight
+  x <- ChickWeight$weight # Define x
 
   # Send rendered plot to output
   output$myplot <- renderPlot({
@@ -324,29 +320,23 @@ shinyApp(ui = ui, server = server)
 
 ]
 
----
+.pull-right45[
+<br>
+<iframe src="https://econpsychbasel.shinyapps.io/barebones_hist/" width="800" height="550"></iframe>
 
-## Cheatsheet
-
-The Shiny cheatsheet explains the most common functions for rendering and presenting output.
-
-```{r, echo = FALSE, fig.align = 'center', out.width = "60%"}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/rendering_output.png")
-```
+]
 
 ---
 
+
+
+# Publishing (hosting) an app
 
 .pull-left45[
 
-## Publishing (hosting) an app
+You can always <high>run a Shiny app locally</high> on your machine.
 
-
-<br>
-
-You can always run a Shiny app locally on your machine.
-
-To get it online, you need to put it on a Shiny Server.
+To get it online, you need to put it on a <high>Shiny Server</high>.
 
 Publish an app (with some restrictions) at http://shinyapps.io from RStudio with one click!
 
@@ -357,19 +347,19 @@ Other providers exist (e.g.; Amazon Web Services)
 ]
 
 .pull-right45[
-<br><br>
-```{r, echo = FALSE, fig.align = 'center', out.width = "100%", fig.cap = "<a href = http://shiny.rstudio.com>R Studio</a>"}
-knitr::include_graphics("https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/shinypublish.png")
-```
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_image/shinypublish.png" height="400px"></img><br>
+</p>
 
 ]
 
 ---
-## Practical
+# Practical
 
 In the practical, we will create the following app from scratch, and publish it online!
 
-<iframe src="https://econpsychbasel.shinyapps.io/FinalApp/" width="1200" height="7500"></iframe>
+<iframe src="https://econpsychbasel.shinyapps.io/FinalApp/" width="1200" height="410"></iframe>
 
 ---
 
