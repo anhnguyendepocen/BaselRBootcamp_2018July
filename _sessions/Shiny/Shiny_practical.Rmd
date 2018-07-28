@@ -317,7 +317,7 @@ output$downloadPlot <- downloadHandler(
 
 1. Now it's time to add our nice HTML table to your `Data` tab. Replace the current value `tabPanel("Data")` with the following:
 
-```{r, eval = FALSE, echo = FALSE}
+```{r, eval = FALSE, echo = TRUE}
 # Table tab
 tabPanel("Data", br(), dataTableOutput("table"))   # Add this!!!
 ```

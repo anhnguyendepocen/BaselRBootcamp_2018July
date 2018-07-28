@@ -412,8 +412,12 @@ output$downloadPlot &lt;- downloadHandler(
 <div id="j---add-a-table-tab" class="section level3">
 <h3>J - Add a table tab</h3>
 <ol style="list-style-type: decimal">
-<li><p>Now it’s time to add our nice HTML table to your <code>Data</code> tab. Replace the current value <code>tabPanel(&quot;Data&quot;)</code> with the following:</p></li>
-<li><p>In your server code, add the following block of code. This will send your rendered data table to the user interface.</p></li>
+<li>Now it’s time to add our nice HTML table to your <code>Data</code> tab. Replace the current value <code>tabPanel(&quot;Data&quot;)</code> with the following:</li>
+</ol>
+<pre class="r"><code># Table tab
+tabPanel(&quot;Data&quot;, br(), dataTableOutput(&quot;table&quot;))   # Add this!!!</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>In your server code, add the following block of code. This will send your rendered data table to the user interface.</li>
 </ol>
 <pre class="r"><code># Generate a summary of the data ----
 output$table &lt;- renderDT({
