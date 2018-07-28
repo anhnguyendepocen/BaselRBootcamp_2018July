@@ -57,7 +57,7 @@ In this practical you'll learn how to do natural language processing in R. By th
 |:------|:------|
 |`tidyverse`|`install.packages("tidyverse")`|
 |`tidytext`|`install.packages("tidytext")`|
-|`wordcloud`|`install.packages("tidytext")`|
+|`wordcloud`|`install.packages("wordcloud")`|
 |`rvest`|`install.packages("rvest")`|
 
 ### Glossary
