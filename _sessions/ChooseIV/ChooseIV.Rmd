@@ -45,14 +45,15 @@ options(digits = 4)
 
 <u>Base track</u><br>
 
-<font size="8"><hfont>Interactive plotting</hfont></font><br>
+<font size="8"><hfont>Programming in R</hfont></font><br>
 
-Learn how to generate interactive website with shiny to... 
+Learn... 
 
-...<high>produce dynamic graphics and results</high>.
+...about <high>control-statements</high>.
 
-...<high>create interactive apps</high>.
+...about <high>for-loops</high>.
 
+...<high>functional programming</high>.
 
 ]
 
@@ -60,13 +61,15 @@ Learn how to generate interactive website with shiny to...
 
 <u>Advanced track</u><br>
 
-<font size="8"><hfont>Natural Language Processing</hfont></font><br>
+<font size="8"><hfont>Efficient Code</hfont></font><br>
 
-Learn about how to work with Text in R to... 
+Learn about how to speed up R using, e.g.,... 
 
-...<high>extract relevant information</high>.
+...<high>compiling</high>.
 
-...<high>study its sentiment</high> execution.
+...<high>parallel code</high> execution.
+
+...<high>C++</high>.
 
 ]
 
