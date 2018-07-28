@@ -479,13 +479,13 @@ ggplot(data = mpg,
 
 &lt;p align="center"&gt; `mpg`&lt;/p&gt;
 
-| displ| hwy|class | year|
-|-----:|---:|:-----|----:|
-|   2.5|  27|suv   | 2008|
-|   5.0|  17|suv   | 1999|
-|   4.0|  20|suv   | 2008|
-|   5.3|  20|suv   | 2008|
-|   5.7|  15|suv   | 1999|
+| displ| hwy|class      | year|
+|-----:|---:|:----------|----:|
+|   4.0|  20|pickup     | 2008|
+|   2.2|  27|compact    | 1999|
+|   5.2|  17|pickup     | 1999|
+|   4.0|  24|subcompact | 2008|
+|   4.6|  21|subcompact | 1999|
 
 
 ]
@@ -895,7 +895,6 @@ ggplot(data = mpg,
 
 &lt;img src="Plotting_files/figure-html/unnamed-chunk-50-1.png" width="40%" style="display: block; margin: auto;" /&gt;
 
-
 ---
 
 # `facet_wrap`
@@ -907,7 +906,6 @@ Faceting = Create different plots for different groups
 To facet plots, use `facet_wrap()`
 
 
-
 ```r
 # Without faceting
 ggplot(data = mpg, 
@@ -915,7 +913,6 @@ ggplot(data = mpg,
                      y = hwy)) + 
   geom_point()
 ```
-
 
 ]
 
