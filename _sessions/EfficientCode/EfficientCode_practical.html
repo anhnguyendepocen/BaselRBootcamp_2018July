@@ -196,9 +196,90 @@ $(document).ready(function () {
 </tr>
 </tbody>
 </table>
-<div id="examples" class="section level4">
-<h4>Examples</h4>
 </div>
+<div id="examples" class="section level3">
+<h3>Examples</h3>
+<pre class="r"><code># Example: Microbenchmark ---------------------------------------   
+
+# Minimal chunks of code can conveniently be tested
+# using `microbenchmark()`. 
+
+# load packages
+library(microbenchmark)
+library(tibble)
+
+# get data
+df  &lt;- data.frame('var_1' = rnorm(10000,1),
+                  'var_2' = rnorm(10000,1))
+tbl &lt;- as_tibble(df)
+
+# microbenchmark: selecting variables
+microbenchmark(df[['var_1']],
+               df$var_1,
+               tbl$var_1)
+
+# Example: Profvis ---------------------------------------   
+ 
+# Larger code chunks or even scripts can be conveniently tested using 
+# `system.time()` and `profvis()` from the `profvis` package. The 
+# example below is based on the `happiness` data set from the 
+# `wooldridge` package.   
+
+# install and load packages
+install.packages('profvis')
+library(profvis)
+library(readr)
+library(dplyr)
+
+# profile using profvis
+profvis({
+  
+  # load data
+  data &lt;- read_csv('https://tinyurl.com/happy-csv')
+  
+  # remove rownames
+  data &lt;- data[-1]
+  
+  # mutate
+  data$attend_num = data$attend
+  data$attend_num[data$attend == 'never'] &lt;- 0
+  data$attend_num[data$attend == 'lt once a year'] &lt;- 1
+  data$attend_num[data$attend == 'once a year'] &lt;- 2
+  data$attend_num[data$attend == 'sevrl times a yr'] &lt;- 3
+  data$attend_num[data$attend == 'once a month'] &lt;- 4
+  data$attend_num[data$attend == '2-3x a month'] &lt;- 5
+  data$attend_num[data$attend == 'nrly every week'] &lt;- 6
+  data$attend_num[data$attend == 'every week'] &lt;- 7
+  data$attend_num[data$attend == 'more thn once wk'] &lt;- 8
+  data$attend_num = as.numeric(data$attend_num)
+  
+  # select
+  north &lt;- data %&gt;%
+    filter(region %in% c('new england', 'e. nor. central','w. nor. central'))
+  south &lt;- data %&gt;%
+    filter(region %in% c('w. sou. central', 'e. sou. central', 'south atlantic'))
+  pacific &lt;- data %&gt;%
+    filter(region == 'pacific')
+  
+  # multiple regression 
+  # happiness predicted by hours watching tv, 
+  # attendance at religious services, ow
+  north_atlantic_model &lt;- glm(vhappy ~ tvhours + attend_num + owngun, 
+                              data = north, 
+                              family = 'binomial')
+  south_central_model &lt;- glm(vhappy ~ tvhours + attend_num + owngun, 
+                             data = south, 
+                             family = 'binomial')
+  pacific_model &lt;- glm(vhappy ~ tvhours + attend_num + owngun, 
+                       data = pacific, 
+                       family = 'binomial')
+  
+  # evaluate model
+  summary(north_atlantic_model)
+  summary(south_central_model)
+  summary(pacific_model)
+  
+  }, interval = .005)</code></pre>
 </div>
 </div>
 <div id="tasks" class="section level1">
