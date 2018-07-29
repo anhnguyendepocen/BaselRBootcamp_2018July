@@ -338,7 +338,7 @@ show_stats <- function(x, digits = 2) {
     stop("x is not numeric!!!")}
   
   output <- paste0("x has length ", length(x), 
-                  ", and a mean of ", mean(x))
+                  ", and a mean of ", round(mean(x), digits))
   
   output
   
