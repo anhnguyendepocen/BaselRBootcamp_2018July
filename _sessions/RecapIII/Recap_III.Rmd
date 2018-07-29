@@ -43,7 +43,7 @@ library(tidyverse)
 .pull-left35[
 <br><br><br>
 > ### "As good as R is for statistics, it's as good if not better for data visualisation."
-> ### Nathaniel D. Phllips
+> ### Nathaniel D. Phillips
 ]
 
 .pull-right65[
