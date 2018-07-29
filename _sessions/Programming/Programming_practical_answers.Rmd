@@ -200,9 +200,6 @@ map_dbl(pirates[, vars], mean)
 ```
 
 
-
-# Tasks
-
 ### Datasets
 
 ```{r, eval = TRUE, message = FALSE}
@@ -216,6 +213,10 @@ house <- read_csv("../_data/complete/pirates.csv")
 |File | Rows | Columns | Description |Source
 |:----|:-----|:------|:-----------------------------------------|:------|
 |`pirates.csv` | 1000 | 17 | A collection of information on 1000 pirates. Variables include the pirates' sex, age, number of tattoos and number of parrots. | The dataset is from the `yarrr`package. You should already have it in your `1_Data` folder, if not you can download it [here](https://raw.githubusercontent.com/therbootcamp/therbootcamp.github.io/master/_sessions/_data/pirates.csv). |
+
+
+# Tasks
+
 
 ## A - Getting setup
 
