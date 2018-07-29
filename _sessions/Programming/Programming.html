@@ -356,7 +356,7 @@ show_stats &lt;- function(x, digits = 2) {
     stop("x is not numeric!!!")}
   
   output &lt;- paste0("x has length ", length(x), 
-                  ", and a mean of ", mean(x))
+                  ", and a mean of ", round(mean(x), digits))
   
   output
   
@@ -375,7 +375,7 @@ show_stats(x = baselers$age)
 ```
 
 ```
-## [1] "x has length 10000, and a mean of 44.6132"
+## [1] "x has length 10000, and a mean of 44.61"
 ```
 
 
@@ -701,23 +701,12 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   d.head.appendChild(s);
 })();</script>
 
-<script>
-(function() {
-  var i, text, code, codes = document.getElementsByTagName('code');
-  for (i = 0; i < codes.length;) {
-    code = codes[i];
-    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
-      text = code.textContent;
-      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
-          /^\$\$(.|\s)+\$\$$/.test(text) ||
-          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
-        code.outerHTML = code.innerHTML;  // remove <code></code>
-        continue;
-      }
-    }
-    i++;
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre']
   }
-})();
+});
 </script>
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
