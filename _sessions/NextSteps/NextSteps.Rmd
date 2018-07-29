@@ -252,7 +252,7 @@ ggmap(get_map(c(7.588576, 47.559601),zoom=16))
 
 .pull-right45[
 
-<p align="center"><br><br><iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdYMfL36Dcs7IJ4DQh-XGUI0DYHsP0b8taF3jFahs2ZPilySQ/viewform?embedded=true" width="430" height="550">Wird geladen...</iframe></p>
+<p align="center"><br><br><iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfxSHPdG0n9jy_21pOJ5Fbwr2qfTzp61VXZzX2MF6rpr--LbQ/viewform?embedded=true" width="430" height="550">Wird geladen...</iframe></p>
 
 ]
 
@@ -262,7 +262,7 @@ ggmap(get_map(c(7.588576, 47.559601),zoom=16))
 
 # Github & Dropbox
 
-An important part of programming is to <high>keep track of your project's progress<high> to potentially be able to go back to an earlier version. To achieve this, many programmers rely on <high>version-control</high> software such as [<high>GitHub</high>](www.github.com). R and, in particular, RStudio work have inbuilt software that allow you to <high>sync your project</high> with an <high>GitHub repository</high>. Via the package called `rdrop2`, R also interfaces with the popular cloud service [<high>Dropbox</high>](www.dropbox.com), which also allows for rudimentary version control.   
+An important part of programming is to <high>keep track of your project's progress</high> to potentially be able to go back to an earlier version. To achieve this, many programmers rely on <high>version-control</high> software such as [<high>GitHub</high>](www.github.com). R and, in particular, RStudio work have inbuilt software that allow you to <high>sync your project</high> with an <high>GitHub repository</high>. Via the package called `rdrop2`, R also interfaces with the popular cloud service [<high>Dropbox</high>](www.dropbox.com), which also allows for rudimentary version control.   
 
 .pull-left3[
 
@@ -286,7 +286,7 @@ An important part of programming is to <high>keep track of your project's progre
 
 # R on servers
 
-With the need for more computing power for, e.g., machine learning, R is also moving more and more to the **server and cluster sphere**. Rstudio offers a convenient (and free) solution to access [**RStudio**](https://www.rstudio.com/products/rstudio/) sessions on a **remote linux server** via a browser. RStdudio also offers the `sparklyr` package integrating the [**Spark**](https://spark.apache.org/) architecture for efficient cluster computing with `dplyr`. Other packages exist to interface with [**Hadoop**](http://hadoop.apache.org/) (`RHadoop`) and [**SQL**](https://de.wikipedia.org/wiki/SQL) (`RSQLite`). 
+With the need for more computing power for, e.g., machine learning, R is also moving more and more to the <high>server and cluster sphere</high>. Rstudio offers a convenient (and free) solution to access [RStudio](https://www.rstudio.com/products/rstudio/) sessions on a <high>remote linux server</high> via a browser. RStdudio also offers the `sparklyr` package integrating the [Spark](https://spark.apache.org/) architecture for efficient cluster computing with `dplyr`. Other packages exist to interface with [Hadoop](http://hadoop.apache.org/) (`RHadoop`) and [SQL](https://de.wikipedia.org/wiki/SQL) (`RSQLite`). 
 
 .pull-left6[
 
@@ -510,6 +510,37 @@ Feel free to contact us.
 </p></th></tr>
 </table>
 
+---
+
+# New courses
+
+.pull-left[
+
+
+## Introduction to Data Science with R
+
+<img src="image/data_science.png" height="260px" width="480px"></img>
+
+<high>Early October</high>, probably October 6 & 7
+
+<high>2 days</high> (covering roughly the first 2.5 days of the bootcamp)
+
+]
+
+.pull-right[
+
+## Applied Machine Learning with R
+
+<img src="image/machine_learning.png" height="260px" width="480px"></img>
+
+<high>Mid January</high>, probably January 11-13
+
+<high>2-3 days</high> (covering ~ the first 2.5 days of the bootcamp)
+
+
+]
+
+
 
 ---
 
@@ -517,6 +548,6 @@ Feel free to contact us.
 # Thank you
 
 
-<a href="http://i.imgur.com/PgtvQar.png"><font size=5>Here is an R Joke</font></a><br><br>
+<a href="http://i.imgur.com/PgtvQar.png"><font size=5>Here is an R Joke.</font></a><br><br>
 <font size=5>And now one more thing</font>...
 

@@ -649,7 +649,7 @@ rf_fit &lt;- predict(price_rf,
 postResample(pred = rf_fit, 
              obs = house_train$price)</code></pre>
 <pre><code>    RMSE Rsquared      MAE 
-   0.415    0.394    0.335 </code></pre>
+   0.415    0.395    0.335 </code></pre>
 <pre class="r"><code># Get fitted values
 rf_pred &lt;- predict(price_rf, 
                  newdata = house_test)
@@ -659,7 +659,7 @@ rf_pred &lt;- predict(price_rf,
 postResample(pred = rf_pred, 
              obs = house_test$price)</code></pre>
 <pre><code>    RMSE Rsquared      MAE 
-   0.435    0.327    0.347 </code></pre>
+   0.435    0.326    0.347 </code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>How does the <em>fitting</em> performance of random forests compare to the other algorithms in training?</li>
 </ol>
@@ -706,6 +706,13 @@ price_lm &lt;- glm(formula = price ~.,
 <li><p>Which of your three models is the best at predicting the year a house was built?</p></li>
 </ol>
 </div>
+</div>
+<div id="additional-reading" class="section level1">
+<h1>Additional reading</h1>
+<ul>
+<li><p>For more details check out <code>caret</code>’s vignette using <code>vignette(&quot;caret&quot;)</code>.</p></li>
+<li><p>Also check out <a href="https://www.amazon.com/dp/B005Z29QT4/ref=cm_sw_su_dp">Applied Predictive Modeling</a> Kuhn &amp; Johnson.</p></li>
+</ul>
 </div>
 
 
